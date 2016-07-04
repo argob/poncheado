@@ -28,13 +28,18 @@ layout: argentina
 
           <div class="row content_format">
             <div class="col-md-12">
-              <h5>Seguí tu trámite para DNI en los siguientes sitios: </h5>
-              <h4>En el sitio de Renaper </h4>
-              <ol>
+
+              <h4>Consultá el estado de tu trámite en curso</h4>
+              <p>Conocé el estado del trámite de tu dni sólamente ingresando tus datos en esta misma página.</p>
+              <p><a href="#consultar-estado" class="btn btn-primary">consultar ahora</a></p>
+              <!-- <h4>En el sitio de Renaper </h4> -->
+              <!-- <ol>
                 <li>Ingresá al seguimiento de trámites del <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">Sitio del RENAPER desde este link </a></li>
                 <li>Podés consultar el estado de tu trámite ingresando tu número de DNI o el número de una Boleta Prenumerada.</li>
                 <li>El sistema te indicará si tu DNI se encuentra aún en el RENAPER o si fue entregado para su envío o tu domicilio. Podés continuar el seguimiento en los sitios de Correo Argentino o de OCA.</li>
-              </ol>
+              </ol> -->
+
+              <h5>Seguí la entrega tu trámite para DNI en los siguientes sitios: </h5>
 
               <h4>En el sitio del Correo Argentino</h4>
               <ol>
@@ -54,9 +59,8 @@ layout: argentina
 
             </div>
           </div>
-
-
       </article>
+
 
       <div class="row">
         <div class="col-md-12">
@@ -85,21 +89,113 @@ layout: argentina
         </div>
       </div>
 
+      <hr>
+      <h3 id="consultar-estado" class="padding-20">Consultá el estado de tu trámite</h3>
+      <div class="panel panel-disabled margin-60">
+        <div class="panel-body">
+          
+          <form action="/formulario-de-estado-de-documentacion" method="post" id="consulta-tramite-documento-form" accept-charset="UTF-8">
+            <h3 class="margin-20">Elegí el tipo de consulta</h2>
+            <div class="tabbable tabs-left vertical-tabs clearfix bootstrap-tabs-processed">
 
-          <hr>
+              <div class="form-group">
+                <div id="edit-sexo" class="btn-group btn-group-justified" data-toggle="buttons">
+                  <label class="btn btn-default active" for="tab-0"  href="#edit-ndni" data-toggle="tab">
+                    <input type="radio" id="tab-0" name="tab" value="0" checked>Número de DNI
+                  </label>
+                  <label class="btn btn-default" for="tab-1"  href="#edit-nboleta" data-toggle="tab">
+                    <input type="radio" id="tab-1" name="tab" value="1">Número de Boleta
+                  </label>
+                </div>
+              </div>
 
-          <div class="row">
-            <div class="section-actions col-md-12 social-share">
-              <p>Compartí <br>esta página</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter "></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-print"></i></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
-              </ul>
+              <h3 class=" padding-20 margin-20">Ingresá tus datos</h3>
+
+              <div class="vertical-tabs-panes vertical-tabs-processed tab-content">
+                <fieldset class="form-wrapper tab-pane active" id="edit-ndni">
+                  <div class="form-item form-item-dni form-type-textfield form-group">
+                    <label class="control-label" for="edit-dni">Número de DNI </label>
+                    <input class="form-control form-text" type="text" id="edit-dni" name="dni" value="" size="60" maxlength="128">
+                  </div>
+
+                  <div class="form-item form-item-sexo form-type-radios form-group">
+                    <label class="control-label" for="edit-sexo">Sexo </label>
+
+                    <div id="edit-sexo" class="btn-group btn-group-justified" data-toggle="buttons">
+                      <label class="btn btn-default" for="edit-sexo-0">
+                        <input type="radio" id="edit-sexo-0" name="sexo" value="0">Mujer
+                      </label>
+                      <label class="btn btn-default" for="edit-sexo-1">
+                        <input type="radio" id="edit-sexo-1" name="sexo" value="1">Hombre
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset class="form-wrapper tab-pane vertical-tabs-pane" id="edit-nboleta">
+                  <div class="form-item form-item-boleta form-type-textfield form-group">
+                    <label class="control-label" for="edit-boleta">Número de boleta </label>
+                    <input class="form-control form-text" title="" data-toggle="tooltip" type="text" id="edit-boleta" name="boleta" value="" size="60" maxlength="128">
+                  </div>
+                </fieldset>
+
+                <input class="vertical-tabs-active-tab" type="hidden" name="consulta__active_tab" value="edit-ndni">
+              </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2 padding-20 margin-20">
+              <button type="submit" id="edit-submit" name="op" value="Consultar" class="btn btn-success btn-block form-submit">Consultar estado</button>
+            </div>
+            <input type="hidden" name="form_build_id" value="form-DPBs9cgM2rocgxGp38IlqoL6zuijSGuSxBGRtFFEZrA">
+            <input type="hidden" name="form_id" value="consulta_tramite_documento_form">
+          </form>
+
+          <div id="consulta-tramite-documento-form-message" class="hidden">
+            <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-check-circle fa-4x text-success"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="margin-0">Tu DNI ya se entregó.</h3>
+                <p>El documento se entregó en el domicilio.</p>
+              </div>
             </div>
           </div>
+
+        </div>
+      </div>
+
+      <script>
+        $(function () {
+
+          // Interacción de enviar el formulario
+          $('#consulta-tramite-documento-form button[type=submit]').on('click', function(event){
+            event.preventDefault();
+            $form = $('#consulta-tramite-documento-form').parent().parent();
+            $form.addClass('state-loading');
+
+            setTimeout(function(){
+              $form.removeClass('state-loading');
+              $('#consulta-tramite-documento-form, #consulta-tramite-documento-form-message').toggleClass('hidden');
+            }, 1500)
+          });
+        })
+      </script>
+
+
+      <hr>
+
+      <div class="row">
+        <div class="section-actions col-md-12 social-share">
+          <p>Compartí <br>esta página</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-print"></i></a></li>
+            <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <h3>Trámites relacionados</h3>
