@@ -1,0 +1,106 @@
+---
+layout: argentina
+---
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  #map {
+    height:100vh;
+  }
+  .main-footer {
+    display: none;
+  }
+</style>
+
+<div id="map"></div>
+
+<script>
+
+  var initMap = function() {
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5,
+      center: mapCenter,
+      scrollwheel: true
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1xH78vH6KhTwCKYN1l3CvbtdoLikqyrnxEg8bFjIPyLw/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+
+        console.log(response);
+
+        var rows = response.feed.entry;
+
+        rows.forEach(function(row, key){
+
+          // if(row.gsx$visible.$t == '1'){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
+              map: map,
+              title: row.gsx$institucion.$t
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h5>'+ row.gsx$institucion.$t +'</h5><p>'+ row.gsx$direccion.$t +'</p>',
+              maxWidth: 400
+            })
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+
+            });
+
+          // }
+        })
+      },
+      error: function(){
+        console.log('nope');
+      }
+    });
+
+    // Add listener to add new locations
+
+    var denunciar = new google.maps.InfoWindow({
+      maxWidth: 250
+    });
+
+    // map.addListener('click', function(event) {
+    //   closeWindows();
+    //   map.panTo(event.latLng);
+    //   denunciar.setContent('<div class="text-center"><h4>Hacé tu denuncia acá</h4><p class="margin-20">Conoces una obra pública inconclusa o que nunca se inició?</p><a class="btn btn-primary" href="https://docs.google.com/forms/d/1d9DSkgeVAK_k7u4HFIhVoN2WGO-HIZdx9G0Gv8SCi5E/viewform?entry.1244031719&entry.623121921&entry.1011021428='+ event.latLng.lat().toString().replace('.', ',') +'&entry.977857623='+ event.latLng.lng().toString().replace('.', ',') +'">Denunciar obra</a></div>');
+    //   denunciar.setPosition(event.latLng);
+    //   denunciar.open(map);
+    // });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+      denunciar.close();
+    }
+  }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
+
