@@ -4,21 +4,83 @@ layout: argentina
 
 <style>
   header {
+    display: none;
+  }
+  #map-header {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 10;
   }
-  #map {
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    /*padding-top: 72px;*/
     height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
   }
   .main-footer {
     display: none;
   }
 </style>
 
-<div id="map"></div>
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="navbar-brand hidden-xs">
+            <a href="javascript: window.location.back();" class="btn btn-link btn-sm" style="margin: 6px 0px;">
+              <i class="fa fa-arrow-left fa-2x"></i>
+            </a>
+          </div>
+          <a class="navbar-brand" href="/">
+            <img alt="Brand" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:setGeolocation();" id="localize"><i class="fa fa-map-marker"></i>&nbsp; Localizarme</a></li>
+          </ul>           
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="jumbotron hidden-xs">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger pull-right"><i class="fa fa-times"></i>&nbsp; Salir</a>
+        <h4>Mapa de las Mujeres</h4>
+        <span>Buscá lugares cerca tuyo donde pueden ayudarte gratis.</span>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+
+<div id="map-container">
+  <div id="map"></div>
+</div>
 
 <script>
 
@@ -28,7 +90,7 @@ layout: argentina
 
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 5,
+      zoom: 4,
       center: mapCenter,
       scrollwheel: true
     });
@@ -54,42 +116,35 @@ layout: argentina
             var index = markers.length;
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
-              map: map,
+              // map: map,
               title: row.gsx$institucion.$t
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h5>'+ row.gsx$institucion.$t +'</h5><p>'+ row.gsx$direccion.$t +'</p>',
+              content: '<h5>'+ row.gsx$institucion.$t +'<br><small>'+ row.gsx$tipodeinstitucion.$t +'</small></h5><p><strong>Servicio</strong>: '+ row.gsx$servicio.$t +'<br><strong>Horario</strong>: '+ row.gsx$horario.$t +'<br><strong>Teléfono</strong>: '+ row.gsx$telefono.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t +', '+ row.gsx$localidad.$t +', '+ row.gsx$provincia.$t +'</p>',
               maxWidth: 400
             })
 
             markers[index].addListener('click', function() {
               closeWindows();
               detalles[index].open(map, markers[index]);
-
+              map.panTo(markers[index].getPosition());
             });
 
           // }
         })
+
+        var markerCluster = new MarkerClusterer(map, markers, {
+          imagePath: 'images/m',
+          gridSize: 50,
+          minimumClusterSize: 3
+        });
+
       },
       error: function(){
         console.log('nope');
       }
     });
-
-    // Add listener to add new locations
-
-    var denunciar = new google.maps.InfoWindow({
-      maxWidth: 250
-    });
-
-    // map.addListener('click', function(event) {
-    //   closeWindows();
-    //   map.panTo(event.latLng);
-    //   denunciar.setContent('<div class="text-center"><h4>Hacé tu denuncia acá</h4><p class="margin-20">Conoces una obra pública inconclusa o que nunca se inició?</p><a class="btn btn-primary" href="https://docs.google.com/forms/d/1d9DSkgeVAK_k7u4HFIhVoN2WGO-HIZdx9G0Gv8SCi5E/viewform?entry.1244031719&entry.623121921&entry.1011021428='+ event.latLng.lat().toString().replace('.', ',') +'&entry.977857623='+ event.latLng.lng().toString().replace('.', ',') +'">Denunciar obra</a></div>');
-    //   denunciar.setPosition(event.latLng);
-    //   denunciar.open(map);
-    // });
 
     // Helper clases
 
@@ -97,10 +152,49 @@ layout: argentina
       for(i = 0; i < detalles.length; i++){
         detalles[i].close();
       }
-      denunciar.close();
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('#localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(15);
+            map.setCenter(pos);
+
+            $('#localize').removeClass('state-loading disabled');
+
+          }, function() {
+            console.log('geo nope')
+            $('#localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('#localize').removeClass('state-loading disabled');
+          map.setZoom(15);
+          map.setCenter(window.pos);
+        }
+
+      } else {
+        // console.log('geo nope')
+        $('#localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
     }
   }
 
 </script>
+<script src="markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
 
