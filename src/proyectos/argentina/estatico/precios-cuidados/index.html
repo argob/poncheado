@@ -1,5 +1,5 @@
 ---
-layout: argentina-precios-cuidados
+layout: argentina
 ---
 
 <section class="jumbotron" style="background-image: url('');">
@@ -99,4 +99,22 @@ layout: argentina-precios-cuidados
   </div>
 </div>
 
+
+<script src="{{ "/proyectos/argentina/estatico/precios-cuidados/js/precios-cuidados.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  var options = {
+    valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+  };
+
+  var productsList = new List('productos', options);
+
+  //cambiando clase de icons en tablas
+  $(".list a").click(function(){
+    $(this).find('i').toggleClass('fa-plus fa-minus'); 
+    $(this).find('i').toggleClass('text-success text-danger'); 
+  });
+
+</script>
 
