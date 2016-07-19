@@ -248,7 +248,8 @@ MarkerClusterer.prototype.setupStyles_ = function() {
     this.styles_.push({
       url: this.imagePath_ + (i + 1) + '.' + this.imageExtension_,
       height: size,
-      width: size
+      width: size,
+      textColor: '#FFF'
     });
   }
 };

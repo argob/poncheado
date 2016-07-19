@@ -34,6 +34,25 @@ layout: argentina
   .main-footer {
     display: none;
   }
+  #mobile-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0px 53px 14px 15px;
+  }
+  #mobile-footer .row {
+    margin-right: -7.5px;
+    margin-left: -7.5px;
+  }
+  #mobile-footer .row > div {
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+  }
+  #mobile-footer a {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
 </style>
 
 <header id="map-header">
@@ -41,7 +60,7 @@ layout: argentina
     <div class="container">
       <div>
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -58,7 +77,13 @@ layout: argentina
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+        <div class="collapse navbar-collapse" id="map-navbar-collapse">
+          <div class="visible-xs">
+            <br>
+            <h5>Mapa de las Mujeres</h5>
+            <span class="text-muted">Buscá lugares cerca tuyo donde pueden ayudarte gratis.</span>
+            <hr class="margin-0">
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="javascript:setGeolocation();" id="localize"><i class="fa fa-map-marker"></i>&nbsp; Localizarme</a></li>
           </ul>           
@@ -77,6 +102,17 @@ layout: argentina
     <div class="overlay"></div>
   </section>
 </header>
+
+<div id="mobile-footer" class="visible-xs">
+  <div class="row">
+    <div class="col-xs-6">
+      <a href="tel:144" class="btn btn-success btn-block">Llamar</a>
+    </div>
+    <div class="col-xs-6">
+      <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger btn-block pull-right">Salir</a>
+    </div>
+  </div>
+</div>
 
 <div id="map-container">
   <div id="map"></div>
@@ -117,7 +153,14 @@ layout: argentina
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
               // map: map,
-              title: row.gsx$institucion.$t
+              title: row.gsx$institucion.$t,
+              icon: {
+                url: 'images/marker.png',
+                size: new google.maps.Size(20, 20),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10)
+              }
+
             });
 
             detalles[index] = new google.maps.InfoWindow({
