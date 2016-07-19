@@ -3,7 +3,8 @@ layout: argentina
 ---
 
 <style>
-  header {
+  header,
+  body > .bg-primary {
     display: none;
   }
   #map-header {
@@ -73,7 +74,7 @@ layout: argentina
             </a>
           </div>
           <a class="navbar-brand" href="/">
-            <img alt="Brand" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+            <img alt="Brand" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
         </div>
@@ -118,6 +119,7 @@ layout: argentina
   <div id="map"></div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 
   var initMap = function() {
@@ -171,7 +173,7 @@ layout: argentina
             markers[index].addListener('click', function() {
               closeWindows();
               detalles[index].open(map, markers[index]);
-              map.panTo(markers[index].getPosition());
+              // map.panTo(markers[index].getPosition());
             });
 
           // }
@@ -238,6 +240,6 @@ layout: argentina
   }
 
 </script>
-<script src="markerclusterer.js"></script>
+<script src="https://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/mujeres/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
 
