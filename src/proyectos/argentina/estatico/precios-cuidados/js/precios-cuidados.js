@@ -15,10 +15,10 @@ $(document).ready(function () {
             html += '   </a>';
             html += ' </th>';
             html += ' <td>';
-            html += '   <p class="nombre">'+ producto.name + '</p>';
+            html += '   <div class="nombre">'+ producto.name + '</div>';
             html += '   <div class="collapse" id="'+ producto.id + '">';
-            html += '     <p><strong>Categor&iacute;a: </strong><span class="categoria">'+ producto.categoria + '</span></p>';
-            html += '     <p><strong>EAN: </strong><span class="ean">'+ producto.ean + '</span></p>';
+            html += '     <div><strong>Categor&iacute;a: </strong><span class="categoria">'+ producto.categoria + '</span></div>';
+            html += '     <div><strong>EAN: </strong><span class="ean">'+ producto.ean + '</span></div>';
             html += '   </div>';
             html += ' </td>';
             html += ' <td class="marca">'+ producto.marca + '</td>';
