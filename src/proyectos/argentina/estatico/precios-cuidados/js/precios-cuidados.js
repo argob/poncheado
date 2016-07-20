@@ -44,6 +44,12 @@ $(document).ready(function () {
         $(this).find('i').toggleClass('text-success text-danger'); 
     });
 
+    $(".btn-group a").on("click", function() {
+      $(this).addClass('active').siblings().removeClass('active'); 
+      var region = $(this).data("region");
+      showProducts(region);
+    });    
+
 });
 
 
