@@ -2,6 +2,11 @@
 
 .form-type-date .form-inline {
   margin: 0 -15px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: initial;
 
   &:after {
     content: '';
@@ -23,5 +28,22 @@
       width: 100%;
       box-sizing: border-box;
     }
+  }
+}
+
+
+.form-item {
+  input {
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px;
+
+    &[type=hidden] + input {
+      border-radius: 4px 0 0 4px !important;
+    }
+  }
+
+  .input-group-btn .btn {
+    min-width: 200px;
   }
 }
