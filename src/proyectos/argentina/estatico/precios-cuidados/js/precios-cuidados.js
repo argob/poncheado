@@ -1,15 +1,16 @@
 $(document).ready(function () {
 
-    var showData = $('#show-data');
-
     $.getJSON('https://spreadsheets.google.com/feeds/list/1EreI6pWCVbiqbyURniaRx-keRHzBhyZ-6p01VSqOtms/1/public/values?alt=json', function (data) {
-        //console.log(data);
+        window.products = data.feed.entry;
+        showProducts('amba');
+    });
+
+    window.showProducts = function(region){
+        var showData = $('#show-data');
 
         var html = '';
-        $.each( data.feed.entry, function( key, item ) {
+        $.each( products, function( key, item ) {
             //console.log("testeo"+item.gsx$ean.$t);
-
-            
             html += '<tr>';
             html += ' <th scope="row">&nbsp;&nbsp;';
             html += '   <a data-toggle="collapse" href="#id_'+ key + '">';
@@ -24,8 +25,8 @@ $(document).ready(function () {
             html += '   </div>';
             html += ' </td>';
             html += ' <td class="marca">'+ item.gsx$marca.$t + '</td>';
-            html += ' <td class="medida td-strong">'+ item.gsx$cantidad.$t + '</td>';
-            html += ' <td class="precio td-strong text-success">'+ item.gsx$amba.$t + '</td>';
+            html += ' <td class="medida">'+ item.gsx$cantidad.$t + '</td>';
+            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
             html += '</tr>';
     
         });
@@ -33,10 +34,9 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-
         var listOptions = {valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ] };
         var productsList = new List('productos', listOptions);
-    });
+    }
 
     //cambiando clase de icons en tablas
     $('body').on('click', '.list a', function(){
