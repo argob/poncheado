@@ -21,7 +21,7 @@ $(document).ready(function () {
             html += ' <td>';
             html += '   <div class="nombre">'+ item.gsx$producto.$t + '</div>';
             html += '   <div class="collapse" id="id_'+ key + '">';
-            html += '     <div><strong>Categor&iacute;a: </strong><span class="categoria">'+ item.gsx$categoría.$t + '</span></div>';
+            html += '     <div><strong>Categor&iacute;a: </strong><span class="categoria">'+ item.gsx$categoria.$t + '</span></div>';
             html += '     <div><strong>EAN: </strong><span class="ean">'+ item.gsx$ean.$t + '</span></div>';
             html += '   </div>';
             html += ' </td>';
