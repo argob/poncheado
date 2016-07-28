@@ -113,7 +113,8 @@ var options = {
       gridlines: {
         color: '#E8E8E8'
       }
-    }
+    },
+    interpolateNulls: true
   },
   pie: {
     backgroundColor: '#f5f5f5',
