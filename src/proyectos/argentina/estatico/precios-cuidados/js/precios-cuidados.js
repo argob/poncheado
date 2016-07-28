@@ -1,3 +1,4 @@
+(function($) {
 $(document).ready(function () {
 
     $.getJSON('https://spreadsheets.google.com/feeds/list/1EreI6pWCVbiqbyURniaRx-keRHzBhyZ-6p01VSqOtms/1/public/values?alt=json', function (data) {
@@ -51,6 +52,7 @@ $(document).ready(function () {
     });    
 
 });
+})(jQuery);
 
 
 
