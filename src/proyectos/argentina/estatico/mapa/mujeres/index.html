@@ -78,7 +78,9 @@ layout: argentina
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
             <p class="text-muted margin-20">Lugares donde te ayudamos en situaciones de maltrato o violencia.</p>
-            <img alt="Argentina.gob.ar" class="img-responsive" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" width="274">
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" width="274">
+            </a>
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
@@ -130,7 +132,8 @@ layout: argentina
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: mapCenter,
-      scrollwheel: true
+      scrollwheel: true,
+      streetViewControl: false
     });
 
     // Show markers loaded from spreadsheet
@@ -181,7 +184,8 @@ layout: argentina
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'images/m',
           gridSize: 50,
-          minimumClusterSize: 3
+          minimumClusterSize: 3,
+          maxZoom: 19
         });
 
         $('#map-container').removeClass('state-loading');
@@ -243,5 +247,5 @@ layout: argentina
 
 </script>
 <script src="markerclusterer.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&callback=initMap"></script>
 
