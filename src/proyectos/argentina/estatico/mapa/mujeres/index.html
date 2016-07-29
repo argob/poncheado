@@ -67,28 +67,21 @@ layout: argentina
             <span class="icon-bar"></span>
           </button>
 
-          <div class="navbar-brand hidden-xs">
-            <a href="javascript: window.location.back();" class="btn btn-link btn-sm" style="margin: 6px 0px;">
-              <i class="fa fa-arrow-left fa-2x"></i>
-            </a>
-          </div>
-          <a class="navbar-brand" href="/">
+          <a class="navbar-brand hidden-xs" href="/">
             <img alt="Brand" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
-            <!-- <img alt="Brand" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50"> -->
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
+          <div class="navbar-brand visible-xs-inline-block">
+            Ayuda para mujeres
+          </div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
-            <h5>Mapa de las Mujeres</h5>
-            <p class="text-muted">Buscá lugares cerca tuyo donde pueden ayudarte gratis.</p>
-            <hr>
-            <h6>Línea de asistencia a la mujer</h6>
-            <p class="text-muted"><small>La Línea telefónica Nacional 144 está destinada a brindar información y contención para las mujeres en situación de violencia.</small></p>
+            <p class="text-muted">Lugares donde te ayudamos en situaciones de maltrato o violencia.</p>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="tel:144" class="visible-xs"><i class="fa fa-phone"></i>&nbsp; Llamar al 144</a></li>
-            <li><a href="javascript:setGeolocation();" id="localize" class="hidden-xs"><i class="fa fa-map-marker"></i>&nbsp; Localizarme</a></li>
+            <li><a href="#">Acerca de este mapa</a></li>
+            <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar el mapa</a></li>
           </ul>           
         </div>
       </div>
@@ -97,9 +90,12 @@ layout: argentina
   <section class="jumbotron hidden-xs">
     <div class="jumbotron_bar">
       <div class="container">
-        <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger pull-right"><i class="fa fa-times"></i>&nbsp; Salir</a>
-        <h4>Mapa de las Mujeres</h4>
-        <span>Buscá lugares cerca tuyo donde pueden ayudarte gratis.</span>
+        <div class="pull-right">
+          <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a> &nbsp; 
+          <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Cerrar esta página</a>
+        </div>
+        <h4>Ayuda para mujeres</h4>
+        <span>Lugares donde te ayudamos en situaciones de maltrato o violencia.</span>
       </div>
     </div>
     <div class="overlay"></div>
@@ -109,15 +105,15 @@ layout: argentina
 <div id="mobile-footer" class="visible-xs">
   <div class="row">
     <div class="col-xs-6">
-      <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger btn-block pull-right">Salir</a>
+      <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger btn-block pull-right">Cerrar</a>
     </div>
     <div class="col-xs-6">
-      <a href="javascript:setGeolocation();" class="btn btn-default btn-block">Localizarme</a>
+      <a href="tel:144" class="btn btn-success btn-block"><i class="fa fa-phone"></i> &nbsp;144</a>
     </div>
   </div>
 </div>
 
-<div id="map-container">
+<div id="map-container" class="state-loading">
   <div id="map"></div>
 </div>
 
@@ -159,7 +155,7 @@ layout: argentina
               // map: map,
               title: row.gsx$institucion.$t,
               icon: {
-                url: 'https://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/mujeres/images/marker.png',
+                url: 'images/marker.png',
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -182,10 +178,12 @@ layout: argentina
         })
 
         var markerCluster = new MarkerClusterer(map, markers, {
-          imagePath: 'https://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/mujeres/images/m',
+          imagePath: 'images/m',
           gridSize: 50,
           minimumClusterSize: 3
         });
+
+        $('#map-container').removeClass('state-loading');
 
       },
       error: function(){
@@ -206,7 +204,7 @@ layout: argentina
 
 
       if (navigator.geolocation) {
-        $('#localize').addClass('state-loading disabled');
+        $('.localize').addClass('state-loading disabled');
 
         if(window.pos == undefined){
 
@@ -219,22 +217,24 @@ layout: argentina
             map.setZoom(15);
             map.setCenter(pos);
 
-            $('#localize').removeClass('state-loading disabled');
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
 
           }, function() {
             console.log('geo nope')
-            $('#localize').removeClass('state-loading disabled');
+            $('.localize').removeClass('state-loading disabled');
           });
           
         }else{
-          $('#localize').removeClass('state-loading disabled');
+          $('.localize').removeClass('state-loading disabled');
           map.setZoom(15);
           map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
         }
 
       } else {
         // console.log('geo nope')
-        $('#localize').addClass('disabled');
+        $('.localize').addClass('disabled');
         // Browser doesn't support Geolocation
         // handleLocationError(false, infoWindow, map.getCenter());
       }
@@ -242,6 +242,6 @@ layout: argentina
   }
 
 </script>
-<script src="https://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/mujeres/markerclusterer.js"></script>
+<script src="markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
 
