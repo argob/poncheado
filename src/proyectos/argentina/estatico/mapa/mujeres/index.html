@@ -68,7 +68,7 @@ layout: argentina
           </button>
 
           <a class="navbar-brand hidden-xs" href="/">
-            <img alt="Brand" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
+            <img alt="Argentina.gob.ar" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block">
@@ -77,7 +77,9 @@ layout: argentina
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
-            <p class="text-muted">Lugares donde te ayudamos en situaciones de maltrato o violencia.</p>
+            <p class="text-muted margin-20">Lugares donde te ayudamos en situaciones de maltrato o violencia.</p>
+            <img alt="Argentina.gob.ar" class="img-responsive" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" width="274">
+            <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Acerca de este mapa</a></li>
@@ -171,7 +173,6 @@ layout: argentina
             markers[index].addListener('click', function() {
               closeWindows();
               detalles[index].open(map, markers[index]);
-              // map.panTo(markers[index].getPosition());
             });
 
           // }
@@ -233,7 +234,6 @@ layout: argentina
         }
 
       } else {
-        // console.log('geo nope')
         $('.localize').addClass('disabled');
         // Browser doesn't support Geolocation
         // handleLocationError(false, infoWindow, map.getCenter());
