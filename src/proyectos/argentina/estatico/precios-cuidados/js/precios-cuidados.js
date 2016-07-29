@@ -12,7 +12,7 @@ $(document).ready(function () {
         var html = '';
         $.each( products, function( key, item ) {
             //console.log("testeo"+item.gsx$ean.$t);
-            html += '<tr>';
+            html += '<tr data-toggle="collapse" href="#id_'+ key + '">';
             html += ' <th scope="row">&nbsp;&nbsp;';
             html += '   <a data-toggle="collapse" href="#id_'+ key + '">';
             html += '     <i class="fa fa-plus text-success" aria-hidden="true"></i>';
