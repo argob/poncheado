@@ -14,7 +14,7 @@ layout: argentina
   </div>
 </div>
 
-<section>
+<section id="docs">
   <div class="container">
     <div class="row">
       <aside class="page-sidebar col-md-3">
@@ -24,7 +24,16 @@ layout: argentina
               <a href="#estilos">Estilos</a>
               <ul class="nav">
                 <li><a href="#atajos">Atajos</a></li>
+                <li><a href="#listados">Listados</a></li>
                 <li><a href="#alertas">Alertas</a></li>
+                <li><a href="#ejes">Ejes</a></li>
+                <li><a href="#nuemros">Números destacados</a></li>
+                <li><a href="#citas">Citas</a></li>
+              </ul>
+              <a href="#referencias">Referencias</a>
+              <ul class="nav">
+                <li><a href="#colores-texto">Colores de texto</a></li>
+                <li><a href="#colores-fondo">Colores de fondo</a></li>
               </ul>
             </li>
           </ul>
@@ -32,17 +41,20 @@ layout: argentina
       </aside>
       <div class="col-md-9">
 
+        <h1 id="estilos">Estilos de componentes</h1>
+        <hr>
+
         <h2 id="atajos">Atajos</h2>
         <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
 
-        <h4 class="padding-40">Atajo simple</h4>
+        <h4>Atajo simple</h4>
         <p>El atajo siemple consta de los siguientes campos:</p>
         <ul>
           <li>Título</li>
           <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
           <li>Link interno o externo</li>
           <li>Ícono <small class="text-muted">(opcional)</small></li>
-          <li>Color de ícono <small class="text-muted">(opcional, de forma predeterminada se muestra azul)</small></li>
+          <li>Color de ícono <small class="text-muted">(opcional, de manera predeterminada se muestra azul)</small></li>
         </ul>
 
         <div class="docs-examlpe">
@@ -82,6 +94,46 @@ layout: argentina
                 </a>
               </div>
             </div>
+
+          </div>  
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href=&quot;#&quot;</strong>&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;div class=&quot;media&quot;&gt;
+          &lt;div class=&quot;media-left padding-20&quot;&gt;
+            &lt;i class=&quot;fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-phone</strong> fa-fw fa-3x <strong title="Color de ícono" data-toggle="tooltip" data-placement="top">text-secondary</strong>&quot;&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;media-body&quot;&gt;
+            &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">El estado del estado</strong>&lt;/h3&gt;
+            &lt;p class=&quot;text-muted&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Diagn&oacute;stico de la Administraci&oacute;n P&uacute;blica Nacional en diciembre de 2015</strong>&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>  
+        </div>
+
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
 
             <h3 class="section-title padding-20">Atajo simple con texto</h3>
 
@@ -124,24 +176,53 @@ layout: argentina
             </div>
 
           </div>  
-          <div class="docs-code">
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
 
+  &lt;!-- Atajo con &iacute;cono --&gt;
 
-            
-          </div>  
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href=&quot;#&quot;</strong>&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Econom&iacute;a</strong>&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Atajo sin &iacute;cono --&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href=&quot;#&quot;</strong>&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Econom&iacute;a</strong>&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>
         </div>
 
 
         <hr>
 
         <h4>Atajo Destacado con ícono</h4>
-        <p>El atajo siemple consta de los siguientes campos:</p>
+        <p>El atajo destacado con ícono consta de los siguientes campos:</p>
         <ul>
           <li>Título</li>
           <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
           <li>Link interno o externo</li>
           <li>Ícono</li>
-          <li>Color de fondo <small class="text-muted">(opcional, de forma predeterminada se muestra azul)</small></li>
+          <li>Color de fondo <small class="text-muted">(opcional, de manera predeterminada se muestra azul)</small></li>
         </ul>
 
         <div class="docs-examlpe">
@@ -169,17 +250,39 @@ layout: argentina
               </div>
             </div>
           </div>  
-          <div class="docs-code">
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
 
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-icon <strong title="Color de fondo" data-toggle="tooltip" data-placement="top">panel-secondary</strong>&quot; <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href=&quot;#&quot;</strong>&gt;
+      &lt;div class=&quot;panel-heading&quot;&gt;&lt;i class=&quot;fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-file</strong>&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Ministerio de Econom&iacute;a</strong>&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
 
-            
-          </div>  
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>  
         </div>
 
         <hr>
 
         <h4>Atajo Destacado con imagen</h4>
-        <p>El atajo siemple consta de los siguientes campos:</p>
+        <p>El atajo destacado con imagen consta de los siguientes campos:</p>
         <ul>
           <li>Título</li>
           <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
@@ -213,24 +316,419 @@ layout: argentina
             </div>
 
           </div>  
-          <div class="docs-code">
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; <strong title="Link interno o externo" data-toggle="tooltip" data-placement="top">href=&quot;#&quot;</strong>&gt;
+      &lt;div style=&quot;background-image:url(&#039;<strong title="Imagen" data-toggle="tooltip" data-placement="top">img/placeholder.png</strong>&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;<strong title="Título" data-toggle="tooltip" data-placement="top">Este es el t&iacute;tulo del link</strong>&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</strong>&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>  
+        </div>
 
 
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="listados">Listados</h2>
+        <p class="lead">Los listados obtienen la información de un tipo de contenido y un group audience específico de Drupal. Tienen la capacidad de seleccionar la cantidad de elementos a mostrar, paginarlos y agregar un botón para ver más.</p>
+
+        <h4>Listados en panelizer</h4>
+        <p>Los listados tienen la siguiente configuración:</p>
+        <ul>
+          <li>Título</li>
+          <li>Cantidad de elementos a mostrar</li>
+          <li>Tipo de listado:
+            <ul>
+              <li>Últimos cargados</li>  
+              <li>Relacionados</li>  
+              <li>Personalizado</li>  
+            </ul>
+          </li>
+          <li>Tipos de contenidos que se pueden elegir: <small class="text-muted">(solo aplica para los tipos de listados <strong>últimos cargados</strong> y <strong>relacionados</strong>)</small>
+            <ul>
+              <li>Páginas</li>
+              <li>Noticias <small class="text-muted">(con capacidad de elegir una categoría)</small></li>
+              <li>Servicios <small class="text-muted">(con capacidad de elegir una categoría)</small></li>
+              <li>Áreas</li>
+              <li>Aplicaciones</li>
+            </ul>
+          </li>
+          <li>Contenido personalizado <small class="text-muted">(solo aplica para el tipo de listado <strong>personalizado</strong>)</small></li>
+          <li>Formato de visualización
+            <ul>
+              <li>Solo Título</li>
+              <li>Título y texto</li>
+              <li>Título e imagen</li>
+              <li>Título, texto e imagen</li>
+              <li>Noticias</li>
+              <li>Noticias destacadas</li>
+              <li>Servicios <strong>???????????????????????</strong></li>
+            </ul>
+          </li>
+          <li>Mostrar el botón "Ver todos"</li>
+          <li>Mostrar paginador</li>
+          <li>Orientación <strong>???????????????????????</strong></li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
             
+            <h3 class="section-title">Solo Título</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-title">Título y texto</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default" href="#">
+                  <div class="panel-body">
+                    <h3>Ministerio de Economía</h3>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>  
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;!-- Solo T&iacute;tulo --&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; href=&quot;#&quot;&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;Ministerio de Econom&iacute;a&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- T&iacute;tulo y texto --&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default&quot; href=&quot;#&quot;&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h3&gt;Ministerio de Econom&iacute;a&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>  
+        </div>
+
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Título e imagen</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="section-title">Título, texto e imagen</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                    <p class="text-muted">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>  
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;!-- T&iacute;tulo e imagen --&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-md&quot; href=&quot;#&quot;&gt;
+      &lt;div style=&quot;background-image:url(&#039;img/placeholder.png&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h4&gt;El Ministro Buryaile asisti&oacute; a la apertura de la Semana Verde Internacional, en Berl&iacute;n&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;!-- T&iacute;tulo, texto e imagen --&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-md&quot; href=&quot;#&quot;&gt;
+      &lt;div style=&quot;background-image:url(&#039;img/placeholder.png&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;h4&gt;El Ministro Buryaile asisti&oacute; a la apertura de la Semana Verde Internacional, en Berl&iacute;n&lt;/h4&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+          </pre>  
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Noticias</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a class="btn btn-primary" href="#">Ver todas las noticias</a>
+              </div>
+            </div>
+
+
+          </div>  
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-md&quot; href=&quot;#&quot;&gt;
+      &lt;div style=&quot;background-image:url(&#039;img/placeholder.png&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h4&gt;El Ministro Buryaile asisti&oacute; a la apertura de la Semana Verde Internacional, en Berl&iacute;n&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6 col-md-3&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12&quot;&gt;
+    &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;Ver todas las noticias&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </pre>  
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <h3 class="section-title">Noticias Destacadas</h3>
+
+            <div class="row panels-row">
+              <div class="col-xs-12">
+                <a class="panel panel-default panel-lg" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <a class="panel panel-default panel-md" href="#">
+                  <div style="background-image:url('img/placeholder.png');" class="panel-heading"></div>
+                  <div class="panel-body">
+                    <time>Jueves 14 de Enero del 2016</time>
+                    <h4>El Ministro Buryaile asistió a la apertura de la Semana Verde Internacional, en Berlín</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a class="btn btn-primary" href="#">Ver todas las noticias</a>
+              </div>
+            </div>
+
+
+          </div>  
+          <pre class="docs-code">
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;div class=&quot;col-xs-12 col-md-6&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-lg&quot; href=&quot;#&quot;&gt;
+      &lt;div style=&quot;background-image:url(&#039;img/placeholder.png&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h4&gt;El Ministro Buryaile asisti&oacute; a la apertura de la Semana Verde Internacional, en Berl&iacute;n&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-md-6&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class=&quot;row panels-row&quot;&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    &lt;a class=&quot;panel panel-default panel-md&quot; href=&quot;#&quot;&gt;
+      &lt;div style=&quot;background-image:url(&#039;img/placeholder.png&#039;);&quot; class=&quot;panel-heading&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;panel-body&quot;&gt;
+        &lt;time&gt;Jueves 14 de Enero del 2016&lt;/time&gt;
+        &lt;h4&gt;El Ministro Buryaile asisti&oacute; a la apertura de la Semana Verde Internacional, en Berl&iacute;n&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+  &lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+    ...
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-xs-12&quot;&gt;
+    &lt;a class=&quot;btn btn-primary&quot;&gt;Ver todas las noticias&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+          </pre>  
         </div>
 
         <h2 id="alertas">Alertas</h2>
         <p class="lead">Las alertas se pueden utilizar de dos formas en drupal: como un módulo de panelizer, o como un text filter en cualquier campo que tenga markdown.</p>
 
-        <h4 class="padding-40">Módulo de alerta en panelizer</h4>
+        <h4>Módulo de alerta en panelizer</h4>
         <p>El módulo se agrega en panelizer dentro de argentina / alerta, y tiene la siguiente configuración:</p>
         <ul>
-          <li>Título</li>
-          <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
-          <li>Link interno o externo</li>
+          <li>Título <small class="text-muted">(opcional, acepta markdown)</small></li>
+          <li>Texto descriptivo <small class="text-muted">(acepta markdown)</small></li>
           <li>Ícono <small class="text-muted">(opcional)</small></li>
-          <li>Color de la alerta <small class="text-muted">(opcional, de forma predeterminada se muestra amarillo)</small></li>
+          <li>Color de la alerta <small class="text-muted">(opcional, de manera predeterminada se muestra amarillo)</small></li>
         </ul>
 
         <div class="docs-examlpe">
@@ -253,22 +751,40 @@ layout: argentina
             </div>
 
           </div>  
-          <div class="docs-code">
+          <pre class="docs-code">
+&lt;!-- Alerta con &iacute;cono --&gt;
 
+&lt;div class=&quot;alert <strong title="Color de la alerta" data-toggle="tooltip" data-placement="top">alert-warning</strong>&quot;&gt;
+  &lt;div class=&quot;media&quot;&gt;
+    &lt;div class=&quot;media-left&quot;&gt;
+      &lt;i class=&quot;fa <strong title="Ícono" data-toggle="tooltip" data-placement="top">fa-arrow-circle-o-right</strong> fa-fw fa-4x&quot;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+      &lt;h5&gt;&iquest;<strong title="Título" data-toggle="tooltip" data-placement="top">Ya iniciaste tu tramite?</strong>&lt;/h5&gt;
+      &lt;p class=&quot;margin-0&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Segu&iacute; el &lt;a href=&quot;http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php&quot; target=&quot;_blank&quot;&gt;estado del tr&aacute;mite en linea&lt;/a</strong>&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
-            
-          </div>
+&lt;!-- Alerta sin &iacute;cono --&gt;
+
+&lt;div class=&quot;alert <strong title="Color de la alerta" data-toggle="tooltip" data-placement="top">alert-warning</strong>&quot;&gt;
+  &lt;h5&gt;&iquest;<strong title="Título" data-toggle="tooltip" data-placement="top">Ya iniciaste tu tramite?</strong>&lt;/h5&gt;
+  &lt;p class=&quot;margin-0&quot;&gt;<strong title="Texto descriptivo" data-toggle="tooltip" data-placement="top">Segu&iacute; el &lt;a href=&quot;http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php&quot; target=&quot;_blank&quot;&gt;estado del tr&aacute;mite en linea&lt;/a</strong>&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+          </pre>
         </div>
+        
+        <hr>
 
-
-        <h4 class="padding-40">Alertas en Markdown</h4>
+        <h4>Alertas en Markdown</h4>
         <p>En markdown se puede agregar una alerta y tiene las siguiente configuración:</p>
         <ul>
-          <li>Título</li>
-          <li>Texto descriptivo <small class="text-muted">(opcional)</small></li>
-          <li>Link interno o externo</li>
+          <li>Título <small class="text-muted">(opcional, acepta markdown)</small></li>
+          <li>Texto descriptivo <small class="text-muted">(acepta markdown)</small></li>
           <li>Ícono <small class="text-muted">(opcional)</small></li>
-          <li>Color de la alerta <small class="text-muted">(opcional, de forma predeterminada se muestra amarillo)</small></li>
+          <li>Color de la alerta <small class="text-muted">(opcional, de manera predeterminada se muestra amarillo)</small></li>
         </ul>
 
         <div class="docs-examlpe">
@@ -277,11 +793,11 @@ layout: argentina
             <div class="alert alert-warning">
               <div class="media">
                 <div class="media-left">
-                  <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                  <i class="fa fa-check fa-fw fa-4x"></i>
                 </div>
                 <div class="media-body">
                   <h5>¿Ya iniciaste tu tramite?</h5>
-                  <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a></p>
+                  <p class="margin-0">Seguí el <a href="http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php" target="_blank">estado del trámite en linea</a>.</p>
                 </div>
               </div>
             </div>
@@ -292,11 +808,237 @@ layout: argentina
 
           </div>  
           <pre class="docs-code"> 
-{ alerta | color: verde | icono: check | titulo: Lorem ipsum dolor sit amet | texto: Consectetur adipisicing elit. Officiis atque, velit ea culpa dolor nobis sed voluptates quo ullam optio sunt hic numquam quidem vero, corporis vel eos impedit cumque. }
+{ <strong>alerta</strong> | <strong>color</strong>: amarillo | <strong>icono</strong>: check | <strong>titulo</strong>: ¿Ya iniciaste tu tramite? | <strong>texto</strong>: Seguí el [estado del trámite en linea](http://www.mininterior.gov.ar/tramitesyservicios/estado-tramite-dni.php). }
+
+{ <strong>alerta</strong> | <strong>color</strong>: verde | <strong>texto</strong>: Lorem ipsum *dolor sit amet*, consectetur adipisicing elit. Dolorem ratione, illo quaerat corporis, suscipit tenetur vel iusto ullam ex ipsa ipsam recusandae nulla, [accusamus officia sed](#)! Dolores itaque expedita, repudiandae. }
           </pre>  
         </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="ejes">Ejes</h2>
+        <p class="lead">Los ejes son contenidos breves que se muestran en columnas.</p>
+
+        <h4>Ejes en markdown</h4>
+        <p>El contenido de los ejes se compone de:</p>
+        <ul>
+          <li>Título <small class="text-muted">(acepta markdown)</small></li>
+          <li>Text <small class="text-muted">(acepta markdown)</small></li>
+          <li>Ícono <small class="text-muted">(opcional)</small></li>
+          <li>Color del ícono <small class="text-muted">(opcional, de manera predeterminada se muestra celeste)</small></li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-users text-success"></i>
+                      <h3>Cercana</h3>
+                      <p>Conoce tus necesidades y adopta sus servicios a ellas.</p>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-search text-primary"></i>
+                      <h3>Transparente</h3>
+                      <p>Brinda mayor información y certeza sobre sus actos de gobierno.</p>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-item">
+                      <i class="fa fa-users"></i>
+                      <h3>Participativa</h3>
+                      <p>Trabaja en equipo con los empleados públicos y la gente.</p>
+                  </div>
+              </div>
+            </div>
+
+          </div>  
+          <pre class="docs-code"> 
+{ <strong>ejes</strong>: 
+  { <strong>titulo</strong>: Cercana | <strong>texto</strong>: Conoce tus necesidades y adopta sus servicios a ellas. | <strong>icono</strong>: fa-users | <strong>color</strong>: verde },
+  { <strong>titulo</strong>: Transparente | <strong>texto</strong>: Brinda mayor información y certeza sobre sus actos de gobierno. | <strong>icono</strong>: fa-search | <strong>color</strong>: azul },
+  { <strong>titulo</strong>: Participativa | <strong>texto</strong>: Trabaja en equipo con los empleados públicos y la gente. | <strong>icono</strong>: fa-users } 
+}
+          </pre>  
+        </div>
+
+              
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="numeros">Números destacados</h2>
+        <p class="lead">Los números destacados se utilizan en landings, páginas o noticias que necesitan comunicar un resultado o medición.</p>
+
+        <h4>Números destacados en markdown</h4>
+        <p>El contenido se compone de:</p>
+        <ul>
+          <li>Número <small class="text-muted">(solo texto, máximo 10 caracteres)</small></li>
+          <li>Medida <small class="text-muted">(solo texto, máximo 20 caracteres)</small></li>
+          <li>Descripción <small class="text-muted">(solo texto)</small></li>
+          <li>Tamaño <small class="text-muted">(del 1 al 3, de manera predeterminada se usa 2)</small></li>
+          <li>Color <small class="text-muted">(opcional, de manera predeterminada se muestra negro)</small></li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <div class="row numbers">
+              <div class="col-md-4">
+                <div class="h2 text-success">392.493</div>
+                <p class="lead">Visitas últimos 30 días</p>
+                <p class="text-muted">+11,06% vs mes anterior</p>
+              </div>
+              <div class="col-md-4">
+                <div class="h2 text-gray">33 <small>%</small></div>
+                <p class="lead">Visitas este mes</p>
+                <p class="text-muted">del 1 al 26 de Febrero</p>
+              </div>
+              <div class="col-md-4">
+                <div class="h2">5 <small>de 10</small></div>
+                <p class="lead">Personas conectadas</p>
+                <p class="text-muted">Duramente los últimos 30 días.</p>
+              </div>
+            </div>
+
+          </div>  
+          <pre class="docs-code"> 
+{ <strong>numeros</strong>: 
+  { <strong>numero</strong>: 392.493 | <strong>titulo</strong>: Visitas últimos 30 días | <strong>texto</strong>: +11,06% vs mes anterior | <strong>color</strong>: verde },
+  { <strong>numero</strong>: 33 | <strong>medida</strong>: % | <strong>titulo</strong>: Visitas este mes | <strong>texto</strong>: del 1 al 26 de Febrero | <strong>color</strong>: gris },
+  { <strong>numero</strong>: 5 | <strong>medida</strong>: de 10 | <strong>titulo</strong>: Personas conectadas | <strong>texto</strong>: Duramente los últimos 30 días. } 
+}
+          </pre>  
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h2 id="citas">Citas</h2>
+        <p class="lead">Las citas pueden ser estándares o destacadas.</p>
+
+        <h4>Citas en markdown</h4>
+        <p>El contenido de las citas se compone de:</p>
+        <ul>
+          <li>Text <small class="text-muted">(acepta markdown)</small></li>
+          <li>Autor <small class="text-muted">(opcional, acepta markdown)</small></li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <blockquote>
+              <p>“ Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche. ”</p>
+              <small>Mauricio Macri</small>
+            </blockquote>
+
+          </div>  
+          <pre class="docs-code"> 
+{ <strong>cita</strong> | <strong>texto</strong>: Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche. | <strong>autor</strong>: Mauricio Macri. }
+          </pre>  
+        </div>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <blockquote class="quote-highlighted">
+              <p>
+                <span class="quotemark-open">“</span>
+                Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche.
+                <span class="quotemark-close">”</span>
+              </p> 
+              <small>Mauricio Macri</small>
+            </blockquote>
+
+          </div>  
+          <pre class="docs-code"> 
+{ <strong>cita-destacada</strong> | <strong>texto</strong>: Un Estado inteligente con servidores públicos capacitados para brindarle más y mejores servicios a los ciudadanos. Esto es el Siglo XXI y en eso trabajaremos día y noche. | <strong>autor</strong>: Mauricio Macri. }
+          </pre>  
+        </div>
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+        <h1 id="referencias">Referencias</h1>
+        <hr>
+
+        <h2 id="colores-texto">Colores de texto</h2>
+        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
+
+
+        <h4>Paleta principal</h4>
+        <p>la paleta principal se forma de:</p>
+        <ul>
+          <li><strong class="text-primary">Azul</strong> <small class="text-muted">(.text-primary)</small></li>
+          <li><strong class="text-secondary">Celeste</strong> <small class="text-muted">(.text-secondary)</small></li>
+          <li><strong class="text-success">Verde</strong> <small class="text-muted">(.text-success)</small></li>
+          <li><strong class="text-warning">Amarillo</strong> <small class="text-muted">(.text-warning)</small></li>
+          <li><strong class="text-danger">Rojo</strong> <small class="text-muted">(.text-danger)</small></li>
+          <li><strong class="text-muted">Gris claro</strong> <small class="text-muted">(.text-muted)</small></li>
+          <li><strong class="text-gray">Gris oscuro</strong> <small class="text-muted">(.text-gray)</small></li>
+          <li><strong>Negro</strong> <small class="text-muted">(por defecto)</small></li>
+        </ul>
+
+
+        <h4>Paleta extendida</h4>
+        <p>El atajo siemple consta de los siguientes campos:</p>
+
+        <ul>
+          <li><strong class="text-fucsia">Fucsia</strong> <small class="text-muted">(.text-fucsia)</small></li>
+          <li><strong class="text-arandano">Arandano</strong> <small class="text-muted">(.text-arandano)</small></li>
+          <li><strong class="text-uva">Uva</strong> <small class="text-muted">(.text-uva)</small></li>
+          <li><strong class="text-cielo">Cielo</strong> <small class="text-muted">(.text-cielo)</small></li>
+          <li><strong class="text-verdin">Verdin</strong> <small class="text-muted">(.text-verdin)</small></li>
+          <li><strong class="text-lima">Lima</strong> <small class="text-muted">(.text-lima)</small></li>
+          <li><strong class="text-maiz">Maiz</strong> <small class="text-muted">(.text-maiz)</small></li>
+          <li><strong class="text-tomate">Tomate</strong> <small class="text-muted">(.text-tomate)</small></li>
+        </ul>
+
+
+        <h2 id="colores-fondo">Colores de fondo</h2>
+        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
+
+
+        <h4>Paleta principal</h4>
+        <p>El atajo siemple consta de los siguientes campos:</p>
+        <div class="docs-colores">
+          <span class="bg-primary">.bg-primary</span>
+          <span class="bg-success">.bg-success</span>
+          <span class="bg-info">.bg-info</span>
+          <span class="bg-warning">.bg-warning</span>
+          <span class="bg-danger">.bg-danger</span>
+          <span class="bg-gray">.bg-gray</span>
+          <span class="bg-white">.bg-white</span>
+        </div>
+
+
+        <h4>Paleta extendida</h4>
+        <p>El atajo siemple consta de los siguientes campos:</p>
+        <div class="docs-colores">
+          <span class="bg-fucsia">.bg-fucsia</span>
+          <span class="bg-arandano">.bg-arandano</span>
+          <span class="bg-uva">.bg-uva</span>
+          <span class="bg-cielo">.bg-cielo</span>
+          <span class="bg-verdin">.bg-verdin</span>
+          <span class="bg-lima">.bg-lima</span>
+          <span class="bg-maiz">.bg-maiz</span>
+          <span class="bg-tomate">.bg-tomate</span>
+        </div>
+
 
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
