@@ -1,0 +1,90 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('img/precios_cuidados.jpg');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Banco de evaluaciones de políticas públicas</h2>
+          <p class="margin-0">Recopila las evaluaciones realizadas por los organismos de la Administración Pública Nacional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Buscá una evaluación de políticas públicas</h3>
+    <div id="productos">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Filtrá evaluaciones por tipo, organismo, tema o año de publicación">
+          </div>
+        </div>
+      </div>
+      <table class="table table-align-middle table-spaced">
+        <thead>
+          <tr>
+            <th></th>
+            <th><a class="sort" data-sort="nombre">Organismo <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="marca">Titulo <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="medida">Tema <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Programa <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Evaluación <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Año <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Ficha Técnica  <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Evaluación  <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/proyectos/argentina/estatico/banco-evaluaciones/js/banco-evaluaciones.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  var options = {
+    valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+  };
+
+  var productsList = new List('productos', options);
+
+  //cambiando clase de icons en tablas
+  $(".list a").click(function(){
+    $(this).find('i').toggleClass('fa-plus fa-minus'); 
+    $(this).find('i').toggleClass('text-success text-danger'); 
+  });
+
+</script>
+
+<style>
+.table th a:hover,
+.table tr {
+    cursor: pointer;
+}
+</style>
