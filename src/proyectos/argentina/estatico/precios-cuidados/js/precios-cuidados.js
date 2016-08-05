@@ -4,6 +4,7 @@ $(document).ready(function () {
     $.getJSON('https://spreadsheets.google.com/feeds/list/1EreI6pWCVbiqbyURniaRx-keRHzBhyZ-6p01VSqOtms/1/public/values?alt=json', function (data) {
         window.products = data.feed.entry;
         showProducts('amba');
+        console.log(data);
     });
 
     window.showProducts = function(region){

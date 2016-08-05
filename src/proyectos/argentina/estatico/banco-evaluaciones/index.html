@@ -20,26 +20,23 @@ layout: argentina
   <section>
 
     <h3 class="text-center">Buscá una evaluación de políticas públicas</h3>
-    <div id="productos">
+    <div id="evaluaciones">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">    
           <div class="form-group">
-            <input class="form-control search" placeholder="Filtrá evaluaciones por tipo, organismo, tema o año de publicación">
+            <input class="form-control search" placeholder="Filtrá evaluaciones por tema, organismo o año de publicación">
           </div>
         </div>
       </div>
       <table class="table table-align-middle table-spaced">
         <thead>
           <tr>
-            <th></th>
-            <th><a class="sort" data-sort="nombre">Organismo <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="marca">Titulo <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="medida">Tema <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Programa <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Evaluación <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Año <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Ficha Técnica  <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Evaluación  <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="organismo">Organismo <span class="caret"></span></a></th>
+            <th>Título / Programa / Evaluación </th>
+            <th><a class="sort" data-sort="tema">Tema <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="ano">Año <span class="caret"></span></a></th>
+            <th class="rotate"><div><span>Ficha Técnica </span></div></th>
+            <th class="rotate"><div><span>Evaluación </span></div></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
@@ -69,22 +66,33 @@ layout: argentina
 
 <script>
   var options = {
-    valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+    valueNames: [ 'organismo', 'tema', 'ano' ]
   };
 
-  var productsList = new List('productos', options);
-
-  //cambiando clase de icons en tablas
-  $(".list a").click(function(){
-    $(this).find('i').toggleClass('fa-plus fa-minus'); 
-    $(this).find('i').toggleClass('text-success text-danger'); 
-  });
+  var evaluacionesList = new List('evaluaciones', options);
 
 </script>
 
 <style>
-.table th a:hover,
-.table tr {
+.table th a:hover {
     cursor: pointer;
+}
+
+
+th.rotate {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform: 
+    translate(0, 0)
+    rotate(-90deg);
+  width: 30px;
+}
+th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
 }
 </style>

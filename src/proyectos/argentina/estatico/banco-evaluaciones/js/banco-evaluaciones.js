@@ -1,37 +1,25 @@
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1EreI6pWCVbiqbyURniaRx-keRHzBhyZ-6p01VSqOtms/1/public/values?alt=json', function (data) {
-        window.products = data.feed.entry;
-        showProducts('amba');
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1VUPQE5KJSP1uug_GlV7NnN2O98INKN5cuz7I0wrfBgk/1/public/values?alt=json', function (data) {
+        window.evaluaciones = data.feed.entry;
+        showEvaluaciones();
+        console.log(data);
     });
 
-    window.showProducts = function(region){
+    window.showEvaluaciones = function(){
         var showData = $('#show-data');
 
         var html = '';
-        $.each( products, function( key, item ) {
+        $.each( evaluaciones, function( key, item ) {
             //console.log("testeo"+item.gsx$ean.$t);
-            html += '<tr data-toggle="collapse" href="#id_'+ key + '">';
-            html += ' <th scope="row">&nbsp;&nbsp;';
-            html += '   <a data-toggle="collapse" href="#id_'+ key + '">';
-            html += '     <i class="fa fa-plus text-success" aria-hidden="true"></i>';
-            html += '   </a>';
-            html += ' </th>';
-            html += ' <td>';
-            html += '   <div class="nombre">'+ item.gsx$producto.$t + '</div>';
-            html += '   <div class="collapse" id="id_'+ key + '">';
-            html += '     <div><strong>Categor&iacute;a: </strong><span class="categoria">'+ item.gsx$categoria.$t + '</span></div>';
-            html += '     <div><strong>EAN: </strong><span class="ean">'+ item.gsx$ean.$t + '</span></div>';
-            html += '   </div>';
-            html += ' </td>';
-            html += ' <td class="marca">'+ item.gsx$marca.$t + '</td>';
-            html += ' <td class="medida">'+ item.gsx$cantidad.$t + '</td>';
-            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
-            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
-            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
-            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
-            html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+region].$t + '</td>';
+            html += '<tr>';
+            html += ' <td class="organismo">'+ item.gsx$organismo.$t + '</td>';
+            html += ' <td class="titulo"> <h6>'+ item.gsx$titulo.$t + '</h6><p>'+ item.gsx$programa.$t + '</p><small>'+ item.gsx$evaluacion.$t + '</small></td>';
+            html += ' <td class="tema">'+ item.gsx$tema.$t + '</td>';
+            html += ' <td class="ano">'+ item.gsx$ano.$t + '</td>';
+            html += ' <td class="fichatecnica"> <a target="_blank" href="'+ item.gsx$fichatecnica.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> </a></td>';
+            html += ' <td class="evaluacion_2"><a target="_blank" href="'+ item.gsx$evaluacion_2.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> </a></td>';
             html += '</tr>';
     
         });
@@ -39,15 +27,10 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        var listOptions = {valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ] };
-        var productsList = new List('productos', listOptions);
+        var listOptions = {valueNames: [ 'organismo', 'tema', 'ano' ] };
+        var evaluacionesList = new List('evaluaciones', listOptions);
     }
 
-    //cambiando clase de icons en tablas
-    $('body').on('click', '.list a', function(){
-        $(this).find('i').toggleClass('fa-plus fa-minus'); 
-        $(this).find('i').toggleClass('text-success text-danger'); 
-    });
 
 });
 })(jQuery);
