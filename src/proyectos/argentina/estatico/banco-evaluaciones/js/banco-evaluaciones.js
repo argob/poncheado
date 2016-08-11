@@ -1,7 +1,8 @@
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1VUPQE5KJSP1uug_GlV7NnN2O98INKN5cuz7I0wrfBgk/1/public/values?alt=json', function (data) {
+    // $.getJSON('https://spreadsheets.google.com/feeds/list/1VUPQE5KJSP1uug_GlV7NnN2O98INKN5cuz7I0wrfBgk/1/public/values?alt=json', function (data) {
+    $.getJSON('data_bancos.txt', function (data) {
         window.evaluaciones = data.feed.entry;
         showEvaluaciones();
         console.log(data);
