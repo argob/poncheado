@@ -5,39 +5,40 @@ $(document).ready(function () {
     $.getJSON('https://spreadsheets.google.com/feeds/list/1CFdttPTD_zPz6awvGZ_UfiDB7wJDALtSsoJTY62nIlM/1/public/values?alt=json', function (data) {
         window.convocatorias = data.feed.entry;
         showConvocatorias('todas');
-        console.log(data);
+        //console.log(data);
 
     });
 
     window.showConvocatorias = function(modalidad){
         var showData = $('#show-data');
-        console.log("entro"); 
-        console.log(modalidad); 
+        //console.log(modalidad); 
         var html = '';
         $.each( convocatorias, function( key, item ) {
 
             if(modalidad == 'todas' || modalidad == item.gsx$modalidad.$t){
                 console.log(modalidad); 
             console.log(item.gsx$modalidad.$t);
+            console.log(item.gsx$fechafin.$t);
+
+            var fechaInicio = item.gsx$fechainicio.$t;
+            var fechaFin = item.gsx$fechafin.$t;
+
+            if(fechaInicio == '') {
+                fechaInicio = "Sin definir";
+            }    
+            if(fechaFin == '') {
+                fechaFin = "Sin definir";
+            }    
+
+            console.log(fechaFin);
+
                 //console.log("testeo"+item.gsx$nombre.$t);
-            html += '<tr data-toggle="collapse" href="#id_'+ key + '">';
-            html += ' <th scope="row">&nbsp;&nbsp;';
-            html += '   <a data-toggle="collapse" href="#id_'+ key + '">';
-            html += '     <i class="fa fa-plus text-success" aria-hidden="true"></i>';
-            html += '   </a>';
-            html += ' </th>';
-            html += ' <td>';
-            html += '   <div class="nombre">'+ item.gsx$nombre.$t + '</div>';
-            html += '   <div class="collapse" id="id_'+ key + '">';
-            html += '     <div><strong>Fecha de inicio: </strong><span class="fechainicio">'+ item.gsx$fechainicio.$t + '</span></div>';
-            html += '     <div><strong>Fecha de fin: </strong><span class="fechafin">'+ item.gsx$fechafin.$t + '</span></div>';
-            html += '   </div>';
-            html += ' </td>';
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6 class="nombre">'+ item.gsx$nombre.$t + '</h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
             html += ' <td class="instituciones">'+ item.gsx$instituciones.$t + '</td>';
             html += ' <td class="areaTematica">'+ item.gsx$áreatemática.$t + '</td>';
             html += ' <td class="paises">'+ item.gsx$paises.$t + '</td>';
             html += ' <td class="modalidad">'+ item.gsx$modalidad.$t + '</td>';
-            //html += ' <td class="precio td-strong text-success">$'+ item['gsx$'+modalidad].$t + '</td>';
             html += '</tr>';    
             }
             
