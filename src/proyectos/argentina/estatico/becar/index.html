@@ -22,11 +22,11 @@ layout: argentina
         <div class="col-md-12">    
             <h3 class="text-center">Elegí tu modalidad de convocatoria</h3>
             <div class="btn-group btn-group-justified margin-20">
-                <a href="" data-region="todas" class="btn btn-default active">Todas</a>
-                <a href="" data-region="maestrias" class="btn btn-default">Maestrías</a>
-                <a href="" data-region="empresas" class="btn btn-default">Empresas</a>
-                <a href="" data-region="instituciones" class="btn btn-default">Instituciones</a>
-                <a href="" data-region="doctorados" class="btn btn-default">Doctorados</a>
+                <a data-modalidad="todas" class="btn btn-default active">Todas</a>
+                <a data-modalidad="Maestría" class="btn btn-default">Maestrías</a>
+                <a data-modalidad="Empresas" class="btn btn-default">Empresas</a>
+                <a data-modalidad="Instituciones" class="btn btn-default">Instituciones</a>
+                <a data-modalidad="Doctorados" class="btn btn-default">Doctorados</a>
             </div>
         </div>
       </div>
@@ -36,11 +36,11 @@ layout: argentina
 
 
     <h3 class="text-center">Buscá tu Beca</h3>
-    <div id="productos">
+    <div id="convocatorias">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">    
           <div class="form-group">
-            <input class="form-control search" placeholder="Filtrá los convocatorias por Institución, Área temática, modalidad o país">
+            <input class="form-control search" placeholder="Filtrá los convocatorias por Institución, área temática, modalidad o país">
           </div>
         </div>
       </div>
@@ -49,10 +49,10 @@ layout: argentina
           <tr>
             <th></th>
             <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="marca">Instituciones <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="medida">Area Temática <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Paises <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="precio">Modalidad <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="instituciones">Instituciones <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="areaTematica">Area Temática <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="paises">Paises <span class="caret"></span></a></th>
+            <th style="width: 100px;"><a class="sort" data-sort="modalidad">Modalidad <span class="caret"></span></a></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
@@ -82,10 +82,10 @@ layout: argentina
 
 <script>
   var options = {
-    valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+    valueNames: [ 'nombre', 'instituciones', 'areaTematica', 'paises', 'modalidad' ]
   };
 
-  var productsList = new List('productos', options);
+  var convocatoriasList = new List('convocatorias', options);
 
   //cambiando clase de icons en tablas
   $(".list a").click(function(){
