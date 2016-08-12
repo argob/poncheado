@@ -1,0 +1,144 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('img/precios_cuidados.jpg');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Convocatorias</h2>
+          <p class="margin-0">Buscá las becas adheridas al programa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  <section>
+      <div class="row">
+        <div class="col-md-12">    
+            <h3 class="text-center">Elegí tu modalidad de convocatoria</h3>
+            <div class="btn-group btn-group-justified margin-20">
+                <a href="" data-region="amba" class="btn btn-default active">Todas</a>
+                <a href="" data-region="pba" class="btn btn-default">Maestrías</a>
+                <a href="" data-region="cuyo" class="btn btn-default">Empresas</a>
+                <a href="" data-region="norte" class="btn btn-default">Instituciones</a>
+                <a href="" data-region="patagonia" class="btn btn-default">Doctorados</a>
+            </div>
+        </div>
+      </div>
+
+
+
+
+
+    <h3 class="text-center">Buscá tu Beca</h3>
+    <div id="productos">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Filtrá los convocatorias por Institución, Área temática, modalidad o país">
+          </div>
+        </div>
+      </div>
+      <table class="table table-align-middle table-spaced">
+        <thead>
+          <tr>
+            <th></th>
+            <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="marca">Marca <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="medida">Medida <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="precio">Precio <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3 class="section-title">Productos de reemplazo</h3>
+        <div class="row panels-row margin-40">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" href="#">
+              <div class="panel-body"><h4>Coto</h4></div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" href="#">
+              <div class="panel-body"><h4>Killbell</h4></div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" href="#">
+              <div class="panel-body"><h4>La Anónima</h4></div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" href="#">
+              <div class="panel-body"><h4>Carrefour</h4></div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" href="#">
+              <div class="panel-body"><h4>Parada Canga</h4></div>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="section-title">¿Necesitás ayuda?</h3>
+            <p class="lead"><a href="#"><i class="fa fa-info-circle fa-fw"></i>&nbsp; Hacé un reclamo</a></p>
+            <p class="lead"><a href="#"><i class="fa fa-phone fa-fw"></i>&nbsp; 0800 666 1518</a></p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="section-title">Más información</h3>
+            <p><a href="#">Supermercados adheridos a Precios Cuidados</a></p>
+            <p><a href="#">Secretaria de Comercio</a></p>
+            <p><a href="#">Precios Claros</a></p>
+          </div>
+        </div>
+
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/proyectos/argentina/estatico/precios-cuidados/js/precios-cuidados.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  var options = {
+    valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+  };
+
+  var productsList = new List('productos', options);
+
+  //cambiando clase de icons en tablas
+  $(".list a").click(function(){
+    $(this).find('i').toggleClass('fa-plus fa-minus'); 
+    $(this).find('i').toggleClass('text-success text-danger'); 
+  });
+
+</script>
+
+<style>
+.table th a:hover,
+.table tr {
+    cursor: pointer;
+}
+</style>
