@@ -52,12 +52,6 @@ $(document).ready(function () {
         var convocatoriasList = new List('convocatorias', listOptions);
     }
 
-    //cambiando clase de icons en tablas
-    $('body').on('click', '.list a', function(){
-        $(this).find('i').toggleClass('fa-plus fa-minus'); 
-        $(this).find('i').toggleClass('text-success text-danger'); 
-    });
-
     $(".btn-group a").on("click", function() {
       $(this).addClass('active').siblings().removeClass('active'); 
       var modalidad = $(this).data("modalidad");
