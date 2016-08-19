@@ -14,10 +14,10 @@ layout: argentina
                 <a class="panel panel-default" href="#">
                   <div class="panel-body">
                     <div class="media">
-                      <div class="media-left">
+                      <div class="media-left media-middle">
                         <i class="fa fa-play-circle-o fa-fw fa-3x text-secondary"></i>
                       </div>
-                      <div class="media-body">
+                      <div class="media-body media-middle">
                         <h3>Escuchá la radio</h3>
                       </div>
                     </div>
@@ -113,51 +113,65 @@ layout: argentina
         <div class="list-group">
           <a class="list-group-item" href="#">
             <div class="media">
-              <div class="media-left">
+              <div class="media-left media-middle">
                 <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
               </div>
-              <div class="media-body">
+              <div class="media-body media-middle">
                 <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
               </div>
             </div>
           </a>
           <a class="list-group-item" href="#">
             <div class="media">
-              <div class="media-left">
+              <div class="media-left media-middle">
                 <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
               </div>
-              <div class="media-body">
+              <div class="media-body media-middle">
                 <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
               </div>
             </div>
           </a>
           <a class="list-group-item" href="#">
             <div class="media">
-              <div class="media-left">
+              <div class="media-left media-middle">
                 <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
               </div>
-              <div class="media-body">
+              <div class="media-body media-middle">
                 <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
               </div>
             </div>
           </a>
           <a class="list-group-item" href="#">
             <div class="media">
-              <div class="media-left">
+              <div class="media-left media-middle">
                 <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
               </div>
-              <div class="media-body">
+              <div class="media-body media-middle">
                 <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
               </div>
             </div>
           </a>
           <a class="list-group-item" href="#">
             <div class="media">
-              <div class="media-left">
+              <div class="media-left media-middle">
                 <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
               </div>
-              <div class="media-body">
+              <div class="media-body media-middle">
                 <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
+              </div>
+            </div>
+          </a>
+          <a class="list-group-item" onclick="aud_play_pause()">
+            <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-play-circle-o fa-fw fa-2x text-secondary"></i>
+              </div>
+              <div class="media-body media-middle">
+                <p class="margin-0">Lorem fistrum diodenoo fistro por la gloria de mi madre</p>
+                <audio id="myAudio" controls>
+                  <source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+                  Your browser does not support the audio element.
+                </audio>
               </div>
             </div>
           </a>
@@ -174,3 +188,21 @@ layout: argentina
     </section>
   </div>
 </main>
+
+<script>
+function aud_play_pause() {
+  var myAudio = document.getElementById("myAudio");
+  if (myAudio.paused) {
+    myAudio.play();
+  } else {
+    myAudio.pause();
+  }
+}
+
+    //cambiando clase de icons en tablas
+    $('body').on('click', '.list-group-item', function(){
+        $(this).find('i').toggleClass('fa-play-circle-o fa-pause-circle-o'); 
+    });
+
+
+</script>
