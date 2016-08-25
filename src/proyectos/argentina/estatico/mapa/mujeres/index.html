@@ -1,6 +1,6 @@
 ---
 layout: argentina
-title: Ayuda para mujeres
+title: Mapa de recursos
 ---
 
 <style>
@@ -69,23 +69,23 @@ title: Ayuda para mujeres
           </button>
 
           <a class="navbar-brand hidden-xs" href="/">
-            <img alt="Argentina.gob.ar" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
+            <img alt="Argentina.gob.ar" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block">
-            Ayuda para mujeres
+            Mapa de recursos
           </div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
             <p class="text-muted margin-20">Lugares donde te acompañamos en situaciones de maltrato o violencia.</p>
             <a href="/">
-              <img alt="Argentina.gob.ar" class="img-responsive" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" width="274">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
             </a>
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Acerca de este mapa</a></li>
+            <li><a href="/ayudaparamujeres">Acerca de este mapa</a></li>
             <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar el mapa</a></li>
           </ul>           
         </div>
@@ -97,9 +97,9 @@ title: Ayuda para mujeres
       <div class="container">
         <div class="pull-right">
           <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a> &nbsp; 
-          <a href="javascript: window.location.replace('http://www.google.com.ar');" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Cerrar esta página</a>
+          <a href="javascript: window.location.replace('http://www.google.com.ar/webhp?ie=UTF-8#q=clima');" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Cerrar esta página</a>
         </div>
-        <h4>Ayuda para mujeres</h4>
+        <h4>Mapa de recursos</h4>
         <span>Lugares donde te acompañamos en situaciones de maltrato o violencia.</span>
       </div>
     </div>
@@ -143,11 +143,11 @@ title: Ayuda para mujeres
     var detalles = [];
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1xH78vH6KhTwCKYN1l3CvbtdoLikqyrnxEg8bFjIPyLw/2/public/values?alt=json',
+      url: '/sites/default/files/mapa_mujeres.json',
       data: 'json',
       success: function(response){
 
-        console.log(response);
+        // console.log(response);
 
         var rows = response.feed.entry;
 
@@ -161,7 +161,7 @@ title: Ayuda para mujeres
               // map: map,
               title: row.gsx$institucion.$t,
               icon: {
-                url: 'images/marker.png',
+                url: '/sites/default/files/marker.png',
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -183,7 +183,7 @@ title: Ayuda para mujeres
         })
 
         var markerCluster = new MarkerClusterer(map, markers, {
-          imagePath: 'images/m',
+          imagePath: '/sites/default/files/m',
           gridSize: 50,
           minimumClusterSize: 3,
           maxZoom: 19
@@ -193,7 +193,7 @@ title: Ayuda para mujeres
 
       },
       error: function(){
-        console.log('nope');
+        // console.log('nope');
       }
     });
 
@@ -227,7 +227,7 @@ title: Ayuda para mujeres
             $('.navbar-collapse').removeClass('in');
 
           }, function() {
-            console.log('geo nope')
+            // console.log('geo nope')
             $('.localize').removeClass('state-loading disabled');
           });
           
@@ -249,6 +249,6 @@ title: Ayuda para mujeres
   }
 
 </script>
-<script src="markerclusterer.js"></script>
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&callback=initMap"></script>
 
