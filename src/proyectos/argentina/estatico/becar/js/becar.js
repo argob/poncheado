@@ -34,7 +34,7 @@ $(document).ready(function () {
 
                 //console.log("testeo"+item.gsx$nombre.$t);
             html += '<tr>';
-            html += ' <td class="nombre"> <h6 class="nombre">'+ item.gsx$nombre.$t + '</h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
+            html += ' <td class="nombre"> <h6 class="nombre"><a href="'+ item.gsx$link.$t + '">'+ item.gsx$nombre.$t + '</a></h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
             html += ' <td class="instituciones">'+ item.gsx$instituciones.$t + '</td>';
             html += ' <td class="areaTematica">'+ item.gsx$áreatemática.$t + '</td>';
             html += ' <td class="paises">'+ item.gsx$paises.$t + '</td>';
