@@ -5,7 +5,7 @@ var chart = {};
 var options = {
   area: {
     curveType: 'function',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f9f9f9',
     colors: [
       '#006aa9',
       '#ca1767',
@@ -31,7 +31,7 @@ var options = {
     },
     hAxis: {
       gridlines: {
-        color: '#f5f5f5',
+        color: '#f9f9f9',
       }
     },
     vAxis: {
@@ -47,7 +47,7 @@ var options = {
     }
   },
   bar: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f9f9f9',
     colors: [
       '#006aa9',
       '#ca1767',
@@ -68,7 +68,7 @@ var options = {
     },
     hAxis: {
       gridlines: {
-        color: '#f5f5f5',
+        color: '#f9f9f9',
       }
     },
     vAxis: {
@@ -81,7 +81,7 @@ var options = {
     }
   },
   line: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f9f9f9',
     colors: [
       '#006aa9',
       '#ca1767',
@@ -103,7 +103,7 @@ var options = {
     },
     hAxis: {
       gridlines: {
-        color: '#f5f5f5',
+        color: '#f9f9f9',
       }
     },
     vAxis: {
@@ -117,7 +117,7 @@ var options = {
     interpolateNulls: true
   },
   pie: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f9f9f9',
     colors: [
       '#006aa9',
       '#007EC7',
