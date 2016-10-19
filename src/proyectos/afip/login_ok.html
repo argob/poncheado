@@ -1,0 +1,46 @@
+---
+layout: afip
+---
+
+<section>
+  <main role="main">
+    <div class="container">          
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 m-b-2">
+          <div class="text-center">
+            <h1>Ingresá a tu cuenta de AFIP</h1>
+            <p>Con tu cuenta podés hacer trámites, pagar servicios y participar de programas</p>
+          </div>
+          <br>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3">
+          <form id="F1" name="F1" method="post" action="https://auth.afip.gob.ar/contribuyente_/loginClave.xhtml" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="F1" value="F1">
+            <input id="F1:captcha" type="hidden" name="F1:captcha">
+
+            <div class="form-group">
+              <label class="control-label">Cuil o pasaporte</label>
+              <input id="F1:username" name="F1:username" type="text" value="" class="form-control input-lg" role="textbox" placeholder="Tu CUIL" aria-disabled="false" aria-readonly="false">
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Contraseña</label>
+              <input id="F1:password" name="F1:password" type="password" class="form-control input-lg" maxlength="15" placeholder="Tu clave" role="textbox" aria-disabled="false" aria-readonly="false">
+            </div>
+
+            <div class="form-group">
+              <input id="F1:btnIngresar" type="submit" name="F1:btnIngresar" value="Entrar a AFIP" alt="Entrar a AFIP" title="Entrar a AFIP" class="btn btn-success btn-lg btn-block">
+            </div>
+
+            <script>document.getElementById("F1:password").focus()</script><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="-5550385367521445031:-2976189581528891537" autocomplete="off">
+
+          </form>
+
+          <p class="text-center"><a href="/registro/?next=/perfil/">¿Todavía no tenes cuenta?</a></p>
+          <p class="text-center"><a href="/password/reset/" class="btn-block">¿Olvidaste tu contraseña?</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>

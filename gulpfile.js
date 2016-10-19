@@ -22,6 +22,7 @@ var options = {
 		},
 		src: 'src/vendor/poncho/src/css/*',
 		input: 'src/vendor/poncho/src/css/poncho.scss',
+		input_lite: 'src/vendor/poncho/src/css/ponchito.scss',
 		dest: 'src/vendor/poncho/dist/css/'
 	},
 	jekyll: {
@@ -31,7 +32,7 @@ var options = {
 };
 
 // Default Task
-gulp.task('default', ['serve:jekyll', 'build:poncho', 'build:poncho-min', 'poncho:watch']);
+gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'poncho:watch']); // 'serve:jekyll', 
 
 
 ///////////////////////////
@@ -63,7 +64,7 @@ gulp.task('serve:jekyll', function() {
 // Watch
 gulp.task('poncho:watch', function() {
   return gulp
-    .watch( options.sass.src, ['poncho', 'poncho-min'])
+    .watch( options.sass.src, ['build:poncho', 'build:ponchito', 'build:poncho-min'])
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
@@ -84,6 +85,16 @@ gulp.task('build:poncho-min', function() {
 	    .pipe(sourcemaps.init())
 	    .pipe(sass( options.sass.compressed ).on('error', sass.logError))
 	    .pipe(rename('poncho.min.css'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest( options.sass.dest ));
+});
+
+// Poncho.lite
+gulp.task('build:ponchito', function() {
+    gulp.src( options.sass.input_lite )
+	    .pipe(sourcemaps.init())
+	    .pipe(sass( options.sass.compressed ).on('error', sass.logError))
+	    .pipe(rename('ponchito.css'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest( options.sass.dest ));
 });
