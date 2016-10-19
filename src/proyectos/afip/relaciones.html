@@ -1,5 +1,5 @@
 ---
-layout: afip_lite
+layout: afip
 ---
 
 <section class="section-sm bg-gray">
@@ -14,194 +14,86 @@ layout: afip_lite
     <h3>Selección de Servicio a Habilitar</h3>
     <p>El siguiente es un listado de los servicios que <strong>ROUGIER NICOLAS ANTONIO</strong> (20-35368475-3) le ha autorizado a administrar.</p>
     <p>Recuerde que ciertos servicios exigen que el usuario tenga un minimo nivel de seguridad y otros requieren que el Representado cumpla con ciertas condiciones para poder realizar la Autorización.</p>
-
   </section>
+    <hr>
   <section>
 
-    <div class="row row-flex">
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Federal de Ingresos Públicos</h5>
-        <p>
-          <a href="#">Servicios Interactivos</a><br>
-          <a href="#">WebServices</a>
-        </p>
+    <div id="servicios" class="row">
+      <div class="col-md-6 col-md-offset-3 m-b-3">
+        <p class="lead text-center">Filtrá los servicios por nombre</p>
+        <div class="form-group">
+          <input class="form-control search" placeholder="" autofocus>
+        </div>
       </div>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Nacional de Aviación Civil</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+      <div class="col-md-6">
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Nacional de la Seguridad Social</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+        <h4>Servicios de AFIP</h4>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Provincial de Impuesto de la Provincia de Santa Fe</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+        {% for relacion in site.data.afip_relaciones.afip %}
+          {% for listado in relacion.listados %}
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Tributaria Mendoza</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+            <hr>
+            <img src="img/logo.png" alt="" width="180" class="m-b-1">
+            <h5>{{ listado.nombre }}</h5>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Administración Tributaria de la Provincia de Entre Ríos</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+            <div class="list">
+              {% for elemento in listado.elementos %}
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Agencia de Promoción de Empleo y Formación Profesional</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+                <p class="m-b-2"><a href="{{ elemento.link }}"><span class="name">{{ elemento.nombre }}</span></a><br><small>{{ elemento.descripcion }}</small></p>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Agencia de Recaudación Tributaria de la Provincia de Rio Negro</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+              {% endfor %}
+            </div>
+          {% endfor %}        
+        {% endfor %}
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Agencia Santafecina de Seguridad Alimentaria</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
       </div>
+      <div class="col-md-6">
+        <h4>Servicios Externos</h4>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Autoridad Federal de Servicios de Comunicación Audiovisual</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+        {% for relacion in site.data.afip_relaciones.otros %}
+          {% for listado in relacion.listados %}
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Comisión Arbitral del Convenio Multilateral</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+            <hr>
+            <img src="img/{{ relacion.nombre }}.png" alt="" width="180" class="m-b-1"> 
+            <h5>{{ relacion.nombre }}</h5>
+            
+            <div class="list">
+              {% for elemento in listado.elementos %}
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">DGR Gobierno de la Ciudad de Buenos Aires</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
+                <p class="m-b-2"><a href="{{ elemento.link }}">{{ elemento.nombre }}</a><br><small>{{ elemento.descripcion }}</small></p>
 
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">DGR Provincia de Córdoba</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Dirección General de Rentas - Provincia de Tierra del Fuego</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Dirección General de Rentas de la Provincia de Tucuman</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Instituto Nacional de la Propiedad Industrial</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Jefatura de Gabinete de Ministros</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Min. Plan. Federal, Inversión Pública y Servicios</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Ministerio de Agricultura, Ganadería y Pesca</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Ministerio de Economía y Obras Públicas de las Provincia de Santa Cruz</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Ministerio de Economía y Finanzas</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Ministerio de Modernización</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de Gral Pueyrredon</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de la Ciudad de Córdoba</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de Rio Cuarto</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de Rosario</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de San Miguel de Tucumán</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Municipalidad de San Nicolas</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Oficina Nacional de Control Comercial Agropecuario</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Secretara Legal y Técnica</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Servicio Nacional de Sanidad y Calidad Agroalimentaria</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Superintendencia de Riesgos de Trabajo</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Superintendencia de Seguros de la Nacion</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Superintendencia de Servicios de Salud</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
-      </div>
-
-      <div class="col-xs-12 col-sm-4 m-b-3 p-r-4">
-        <h5 class="text-gray">Télam - Agencia Nacional de Noticias</h5>
-        <p><a href="#">Servicios Interactivos</a></p>
+              {% endfor %}
+            </div>
+          {% endfor %}        
+        {% endfor %}
       </div>
     </div>
 
-
   </section>
-
 </div>
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../node_modules/list.js/dist/list.min.js"></script>
+
+<script>
+  var options = { valueNames: [ 'name' ] };
+  var lists = [];
+
+  $('.list').each(function(i, el){
+    $(el).addClass('list-'+i);
+    lists[i] = new List('list-'+i, options);
+    console.log(i);
+  });
+
+  $(".search").keyup(function(){
+    for (var i = lists.length - 1; i >= 0; i--) {
+      console.log(i);
+      lists[i].search( $(this).val() );
+    }
+});
+</script>
 
 
 
