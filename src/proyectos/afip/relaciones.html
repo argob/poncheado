@@ -27,7 +27,6 @@ layout: afip
       </div>
 
       <div class="col-md-6">
-
         <h4>Servicios de AFIP</h4>
 
         {% for relacion in site.data.afip_relaciones.afip %}
@@ -79,20 +78,7 @@ layout: afip
 
 <script>
   var options = { valueNames: [ 'name' ] };
-  var lists = [];
-
-  $('.list').each(function(i, el){
-    $(el).addClass('list-'+i);
-    lists[i] = new List('list-'+i, options);
-    console.log(i);
-  });
-
-  $(".search").keyup(function(){
-    for (var i = lists.length - 1; i >= 0; i--) {
-      console.log(i);
-      lists[i].search( $(this).val() );
-    }
-});
+  var iconsList = new List('servicios', options);
 </script>
 
 
