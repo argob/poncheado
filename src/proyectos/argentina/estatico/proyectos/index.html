@@ -1,0 +1,162 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('img/precios_cuidados.jpg');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Proyectos del Ministerio de Modernización</h2>
+          <p class="margin-0">Buscá los productos adheridos al programa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  <section>
+    <div class="row panels-row" data-render="tarjetas">
+      <!-- <div class="col-xs-12 col-sm-6 col-md-4">
+        <a href="{#}" class="panel panel-default">
+          <div class="panel-body">
+            <h2>{nombre}</h2>
+            <p>{descripcion}</p>
+            <div class="media">
+              <div class="media-left media-middle">
+                <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span>
+              </div>
+              <div class="media-body media-middle">
+                <div class="text-muted">{duracion}</div>
+              </div>
+            </div>
+            <div class="media">
+              <div class="media-left media-middle">
+                <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span>
+              </div>
+              <div class="media-body media-middle">
+                <div class="text-muted">{etapas}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div> -->
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<!-- <script src="{{ "/proyectos/argentina/estatico/precios-cuidados/js/precios-cuidados.js" | prepend: site.baseurl }}"></script> -->
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>'
+    }
+
+    window.proyectos = [];
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+          if( row.gsx$tipo.$t == "proyecto" ){
+            console.log(row.gsx$nombre.$t)
+
+            proyectos.push({
+              nombre: row.gsx$nombre.$t,
+              objetivo: row.gsx$objetivo.$t,
+              impacto: row.gsx$impacto.$t,
+              alcance: row.gsx$alcance.$t,
+              etiquetas: row.gsx$etiquetas.$t,
+              area: row.gsx$area.$t,
+              link: row.gsx$link.$t,
+              indicadores: [],
+              hitos: []
+            });
+
+          } else if( row.gsx$tipo.$t == "indicador" ){
+
+            proyectos[ proyectos.length - 1 ].indicadores.push({
+              nombre: row.gsx$nombre.$t,
+              fuente: row.gsx$fuente.$t,
+              formulacion: row.gsx$formulacion.$t,
+              estado2016: row.gsx$estado2016.$t,
+              estado2017: row.gsx$estado2017.$t,
+              avance: row.gsx$avance.$t
+            });
+
+          } else if( row.gsx$tipo.$t == "hito" ){
+
+            proyectos[ proyectos.length - 1 ].hitos.push({
+              nombre: row.gsx$nombre.$t,
+              inicio: row.gsx$inicio.$t,
+              fin: row.gsx$fin.$t,
+              estado: row.gsx$estado.$t
+            });
+
+          }
+
+        })
+
+        render.tarjetas();
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function(){
+
+        $.each(proyectos, function(index, proyecto){
+
+          var html = templates.tarjeta;
+
+          html = html.replace(/{nombre}/gi, proyecto.nombre)
+          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
+          .replace(/{duracion}/gi, 'Pablo está fumado')
+          .replace(/{etapas}/gi, 'Si pretende que hagamos esto');
+
+          // console.log(html);
+
+          $('[data-render=tarjetas]').append( html );
+
+        });
+
+      }
+    }
+
+  });
+
+
+
+     
+
+
+
+
+
+
+
+  // var options = {
+  //   valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+  // };
+
+  // var productsList = new List('productos', options);
+
+  // //cambiando clase de icons en tablas
+  // $(".list a").click(function(){
+  //   $(this).find('i').toggleClass('fa-plus fa-minus'); 
+  //   $(this).find('i').toggleClass('text-success text-danger'); 
+  // });
+
+</script>
