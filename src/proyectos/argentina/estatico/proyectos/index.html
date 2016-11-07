@@ -18,33 +18,91 @@ layout: argentina
 
 <div class="container">
   <section>
-    <div class="row panels-row" data-render="tarjetas">
-      <!-- <div class="col-xs-12 col-sm-6 col-md-4">
-        <a href="{#}" class="panel panel-default">
-          <div class="panel-body">
-            <h2>{nombre}</h2>
-            <p>{descripcion}</p>
-            <div class="media">
-              <div class="media-left media-middle">
-                <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span>
-              </div>
-              <div class="media-body media-middle">
-                <div class="text-muted">{duracion}</div>
-              </div>
-            </div>
-            <div class="media">
-              <div class="media-left media-middle">
-                <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span>
-              </div>
-              <div class="media-body media-middle">
-                <div class="text-muted">{etapas}</div>
-              </div>
-            </div>
+    <div class="row">    
+      <div class="col-md-12">
+        <h2>Materiales</h2>
+        <p>Aprender ha desarrollado un conjunto de documentos para acompañar la gestión e implementación del dispositivo destinados a docentes y equipos directivos que participarán como aplicadores y veedores.</p>
+      </div>  
+    </div>  
+    <div class="row m-y-3">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-question-circle"></i>
+            <h3>Empleo público de calidad al servicio del ciudadano </h3>
+            <p>APRENDER es un dispositivo que evalúa a nivel nacional, tanto los aprendizajes de los estudiantes, como los sistemas de información vinculados con ciertas condiciones en las que esos aprendizajes se producen. </p>
           </div>
-        </a>
-      </div> -->
-    </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-calendar"></i>
+             <h3>¿Cuándo se realiza?</h3>
+             <p>El próximo 18 de octubre, con suspensión de clases para los alumnos que no participan de la evaluación. Aprender tiene carácter obligatorio para los estudiantes y docentes que forman parte del dispositivo.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-users"></i>
+            <h3>¿Quiénes participan?</h3>
+            <p>Todos los estudiantes de gestión pública y privada que cursen 6° grado de la primaria y los de 5° o 6° año de la secundaria A modo de muestra representativa, un grupo de estudiantes de 3° grado de primaria y de 2° o 3° año de
+              la secundaria (según la estructura de nivel de cada jurisdicción). Todos los estudiantes de gestión pública y privada que cursen 6° grado de primaria y los de 5° o 6° año de secundaria (dependiendo de la estructura de nivel de cada jurisdicción).</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-arrow-circle-up"></i>
+            <h3>¿Por qué Aprender?</h3>
+            <p>La elección de un nombre nuevo busca señalar el renovado compromiso político en torno a la evaluación como una instancia válida y necesaria en un proceso de cambio y mejora educativa.</p>
+          </div>
+        </div>          
+    </div> 
   </section>
+  <section>
+    <div class="row">    
+      <div class="col-md-12">
+        <h2>Materiales</h2>
+        <p>Aprender ha desarrollado un conjunto de documentos para acompañar la gestión e implementación del dispositivo destinados a docentes y equipos directivos que participarán como aplicadores y veedores.</p>
+      </div>  
+    </div>  
+    <div class="row m-y-3">
+      <div class="col-md-12">    
+          <h3>Filtra</h3>
+          <div class="btn-group btn-group-justified margin-20">
+              <a data-toggle="tab" href="#amba" data-region="amba" class="btn btn-default active">AMBA</a>
+              <a data-toggle="tab" href="#pba" data-region="pba" class="btn btn-default">Buenos Aires</a>
+              <a data-toggle="tab" href="#cuyo" data-region="cuyo" class="btn btn-default">Centro y Cuyo</a>
+              <a data-toggle="tab" href="#norte" data-region="norte" class="btn btn-default">Noreste y Noroeste</a>
+              <a data-toggle="tab" href="#patagonia" data-region="patagonia" class="btn btn-default">Patagonia</a>
+              <a data-toggle="tab" href="#patagonia" data-region="patagonia" class="btn btn-default">Patagonia</a>
+          </div>
+      </div>
+    </div>
+    <div class="row m-y-3">
+      <div class="col-md-12">    
+          <h3>Filtra</h3>
+          <div class="btn-group btn-group-justified margin-20">
+              <a data-toggle="tab" href="#amba" data-region="amba" class="btn btn-default active">AMBA</a>
+              <a data-toggle="tab" href="#pba" data-region="pba" class="btn btn-default">Buenos Aires</a>
+              <a data-toggle="tab" href="#cuyo" data-region="cuyo" class="btn btn-default">Centro y Cuyo</a>
+          </div>
+      </div>
+    </div> 
+    <div class="row m-y-3">
+      <div class="col-md-12">    
+          <h3 class="text-center">Buscá un producto</h3>
+          <div id="productos">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">    
+                <div class="form-group">
+                  <input class="form-control search" placeholder="Filtrá los productos por Nombre, Marca o Medida">
+                </div>
+              </div>
+            </div>
+            <div class="row panels-row m-y-3" data-render="tarjetas"></div>            
+
+          </div>
+      </div>
+    </div>         
+  </section> 
 </div>
 
 
@@ -56,7 +114,7 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>'
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#myModal" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>'
     }
 
     window.proyectos = [];
@@ -77,7 +135,10 @@ layout: argentina
               objetivo: row.gsx$objetivo.$t,
               impacto: row.gsx$impacto.$t,
               alcance: row.gsx$alcance.$t,
-              etiquetas: row.gsx$etiquetas.$t,
+              innovacion: row.gsx$innovacion.$t,
+              participacion: row.gsx$participacion.$t,
+              eficiencia: row.gsx$eficiencia.$t,
+              apertura: row.gsx$apertura.$t,
               area: row.gsx$area.$t,
               link: row.gsx$link.$t,
               indicadores: [],
@@ -137,7 +198,26 @@ layout: argentina
 
   });
 
+    window.showEvaluaciones = function(){
+        var showData = $('#show-data');
 
+        var html = '';
+        $.each( evaluaciones, function( key, item ) {
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6 class="etapa">'+ item.gsx$titulo.$t + '</h6></td>';
+            html += ' <td class="inicio">'+ item.gsx$inicio.$t + '</td>';
+            html += ' <td class="finalizacion">'+ item.gsx$finalizacion.$t + '</td>';
+            html += ' <td class="estado">'+ item.gsx$estado.$t + '</td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {valueNames: [ 'etapa', 'inicio', 'finalizacion', 'estado' ] };
+        var evaluacionesList = new List('evaluaciones', listOptions);
+    }
 
      
 
@@ -160,3 +240,113 @@ layout: argentina
   // });
 
 </script>
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Planes de Acción Nacional de Gobierno Abierto para la Alianza para el Gobierno Abierto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p><a href="#">Innovación </a> | <a href="#">participación </a> | <a href="#">apertura </a></p>
+          </div>
+        </div>      
+        <div class="row">
+          <div class="col-md-12">
+            <p class="lead"><i class="fa fa-info-circle fa-fw"></i>&nbsp; En progreso</p>
+          </div>
+        </div>      
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Objetivo</h5>
+            <p>Generar espacios y herramientas para que el Estado y la Sociedad Civil trabajen juntos por desarrollar e implementar objetivos comunes en pos de un gobierno más abierto. A tal fin, Argentina participa en la Alianza para el Gobierno Abierto (OGP en sus siglas en inglés) y en ese marco trabaja para desarrollar y ejecutar Planes de Acción Nacional.</p>
+          </div>
+          <div class="col-md-12">
+            <h5>Objetivo</h5>
+            <p>Generar espacios y herramientas para que el Estado y la Sociedad Civil trabajen juntos por desarrollar e implementar objetivos comunes en pos de un gobierno más abierto. A tal fin, Argentina participa en la Alianza para el Gobierno Abierto (OGP en sus siglas en inglés) y en ese marco trabaja para desarrollar y ejecutar Planes de Acción Nacional.</p>
+          </div>
+        </div>      
+        <div class="row numbers text-center">
+          <div class="col-md-3">
+            <div class="panel panel-disabled">
+              <div class="panel-body">
+                <p class="lead">Cantidad de Planes de Acción entregados y ejecutados</p>
+                <div class="h2 text-success">400</div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-disabled">
+              <div class="panel-body">
+                <p class="lead">Cantidad de Planes de Acción entregados y ejecutados</p>
+                <div class="h2 text-gray">95 <small>%</small></div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-disabled">
+              <div class="panel-body">
+                <p class="lead">Cantidad de Planes de Acción entregados y ejecutados</p>
+                <div class="h2">250</div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-disabled">
+              <div class="panel-body">
+                <p class="lead">Cantidad de Planes de Acción entregados y ejecutados</p>
+                <div class="h2 text-success">400</div>
+              </div>
+            </div>
+          </div>      
+        </div>     
+        <div class="row text-center">
+          <div class="col-sm-6 col-md-4">
+            <h3>26/04/2016 </h3>
+            <p class="text-muted">Localidades conectadas</p>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <h3>30/12/2016</h3>
+            <p class="text-muted">Finalización provista</p>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <h3>50%</h3>
+            <p class="text-muted">Cumplimiento</p>
+          </div>
+        </div>      
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-spaced">
+              <thead>
+                <tr>
+                  <th>Etapas del proyecto</th>
+                  <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th>
+                  <th><a class="sort" data-sort="finalizacion">Finalización <span class="caret"></span></a></th>
+                  <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th>
+                </tr>
+              </thead>
+              <tbody class="list" id="show-data">
+              </tbody>
+            </table>          
+          </div>
+        </div>      
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Objetivo</h5>
+            <p>Generar espacios y herramientas para que el Estado y la Sociedad Civil trabajen juntos por desarrollar e implementar objetivos comunes en pos de un gobierno más abierto. A tal fin, Argentina participa en la Alianza para el Gobierno Abierto (OGP en sus siglas en inglés) y en ese marco trabaja para desarrollar y ejecutar Planes de Acción Nacional.</p>
+          </div>
+        </div>      
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Link de interés</h5>
+            <p><a target="_blank" href="https://www.argentina.gob.ar/mesasogp">www.argentina.gob.ar/mesasogp </a></p>
+          </div>
+        </div>      
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
