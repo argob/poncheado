@@ -66,11 +66,11 @@ layout: argentina
       <div class="col-md-12">    
           <h3>Filtrar este tipo de proyectos</h3>
           <div class="btn-group btn-group-justified margin-20">
-              <a data-toggle="tab" href="#amba" data-region="amba" class="btn btn-default active">Todos</a>
-              <a data-toggle="tab" href="#pba" data-region="pba" class="btn btn-default">Empleo público de calidad </a>
-              <a data-toggle="tab" href="#cuyo" data-region="cuyo" class="btn btn-default">Gobierno Innovador y Abierto</a>
-              <a data-toggle="tab" href="#norte" data-region="norte" class="btn btn-default">Estado digital y eficiente</a>
-              <a data-toggle="tab" href="#patagonia" data-region="patagonia" class="btn btn-default">Municipios innovadores</a>
+              <a href="#todo" data-region="todo" class="btn btn-default active">Todos</a>
+              <a href="#calidad" data-region="calidad" class="btn btn-default">Empleo público de calidad </a>
+              <a href="#abierto" data-region="abierto" class="btn btn-default">Gobierno Innovador y Abierto</a>
+              <a href="#eficiente" data-region="eficiente" class="btn btn-default">Estado digital y eficiente</a>
+              <a href="#innovadores" data-region="innovadores" class="btn btn-default">Municipios innovadores</a>
           </div>
       </div>
     </div>
@@ -78,9 +78,9 @@ layout: argentina
       <div class="col-md-12">    
           <h3>Ordenar por</h3>
           <div class="btn-group btn-group-justified margin-20">
-              <a data-toggle="tab" href="#amba" data-region="amba" class="btn btn-default active">Más nuevos</a>
-              <a data-toggle="tab" href="#pba" data-region="pba" class="btn btn-default">Mayor duración</a>
-              <a data-toggle="tab" href="#cuyo" data-region="cuyo" class="btn btn-default">Mayor cumplimiento</a>
+              <a href="#nuevos" data-region="nuevos" class="btn btn-default active">Más nuevos</a>
+              <a href="#duracion" data-region="duracion" class="btn btn-default">Mayor duración</a>
+              <a href="#cumplimiento" data-region="cumplimiento" class="btn btn-default">Mayor cumplimiento</a>
           </div>
       </div>
     </div> 
@@ -103,165 +103,32 @@ layout: argentina
   </section> 
 </div>
 
-
-<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<!-- <script src="{{ "/proyectos/argentina/estatico/precios-cuidados/js/precios-cuidados.js" | prepend: site.baseurl }}"></script> -->
-
-<script>
-
-  $(function(){
-
-    var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#myModal" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>'
-    }
-
-    window.proyectos = [];
-
-    $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
-      data: 'json',
-      success: function(response){
-        console.log(response.feed.entry);
-
-        $.each(response.feed.entry, function(index, row){
-
-          if( row.gsx$tipo.$t == "proyecto" ){
-            console.log(row.gsx$nombre.$t)
-
-            proyectos.push({
-              nombre: row.gsx$nombre.$t,
-              objetivo: row.gsx$objetivo.$t,
-              impacto: row.gsx$impacto.$t,
-              alcance: row.gsx$alcance.$t,
-              innovacion: row.gsx$innovacion.$t,
-              participacion: row.gsx$participacion.$t,
-              eficiencia: row.gsx$eficiencia.$t,
-              apertura: row.gsx$apertura.$t,
-              area: row.gsx$area.$t,
-              link: row.gsx$link.$t,
-              indicadores: [],
-              hitos: []
-            });
-
-          } else if( row.gsx$tipo.$t == "indicador" ){
-
-            proyectos[ proyectos.length - 1 ].indicadores.push({
-              nombre: row.gsx$nombre.$t,
-              fuente: row.gsx$fuente.$t,
-              formulacion: row.gsx$formulacion.$t,
-              estado2016: row.gsx$estado2016.$t,
-              estado2017: row.gsx$estado2017.$t,
-              avance: row.gsx$avance.$t
-            });
-
-          } else if( row.gsx$tipo.$t == "hito" ){
-
-            proyectos[ proyectos.length - 1 ].hitos.push({
-              nombre: row.gsx$nombre.$t,
-              inicio: row.gsx$inicio.$t,
-              fin: row.gsx$fin.$t,
-              estado: row.gsx$estado.$t
-            });
-
-          }
-
-        })
-
-        render.tarjetas();
-
-      }
-    });
-
-
-    var render = {
-      tarjetas: function(){
-
-        $.each(proyectos, function(index, proyecto){
-
-          var html = templates.tarjeta;
-
-          html = html.replace(/{nombre}/gi, proyecto.nombre)
-          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-          .replace(/{duracion}/gi, 'Pablo está fumado')
-          .replace(/{etapas}/gi, 'Si pretende que hagamos esto');
-
-          // console.log(html);
-
-          $('[data-render=tarjetas]').append( html );
-
-        });
-
-      }
-    }
-
-  });
-
-    window.showEvaluaciones = function(){
-        var showData = $('#show-data');
-
-        var html = '';
-        $.each( evaluaciones, function( key, item ) {
-            html += '<tr>';
-            html += ' <td class="titulo"> <h6 class="etapa">'+ item.gsx$titulo.$t + '</h6></td>';
-            html += ' <td class="inicio">'+ item.gsx$inicio.$t + '</td>';
-            html += ' <td class="finalizacion">'+ item.gsx$finalizacion.$t + '</td>';
-            html += ' <td class="estado">'+ item.gsx$estado.$t + '</td>';
-            html += '</tr>';
-    
-        });
-
-        showData.empty();
-        showData.append(html);
-
-        var listOptions = {valueNames: [ 'etapa', 'inicio', 'finalizacion', 'estado' ] };
-        var evaluacionesList = new List('evaluaciones', listOptions);
-    }
-
-     
-
-
-
-
-
-
-
-  // var options = {
-  //   valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
-  // };
-
-  // var productsList = new List('productos', options);
-
-  // //cambiando clase de icons en tablas
-  // $(".list a").click(function(){
-  //   $(this).find('i').toggleClass('fa-plus fa-minus'); 
-  //   $(this).find('i').toggleClass('text-success text-danger'); 
-  // });
-
-</script>
-
+<section>
+  <div class="row" data-render="modales"></div> 
+</section>
 
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">Planes de Acción Nacional de Gobierno Abierto para la Alianza para el Gobierno Abierto</h4>
+        <h4 class="modal-title">{proyecto}Planes de Acción Nacional de Gobierno Abierto para la Alianza para el Gobierno Abierto</h4>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <p><a href="#">Innovación </a> | <a href="#">participación </a> | <a href="#">apertura </a></p>
+            <p><a href="#">{innovacion}Innovación </a> | <a href="#">{participacion}participación </a> | <a href="#">{apertura}apertura </a>| <a href="#">{eficiencia}eficiencia </a></p>
           </div>
         </div>      
         <div class="row">
           <div class="col-md-12">
-            <p class="lead"><i class="fa fa-info-circle fa-fw"></i>&nbsp; En progreso</p>
+            <p class="lead"><i class="fa fa-info-circle fa-fw"></i>&nbsp; {nombre}En progreso</p>
           </div>
         </div>      
         <div class="row">
           <div class="col-md-12">
             <h5>Objetivo</h5>
-            <p>Generar espacios y herramientas para que el Estado y la Sociedad Civil trabajen juntos por desarrollar e implementar objetivos comunes en pos de un gobierno más abierto. A tal fin, Argentina participa en la Alianza para el Gobierno Abierto (OGP en sus siglas en inglés) y en ese marco trabaja para desarrollar y ejecutar Planes de Acción Nacional.</p>
+            <p>{innovacion}Generar espacios y herramientas para que el Estado y la Sociedad Civil trabajen juntos por desarrollar e implementar objetivos comunes en pos de un gobierno más abierto. A tal fin, Argentina participa en la Alianza para el Gobierno Abierto (OGP en sus siglas en inglés) y en ese marco trabaja para desarrollar y ejecutar Planes de Acción Nacional.</p>
           </div>
           <div class="col-md-12">
             <h5>Impacto</h5>
@@ -343,3 +210,157 @@ layout: argentina
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<!-- <script src="{{ "/proyectos/argentina/estatico/precios-cuidados/js/precios-cuidados.js" | prepend: site.baseurl }}"></script> -->
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#myModal" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>',
+      modal: '<div class="col-md-12"><h3>{proyecto}</h1><div data-render="indicadores"></div><h4 class="modal-title">{estado}Planes de Acción Nacional de Gobierno Abierto para la Alianza para el Gobierno Abierto</h4></div>'
+    }
+
+    window.proyectos = [];
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+          if( row.gsx$tipo.$t == "proyecto" ){
+            //console.log(row.gsx$nombre.$t)
+
+            proyectos.push({
+              nombre: row.gsx$nombre.$t,
+              objetivo: row.gsx$objetivo.$t,
+              impacto: row.gsx$impacto.$t,
+              alcance: row.gsx$alcance.$t,
+              innovacion: row.gsx$innovacion.$t,
+              participacion: row.gsx$participacion.$t,
+              eficiencia: row.gsx$eficiencia.$t,
+              apertura: row.gsx$apertura.$t,
+              area: row.gsx$area.$t,
+              link: row.gsx$link.$t,
+              indicadores: [],
+              hitos: []
+            });
+
+          } else if( row.gsx$tipo.$t == "indicador" ){
+            //console.log(row.gsx$avance.$t)
+
+            proyectos[ proyectos.length - 1 ].indicadores.push({
+              nombre: row.gsx$nombre.$t,
+              fuente: row.gsx$fuente.$t,
+              formulacion: row.gsx$formulacion.$t,
+              estado2016: row.gsx$estado2016.$t,
+              estado2017: row.gsx$estado2017.$t,
+              avance: row.gsx$avance.$t
+            });
+
+          } else if( row.gsx$tipo.$t == "hito" ){
+            //console.log(row.gsx$estado.$t)
+
+            proyectos[ proyectos.length - 1 ].hitos.push({
+              nombre: row.gsx$nombre.$t,
+              inicio: row.gsx$inicio.$t,
+              fin: row.gsx$fin.$t,
+              estado: row.gsx$estado.$t
+            });
+
+          }
+
+        })
+
+        render.tarjetas();
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function(){
+
+        $.each(proyectos, function(index, proyecto){
+
+          var html = templates.tarjeta;
+          var modal = templates.modal;
+
+          html = html.replace(/{nombre}/gi, proyecto.nombre)
+          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
+          .replace(/{duracion}/gi, 'Pablo está fumado')
+          .replace(/{etapas}/gi, 'Si pretende que hagamos esto');
+
+          modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
+          .replace(/{innovacion}/gi, proyecto.innovacion)
+          .replace(/{objetivo}/gi, proyecto.objetivo)
+          .replace(/{estado}/gi, proyecto.estado)
+          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...');
+
+          // console.log(html);
+
+          $('[data-render=tarjetas]').append( html );
+          $('[data-render=modales]').append( modal );   
+
+          $.each(proyecto.indicadores, function(index, indicador){
+
+            $('[data-render=modales] > div:last').find('[data-render=indicadores]').append(indicador.avance + '<br>');
+
+          });
+
+
+        });
+
+      }   
+    }
+
+  });
+
+    window.showEvaluaciones = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+        $.each( evaluaciones, function( key, item ) {
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6 class="etapa">'+ item.gsx$titulo.$t + '</h6></td>';
+            html += ' <td class="inicio">'+ item.gsx$inicio.$t + '</td>';
+            html += ' <td class="finalizacion">'+ item.gsx$finalizacion.$t + '</td>';
+            html += ' <td class="estado">'+ item.gsx$estado.$t + '</td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {valueNames: [ 'etapa', 'inicio', 'finalizacion', 'estado' ] };
+        var evaluacionesList = new List('evaluaciones', listOptions);
+    }
+
+     
+
+
+
+
+
+
+
+  // var options = {
+  //   valueNames: [ 'nombre', 'marca', 'medida', 'precio', 'categoria', 'ean' ]
+  // };
+
+  // var productsList = new List('productos', options);
+
+  // //cambiando clase de icons en tablas
+  // $(".list a").click(function(){
+  //   $(this).find('i').toggleClass('fa-plus fa-minus'); 
+  //   $(this).find('i').toggleClass('text-success text-danger'); 
+  // });
+
+</script>
+
