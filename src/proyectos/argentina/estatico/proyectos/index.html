@@ -113,8 +113,8 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#myModal" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>',
-      modal: '<div class="col-md-12"> <div id="myModal" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body"> <div class="row"> <div class="col-md-12"> <p><span>{innovacion}</span> | <span>{participacion}</span> | <span>{apertura}</span>| <span>{eficiencia}</span></p></div></div><div class="row"> <div class="col-md-12"> <h5>Objetivo</h5> <p>{objetivo}</p></div><div class="col-md-12"> <h5>Impacto</h5> <p>{impacto}</p></div></div><div class="row" data-render="indicadores"></div><div class="row text-center"> <div class="col-sm-6 col-md-4"> <h3>26/04/2016 </h3> <p class="text-muted">Comienzo</p></div><div class="col-sm-6 col-md-4"> <h3>30/12/2016</h3> <p class="text-muted">Finalización provista</p></div><div class="col-sm-6 col-md-4"> <h3>50%</h3> <p class="text-muted">Cumplimiento</p></div></div><div class="row"> <div class="col-md-12"> <h5>¿Cómo lo vamos a lograr?​</h5> <table class="table table-spaced"> <thead> <tr> <th>Etapas del proyecto</th> <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th> <th><a class="sort" data-sort="finalizacion">Finalización <span class="caret"></span></a></th> <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th> </tr></thead> <tbody class="list" data-render="hitos"> </tbody> </table> </div></div><div class="row"> <div class="col-md-12"> <h5>Alcance</h5> <p>{alcance}</p></div></div><div class="row"> <div class="col-md-12"> <h5>Link de interés</h5> <p><a target="_blank" href="https://www.argentina.gob.ar/mesasogp">www.argentina.gob.ar/mesasogp </a></p></div></div></div></div></div></div></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>',
+      modal: '<div class="col-md-12"> <div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body"> <div class="row"> <div class="col-md-12"> <p><span>{innovacion}</span> | <span>{participacion}</span> | <span>{apertura}</span>| <span>{eficiencia}</span></p></div></div><div class="row"> <div class="col-md-12"> <h5>Objetivo</h5> <p>{objetivo}</p></div><div class="col-md-12"> <h5>Impacto</h5> <p>{impacto}</p></div></div><div class="row" data-render="indicadores"></div><div class="row text-center"> <div class="col-sm-6 col-md-4"> <h3>26/04/2016 </h3> <p class="text-muted">Comienzo</p></div><div class="col-sm-6 col-md-4"> <h3>30/12/2016</h3> <p class="text-muted">Finalización provista</p></div><div class="col-sm-6 col-md-4"> <h3>50%</h3> <p class="text-muted">Cumplimiento</p></div></div><div class="row"> <div class="col-md-12"> <h5>¿Cómo lo vamos a lograr?​</h5> <table class="table table-spaced"> <thead> <tr> <th>Etapas del proyecto</th> <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th> <th><a class="sort" data-sort="finalizacion">Finalización <span class="caret"></span></a></th> <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th> </tr></thead> <tbody class="list" data-render="hitos"> </tbody> </table> </div></div><div class="row"> <div class="col-md-12"> <h5>Alcance</h5> <p>{alcance}</p></div></div><div class="row"> <div class="col-md-12"> <h5>Link de interés</h5> <p><a target="_blank" href="https://www.argentina.gob.ar/mesasogp">www.argentina.gob.ar/mesasogp </a></p></div></div></div></div></div></div></div>',
       hito: '<tr> <td class="titulo"> <h6 class="etapa">{nombre}</h6></td> <td class="inicio">{inicio}</td> <td class="finalizacion">{fin}</td> <td class="estado">{estado}</td> </tr>',
       indicador: '<div class="col-md-12"> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">Indicador <em>{nombre}</em></div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">Avance <em>{avance}</em></div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">Meta Anual <em>{estado2016}</em></div></div></div></div>'
     }
@@ -133,6 +133,7 @@ layout: argentina
             //console.log(row.gsx$nombre.$t)
 
             proyectos.push({
+              index: index,
               nombre: row.gsx$nombre.$t,
               objetivo: row.gsx$objetivo.$t,
               impacto: row.gsx$impacto.$t,
@@ -187,16 +188,20 @@ layout: argentina
           var html = templates.tarjeta;
           var modal = templates.modal;
 
+          console.log(index)
+
           html = html.replace(/{nombre}/gi, proyecto.nombre)
+          .replace(/{index}/gi, index)
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
           .replace(/{duracion}/gi, 'Pablo está fumado')
           .replace(/{etapas}/gi, 'Si pretende que hagamos esto');
 
           modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
-          .replace(/{innovacion}/gi, proyecto.innovacion)
-          .replace(/{participacion}/gi, proyecto.participacion)
-          .replace(/{apertura}/gi, proyecto.apertura)
-          .replace(/{eficiencia}/gi, proyecto.eficiencia)
+          .replace(/{index}/gi, index)
+          .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion"))
+          .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion"))
+          .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura"))
+          .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia"))
           .replace(/{objetivo}/gi, proyecto.objetivo)
           .replace(/{estado}/gi, proyecto.estado)
           .replace(/{alcance}/gi, proyecto.alcance)
