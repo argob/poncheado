@@ -125,7 +125,7 @@ layout: argentina
       url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        console.log(response.feed.entry);
+        //console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
@@ -170,6 +170,7 @@ layout: argentina
               estado: row.gsx$estado.$t
             });
 
+            
           }
 
         })
@@ -188,7 +189,7 @@ layout: argentina
           var html = templates.tarjeta;
           var modal = templates.modal;
 
-          console.log(index)
+          //console.log(index)
 
           html = html.replace(/{nombre}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
@@ -230,9 +231,16 @@ layout: argentina
 
           });
 
+            console.log(proyecto.hitos[0].inicio);
+            console.log(proyecto.hitos[proyecto.hitos.length - 1].fin);
+
           $.each(proyecto.hitos, function(index, hito){
 
             var htmlHito = templates.hito;
+
+            //console.log(row.gsx$inicio.$t)
+           
+            if(proyecto.hitos.length)
 
             htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
             .replace(/{inicio}/gi, hito.inicio)
