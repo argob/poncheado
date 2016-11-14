@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('/sites/default/files/header_mercado_en_tu_barrio_lechuga.png');">
+<section class="jumbotron" style="background-image: url('/sites/default/files/header_mercado_en_tu_barrio_lechuga_1.png');">
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
@@ -64,7 +64,7 @@ layout: argentina
             <th><a class="sort" data-sort="barrio">Barrio <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="dia">Dia <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="lugar">Lugar <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="mapa">Mapa </a></th>
+            <th><a class="sort">Mapa </a></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
@@ -89,7 +89,8 @@ layout: argentina
 </div>
 
 
-<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 
 <script>
 
@@ -97,7 +98,7 @@ layout: argentina
 $(document).ready(function () {
 
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1gDUaA7UVYxMNmY4Gww150S8yYBdVBfMvAGovHHQ5FfM/1/public/values?alt=json', function (data) {
         window.ferias = data.feed.entry;
         showFerias();
         console.log(data);
