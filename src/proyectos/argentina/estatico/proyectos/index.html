@@ -56,37 +56,9 @@ layout: argentina
     </div> 
   </section>
   <section>
-    <div class="row">    
-      <div class="col-md-12">
-        <h2>Nuestros proyectos</h2>
-        <!-- <p>Acá te presentamos los proyectos destacados en los que estamos trabajando</p> -->
-      </div>  
-    </div>  
-    <!-- <div class="row m-y-3">
+    <div class="row">
       <div class="col-md-12">    
-          <h3>Filtrar este tipo de proyectos</h3>
-          <div class="btn-group btn-group-justified margin-20">
-              <a href="#todo" data-region="todo" class="btn btn-default active">Todos</a>
-              <a href="#calidad" data-region="calidad" class="btn btn-default">Empleo público de calidad </a>
-              <a href="#abierto" data-region="abierto" class="btn btn-default">Gobierno Innovador y Abierto</a>
-              <a href="#eficiente" data-region="eficiente" class="btn btn-default">Estado digital y eficiente</a>
-              <a href="#innovadores" data-region="innovadores" class="btn btn-default">Municipios innovadores</a>
-          </div>
-      </div>
-    </div>
-    <div class="row m-y-3">
-      <div class="col-md-12">    
-          <h3>Ordenar por</h3>
-          <div class="btn-group btn-group-justified margin-20">
-              <a href="#nuevos" data-region="nuevos" class="btn btn-default active">Más nuevos</a>
-              <a href="#duracion" data-region="duracion" class="btn btn-default">Mayor duración</a>
-              <a href="#cumplimiento" data-region="cumplimiento" class="btn btn-default">Mayor cumplimiento</a>
-          </div>
-      </div>
-    </div>  -->
-    <div class="row m-y-3">
-      <div class="col-md-12">    
-          <h3 class="text-center">Buscá un proyecto</h3>
+          <h2 class="text-center">Nuestros proyectos</h2>
           <div id="productos">
             <div class="row">
               <div class="col-md-8 col-md-offset-2">    
@@ -153,8 +125,8 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p> <div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-clock-o fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{duracion}</div> </div> </div> <div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div> <div class="media-body media-middle"> <div class="text-muted">{etapas}</div> </div> </div> </div> </a></div>',
-      modal: '<div class="col-md-12"> <div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body"> <div class="row"> <div class="col-md-12"> <p><span>{innovacion}</span> | <span>{participacion}</span> | <span>{apertura}</span>| <span>{eficiencia}</span></p></div></div><div class="row"> <div class="col-md-12"> <h5>Objetivo</h5> <p>{objetivo}</p></div><div class="col-md-12"> <h5>Impacto</h5> <p>{impacto}</p></div></div><div class="row"><div class="col-md-12"><table class="table table-spaced"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr></thead> <tbody data-render="indicadores"> </tbody></table></div></div><div class="row text-center"> <div class="col-sm-6 col-md-4"> <h3>{inicioProyecto} </h3> <p class="text-muted">Comienzo</p></div><div class="col-sm-6 col-md-4"> <h3>{finProyecto}</h3> <p class="text-muted">Finalización provista</p></div><div class="col-sm-6 col-md-4"> <h3 data-render="cumplimiento"></h3> <p class="text-muted">Cumplimiento</p></div></div><div class="row"> <div class="col-md-12"> <h5>¿Cómo lo vamos a lograr?​</h5> <table class="table table-spaced"> <thead> <tr> <th>Etapas del proyecto</th> <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th> <th><a class="sort" data-sort="finalizacion">Finalización <span class="caret"></span></a></th> <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th> </tr></thead> <tbody class="list" data-render="hitos"> </tbody> </table> </div></div><div class="row"> <div class="col-md-12"> <h5>Alcance</h5> <p>{alcance}</p></div></div><div class="row"> <div class="col-md-12"> <h5>Link de interés</h5> <p><a target="_blank" href="{link}">{link} </a></p></div></div></div></div></div></div></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-television fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
+      modal: '<div class="col-md-12"> <div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body"> <div class="row"> <div class="col-md-12"> <p><span>{innovacion}</span><span>{participacion}</span><span>{apertura}</span><span>{eficiencia}</span></p></div></div><div class="row"> <div class="col-md-12"> <h5>Objetivo</h5> <p>{objetivo}</p></div><div class="col-md-12"> <h5>Impacto</h5> <p>{impacto}</p></div></div><div class="row"><div class="col-md-12"><table class="table table-spaced"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr></thead> <tbody data-render="indicadores"> </tbody></table></div></div><div class="row text-center"> <div class="col-sm-6 col-md-4"> <h3>{inicioProyecto} </h3> <p class="text-muted">Comienzo</p></div><div class="col-sm-6 col-md-4"> <h3>{finProyecto}</h3> <p class="text-muted">Finalización provista</p></div><div class="col-sm-6 col-md-4"> <h3 data-render="cumplimiento"></h3> <p class="text-muted">Cumplimiento</p></div></div><div class="row"> <div class="col-md-12"> <h5>¿Cómo lo vamos a lograr?​</h5> <table class="table table-spaced"> <thead> <tr> <th>Etapas del proyecto</th> <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th> <th><a class="sort" data-sort="finalizacion">Finalización <span class="caret"></span></a></th> <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th> </tr></thead> <tbody class="list" data-render="hitos"> </tbody> </table> </div></div><div class="row"> <div class="col-md-12"> <h5>Alcance</h5> <p>{alcance}</p></div></div><div class="row"> <div class="col-md-12"> <h5>Link de interés</h5> <p><a target="_blank" href="{link}">{link} </a></p></div></div><div class="row"> <div class="col-md-12"> <h5>Organismo responsable</h5> <p>{area}</p></div></div></div></div></div></div></div>',
       hito: '<tr> <td class="titulo"> <h6 class="etapa">{nombre}</h6></td> <td class="inicio">{inicio}</td> <td class="finalizacion">{fin}</td> <td class="estado">{estado}</td> </tr>',
       indicador: '<tr> <td>{nombre}</td><td>{avance}</td><td>{estado2016}</td></tr>'
     }
@@ -235,19 +207,21 @@ layout: argentina
           html = html.replace(/{nombre}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-          .replace(/{duracion}/gi, 'Pablo está fumado')
-          .replace(/{etapas}/gi, 'Si pretende que hagamos esto');
+          .replace(/{metas}/gi, '16 encuentros de trabajo')
+          .replace(/{cumplimiento}/gi, '20% cumplido')
+          .replace(/{estado}/gi, 'Iniciado');
 
           modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
-          .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion"))
-          .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion"))
-          .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura"))
-          .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia"))
+          .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion | "))
+          .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion | "))
+          .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura | "))
+          .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia | "))
           .replace(/{objetivo}/gi, proyecto.objetivo)
           .replace(/{estado}/gi, proyecto.estado)
           .replace(/{alcance}/gi, proyecto.alcance)
           .replace(/{link}/gi, proyecto.link)
+          .replace(/{area}/gi, proyecto.area)
           .replace(/{impacto}/gi, proyecto.impacto)
           .replace(/{avance}/gi, proyecto.avance)
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
