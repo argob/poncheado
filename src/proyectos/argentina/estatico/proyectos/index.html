@@ -26,28 +26,28 @@ layout: argentina
           <div class="icon-item">
             <i class="fa fa-search"></i>
             <h3 class="h4">Gobierno Innovador y Abierto</h3>
-            <p>Promovemos la participación ciudadana para que sumes tus ideas a la gestión y ponemos los datos de gobierno a tu disposición para impulsar la co-creacion de soluciones.</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="icon-item">
-            <i class="fa fa-arrow-circle-up"></i>
-            <h3 class="h4">Empleo público de calidad</h3>
-            <p>Empleados públicos capacitados, reconocidos por su trabajo y al servicio del ciudadano.</p>
-          </div>
-        </div>          
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="icon-item">
-            <i class="fa fa-calendar"></i>
-             <h3 class="h4">Estado digital y eficiente </h3>
-             <p>Trabajamos con los ministerios para que incorporen nuevas tecnologías de gestión y lanzamos nuevas Apps y sitios web para que puedas hacer trámites de manera más rápida y simple.</p>
+            <p class="text-muted">Promovemos la participación ciudadana para que sumes tus ideas a la gestión y ponemos los datos de gobierno a tu disposición para impulsar la co-creacion de soluciones.</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="icon-item">
             <i class="fa fa-users"></i>
+            <h3 class="h4">Empleo público de calidad</h3>
+            <p class="text-muted">Empleados públicos capacitados, reconocidos por su trabajo y al servicio del ciudadano.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-desktop"></i>
+             <h3 class="h4">Estado digital y eficiente </h3>
+             <p class="text-muted">Trabajamos con los ministerios para que incorporen nuevas tecnologías de gestión y lanzamos nuevas Apps y sitios web para que puedas hacer trámites de manera más rápida y simple.</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="icon-item">
+            <i class="fa fa-university"></i>
             <h3 class="h4">Municipios innovadores</h3>
-            <p>Impulsamos el desarrollo de ciudades inteligentes en todas las provincias y municipios.</p>
+            <p class="text-muted">Impulsamos el desarrollo de ciudades inteligentes en todas las provincias y municipios.</p>
           </div>
         </div>
     </div> 
@@ -69,7 +69,7 @@ layout: argentina
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Tipo de proyectos</label>
-                <select class="form-control" id="">
+                <select class="form-control">
                   <option value="todo">Todos</option>
                   <option value="calidad">Gobierno Innovador y Abierto</option>
                   <option value="abierto">Empleo público de calidad</option>
@@ -81,7 +81,7 @@ layout: argentina
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Filtrar por alcance</label>
-                <select class="form-control" id="">
+                <select class="form-control">
                   <option value="todo">Funcionarios Públicos</option>
                   <option value="calidad">Sociedad Civil</option>
                   <option value="abierto">Administración Pública</option>
@@ -92,7 +92,7 @@ layout: argentina
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Ordenar por</label>
-                <select class="form-control" id="">
+                <select class="form-control">
                   <option value="nuevos">Más nuevos</option>
                   <option value="duracion">Mayor duración</option>
                   <option value="cumplimiento">Mayor cumplimiento</option>
@@ -120,7 +120,7 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-list-ol fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-television fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
       modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th>Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p>{alcance}</p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p>{estado}</p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
