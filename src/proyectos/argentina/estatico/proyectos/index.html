@@ -69,12 +69,12 @@ layout: argentina
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Tipo de proyectos</label>
-                <select class="form-control">
-                  <option value="todo">Todos</option>
-                  <option value="calidad">Gobierno Innovador y Abierto</option>
-                  <option value="abierto">Empleo público de calidad</option>
-                  <option value="eficiente">Estado digital y eficiente</option>
-                  <option value="innovadores">Municipios innovadores</option>
+                <select id="tipo-proyectos" class="form-control">
+                  <option data-tipoproyectos="todos" value="todo">Todos</option>
+                  <option data-tipoproyectos="gobierno" value="calidad">Gobierno Innovador y Abierto</option>
+                  <option data-tipoproyectos="empleo" value="abierto">Empleo público de calidad</option>
+                  <option data-tipoproyectos="estado" value="eficiente">Estado digital y eficiente</option>
+                  <option data-tipoproyectos="municipio" value="innovadores">Municipios innovadores</option>
                 </select>
               </div>
             </div>
@@ -82,10 +82,10 @@ layout: argentina
               <div class="form-group">
                 <label for="">Filtrar por alcance</label>
                 <select class="form-control">
-                  <option value="todo">Funcionarios Públicos</option>
-                  <option value="calidad">Sociedad Civil</option>
-                  <option value="abierto">Administración Pública</option>
-                  <option value="eficiente">Gobiernos Subnacionales</option>
+                  <option value="funcionarios">Funcionarios Públicos</option>
+                  <option value="civil">Sociedad Civil</option>
+                  <option value="publica">Administración Pública</option>
+                  <option value="subnacionales">Gobiernos Subnacionales</option>
                 </select>
               </div>
             </div>
@@ -120,8 +120,8 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
-      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th>Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p>{alcance}</p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><div class="">{lineamiento}</div> <h3>{nombre}</h3> <p class="text-muted">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
+      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th>Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p>{estado}</p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
     }
@@ -132,19 +132,23 @@ layout: argentina
       url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        console.log(response.feed.entry);
+        //console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
-          if( row.gsx$tipo.$t == "proyecto" ){
-            //console.log(row.gsx$nombre.$t)
+          if( row.gsx$tipo.$t == "proyecto"  ){
+              //console.log(row.gsx$lineamiento.$t)
 
             proyectos.push({
               index: index,
+              lineamiento: row.gsx$lineamiento.$t,
               nombre: row.gsx$nombre.$t,
               objetivo: row.gsx$objetivo.$t,
               impacto: row.gsx$impacto.$t,
-              alcance: row.gsx$alcance.$t,
+              funcionario: row.gsx$funcionario.$t,
+              civil: row.gsx$civil.$t,
+              apn: row.gsx$apn.$t,
+              gobiernos: row.gsx$gobiernos.$t,
               innovacion: row.gsx$innovacion.$t,
               participacion: row.gsx$participacion.$t,
               eficiencia: row.gsx$eficiencia.$t,
@@ -181,16 +185,23 @@ layout: argentina
 
         })
 
-        render.tarjetas();
+        render.tarjetas('todos');
 
       }
     });
 
 
     var render = {
-      tarjetas: function(){
+      tarjetas: function(tipoproyectos){
+
+        $('[data-render=tarjetas]').html('');
+        $('[data-render=modales]').html('');
 
         $.each(proyectos, function(index, proyecto){
+
+          //console.log(" tipoproyectos:"+tipoproyectos);
+          //console.log(" lineamiento"+proyecto.lineamiento);
+        if(tipoproyectos == 'todos' || tipoproyectos == proyecto.lineamiento){          
 
           var html = templates.tarjeta;
           var modal = templates.modal;
@@ -201,6 +212,7 @@ layout: argentina
 
           html = html.replace(/{nombre}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
+          .replace(/{lineamiento}/gi, proyecto.lineamiento)
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
           .replace(/{metas}/gi, '16 encuentros de trabajo')
           .replace(/{cumplimiento}/gi, '20% cumplido')
@@ -214,7 +226,10 @@ layout: argentina
           .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia | "))
           .replace(/{objetivo}/gi, proyecto.objetivo)
           .replace(/{estado}/gi, proyecto.estado)
-          .replace(/{alcance}/gi, proyecto.alcance)
+          .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
+          .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
+          .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
+          .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
           .replace(/{link}/gi, proyecto.link)
           .replace(/{area}/gi, proyecto.area)
           .replace(/{impacto}/gi, proyecto.impacto)
@@ -271,10 +286,19 @@ layout: argentina
                 $('[data-render=modales] > div:last').find('[data-render=cumplimiento]').text( porcentajeCumplidos );
               }
 
+
+        }
+
         });
 
       }   
     }
+
+    $("#tipo-proyectos").on("change", function() {
+      var tipoproyectos = $( "#tipo-proyectos option:selected" ).data('tipoproyectos');
+      render.tarjetas(tipoproyectos);
+    });  
+  
 
   });
 
