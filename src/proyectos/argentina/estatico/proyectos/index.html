@@ -120,7 +120,7 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><div class="">{lineamiento}</div> <h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{cumplimiento}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><div class="">{lineamiento}</div> <h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
       modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th>Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p>{estado}</p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
@@ -132,7 +132,7 @@ layout: argentina
       url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        //console.log(response.feed.entry);
+        console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
@@ -215,7 +215,6 @@ layout: argentina
           .replace(/{lineamiento}/gi, proyecto.lineamiento)
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
           .replace(/{metas}/gi, '16 encuentros de trabajo')
-          .replace(/{cumplimiento}/gi, '20% cumplido')
           .replace(/{estado}/gi, 'Iniciado');
 
           modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
@@ -279,11 +278,11 @@ layout: argentina
 
             if(cantCumplidos > 0) {
                 var porcentajeCumplidos = Math.round((cantCumplidos / proyecto.hitos.length)*100)+"%";
-                $('[data-render=modales] > div:last').find('[data-render=cumplimiento]').text( porcentajeCumplidos );
+                $('[data-render=modales] > div:last , [data-render=tarjetas] > div:last').find('[data-render=cumplimiento]').text( porcentajeCumplidos );
             } 
             else {
                 var porcentajeCumplidos = "0%";
-                $('[data-render=modales] > div:last').find('[data-render=cumplimiento]').text( porcentajeCumplidos );
+                $('[data-render=modales] > div:last , [data-render=tarjetas] > div:last' ).find('[data-render=cumplimiento]').text( porcentajeCumplidos );
               }
 
 
