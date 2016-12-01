@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('/sites/default/files/header_mercado_en_tu_barrio_lechuga_1.png');">
+<section class="jumbotron" style="background-image: url('/sites/default/files/header_mercado_en_tu_barrio_lechuga_1_0.png');">
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
@@ -21,18 +21,7 @@ layout: argentina
 <div class="container">
   <section> 
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="alert alert-success">
-          <div class="media">
-              <div class="media-left media-middle">
-                <i class="fa fa-shopping-basket fa-fw fa-4x"></i>
-              </div>
-              <div class="media-body media-middle">
-                <h5 class="m-y-0">Este jueves 17 comienzan las ferias en Tres de Febrero</h5>
-                <p class="margin-0">Conocé bien qué días y horarios van a estar las ferias por tu barrio.</p>
-              </div>
-          </div>
-        </div>
+      <div class="col-md-8 col-md-offset-2 text-center">
 
         <div class="embed-responsive embed-responsive-16by9 m-y-3">
           <iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/hg3djYmojqc"></iframe>
@@ -130,10 +119,30 @@ layout: argentina
   </section>
 </div>
 
-<script src="/node_modules/list.js/dist/list.min.js"></script>
-<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<!--<script src="/node_modules/list.js/dist/list.min.js"></script>-->
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 
 <script>
+
+function getHtmlTable(item, mapa){
+  var html = '<tr>';
+  html += ' <td class="barrioHoy"> <h6 class="barrioHoy">'+ item.gsx$barrio.$t + '</h6></td>';
+  html += ' <td class="diaHoy">'+ item.gsx$dia.$t + '</td>';
+  html += ' <td class="lugarHoy">'+ item.gsx$lugar.$t + '</td>';
+  html += ' <td class="mapaHoy">'+ mapa + '</td>';
+  html += '</tr>'; 
+  return html;
+}
+
+function getMapa(mapa){
+  if(mapa == '') {
+      mapa = "";
+  }    
+  else {
+      mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ mapa + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
+  } 
+  return mapa;
+}
 
 (function($) {
 $(document).ready(function () {
@@ -150,23 +159,9 @@ $(document).ready(function () {
         var showData = $('#show-data-hoy');
         var html = '';
         $.each( ferias, function( key, item ) {
-
             var mapa = item.gsx$mapa.$t;
-
-            if(mapa == '') {
-                mapa = "";
-            }    
-            else {
-                mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ mapa + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
-            }    
-
-            html += '<tr>';
-            html += ' <td class="barrioHoy"> <h6 class="barrioHoy">'+ item.gsx$barrio.$t + '</h6></td>';
-            html += ' <td class="diaHoy">'+ item.gsx$dia.$t + '</td>';
-            html += ' <td class="lugarHoy">'+ item.gsx$lugar.$t + '</td>';
-            html += ' <td class="mapaHoy">'+ mapa + '</td>';
-            html += '</tr>';    
-    
+            mapa = getMapa(mapa);
+            html += getHtmlTable(item, mapa);
         });
 
         showData.empty();
@@ -187,23 +182,9 @@ $(document).ready(function () {
         var showData = $('#show-data-semana');
         var html = '';
         $.each( ferias, function( key, item ) {
-
             var mapa = item.gsx$mapa.$t;
-
-            if(mapa == '') {
-                mapa = "";
-            }    
-            else {
-                mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ mapa + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
-            }    
-
-            html += '<tr>';
-            html += ' <td class="barrioSemana"> <h6 class="barrioSemana">'+ item.gsx$barrio.$t + '</h6></td>';
-            html += ' <td class="diaSemana">'+ item.gsx$dia.$t + '</td>';
-            html += ' <td class="lugarSemana">'+ item.gsx$lugar.$t + '</td>';
-            html += ' <td class="mapaSemana">'+ mapa + '</td>';
-            html += '</tr>';    
-    
+            mapa = getMapa(mapa);
+            html += getHtmlTable(item, mapa);
         });
 
         showData.empty();
@@ -226,21 +207,9 @@ $(document).ready(function () {
         $.each( ferias, function( key, item ) {
 
             var mapa = item.gsx$mapa.$t;
+            mapa = getMapa(mapa);
+            html += getHtmlTable(item, mapa);
 
-            if(mapa == '') {
-                mapa = "";
-            }    
-            else {
-                mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ mapa + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
-            }    
-
-            html += '<tr>';
-            html += ' <td class="barrioProximas"> <h6 class="barrioProximas">'+ item.gsx$barrio.$t + '</h6></td>';
-            html += ' <td class="diaProximas">'+ item.gsx$dia.$t + '</td>';
-            html += ' <td class="lugarProximas">'+ item.gsx$lugar.$t + '</td>';
-            html += ' <td class="mapaProximas">'+ mapa + '</td>';
-            html += '</tr>';    
-    
         });
 
         showData.empty();
