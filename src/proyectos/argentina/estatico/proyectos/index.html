@@ -8,7 +8,10 @@ layout: argentina
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
           <h2>Tablero Ciudadano</h2>
-          <p class="margin-0">Estos son los proyectos prioritarios en los que trabaja el Ministerio de Modernización. Participá en el analisis y seguimiento de nuestras acciones y resultados.</p>
+          <p>Estos son los proyectos prioritarios en los que trabaja el Ministerio de Modernización. Participá en el analisis y seguimiento de nuestras acciones y resultados.</p>
+          <p class="text-center">
+            <a href="#" target="_blank" class="btn btn-success btn-lg">¿Cómo lo hacemos?</a>
+          </p>
         </div>
       </div>
     </div>
@@ -68,25 +71,25 @@ layout: argentina
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="">Tipo de proyectos</label>
+                <label for="">Filtrar por lineamiento</label>
                 <select id="tipo-proyectos" class="form-control">
-                  <option data-tipoproyectos="todos" value="todo">Todos</option>
-                  <option data-tipoproyectos="gobierno" value="calidad">Gobierno Innovador y Abierto</option>
-                  <option data-tipoproyectos="empleo" value="abierto">Empleo público de calidad</option>
-                  <option data-tipoproyectos="estado" value="eficiente">Estado digital y eficiente</option>
-                  <option data-tipoproyectos="municipio" value="innovadores">Municipios innovadores</option>
+                  <option data-tipoproyectos="todos" value="todos">Todos</option>
+                  <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
+                  <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
+                  <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
+                  <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
                 </select>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="">Filtrar por alcance</label>
-                <select id="alcance" class="form-control">
-                  <option data-alcance="Funcionarios Públicos" value="funcionarios">Funcionarios Públicos</option>
-                  <option data-alcance="Sociedad Civil" value="civil">Sociedad Civil</option>
-                  <option data-alcance="Administración Pública" value="publica">Administración Pública</option>
-                  <option data-alcance="Gobiernos Subnacionales" value="subnacionales">Gobiernos Subnacionales</option>
-                </select>
+            <div id="alcance" class="btn-group btn-group-justified margin-60">
+                <a data-filtro="funcionario" class="btn btn-default">Funcionarios Públicos</a>
+                <a data-filtro="civil" class="btn btn-default">Sociedad Civil</a>
+                <a data-filtro="apn" class="btn btn-default">Administración Pública</a>
+                <a data-filtro="gobiernos" class="btn btn-default">Gobiernos Subnacionales</a>
+            </div>                
               </div>
             </div>
             <div class="col-md-4">
@@ -104,7 +107,7 @@ layout: argentina
         </div>
       </div>
 
-      <div class="row panels-row m-y-3" data-render="tarjetas">
+      <div class="list row panels-row m-y-3" data-render="tarjetas">
       </div>
 
     </div>
@@ -120,7 +123,7 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><div class="">{lineamiento}</div><p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-cogs fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{estado}</div></div></div></div></a></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
       modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th>Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p>{estado}</p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
@@ -187,28 +190,35 @@ layout: argentina
 
         render.tarjetas('todos');
 
+        var listOptions = {valueNames: [ 'nombre-proyecto', 'descripcion-proyecto' ] };
+        var proyectosList = new List('proyectos', listOptions);        
+
       }
     });
 
 
     var render = {
-      tarjetas: function(tipoproyectos){
+      tarjetas: function(tipoproyectos, alcance ){
 
         $('[data-render=tarjetas]').html('');
         $('[data-render=modales]').html('');
 
+
         $.each(proyectos, function(index, proyecto){
 
-          //console.log(" tipoproyectos:"+tipoproyectos);
-          //console.log(" lineamiento"+proyecto.lineamiento);
-        if(tipoproyectos == 'todos' || tipoproyectos == proyecto.lineamiento){          
+          //console.log("index",index);
+          //console.log(" tipoproyectos:",tipoproyectos, "alcance:",alcance);
+          //console.log(" lineamiento",proyecto.lineamiento,"alcance",proyecto[alcance]);
+          //console.log("funcionario",proyecto.funcionario);
+          //console.log("civil",proyecto.civil);
+          //console.log("gobiernos",proyecto.gobiernos);
+          //console.log("apn",proyecto.apn);
+
+          if ( !(tipoproyectos != 'todos' && tipoproyectos != proyecto.lineamiento) 
+            && !(alcance && proyecto[alcance] != "si") ) {
 
           var html = templates.tarjeta;
           var modal = templates.modal;
-
-          console.log(index)
-          console.log(proyecto.hitos[0].inicio);
-          console.log(proyecto.hitos[proyecto.hitos.length - 1].fin);
 
           html = html.replace(/{nombre}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
@@ -218,8 +228,8 @@ layout: argentina
           .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
           .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
           .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-          .replace(/{metas}/gi, '16 encuentros de trabajo')
-          .replace(/{estado}/gi, 'Iniciado');
+          .replace(/{metas}/gi, proyecto.indicadores[0].estado2016);
+          //.replace(/{estado}/gi, 'Iniciado');
 
           modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
@@ -289,8 +299,7 @@ layout: argentina
                 $('[data-render=modales] > div:last , [data-render=tarjetas] > div:last' ).find('[data-render=cumplimiento]').text( porcentajeCumplidos );
               }
 
-
-        }
+          }
 
         });
 
@@ -298,40 +307,20 @@ layout: argentina
     }
 
     $("#tipo-proyectos").on("change", function() {
+      $("#alcance [data-filtro]").removeClass('active');
       var tipoproyectos = $( "#tipo-proyectos option:selected" ).data('tipoproyectos');
       render.tarjetas(tipoproyectos);
-    });  
-
-    $("#alcance").on("change", function() {
-      var alcance = $( "#alcance option:selected" ).data('alcance');
-      render.tarjetas(alcance);
     });
 
-    var listOptions = {valueNames: [ 'nombre-proyecto', 'descripcion-proyecto' ] };
-    var proyectosList = new List('proyectos', listOptions);
+    $("#alcance [data-filtro]").bind("click", function() {
+      $("#tipo-proyectos").val("todos");
+      $(this).addClass('active').siblings().removeClass('active');
+      var alcance = $(this).attr('data-filtro');
+      render.tarjetas("todos",alcance);
+    });
+
 
   });
-
-  // window.showHitos = function(){
-  //     var showData = $('#show-data');
-
-  //     var html = '';
-  //     $.each( hitos, function( key, item ) {
-  //         html += '<tr>';
-  //         html += ' <td class="titulo"> <p><strong>{nombre}</strong></p></td>';
-  //         html += ' <td class="inicio"><p>{inicio}</p></td>';
-  //         html += ' <td class="finalizacion"><p>{fin}</p></td>';
-  //         html += ' <td class="estado"><p>{estado}</p></td>';
-  //         html += '</tr>';
-  
-  //     });
-
-  //     showData.empty();
-  //     showData.append(html);
-
-  //     var listOptions = {valueNames: [ 'etapa', 'inicio', 'finalizacion', 'estado' ] };
-  //     var hitosList = new List('hitos', listOptions);
-  // }
 
      
 </script>
