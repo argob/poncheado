@@ -213,18 +213,22 @@ $(document).ready(function () {
 
     }    
 
-    var listOptions = {
-      valueNames: [ 'barrio', 'dia', 'lugar' ]
-    };
+    window.list = function(){
+      var listOptions = {
+        valueNames: [ 'barrio', 'dia', 'lugar' ]
+      };
 
-    var feriasHoyList = new List('ferias-hoy', listOptions);
-    var feriasSemanaList = new List('ferias-semana', listOptions);
-    var feriasProximasList = new List('ferias-proximas', listOptions);
-    $('.main-search').on("keyup",function(){
-        feriasHoyList.search($(".search").val());
-        feriasSemanaList.search($(".search").val());
-        feriasProximasList.search($(".search").val());
-    });     
+      var feriasHoyList = new List('ferias-hoy', listOptions);
+      var feriasSemanaList = new List('ferias-semana', listOptions);
+      var feriasProximasList = new List('ferias-proximas', listOptions);
+
+      $('.search').on("keyup",function(){
+          feriasHoyList.search($(".search").val());
+          feriasSemanaList.search($(".search").val());
+          feriasProximasList.search($(".search").val());
+      });
+    }
+         
 
       //  var listOptions = {valueNames: [ 'barrio', 'dia', 'lugar' ] };
       //  var feriasList = new List('ferias', listOptions);
