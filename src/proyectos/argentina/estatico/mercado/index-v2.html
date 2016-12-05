@@ -2,34 +2,24 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('/sites/default/files/header_mercado_en_tu_barrio_lechuga_1_0.png');">
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/header_mercado_en_tu_barrio_lechuga_1_0.png');">
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
           <h2>El Mercado en tu barrio</h2>
           <p>Es un programa para que vos y tu familia puedan comprar productos de calidad, a precios accesibles en un solo lugar y cerca de tu casa.</p>
-          <div class="m-t-2 text-center">
-          <a href="#cerca-barrio" class="btn btn-primary btn-success text-center ">¡Buscá que día estará la feria cerca de tu barrio!</a> 
-        </div>
+          <!-- <div class="m-t-2 text-center">
+            <a href="#cerca-barrio" class="btn btn-primary btn-success text-center ">¡Buscá que día estará la feria cerca de tu barrio!</a> 
+          </div> -->
         </div>
       </div>
     </div>
   </div>
   <div class="overlay"></div>
 </section>
-<div class="container">
-  <section> 
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center">
 
-        <div class="embed-responsive embed-responsive-16by9 m-y-3">
-          <iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/hg3djYmojqc"></iframe>
-        </div>  
-      </div>
-    </div>
-  </section>
-</div>
+
 <section class="bg-gray">
   <div class="container">
 
@@ -45,62 +35,73 @@ layout: argentina
 
 <div class="container">
   <section>
-    <h3 id="cerca-barrio" class="text-center">¡Buscá que día estará la feria cerca de tu casa!</h3>
     <div id="ferias">
+
+
+      <div id="hoy" class="well">
+        <h3 class="h2 text-center text-primary"></h3>
+
+        <div class="table-responsive hidden">
+          <table class="table table-align-middle">
+            <thead>
+              <tr>
+                <th>Municipio</th>
+                <th>Barrio</th>
+                <th class="text-right">Mapa</th>
+              </tr>
+            </thead>
+            <tbody id="ferias-hoy">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <hr class="hr-lg">
+      <h3 id="cerca-barrio" class="text-center m-t-4">¡Buscá qué día estará la feria cerca de tu casa!</h3>
       <div class="row">
         <div class="col-md-8 col-md-offset-2">    
-          <div class="form-group">
-            <input class="form-control search" placeholder="Filtrá las ferias por Municipio, día o barrio...">
+          <div class="form-group m-b-2">
+            <input class="form-control search" placeholder="Filtrá las ferias por municipio, día o barrio...">
           </div>
         </div>
       </div>
-      <div class="alert alert-success">
-        <h4 class="m-b-0">Hoy estamos en: </h4>
-      </div>
-      <div id="ferias-hoy" class="table-responsive">
-        <table class="table table-align-middle table-spaced">
+
+      <h4 class="m-t-4">Esta semana estamos en: </h4>
+
+      <div class="table-responsive">
+        <table id="table-semana" class="table table-align-middle">
           <thead>
             <tr>
-              <th><a class="sort" data-sort="barrioHoy">Municipio <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="diaHoy">Día <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="lugarHoy">Barrio <span class="caret"></span></a></th>
-              <th><a class="sort">Mapa </a></th>
+              <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
+              <th class="text-right">Mapa</th>
             </tr>
           </thead>
-          <tbody class="list" id="show-data-hoy">
+          <tbody class="list" id="ferias-semana">
           </tbody>
         </table>
       </div>
-      <h4>Esta semana estamos en: </h4>
-      <div id="ferias-semana" class="table-responsive">
-        <table class="table table-align-middle table-spaced">
+
+      <h4 class="m-t-3">Las próximas semanas estaremos en: </h4>
+
+      <div class="table-responsive">
+        <table id="table-proximas" class="table table-align-middle">
           <thead>
             <tr>
-              <th><a class="sort" data-sort="barrioSemana">Municipio <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="diaSemana">Día <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="lugarSemana">Barrio <span class="caret"></span></a></th>
-              <th><a class="sort">Mapa </a></th>
+              <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
+              <th class="text-right">Mapa</th>
             </tr>
           </thead>
-          <tbody class="list" id="show-data-semana">
+          <tbody class="list" id="ferias-proximas">
           </tbody>
         </table>
-      </div>
-      <h4>Las próximas semanas estaremos en: </h4>
-      <div id="ferias-proximas" class="table-responsive">
-        <table class="table table-align-middle table-spaced">
-          <thead>
-            <tr>
-              <th><a class="sort" data-sort="barrioProximas">Municipio <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="diaProximas">Día <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="lugarProximas">Barrio <span class="caret"></span></a></th>
-              <th><a class="sort">Mapa </a></th>
-            </tr>
-          </thead>
-          <tbody class="list" id="show-data-proximas">
-          </tbody>
-        </table>
-      </div>            
+      </div> 
+
     </div>
   </section>
   <section>
@@ -119,124 +120,121 @@ layout: argentina
   </section>
 </div>
 
+<section class="bg-gray"> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+
+        <div class="embed-responsive embed-responsive-16by9 m-y-2">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hg3djYmojqc"></iframe>
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
+
 <script src="/node_modules/list.js/dist/list.min.js"></script>
-<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="/node_modules/moment/min/moment.min.js"></script>
+<script src="/node_modules/moment/locale/es.js"></script>
+<!-- <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script> -->
 
 <script>
 
-function getHtmlTable(item, mapa){
-  var html = '<tr>';
-  html += ' <td class="barrio"> <h6 class="barrio">'+ item.gsx$barrio.$t + '</h6></td>';
-  html += ' <td class="dia">'+ item.gsx$dia.$t + '</td>';
-  html += ' <td class="lugar">'+ item.gsx$lugar.$t + '</td>';
-  html += ' <td class="mapa">'+ mapa + '</td>';
-  html += '</tr>'; 
-  return html;
-}
+$(function(){
 
-function getMapa(mapa){
-  if(mapa == '') {
-      mapa = "";
-  }    
-  else {
-      mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ mapa + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
-  } 
-  return mapa;
-}
+  window.ferias = {
+    hoy: [],
+    semana: [],
+    proximas: []
+  }
 
-(function($) {
-$(document).ready(function () {
+  var test = 1;
 
+  $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', 
+    function (data) {
+      window.raw = data.feed.entry;
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', 
-      function (data) {
-        window.ferias = data.feed.entry;
-        showFeriasHoy();
-        console.log(data);
-    });
+      $.each( raw, function( key, item ) {
+        var fecha = moment(item.gsx$fecha.$t, "DD/MM/YYYY");
+        
+        if( fecha.startOf('day').isSame( moment().startOf('day').add(test, 'day') )){
+          ferias.hoy.push( item );
 
-    window.showFeriasHoy = function(){
-        var showData = $('#show-data-hoy');
-        var html = '';
-        $.each( ferias, function( key, item ) {
-            var mapa = item.gsx$mapa.$t;
-            mapa = getMapa(mapa);
-            html += getHtmlTable(item, mapa);
-        });
+        } else if( fecha.startOf('day').isBetween( moment().startOf('day').add(test, 'day'), moment().add(test, 'day').day(8) ) ){
+          ferias.semana.push( item );
 
-        showData.empty();
-        showData.append(html);
+        } else if( fecha.startOf('day').isAfter( moment().add(test, 'day').day(8) ) ){
+          ferias.proximas.push( item );
+        }
+      });
 
+      printFerias();
+  });
+
+  var getTr = function(item, mostarHoy){
+
+    var mapa = '';
+
+    if(item.gsx$mapa.$t != '') {
+      mapa = '<a class="btn btn-primary btn-sm m-b-0" style="min-width: 100px;" target="_blank" href="'+ item.gsx$mapa.$t + '"><i class="fa fa-map-marker"></i> Ver mapa</a>';
     }
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/2/public/values?alt=json', 
-      function (data) {
-        window.ferias = data.feed.entry;
-        showFeriasSemana();
-        console.log(data);
-    });    
+    var html = '<tr class="item">';
+    if(!mostarHoy){
+      html += '<td class="dia">'+ item.gsx$dia.$t + '</td>';
+      html += '<td class="fecha">'+ item.gsx$fecha.$t + '</td>';
+    }
+    html += '<td class="barrio">'+ item.gsx$barrio.$t + '</td>';
+    html += '<td class="lugar">'+ item.gsx$lugar.$t + '</td>';
+    html += '<td class="mapa text-right">'+ mapa + '</td></tr>';
 
-    window.showFeriasSemana = function(){
-        var showData = $('#show-data-semana');
-        var html = '';
-        $.each( ferias, function( key, item ) {
-            var mapa = item.gsx$mapa.$t;
-            mapa = getMapa(mapa);
-            html += getHtmlTable(item, mapa);
-        });
+    return html;
+  }
 
-        showData.empty();
-        showData.append(html);
+  window.printFerias = function(){
 
-    }   
+    // console.log(ferias);
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/3/public/values?alt=json', 
-      function (data) {
-        window.ferias = data.feed.entry;
-        showFeriasProximas();
-        console.log(data);
-    });       
-
-    window.showFeriasProximas = function(){
-        var showData = $('#show-data-proximas');
-        var html = '';
-        $.each( ferias, function( key, item ) {
-
-            var mapa = item.gsx$mapa.$t;
-            mapa = getMapa(mapa);
-            html += getHtmlTable(item, mapa);
-
-        });
-
-        showData.empty();
-        showData.append(html);
-
-    }    
-
-    window.list = function(){
-      var listOptions = {
-        valueNames: [ 'barrio', 'dia', 'lugar' ]
-      };
-
-      var feriasHoyList = new List('ferias-hoy', listOptions);
-      var feriasSemanaList = new List('ferias-semana', listOptions);
-      var feriasProximasList = new List('ferias-proximas', listOptions);
-
-      $('.search').on("keyup",function(){
-          feriasHoyList.search($(".search").val());
-          feriasSemanaList.search($(".search").val());
-          feriasProximasList.search($(".search").val());
+    if(ferias.hoy.length == 0){
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd") +' no hay ferias disponibles.');
+    }else{
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd") +' estamos en:');
+      $('#hoy .table-responsive').removeClass('hidden');
+      $('#ferias-hoy').empty();
+      $.each( ferias.hoy, function( key, item ) {
+        $('#ferias-hoy').append( getTr( item, true ) );
       });
     }
-         
 
-      //  var listOptions = {valueNames: [ 'barrio', 'dia', 'lugar' ] };
-      //  var feriasList = new List('ferias', listOptions);
-      
+    $('#ferias-semana').empty();
+    $.each( ferias.semana, function( key, item ) {
+      $('#ferias-semana').append( getTr( item, false ) );
+    });
+    
+    $('#ferias-proximas').empty();
+    $.each( ferias.proximas, function( key, item ) {
+      $('#ferias-proximas').append( getTr( item, false ) );
+    });
 
 
+    var listOptions = {
+      valueNames: [ 'barrio', 'dia', 'fecha', 'lugar' ]
+    };
+
+    // var feriasHoyList = new List('ferias-hoy', listOptions);
+    var feriasSemanaList = new List('table-semana', listOptions);
+    var feriasProximasList = new List('table-proximas', listOptions);
+
+
+
+    $('.search').on("keyup",function(){
+        // feriasHoyList.search($(".search").val());
+        feriasSemanaList.search($(".search").val());
+        feriasProximasList.search($(".search").val());
+    });
+
+  }
 
 });
-})(jQuery);
 
 </script>
