@@ -54,6 +54,7 @@ layout: argentina
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="alert alert-success">
         <h4 class="m-b-0">Hoy estamos en: </h4>
       </div>
@@ -101,6 +102,57 @@ layout: argentina
           </tbody>
         </table>
       </div>            
+=======
+      <div>
+        <div class="alert alert-success">
+          <h4 class="m-b-0">Hoy estamos en: </h4>
+        </div>
+        <div id="ferias-hoy" class="table-responsive">
+          <table class="table table-align-middle table-spaced">
+            <thead>
+              <tr>
+                <th><a class="sort" data-sort="barrio">Barrio <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="lugar">Lugar <span class="caret"></span></a></th>
+                <th><a class="sort">Mapa </a></th>
+              </tr>
+            </thead>
+            <tbody id="show-data-hoy">
+            </tbody>
+          </table>
+        </div>
+        <h4>Ferias de esta semana: </h4>
+        <div id="ferias-semana" class="table-responsive">
+          <table class="table table-align-middle table-spaced">
+            <thead>
+              <tr>
+                <th><a class="sort" data-sort="barrio">Barrio <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="lugar">Lugar <span class="caret"></span></a></th>
+                <th><a class="sort">Mapa </a></th>
+              </tr>
+            </thead>
+            <tbody id="show-data-semana">
+            </tbody>
+          </table>
+        </div>
+        <h4>Ferias de las próximas semanas: </h4>
+        <div id="ferias-proximas" class="table-responsive">
+          <table class="table table-align-middle table-spaced">
+            <thead>
+              <tr>
+                <th><a class="sort" data-sort="barrio">Barrio <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="lugar">Lugar <span class="caret"></span></a></th>
+                <th><a class="sort">Mapa </a></th>
+              </tr>
+            </thead>
+            <tbody id="show-data-proximas">
+            </tbody>
+          </table>
+        </div>
+      </div>             
+>>>>>>> d304ac143862f7612b85c89f72fa6d732ac234c9
     </div>
   </section>
   <section>
@@ -119,17 +171,17 @@ layout: argentina
   </section>
 </div>
 
-<!--<script src="/node_modules/list.js/dist/list.min.js"></script>-->
-<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="/node_modules/list.js/dist/list.min.js"></script>
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
 
 <script>
 
 function getHtmlTable(item, mapa){
   var html = '<tr>';
-  html += ' <td class="barrioHoy"> <h6 class="barrioHoy">'+ item.gsx$barrio.$t + '</h6></td>';
-  html += ' <td class="diaHoy">'+ item.gsx$dia.$t + '</td>';
-  html += ' <td class="lugarHoy">'+ item.gsx$lugar.$t + '</td>';
-  html += ' <td class="mapaHoy">'+ mapa + '</td>';
+  html += ' <td class="barrio"> <h6 class="barrio">'+ item.gsx$barrio.$t + '</h6></td>';
+  html += ' <td class="dia">'+ item.gsx$dia.$t + '</td>';
+  html += ' <td class="lugar">'+ item.gsx$lugar.$t + '</td>';
+  html += ' <td class="mapa">'+ mapa + '</td>';
   html += '</tr>'; 
   return html;
 }
@@ -167,8 +219,6 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        var listOptions = {valueNames: [ 'barrioHoy', 'diaHoy', 'lugarHoy' ] };
-        var feriasList = new List('ferias-hoy', listOptions);
     }
 
     $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/2/public/values?alt=json', 
@@ -190,8 +240,6 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        var listOptions = {valueNames: [ 'barrioSemana', 'diaSemana', 'lugarSemana' ] };
-        var feriasList = new List('ferias-semana', listOptions);
     }   
 
     $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/3/public/values?alt=json', 
@@ -215,9 +263,25 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        var listOptions = {valueNames: [ 'barrioProximas', 'diaProximas', 'lugarProximas' ] };
-        var feriasList = new List('ferias-proximas', listOptions);
-    }       
+    }    
+
+    var listOptions = {
+      valueNames: [ 'barrio', 'dia', 'lugar' ]
+    };
+
+    var feriasHoyList = new List('ferias-hoy', listOptions);
+    var feriasSemanaList = new List('ferias-semana', listOptions);
+    var feriasProximasList = new List('ferias-proximas', listOptions);
+    $('.main-search').on("keyup",function(){
+        feriasHoyList.search($(".search").val());
+        feriasSemanaList.search($(".search").val());
+        feriasProximasList.search($(".search").val());
+    });     
+
+      //  var listOptions = {valueNames: [ 'barrio', 'dia', 'lugar' ] };
+      //  var feriasList = new List('ferias', listOptions);
+      
+
 
 
 });
