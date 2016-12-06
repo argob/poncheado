@@ -10,7 +10,7 @@ layout: argentina
           <h2>Tablero Ciudadano</h2>
           <p>Estos son los proyectos prioritarios en los que trabaja el Ministerio de Modernización. Participá en el analisis y seguimiento de nuestras acciones y resultados.</p>
           <p class="text-center">
-            <a href="#" target="_blank" class="btn btn-success btn-lg">¿Cómo lo hacemos?</a>
+            <a href="https://www.argentina.gob.ar/tablero-ciudadano/como-lo-hacemos" target="_blank" class="btn btn-success btn-lg">¿Cómo lo hacemos?</a>
           </p>
         </div>
       </div>
@@ -43,7 +43,7 @@ layout: argentina
           <div class="icon-item">
             <i class="fa fa-desktop"></i>
              <h3 class="h4">Estado digital y eficiente </h3>
-             <p class="text-muted">Trabajamos con los ministerios para que incorporen nuevas tecnologías de gestión y lanzamos nuevas Apps y sitios web para que puedas hacer trámites de manera más rápida y simple.</p>
+             <p class="text-muted">Trabajamos con los ministerios para que incorporen <strong>nuevas tecnologías de gestión</strong>, fortalezcan la <strong>infraestructura tecnológica y redes</strong>, avancen hacia una <strong>administración sin papeles</strong> facilitando tu interacción con el Estado, y lanzamos <strong>nuevas aplicaciones y sitios web</strong> para que puedas hacer trámites de manera más rápida y simple​</p>
           </div>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -59,57 +59,52 @@ layout: argentina
   <hr>
 
   <section>
-    <h2 class="text-center">Nuestros proyectos</h2>
+    <h2 class="text-center m-b-4">Nuestros proyectos</h2>
     <div id="proyectos">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">    
-
-          <div class="form-group">
+        <div class="col-md-6">    
+          <div class="form-group m-t-2">
             <input class="form-control input-lg search" placeholder="Buscá proyectos">
           </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Filtrar por lineamiento</label>
-                <select id="tipo-proyectos" class="form-control">
-                  <option data-tipoproyectos="todos" value="todos">Todos</option>
-                  <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
-                  <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
-                  <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
-                  <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="">Filtrar por alcance</label>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Filtrar por lineamiento</label>
+            <select id="tipo-proyectos" class="form-control">
+              <option data-tipoproyectos="todos" value="todos">Todos</option>
+              <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
+              <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
+              <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
+              <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Ordenar por</label>
+            <select class="form-control">
+              <option value="nuevos">Más nuevos</option>
+              <option value="duracion">Mayor duración</option>
+              <option value="cumplimiento">Mayor cumplimiento</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="">Filtrar por alcance</label>
             <div id="alcance" class="btn-group btn-group-justified margin-60">
                 <a data-filtro="funcionario" class="btn btn-default">Funcionarios Públicos</a>
                 <a data-filtro="civil" class="btn btn-default">Sociedad Civil</a>
                 <a data-filtro="apn" class="btn btn-default">Administración Pública</a>
                 <a data-filtro="gobiernos" class="btn btn-default">Gobiernos Subnacionales</a>
             </div>                
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Ordenar por</label>
-                <select class="form-control">
-                  <option value="nuevos">Más nuevos</option>
-                  <option value="duracion">Mayor duración</option>
-                  <option value="cumplimiento">Mayor cumplimiento</option>
-                </select>
-              </div>
-            </div>
           </div>
-
         </div>
       </div>
-
       <div class="list row panels-row m-y-3" data-render="tarjetas">
       </div>
-
     </div>
   </section> 
 </div>
@@ -124,8 +119,8 @@ layout: argentina
 
     var templates = {
       tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
-      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:125px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
-      hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p>{estado}</p></td> </tr>',
+      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
+      hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
     }
 
@@ -278,23 +273,19 @@ layout: argentina
             var htmlHito = templates.hito;
 
             if (hito.estado == "finalizado"){
-              var iconClass = "fa-check-square-o"; 
-              var iconColor = "text-success"; 
+              var estado = '<span class="text-success"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Finalizado</span>';
             } 
             else if (hito.estado == "en_avance") {
-              var iconClass = "fa-arrow-right"; 
-              var iconColor = "text-secondary"; 
+              var estado = '<span class="text-gray"><i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i> En avance</span>';
             } 
             else if (hito.estado == "sin_inicio") {
-              var iconClass = "fa-calendar-minus-o"; 
-              var iconColor = "text-muted"; 
+              var estado = '<span class="text-muted"><i class="fa fa-calendar-minus-o fa-fw" aria-hidden="true"></i> Sin inicio</span>';
             }
             else if (hito.estado == "demorado") {
-              var iconClass = "fa-ban"; 
-              var iconColor = "text-danger"; 
+              var estado = '<span class="text-danger"><i class="fa fa-ban fa-fw" aria-hidden="true"></i> Demorado</span>';
             }
 
-            htmlIconEstado = '<i class="fa ' + iconClass + ' ' + iconColor + ' fa-fw" aria-hidden="true"></i>';
+            
 
 
             if (hito.estado == "finalizado"){
@@ -304,7 +295,7 @@ layout: argentina
             htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
             .replace(/{inicio}/gi, hito.inicio)
             .replace(/{fin}/gi, hito.fin)
-            .replace(/{estado}/gi, htmlIconEstado + hito.estado);
+            .replace(/{estado}/gi, estado);
 
             //$('[data-render=modales] > div:last').find('[data-render=hitos]').append(hito.avance + '<br>');
             $('[data-render=modales] > div:last').find('[data-render=hitos]').append( htmlHito );
