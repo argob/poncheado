@@ -83,11 +83,17 @@ layout: argentina
         <div class="col-md-3">
           <div class="form-group">
             <label for="">Ordenar por</label>
-            <select class="form-control">
-              <option value="nuevos">Más nuevos</option>
+            <select id="ordenar-proyectos" class="form-control">
+              <option class="sort" data-sort="fecha" value="nuevos">Más nuevos</option>
               <option value="duracion">Mayor duración</option>
               <option value="cumplimiento">Mayor cumplimiento</option>
             </select>
+ <button class="sort hidden" data-sort="fecha">
+    mas nuevos
+  </button>  
+   <button class="sort hidden" data-sort="duracion">
+    duracion
+  </button>          
           </div>
         </div>
       </div>
@@ -113,13 +119,15 @@ layout: argentina
 <div data-render="modales"></div> 
 
 <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
 
 <script>
 
   $(function(){
 
     var templates = {
-      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
+      tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><span class="fecha hidden">{inicioProyecto}</span><span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted" data-render="cumplimiento"></span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
       modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento"> </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avance}</p></td><td><p>{estado2016}</p></td></tr>'
@@ -186,8 +194,12 @@ layout: argentina
 
         render.tarjetas('todos');
 
-        var listOptions = {valueNames: [ 'nombre-proyecto', 'descripcion-proyecto' ] };
-        var proyectosList = new List('proyectos', listOptions);        
+        var listOptions = {valueNames: [ 'nombre-proyecto', 'descripcion-proyecto', 'fecha', 'duracion' ] };
+        var proyectosList = new List('proyectos', listOptions);
+
+
+        $("#ordenar-proyectos").on("change", function() {
+        });
 
       }
     });
@@ -216,6 +228,13 @@ layout: argentina
           var html = templates.tarjeta;
           var modal = templates.modal;
 
+          fecha = proyecto.hitos[0].inicio.split('/');
+
+        var inicioFecha = moment(proyecto.hitos[0].inicio, "DD-MM-YYYY");
+        var finFecha = moment(proyecto.hitos[proyecto.hitos.length - 1].fin, "DD-MM-YYYY");
+        var duracion = finFecha.diff(inicioFecha, 'days'); 
+        console.log(duracion);
+
           html = html.replace(/{nombre}/gi, proyecto.nombre)
           .replace(/{index}/gi, index)
           .replace(/{lineamiento}/gi, proyecto.lineamiento)
@@ -224,7 +243,9 @@ layout: argentina
           .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
           .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
           .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-          .replace(/{metas}/gi, proyecto.indicadores[0].estado2016);
+          .replace(/{metas}/gi, proyecto.indicadores[0].estado2016)
+          .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
+          .replace(/{duracionProyecto}/gi, duracion);
           //.replace(/{estado}/gi, 'Iniciado');
 
           modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
@@ -246,8 +267,6 @@ layout: argentina
           .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
           .replace(/{inicioProyecto}/gi, proyecto.hitos[0].inicio)
           .replace(/{finProyecto}/gi, proyecto.hitos[proyecto.hitos.length - 1].fin);
-
-          // console.log(html);
 
           $('[data-render=tarjetas]').append( html );
           $('[data-render=modales]').append( modal );   
