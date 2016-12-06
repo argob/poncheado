@@ -171,7 +171,7 @@ $(function(){
       printFerias();
   });
 
-  var getTr = function(item, mostarHoy){
+  var getTr = function(item, mostrarHoy){
 
     var mapa = '';
 
@@ -180,7 +180,7 @@ $(function(){
     }
 
     var html = '<tr class="item">';
-    if(!mostarHoy){
+    if(!mostrarHoy){
       html += '<td class="dia">'+ item.gsx$dia.$t + '</td>';
       html += '<td class="fecha">'+ item.gsx$fecha.$t + '</td>';
     }
@@ -200,18 +200,16 @@ $(function(){
     }else{
       $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd") +' estamos en:');
       $('#hoy .table-responsive').removeClass('hidden');
-      $('#ferias-hoy').empty();
+      
       $.each( ferias.hoy, function( key, item ) {
         $('#ferias-hoy').append( getTr( item, true ) );
       });
     }
 
-    $('#ferias-semana').empty();
     $.each( ferias.semana, function( key, item ) {
       $('#ferias-semana').append( getTr( item, false ) );
     });
     
-    $('#ferias-proximas').empty();
     $.each( ferias.proximas, function( key, item ) {
       $('#ferias-proximas').append( getTr( item, false ) );
     });
