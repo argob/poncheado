@@ -150,7 +150,7 @@ $(function(){
     proximas: []
   }
 
-  var test = 0;
+  var test = 1;
 
   $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', 
     function (data) {
@@ -201,9 +201,9 @@ $(function(){
     // console.log(ferias);
 
     if(ferias.hoy.length == 0){
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("LL") +' no hay ferias abiertas.');
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' no hay ferias abiertas.');
     }else{
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("LL") +' estamos en:');
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' estamos en:');
       $('#hoy .table-responsive').removeClass('hidden');
       
       $.each( ferias.hoy, function( key, item ) {
