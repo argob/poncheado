@@ -135,10 +135,12 @@ layout: argentina
   </div>
 </section>
 
-<script src="/node_modules/list.js/dist/list.min.js"></script>
-<script src="/node_modules/moment/min/moment.min.js"></script>
-<script src="/node_modules/moment/locale/es.js"></script>
-<!-- <script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script> -->
+<!-- <script src="/node_modules/list.js/dist/list.min.js"></script> -->
+<!-- <script src="/node_modules/moment/min/moment.min.js"></script> -->
+<!-- <script src="/node_modules/moment/locale/es.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.3.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
 <script>
 
@@ -150,7 +152,7 @@ $(function(){
     proximas: []
   }
 
-  var test = 1;
+  var test = 0;
 
   $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', 
     function (data) {
@@ -162,10 +164,10 @@ $(function(){
         if( fecha.startOf('day').isSame( moment().startOf('day').add(test, 'day') )){
           ferias.hoy.push( item );
 
-        } else if( fecha.startOf('day').isBetween( moment().startOf('day').add(test, 'day'), moment().add(test, 'day').day(8) ) ){
+        } else if( fecha.startOf('day').isBetween( moment().startOf('day').add(test, 'day'), moment().add(test, 'day').day(7) ) ){
           ferias.semana.push( item );
 
-        } else if( fecha.startOf('day').isAfter( moment().add(test, 'day').day(8) ) ){
+        } else if( fecha.startOf('day').isAfter( moment().add(test, 'day').day(7) ) ){
           ferias.proximas.push( item );
         }
       });
@@ -186,10 +188,10 @@ $(function(){
       html += '<td class="dia">'+ item.gsx$dia.$t + '</td>';
       html += '<td class="fecha">'+ item.gsx$fecha.$t + '</td>';
       html += '<td class="barrio">'+ item.gsx$barrio.$t + '</td>';
-    }
-    if(mostrarHoy){
+    } else {
       html += '<td class="barrio"><strong>'+ item.gsx$barrio.$t + '</strong></td>';
     }    
+
     html += '<td class="lugar">'+ item.gsx$lugar.$t + '</td>';
     html += '<td class="mapa text-right">'+ mapa + '</td></tr>';
 
@@ -224,14 +226,12 @@ $(function(){
       valueNames: [ 'barrio', 'dia', 'fecha', 'lugar' ]
     };
 
-    // var feriasHoyList = new List('ferias-hoy', listOptions);
     var feriasSemanaList = new List('table-semana', listOptions);
     var feriasProximasList = new List('table-proximas', listOptions);
 
 
 
     $('.search').on("keyup",function(){
-        // feriasHoyList.search($(".search").val());
         feriasSemanaList.search($(".search").val());
         feriasProximasList.search($(".search").val());
     });

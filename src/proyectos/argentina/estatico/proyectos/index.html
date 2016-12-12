@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('img/precios_cuidados.jpg');">
+<section class="jumbotron" style="background-image: url('');">
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
@@ -10,7 +10,7 @@ layout: argentina
           <h2>Tablero Ciudadano</h2>
           <p>Estos son los proyectos prioritarios en los que trabaja el Ministerio de Modernización. Participá en el analisis y seguimiento de nuestras acciones y resultados.</p>
           <p class="text-center">
-            <a href="https://www.argentina.gob.ar/tablero-ciudadano/como-lo-hacemos" target="_blank" class="btn btn-success btn-lg">¿Cómo lo hacemos?</a>
+            <a href="https://www.argentina.gob.ar/tablero-ciudadano/como-lo-hacemos" target="_blank" class="btn btn-primary btn-lg">¿Cómo lo hacemos?</a>
           </p>
         </div>
       </div>
@@ -22,7 +22,6 @@ layout: argentina
 <div class="container">
   <section>
     <h2>Lineamientos</h2>
-    <!-- <p>Acá te presentamos los lineamentos</p> -->
 
     <div class="row m-t-3">
         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -122,23 +121,26 @@ layout: argentina
 
     var templates = {
       tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><span class="fecha hidden">{inicioProyecto}</span><span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted cumplimiento" data-render="cumplimiento">{avancePorcentajeInicial}</span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
-      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización provista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Avance</th> <th>Meta Anual</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
+      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
-      indicador: '<tr> <td><p>{nombre}</p></td><td><p>{avancePorcentaje}</p></td><td><p>{estado2016}</p></td></tr>'
+      indicador: '<tr> <td><p>{nombre}</p></td><td><p>{estado2016}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
     }
 
     window.proyectos = [];
+    window.config = {
+      tipo: 'todos',
+      alcance: ''
+    }
 
     $.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        console.log(response.feed.entry);
+        // console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
           if( row.gsx$tipo.$t == "proyecto"  ){
-              //console.log(row.gsx$lineamiento.$t)
 
             proyectos.push({
               index: index,
@@ -161,7 +163,6 @@ layout: argentina
             });
 
           } else if( row.gsx$tipo.$t == "indicador" ){
-            //console.log(row.gsx$avance_2.$t)
 
             proyectos[ proyectos.length - 1 ].indicadores.push({
               nombre: row.gsx$nombre.$t,
@@ -174,7 +175,6 @@ layout: argentina
             });
 
           } else if( row.gsx$tipo.$t == "hito" ){
-            //console.log(row.gsx$estado.$t)
 
             proyectos[ proyectos.length - 1 ].hitos.push({
               nombre: row.gsx$nombre.$t,
@@ -187,18 +187,18 @@ layout: argentina
 
         })
 
-        render.tarjetas('todos');
+        render.tarjetas();
 
-        var listOptions = {valueNames: [ 'nombre-proyecto', 'descripcion-proyecto', 'fecha', 'duracion', 'cumplimiento' ] };
+        var listOptions = { valueNames: [ 'nombre-proyecto', 'descripcion-proyecto', 'fecha', 'duracion', 'cumplimiento' ] };
         var proyectosList = new List('proyectos', listOptions);
 
         $("#ordenar-proyectos").on("change", function() {
           if( $('#ordenar-proyectos option:selected').val() == 'cumplimiento' ) {
-              proyectosList.sort('cumplimiento', { order: "asc" });
+              proyectosList.sort('cumplimiento', { order: "desc" });
           } else if ( $('#ordenar-proyectos option:selected').val() == 'duracion' ) {
-              proyectosList.sort('duracion', { order: "asc" });
+              proyectosList.sort('duracion', { order: "desc" });
           } else if ($('#ordenar-proyectos option:selected').val() == 'nuevos' ) {
-              proyectosList.sort('fecha', { order: "asc" });
+              proyectosList.sort('fecha', { order: "desc" });
           }
         });
 
@@ -207,7 +207,7 @@ layout: argentina
 
 
     var render = {
-      tarjetas: function(tipoproyectos, alcance ){
+      tarjetas: function( ){
 
         $('[data-render=tarjetas]').html('');
         $('[data-render=modales]').html('');
@@ -215,120 +215,99 @@ layout: argentina
 
         $.each(proyectos, function(index, proyecto){
 
-          if ( !(tipoproyectos != 'todos' && tipoproyectos != proyecto.lineamiento) 
-            && !(alcance && proyecto[alcance] != "si") ) {
+          if ( !(config.tipo != 'todos' && config.tipo != proyecto.lineamiento) && !(config.alcance && proyecto[config.alcance] != "si") ) {
 
-          var html = templates.tarjeta;
-          var modal = templates.modal;
+            var html = templates.tarjeta;
+            var modal = templates.modal;
 
-          fecha = proyecto.hitos[0].inicio.split('/');
+            fecha = proyecto.hitos[0].inicio.split('/');
 
-        var inicioFecha = moment(proyecto.hitos[0].inicio, "DD-MM-YYYY");
-        var finFecha = moment(proyecto.hitos[proyecto.hitos.length - 1].fin, "DD-MM-YYYY");
-        var duracion = finFecha.diff(inicioFecha, 'days'); 
-        console.log(duracion);
+            var inicioFecha = moment(proyecto.hitos[0].inicio, "DD-MM-YYYY");
+            var finFecha = moment(proyecto.hitos[proyecto.hitos.length - 1].fin, "DD-MM-YYYY");
+            var duracion = finFecha.diff(inicioFecha, 'days'); 
+            // console.log(duracion);
 
-          console.log("posicion 1",proyecto.indicadores[0].avance_2);
+            // console.log("posicion 1",proyecto.indicadores[0].avance_2);
 
-          html = html.replace(/{nombre}/gi, proyecto.nombre)
-          .replace(/{index}/gi, index)
-          .replace(/{lineamiento}/gi, proyecto.lineamiento)
-          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-          .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
-          .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
-          .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
-          .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-          .replace(/{metas}/gi, proyecto.indicadores[0].estado2016)
-          .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
-          .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje)
-          .replace(/{duracionProyecto}/gi, duracion);
-          //.replace(/{estado}/gi, 'Iniciado');
+            html = html.replace(/{nombre}/gi, proyecto.nombre)
+            .replace(/{index}/gi, index)
+            .replace(/{lineamiento}/gi, proyecto.lineamiento)
+            .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
+            .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
+            .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
+            .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
+            .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
+            .replace(/{metas}/gi, proyecto.indicadores[0].estado2016)
+            .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
+            .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje)
+            .replace(/{duracionProyecto}/gi, duracion);
+            //.replace(/{estado}/gi, 'Iniciado');
 
-          modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
-          .replace(/{index}/gi, index)
-          .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion | "))
-          .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion | "))
-          .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura | "))
-          .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia | "))
-          .replace(/{objetivo}/gi, proyecto.objetivo)
-          .replace(/{estado}/gi, proyecto.estado)
-          .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
-          .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
-          .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
-          .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-          .replace(/{link}/gi, proyecto.link)
-          .replace(/{area}/gi, proyecto.area)
-          .replace(/{impacto}/gi, proyecto.impacto)
-          .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-          .replace(/{inicioProyecto}/gi, proyecto.hitos[0].inicio)
-          .replace(/{finProyecto}/gi, proyecto.hitos[proyecto.hitos.length - 1].fin)
-          .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje);
+            modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
+            .replace(/{index}/gi, index)
+            .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion | "))
+            .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion | "))
+            .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura | "))
+            .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia | "))
+            .replace(/{objetivo}/gi, proyecto.objetivo)
+            .replace(/{estado}/gi, proyecto.estado)
+            .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
+            .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
+            .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
+            .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
+            .replace(/{link}/gi, proyecto.link)
+            .replace(/{area}/gi, proyecto.area)
+            .replace(/{impacto}/gi, proyecto.impacto)
+            .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
+            .replace(/{inicioProyecto}/gi, proyecto.hitos[0].inicio)
+            .replace(/{finProyecto}/gi, proyecto.hitos[proyecto.hitos.length - 1].fin)
+            .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje);
 
-          $('[data-render=tarjetas]').append( html );
-          $('[data-render=modales]').append( modal );   
+            $('[data-render=tarjetas]').append( html );
+            $('[data-render=modales]').append( modal );   
 
-          $.each(proyecto.indicadores, function(index, indicador){
+            $.each(proyecto.indicadores, function(index, indicador){
 
-            var htmlIndicador = templates.indicador;
+              var htmlIndicador = templates.indicador;
 
-            htmlIndicador = htmlIndicador.replace(/{nombre}/gi, indicador.nombre)
-            .replace(/{fuente}/gi, indicador.fuente)
-            .replace(/{formulacion}/gi, indicador.formulacion)
-            .replace(/{estado2016}/gi, indicador.estado2016)
-            .replace(/{estado2017}/gi, indicador.estado2017)
-            .replace(/{avance}/gi, indicador.avance)
-            .replace(/{avancePorcentaje}/gi, indicador.porcentaje);
+              htmlIndicador = htmlIndicador.replace(/{nombre}/gi, indicador.nombre)
+              .replace(/{fuente}/gi, indicador.fuente)
+              .replace(/{formulacion}/gi, indicador.formulacion)
+              .replace(/{estado2016}/gi, indicador.estado2016)
+              .replace(/{estado2017}/gi, indicador.estado2017)
+              .replace(/{avance}/gi, indicador.avance)
+              .replace(/{avancePorcentaje}/gi, indicador.porcentaje);
 
-            //$('[data-render=modales] > div:last').find('[data-render=indicadores]').append(indicador.avance + '<br>');
-            $('[data-render=modales] > div:last').find('[data-render=indicadores]').append( htmlIndicador );
+              $('[data-render=modales] > div:last').find('[data-render=indicadores]').append( htmlIndicador );
 
-          });
+            });
 
-//          var cantCumplidos = 0;
-          $.each(proyecto.hitos, function(index, hito){
+            $.each(proyecto.hitos, function(index, hito){
 
-            var htmlHito = templates.hito;
+              var htmlHito = templates.hito;
 
-            if (hito.estado == "finalizado"){
-              var estado = '<span class="text-success"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Finalizado</span>';
-            } 
-            else if (hito.estado == "en_avance") {
-              var estado = '<span class="text-gray"><i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i> En avance</span>';
-            } 
-            else if (hito.estado == "sin_inicio") {
-              var estado = '<span class="text-muted"><i class="fa fa-calendar-minus-o fa-fw" aria-hidden="true"></i> Sin inicio</span>';
-            }
-            else if (hito.estado == "demorado") {
-              var estado = '<span class="text-danger"><i class="fa fa-ban fa-fw" aria-hidden="true"></i> Demorado</span>';
-            }
-
-            
-
-/*
-            if (hito.estado == "finalizado"){
-              cantCumplidos++;
-            }
-*/
-            htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
-            .replace(/{inicio}/gi, hito.inicio)
-            .replace(/{fin}/gi, hito.fin)
-            .replace(/{estado}/gi, estado);
-
-            //$('[data-render=modales] > div:last').find('[data-render=hitos]').append(hito.avance + '<br>');
-            $('[data-render=modales] > div:last').find('[data-render=hitos]').append( htmlHito );
-
-          });         
-
-/*
-            if(cantCumplidos > 0) {
-                var porcentajeCumplidos = Math.round((cantCumplidos / proyecto.hitos.length)*100)+"%";
-                $('[data-render=modales] > div:last , [data-render=tarjetas] > div:last').find('[data-render=cumplimiento]').text( porcentajeCumplidos );
-            } 
-            else {
-                var porcentajeCumplidos = "0%";
-                $('[data-render=modales] > div:last , [data-render=tarjetas] > div:last' ).find('[data-render=cumplimiento]').text( porcentajeCumplidos );
+              if (hito.estado == "finalizado"){
+                var estado = '<span class="text-success"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Finalizado</span>';
+              } 
+              else if (hito.estado == "en_avance") {
+                var estado = '<span class="text-gray"><i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i> En avance</span>';
+              } 
+              else if (hito.estado == "sin_inicio") {
+                var estado = '<span class="text-muted"><i class="fa fa-calendar-minus-o fa-fw" aria-hidden="true"></i> Sin inicio</span>';
               }
-*/
+              else if (hito.estado == "demorado") {
+                var estado = '<span class="text-danger"><i class="fa fa-ban fa-fw" aria-hidden="true"></i> Demorado</span>';
+              }
+
+              htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
+              .replace(/{inicio}/gi, hito.inicio)
+              .replace(/{fin}/gi, hito.fin)
+              .replace(/{estado}/gi, estado);
+
+              $('[data-render=modales] > div:last').find('[data-render=hitos]').append( htmlHito );
+
+            });         
+
           }
 
         });
@@ -337,16 +316,20 @@ layout: argentina
     }
 
     $("#tipo-proyectos").on("change", function() {
-      $("#alcance [data-filtro]").removeClass('active');
-      var tipoproyectos = $( "#tipo-proyectos option:selected" ).data('tipoproyectos');
-      render.tarjetas(tipoproyectos);
+      config.tipo = $( "#tipo-proyectos option:selected" ).data('tipoproyectos');
+      render.tarjetas();
     });
 
     $("#alcance [data-filtro]").bind("click", function() {
-      $("#tipo-proyectos").val("todos");
-      $(this).addClass('active').siblings().removeClass('active');
-      var alcance = $(this).attr('data-filtro');
-      render.tarjetas("todos",alcance);
+      if( $(this).hasClass('active') ){
+        $(this).removeClass('active');
+        config.alcance = '';
+      }else{
+        $(this).addClass('active').siblings().removeClass('active');
+        config.alcance = $(this).attr('data-filtro');
+      }
+
+      render.tarjetas();
     });
 
 
