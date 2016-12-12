@@ -66,41 +66,43 @@ layout: argentina
         </div>
       </div>
 
-      <h4 class="m-t-4">Esta semana estamos en: </h4>
-
-      <div class="table-responsive">
-        <table id="table-semana" class="table table-align-middle">
-          <thead>
-            <tr>
-              <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
-              <th class="text-right">Mapa</th>
-            </tr>
-          </thead>
-          <tbody class="list" id="ferias-semana">
-          </tbody>
-        </table>
+      <div class="well">
+        <h4 class="m-t-4">Esta semana estamos en: </h4>
+        <div class="table-responsive">
+          <table id="table-semana" class="table table-align-middle">
+            <thead>
+              <tr>
+                <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
+                <th class="text-right">Mapa</th>
+              </tr>
+            </thead>
+            <tbody class="list" id="ferias-semana">
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <h4 class="m-t-3">Las próximas semanas estaremos en: </h4>
-
-      <div class="table-responsive">
-        <table id="table-proximas" class="table table-align-middle">
-          <thead>
-            <tr>
-              <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
-              <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
-              <th class="text-right">Mapa</th>
-            </tr>
-          </thead>
-          <tbody class="list" id="ferias-proximas">
-          </tbody>
-        </table>
-      </div> 
+      <div class="well">
+        <h4 class="m-t-3">Las próximas semanas estaremos en: </h4>
+        <div class="table-responsive">
+          <table id="table-proximas" class="table table-align-middle">
+            <thead>
+              <tr>
+                <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="fecha">Fecha <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="barrio">Municipio <span class="caret"></span></a></th>
+                <th><a class="sort" data-sort="lugar">Barrio <span class="caret"></span></a></th>
+                <th class="text-right">Mapa</th>
+              </tr>
+            </thead>
+            <tbody class="list" id="ferias-proximas">
+            </tbody>
+          </table>
+        </div> 
+      </div>
 
     </div>
   </section>
@@ -183,8 +185,11 @@ $(function(){
     if(!mostrarHoy){
       html += '<td class="dia">'+ item.gsx$dia.$t + '</td>';
       html += '<td class="fecha">'+ item.gsx$fecha.$t + '</td>';
+      html += '<td class="barrio">'+ item.gsx$barrio.$t + '</td>';
     }
-    html += '<td class="barrio">'+ item.gsx$barrio.$t + '</td>';
+    if(mostrarHoy){
+      html += '<td class="barrio"><strong>'+ item.gsx$barrio.$t + '</strong></td>';
+    }    
     html += '<td class="lugar">'+ item.gsx$lugar.$t + '</td>';
     html += '<td class="mapa text-right">'+ mapa + '</td></tr>';
 
@@ -196,9 +201,9 @@ $(function(){
     // console.log(ferias);
 
     if(ferias.hoy.length == 0){
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd") +' no hay ferias disponibles.');
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("LL") +' no hay ferias abiertas.');
     }else{
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd") +' estamos en:');
+      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("LL") +' estamos en:');
       $('#hoy .table-responsive').removeClass('hidden');
       
       $.each( ferias.hoy, function( key, item ) {
