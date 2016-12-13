@@ -24,21 +24,21 @@ layout: argentina
             <nav>
               <ul id="navbar-docs" class="nav nav-pills" role="tablist">
                 <li class="btn-title">
-                  <a href="#estilos">Estilos</a>
+                  <a href="#texto">Texto</a>
                   <ul class="nav">
-                    <li><a href="#atajos">Atajos</a></li>
-                    <li><a href="#listados">Listados</a></li>
-                    <li><a href="#alertas">Alertas</a></li>
-                    <li><a href="#ejes">Ejes</a></li>
-                    <li><a href="#nuemros">Números destacados</a></li>
+                    <li><a href="#titulos">Títulos y subtítulos</a></li>
+                    <li><a href="#enfasis">Énfasis</a></li>
+                    <li><a href="#lista">Listas</a></li>
+                    <li><a href="#hipervinculo">Hipervínculos</a></li>
+                    <li><a href="#botones">Botones</a></li>
                     <li><a href="#citas">Citas</a></li>
                   </ul>
                   <hr>
-                  <a href="#referencias">Referencias</a>
+                  <a href="#componentes">Componentes</a>
                   <ul class="nav">
-                    <li><a href="#colores-texto">Colores de texto</a></li>
-                    <li><a href="#colores-fondo">Colores de fondo</a></li>
-                    <li><a href="#iconos">Íconos</a></li>
+                    <li><a href="#alertas">Alertas</a></li>
+                    <li><a href="#imagenes">Imágenes</a></li>
+                    <li><a href="#videos">Videos</a></li>
                   </ul>
                 </li>
               </ul>
@@ -49,16 +49,13 @@ layout: argentina
 
       <div class="col-md-9 docs-container">
 
-        <h1 id="estilos" class="no-margin">Textos básicos</h1>
+
+        <h2 id="texto" class="m-t-0">Texto</h2>
+        <p class="lead">En el contenido de Argentina.gob.ar se pueden utilizar los siguientes recursos de formato para el texto.</p>
         <hr>
 
-
-
-        <h2 id="atajos">Texto</h2>
-        <p class="lead">Los atajos se utilizan para enlazar cualquier tipo de contenido, tanto interno como externo, y con diferentes tipos de jerarquías.</p>
-
-        <h4>Títulos y subtítulos</h4>
-        <p>El atajo tipo botón consta de los siguientes campos:</p>
+        <h3 id="titulos">Títulos y subtítulos</h3>
+        <p>Utilizados para jerarquizar las diferentes secciones de cada página.</p>
 
         <div class="docs-examlpe">
           <div class="docs-content">
@@ -88,8 +85,9 @@ layout: argentina
 
 
 
-        <h4>Énfasis</h4>
-        <p>El atajo tipo botón consta de los siguientes campos:</p>
+
+        <h3 id="enfasis">Énfasis</h3>
+        <p>Ayudan a resaltar fraces o palabras dentro de textos para lograr un escaneo del contenido más rápido.</p>
 
         <div class="docs-examlpe">
           <div class="docs-content">
@@ -109,87 +107,338 @@ layout: argentina
         </div>
 
 
+        
 
-        <h4>Listas</h4>
-        <p>El atajo tipo botón consta de los siguientes campos:</p>
+        <h3 id="lista">Listas</h3>
+        <p>Se utilizan para representar una lista de contenidos que no dependen del orden.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <ul>
+              <li>Primer elemento de lista desordenada
+                <ul>
+                  <li>Lista dentro de listas</li>
+                  <li>2do elemento de la lista
+                    <ul>
+                      <li>Listception
+                        <ul>
+                          <li>"We need to go deeper"</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>3er elemento de la lista</li>
+                </ul>
+              </li>
+              <li>Otro elemento</li>
+              <li>No importa el orden de los números</li>
+              <li>Otro elemento</li>
+            </ul>
+
+          </div>  
+          <pre class="docs-code"><code>
+- Primer elemento de lista desordenada
+  - Lista dentro de listas
+  - 2do elemento de la lista
+      - Listception
+          - "We need to go deeper"
+- Otro elemento
+* Se pueden utilizar asteriscos
++ Y el caracter más
+          </code></pre>  
+        </div>
+
+
+        <h4 id="lista-ordenada">Listas ordenadas</h4>
+        <p>Sirven para enumerar contenidos dentro de la página. Pueden tener más de nivel.</p>
 
         <div class="docs-examlpe">
           <div class="docs-content">
             
             <ol>
-              <li>First ordered list item</li>
-              <li>Another item
-                <ul>
-                  <li>Unordered sub-list. </li>
-                </ul>
-              </li>
-              <li>Actual numbers don't matter, just that it's a number
-                <ol>
-                  <li>Ordered sub-list</li>
-                </ol>
+              <li>Primer elemento  de lista ordenada sadasda</li>
+              <li>Otro elemento </li>
+              <li>No importa el orden de los números</li>
+            </ol>
+            
+            <br>
+
+            <ol>
+              <li>
+                <p>Listas con más separación</p>
               </li>
               <li>
-                <p>And another item.</p>
-
-                <p>You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).</p>
-
-                <p>To have a line break without a paragraph, you will need to use two trailing spaces.<br>
-                Note that this line is separate, but within the same paragraph.<br>
-                (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+                <p>Con cualquier número</p>
+              </li>
+              <li>
+                <p>Cualquiera que sea</p>
               </li>
             </ol>
 
-            <ul>
-              <li>Unordered list can use asterisks</li>
-              <li>Or minuses</li>
-              <li>Or pluses</li>
-            </ul>
-
           </div>  
           <pre class="docs-code"><code>
-1. First ordered list item
-2. Another item
-1. Actual numbers don't matter, just that it's a number
-4. And another item.
+1. Primer elemento de lista ordenada sadasda
+2. Otro elemento
+3. No importa el orden de los números
 
+<span class="text-muted">Lista con más separación:</span>
+1. Listas con más separación
 
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
+234. Con cualquier número
+
+0. Cualquiera que sea
           </code></pre>  
         </div>
 
 
 
 
+        <h4 id="lista-detalle">Listas de detalles</h4>
+        <p>Se utiliza para listar contenidos que necesitan ser desarrollados.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+
+            <dl>
+              <dt>Manzana</dt>
+              <dd>La manzana es una fruta pomácea comestible, fruto del manzano doméstico (Malus domestica), otros manzanos (especies del género Malus) o híbridos de aquel.</dd>
+              <dt>Naranja</dt>
+              <dd>La naranja es variedades o híbridos, antiguos híbridos asiáticos originarios de India, Vietnam o el sureste de China.</dd>
+            </dl>
+
+          </div>  
+          <pre class="docs-code"><code>
+Apple
+:   Pomaceous fruit of plants of the genus Malus in the family Rosaceae.
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+          </code></pre>  
+        </div>
 
 
 
 
+        <h3 id="hipervinculo">Hipervínculos</h3>
+        <p>Los hipervínculos nos ayudan a dirigir al usuario a otra págian web. Pueden ser:</p>
+        <ul>
+          <li><strong>Ancla</strong>: Hace referencia a otro contenido de la misma página web.</li>
+          <li><strong>Interno</strong>: Hace referencia a otra página del mismo sitio web.</li>
+          <li><strong>Externo</strong>: Hace referencia a otro sitio web.</li>
+        </ul>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <p>Un texto con hipervínculo a la web de <a href="/servicios" title="Servicios al ciudadano">Servicios</a> donde se encuentran todos los trámites.</p>
+            <p>Texto con un hipervínculo a la <a href="#titulos">sección de títulos</a>.</p>
+            <p>Hipervínculo a la web de <a href="https://www.casarosada.gob.ar" title="Servicios al ciudadano">Casa Rosada</a>.</p>
+
+          </div>  
+          <pre class="docs-code"><code>
+Un texto con hipervínculo a la web de [Servicios](/servicios "Servicios al ciudadano") donde se encuentran todos los trámites.
+
+Texto con un hipervínculo a la [sección de títulos](#titulos).
+
+Hipervínculo a la web de [Casa Rosada](https://www.casarosada.gob.ar "Servicios al ciudadano").
+          </code></pre>  
+        </div>
 
 
 
 
+        <h3 id="botones">Botones</h3>
+        <p>Los botones permiten jerarquizar las acciones principales que tiene un contenido.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <p><a href="https://www.argentina.gob.ar" title="" class="btn btn-sm btn-primary">Ir a argentina.gob.ar</a></p>
+            <p><a href="https://www.argentina.gob.ar" title="" class="btn btn-link">Conocer más del tema</a></p>
+            <p><a href="#subtitulo" title="" class="btn btn-lg btn-success">Botón verde grande</a></p>
+
+          </div>  
+          <pre class="docs-code"><code>
+[Ir a argentina.gob.ar](https://www.argentina.gob.ar){.btn.btn-sm.btn-primary}
+
+[Conocer más del tema](https://www.argentina.gob.ar){.btn.btn-link}
+
+[Botón verde grande](#subtitulo){.btn.btn-lg.btn-success}
+          </code></pre>  
+        </div>
+
+
+
+        <hr>
+
+        <h3 id="citas">Citas</h3>
+        <p>Las citas permiten hacer referencia a una copia textual de un contenido.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <blockquote>
+              <p>"This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus."</p>
+            </blockquote>
+
+          </div>  
+          <pre class="docs-code"><code>
+> "This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus."
+          </code></pre>  
+        </div>
 
 
 
 
+        <h4>Citas con autor</h4>
+        <p>Agregan la referencia a la fuente.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <blockquote>
+              <p>"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."</p>
+              <p><small>Agustiniano Lupis</small></p>
+            </blockquote>
+
+          </div>  
+          <pre class="docs-code"><code>
+[[cita-{<strong>Texto</strong>}-{<strong>Autor</strong>}]]
+
+<span class="text-muted">Ejemplo:</span>
+[[cita-{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.}-{Agustiniano Lupis}]]
+          </code></pre>  
+        </div>
 
 
 
 
+        <h4>Citas destacadas</h4>
+        <p>Utilizados para destacar una cita principal.</p>
 
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <blockquote class="quote-highlighted">
+              <p><span class="quotemark-open">“</span></p>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+              <p><span class="quotemark-close">”</span></p>
+              <small>Agustiniano Lupis</small>
+            </blockquote>
 
+          </div>  
+          <pre class="docs-code"><code>
+[[cita-destacada-{<strong>Texto</strong>}-{<strong>Autor</strong>}]]
 
-
-
-
-
-
-
+<span class="text-muted">Ejemplo:</span>
+[[cita-destacada-{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.}-{Agustiniano Lupis}]]
+          </code></pre>  
+        </div>
 
 
         
+        <h2 id="texto" class="">Componentes</h2>
+        <p class="lead">Los componentes permiten darle más dinamismo al contenido.</p>
+        <hr>
+
+        <h3 id="alertas">Alertas</h3>
+        <p>Las alertas nos ayudan a destacar un texto dándole un contexto positivo, negativo, de atención o información. También permite agregarle un ícono para comunicar gráficamente.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+            <p>Ejemplo de alerta simple:</p>
+            <div class="alert alert-info">
+              <p>En estos momentos, la DNRPA está trabajando en la <a href="http://google.com">implementación de la cédula única</a> para automotores, motos y maquinaria agrícola. Sin embargo, nadie está obligado a renovar las ya emitidas</p>
+            </div>
+
+            <br>
+            <p>Ejemplo de alerta con ícono:</p>
+            <div class="alert alert-warning">
+              <div class="media">
+                <div class="media-left">
+                  <i class="fa fa-car fa-fw fa-4x"></i>
+                </div>
+                <div class="media-body">
+                  <h5> Titulo con <a href="https://www.argenitna.gob.ar">link</a> en el texto. </h5>
+                  <p>En estos momentos, la DNRPA está trabajando en la implementación de la cédula única para automotores, motos y maquinaria agrícola. Sin embargo, nadie está obligado a renovar las ya emitidas.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>  
+          <pre class="docs-code"><code>
+[[alerta-{<strong>Título</strong>}-{<strong>Texto</strong>}-{<strong>Ícono</strong>}-{<strong>Color</strong>}]]
+
+<span class="text-muted">Ejemplo de alerta simple:</span>
+[[alerta-{}-{En estos momentos, la DNRPA está trabajando en la [implementación de la cédula única](http://google.com) para automotores, motos y maquinaria agrícola. Sin embargo, nadie está obligado a renovar las ya emitidas}-{}-{info}]]
+
+<span class="text-muted">Ejemplo de alerta con ícono:</span>
+[[alerta-{Titulo con [link](https://www.argenitna.gob.ar) en el texto.}-{En estos momentos, la DNRPA está trabajando en la implementación de la cédula única para automotores, motos y maquinaria agrícola. Sin embargo, nadie está obligado a renovar las ya emitidas.}-{fa-car}-{warning}]]
+          </code></pre>  
+        </div>
+
+
+
+        <hr>
+        <h3 id="imagenes">Imágenes</h3>
+        <p>Las imágenes y fotografías son el soporte gráfico perfecto para acompañar el texto, ya que permiten un escaneo rápido de la información. Ayudan a dar el contexto de una idea o una situación.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+          <p>Imagen:</p>
+            <p><img src="https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/header_mercado_en_tu_barrio_lechuga_1_1.png" alt="Señora con dni"></p>
+
+            <br>
+            <p>Imagen con hipervínculo:</p>
+            <p><a href="https://www.argentina.gob.ar"><img src="https://www.argentina.gob.ar/sites/default/files/logo_presidencia_2.png" alt="Argentina.gob.ar"></a></p>
+
+          </div>  
+          <pre class="docs-code"><code>
+<span class="text-muted">Imagen:</span>
+![Señora con dni](https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/header_mercado_en_tu_barrio_lechuga_1_1.png)
+
+<span class="text-muted">Imagen con hipervínculo:</span>
+[![Argentina.gob.ar](https://www.argentina.gob.ar/sites/default/files/logo_presidencia_2.png)](https://www.argentina.gob.ar)
+          </code></pre>  
+        </div>
+
+
+
+
+        <hr>
+        <h3 id="videos">Videos</h3>
+        <p>Los videos nos permiten desarrollar una temática compleja de forma más atractiva. Es escencial que no sean muy prolongados (no más de un minuto) y bien concisos para evitar aburrir al usuario con información innecesaria y tiempos de espera vacíos.</p>
+
+        <div class="docs-examlpe">
+          <div class="docs-content">
+            
+          <p>Ejemplo de Youtube:</p>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe width="" height="" src="https://www.youtube.com/embed/fnCKFdJaJLs" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+
+            <br>
+
+            <p>Ejemplo de Vimeo:</p>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe width="" height="" src="https://player.vimeo.com/video/37835752" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+            </div>
+
+          </div>  
+          <pre class="docs-code"><code>
+<span class="text-muted">Ejemplo de Youtube:</span>
+[[youtube-{16by9}-{fnCKFdJaJLs}]]
+
+<span class="text-muted">Ejemplo de Vimeo:</span>
+[[vimeo-{16by9}-{37835752}]]
+          </code></pre>  
+        </div>
+
+
+
 
       </div>
     </div>
