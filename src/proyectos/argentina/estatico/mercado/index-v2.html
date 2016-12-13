@@ -37,7 +37,6 @@ layout: argentina
   <section>
     <div id="ferias">
 
-
       <div id="hoy" class="well">
         <h3 class="h2 text-center text-primary"></h3>
 
@@ -106,45 +105,15 @@ layout: argentina
 
     </div>
   </section>
-  <section>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <hr>
-        <div class="section-actions is_area social-share">
-          <p>Compartir en <br> redes sociales</p>
-          <ul class="list-inline">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
-<section class="bg-gray"> 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center">
-
-        <div class="embed-responsive embed-responsive-16by9 m-y-2">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hg3djYmojqc"></iframe>
-        </div>  
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- <script src="/node_modules/list.js/dist/list.min.js"></script> -->
-<!-- <script src="/node_modules/moment/min/moment.min.js"></script> -->
-<!-- <script src="/node_modules/moment/locale/es.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.3.0/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
 <script>
 
-$(function(){
+jQuery(function(){
 
   window.ferias = {
     hoy: [],
@@ -154,11 +123,11 @@ $(function(){
 
   var test = 0;
 
-  $.getJSON('https://spreadsheets.google.com/feeds/list/1u50MNSDfakfmcRZs8c93msvIInvPJYA0c3FUUW1OuGY/1/public/values?alt=json', 
+  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1gDUaA7UVYxMNmY4Gww150S8yYBdVBfMvAGovHHQ5FfM/1/public/values?alt=json', 
     function (data) {
       window.raw = data.feed.entry;
 
-      $.each( raw, function( key, item ) {
+      jQuery.each( raw, function( key, item ) {
         var fecha = moment(item.gsx$fecha.$t, "DD/MM/YYYY");
         
         if( fecha.startOf('day').isSame( moment().startOf('day').add(test, 'day') )){
@@ -203,22 +172,22 @@ $(function(){
     // console.log(ferias);
 
     if(ferias.hoy.length == 0){
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' no hay ferias abiertas.');
+      jQuery('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' no hay ferias abiertas.');
     }else{
-      $('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' estamos en:');
-      $('#hoy .table-responsive').removeClass('hidden');
+      jQuery('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' estamos en:');
+      jQuery('#hoy .table-responsive').removeClass('hidden');
       
-      $.each( ferias.hoy, function( key, item ) {
-        $('#ferias-hoy').append( getTr( item, true ) );
+      jQuery.each( ferias.hoy, function( key, item ) {
+        jQuery('#ferias-hoy').append( getTr( item, true ) );
       });
     }
 
-    $.each( ferias.semana, function( key, item ) {
-      $('#ferias-semana').append( getTr( item, false ) );
+    jQuery.each( ferias.semana, function( key, item ) {
+      jQuery('#ferias-semana').append( getTr( item, false ) );
     });
     
-    $.each( ferias.proximas, function( key, item ) {
-      $('#ferias-proximas').append( getTr( item, false ) );
+    jQuery.each( ferias.proximas, function( key, item ) {
+      jQuery('#ferias-proximas').append( getTr( item, false ) );
     });
 
 
@@ -231,9 +200,9 @@ $(function(){
 
 
 
-    $('.search').on("keyup",function(){
-        feriasSemanaList.search($(".search").val());
-        feriasProximasList.search($(".search").val());
+    jQuery('.search').on("keyup",function(){
+        feriasSemanaList.search(jQuery(".search").val());
+        feriasProximasList.search(jQuery(".search").val());
     });
 
   }
@@ -241,3 +210,17 @@ $(function(){
 });
 
 </script>
+
+
+
+<section class="bg-gray"> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="embed-responsive embed-responsive-16by9 m-y-2">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hg3djYmojqc"></iframe>
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
