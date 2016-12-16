@@ -44,9 +44,9 @@ Un texto con hipervínculo a la web de [Argentina](https://www.argentina.gob.ar/
 Texto con un [hipervínculo al un elemento interno](#tituloconid).
 
 #### Botones
-[Botón azul](#subtitulo) {.btn.btn-primary}
+[Botón azul](#subtitulo){.btn.btn-primary}
 
-[Botón verde grande](#subtitulo) {.btn.btn-lg.btn-success}
+[Botón verde grande](#subtitulo){.btn.btn-lg.btn-success}
 
 
 ---
@@ -105,7 +105,7 @@ Se puede utilizar en `elementos inline` para agregarlos al texto o en bloques co
 
 ## Imágenes
 
-![Señora con din](https://www.argentina.gob.ar/sites/default/files/styles/listado/public/dni1.jpg?itok=nrqk0vIW)
+![Señora con dni](https://www.argentina.gob.ar/sites/default/files/styles/listado/public/dni1.jpg?itok=nrqk0vIW)
 
 Texto con imagen inline e hipervínculo: [![Argentina.gob.ar](httsp://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg)](https://www.argentina.gob.ar).
 
