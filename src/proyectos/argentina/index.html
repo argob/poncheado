@@ -32,7 +32,7 @@ layout: argentina
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <a class="alert alert-info visible-xs" href="/app">
+        <a id="appAlert" class="alert alert-info visible-xs" href="/app">
           <div class="media">
             <div class="media-left media-middle">
               <i class="fa fa-mobile fa-fw fa-3x"></i>
@@ -45,6 +45,21 @@ layout: argentina
         </a>  
       </div>
     </div> 
+
+    <script>
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      console.log(userAgent);
+
+      console.log('yay!')
+      if (/android/i.test(userAgent)) {
+        document.getElementById('appAlert').href = "https://play.google.com/store/apps/details?id=ar.gob.argentinagobar";
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        document.getElementById('appAlert').href = "https://itunes.apple.com/us/app/argentina.gob.ar/id1107620792?l=es&mt=8";
+      }
+    </script>
 
     <h2 class="h3 m-b-2">Servicios más consultados</h2>
 
