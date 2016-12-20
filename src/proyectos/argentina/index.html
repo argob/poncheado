@@ -39,7 +39,7 @@ layout: argentina
             </div>
             <div class="media-body media-middle">
               <h5 class="m-y-0">Descargá la aplicación.</h5>
-              <p class="m-y-0">Disponible para Android y iOS.</p>
+              <p id="appAlertText" class="m-y-0">Disponible para Android y iOS.</p>
             </div>
           </div>
         </a>  
@@ -49,15 +49,14 @@ layout: argentina
     <script>
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      console.log(userAgent);
-
-      console.log('yay!')
       if (/android/i.test(userAgent)) {
         document.getElementById('appAlert').href = "https://play.google.com/store/apps/details?id=ar.gob.argentinagobar";
+        document.getElementById('appAlertText').innerHTML = "Disponible para Android.";
       }
 
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         document.getElementById('appAlert').href = "https://itunes.apple.com/us/app/argentina.gob.ar/id1107620792?l=es&mt=8";
+        document.getElementById('appAlertText').innerHTML = "Disponible para iOS.";
       }
     </script>
 
