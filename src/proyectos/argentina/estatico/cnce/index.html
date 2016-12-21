@@ -49,6 +49,10 @@ layout: argentina
       <table class="table table-spaced">
         <thead>
           <tr>
+            <th><a class="sort" data-sort="expediente">Expediente <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="practica">Practica <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="producto">Producto <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="origen">origen <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="instituciones">Instituciones <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="areaTematica">Area Temática <span class="caret"></span></a></th>
@@ -89,7 +93,7 @@ $(document).ready(function () {
     $.getJSON('https://spreadsheets.google.com/feeds/list/1ADJOF7fcuJ3h8AdPbvNdkzXnWQjytkDlFTLY2xEQ_7U/1/public/values?alt=json', function (data) {
         window.convocatorias = data.feed.entry;
         showConvocatorias('todas');
-        console.log(data);
+        //console.log(data);
 
     });
 
@@ -116,9 +120,12 @@ $(document).ready(function () {
 
             console.log(fechaFin);
 
-                console.log("testeo"+item.gsx$expediente.$t);
+                //console.log("testeo"+item.gsx$expediente.$t);
             html += '<tr>';
-            //html += ' <td class="expediente">'+ item.gsx$expediente.$t + '</td>';
+            html += ' <td class="expediente">'+ item.gsx$expediente.$t + '</td>';
+            html += ' <td class="practica">'+ item.gsx$practica.$t + '</td>';
+            html += ' <td class="producto">'+ item.gsx$producto.$t + '</td>';
+            html += ' <td class="origen">'+ item.gsx$origen.$t + '</td>';
             html += ' <td class="nombre"> <h6 class="nombre"><a href="'+ item.gsx$link.$t + '">'+ item.gsx$nombre.$t + '</a></h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
             html += ' <td class="instituciones">'+ item.gsx$instituciones.$t + '</td>';
             html += ' <td class="areaTematica">'+ item.gsx$áreatemática.$t + '</td>';
@@ -133,7 +140,7 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        var listOptions = {valueNames: [ 'expediente', 'nombre', 'instituciones', 'areaTematica', 'paises', 'modalidad' ] };
+        var listOptions = {valueNames: [ 'expediente', 'practica', 'producto', 'origen', 'nombre', 'instituciones', 'areaTematica', 'paises', 'modalidad' ] };
         var convocatoriasList = new List('convocatorias', listOptions);
     }
 
