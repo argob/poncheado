@@ -44,9 +44,9 @@ Un texto con hipervínculo a la web de [Argentina](https://www.argentina.gob.ar/
 Texto con un [hipervínculo al un elemento interno](#tituloconid).
 
 #### Botones
-[Botón azul](#subtitulo){.btn.btn-primary}
+[Botón azul](#subtitulo) {.btn.btn-primary}
 
-[Botón verde grande](#subtitulo){.btn.btn-lg.btn-success}
+[Botón verde grande](#subtitulo) {.btn.btn-lg.btn-success}
 
 
 ---
@@ -71,9 +71,9 @@ Texto con un [hipervínculo al un elemento interno](#tituloconid).
 
 * Listas con más separación
 
-- Or minuses
+- O guiones
 
-+ Or pluses
++ O más
 
 1. Primer item de lista ordenada sadasda
   - Lista dentro de listas
