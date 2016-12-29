@@ -5,7 +5,13 @@
         <div class="col-md-12">
           <ol class="breadcrumb pull-left">
             <li><a href="">Argentina</a></li>
-            <li class="active"><span>Mi Argentina</span></li>
+            {% if include.padre %} 
+              <li><a href="">{{ include.padre }}</a></li>
+            {% endif %}
+              
+            {% if include.hijo %} 
+              <li class="active"><span>{{ include.hijo }}</span></li>
+            {% endif %}
           </ol>
         </div>
       </div>
