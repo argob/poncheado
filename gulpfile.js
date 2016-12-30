@@ -20,7 +20,7 @@ var options = {
 			errLogToConsole: true,
 			outputStyle: 'compressed'
 		},
-		src: 'src/vendor/poncho/src/css/*',
+		src: 'src/vendor/poncho/src/css/**/*.scss',
 		input: 'src/vendor/poncho/src/css/poncho.scss',
 		input_lite: 'src/vendor/poncho/src/css/ponchito.scss',
 		dest: 'src/vendor/poncho/dist/css/'
