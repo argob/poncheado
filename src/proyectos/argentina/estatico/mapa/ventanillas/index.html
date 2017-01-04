@@ -202,8 +202,10 @@ title: Mapa de Ventanillas
       if( markers.length > 0){
         markers.forEach(function(marker, index){
           markers[index].setMap(null);
+          circles[index].setMap(null);
         });
         markers.length = 0
+        circles.length = 0
       }
 
       currentCount = 0;
@@ -262,7 +264,7 @@ title: Mapa de Ventanillas
           });
 
 
-          var cityCircle = new google.maps.Circle({
+          circles[index] = new google.maps.Circle({
             strokeColor: '#c8563c',
             strokeOpacity: 0.5,
             strokeWeight: 1,
@@ -270,7 +272,8 @@ title: Mapa de Ventanillas
             fillOpacity: 0.2,
             map: map,
             center: point,
-            radius: 10000
+            radius: 30000,
+            clickable: false
           });
 
         }
