@@ -6,7 +6,7 @@ layout: argentina
   <section>
 
     <h3 class="text-center">Buscá entre los Casos de participación ciudadana</h3>
-    <div id="evaluaciones">
+    <div id="casos">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">    
           <div class="form-group">
@@ -18,7 +18,9 @@ layout: argentina
 
 
         <div class="list" id="show-data"></div>
-        <ul class="pagination"></ul>
+        <nav class="text-center">
+          <ul class="pagination"></ul>
+        </nav>  
 
       </table>
     </div>
@@ -49,27 +51,25 @@ layout: argentina
 $(document).ready(function () {
 
      $.getJSON('https://spreadsheets.google.com/feeds/list/1xyMGjApzM3A7iITrO4nn4siRqM5XJzC2U8Vc-Q9LmiY/1/public/values?alt=json', function (data) {
-        window.evaluaciones = data.feed.entry;
-        showEvaluaciones();
+        window.casos = data.feed.entry;
+        showCasos();
         console.log(data);
     });
 
-    window.showEvaluaciones = function(){
+    window.showCasos = function(){
         var showData = $('#show-data');
 
         var html = '';
-        $.each( evaluaciones, function( key, item ) {
-            html += '<div class="panel panel-default panel-disabled m-b-3">';
-            html += '<div class="panel-body">';
-
-            html += ' <h2 class="nombre">'+ item.gsx$casos.$t + '</h2>';
-            html += '<p class="lead">'+ item.gsx$introduccion.$t + '</p>';
-            html += '<p><small>Convocatorias: <a target="_blank" href="'+ item.gsx$convocatorias.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p>';
-            html += '<p><small>Comentarios informales: <a target="_blank" href="'+ item.gsx$comentariosinformales.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p>';
-            html += '<p><small>Registro: <a target="_blank" href="'+ item.gsx$registro.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p>';
-            html += '<p><small>resolución Final: <a target="_blank" href="'+ item.gsx$resolucionfinal.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p>';
+        $.each( casos, function( key, item ) {
+            html += '<div class="item">';
+            html += '<h4 class="nombre">'+ item.gsx$casos.$t + '</h4>';
+            html += '<p class="text-muted">'+ item.gsx$introduccion.$t + '</p>';
+            html += '<a target="_blank" href="'+ item.gsx$convocatorias.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Convocatorias </a>&nbsp;&nbsp;';
+            html += '<a target="_blank" href="'+ item.gsx$comentariosinformales.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Comentarios informales </a>&nbsp;&nbsp;';
+            html += '<a target="_blank" href="'+ item.gsx$registro.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Registro </a>&nbsp;&nbsp;';
+            html += '<a target="_blank" href="'+ item.gsx$resolucionfinal.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Resolución Final </a>&nbsp;&nbsp;';
             html += '</div>';
-            html += '</div>';
+            html += '<hr>';
     
         });
 
@@ -78,10 +78,10 @@ $(document).ready(function () {
 
         var listOptions = {
           valueNames: [ 'nombre' ],
-          page: 3,
+          page: 10,
           plugins: [ ListPagination({}) ] 
          };
-        var evaluacionesList = new List('evaluaciones', listOptions);
+        var casosList = new List('casos', listOptions);
     }
 
 
