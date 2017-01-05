@@ -1,0 +1,92 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Buscá entre los Casos de participación ciudadana</h3>
+    <div id="evaluaciones">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Filtrá Casos por nombre">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="casos">Nombre de Caso </th>
+            <th>Introducción </th>
+            <th>Convocatorias </th>
+            <th>Comentarios informales </th>
+            <th>Registro </th>
+            <th>Resolución Final </th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+     $.getJSON('https://spreadsheets.google.com/feeds/list/1xyMGjApzM3A7iITrO4nn4siRqM5XJzC2U8Vc-Q9LmiY/1/public/values?alt=json', function (data) {
+        window.evaluaciones = data.feed.entry;
+        showEvaluaciones();
+        console.log(data);
+    });
+
+    window.showEvaluaciones = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+        $.each( evaluaciones, function( key, item ) {
+            html += '<tr>';
+            html += ' <td class="casos"> <h6>'+ item.gsx$casos.$t + '</h6> <p class="margin-0 convocatorias"><small>Convocatorias: <a target="_blank" href="'+ item.gsx$convocatorias.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p><p class="margin-0 convocatorias"><small>Convocatorias: <a target="_blank" href="'+ item.gsx$convocatorias.$t + '" class="">'+ item.gsx$convocatorias.$t + ' </a></small></p><p class="margin-0"><small>Comentarios informales: <a target="_blank" href="'+ item.gsx$comentariosinformales.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p><p class="margin-0 convocatorias"><small>Registro: <a target="_blank" href="'+ item.gsx$registro.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p><p class="margin-0 convocatorias"><small> Resolución Final: <a target="_blank" href="'+ item.gsx$resolucionfinal.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> link </a></small></p></td>';
+            html += ' <td class="introduccion">'+ item.gsx$introduccion.$t + '</td>';
+            html += ' <td class="convocatorias"><a target="_blank" href="'+ item.gsx$convocatorias.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> Ficha Técnica </a></td>';
+            html += ' <td class="comentarios-informales"><a target="_blank" href="'+ item.gsx$comentariosinformales.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> Ficha Técnica </a></td>';
+            html += ' <td class="registro"><a target="_blank" href="'+ item.gsx$registro.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> Ficha Técnica </a></td>';
+            html += ' <td class="resolucion-final"><a target="_blank" href="'+ item.gsx$resolucionfinal.$t + '" class="btn btn-primary btn-sm"><i class="fa fa-file-pdf-o"></i> Ficha Técnica </a></td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {valueNames: [ 'casos' ] };
+        var evaluacionesList = new List('evaluaciones', listOptions);
+    }
+
+
+});
+})(jQuery);
+
+
+
+</script>
