@@ -236,6 +236,32 @@ title: Mapa de Ventanillas
         'SAN MIGUEL DE TUCUMAN'
       ]
 
+      window.provincias = {
+        'Buenos Aires': 0,
+        'Catamarca': 0,
+        'Chaco': 0,
+        'Chubut': 0,
+        'Cordoba': 0,
+        'Corrientes': 0,
+        'Entre Rios': 0,
+        'Formosa': 0,
+        'Jujuy': 0,
+        'La Pampa': 0,
+        'La Rioja': 0,
+        'Mendoza': 0,
+        'Misiones': 0,
+        'Neuquen': 0,
+        'Rio Negro': 0,
+        'Salta': 0,
+        'San Juan': 0,
+        'San Luis': 0,
+        'Santa Cruz': 0,
+        'Santa Fe': 0,
+        'Santiago del Estero': 0,
+        'Tierra del Fuego': 0,
+        'Tucuman': 0
+      }
+
       var capiCount = 0;
 
       window.localidades = {
@@ -247,14 +273,8 @@ title: Mapa de Ventanillas
       data.forEach(function(row, key){
 
 
-        
+        if(parseInt(row.gsx$ventanillas.$t) > 0 && parseInt(row.gsx$poblacion.$t) > config.min && ( config.max || parseInt(row.gsx$poblacion.$t) < config.max ) && row.gsx$provincia.$t != 'C.A.B.A.' ){ //  &&
 
-
-
-
-        if(parseInt(row.gsx$ventanillas.$t) > 0 && parseInt(row.gsx$poblacion.$t) > config.min && ( config.max || parseInt(row.gsx$poblacion.$t) < config.max ) ){ //  &&
-
-          currentCount ++;
 
           if( parseInt(row.gsx$poblacion.$t) > currentMaxPob ){
             currentMaxPob = row.gsx$poblacion.$t;
@@ -262,20 +282,32 @@ title: Mapa de Ventanillas
 
 
           if( row.gsx$anses.$t > 0 ){
-            localidades.anses.push(row)
-            markerImage = 'img/marker.png';
+            // if( localidades.anses.length < 79 ){
+              localidades.anses.push(row)
+              markerImage = 'img/marker.png';
+              currentCount ++;
+              countProv(row);
+            // }
           }else if( row.gsx$nac.$t > 0 ){
-            localidades.nac.push(row)
-            markerImage = 'img/marker_uva.png';
+            // if( localidades.nac.length < 28 ){
+              localidades.nac.push(row)
+              markerImage = 'img/marker_uva.png';
+              currentCount ++;
+              countProv(row);
+            // }
           }else if( row.gsx$correo.$t > 0 ){
             if( localidades.correo.length < 200 ){
               localidades.correo.push(row)
               markerImage = 'img/marker_lightblue.png';
+              currentCount ++;
+              countProv(row);
             }
           } else {
             markerImage = 'img/marker_gray123.png';
           }
 
+
+          
 
 
           // if( row.gsx$anses.$t > 0 ){
@@ -359,6 +391,15 @@ title: Mapa de Ventanillas
         callback();
       }
 
+    }
+
+    var countProv = function(row){
+      provincias[ row.gsx$provincia.$t ] ++;
+
+      // if( provincias.indexOf( row.gsx$provincia.$t ) > 0 ){
+      //   console.log(row.gsx$provincia.$t);
+      //   delete provincias[ provincias.indexOf( row.gsx$provincia.$t ) ];
+      // }
     }
 
 
