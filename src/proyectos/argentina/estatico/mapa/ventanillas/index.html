@@ -202,17 +202,57 @@ title: Mapa de Ventanillas
       if( markers.length > 0){
         markers.forEach(function(marker, index){
           markers[index].setMap(null);
-          circles[index].setMap(null);
+          // circles[index].setMap(null);
         });
         markers.length = 0
-        circles.length = 0
+        // circles.length = 0
       }
 
       currentCount = 0;
 
+      var capitales = [
+        'LA PLATA',
+        'SAN FERNANDO DEL VALLE DE CATAMARCA',
+        'RESISTENCIA',
+        'RAWSON',
+        'CORDOBA',
+        'CORRIENTES',
+        'PARANA',
+        'FORMOSA',
+        'SAN SALVADOR DE JUJUY',
+        'SANTA ROSA',
+        'LA RIOJA',
+        'MENDOZA',
+        'POSADAS',
+        'NEUQUEN',
+        'VIEDMA',
+        'SALTA',
+        'SAN JUAN',
+        'SAN LUIS',
+        'RÍO GALLEGOS',
+        'SANTA FE',
+        'SANTIAGO DEL ESTERO',
+        'USHUAIA',
+        'SAN MIGUEL DE TUCUMAN'
+      ]
+
+      var capiCount = 0;
+
+      window.localidades = {
+        anses: [],
+        correo: [],
+        nac: []
+      }
+
       data.forEach(function(row, key){
 
-        if( parseInt(row.gsx$ventanillas.$t) > 0 && parseInt(row.gsx$poblacion.$t) > config.min && ( config.max || parseInt(row.gsx$poblacion.$t) < config.max ) ){ //  && 
+
+        
+
+
+
+
+        if(parseInt(row.gsx$ventanillas.$t) > 0 && parseInt(row.gsx$poblacion.$t) > config.min && ( config.max || parseInt(row.gsx$poblacion.$t) < config.max ) ){ //  &&
 
           currentCount ++;
 
@@ -220,13 +260,44 @@ title: Mapa de Ventanillas
             currentMaxPob = row.gsx$poblacion.$t;
           }
 
-          if( row.gsx$anses.$t > 0 || row.gsx$nac.$t > 0 ){
+
+          if( row.gsx$anses.$t > 0 ){
+            localidades.anses.push(row)
             markerImage = 'img/marker.png';
-          } else if( row.gsx$correo.$t > 0 ){
-            markerImage = 'img/marker_lightblue.png';
+          }else if( row.gsx$nac.$t > 0 ){
+            localidades.nac.push(row)
+            markerImage = 'img/marker_uva.png';
+          }else if( row.gsx$correo.$t > 0 ){
+            if( localidades.correo.length < 200 ){
+              localidades.correo.push(row)
+              markerImage = 'img/marker_lightblue.png';
+            }
           } else {
-            markerImage = 'img/marker_gray.png';
+            markerImage = 'img/marker_gray123.png';
           }
+
+
+
+          // if( row.gsx$anses.$t > 0 ){
+          //   markerImage = 'img/marker.png';
+          // } else if( row.gsx$nac.$t > 0 ){
+          //   // markerImage = 'img/marker.png';
+          //   markerImage = 'img/marker_uva.png';
+          // } 
+          // else if( row.gsx$correo.$t > 0 ){
+          //   markerImage = 'img/marker_lightblue.png';
+          // } else {
+          //   markerImage = 'img/marker_gray.png';
+          // }
+
+          // if( capitales.indexOf( row.gsx$localidad.$t ) > 0 ){
+          //   markerImage = 'img/marker_uva.png';
+          //   capiCount ++;
+          //   console.log(capiCount + ' - '+ row.gsx$localidad.$t);
+
+          //   delete capitales[ capitales.indexOf( row.gsx$localidad.$t ) ];
+          // }
+
 
           var point = {
             lat: parseFloat(row.gsx$lat.$t.replace(',', '.')),
@@ -264,17 +335,17 @@ title: Mapa de Ventanillas
           });
 
 
-          circles[index] = new google.maps.Circle({
-            strokeColor: '#c8563c',
-            strokeOpacity: 0.5,
-            strokeWeight: 1,
-            fillColor: '#c8563c',
-            fillOpacity: 0.2,
-            map: map,
-            center: point,
-            radius: 30000,
-            clickable: false
-          });
+          // circles[index] = new google.maps.Circle({
+          //   strokeColor: '#c8563c',
+          //   strokeOpacity: 0.5,
+          //   strokeWeight: 1,
+          //   fillColor: '#c8563c',
+          //   fillOpacity: 0.2,
+          //   map: map,
+          //   center: point,
+          //   radius: 30000,
+          //   clickable: false
+          // });
 
         }
       });
