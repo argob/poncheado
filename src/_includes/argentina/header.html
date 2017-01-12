@@ -1,66 +1,31 @@
-<a href="/sugerencias" class="bg-primary"><div class="container"><p class="margin-0">Este sitio está actualmente en desarrollo. Si encontrás un error o tenés algún comentario contactate con nosotros.</p></div></a>
+<a href="/sugerencias" class="bg-primary hidden-xs"><div class="container"><p class="margin-0">Este sitio está actualmente en desarrollo. Si encontrás un error o tenés algún comentario contactate con nosotros.</p></div></a>
+<a href="/sugerencias" class="bg-primary visible-xs"><div class="container"><p class="margin-0 text-center">¿Querés hacernos una sugerencia?</p></div></a>
 <header>
   <nav class="navbar navbar-top navbar-default" role="navigation">
     <div class="container">
       <div>
+
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="{{ site.baseurl }}/proyectos/argentina/">
             <img alt="Brand" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <button type="button" class="btn btn-success btn-login visible-xs"><span class="fa fa-user"></span></button>
-          <!-- <div class="navbar-brand hidden-xs hidden-sm">
-            <img src="{{ "/proyectos/argentina/img/bicentenario.svg" | prepend: site.baseurl }}" alt="200 años de independencia argentina" width="155" height="50">
-          </div> -->
+          <a class="btn btn-success btn-login visible-xs" href="#"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="javascript: $('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
         </div>
-        <div class="collapse navbar-collapse" id="main-navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <!--<li class="hidden-sm hidden-md"><a href="/buscar/%2A?f%5B0%5D=bundle%3A%28tramite%20OR%20argentinagobar_migtram%29">Servicios</a></li>
-            <li class="hidden-sm hidden-md"><a href="/areas">Áreas</a></li>
-            <li class="hidden-sm hidden-md"><a href="/pais">País</a></li>-->
-            <li class="hidden-sm hidden-md"><a href="/organismos">Organismos</a></li>
-            <li class="hidden-sm hidden-md"><a href="/ayuda">Ayuda</a></li>
-            <li class="hidden-xs hidden-lg">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Secciones <b class="caret"></b></a>
-              <ul class="dropdown-menu submenu" role="menu">
-                <!--<li><a href="/buscar/%2A?f%5B0%5D=bundle%3A%28tramite%20OR%20argentinagobar_migtram%29">Servicios</a></li>
-                <li><a href="/areas">Áreas</a></li>
-                <li><a href="/pais">País</a></li>-->
-                <li><a href="/organismos">Organismos</a></li>
-                <li><a href="/ayuda">Ayuda</a></li>
-              </ul>
-            </li>
-            <!--<li class="last leaf" id="buscador"><a href="/buscar"><span class="glyphicon glyphicon-search"></span> <span class="visible-xs-inline">&nbsp;Buscar</span></a></li>-->
-            <button type="button" class="btn btn-success btn-truncate"><span class="fa fa-user fa-fw"></span> Entrar</button>
-            <!-- <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user fa-fw"></span>  Mi argentina </button> -->
-            <li>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar Trámite">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-                </span>
-              </div><!-- /input-group -->  
-            </li>              
-          </ul>
-        </div>
-        <!-- SEARCH FORM -->
-        <div id="search_wrapper" class="col-sm-6 col-sm-offset-3">
-          <span class="bg-primary">en: Modernización</span>
-          <div class="input-group stylish-input-group">
-            <input type="text" class="form-control"  placeholder="Buscar trámites, servicios o áreas" >
-            <span class="input-group-addon">
-              <button type="submit">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="javascript: console.log('hola'); $('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Ingresar</a>
+        </ul>
 
       </div>
     </div>

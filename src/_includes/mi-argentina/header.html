@@ -1,4 +1,5 @@
-<a href="/sugerencias" class="bg-primary"><div class="container"><p class="margin-0">Este sitio está actualmente en desarrollo. Si encontrás un error o tenés algún comentario contactate con nosotros.</p></div></a>
+<a href="/sugerencias" class="bg-primary hidden-xs"><div class="container"><p class="margin-0">Este sitio está actualmente en desarrollo. Si encontrás un error o tenés algún comentario contactate con nosotros.</p></div></a>
+<a href="/sugerencias" class="bg-primary visible-xs"><div class="container"><p class="margin-0 text-center">¿Querés hacernos una sugerencia?</p></div></a>
 <header>
   <nav class="navbar navbar-top navbar-default" role="navigation">
     <div class="container">
@@ -9,11 +10,12 @@
             <img alt="Brand" src="{{ "/proyectos/argentina/img/argentinagob.svg" | prepend: site.baseurl }}" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <a class="btn btn-success btn-login visible-xs"><span class="fa fa-user fa-fw"></span></a>
-          <a class="btn btn-link btn-login visible-xs"><span class="fa fa-search fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="javascript: $('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
         </div>
 
         <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="javascript: console.log('hola'); $('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
           <li>
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Buscar Trámite">
@@ -22,14 +24,7 @@
               </span>
             </div>
           </li>              
-          <a href="#" class="dropdown-toggle btn btn-success btn-truncate" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
-          <!-- <div class="dropdown pull-left">
-            <a href="#" class="dropdown-toggle btn btn-success btn-truncate" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
-            <ul class="dropdown-menu submenu" role="menu">
-              <li><a href="pagina.html">Editar perfil</a></li>
-              <li><a href="pagina-area.html">Cerrar sesión</a></li>
-            </ul>
-          </div> -->
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
         </ul>
 
       </div>
