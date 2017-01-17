@@ -1,0 +1,135 @@
+<style type="text/css">
+header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }
+  #mobile-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0px 53px 14px 15px;
+  }
+  #mobile-footer .row {
+    margin-right: -7.5px;
+    margin-left: -7.5px;
+  }
+  #mobile-footer .row > div {
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+  }
+  #mobile-footer a {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }</style>
+<header id="map-header"><nav class="navbar navbar-top navbar-default" role="navigation"><div class="container"><div><div class="navbar-header"><button class="navbar-toggle" data-target="#map-navbar-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button><a class="navbar-brand hidden-xs" href="/"><img alt="Argentina.gob.ar" height="50" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" /> </a><h1 class="sr-only"><a class="navbar-brand hidden-xs" href="/">Argentina.gob.ar <small>Presidencia de la Nación</small></a></h1><div class="navbar-brand visible-xs-inline-block">Mapa de recursos</div></div><div class="collapse navbar-collapse" id="map-navbar-collapse"><div class="visible-xs"><p class="text-muted margin-20">Lugares donde te acompañamos en situaciones de maltrato o violencia.</p><a href="/"><img alt="Argentina.gob.ar" class="img-responsive" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" /> </a><hr class="margin-20" /></div><ul class="nav navbar-nav navbar-right"><li><a href="/ayudaparamujeres">Acerca de este mapa</a></li><li><a class="visible-xs localize" href="javascript:setGeolocation();">Centrar el mapa</a></li></ul></div></div></div></nav><section class="jumbotron hidden-xs"><div class="jumbotron_bar"><div class="container"><div class="pull-right"><a class="btn btn-default localize" href="javascript:setGeolocation();">&nbsp; Centrar el mapa</a> &nbsp; <a class="btn btn-danger" href="javascript: window.location.replace('http://www.google.com.ar/webhp?ie=UTF-8#q=clima');">&nbsp; Cerrar esta página</a></div><h4>Mapa de recursos</h4><span>Lugares donde te acompañamos en situaciones de maltrato o violencia.</span></div></div><div class="overlay">&nbsp;</div></section></header><div class="visible-xs" id="mobile-footer"><div class="row"><div class="col-xs-6"><a class="btn btn-success btn-block" href="tel:144">&nbsp;144</a></div><div class="col-xs-6"><a class="btn btn-danger btn-block pull-right" href="javascript: window.location.replace('http://www.google.com.ar/webhp?ie=UTF-8#q=clima');">Cerrar</a></div></div></div><div class="state-loading" id="map-container"><div id="map">&nbsp;</div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<script>
+
+  var initMap = function() {
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: false
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1WIFpAhWDcaGTi6qBXAb8qEL7kQMci2FMjfPOze7a7XU/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        var rows = response.feed.entry;
+
+        rows.forEach(function(row, key){
+
+          // if(row.gsx$visible.$t == '1'){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
+              map: map,
+              title: row.gsx$nombre.$t
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h5>'+ row.gsx$nombre.$t +'</h5><p>'+ row.gsx$descripcion.$t +'</p>',
+              maxWidth: 400
+            })
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+
+            });
+
+          // }
+        })
+      },
+      error: function(){
+        console.log('nope');
+      }
+    });
+
+    // Add listener to add new locations
+
+    var denunciar = new google.maps.InfoWindow({
+      maxWidth: 250
+    });
+
+    map.addListener('click', function(event) {
+      closeWindows();
+      map.panTo(event.latLng);
+      denunciar.setContent('<div class="text-center"><h4>Hacé tu denuncia acá</h4><p class="margin-20">Conoces una obra pública inconclusa o que nunca se inició?</p><a class="btn btn-primary" href="https://docs.google.com/forms/d/1d9DSkgeVAK_k7u4HFIhVoN2WGO-HIZdx9G0Gv8SCi5E/viewform?entry.1244031719&entry.623121921&entry.1011021428='+ event.latLng.lat().toString().replace('.', ',') +'&entry.977857623='+ event.latLng.lng().toString().replace('.', ',') +'">Denunciar obra</a></div>');
+      denunciar.setPosition(event.latLng);
+      denunciar.open(map);
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+      denunciar.close();
+    }
+  }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
+
