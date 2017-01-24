@@ -1,0 +1,88 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="Basicos" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="basicos" %}
+
+      </aside>
+      <div class="col-md-8">
+
+
+        <div class="panel panel-default panel-border-primary">
+          <div class="panel-body">
+            <h2>Datos básicos</h2>
+
+            <hr class="m-y-1">
+
+            <form method="post">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="next" value="">
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <label class="control-label">Número de CUIL o Pasaporte</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <select class="form-control" name="id_type" style="font-weight:800" disabled="">
+                            <option value="CUIL" selected="">CUIL</option>
+                            <option value="PASS">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="form-control" type="text" name="id_number" value="20334448886" disabled="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" type="text" name="first_name" value="María Paula">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Apellido</label>
+                    <input class="form-control" type="text" name="last_name" value="Garibaldi">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Género</label>
+                    <div class="btn-group btn-group-justified" data-toggle="buttons">
+                        <label href="#" class="btn btn-default active">
+                            <input type="radio" name="gender" value="F" class="hidden"> Femenino
+                        </label>
+                        <label href="#" class="btn btn-default">
+                            <input type="radio" name="gender" value="M" class="hidden" checked=""> Masculino
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha de Nacimiento</label>
+                    <input class="form-control" type="text" name="birthdate" value="10/01/1987" placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Correo Electrónico</label>
+                    <input class="form-control" type="email" value="maripau@gmail.com" disabled="">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Guardar los cambios</button>
+                </div>
+            </form>            
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
