@@ -24,38 +24,12 @@ var options = {
 		input: 'src/vendor/poncho/src/css/poncho.scss',
 		input_lite: 'src/vendor/poncho/src/css/ponchito.scss',
 		dest: 'src/vendor/poncho/dist/css/'
-	},
-	jekyll: {
-		command: 'bundle exec jekyll serve',
-		src: 'src/'
 	}
 };
 
 // Default Task
-gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'poncho:watch']); // 'serve:jekyll', 
+gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'poncho:watch']);
 
-
-///////////////////////////
-// Jekyll
-///////////////////////////
-
-// Runs Jekyll build + log
-gulp.task('serve:jekyll', function() {
-  	const jekyll = child.spawn('jekyll', ['serve',
-	    '--watch',
-	    '--incremental',
-	    '--drafts'
-	]);
-
-	const JekyllLog = (buffer) => {
-    	buffer.toString()
-			.split(/\n/)
-        	.forEach((message) => gutil.log('Jekyll: ' + message));
-    };
-
-    jekyll.stdout.on('data', JekyllLog);
- 	jekyll.stderr.on('data', JekyllLog);
-});
 
 ///////////////////////////
 // Poncho
