@@ -23,12 +23,13 @@ var options = {
 		src: 'src/vendor/poncho/src/css/**/*.scss',
 		input: 'src/vendor/poncho/src/css/poncho.scss',
 		input_lite: 'src/vendor/poncho/src/css/ponchito.scss',
+		input_mobile: 'src/vendor/poncho/src/css/poncho_mobile.scss',
 		dest: 'src/vendor/poncho/dist/css/'
 	}
 };
 
 // Default Task
-gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'poncho:watch']);
+gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'build:mobile', 'poncho:watch']);
 
 
 ///////////////////////////
@@ -38,7 +39,7 @@ gulp.task('default', ['build:poncho', 'build:ponchito', 'build:poncho-min', 'pon
 // Watch
 gulp.task('poncho:watch', function() {
   return gulp
-    .watch( options.sass.src, ['build:poncho', 'build:ponchito', 'build:poncho-min'])
+    .watch( options.sass.src, ['build:poncho', 'build:ponchito', 'build:poncho-min', 'build:mobile'])
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
@@ -69,6 +70,16 @@ gulp.task('build:ponchito', function() {
 	    .pipe(sourcemaps.init())
 	    .pipe(sass( options.sass.compressed ).on('error', sass.logError))
 	    .pipe(rename('ponchito.css'))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest( options.sass.dest ));
+});
+
+// Poncho.lite
+gulp.task('build:mobile', function() {
+    gulp.src( options.sass.input_lite )
+	    .pipe(sourcemaps.init())
+	    .pipe(sass( options.sass.compressed ).on('error', sass.logError))
+	    .pipe(rename('poncho_mobile.css'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest( options.sass.dest ));
 });
