@@ -50,24 +50,24 @@ layout: argentina
         </div>
         <div>
           <div class="table-responsive">
-            <table id="table-semana" class="table table-align-middle">
+            <table class="table table-hover">
               <thead>
                 <tr>
-                  <th><a>Lugar de destino <span class="caret"></span></a></th>
-                  <th><a>Fuente de financiamiento <span class="caret"></span></a></th>
+                  <th><a>Destino <span class="caret"></span></a></th>
+                  <th><a>Fuente financiamiento <span class="caret"></span></a></th>
                   <th><a>Funcionario <span class="caret"></span></a></th>
                   <th><a>Cargo <span class="caret"></span></a></th>
                   <th><a>Organismo <span class="caret"></span></a></th>
                   <th><a>Evento <span class="caret"></span></a></th>
-                  <th><a>Se desempeñó como: <span class="caret"></span></a></th>
+                  <th><a>Desempeñó como: <span class="caret"></span></a></th>
                   <th><a>Fecha inicio <span class="caret"></span></a></th>
                   <th><a>Fecha fin <span class="caret"></span></a></th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="item">
+                <tr class="clickable-item" data-href='http://www.google.com/'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -78,9 +78,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='http://argentina.gob.ar/'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -91,9 +91,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -104,9 +104,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -117,9 +117,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -130,9 +130,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -143,9 +143,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -156,9 +156,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -169,9 +169,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -182,9 +182,9 @@ layout: argentina
                   <td>02/01/2017</td>
                   <td>10/01/2017</td>
                 </tr>
-                <tr class="item">
+                <tr class="clickable-item" data-href='#'>
                   <td> 
-                    <h6>Paris</h6>
+                    <h6><a>Paris</a></h6>
                   </td> 
                   <td>Presupuesto anual de viáticos</td>
                   <td>Alvaréz Martinez</td>
@@ -241,3 +241,18 @@ layout: argentina
     </div>
   </section>
 </div>
+
+
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-item").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
+
+<style>
+ .clickable-item:hover {
+    cursor: pointer;
+ }
+</style>
