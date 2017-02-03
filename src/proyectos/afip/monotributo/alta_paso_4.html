@@ -23,16 +23,17 @@ layout: afip_monotributo
 		    <hr>
 		    <h3 class="m-b-2">Elegí una obra social</h3>
 		    <p>Recordá que vas a tener que acercarte a una oficina de esa obra social a completar el trámite.</p>		    
-			<div class="form-group">
-	            <label class="control-label" for="input-1">Obras sociales</label>
-	            <select class="form-control" id="input-1">
-	              <option value="0">Seleccione</option>
-	              <option value="1">0-0020-8 OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA </option>
-	              <option value="2">0-0030-7 OBRA SOCIAL PORTUARIOS ARGENTINOS DE MAR DEL PLATA</option>
-	              <option value="3">0-0040-6 OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO</option>
-	              <option value="4">0-0060-4 OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA ARGENTINA </option>
-	            </select>
-	        </div>
+			<div class="form-group has-button">
+			  <label class="control-label" for="input-1">Obras sociales</label>
+			  <select class="form-control chosen-select" id="input-1" data-placeholder="Elegí una opción">
+				  <option value="0">Seleccione</option>
+				  <option value="1">0-0020-8 OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA </option>
+				  <option value="2">0-0030-7 OBRA SOCIAL PORTUARIOS ARGENTINOS DE MAR DEL PLATA</option>
+				  <option value="3">0-0040-6 OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO</option>
+				  <option value="4">0-0060-4 OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA ARGENTINA </option>
+			  </select>
+			</div>
+
 		    <h3 class="m-b-2">Agregá miembros de tu familia a tu obra social</h3>
 		    <p>Se te cobrará un aporte adicional por cada miembro que sumes a tu obra social</p>	
 			<div class="well m-b-3">	
@@ -40,10 +41,36 @@ layout: afip_monotributo
 			    <div class="form-group">
 			        <label class="control-label">Ingresar CUIL para buscar persona</label>
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2">
+					  <input type="text" class="form-control" value="20334447778" placeholder="" aria-describedby="basic-addon2">
 					  <span class="input-group-addon" id="basic-addon2"> Buscar</span>
 					</div>
 				</div>
+				<div class="form-group">
+	                <h5 class="m-y-1"><strong>Pedro González</strong></h5>
+	                <p>CUIL 20334447778<br>Aporte adicional $419</p>
+                </div>
+				<div class="form-group">
+		            <label class="control-label" for="input-1">Elegir vínculo familiar</label>
+		            <select class="form-control" id="input-1">
+		              <option value="0">Seleccione</option>
+		              <option value="1">Hijo/a</option>
+		              <option value="2">Conyuge</option>
+		            </select>
+		        </div>  
+				<div class="form-group m-b-0">
+				    <a href="" class="btn btn-link">Sumar</a>
+				</div>		                      				
+			</div>	
+			<div class="well m-b-3">	
+			    <h5><strong>Familiar vinculado 1</strong></h5>	    	    
+				<div class="form-group">
+	                <p class="m-t-2"><strong>Hijo</strong></p>
+	                <h5 class="m-y-1"><strong>Pedro González</strong></h5>
+	                <p>CUIL 20334447778<br>Aporte adicional $419</p>
+                </div>
+				<div class="form-group m-b-0">
+				    <a href="" class="btn btn-link">Modificar</a>
+				</div>		                      				
 			</div>	
 		    <h3 class="m-b-2">Sumar aportes con los de tu cónyuge</h3>
 		    <p>Si tu pareja trabaja y brinda aportes a una obra social, podés sumar esos aportes para el grupo familiar. Recordá que ambos tienen que elegir la misma obra social.</p>	
@@ -52,10 +79,17 @@ layout: afip_monotributo
 			    <div class="form-group">
 			        <label class="control-label">Ingresar CUIL para buscar persona</label>
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon2">
+					  <input type="text" class="form-control" value="21556667774" placeholder="" aria-describedby="basic-addon2">
 					  <span class="input-group-addon" id="basic-addon2"> Buscar</span>
 					</div>
 				</div>
+				<div class="form-group">
+	                <h5 class="m-y-1"><strong>Carolina Gómez</strong></h5>
+	                <p>CUIT 21556667774<br>Obra social de agentes de loterías y afines de la República Argentina <br>Aportes sumados $3000</p>
+                </div>
+				<div class="form-group m-b-0">
+				    <a href="" class="btn btn-link">Borrar</a>
+				</div>		                      				
 			</div>	
 		    <h3 class="m-b-2"> Declaración Jurada de Salud  </h3>
 			<div class="well m-b-3">	
@@ -85,3 +119,9 @@ layout: afip_monotributo
     </div>  
   </section>
 </div>      
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen();
+  });
+</script>
