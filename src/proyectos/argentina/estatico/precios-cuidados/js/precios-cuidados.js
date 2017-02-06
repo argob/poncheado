@@ -1,7 +1,7 @@
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1EreI6pWCVbiqbyURniaRx-keRHzBhyZ-6p01VSqOtms/1/public/values?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/19UX2u6J8aPsON3jRZajvCD_KRhAJPApp-GW4eiGbjis/1/public/values?alt=json', function (data) {
         window.products = data.feed.entry;
         showProducts('amba');
         console.log(data);
