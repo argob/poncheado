@@ -20,7 +20,7 @@ layout: afip_monotributo
 		    <p class="lead">Paso 1 de 5<p>
   		    <h1 class="h2">Tipo de monotributo</h1>
 		    <p>Seleccioná el tipo de monotributo que corresponde a la actividad que vas a desarrollar</p>
-			<p><a href="ayuda.html" class="btn btn-link">ir a ayuda de este paso</a></p>		    
+			<p><a href="ayuda.html" class="btn btn-link btn-sm">Ayuda sobre este paso</a></p>		    
 		    <hr>
 		    <h3 class="m-b-2">¿Cómo vas a trabajar?</h3>
 	        <div class="form-group">
@@ -46,13 +46,19 @@ layout: afip_monotributo
 	        <div class="form-group">
 	          <div class="radio">
 	            <label>
-	              <input type="radio" name="tipo" value=""><strong>Como miembro de una cooperativa</strong>
+	              <input type="radio" name="tipo" value="" data-toogle-collapse="#collapse-cooperativa"><strong>Como miembro de una cooperativa</strong>
 	            </label>
 	          </div>
 	          <div class="m-l-1">
 	            <p>La cooperativa debe estar registrada en AFIP</p>
-	            <label for="input-1">CUIT de la cooperativa</label>
-	            <input id="input-1" class="form-control" type="text" placeholder="">
+
+				<div class="collapse" id="collapse-cooperativa">
+
+		            <label for="input-1">CUIT de la cooperativa</label>
+		            <input id="input-1" class="form-control" type="text" placeholder="">
+
+				</div>
+
 	          </div>  
 	        </div>	
 	        <div class="form-group">
@@ -78,7 +84,22 @@ layout: afip_monotributo
 			<hr>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Siguiente</button>			   
-			</div>	        	        	                
+			</div>
+
+	          <script>
+	            $('[data-toogle-collapse]').each(function(key,item){
+	              var value = $(item).val();
+	              var target = $(item).data('toogle-collapse');
+	              $('input[name='+ $(item).attr('name') +']').on('change', function(){
+	                if($(this).val() == value){
+	                  $(target).collapse('show');
+	                }else{
+	                  $(target).collapse('hide');
+	                }
+	              });
+	            });
+	          </script>
+				        	        	                
 		</form>
 		<p><a href="">Guardar y continuar más tarde</a></p>
       </div>
