@@ -27,38 +27,74 @@ layout: afip_monotributo
               </div>
               <hr>
               <form action="">
-                <div class="form-group">
-                    <div class="row m-t-1">
-                      <div class="col-md-12">
-                        <label>Situación</label>
-                        <select class="form-control">
-                          <option>Seleccione</option>
-                          <option selected>Soy empleado en relación de dependencia</option>
-                          <option>Sos Aportante a Cajas Previsionales Provinciales</option>
-                          <option>Ninguna de las anteriores</option>
-                        </select>
-                      </div>
+
+
+                  <div class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="tipo" value="valueA"><strong>No estoy pagando aportes, quiero pagarlos con el monotributo</strong>
+                      </label>
                     </div>
-                </div>              
-                <div class="form-group">
-                    <div class="row m-t-1">
-                      <div class="col-md-6">
-                        <label>CUIT de tu empleador</label>
-                        <input id="input-1" class="form-control" type="text" value="1111111111" placeholder="">
-                      </div>
+                    <div class="m-l-1">
+                      <p></p>
+                    </div>  
+                  </div>        
+                  <div class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="tipo" value="valueB" checked data-toogle-collapse="#collapse-rd"><strong>Si, soy empleado en relación de dependencia y en mi recibo de sueldo figura el pago de aportes</strong>
+                      </label>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="row m-t-1">
-                      <div class="col-md-6">
-                        <label>Nombre de tu empleador</label>
-                        <input id="input-2" class="form-control" type="text" value="Ministerio de Modernización" placeholder="">
-                      </div>
+                    <div class="m-l-1">
+                      <p></p>
+                    </div>  
+                  </div>
+                  <div class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="tipo" value="valueC"><strong>Si, pago aportes jubilatorios a través de Cajas Previsionales Provinciales</strong>
+                      </label>
                     </div>
-                </div>                
+                    <div class="m-l-1">
+                      <p></p>
+                    </div>  
+                  </div>
+
+                <div class="collapse in" id="collapse-rd">
+                  <div class="form-group">
+                          <label class="control-label" for="input-2">CUIT de tu empleador</label>
+                          <input id="input-2" value="1111111111" class="form-control" type="text" placeholder="">
+                  </div>  
+                  <div class="form-group">
+                          <label class="control-label" for="input-3">Nombre de tu empleador</label>
+                    <p><small>Ingresá el nombre de tu empleador (empresa o persona) como figura en tu recibo de sueldo</small></p>              
+                          <input id="input-3" value="Ministerio de Modernización" class="form-control" type="text" placeholder="">
+                  </div>  
+                </div>    
+
+                
                 <div class="form-group m-b-0">
                   <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
+  
+
+
+              <script>
+                $('[data-toogle-collapse]').each(function(key,item){
+                  var value = $(item).val();
+                  var target = $(item).data('toogle-collapse');
+                  $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                    if($(this).val() == value){
+                      $(target).collapse('show');
+                    }else{
+                      $(target).collapse('hide');
+                    }
+                  });
+                });
+              </script>
+
+
+
               </form>
             </div>
         </div>
