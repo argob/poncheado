@@ -26,14 +26,23 @@ layout: afip_monotributo
 		    <p>Recordá que vas a tener que acercarte a una oficina de esa obra social a completar el trámite.</p>		    
 			<div class="form-group has-button">
 			  <label class="control-label" for="input-1">Obras sociales</label>
-			  <select class="form-control chosen-select" id="input-1" data-placeholder="Elegí una opción">
-				  <option value="0">Seleccione</option>
+			  <select class="form-control chosen-select" id="input-obraSocial" data-placeholder="Elegí una opción">
+				  <option value="0">Seleccionar</option>
 				  <option value="1">0-0020-8 OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA </option>
 				  <option value="2">0-0030-7 OBRA SOCIAL PORTUARIOS ARGENTINOS DE MAR DEL PLATA</option>
 				  <option value="3">0-0040-6 OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO</option>
 				  <option value="4">0-0060-4 OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA ARGENTINA </option>
 			  </select>
 			</div>
+
+			<div class="more-content-1 hide">
+				<p class="m-b-1">
+		            Av. Cordoba 4000, piso 10°<br>
+		            CABA<br>
+		            Telefono: 08001111111<br>
+		            <a target="_blank" href="">www.obrasocial.com</a><br>
+		        </p>
+	        </div>			
 
 		    <h3 class="m-b-2">Agregá miembros de tu familia a tu obra social</h3>
 		    <p>Se te cobrará un aporte adicional por cada miembro que sumes a tu obra social</p>
@@ -69,7 +78,7 @@ layout: afip_monotributo
 					<div class="form-group">
 			            <label class="control-label" for="input-1">Elegir vínculo familiar</label>
 			            <select class="form-control" id="input-1">
-			              <option value="0">Seleccione</option>
+			              <option value="0">Seleccionar</option>
 			              <option value="1">Hijo/a</option>
 			              <option value="2">Conyuge</option>
 			            </select>
@@ -149,6 +158,15 @@ layout: afip_monotributo
     $(".chosen-select").chosen({width: '100%'});
   });
 
+	$("#input-obraSocial").change(function(){
+	     if ($(this).val()=="0" ){
+			  $('.more-content-1').addClass('hide');	     	
+	      }	
+	     else{
+			  $('.more-content-1').removeClass('hide');	     	
+		 }	      	
+	    
+	})
 
   $(".search").click(function() {
        $(".familiar-a-vincular").removeClass("hide");
