@@ -23,6 +23,7 @@ layout: afip_monotributo
                 </div>
                 <div class="media-body media-middle">
                   <h3 class="m-t-0">Modificar datos tipo de Monotributo</h3>
+                  <p>Si cambió tu situación como monotributista podés modificar estos datos.</p>
                 </div>
               </div>
               <hr>
@@ -30,59 +31,78 @@ layout: afip_monotributo
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Como trabajador independiente</strong>
+                      <input type="radio" name="tipo" value="TI" checked><strong>Como trabajador independiente</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
-                    <p>Con o sin empleados</p>
+                    <p>Si vendés productos o prestás servicios por tu cuenta (con o sin empleados).</p>
                   </div>  
                 </div>
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Como integrante de una sociedad monotributista</strong>
+                      <input type="radio" name="tipo" value="ISM"><strong>Como integrante de una sociedad monotributista</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
-                    <p>La sociedad debe estar registrada en AFIP y tenés que figurar como integrante</p>
+                    <p>La sociedad debe estar registrada en AFIP y tenés que figurar como integrante.</p>
                   </div>  
                 </div>
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio" checked="checked"><strong>Como miembro de una coperativa </strong>
+                      <input type="radio" name="tipo" value="MC" data-toogle-collapse="#collapse-cooperativa"><strong>Como miembro de una cooperativa</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
-                    <p>La cooperativa debe estar registrada en AFIP</p>
-                    <div class="row m-t-1">
-                      <div class="col-md-6">
-                        <label>CUIT de la cooperativa</label>
-                        <input id="input-1" class="form-control" type="text" placeholder="">
-                      </div>
-                    </div>
+                    <p>La cooperativa debe estar registrada en AFIP.</p>
+
+              <div class="collapse" id="collapse-cooperativa">
+
+                      <label for="input-1">CUIT de la cooperativa</label>
+                      <input id="input-1" class="form-control" type="text" placeholder="">
+
+              </div>
+
+                  </div>  
+                </div>  
+                <div class="form-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo" value="TIP"><strong>Trabajador independiente promovido</strong>
+                    </label>
+                  </div>
+                  <div class="m-l-1">
+                    <p>Existen ciertas actividades que pagan una cuota menor del monotributo (cuota de inclusión social). <a href="ayuda.html">Consultar requisitos.</a></p>
                   </div>  
                 </div>
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Monotributo promovido</strong>
+                      <input type="radio" name="tipo" value="MPOS"><strong> Trabajador independiente promovido  con opción a obra social</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
-                    <p>Ex monotributistas eventuales que pagan solamente el componente previsional y un 5% de lo facturado <a href="">ver requerimientos</a></p>
+                    <p>Para trabajadores independientes promovidos que quieren pagar un aporte adicional por obra social para tener cobertura médica. <a href="ayuda.html">Consultar requisitos.</a></p>
                   </div>  
-                </div>                
-                <div class="form-group">
-                  <div class="radio">
-                    <label>
-                      <input type="radio"><strong>Monotributo promovido con opción a obra social</strong>
-                    </label>
-                  </div>
-                  <div class="m-l-1">
-                    <p>Ex monotributistas eventuales que pagan el aporte de obra social y pueden optar por una cobertura</p>
-                  </div>  
-                </div>                
+                </div>  
+
+                  <script>
+                    $('[data-toogle-collapse]').each(function(key,item){
+                      var value = $(item).val();
+                      var target = $(item).data('toogle-collapse');
+                      $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                        if($(this).val() == value){
+                          $(target).collapse('show');
+                        }else{
+                          $(target).collapse('hide');
+                        }
+                      });
+                    });
+                  </script>
+                                                  
+          </form>
+              
                 <div class="form-group m-b-0">
                   <button type="submit" class="btn btn-success">Guardar</button>
                 </div>

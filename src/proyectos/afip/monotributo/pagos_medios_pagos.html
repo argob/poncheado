@@ -30,7 +30,7 @@ layout: afip_monotributo
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Pagar en un centro de pago</strong>
+                      <input type="radio" name="medioPago" value="op1" checked="checked"><strong>Pagar en un centro de pago</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
@@ -40,7 +40,7 @@ layout: afip_monotributo
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Débito Automático en Cuenta</strong>
+                      <input type="radio" name="medioPago" value="op2"><strong>Débito Automático en Cuenta</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
@@ -51,9 +51,11 @@ layout: afip_monotributo
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio" checked="checked"><strong>Débito Automatico con Tarjeta de Crédito </strong>
+                      <input type="radio" name="medioPago" value="op3" data-toogle-collapse="#collapse-tarjeta"><strong>Débito Automatico con Tarjeta de Crédito </strong>
                     </label>
                   </div>
+
+                <div class="collapse" id="collapse-tarjeta">
                   <div class="m-l-1">
                     <p>Autorizas a tu Tarjeta de Crédito a pagar tu tu cuota justo antes de su vencimento</p>
                     <p><strong><small>Tiene beneficios por cumplimiento</small></strong></p>
@@ -68,11 +70,13 @@ layout: afip_monotributo
                     </div>
                     <p><small>Recordá llamar a Visa para autorizar tu tarjeta. Teléfono: 0800-111-4444</small></p>
                   </div>  
+
+                </div>                  
                 </div>
                 <div class="form-group">
                   <div class="radio">
                     <label>
-                      <input type="radio"><strong>Débito Semi-automático, con Volante Electrónico de Pago (VEP)</strong>
+                      <input type="radio" name="medioPago" value="op4"><strong>Débito Semi-automático, con Volante Electrónico de Pago (VEP)</strong>
                     </label>
                   </div>
                   <div class="m-l-1">
@@ -83,6 +87,21 @@ layout: afip_monotributo
                 <div class="form-group m-b-0">
                   <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
+
+                <script>
+                  $('[data-toogle-collapse]').each(function(key,item){
+                    var value = $(item).val();
+                    var target = $(item).data('toogle-collapse');
+                    $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                      if($(this).val() == value){
+                        $(target).collapse('show');
+                      }else{
+                        $(target).collapse('hide');
+                      }
+                    });
+                  });
+                </script>
+
               </form>
             </div>
         </div>
