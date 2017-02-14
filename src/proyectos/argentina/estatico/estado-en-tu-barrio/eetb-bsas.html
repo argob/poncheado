@@ -42,60 +42,11 @@ layout: argentina
       </div>
     </div>
   </section>
-    <section>
-      <div class="row">
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-            <p><strong>Horario:</strong> de 9 a 14 h</p>
-            <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-            <p><strong>Horario:</strong> de 9 a 14 h</p>
-            <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-            <p><strong>Horario:</strong> de 9 a 14 h</p>
-            <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-            <p><strong>Horario:</strong> de 9 a 14 h</p>
-            <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-              <p><strong>Horario:</strong> de 9 a 14 h</p>
-              <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-          <div class="col-md-4">
-            <h4 class="m-t-3">San Pedro</h4>
-            <p><strong>Horario:</strong> de 9 a 14 h</p>
-            <p><strong>Dirección:</strong> Avelino Díaz y Ramos Mejía, Villa Celina</p>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="credits text-center"> 
-             <p class="m-t-3">* Sujeto a modificaciones por causas climáticas.</p> 
-            </div> 
-            <hr>       
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-          <p class="text-center">
-            <a href="/eetb-bsas-donde-estuvimos.html" class="btn btn-success btn-lg btn-block">¿Dónde estuvimos?</a>
-          </p>
-          <p class="text-center margin-60">
-            <a href="/index.html" class="btn btn-success btn-lg btn-block">Ver otras provincias</a>
-          </p>
-        </div>
-      </div>      
-    </section> 
+  
+  <section>
+    <div class="row" data-render="barrios">
+    </div>
+  </section>    
 </div>
 <section>
   <div class="container">
@@ -233,4 +184,82 @@ layout: argentina
     </div>
   </div>    
 </section>
+
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      barrio: '<div class="col-md-4"><h4 class="m-t-3">{lugar}</h4><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {dirección}</p></div>'
+    }
+
+    window.items = {
+      mesActual: [],
+      mesesProximos: []
+    }    
+
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/2/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        // console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+
+            items.mesActual.push({
+              index: index,
+              fechainicio: row.gsx$fechainicio.$t,
+              fechafin: row.gsx$fechafin.$t,
+              hora: row.gsx$hora.$t,
+              dirección: row.gsx$dirección.$t,
+              linkmapa: row.gsx$linkmapa.$t,
+              lugar: row.gsx$lugar.$t
+            });
+
+        })
+
+        render.barrios();
+
+      }
+    });
+
+
+    var render = {
+      barrios: function( ){
+
+        $('[data-render=barrios]').html('');
+
+        $.each(items.mesActual, function(index, item){
+
+            var html = templates.barrio;
+
+
+            html = html.replace(/{fechainicio}/gi, item.fechainicio)
+            .replace(/{index}/gi, index)
+            .replace(/{fechafin}/gi, item.fechafin)
+            .replace(/{hora}/gi, item.hora)
+            .replace(/{dirección}/gi, item.dirección)
+            .replace(/{linkmapa}/gi, item.linkmapa)
+            .replace(/{lugar}/gi, item.lugar);
+
+            $('[data-render=barrios]').append( html );
+
+        });
+
+      }   
+    }
+
+
+  });
+
+
+
+     
+</script>
+
 
