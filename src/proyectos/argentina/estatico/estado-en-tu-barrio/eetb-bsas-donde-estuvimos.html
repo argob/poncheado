@@ -34,11 +34,9 @@ layout: argentina
 <div class="container">
   <section>
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="text-center">Dónde estuvimos en septiembre</h2>
-        <div class="embed-responsive embed-responsive-16by9 m-y-3">
-          <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.8509783551153!2d-59.084505084695316!3d-37.32235747984441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9590e0389a213c5d%3A0xcff9aea03c955932!2sCampus+Universitario!5e0!3m2!1ses-419!2sar!4v1476893492363"></iframe>
-        </div>
+      <div class="col-md-12">
+        <h2 class="text-center">Dónde estuvimos</h2>
+        <div id="map" style="height: 700px;"></div>
       </div>
     </div>
   </section>
@@ -65,23 +63,23 @@ layout: argentina
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-          <h2 class="text-center">Mirá los videos de El Estado en tu Barrio</h2>
-            <div class="row">
-              <div class="col-sm-4 col-sm-offset-4">
-                <a class="panel panel-default" href="#">
-                  <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left media-middle">
-                        <i class="fa fa-video-camera fa-fw fa-3x text-secondary"></i>
-                      </div>
-                      <div class="media-body media-middle">
-                        <h3>Videos</h3>
-                      </div>
+        <h2 class="text-center">Mirá los videos de El Estado en tu Barrio</h2>
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+              <a class="panel panel-default" href="#">
+                <div class="panel-body">
+                  <div class="media">
+                    <div class="media-left media-middle">
+                      <i class="fa fa-video-camera fa-fw fa-3x text-secondary"></i>
+                    </div>
+                    <div class="media-body media-middle">
+                      <h3>Videos</h3>
                     </div>
                   </div>
-                </a>
-              </div>
-            </div>      
+                </div>
+              </a>
+            </div>
+          </div>      
       </div>
     </div>
   </div>
@@ -101,4 +99,81 @@ layout: argentina
     </div>
   </div>    
 </section>
+
+
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&callback=initMap"></script>
+
+<script>
+
+  var initMap = function(){
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: false
+    });
+
+    var markers = [];
+    var details = [];
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/2/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+
+        var latlngbounds = new google.maps.LatLngBounds();
+
+        $.each(response.feed.entry, function(index, row){
+
+          if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isBefore( moment() ) ){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              map: map,
+              position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
+              title: row.gsx$lugar.$t,
+              icon: {
+                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                size: new google.maps.Size(20, 20),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10)
+              }
+            });
+
+            details[index] = new google.maps.InfoWindow({
+              content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> de '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
+            });
+
+            latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              details[index].open(map, markers[index]);
+            });
+          }
+
+        });
+
+        map.setCenter(latlngbounds.getCenter());
+        map.fitBounds(latlngbounds); 
+
+      }
+    });
+
+    var closeWindows = function(){
+      for(i = 0; i < details.length; i++){
+        details[i].close();
+      }
+    }
+
+  };
+
+</script>
+
 
