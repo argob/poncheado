@@ -1,0 +1,64 @@
+---
+layout: afip_monotributo
+---
+
+{% include afip/jumbotron_alta.html %}
+
+<div class="container">
+  <section>
+    <div class="row">
+      <div class="col-sm-8">
+		<form action="">
+		    <p class="lead">Paso 2 de 5<p>
+  		    <h1 class="h2">Actividades</h1>
+		    <p>Detallá las actividades que vas a realizar para que sepamos que categoría de monotributo te corresponde</p>
+			<p><a href="ayuda.html" class="btn btn-link btn-sm">Ayuda sobre este paso</a></p>		    
+		    <hr>
+		    <h3 class="m-b-2">No tenés actividades registradas</h3>
+		    <p>Tenés que <a href="">ingresar al Sistema Registral</a> para registrar una o más actividades. Una vez que hagas eso, las actividades registradas van a aparecer en esta página para que puedas elegirlas.</p>	 
+		    <p><a href="">Más información sobre actividades.</a></p>		    
+
+			<hr>
+			<div class="form-group">
+			    <a href="alta_paso_1.html" class="btn btn-link">Anterior</a>
+				<button type="submit" class="btn btn-success disabled">Siguiente</button>			   
+			</div>	  
+
+
+	          <script>
+	            $('[data-toogle-collapse]').each(function(key,item){
+	              var value = $(item).val();
+	              var target = $(item).data('toogle-collapse');
+	              $('input[name='+ $(item).attr('name') +']').on('change', function(){
+	                if($(this).val() == value){
+	                  $(target).collapse('show');
+	                }else{
+	                  $(target).collapse('hide');
+	                }
+	              });
+	            });
+	          </script>
+
+
+		</form>
+		<p>Cada vez que termines un paso tus datos se guardan automáticamente. También podés <a href="">guardar y volver al inicio</a>.</p>
+      </div>
+    </div>  
+  </section>
+</div>    
+
+<script>
+jQuery(document).ready(function($){
+
+	
+
+
+     
+}); 
+</script>	
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({width: '100%'});
+  });
+</script>
