@@ -63,7 +63,7 @@ layout: argentina
       <div data-render="servicios">
       </div>      
         
-        <ul class="list-unstyled">
+        <!-- <ul class="list-unstyled">
           <li><h5 class="m-t-3">DOCUMENTACIÓN</h5></li>
           <li>DNI.</li>
           <li>Partida de nacimiento.</li>
@@ -105,7 +105,7 @@ layout: argentina
           <h5 class="m-t-3">OFICINA DE EMPLEO</h5>
           <li>Orientación sobre programas de formación profesional.</li>
           <li>Asesoramiento sobre microemprendimientos.</li>
-        </ul>  
+        </ul>   -->
       </div> 
     </div>
   </div>
@@ -209,12 +209,54 @@ layout: argentina
 
     var templates = {
       barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
-      servicios: '<ul class="list-unstyled"><h5 class="m-t-3">{categoria}</h5><li>{servicio}</li></ul>',
+      servicios: '<h5 class="m-t-3">{categoria}</h5><ul class="servicios">',
     }
 
     var listado = [];
     var markers = [];
+    var categoriasServicios = [];
     var listadoServicios = [];
+
+    var render = {
+      barrios: function( ){
+
+        $('[data-render=barrios]').html('');
+
+        $.each(listado, function(index, item){
+
+            var html = templates.barrio;
+
+            html = html
+            .replace(/{inicio}/gi, item.inicio)
+            .replace(/{fin}/gi, item.fin)
+            .replace(/{hora}/gi, item.hora)
+            .replace(/{direccion}/gi, item.direccion)
+            .replace(/{lugar}/gi, item.lugar);
+
+            $('[data-render=barrios]').append( html );
+
+        });
+      },
+      servicios: function( ){
+
+        $('[data-render=servicios]').html('');
+
+        $.each(listadoServicios, function(index, items){
+
+            var html = templates.servicios;
+
+            html = html
+            .replace(/{categoria}/gi, categoriasServicios[index]);
+
+            $.each(items, function(index, item){
+              html += '<li>'+ item +'</li>';
+            });
+
+            $('[data-render=servicios]').append( html + '</ul>' );
+
+        });
+      }      
+    }
 
     $.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/2/public/values?alt=json',
@@ -274,56 +316,22 @@ layout: argentina
 
         $.each(response.feed.entry, function(index, row){
 
-            listadoServicios.push({
-              servicio: row.gsx$servicio.$t,
-              categoria: row.gsx$categoria.$t
-            });
+          if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
+            categoriasServicios.push( row.gsx$categoria.$t )
+            listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
+          }else{
+            var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
+            listadoServicios[ categoria ].push( row.gsx$servicio.$t );
+          }
 
         });
 
-
+        console.log( listadoServicios );
         render.servicios();
 
       }
     });
 
-    var render = {
-      barrios: function( ){
-
-        $('[data-render=barrios]').html('');
-
-        $.each(listado, function(index, item){
-
-            var html = templates.barrio;
-
-            html = html
-            .replace(/{inicio}/gi, item.inicio)
-            .replace(/{fin}/gi, item.fin)
-            .replace(/{hora}/gi, item.hora)
-            .replace(/{direccion}/gi, item.direccion)
-            .replace(/{lugar}/gi, item.lugar);
-
-            $('[data-render=barrios]').append( html );
-
-        });
-      },
-      servicios: function( ){
-
-        $('[data-render=servicios]').html('');
-
-        $.each(listadoServicios, function(index, item){
-
-            var html = templates.servicios;
-
-            html = html
-            .replace(/{servicio}/gi, item.servicio)
-            .replace(/{categoria}/gi, item.categoria);
-
-            $('[data-render=servicios]').append( html );
-
-        });
-      }      
-    }
 
     $('body').on('click', '[data-render=barrios] > div', function(){
       $('[data-render=barrios] > div').removeClass('bg-gray').eq( $(this).index() ).addClass('bg-gray');
