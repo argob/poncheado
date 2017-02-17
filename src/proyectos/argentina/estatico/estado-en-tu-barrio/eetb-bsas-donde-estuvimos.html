@@ -111,7 +111,6 @@ layout: argentina
   var initMap = function(){
 
     // Setup map
-
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
@@ -119,52 +118,76 @@ layout: argentina
       scrollwheel: false
     });
 
+    // Setup datos
     var markers = [];
     var details = [];
 
-    $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/2/public/values?alt=json',
-      data: 'json',
-      success: function(response){
+    window.data = {
+      loaded: []
+    };
+    data.load = function(provincia){
+     
+      return $.ajax({
+        url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/'+ provincia +'/public/values?alt=json',
+        dataType: 'json',
+        success: function(response){
+          data['loaded'].push(response.feed.entry);
+        },
+        error: function(response){
+          console.log('Hubo un error al momento de cargar los datos. Volvé a intentarlo nuevamente.');
+        }
+      });
+    }
 
-        var latlngbounds = new google.maps.LatLngBounds();
+    var provincias = 2;
+    var toLoad = [];
+    for(i = 1; i <=  provincias; i++){
+      toLoad.push( data.load(i) );
+    }
 
-        $.each(response.feed.entry, function(index, row){
+    $.when.apply($, toLoad).then(function(){
+ 
+      var latlngbounds = new google.maps.LatLngBounds();
 
-          if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isBefore( moment() ) ){
+        $.each(data.loaded, function(i, provincia){
 
-            var index = markers.length;
-            markers[index] = new google.maps.Marker({
-              map: map,
-              position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
-              title: row.gsx$lugar.$t,
-              icon: {
-                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
-                size: new google.maps.Size(20, 20),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(10, 10)
-              }
-            });
+          $.each(provincia, function(index, row){
 
-            details[index] = new google.maps.InfoWindow({
-              content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> de '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
-            });
+            if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isBefore( moment() ) ){
 
-            latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );
+              var index = markers.length;
+              markers[index] = new google.maps.Marker({
+                map: map,
+                position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
+                title: row.gsx$lugar.$t,
+                icon: {
+                  url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                  size: new google.maps.Size(20, 20),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(10, 10)
+                }
+              });
 
-            markers[index].addListener('click', function() {
-              closeWindows();
-              details[index].open(map, markers[index]);
-            });
-          }
+              details[index] = new google.maps.InfoWindow({
+                content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> de '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
+              });
 
+              latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );
+
+              markers[index].addListener('click', function() {
+                closeWindows();
+                details[index].open(map, markers[index]);
+              });
+            }
+
+          });
         });
 
         map.setCenter(latlngbounds.getCenter());
         map.fitBounds(latlngbounds); 
-
-      }
+ 
     });
+
 
     var closeWindows = function(){
       for(i = 0; i < details.length; i++){
