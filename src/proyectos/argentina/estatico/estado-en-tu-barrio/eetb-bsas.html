@@ -213,7 +213,7 @@ layout: argentina
 
     var templates = {
       barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
-      servicios: '<h5 class="categoria m-t-3">{categoria}</h5><ul class="servicios">',
+      servicios: '<ul class="servicios list-unstyled"><li class="categoria"><h5 class="m-t-3">{categoria}</h5></li>',
     }
 
     var listado = [];
@@ -332,9 +332,19 @@ layout: argentina
         //console.log( listadoServicios );
         render.servicios();
 
-        var listOptions = { valueNames: [ 'categoria', 'servicio' ] };
+        var listOptions = { 
+          valueNames: [ 'categoria', 'servicio' ],
+          fuzzySearch: {
+            searchClass: "search",
+            location: 0,
+            distance: 100,
+            threshold: 0.4,
+            multiSearch: true
+          }
+
+        };
         var serviciosList = new List('servicios', listOptions);
-        
+
 
       }
     });
@@ -345,6 +355,12 @@ layout: argentina
       map.setCenter( markers[$(this).index()].getPosition() );
       map.setZoom( 10 );
     });
+
+    $('body').on('mouseover', '[data-render=barrios] > div', function(){
+          $('[data-render=barrios] > div').css('cursor', 'pointer');
+    });
+
+
 
 
 
