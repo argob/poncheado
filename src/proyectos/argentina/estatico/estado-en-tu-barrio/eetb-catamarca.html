@@ -240,10 +240,13 @@ layout: argentina
       success: function(response){
 
         var latlngbounds = new google.maps.LatLngBounds();
+        var count = 0;
 
         $.each(response.feed.entry, function(index, row){
 
           if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isAfter( moment() ) && moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isBefore( moment().add(30, 'days') ) ){
+
+            count ++;
 
             listado.push({
               inicio: row.gsx$inicio.$t,
@@ -276,6 +279,10 @@ layout: argentina
           }
 
         });
+
+        if( count == 0){
+          console.log('ninguno');
+        }
 
         map.setCenter(latlngbounds.getCenter());
         map.fitBounds(latlngbounds); 
