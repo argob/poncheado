@@ -21,7 +21,7 @@ layout: argentina
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
           <p><img src="img/presidencia.svg" style="width: 160px;"> </p>
-          <p><img src="img/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
+          <p><img src="img/El-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
           <p>Te acercamos el Estado para ayudarte a hacer diferentes trámites y para que conozcas todos los servicios a los que pueden acceder vos y tu familia.</p>
         </div>
       </div>
@@ -31,11 +31,14 @@ layout: argentina
 </section>
 
 
-<div class="container">
+<div class="container lugares-mapa hidden">
   <section>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <h2 class="text-center">En <span data-render="mes"></span> estamos en estos lugares</h2>
+              <p>Mirá donde estuvimos en todo el país.</p>
+              <a href="eetb-donde-estuvimos.html" class="btn btn-primary btn-success btn-lg">Donde estuvimos</a> 
+          </div>
         <div id="map" style="height: 400px;"></div>
       </div>
     </div>
@@ -49,14 +52,26 @@ layout: argentina
 <section>
   <div class="container">
       <div class="row">    
+        <div class="container lugares-mensaje hidden">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center m-y-2">
+              <h2>Por el momento no estamos en este lugar</h2>
+              <p>Registrate para enterarte cuando vamos a estar cerca tuyo.</p>
+              <div class="m-t-1 text-center">
+                  <a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" class="btn btn-primary btn-success btn-lg">Registrate</a> 
+              </div>                
+            </div>
+          </div>
+        </div>
         <div class="col-md-12"> 
-          <div class="m-t-3 text-center">
+          <p class="text-center">Mirá donde estuvimos en todo el país.</p>
+          <div class="m-t-1 text-center">
               <a href="eetb-donde-estuvimos.html" class="btn btn-primary btn-success btn-lg">Donde estuvimos</a> 
           </div>
         </div>  
       </div>
   </div>
-</section>    
+</section>     
 <section>
   <div class="container">
     <hr class="m-y-2">
@@ -95,7 +110,7 @@ layout: argentina
           <div class="col-md-6 col-md-offset-3 text-center">
               <p>Te avisamos cuando vamos a tu barrio y te mantenemos informado sobre las novedades de los servicios del Estado.</p>
               <div class="m-t-3 text-center">
-                  <a href="eetb-form.html" class="btn btn-primary btn-success btn-lg">Registrate</a> 
+                  <a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" class="btn btn-primary btn-success btn-lg">Registrate</a> 
               </div>  
           </div> 
         </div> 
@@ -185,7 +200,7 @@ layout: argentina
 
     var templates = {
       barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
-      servicios: '<ul class="servicios list-unstyled"><li class="categoria"><h5 class="m-t-3">{categoria}</h5></li>',
+      servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list list-unstyled">',
     }
 
     var listado = [];
@@ -212,23 +227,47 @@ layout: argentina
             $('[data-render=barrios]').append( html );
 
         });
+
+        if( $('[data-render=barrios] > div').length == 0 ){
+          $('.lugares-mensaje').removeClass('hidden');
+        }else{
+          $('.lugares-mapa').removeClass('hidden');
+        }
+
+
       },
       servicios: function( ){
 
         $('[data-render=servicios]').html('');
 
+        window.serviciosList = [];
+
         $.each(listadoServicios, function(index, items){
 
-            var html = templates.servicios;
+          var html = templates.servicios;
 
-            html = html
-            .replace(/{categoria}/gi, categoriasServicios[index]);
+          html = html
+          .replace(/{categoria}/gi, categoriasServicios[index])
+          .replace(/{i}/gi, index);
 
-            $.each(items, function(index, item){
-              html += '<li class="servicio">'+ item +'</li>';
-            });
+          $.each(items, function(index, item){
+            html += '<li><span class="servicio">'+ item +'</span></li>';
+          });
 
-            $('[data-render=servicios]').append( html + '</ul>' );
+          $('[data-render=servicios]').append( html + '</ul></div>' );
+
+          var listOptions = { 
+            valueNames: [ 'servicio' ],
+            fuzzySearch: {
+              searchClass: "search",
+              location: 0,
+              distance: 100,
+              threshold: 0.4,
+              multiSearch: true
+            }
+
+          };
+          serviciosList[index] = new List('servicios-'+ index, listOptions);
 
         });
       }      
@@ -298,25 +337,8 @@ layout: argentina
             var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
             listadoServicios[ categoria ].push( row.gsx$servicio.$t );
           }
-
         });
-
-        //console.log( listadoServicios );
         render.servicios();
-
-        var listOptions = { 
-          valueNames: [ 'categoria', 'servicio' ],
-          fuzzySearch: {
-            searchClass: "search",
-            location: 0,
-            distance: 100,
-            threshold: 0.4,
-            multiSearch: true
-          }
-
-        };
-        var serviciosList = new List('servicios', listOptions);
-
       }
     });
 
@@ -331,14 +353,33 @@ layout: argentina
           $('[data-render=barrios] > div').css('cursor', 'pointer');
     });
 
+    $('#search').on('click', function(event){
+      buscar();
+      event.preventDefault();
+    });
+
+    $('form[role=search]').on('submit', function(event){
+      buscar();
+      event.preventDefault();
+    });
 
 
 
+    var buscar = function(){
+      var busqueda = $('.search').val()
+      $.each(serviciosList, function(index, item){
+        serviciosList[index].fuzzySearch( busqueda );
 
+        if(serviciosList[index].matchingItems.length == 0){
+          $('#servicios-'+ index ).prev().addClass('hidden');
+        }else{
+          $('#servicios-'+ index ).prev().removeClass('hidden');
+        }
+      })
+    }
 
 
   };
 
 </script>
-
 
