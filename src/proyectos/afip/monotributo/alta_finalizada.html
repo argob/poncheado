@@ -15,6 +15,19 @@ layout: afip_monotributo
             <p>Ahora podés ingresar a tu página de monotributo y hacer tus operaciones por internet.</p>
             <div class="m-y-2">
               <a href=""> Descargar resumen de mi alta</a>
+            </div>     
+            <hr>
+            <h3 class="m-b-2">¿Qué te pareció el trámite de alta de monotributo?</h3>
+            <div class="m-y-2 toggle show">
+              <button type="button" class="btn btn-link"><i class="fa fa-frown-o text-success" aria-hidden="true"></i> Muy bueno</button>&nbsp;
+              <button type="button" class="btn btn-link"><i class="fa fa-frown-o text-muted" aria-hidden="true"></i> Regular</button>&nbsp;
+              <button type="button" class="btn btn-link"><i class="fa fa-frown-o text-danger" aria-hidden="true"></i> Malo</button>&nbsp;
+            </div>      
+            <div class="m-y-2 toggle hide">
+              <p>¡Muchas gracias! Calificaste este trámite como <strong class="text-muted">"<span class="feedback"></span>"</strong>.</p>
+              <div class="m-y-2">
+                <a href="" class="change-feedback"> Cambiar mi calificación</a>
+              </div>      
             </div>      
             <hr>
             <h3 class="m-b-2">¿Qué querés hacer ahora?</h3>
@@ -34,3 +47,19 @@ layout: afip_monotributo
     </div>  
   </section>
 </div>      
+
+<script type="text/javascript">
+
+$('button').click(function(){
+  var textFeedback = $(this).text();
+  $('.feedback').text($.trim(textFeedback));
+  $('.toggle').toggleClass('hide show');
+});
+
+$('.change-feedback').click(function(e){
+  e.preventDefault();
+  $('.toggle').toggleClass('hide show');
+});
+  
+</script>
+
