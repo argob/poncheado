@@ -1,0 +1,178 @@
+---
+layout: capataz
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="">Argentina</a></li>
+        <li><a href="">Mediciones</a></li>
+        <li><a href="">Paneles</a></li>
+        <li class="active">Sitios web</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+
+    <h1>Sitios web de la APN</h1>
+    <p>Listado de los <strong><span id="sites-number"></span> sitios web de la Administración Pública Nacional</strong>, plataformas usadas y estado de migración.</p>
+
+    <div>
+      <div class="table-responsive">
+        <table id="tables" class="table table-align-middle table-spaced">
+       </table>
+      </div>
+    </div>
+
+    <!-- <div class="text-muted">
+      <h5>Referencias</h5>
+      <small id="ref-0">
+        (0) Adaptación a la estética definida por la Subsecretaría de Gobierno Digital.<br>
+        &nbsp; &nbsp; &nbsp; <strong>Nivel 1</strong>: header y footer adaptado.<br>
+        &nbsp; &nbsp; &nbsp; <strong>Nivel 2</strong>: Estética adaptada a la guía.<br>
+        &nbsp; &nbsp; &nbsp; <strong>Nivel 3</strong>: Basado en ARstrap.
+      </small><br>
+      <small id="ref-1">(1) El sitio no es responsive pero ofrecen una segunda versión adaptada para teléfonos</small><br>
+      <small id="ref-2">(2) Al escribir la dirección sin www el servidor devuelve error 403 o 404.</small>
+    </div> -->
+
+  </div>
+</section>
+
+<script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+$(function(){
+
+  var isset = function() {
+
+    var a = arguments,
+      l = a.length,
+      i = 0,
+      undef;
+
+    if (l === 0)
+    {
+      throw new Error('Empty isset');
+    }
+
+    while (i !== l)
+    {
+      if (a[i] === undef || a[i] === null)
+      {
+        return false;
+      }
+      i++;
+    }
+    return true;
+  }
+
+  var getTd = function(text, title){
+    if(text == 'SI'){
+      return '<td title="'+ title +'" class="text-center success">Si</td>'
+
+    }else if(text == 'NO'){
+      return '<td title="'+ title +'" class="text-center danger">No</td>';
+
+    }else if(text == 'EN PROGRESO'){
+      return '<td title="'+ title +'" class="text-center warning">En progreso</td>';
+
+    }else if(text == 'Error'){
+      return '<td title="'+ title +'" class="text-center danger">Error</td>';
+
+    }else if(text == 'INDETERMINADO'){
+      return '<td title="'+ title +'" class="text-center text-muted">?</td>';
+
+    }else if(text == 'NO APLICA' || text == '-'){
+      return '<td title="'+ title +'" class="text-center"><small>-</small></td>';
+
+    }else{
+      return '<td title="'+ title +'" class="text-center">'+ text +'</td>';
+    }
+
+  }
+
+  var areas = {
+    list: [],
+    sites: []
+  };
+
+  $.getJSON('https://spreadsheets.google.com/feeds/list/1NcDCl9_hGJNGyzQDPx28MGRoE4EFM8Xo6S9taTiq-oc/1/public/values?alt=json', function (data) {
+    console.log(data.feed.entry);
+
+    $('#sites-number').text(data.feed.entry.length);
+
+    $.each(data.feed.entry, function(index, row){
+
+      if( areas.list.indexOf( row.gsx$area.$t ) == -1 ){
+        areas.list.push( row.gsx$area.$t )
+        areas.sites[ areas.list.length - 1 ] = [ row ];
+      }else{
+        var area = areas.list.indexOf( row.gsx$area.$t );
+        areas.sites[ area ].push( row );
+      }
+    });
+
+    console.log(areas)
+
+    renderTable(data.feed.entry);
+  });
+
+  window.renderTable = function(sites){
+    var tables = $('#tables');
+
+    $.each( areas.list, function( key, area ) {
+
+      var html = '<thead> <tr><th colspan="7" class="h5 p-t-4">'+ area +'</th></tr> <tr> <th>Dominio</th> <th class="text-center">Migrado</th> <th title="¿Está publicado o redirije a otro sitio?" class="text-center">Publicado / Redirect</th> <th title="¿Redirije a www?" class="text-center">Www</th> <th title="¿Tiene integrado SSL?" class="text-center">Ssl</th> <th title="¿Redirije a https?" class="text-center">Https</th> <th title="¿Qué plataforma utiliza?" class="text-center">Plataforma</th> </tr> </thead> <tbody>';
+
+      areas.sites[key].sort(function(a, b){
+        return a.gsx$jerarquia.$t - b.gsx$jerarquia.$t
+      });
+         
+      $.each( areas.sites[key], function( key, item ) {
+
+        html += '<tr>';
+        html += ' <td><a href="http://'+ item.gsx$dominio.$t +'" target="_blank">'+ item.gsx$dominio.$t.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '') +'</a><br><small>'+ item.gsx$subarea.$t +'</small></td>';
+
+        html += getTd(item.gsx$migrada.$t, '¿Está migrado?');
+
+        if(item.gsx$redirect3xx.$t != ''){
+          var redirect = item.gsx$redirect3xx.$t.replace(/https?:\/\/(www\.)?/, '').substring(0, 25);
+          html += ' <td class="text-center success"><a href="http://'+ item.gsx$redirect3xx.$t +'" target="_blank">'+ redirect + '...</a></td>';
+
+        }else{
+          html += getTd(item.gsx$publicada.$t, '¿Está publicado o redirije a otro sitio?');
+        }
+
+
+        if( item.gsx$migrada.$t != 'SI' && item.gsx$publicada.$t != 'NO' ){
+
+          html += getTd(item.gsx$redirectwww.$t, '¿Redirije a www?');
+          html += getTd(item.gsx$ssl.$t, '¿Tiene integrado SSL?');
+          html += getTd(item.gsx$redirecthttps.$t, '¿Redirije a https?');
+          html += getTd(item.gsx$plataforma.$t, '¿Qué plataforma utiliza?');
+
+        }else{
+          html += getTd('-', '¿Redirije a www?');
+          html += getTd('-', '¿Tiene integrado SSL?');
+          html += getTd('-', '¿Redirije a https?');
+          html += getTd('-', '¿Qué plataforma utiliza?');
+        }
+
+        html += '</tr>';
+         
+      });
+
+      html += '</tbody>';
+      tables.append(html);
+    });
+  }
+});
+
+</script>
