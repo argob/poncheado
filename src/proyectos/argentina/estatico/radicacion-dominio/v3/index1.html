@@ -1,0 +1,122 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="">Argentina</a></li>
+    <li class="active"> Consultar dónde tenés que radicar un vehículo automotor</li>
+  </ol>
+
+  <section>
+    <article class="content_format row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Consultar dónde tenés que radicar un vehículo automotor </h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-6" %}
+        </div>
+
+        <hr>
+
+        <p>Si estás por comprar un automóvil u otro vehículo automotor, necesitás primero consultar cuál es el Registro Automotor en el que está radicado, y luego consultar dónde lo tenés que radicar según tu domicilio.</p>
+        <p>Si todavía no lo hiciste, <a href="">consultá dónde está radicado ahora</a>.</p>
+
+        <hr>
+
+        <form action="">
+
+          <div class="form-group">
+            <label class="control-label">Patente del vehículo</label>
+            <input class="form-control" type="text" name="dni_number" value="">
+          </div>
+
+            <div class="form-group">
+              <label>Tipo de vehículo</label>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="radio m-l-1">
+                      <input type="radio" name="tipo" value="automotor" data-toogle-collapse="#collapse-automotor"><p>Automotor</p>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="radio m-l-1">
+                      <input type="radio" name="tipo" value="motovehiculo"><p>Motovehículo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="m-l-1">
+                <div class="collapse" id="collapse-automotor" aria-expanded="true">
+                  <label for="input-1">CUIT de la cooperativa</label>
+                  <input id="input-1" class="form-control" type="text" placeholder="">
+                </div>
+              </div>  
+            </div>          
+
+            <label>Tipo de vehículo</label>
+            <p><strong>Automotor</strong></p>
+
+            <label>Provincia</label>
+            <p><strong>Buenos Aires</strong></p>
+
+            <label>Departamento (partido)</label>
+            <p><strong>San Martín</strong></p>
+          
+
+            <label>Localidad</label>
+            <p><strong>Villa Ballester</strong></p>
+
+            <label>Calle o barrio</label>
+            <p><strong>San Lorenzo</strong></p>
+
+          <div class="text-center">
+              <a href="resultado-error.html" class="btn btn-link btn-lg">Anterior</a>
+              <a href="resultado-error.html" class="btn btn-success btn-lg">Siguiente</a>
+          </div>
+
+          <div class="text-center">
+              <a href="resultado-error.html" class="btn btn-success btn-block btn-lg">Siguiente</a>
+          </div>
+
+          <script>
+            $('[data-toogle-collapse]').each(function(key,item){
+              var value = $(item).val();
+              var target = $(item).data('toogle-collapse');
+              $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                if($(this).val() == value){
+                  $(target).collapse('show');
+                }else{
+                  $(target).collapse('hide');
+                }
+              });
+            });
+          </script>          
+
+        </form>
+
+        <hr>     
+        
+        <div class="alert alert-warning">
+          <p>Si no encontrás tu domicilio o la consulta te muestra un error, por favor primero revisá que los datos sean correctos, y comunicáte con la DNRPA para que asesoremos <strong>antes de hacer la transferencia bancaria</strong>.</p>
+        </div>
+
+        <h3>Datos de contacto de DNRPA</h3>
+
+        <label>Teléfono</label>
+        <p class="lead"><a href="tel:0800-122-2227">0800-122-2227</a> (de 07:00hs a 16.00)</p>
+
+        <label>Correo electrónico</label>
+        <p class="lead"><a href="mailto:asesoramiento@dnrpa.gob.ar">asesoramiento@dnrpa.gob.ar</a></p>
+
+
+        <hr class="m-t-4">
+        <p class="text-muted text-muted">La información de las consultas es proporcionada por la DNRPA</p>
+
+      </div>
+
+    </article>
+  </section>
+
+
+</div>
