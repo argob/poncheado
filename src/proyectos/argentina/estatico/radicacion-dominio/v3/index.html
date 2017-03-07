@@ -1,0 +1,155 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="">Argentina</a></li>
+    <li class="active"> Consultar dónde tenés que radicar un vehículo automotor</li>
+  </ol>
+
+  <section>
+    <article class="content_format row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Consultar dónde tenés que radicar un vehículo automotor </h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-6" %}
+        </div>
+
+        <hr>
+
+        <p>Si estás por comprar un automóvil u otro vehículo automotor, necesitás primero consultar cuál es el Registro Automotor en el que está radicado, y luego consultar dónde lo tenés que radicar según tu domicilio.</p>
+        <p>Si todavía no lo hiciste, <a href="">consultá dónde está radicado ahora</a>.</p>
+
+        <hr>
+
+        <form action="">
+
+          <div id="content-items">
+            <div class="form-group hide">
+              <label>Tipo de vehículo</label>
+              <p><strong>Automotor</strong></p>
+            </div>  
+            <div class="form-group hide">
+              <label>Provincia</label>
+              <p><strong>Buenos Aires</strong></p>
+            </div>  
+            <div class="form-group hide">
+              <label>Departamento (partido)</label>
+              <p><strong>San Martín</strong></p>
+            </div>  
+            <div class="form-group hide">
+              <label>Localidad</label>
+              <p><strong>Villa Ballester</strong></p>
+            </div>  
+            <div class="form-group hide">
+              <label>Calle o barrio</label>
+              <p><strong>San Lorenzo</strong></p>
+            </div>   
+          </div>          
+
+          <div id="content-items-select">
+            <div class="form-group hide">
+              <label>Tipo de vehículo</label>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="radio m-l-2">
+                      <input type="radio" name="tipo" value="automotor">Automotor
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="radio m-l-2">
+                      <input type="radio" name="tipo" value="motovehiculo">Motovehículo
+                  </div>
+                </div>
+              </div>
+            </div>               
+            <div class="form-group hide">
+              <label>Provincia</label>
+              <select class="form-control chosen-select" data-placeholder="Elegí una opción">
+                <option value="0">Seleccionar</option>
+                <option value="1">CORDOBA </option>
+                <option value="2">SALTA</option>
+              </select>
+            </div> 
+            <div class="form-group hide">
+              <label>Departamento (partido)</label>
+              <select class="form-control chosen-select" data-placeholder="Elegí una opción">
+                <option value="0">Seleccionar</option>
+                <option value="1">San Martín </option>
+                <option value="2">La Matanza</option>
+              </select>
+            </div>
+            <div class="form-group hide">
+              <label>Localidad</label>
+              <select class="form-control chosen-select" data-placeholder="Elegí una opción">
+                <option value="0">Seleccionar</option>
+                <option value="1">Villa Ballester </option>
+              </select>
+            </div>    
+            <div class="form-group hide">
+              <label>Calle o barrio</label>
+              <select class="form-control chosen-select" data-placeholder="Elegí una opción">
+                <option value="0">Seleccionar</option>
+                <option value="1">San Lorenzo </option>
+                <option value="1">Vuelta Obligado </option>
+              </select>
+            </div> 
+            <div class="form-group hide">
+              <label>Altura</label>
+              <input class="form-control" type="text" name="altura" value="">
+            </div> 
+          </div>                                                                
+
+
+
+         
+
+          <div class="text-center">
+              <a href="#" class="btn btn-link btn-lg hide">Anterior</a>
+              <a href="#" id="loadItem" class="btn btn-success btn-block btn-lg">Siguiente</a>
+          </div>
+
+          <script>
+            $(function () {
+                $("#content-items-select .form-group.hide:lt(1)").removeClass("hide");
+                $("#loadItem").on('click', function (e) {
+                    e.preventDefault();
+                    $(this).removeClass("btn-block").prev().removeClass("hide");
+                    $("#content-items .form-group.hide:lt(1)").removeClass("hide");
+                    $("#content-items-select .form-group").not(".hide").hide();
+                    $("#content-items-select .form-group.hide:lt(1)").removeClass("hide");
+                });
+                $(".chosen-select").chosen({width: '100%'});
+            });
+          </script>     
+
+        </form>
+
+        <hr>     
+        
+        <div class="alert alert-warning">
+          <p>Si no encontrás tu domicilio o la consulta te muestra un error, por favor primero revisá que los datos sean correctos, y comunicáte con la DNRPA para que asesoremos <strong>antes de hacer la transferencia bancaria</strong>.</p>
+        </div>
+
+        <h3>Datos de contacto de DNRPA</h3>
+
+        <label>Teléfono</label>
+        <p class="lead"><a href="tel:0800-122-2227">0800-122-2227</a> (de 07:00hs a 16.00)</p>
+
+        <label>Correo electrónico</label>
+        <p class="lead"><a href="mailto:asesoramiento@dnrpa.gob.ar">asesoramiento@dnrpa.gob.ar</a></p>
+
+
+        <hr class="m-t-4">
+        <p class="text-muted text-muted">La información de las consultas es proporcionada por la DNRPA</p>
+
+      </div>
+
+    </article>
+  </section>
+
+
+</div>
