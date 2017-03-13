@@ -1,0 +1,157 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Buscá Cursos con Inscripción Abierta</h3>
+    <div id="cursos">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th>Curso</th>
+            <th><a class="sort" data-sort="inicio">Inicio <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="fin">Fin <span class="caret"></span></a></th>
+            <th style="width: 135px;"><a class="sort" data-sort="modalidad">Modalidad <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div data-render="modales"></div> 
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1S3qvKN0LtqLu4O9eq55tl5TXvYYl_2ZMJxGLPesA18w/1/public/values?alt=json', function (data) {
+        window.cursos = data.feed.entry;
+        showCursos();
+        console.log(data);
+    });
+
+    window.showCursos = function(){
+        var showData = $('#show-data');
+        var showModal = $('[data-render=modales]');
+
+        var modal = '';
+        var html = '';
+
+
+        $.each( cursos, function( key, item ) {
+
+            var fechaInicio = item.gsx$fechainicio.$t;
+            var fechaFin = item.gsx$fechafin.$t;
+            var descripcion = item.gsx$descripcion.$t;
+
+            if(fechaInicio == '') {
+                fechaInicio = "Sin definir";
+            }    
+            if(fechaFin == '') {
+                fechaFin = "Sin definir";
+            }   
+            if(descripcion == '') {
+                descripcion = "Sin descripción";
+            }     
+
+            var preinscripcion = '';
+
+            if(item.gsx$preinscripcion.$t != '') {
+              preinscripcion = '<dt>Preinscripcion</dt><dd><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$preinscripcion.$t + '"> Ir</a></dd>';
+            }            
+
+          
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6 class="curso">'+ item.gsx$titulo.$t + '</h6><p class="margin-0">'+ item.gsx$programa.$t + '</p><p class="margin-0"><small>' + 'Duración: ' + item.gsx$duracion.$t + '</small></p><p><small>' + 'Título requerido: ' + item.gsx$titulorequerido.$t + '</small></p><p class="margin-0"><a href="#curso-'+ item.gsx$id.$t + '" class="btn btn-primary btn-sm" data-toggle="modal">Ver más </a></p></td>';
+            html += ' <td class="inicio">'+ fechaInicio + '</td>';
+            html += ' <td class="fin">'+ fechaFin + '</td>';
+            html += ' <td class="modalidad">'+ item.gsx$modalidad.$t + '</td>';
+            html += '</tr>';
+
+            modal += '<div id="curso-'+ item.gsx$id.$t + '" class="modal fade" tabindex="-1" role="dialog">';
+            modal += '  <div class="modal-dialog modal-lg">';
+            modal += '    <div class="modal-content">';
+            modal += '      <div class="modal-header">';
+            modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
+            modal += '          <h4 class="modal-title">'+ item.gsx$titulo.$t + '</h4>';
+            modal += '      </div>';
+            modal += '      <div class="modal-body p-x-2">';
+            modal += '        <h5 class="m-t-2">Programa</h5><p>'+ item.gsx$programa.$t + '</p>';
+            modal += '        <h5 class="m-t-2">Fundamentación</h5><p>'+ item.gsx$fundamentacion.$t + '</p>';
+            modal += '        <h5 class="m-t-2">Contribución</h5><p>'+ item.gsx$contribucion.$t + '</p>';
+            modal += '        <h5 class="m-t-2">Perfil</h5><p>'+ item.gsx$perfil.$t + '</p>';
+            modal += '        <h5 class="m-t-2">Programa</h5><p>'+ item.gsx$programa.$t + '</p>';
+            modal += '        <h5 class="m-t-2">Descripción</h5><p>'+ descripcion + '</p>';
+            modal += '        <hr>';
+            modal += '        <dl class="dl-horizontal">';
+            modal += '          <dt>Inscripcion Inicio</dt><dd>'+ item.gsx$fechainscripcioninicio.$t + '</dd>';
+            modal += '          <dt>Inscripcion Fin</dt><dd>'+ item.gsx$fechainscripcionfin.$t + '</dd>';
+            modal += '          <dt>Institucion Madre</dt><dd>'+ item.gsx$institucionmadre.$t + '</dd>';
+            modal += '          <dt>Titulo requerido</dt><dd>'+ item.gsx$titulorequerido.$t + '</dd>';
+            modal += '          '+ preinscripcion + '';
+            modal += '          <dt>Código</dt><dd>'+ item.gsx$codigo.$t + '</dd>';
+            modal += '          <dt>Créditos</dt><dd>'+ item.gsx$creditos.$t + '</dd>';
+            modal += '          <dt>Email</dt><dd><a href="mailto:'+ item.gsx$email.$t + '" target="_blank">'+ item.gsx$email.$t + '</a></dd>';
+            modal += '          <dt>Docente</dt><dd>'+ item.gsx$docente.$t + '</dd>';
+            modal += '        </dl>';
+            modal += '      </div>';
+            modal += '    </div>';
+            modal += '  </div>';
+            modal += '</div>';            
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+        showModal.empty();
+        showModal.append(modal); 
+
+        var listOptions = {
+          valueNames: [ 'curso', 'inicio', 'fin', 'modalidad' ], 
+          fuzzySearch: {
+            searchClass: "search",
+            location: 0,
+            distance: 100,
+            threshold: 0.4,
+            multiSearch: true
+          }   
+        };
+        var cursosList = new List('cursos', listOptions);
+    }
+
+
+});
+})(jQuery);
+
+</script>
+

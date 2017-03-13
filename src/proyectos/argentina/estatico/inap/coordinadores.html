@@ -1,0 +1,106 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Buscá Coordinadores de Capacitación</h3>
+    <div id="coordinador">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th>Coordinador</th>
+            <th><a class="sort" data-sort="institucion">Institucion <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="cargo">Cargo <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="nombramiento">Nombramiento <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1S3qvKN0LtqLu4O9eq55tl5TXvYYl_2ZMJxGLPesA18w/3/public/values?alt=json', function (data) {
+        window.coordinador = data.feed.entry;
+        showCoordinador();
+        console.log(data);
+    });
+
+    window.showCoordinador = function(){
+        var showData = $('#show-data');
+        var html = '';
+
+
+        $.each( coordinador, function( key, item ) {
+
+            var nombramiento = item.gsx$nombramiento.$t;
+
+            if(nombramiento == 'NULL') {
+                nombramiento = "Sin definir";
+            }  
+
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6 class="nombre">'+ item.gsx$nombre.$t + '</h6><p class="margin-0"><small>' + 'Email: <a href="mailto:'+ item.gsx$email.$t + '" target="_blank">'+ item.gsx$email.$t + '</a></small></p class="margin-0"><p class="margin-0"><small>' + 'Dirección: ' + item.gsx$direccion.$t + '</small></p><p class="margin-0"><small>' + 'Teléfono: ' + item.gsx$telefono.$t + '</small></p></td>';
+            html += ' <td class="institucion">'+ item.gsx$institucion.$t + '</td>';
+            html += ' <td class="cargo">'+ item.gsx$cargo.$t + '</td>';
+            html += ' <td class="nombramiento">'+ nombramiento + '</td>';
+            html += '</tr>';
+
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'nombre', 'institucion', 'cargo', 'nombramiento' ], 
+          fuzzySearch: {
+            searchClass: "search",
+            location: 0,
+            distance: 100,
+            threshold: 0.4,
+            multiSearch: true
+          }          
+        };
+        var coordinadorList = new List('coordinador', listOptions);
+    }
+
+
+});
+})(jQuery);
+
+</script>
+
