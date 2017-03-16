@@ -103,7 +103,7 @@ $(function(){
     sites: []
   };
 
-  $.getJSON('https://spreadsheets.google.com/feeds/list/1NcDCl9_hGJNGyzQDPx28MGRoE4EFM8Xo6S9taTiq-oc/1/public/values?alt=json', function (data) {
+  $.getJSON('https://spreadsheets.google.com/feeds/list/1d8hgf8YS1VXjGrk17R1Vn2VjNud8DOkldMP8epHjgLc/1/public/values?alt=json', function (data) {
     console.log(data.feed.entry);
 
     $('#sites-number').text(data.feed.entry.length);
@@ -129,7 +129,7 @@ $(function(){
 
     $.each( areas.list, function( key, area ) {
 
-      var html = '<thead> <tr><th colspan="7" class="h5 p-t-4">'+ area +'</th></tr> <tr> <th>Dominio</th> <th class="text-center">Migrado</th> <th title="¿Está publicado o redirije a otro sitio?" class="text-center">Publicado / Redirect</th> <th title="¿Redirije a www?" class="text-center">Www</th> <th title="¿Tiene integrado SSL?" class="text-center">Ssl</th> <th title="¿Redirije a https?" class="text-center">Https</th> <th title="¿Qué plataforma utiliza?" class="text-center">Plataforma</th> </tr> </thead> <tbody>';
+      var html = '<thead> <tr><th colspan="7" class="h5 p-t-4">'+ area +'</th></tr> <tr> <th>Dominio</th> <th class="text-center">Migrado</th> <th title="¿Está publicado o redirije a otro sitio?" class="text-center">Publicado / Redirect</th> <th title="¿Redirije a www?" class="text-center">Www</th> <th title="¿Tiene integrado SSL?" class="text-center">Ssl</th> <th title="¿Redirije a https?" class="text-center">Https</th> </tr> </thead> <tbody>';
 
       areas.sites[key].sort(function(a, b){
         return a.gsx$jerarquia.$t - b.gsx$jerarquia.$t
@@ -143,7 +143,7 @@ $(function(){
         html += getTd(item.gsx$migrada.$t, '¿Está migrado?');
 
         if(item.gsx$redirect3xx.$t != ''){
-          var redirect = item.gsx$redirect3xx.$t.replace(/https?:\/\/(www\.)?/, '').substring(0, 25);
+          var redirect = item.gsx$redirect3xx.$t.replace(/https?:\/\/(www\.)?(argentina\.gob\.ar)?/i, '').substring(0, 25);
           html += ' <td class="text-center success"><a href="http://'+ item.gsx$redirect3xx.$t +'" target="_blank">'+ redirect + '...</a></td>';
 
         }else{
@@ -151,18 +151,18 @@ $(function(){
         }
 
 
-        if( item.gsx$migrada.$t != 'SI' && item.gsx$publicada.$t != 'NO' ){
+        if( item.gsx$migrada.$t != 'SI' && item.gsx$publicada.$t != 'NO' && item.gsx$redirect3xx.$t == '' ){
 
           html += getTd(item.gsx$redirectwww.$t, '¿Redirije a www?');
           html += getTd(item.gsx$ssl.$t, '¿Tiene integrado SSL?');
           html += getTd(item.gsx$redirecthttps.$t, '¿Redirije a https?');
-          html += getTd(item.gsx$plataforma.$t, '¿Qué plataforma utiliza?');
+          // html += getTd(item.gsx$plataforma.$t, '¿Qué plataforma utiliza?');
 
         }else{
           html += getTd('-', '¿Redirije a www?');
           html += getTd('-', '¿Tiene integrado SSL?');
           html += getTd('-', '¿Redirije a https?');
-          html += getTd('-', '¿Qué plataforma utiliza?');
+          // html += getTd('-', '¿Qué plataforma utiliza?');
         }
 
         html += '</tr>';
