@@ -1,0 +1,101 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Buscá Trámites y Servicios</h3>
+    <div id="tramites">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th class="titulo">Trámite</th>
+            <th><a class="sort" data-sort="resumen">Resumen <span class="caret"></span></a></th>
+            <th style="width: 135px;"><a class="sort" data-sort="categoria">Categoría/s <span class="caret"></span></a></th>
+            <th style="width: 135px;">Url</th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div data-render="modales"></div> 
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY/1/public/values?alt=json', function (data) {
+        window.tramites = data.feed.entry;
+        showTramites();
+        console.log(data);
+    });
+
+    window.showTramites = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( tramites, function( key, item ) {
+
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="resumen">'+ item.gsx$resumen.$t + '</td>';
+            html += ' <td class="categoria">'+ item.gsx$categorías.$t + '</td>';
+            html += ' <td><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'titulo', 'resumen', 'categoria' ], 
+          fuzzySearch: {
+            searchClass: "search",
+            location: 0,
+            distance: 100,
+            threshold: 0.4,
+            multiSearch: true
+          }  
+         };
+        var tramitesList = new List('tramites', listOptions);
+    }
+
+
+});
+})(jQuery);
+
+</script>
+
