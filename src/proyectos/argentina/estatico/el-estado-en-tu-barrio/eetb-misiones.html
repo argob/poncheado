@@ -10,7 +10,7 @@ layout: argentina
           <ol class="breadcrumb pull-left">
             <li><a href="">Inicio</a></li>
             <li><a href="">El Estado en tu Barrio</a></li>
-            <li class="active">Corrientes</li>
+            <li class="active">Misiones</li>
           </ol>
         </div>
       </div>
@@ -20,9 +20,9 @@ layout: argentina
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
-          <p><img src="img/presidencia.svg" style="width: 160px;"> </p>
+          <p><img src="img/presidencia.svg" style="width: 160px;"> <img src="img/02_Logo_PlanBelgrano-01b.svg" style="width: 160px;">  </p>
           <p><img src="img/El-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
-          <p>Te acercamos el Estado para ayudarte a hacer diferentes trámites y para que conozcas todos los servicios a los que pueden acceder vos y tu familia.</p>
+          <p>e acercamos el Estado para que vos y tu familia puedan hacer los trámites cerca de sus casas y conozcan los servicios a los que pueden acceder de una manera simple y rápida.</p>
         </div>
       </div>
     </div>
@@ -36,9 +36,6 @@ layout: argentina
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <h2 class="text-center">En <span data-render="mes"></span> estamos en estos lugares</h2>
-              <p>Mirá donde estuvimos en todo el país.</p>
-              <a href="eetb-donde-estuvimos.html" class="btn btn-primary btn-success btn-lg">Donde estuvimos</a> 
-          </div>
         <div id="map" style="height: 400px;"></div>
       </div>
     </div>
@@ -55,8 +52,8 @@ layout: argentina
         <div class="container lugares-mensaje hidden">
           <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center m-y-2">
-              <h2>Por el momento no estamos en este lugar</h2>
-              <p>Registrate para enterarte cuando vamos a estar cerca tuyo.</p>
+              <h2>Por el momento no estamos en Misiones</h2>
+              <p>Registrate para enterarte cuándo vamos a estar en tu barrio.</p>
               <div class="m-t-1 text-center">
                   <a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" class="btn btn-primary btn-success btn-lg">Registrate</a> 
               </div>                
@@ -64,9 +61,9 @@ layout: argentina
           </div>
         </div>
         <div class="col-md-12"> 
-          <p class="text-center">Mirá donde estuvimos en todo el país.</p>
+          <p class="text-center">Mirá Dónde estuvimos en todo el país.</p>
           <div class="m-t-1 text-center">
-              <a href="eetb-donde-estuvimos.html" class="btn btn-primary btn-success btn-lg">Donde estuvimos</a> 
+              <a href="eetb-donde-estuvimos.html" class="btn btn-primary btn-success btn-lg">Dónde estuvimos</a> 
           </div>
         </div>  
       </div>
@@ -122,7 +119,7 @@ layout: argentina
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio de Corrientes</h2>
+        <h2 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio en Misiones</h2>
       </div>
       <div class="col-md-4">
           <img src="../../../casarosada/img/casa-rosada-2.jpg" class="img-responsive img-rounded m-b-1">
@@ -140,10 +137,10 @@ layout: argentina
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-          <h2 class="text-center">Mirá los videos de El Estado en tu Barrio</h2>
+          <h2 class="text-center">Mirá de qué se trata el Estado en tu Barrio</h2>
             <div class="row">
               <div class="col-sm-4 col-sm-offset-4">
-                <a class="panel panel-default" href="#">
+                <a class="panel panel-default" target="_blank" href="https://www.youtube.com/playlist?list=PLry2W0bcBZ9wVhqAZJoYGBw2kKO4HL22A">
                   <div class="panel-body">
                     <div class="media">
                       <div class="media-left media-middle">
@@ -200,7 +197,7 @@ layout: argentina
 
     var templates = {
       barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
-      servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list list-unstyled">',
+      servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
     }
 
     var listado = [];
@@ -251,7 +248,7 @@ layout: argentina
           .replace(/{i}/gi, index);
 
           $.each(items, function(index, item){
-            html += '<li><span class="servicio">'+ item +'</span></li>';
+            html += '<li><span class="servicio">'+ item +'.</span></li>';
           });
 
           $('[data-render=servicios]').append( html + '</ul></div>' );
@@ -274,7 +271,7 @@ layout: argentina
     }
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/9/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/7/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -325,7 +322,7 @@ layout: argentina
     });
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/9/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/12/public/values?alt=json',
       data: 'json',
       success: function(response){
 
