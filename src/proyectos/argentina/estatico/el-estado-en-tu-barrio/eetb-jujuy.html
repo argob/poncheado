@@ -186,15 +186,6 @@ layout: argentina
 
   var initMap = function(){
 
-    // Setup map
-
-    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: mapCenter,
-      scrollwheel: false
-    });
-
     var templates = {
       barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
       servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
@@ -210,7 +201,26 @@ layout: argentina
 
         $('[data-render=barrios]').html('');
 
-        $.each(listado, function(index, item){
+        console.log( listado );
+
+        if( listado.length == 0 ){
+          $('.lugares-mensaje').removeClass('hidden');
+
+        }else{
+          $('.lugares-mapa').removeClass('hidden');
+
+          // Setup map
+
+          var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: mapCenter,
+            scrollwheel: false
+          });
+
+          var latlngbounds = new google.maps.LatLngBounds();
+
+          $.each(listado, function(index, item){
 
             var html = templates.barrio;
 
@@ -223,14 +233,31 @@ layout: argentina
 
             $('[data-render=barrios]').append( html );
 
-        });
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              map: map,
+              position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
+              title: item.lugar,
+              icon: {
+                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                size: new google.maps.Size(20, 20),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10)
+              }
+            });
 
-        if( $('[data-render=barrios] > div').length == 0 ){
-          $('.lugares-mensaje').removeClass('hidden');
-        }else{
-          $('.lugares-mapa').removeClass('hidden');
+            latlngbounds.extend( new google.maps.LatLng( parseFloat(item.lat), parseFloat(item.lng) ) );
+
+            markers[index].addListener('click', function() {
+              $('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
+            });
+
+          });
+
+          map.setCenter(latlngbounds.getCenter());
+          map.fitBounds(latlngbounds); 
+
         }
-
 
       },
       servicios: function( ){
@@ -275,8 +302,6 @@ layout: argentina
       data: 'json',
       success: function(response){
 
-        var latlngbounds = new google.maps.LatLngBounds();
-
         $.each(response.feed.entry, function(index, row){
 
           if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isAfter( moment() ) && moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isBefore( moment().add(30, 'days') ) ){
@@ -286,35 +311,13 @@ layout: argentina
               fin: row.gsx$fin.$t,
               hora: row.gsx$hora.$t,
               direccion: row.gsx$direccion.$t,
-              lugar: row.gsx$lugar.$t
-            });
-
-            var index = markers.length;
-            markers[index] = new google.maps.Marker({
-              map: map,
-              position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
-              title: row.gsx$lugar.$t,
-              icon: {
-                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
-                size: new google.maps.Size(20, 20),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(10, 10)
-              }
-            });
-
-            latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );
-
-            markers[index].addListener('click', function() {
-              $('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
-              // map.setCenter( markers[index].getPosition() );
-              // map.setZoom( 10 );
+              lugar: row.gsx$lugar.$t,
+              lat: row.gsx$latitud.$t,
+              lng: row.gsx$longitud.$t,
             });
           }
 
         });
-
-        map.setCenter(latlngbounds.getCenter());
-        map.fitBounds(latlngbounds); 
 
         render.barrios();
 
@@ -322,7 +325,7 @@ layout: argentina
     });
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/13/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/4/public/values?alt=json',
       data: 'json',
       success: function(response){
 
