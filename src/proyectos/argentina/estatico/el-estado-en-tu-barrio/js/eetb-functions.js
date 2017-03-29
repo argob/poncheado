@@ -1,5 +1,4 @@
-
-  $('[data-render=mes]').text( moment().format('MMMM') );
+  jQuery('[data-render=mes]').text( moment().format('MMMM') );
 
   var initMap = function(){
 
@@ -16,15 +15,15 @@
     var render = {
       barrios: function( ){
 
-        $('[data-render=barrios]').html('');
+        jQuery('[data-render=barrios]').html('');
 
         console.log( listado );
 
         if( listado.length == 0 ){
-          $('.lugares-mensaje').removeClass('hidden');
+          jQuery('.lugares-mensaje').removeClass('hidden');
 
         }else{
-          $('.lugares-mapa').removeClass('hidden');
+          jQuery('.lugares-mapa').removeClass('hidden');
 
           // Setup map
 
@@ -37,7 +36,7 @@
 
           var latlngbounds = new google.maps.LatLngBounds();
 
-          $.each(listado, function(index, item){
+          jQuery.each(listado, function(index, item){
 
             var html = templates.barrio;
 
@@ -48,7 +47,7 @@
             .replace(/{direccion}/gi, item.direccion)
             .replace(/{lugar}/gi, item.lugar);
 
-            $('[data-render=barrios]').append( html );
+            jQuery('[data-render=barrios]').append( html );
 
             var index = markers.length;
             markers[index] = new google.maps.Marker({
@@ -56,7 +55,7 @@
               position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
               title: item.lugar,
               icon: {
-                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                url: '/sites/default/files/marker.png',
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -66,7 +65,7 @@
             latlngbounds.extend( new google.maps.LatLng( parseFloat(item.lat), parseFloat(item.lng) ) );
 
             markers[index].addListener('click', function() {
-              $('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
+              jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
             });
 
           });
@@ -74,9 +73,9 @@
           map.setCenter(latlngbounds.getCenter());
           map.fitBounds(latlngbounds); 
 
-          $('body').on('click', '[data-render=barrios] > div', function(){
-            $('[data-render=barrios] > div').removeClass('bg-gray').eq( $(this).index() ).addClass('bg-gray');
-            map.setCenter( markers[$(this).index()].getPosition() );
+          jQuery('body').on('click', '[data-render=barrios] > div', function(){
+            jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( jQuery(this).index() ).addClass('bg-gray');
+            map.setCenter( markers[jQuery(this).index()].getPosition() );
             map.setZoom( 10 );
           });
 
@@ -85,11 +84,11 @@
       },
       servicios: function( ){
 
-        $('[data-render=servicios]').html('');
+        jQuery('[data-render=servicios]').html('');
 
         window.serviciosList = [];
 
-        $.each(listadoServicios, function(index, items){
+        jQuery.each(listadoServicios, function(index, items){
 
           var html = templates.servicios;
 
@@ -97,11 +96,11 @@
           .replace(/{categoria}/gi, categoriasServicios[index])
           .replace(/{i}/gi, index);
 
-          $.each(items, function(index, item){
+          jQuery.each(items, function(index, item){
             html += '<li><span class="servicio">'+ item +'.</span></li>';
           });
 
-          $('[data-render=servicios]').append( html + '</ul></div>' );
+          jQuery('[data-render=servicios]').append( html + '</ul></div>' );
 
           var listOptions = { 
             valueNames: [ 'servicio' ],
@@ -120,12 +119,12 @@
       }      
     }
 
-    $.ajax({
+    jQuery.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/'+ idProvincia +'/public/values?alt=json',
       data: 'json',
       success: function(response){
 
-        $.each(response.feed.entry, function(index, row){
+        jQuery.each(response.feed.entry, function(index, row){
 
           if( moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isValid() 
               && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isValid()
@@ -153,12 +152,12 @@
       }
     });
 
-    $.ajax({
+    jQuery.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/'+ idProvincia +'/public/values?alt=json',
       data: 'json',
       success: function(response){
 
-        $.each(response.feed.entry, function(index, row){
+        jQuery.each(response.feed.entry, function(index, row){
           if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
             categoriasServicios.push( row.gsx$categoria.$t )
             listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
@@ -172,16 +171,16 @@
     });
 
 
-    $('body').on('mouseover', '[data-render=barrios] > div', function(){
-      $('[data-render=barrios] > div').css('cursor', 'pointer');
+    jQuery('body').on('mouseover', '[data-render=barrios] > div', function(){
+      jQuery('[data-render=barrios] > div').css('cursor', 'pointer');
     });
 
-    $('#search').on('click', function(event){
+    jQuery('#search').on('click', function(event){
       buscar();
       event.preventDefault();
     });
 
-    $('form[role=search]').on('submit', function(event){
+    jQuery('form[role=search]').on('submit', function(event){
       buscar();
       event.preventDefault();
     });
@@ -189,21 +188,23 @@
 
 
     var buscar = function(){
-      var busqueda = $('.search').val()
-      $.each(serviciosList, function(index, item){
+      var busqueda = jQuery('.search').val()
+      jQuery.each(serviciosList, function(index, item){
         serviciosList[index].fuzzySearch( busqueda );
 
         if(serviciosList[index].matchingItems.length == 0){
-          $('#servicios-'+ index ).prev().addClass('hidden');
+          jQuery('#servicios-'+ index ).prev().addClass('hidden');
         }else{
-          $('#servicios-'+ index ).prev().removeClass('hidden');
+          jQuery('#servicios-'+ index ).prev().removeClass('hidden');
         }
-      })
+      });
+
+      dataLayer.push({
+        'event': 'UAtracking',
+        'ua-category': 'EETB',
+        'ua-action': 'Búsqueda',
+        'ua-label': busqueda
+      });
     }
 
-
   };
-
-
-
-
