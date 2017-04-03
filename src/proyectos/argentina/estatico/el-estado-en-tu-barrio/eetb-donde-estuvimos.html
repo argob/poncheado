@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('img/Imagen_EETB.jpg');">
+<section class="jumbotron" style="background-image: url('/sites/default/files/eetb_header_home.jpg');">
   <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -22,6 +22,7 @@ layout: argentina
         <div class="col-md-8 col-md-offset-2 text-center">
           <p><img src="/sites/default/files/presidencia.svg" style="width: 160px;"> </p>
           <p><img src="/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
+          <h1 class="sr-only">El estado en tu barrio - Dónde estuvimos</h1>
           <p>Te acercamos el Estado para que vos y tu familia puedan hacer los trámites cerca de sus casas y conozcan los servicios a los que pueden acceder de una manera simple y rápida.</p>
         </div>
       </div>
@@ -59,37 +60,21 @@ layout: argentina
     </div>
   </div>
 </section>
+
 <section class="bg-gray">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="text-center">Mirá de qué se trata el Estado en tu Barrio</h2>
-          <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-              <a class="panel panel-default" href="#">
-                <div class="panel-body">
-                  <div class="media">
-                    <div class="media-left media-middle">
-                      <i class="fa fa-video-camera fa-fw fa-3x text-secondary"></i>
-                    </div>
-                    <div class="media-body media-middle">
-                      <h3>Videos</h3>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>      
-      </div>
-    </div>
+  <div class="container text-center">
+    <h3>Mirá de qué se trata el Estado en tu Barrio</h3>
+    <a target="_blank" href="https://www.youtube.com/playlist?list=PLry2W0bcBZ9wVhqAZJoYGBw2kKO4HL22A" class="btn btn-primary btn-lg">
+      <i class="fa fa-video-camera fa-fw fa-2x" style="vertical-align: sub;"></i> &nbsp; 
+      Ver los videos
+    </a>
   </div>
 </section>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/es.js"></script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&region=AR&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap"></script>
 
 <script>
 
@@ -112,8 +97,8 @@ layout: argentina
     };
     data.load = function(provincia){
      
-      return $.ajax({
-        url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/'+ provincia +'/public/values?alt=json',
+      return jQuery.ajax({
+        url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ provincia +'/public/values?alt=json',
         dataType: 'json',
         success: function(response){
           data['loaded'].push(response.feed.entry);
@@ -130,15 +115,20 @@ layout: argentina
       toLoad.push( data.load(i) );
     }
 
-    $.when.apply($, toLoad).then(function(){
+    jQuery.when.apply(jQuery, toLoad).then(function(){
  
       var latlngbounds = new google.maps.LatLngBounds();
 
-        $.each(data.loaded, function(i, provincia){
+        jQuery.each(data.loaded, function(i, provincia){
 
-          $.each(provincia, function(index, row){
+          jQuery.each(provincia, function(index, row){
 
-            if( moment(row.gsx$fin.$t, 'DD-MM-AAAA').isBefore( moment() ) ){
+            if( moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isValid() 
+              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isValid()
+              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isBefore( moment() )
+              && row.gsx$latitud.$t != ''
+              && row.gsx$longitud.$t != ''
+               ){
 
               var index = markers.length;
               markers[index] = new google.maps.Marker({
@@ -146,7 +136,7 @@ layout: argentina
                 position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
                 title: row.gsx$lugar.$t,
                 icon: {
-                  url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                  url: '/sites/default/files/marker.png',
                   size: new google.maps.Size(20, 20),
                   origin: new google.maps.Point(0, 0),
                   anchor: new google.maps.Point(10, 10)
@@ -169,7 +159,8 @@ layout: argentina
         });
 
         map.setCenter(latlngbounds.getCenter());
-        map.fitBounds(latlngbounds); 
+        map.fitBounds(latlngbounds);
+          
  
     });
 
@@ -183,5 +174,3 @@ layout: argentina
   };
 
 </script>
-
-

@@ -71,12 +71,13 @@
           });
 
           map.setCenter(latlngbounds.getCenter());
-          map.fitBounds(latlngbounds); 
+          map.fitBounds(latlngbounds);
+          
 
           jQuery('body').on('click', '[data-render=barrios] > div', function(){
             jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( jQuery(this).index() ).addClass('bg-gray');
             map.setCenter( markers[jQuery(this).index()].getPosition() );
-            map.setZoom( 10 );
+            map.setZoom( 11 );
           });
 
         }
@@ -120,7 +121,7 @@
     }
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1uQHpsEICNl5SMBmsQZYse4dUo7DySYwGeBz9xh2NQC8/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -130,7 +131,10 @@
               && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isValid()
               && moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isBefore( moment().add(30, 'days') )
               && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isAfter( moment() ) 
+              && row.gsx$latitud.$t != ''
+              && row.gsx$longitud.$t != ''
             ){
+
 
             console.log();
 
@@ -153,7 +157,7 @@
     });
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1Ex6cZfAfaAqW7EZAuHMr9Vf6TbyRq2OaTDDfrK5Mn0I/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -201,8 +205,8 @@
 
       dataLayer.push({
         'event': 'UAtracking',
-        'ua-category': 'EETB',
-        'ua-action': 'Búsqueda',
+        'ua-category': 'Interacción',
+        'ua-action': 'INT_BUSCAR TRAMITES_EETB',
         'ua-label': busqueda
       });
     }
