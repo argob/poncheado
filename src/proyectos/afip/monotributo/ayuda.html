@@ -5,7 +5,7 @@ layout: afip_monotributo
 
 <section class="p-b-0">
   <div class="container">
-    <h2 class="h1 m-t-0">Ayuda sobre el monotributo</h2>
+    <h1 class="h1 m-t-0">Ayuda sobre el monotributo</h1>
     <p class="lead">En esta sección podrás encontrar información sobre temas relacionados al monotributo.</p>
   </div>
   <hr class="m-b-0">
@@ -16,14 +16,576 @@ layout: afip_monotributo
 <section>
   <div class="container">
     <div class="row">
-      <aside class="col-md-4">
+      <aside class="col-md-4c">
 
-        {% include afip/menu_ayuda.html active="inicio" %}
+        {% include afip/menu_ayuda.html active="ejemplo5" %}
 
       </aside>
-      <div class="col-md-8">
-        <h1 class="h2 m-b-1">¿Qué es el monotributo?</h1>
-        <p>Si trabajas por tu cuenta o tenés un emprendimiento, el monotributo te permite emitir facturas, simplificar el pago de impuestos, tener jubilación y obra social. Podés darte de alta en forma sencilla si cumplís con los requisitos de facturación y actividades.</p>
+      <div class="col-md-8 content_format">
+        <h2 class="h2 m-b-1">¿Qué es el monotributo?</h2>
+        <p>El monotributo es un sistema de régimen simplificado que unifica el componente impositivo (que depende de la facturación, superficie de locales y energía eléctrica consumida) y el componente previsional (aportes jubilatorios y obra social).</p>
+
+        <h3 class="h4">¿Qué ventajas obtengo como monotributista?</h3>
+        <h4 class="h5">Simplificación impositiva</h4>
+        <p>Con una cuota fija mensual cubrís el pago de tus obligaciones impositivas (ganancias e IVA) y de seguridad social (jubilación y obra social).</p>
+        <h4 class="h5">Múltiples canales de pago</h4>
+        <p>Podés pagar con transferencia electrónica, débito automático en cuenta o tarjeta de crédito, a través de cajero automático, entre otras opciones.</p>
+        <h4 class="h5">Incentivo al cumplimiento</h4>
+        <p>Si cumplís en tiempo y forma con el pago mensual durante un año calendario con débito automático o tarjeta de crédito, te reintegramos el importe del componente impositivo de un pago mensual.</p>
+
+         <h3 class="h4">¿Yo puedo ser monotributista?</h3>
+         <h4 class="h5">Podés ser monotributista si:</h4>
+         <ul>
+           <li>Vendés productos (cosas muebles) o prestás servicios.</li>
+           <li>Formás parte de una sucesión indivisa que continúa realizando la actividad de una persona física fallecida.</li>
+           <li>Integrás una cooperativa de trabajo.</li>
+           <li>Conformás una sociedad de hecho que tenga como máximo 3 socios.</li>
+         </ul>
+         <h4 class="h5">No podés ser monotributista si:</h4>
+         <ul>
+           <li>Sos integrante de una Sociedad Anónima, Sociedad de Responsabilidad Limitada, Sociedad Colectiva, etc.</li>
+           <li>Te desempeñás en la dirección, administración o conducción de esas sociedades, aun cuando puedas adherirte al Monotributo en función de otra actividad.</li>
+           <li>Realizás más de 3 actividades simultáneas o tenés más de 3 locales.</li>
+         </ul>
+         <h4 class="h5">¿Cuáles son las exigencias de la AFIP?</h4>
+         <ul>
+           <li>Si vendés productos tus ingresos brutos anuales no pueden superar los $700.000.</li>
+           <li>Si prestás servicios tus ingresos brutos anuales no pueden superar los $1.050.00.</li>
+           <li>Si pertenecés a alguna de las categorías desde la “I” en adelante, debés que tener un mínimo de empleados a cargo.</li>
+           <li>Si vendés productos, el precio máximo por unidad no puede superar los $2.500.</li>
+           <li>No tenés que haber realizado importaciones en los últimos 12 meses.</li>
+         </ul>
+
+         <h3 class="h4">Otros tipos de monotributo</h3>
+         <p>Si sos un trabajador independiente, tu actividad es la única fuente de ingresos y no tenés local o establecimiento (trabajás desde su casa), podés acceder al <a target="_blank" href="https://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1492">Régimen de Inclusión Social y Promoción del Trabajo Independiente</a>. Este régimen te permite pagar el 5% del monto total de las operaciones facturadas durante el mes anterior.</p>
+         <p>Si estás dado de alta en el Registro Nacional de Efectores de Desarrollo Local y Economía Social, existe el <a target="_blank" href="http://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1493">Monotributo Social</a>, habilitado por el Ministerio de Desarrollo Social de la Nación, donde debés realizar tu alta.</p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+         <h2 class="h2 m-b-1">Categorías de monotributo y costos</h2>
+
+         <h3 class="h4">¿Qué es la categoría de monotributo?</h3>
+         <p>La categoría de monotributo es un concepto que se te asigna en base al detalle de tus actividades, que se separan en dos grandes grupos: prestación de servicios y venta de cosas muebles (productos).</p>
+         <p>El valor de la cuota del monotributo depende de la categoría, y está conformado por:</p>
+         <ul>
+           <li>Una parte impositiva: el impuesto integrado</li>
+           <li>Un aporte jubilatorio: el componente previsional (SIPA)</li>
+           <li>Un aporte a la obra social</li>
+         </ul>
+
+         <h3 class="h4">¿Cómo se me asigna una categoría?</h3>
+         <p>La categoría te la asigna AFIP en base al detalle de tus actividades:</p>
+         <ul>
+          <li>El tipo de actividad que desarrollás: venta de productos o prestación de servicios.</li>
+          <li>
+          Si la actividad se lleva a cabo en un local o establecimiento en particular y, en caso de ser así:
+            <ul>
+            <li>La superficie afectada.</li>
+            <li>El total anual de energía eléctrica consumida en kilowatts.</li>
+            <li>El monto a pagar por el alquiler anualmente.</li>
+            </ul>
+          </li>
+          <li>El ingreso bruto anual, que es un cálculo anual estimativo de los ingresos que se obtienen por el desarrollo de la actividad, incluyendo los gastos e inversiones que se realicen. </li> 
+         </ul>
+
+          <h3 class="h4">Categorías de monotributo</h3>
+          <p>Actualmente las categorías van de la “A” a la “H” para los prestadores de servicios y de la “A” a la “K” para quienes vendan de productos.</p>
+          <p>Las <a target="_blank" href="https://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1463">sociedades monotributistas</a> deberán inscribirse desde la categoría “D” en adelante.</p>
+          <p><a target="_blank" href="http://www.afip.gob.ar/monotributo/categorias.asp">Revisá las categorías</a>, el monto que se paga por cada componente y el importe total a abonar por cada una.</p>
+
+          <h3 class="h4">¿Cómo se paga el monotributo?</h3>
+          <p>El pago debe efectuarse hasta el día 20 de cada mes mediante alguna de estas opciones:</p>
+          <ul>
+            <li>Transferencia electrónica: se deberá generar un volante electrónico de pago –VEP- en el que se especificará la obligación a cancelar completando los datos correspondientes a CUIT, período, impuesto, concepto, subconcepto e importe. Luego se deberá realizar el pago a través de la banca electrónica que utilices.</li>
+            <li>Tarjeta de crédito o débito.</li>
+            <li>Débito automático en cuenta o en tarjeta de crédito: por este medio se puede acceder al beneficio del reintegro por cumplimiento.</li>
+            <li>Pago en cajero automático.</li>
+            <li>Cualquier otro medio de pago electrónico admitido por el BCRA.</li>
+          </ul>
+          <p>Importante: También se puede pagar en efectivo si la categoría es menor a D. Pero a partir de mayo de 2017 esta obligación alcanzará a la categoría D y desde noviembre, a las categorías A, B y C.</p>
+
+
+
+
+<hr>
+
+
+
+          <h2>Qué necesito hacer antes de darme de alta en el monotributo</h2>
+          <p>El primer paso es contar con un <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=136">CUIT, clave fiscal y datos biométricos</a> (escaneo del DNI, toma de foto, firma y huellas digitales). Esto se solicita en la <a target="_blank" href="http://www.afip.gob.ar/dependencias/">oficina de AFIP</a> que corresponda según el domicilio fiscal.</p>
+          <p>El domicilio fiscal es el del local o establecimiento, o el domicilio de residencia en caso que la actividad no se desarrolle en un lugar fijo.</p>
+          <p>Tenés que llevar:</p>
+          <ul>
+          <li>Original y fotocopia de tu DNI o de la documentación que acredite tu identidad.</li>
+          <li>
+          2 de las siguientes constancias del domicilio fiscal:
+          <ul>
+            <li>Original y fotocopia del certificado de domicilio expedido por autoridad policial.</li>
+            <li>Original y fotocopia del acta de constatación notarial.</li>
+            <li>Original y fotocopia de alguna factura de servicio público a nombre del contribuyente o responsable.</li>
+            <li>Original y fotocopia del título de propiedad o contrato de alquiler o de "leasing", del inmueble cuyo domicilio se denuncia.</li>
+            <li>Original y fotocopia del extracto de cuenta bancaria o del resumen de tarjeta de crédito, cuando el solicitante sea el titular de tales servicios.</li>
+            <li>Original y fotocopia de la habilitación municipal o autorización municipal equivalente, cuando la actividad del solicitante se ejecute en inmuebles que requieran de la misma.</li>
+          </ul>
+          </li>
+          </ul>
+
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Cómo me doy de alta en el monotributo</h2>
+          <p>Si ya tenés tu CUIT, clave fiscal y registraste tus datos biométricos, tenés que continuar el trámite ingresando con tu clave fiscal desde la <a target="_blank" href="http://www.monotributo.gob.ar/">página de inicio de este sitio</a>.</p>
+          <p>El sitio te va a guiar en el caso de que tengas que completar un dato en otra plataforma de AFIP, para luego seguir los pasos del alta de monotributo de manera online.</p>
+
+          <ul>
+            <li><a target="_blank" href="********">Pasos previos al alta</a></li>
+            <li><a target="_blank" href="********">Pasos del alta de monotributo</a></li>
+            <li><a target="_blank" href="********">Tipo de monotributo</a></li>
+            <li><a target="_blank" href="********">Caracterización de actividades</a></li>
+            <li><a target="_blank" href="********">Aportes jubilatorios</a></li>
+            <li><a target="_blank" href="********">Obra social</a></li>
+            <li><a target="_blank" href="********">¿Qué tengo que hacer después de darme de alta?</a></li>
+          </ul>
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+          <h2 class="h2 m-b-1">Pasos previos al alta</h2>
+          <p>Una vez que ingreses al sitio, el mismo chequea que AFIP cuente con todos los datos necesarios y actualizados para que puedas iniciar el alta. Los pasos previos más importantes son:</p>
+          <ul>
+          <li>
+            <p>Registrar y aceptar los datos biométricos: El registro lo hacés en una oficina de AFIP, pero luego tenés que entrar al sistema “Aceptación de datos biométricos” para verificar que sean correctos y aceptarlos.</p>
+            <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=136">Cómo acepto mis datos biométricos.</a>
+          </li>
+          <li>
+            <p>Declarar tu Domicilio Fiscal Electrónico: Tenés que ingresar al sistema “e-Ventanilla” para indicar un correo electrónico a donde te enviaremos comunicaciones oficiales.</p>
+            <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=81">Cómo declaro mi DFE en e-Ventanilla.</a>
+          </li>
+          <li>
+            <p>Declarar tus actividades económicas: Tenés que indicar la o las actividades que vas a realizar y, si tenés más de 3, tenés que dar de baja las que ya no realices. En el caso de que tengas una actividad no compatible con monotributo, el sitio te lo va a comunicar.</p>
+            <a target="_blank" href="https://servicios1.afip.gob.ar/genericos/nomencladorActividades/index.aspx">Listado y buscador de actividades.</a>
+          </li>
+          </ul>
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Pasos del alta de monotributo</h2>
+          <p>Una vez que todos tus datos estén completos y actualizados, podés iniciar el alta de tu monotributo, donde tenés que completar los datos requeridos en los siguientes pasos:</p>
+          <ul>
+            <li><a target="_blank" href="********">Tipo de monotributo</a></li>
+            <li><a target="_blank" href="********">Caracterización de actividades</a></li>
+            <li><a target="_blank" href="********">Aportes jubilatorios</a></li>
+            <li><a target="_blank" href="********">Obra social</a></li>
+          </ul>
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Tipo de monotributo</h2>
+          <p>El tipo de monotributo depende de cómo vas a trabajar:</p>
+          <ul>
+          <li>
+            <p>Como trabajador independiente</p>
+            <p>La opción más común. Es para cuando vendés productos o prestás servicios por tu cuenta, con o sin empleados.</p>
+          </li>
+          <li>
+            <p>Como integrante de una sociedad monotributista</p>
+            <p>Podés formar una sociedad de hasta 3 socios quienes deben ser todos monotributistas. También podés dar de alta una sociedad como monotributista en este mismo sitio, para lo que primero uno de los socios debe acercarse a una oficina de AFIP para <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiaDeTramites/VerGuia.aspx?tr=19">declarar su vínculo con la sociedad</a>.</p>
+            <p><a target="_blank" href="https://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1463">Más información sobre sociedades monotributistas.</a></p>
+          </li>
+          <li>
+            <p>Si sos miembro de una cooperativa y tus ingresos brutos anuales no superan los $72.000, no pagás el componente impositivo de monotributo (sí jubilación y obra social).</p>
+            <p><a target="_blank" href="http://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1495">Más información sobre cooperativas y monotributistas.</a></p>
+          </li>
+          <li>
+            <p>Como trabajador independiente promovido</p>
+            <p>Si realizás una única actividad y <a target="_blank" href="http://www.afip.gob.ar/genericos/guiavirtual/consultas_detalle.aspx?id=11902689">cumplís con ciertos requisitos</a>, no pagás el componente impositivo y tenés la opción de pagar la obra social o no.</p>
+            <p><a target="_blank" href="http://www.afip.gob.ar/genericos/guiavirtual/directorio_subcategoria.aspx?id_nivel1=1395&id_nivel2=1492">Más información sobre trabajadores independientes promovidos.</a></p>
+          </li>
+          </ul>
+
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Caracterización de actividades</h2>
+          <ul>
+          <li>Elegí la fecha en la que vas a empezar a trabajar como monotributista, la o las actividades que vas a realizar y completá el detalle de cada una respecto a facturación y, si tenés local, sus datos.</li>
+          <li>Tené en cuenta que sólo vas a poder elegir actividades que tengas previamente declaradas en el Sistema Registral. En el caso que tengas algún conflicto, por ejemplo actividades no compatibles con monotributo, el sitio te va a avisar antes de dejarte iniciar el alta.</li>
+          <li>Si tenés dudas sobre qué actividad elegir, podés ver el <a target="_blank" href="https://servicios1.afip.gob.ar/genericos/nomencladorActividades/index.aspx">listado y buscador de actividades</a>.</li>
+          <li>Si tenés dudas sobre si ya tenés actividades registradas, podés <a target="_blank" href="https://seti.afip.gob.ar/padron-puc-constancia-internet/ConsultaActivEconomicaAction.do">hacer una consulta con tu CUIT</a>.</li>
+          </ul>
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Aportes jubilatorios</h2>
+          <p>Indicá si te corresponde y cómo pagar tu jubilación. Si ya estás pagándola indicá cómo, y si no elegí pagarla junto con el monotributo.</p>
+          <ul>
+          <li>
+            <p><b>Pagar aportes con monotributo</b></p>
+            <p>Si no trabajás en relación de dependencia o no estás pagando tu jubilación de ninguna forma, podés elegir incluirlo en la cuota de monotributo.</p>
+          </li>
+          <li>
+            <p><b>Soy empleado relación de dependencia</b></p>
+            <p>Tenés que indicar el CUIT de tu empleador y la fecha de inicio de cuando empezaste a trabajar.</p>
+            <p>Si elegís esto tampoco podés elegir obra social porque también te la tiene que proveer tu empleador.</p>
+          </li>
+          <li>
+            <p><b>Soy jubilado</b></p>
+            <ul>
+            <li>Si estás jubilado por la ley actual (Nº 24.241) tenés que pagar aportes jubilatorios.</li>
+            <li>Si estás jubilados por leyes anteriores (Nº 18.037 y Nº 18.038) no tenés que pagar aportes.</li>
+            <li>En ambos casos no pagás obra social dado que ya estás afiliado a PAMI.</li>
+            </ul>
+          </li>
+          <li>
+            <p><b>Aporto a cajas previsionales provinciales.</b></p>
+            <p>En este caso no tenés que pagar aportes jubilatorios ni obra social.</p>
+          </li>
+          </ul>
+
+
+
+
+<hr>
+
+
+
+          <h2 class="h2 m-b-1">Obra social</h2>
+          <p>Como monotributista tenés el derecho y la obligación de elegir y pagar tu obra social. Que puedas hacerlo o no depende de lo que hayas indicado en el paso anterior (aportes jubilatorios).</p>
+
+          <h3 class="h4">Unificar aportes con cónyuge</h3>
+          <p>Opcionalmente podés unificar aportes de obra social con tu cónyuge, siempre y cuando tengan la misma obra social. Necesitás el CUIT de la persona para poder buscarla.</p>
+
+          <h3 class="h4">Elegir obra social</h3>
+          <p>Elegí la obra social de tu preferencia, informándote previamente acerca de sus coberturas y afiliación con centros médicos cercanos a tu domicilio. También podés ver el <a target="_blank" href="http://www.sssalud.gov.ar/?page=listRnosc&tipo=3">listado de obras sociales de la Superintendencia de Servicios de Salud</a>.</p>
+          <p>Tené en cuenta que luego de darte de alta en el monotributo, también tenés que dirigirte a la obra social elegida para darte de alta en la misma.</p>
+          <p>Es importante que sepas que algunas obras sociales fueron informadas en situación como en situación de crisis. Lo que significa que tienen algún problema y que no aparecen en el listado de este paso para que las elijas, a menos que hayas elegido unificar aportes con tu cónyuge.</p>
+
+          <h3 class="h4">Agregar familiares</h3>
+          <p>Opcionalmente podés cubrir a familiares con tu obra social, pagando un adicional por cada uno. Necesitás el CUIL del familiar e indicar tu relación.</p>
+
+          <h3 class="h4">Declaración jurada de salud</h3>
+          <p>Tenés que completar y presentar la declaración jurada 300/97 en una oficina de ANSES. Hacelo lo antes posible para que la obra social te pueda cubrir los gastos médicos si llegás a tener un accidente.</p>
+          <p><a target="_blank" href="http://www.anses.gob.ar/oficina">Consultá el listado de oficinas de ANSES.</a></p>
+
+
+
+
+<hr>
+
+
+
+
+          <h2 class="h2 m-b-1">¿Qué tengo que hacer después de darme de alta?</h2>
+          <p>Una vez que te des de alta tenés que hacer algunas operaciones antes de comenzar a desarrollar tu actividad:</p>
+
+              <h3 class="h5">Darte de alta en la obra social elegida</h3>
+              <p>Si pagás una obra social con tu monotributo, tenés que acercarte a un centro de atención de la misma a darte de alta y/o hacer el trámite de derivación de aportes.</p>
+              <p><a target="_blank" href="http://www.sssalud.gov.ar/?page=monotributistas_acceder_cobertura">Consultá lo que tenés que llevar.</a></p>
+
+              <h3 class="h5">Presentar la declaración jurada de salud en ANSES</h3>
+              <p>Tenés que completar y presentar la declaración jurada 300/97 en una oficina de ANSES. Hacelo lo antes posible para que la obra social te pueda cubrir los gastos médicos si llegás a tener un accidente.</p>
+              <p><a target="_blank" href="http://www.anses.gob.ar/oficina"></a>Consultá el listado de oficinas de ANSES.</p>
+
+              <h3 class="h5">Habilitar medios de facturación</h3>
+              <p>El sitio te va a indicar si te falta algún dato para poder hacer facturas electrónicas o solicitar talonarios para pedir facturas en papel en una imprenta.</p>
+              <p>En ambos casos tenés que <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=135">declarar el domicilio de tu o tus puntos de venta</a>.</p>
+              <p>Para solicitar la impresión de facturas, notas de crédito, notas de débito, remitos, etcétera, antes de concurrir a la imprenta, deberás solicitar el <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=138">“Código de Autorización de Impresión” (CAI)</a>.</p>
+
+          <hr>
+          <p>Además periódicamente tenés que cumplir con ciertas obligaciones:</p>
+
+              <h3 class="h5">Pagar el monotributo</h3>
+              <p>Podés pagar hasta el día 20 de cada mes, generando un volante electrónico de pago (VEP) desde este mismo sitio.</p>
+              <p><a target="_blank" href="http://www.monotributo.gob.ar/ayuda/sitio/pagos">Más información sobre cómo pagar el monotributo.</a></p>
+
+              <h3 class="h5">Hacer la recategorización</h3>
+              <p>En el caso que hayan cambiado los datos de tu facturación o locales, tenés la obligación de informarlos ya que estos pueden llegar a modificar tu categoría de monotributo.</p>
+              <p>Esto lo podés hacer en enero, mayo y septiembre. En enero y mayo es opcional, pero en septiembre es obligatorio (aunque no haya cambiado ningún dato, igual debés pasar por este proceso).</p>
+              <p><a target="_blank" href="http://www.monotributo.gob.ar/ayuda/sitio/datos-monotributo">Más información sobre modificar datos para la recategorización.</a></p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">¿Qué puedo hacer en el sitio?</h2>
+          <ul>
+            <li><a target="_blank" href="********">Inicio</a></li>
+            <li><a target="_blank" href="********">Pagos</a></li>
+            <li><a target="_blank" href="********">Facturación</a></li>
+            <li><a target="_blank" href="********">Constancias</a></li>
+            <li><a target="_blank" href="********">Datos del monotributo</a></li>
+            <li><a target="_blank" href="********">Datos personales</a></li>
+          </ul>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">Inicio</h2>
+          <p>La página de inicio te brinda mensajes acerca de tus próximos vencimientos, te informa si tenés deudas, si estás en período de recategorización, si te falta algún dato para que puedas facturar o hacer operaciones como monotributista.</p>
+          <p>Si hay algo que quieras hacer y no encuentres en esta página, podés usar el menú de navegación para acceder a las diferentes secciones del sitio.</p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">Pagos</h2>
+          <p>En esta sección podés ver información y pagar tus deudas y cuotas de monotributo.</p>
+
+          <h3 class="h4">Estado de cuenta</h3>
+          <ol>
+            <li>El sitio te va a indicar tanto si tenés deuda o no.</li>
+            <li>Eligiendo “Pagar deuda” podés ver el detalle de tu deuda y pagar todos o algunos de los conceptos. Luego podés elegir el canal de pago para el cual generar el volante de pago (VEP) y generarlo.</li>
+            <li>Luego tenés que pagar usando el VEP, de manera online o acercandote a un centro de pago, dependiendo del canal que hayas elegido.</li>
+            <li>Eligiendo “Plan de pagos” podés <a target="_blank" href="http://www.afip.gob.ar/misfacilidades/">ver los planes de pago y moratorias vigentes</a> en el caso que necesites financiar tu deuda.</li>
+            <li>También podés ver si tenés saldo a favor en AFIP. En ese caso tenés que reimputar esos saldos a través del sistema <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=100">”Cuenta Corriente de Monotributistas y Autónomos”</a>.</li>
+          </ol>
+
+          <h3 class="h4">Pagar el monotributo</h3>
+          <ol>
+            <li>Podés ver la fecha de vencimiento de tu próxima cuota de monotributo, y la fecha en la que realizaste el último pago.</li>
+            <li>Eligiendo “Pagar mes actual” podés ver el monto a pagar, elegir el canal de pago para el cual generar el volante de pago (VEP) y generarlo.</li>
+            <li>Luego tenés que pagar usando el VEP, de manera online o acercandote a un centro de pago, dependiendo del canal que hayas elegido.</li>
+            <li>Si cumplís con tus pagos en tiempo y forma podés <a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiaDeTramites/VerGuia.aspx?tr=69">acceder a un reintegro por cumplimiento</a>.</li>
+          </ol>
+
+          <h3 class="h4">¿Cómo se pueden controlar los pagos?</h3>
+          <p>Podés verificar si tus pagos fueron registrados por AFIP,  si se aplicaron al período correspondiente y si tenés deudas y saldos a favor entrando al <a target="_blank" href="http://www.afip.gob.ar/monotributo/cuentaCorriente.asp">sistema de cuenta corriente de monotributistas y autónomos (CCMA).</a></p>
+          <p>En el sistema CCMA también podés ver tus deudas, capital e intereses, e imprimir volantes de pago.</p>
+
+
+
+
+<hr>
+
+
+
+
+          <h2 class="h2 m-b-1">Facturación</h2>
+          <p>En esta sección podés emitir facturas electrónicas, ver facturas emitidas y solicitar talonarios de facturación en papel.</p>
+
+          <h3 class="h4">Factura electrónica</h3>
+          <p>Tenés dos formas de emitir facturas electrónicas:</p>
+          <ul>
+            <li>
+              <p><b>Desde la web</b></p>
+              <p>Podés ingresar directo a la plataforma donde podés llenar los datos de la factura y emitirla desde tu computadora.</p>
+              <p><a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=163">Más información sobre la emisión de facturas electrónicas vía web.</a></p>
+            </li>
+            <li>
+              <p><b>Desde la aplicación móvil</b></p>
+              <p>Podés <a target="_blank" href="https://play.google.com/store/apps/details?id=ar.gob.afip.facturador">descargar la aplicación para celulares y tablets con Android</a>. Te va a pedir ingresar con tu clave fiscal.</p>
+              <p>Con esta aplicación vas a poder hacer facturas y guardar productos o servicios que factures habitualmente.</p>
+              <p><a target="_blank" href="http://www.afip.gob.ar/facturadorMovil/">Más información sobre la aplicación móvil.</a></p>
+
+            </li>
+          </ul>
+          <p>También podés ver tus facturas electrónicas emitidas (no incluye las facturas en papel).</p>
+          
+
+          <h3 class="h4">Talonarios de facturación en papel</h3>
+            <ol>
+              <li>Para pedir un talonarios de facturas en papel en una imprenta autorizada, tenés que generar un código de autorización de impresión –CAI-, eligiendo el tipo de factura, cantidad y punto de venta.</li>
+              <li>Eligiendo ¨Generar CAI¨ vas a ir a la plataforma donde podés generarlos y gestionar los que ya generaste.</li>
+              <li>Tenés que imprimir 2 copias del CAI, las tenés que firmar y presentarlas en la imprenta. Podés <a target="_blank" href="https://www.afip.gob.ar/genericos/imprentas/default_imprentas.asp">consultar si la imprenta está autorizada por AFIP con su CUIT</a>.</li>
+              <li>Tené en cuenta que los talonarios en papel tienen una fecha de vencimiento, y que para imprimir un nuevo talonario tenés que generar un nuevo CAI.</li>
+              <li><a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=138">Más información sobre cómo generar un CAI.</a></li>
+            </ol>
+
+          <h3 class="h4">¿Cómo tengo que facturar siendo monotributista?</h3>
+          <p>Tenés que emitir facturas tipo C, excepto para las facturas de exportación tipo E, remitos y tiques.</p>
+          <p>Si pertenecés a la categoría H en adelante –y desde el 1 de junio de 2017, a partir de la F- solamente podés hacer facturas electrónicas.</p>
+          <p>Si tenés una categoría inferior la factura electrónica es opcional.</p>
+          <p>Los comprobantes electrónicos posibles son:</p>
+          <ul>
+            <li>Facturas tipo C.</li>
+            <li>Notas de crédito y notas de débito clase C.</li>
+            <li>Recibos clase C.</li>
+          </ul>
+          <p>Quedan excluidos aquellos comprobantes clase C para operaciones con consumidores finales.</p>
+          <p>Recordá que tenés que tener declarados y autorizados tus puntos de venta. Podés acceder a la plataforma donde cambiar eso en esta sección.</p>
+          <p><a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=135">Más información sobre los puntos de venta.</a></p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">Constancias</h2>
+          <p>En esta sección podés acceder a todas tus constancias sin tener que cargar datos.</p>
+
+          <h3 class="h4">Constancia de CUIT</h3>
+          <p>Te sirve para presentarla al momento de realizar ciertos trámites, como por ejemplo en la imprenta si vas a imprimir un talonario. Una vez generada tiene una vigencia de 15 días.</p>
+
+          <h3 class="h4">Credencial de pago</h3>
+          <p>La credencial tiene tu Código Único de Revista –CUR- y te sirve si querés pagar el monotributo en efectivo en un centro de pago.</p>
+          <p>Tené en cuenta que a partir de noviembre de 2017 no se va a poder pagar más en efectivo.</p>
+
+          <h3 class="h4">Formulario de data fiscal</h3>
+          <p>Es un código QR que debés exhibir en tu local o sitio web. Sirve para que otras personas puedan ver tu situación tributaria.</p>
+          <p><a target="_blank" href="http://www.afip.gob.ar/f960NM/">Más información sobre data fiscal.</a></p>
+          <hr>
+          <p><i>Tené en cuenta que si por falta de pago, comprobantes, domicilio fiscal electrónico o recategorización, no vas a poder ver algunas de las constancias.</i></p>
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">Datos del monotributo</h2>
+
+          <p>En esta sección podés ver los datos que ingresaste durante el alta de monotributo.</p>
+          <p>En el caso que hayan cambiado los datos de tu facturación o locales, tenés que modificar los datos ya que estos pueden llegar a modificar tu categoría de monotributo.</p>
+          <p>Los datos sólo los podés modificar en enero, mayo y septiembre. En enero y mayo es opcional, pero en septiembre es obligatorio (aunque no haya cambiado ningún dato, igual debés pasar por este proceso).</p>
+
+
+
+
+<hr>
+
+
+
+
+          <h2 class="h2 m-b-1">Datos personales</h2>
+
+          <p>En esta sección podés ver los datos personales que tenés cargados en AFIP, como tu correo electrónico, teléfonos o domicilios declarados.</p>
+          <p>Podés acceder a las plataformas correspondientes para cambiar ciertos datos, pero tené en cuenta que para cambiar datos como tu nombre o apellido vas a tener que acercarte a una oficina de AFIP con tu DNI y fotocopia del mismo.</p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">¿Cómo me doy de baja o quedo excluído?</h2>
+
+          <h3 class="h4">¿Cómo me doy de baja del monotributo?</h3>
+          <p>Podés darte de baja del monotributo en cualquier momento. La baja se hace efectiva a partir del mes siguiente de realizado el trámite, y no tenés que pagar nada. Tené en cuenta que si estabas haciendo aportes de jubilación y obra social con monotributo, vas a dejar de hacerlo.</p>
+          <p><a target="_blank" href="https://servicios1.afip.gov.ar/genericos/guiasPasoPaso/VerGuia.aspx?id=84">Más información sobre cómo darte de baja (a partir del paso 7).</a></p>
+
+          <h3 class="h4">¿Qué situaciones hacen que me excluyan del monotributo?</h3>
+          <p>Hay situaciones que hacen que te suspendan el monotributo. Eso sucede cuando:</p>
+          <ul>
+            <li>La suma de tus ingresos brutos excede el máximo establecido.</li>
+            <li>La superficie o costo de alquiler de tus locales superen los máximos establecidos.</li>
+            <li>No alcances la cantidad mínima de trabajadores en relación de dependencia para las categorías I, J o K -tiene que pasar un mes desde que se produjo la reducción de empleados-.</li>
+            <li>Superes el precio máximo unitario de venta.</li>
+            <li>Adquieras bienes o realicen gastos personales por un valor diferente a los ingresos declarados, y estos no se encuentren debidamente justificados.</li>
+            <li>Tus depósitos bancarios sean diferentes con los ingresos declarados en el momento de la categorización.</li>
+            <li>Realizaste importaciones de bienes o servicios durante los últimos 12 meses.</li>
+            <li>Realizás más de 3 actividades simultáneas o poseés más de 3 unidades de explotación (locales).</li>
+            <li>Realizás prestaciones de servicios, y te categorizaste como si realizás venta de productos.</li>
+            <li>Realizaste operaciones sin haber facturado.</li>
+            <li>El valor de las compras más los gastos del desarrollo de la actividad durante los últimos 12 meses, sumen igual o más del 80% de los ingresos brutos máximos establecidos para la categoría K en el caso de venta de productos, o al 40% de los ingresos brutos establecidos para la categoría H cuando se trate de prestación de servicios.</li>
+            <li>Estás incluído en el registro público de empleadores con sanciones laborales (REPSAL).</li>
+          </ul>
+
+          <p>Dentro de los 15 días desde la publicación de la exclusión en el boletín oficial, podés presentar una apelación.</p>
+          <p>Si no cumplís con las obligaciones correspondientes al régimen general dentro del plazo de los 120 días, contados desde la publicación de la exclusión en el boletín oficial o desde la comunicación de denegatoria de apelación, se te desactiva el CUIT.</p>
+          <p>Consultá si estás excluido.</p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+          <h2 class="h2 m-b-1">Comunicate con AFIP</h2>
+
+          <p>Comunicate con AFIP si tenés cualquier tipo de duda con el monotributo.</p>
+          
+          <h3 class="h5">Teléfono</h3>
+          <p>0810-999-2347 (AFIP)</p>
+          <p>De lunes a viernes de 8 a 20 horas.</p>
+
+          <h3 class="h5">Formulario de contacto</h3>
+          <p><a target="_blank" href="http://www.afip.gob.ar/consultas/">http://www.afip.gob.ar/consultas/</a></p>
+          <p>Podés escribir tu consulta y adjuntar archivos.</p>
+
+          <h3 class="h5">Más canales de contacto</h3>
+          <p><a target="_blank" href="http://www.afip.gob.ar/contactos/">http://www.afip.gob.ar/contactos/</a></p>
+
+
+
       </div>
     </div>
   </div>
