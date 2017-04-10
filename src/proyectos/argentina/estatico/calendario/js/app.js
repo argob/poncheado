@@ -7,7 +7,7 @@
 		view: 'month',
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
-		day: '2013-03-12',
+		day: '2017-01-01',
 		language: 'es-ES',
 		onAfterEventsLoad: function(events) {
 			if(!events) {
@@ -42,6 +42,8 @@
 			calendar.navigate($this.data('calendar-nav'));
 		});
 	});
+
+
 
 	$('.btn-group button[data-calendar-view]').each(function() {
 		var $this = $(this);
