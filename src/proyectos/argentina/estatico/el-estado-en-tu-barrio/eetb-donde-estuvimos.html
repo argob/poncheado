@@ -98,7 +98,7 @@ layout: argentina
     data.load = function(provincia){
      
       return jQuery.ajax({
-        url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ provincia +'/public/values?alt=json',
+        url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ provincia +'',
         dataType: 'json',
         success: function(response){
           data['loaded'].push(response.feed.entry);
@@ -143,8 +143,13 @@ layout: argentina
                 }
               });
 
+              if(row.gsx$motivosuspendido.$t != '') {
+                $('[data-estado=estado]').removeClass("hidden"); 
+              }
+
+
               details[index] = new google.maps.InfoWindow({
-                content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
+                content: '<h4>'+ row.gsx$lugar.$t +'</h4><div data-estado="estado" class="alert alert-warning hidden"><div class="media"><div class="media-left media-middle"><i class="fa fa-warning fa-fw fa-2x"></i></div><div class="media-body"><p class="m-b-0"><small>El evento ha sido suspendido por <span>'+ row.gsx$motivosuspendido.$t +'</span></small></p></div></div></div><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
               });
 
               latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );
