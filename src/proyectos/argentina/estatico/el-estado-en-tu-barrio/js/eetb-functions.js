@@ -3,7 +3,7 @@
   var initMap = function(){
 
     var templates = {
-      barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> de {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
+      barrio: '<div class="col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong>{hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
       servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
     }
 
@@ -55,7 +55,7 @@
               position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
               title: item.lugar,
               icon: {
-                url: '/sites/default/files/marker.png',
+                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -98,7 +98,7 @@
           .replace(/{i}/gi, index);
 
           jQuery.each(items, function(index, item){
-            html += '<li><span class="servicio">'+ item +'.</span></li>';
+            html += '<li><span class="servicio">'+ item +'</span></li>';
           });
 
           jQuery('[data-render=servicios]').append( html + '</ul></div>' );
@@ -121,7 +121,7 @@
     }
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 
@@ -157,7 +157,7 @@
     });
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 

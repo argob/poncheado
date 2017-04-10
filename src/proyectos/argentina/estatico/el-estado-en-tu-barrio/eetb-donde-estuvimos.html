@@ -136,7 +136,7 @@ layout: argentina
                 position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
                 title: row.gsx$lugar.$t,
                 icon: {
-                  url: '/sites/default/files/marker.png',
+                  url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
                   size: new google.maps.Size(20, 20),
                   origin: new google.maps.Point(0, 0),
                   anchor: new google.maps.Point(10, 10)
@@ -144,7 +144,7 @@ layout: argentina
               });
 
               details[index] = new google.maps.InfoWindow({
-                content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> de '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
+                content: '<h4>'+ row.gsx$lugar.$t +'</h4><p><strong>Fecha:</strong> Desde el '+ row.gsx$inicio.$t +' hasta el '+ row.gsx$fin.$t +'.</p><p><strong>Horario:</strong> '+ row.gsx$hora.$t +'</p><p><strong>Dirección:</strong> '+ row.gsx$direccion.$t +'</p>'
               });
 
               latlngbounds.extend( new google.maps.LatLng( parseFloat(row.gsx$latitud.$t), parseFloat(row.gsx$longitud.$t) ) );

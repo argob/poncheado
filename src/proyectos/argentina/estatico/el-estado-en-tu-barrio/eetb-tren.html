@@ -53,7 +53,7 @@ layout: argentina
   <section>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h2 class="text-center">En <span data-render="mes"></span> estamos en estos lugares</h2>
+        <h2 class="text-center">Conocé el recorrido del Estado en tu Barrio</h2>
         <div id="map" style="height: 400px;"></div>
       </div>
     </div>
@@ -202,7 +202,7 @@ layout: argentina
               position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
               title: item.lugar,
               icon: {
-                url: '/sites/default/files/marker.png',
+                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -268,7 +268,7 @@ layout: argentina
     }
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 
@@ -304,7 +304,7 @@ layout: argentina
     });
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 
