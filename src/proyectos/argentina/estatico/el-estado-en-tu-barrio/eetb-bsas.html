@@ -289,10 +289,10 @@ layout: argentina
 
         jQuery.each(response.feed.entry, function(index, row){
 
-          if( moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isValid() 
-              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isValid()
-              && moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isBefore( moment().add(30, 'days') )
-              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isAfter( moment() ) 
+          if( moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isValid() 
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isValid()
+              && moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isBefore( moment().add(30, 'days') )
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment() ) 
               && row.gsx$latitud.$t != ''
               && row.gsx$longitud.$t != ''
             ){
