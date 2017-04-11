@@ -1,0 +1,91 @@
+---
+layout: afip_monotributo
+---
+
+<div class="container">
+
+  <section>
+    <h3>Buscador de actividades económicas</h3>
+    
+
+
+    <div id="actividades" class="row">
+      <div class="col-md-8 m-b-3">
+        <p>Buscá actividades por nombre, categoría o código.</p>
+        <div class="form-group">
+          <input class="form-control search" placeholder="" autofocus>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th style="width: 120px;"><a class="sort" data-sort="codigo">Código <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="actividad">Actividad <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="rubro">Rubro <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</div>
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1jK3gdZmI-zXFpAHKPQ9iypiyjhTKo1bFCFwIeC84FgM/1/public/values?alt=json', function (data) {
+        window.actividades = data.feed.entry;
+        showActividades();
+        console.log(data);
+    });
+
+    window.showActividades = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+        $.each( actividades, function( key, item ) {
+            
+            html += '<tr>';
+            html += ' <td class="codigo">'+ item.gsx$codigo.$t + '</td>';
+            html += ' <td class="actividad">'+ item.gsx$actividad.$t + '</td>';
+            html += ' <td class="rubro">'+ item.gsx$rubro.$t + '</td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var options = {
+          valueNames: [ 'codigo', 'actividad', 'rubro' ],
+          fuzzySearch: {
+            searchClass: "search",
+            location: 0,
+            distance: 100,
+            threshold: 0.4,
+            multiSearch: true
+          }            
+        };
+
+        var actividadesList = new List('actividades', options);
+    }
+
+
+});
+})(jQuery);
+
+
+
+</script>
+
+
+
+
+  
