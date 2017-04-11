@@ -11,24 +11,33 @@ layout: afip_monotributo
 
     <div id="actividades" class="row">
       <div class="col-md-8 m-b-3">
-        <p>Buscá actividades por nombre, categoría o código.</p>
+        <p>Buscá actividades por código, nombre o descripción.</p>
         <div class="form-group">
           <input class="form-control search" placeholder="" autofocus>
         </div>
       </div>
      <div class="col-md-12 m-b-3">
-      <table class="table table-spaced">
+      <table class="table table-spaced table-align-middle table-mobile">
         <thead>
           <tr>
             <th style="width: 120px;"><a class="sort" data-sort="codigo">Código <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="actividad">Actividad <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="rubro">Rubro <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="actividad">Nombre <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="rubro">Descripción <span class="caret"></span></a></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
         </tbody>
       </table>
-       <div class="no-result">No Result</div>
+       <div id="alerta" class="alert alert-warning col-md-4 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay actividades para mostrar</p>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -57,9 +66,9 @@ $(document).ready(function () {
         $.each( actividades, function( key, item ) {
             
             html += '<tr>';
-            html += ' <td class="codigo">'+ item.gsx$codigo.$t + '</td>';
-            html += ' <td class="actividad">'+ item.gsx$actividad.$t + '</td>';
-            html += ' <td class="rubro">'+ item.gsx$rubro.$t + '</td>';
+            html += ' <td class="codigo"> <span class="td-label">Código</span>'+ item.gsx$codigo.$t + '</td>';
+            html += ' <td class="actividad"> <span class="td-label">Nombre</span>'+ item.gsx$actividad.$t + '</td>';
+            html += ' <td class="rubro"> <span class="td-label">Descripción</span>'+ item.gsx$rubro.$t + '</td>';
             html += '</tr>';
     
         });
