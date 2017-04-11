@@ -98,7 +98,8 @@ layout: argentina
     data.load = function(provincia){
      
       return jQuery.ajax({
-        url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ provincia +'',
+        //url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ provincia +'',
+        url: 'https://spreadsheets.google.com/feeds/list/1jmmWmxJoFviffRZPgIOLJDCJJsyp9kFvnO0NDpf2BKs/'+ provincia +'/public/values?alt=json',
         dataType: 'json',
         success: function(response){
           data['loaded'].push(response.feed.entry);
@@ -130,22 +131,25 @@ layout: argentina
               && row.gsx$longitud.$t != ''
                ){
 
+            var urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+
+            if(row.gsx$motivosuspendido.$t != '') {
+              $('[data-estado=estado]').removeClass("hidden");
+              urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker_disabled.png";
+            }
+
               var index = markers.length;
               markers[index] = new google.maps.Marker({
                 map: map,
                 position: {lat: parseFloat(row.gsx$latitud.$t), lng: parseFloat(row.gsx$longitud.$t)},
                 title: row.gsx$lugar.$t,
                 icon: {
-                  url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                  url: urlMarker,
                   size: new google.maps.Size(20, 20),
                   origin: new google.maps.Point(0, 0),
                   anchor: new google.maps.Point(10, 10)
                 }
               });
-
-              if(row.gsx$motivosuspendido.$t != '') {
-                $('[data-estado=estado]').removeClass("hidden"); 
-              }
 
 
               details[index] = new google.maps.InfoWindow({
