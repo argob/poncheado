@@ -16,6 +16,7 @@ layout: afip_monotributo
           <input class="form-control search" placeholder="" autofocus>
         </div>
       </div>
+     <div class="col-md-12 m-b-3">
       <table class="table table-spaced">
         <thead>
           <tr>
@@ -27,7 +28,9 @@ layout: afip_monotributo
         <tbody class="list" id="show-data">
         </tbody>
       </table>
+      </div>
     </div>
+
 
   </section>
 </div>
@@ -40,7 +43,7 @@ layout: afip_monotributo
 $(document).ready(function () {
 
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1jK3gdZmI-zXFpAHKPQ9iypiyjhTKo1bFCFwIeC84FgM/1/public/values?alt=json', function (data) {
+    $.getJSON('JS/actividades.json', function (data) {
         window.actividades = data.feed.entry;
         showActividades();
         console.log(data);
@@ -64,14 +67,7 @@ $(document).ready(function () {
         showData.append(html);
 
         var options = {
-          valueNames: [ 'codigo', 'actividad', 'rubro' ],
-          fuzzySearch: {
-            searchClass: "search",
-            location: 0,
-            distance: 100,
-            threshold: 0.4,
-            multiSearch: true
-          }            
+          valueNames: [ 'codigo', 'actividad', 'rubro' ]
         };
 
         var actividadesList = new List('actividades', options);
