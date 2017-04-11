@@ -28,6 +28,7 @@ layout: afip_monotributo
         <tbody class="list" id="show-data">
         </tbody>
       </table>
+       <div class="no-result">No Result</div>
       </div>
     </div>
 
@@ -71,7 +72,23 @@ $(document).ready(function () {
         };
 
         var actividadesList = new List('actividades', options);
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            actividadesList.search(valueSearch);
+        });
+
+        actividadesList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })        
+
     }
+
+
 
 
 });
