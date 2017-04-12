@@ -1,0 +1,262 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Obras para mejorar la calidad de vida de todos los argentinos</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  
+  <section>
+    <h2 class="text-center m-b-2 h1">Buscador de obras</h2>
+    <div id="obras">
+      <div class="row">
+        <div class="col-md-6">    
+          <div class="form-group">
+            <label>Buscá por obra</label>
+            <input class="form-control search" placeholder="Buscá obras por nombre o descripción">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Provincia</label>
+            <select id="tipo-provincia" class="form-control">
+              <option data-tipoprovincia="todas" value="todas">Todas</option>
+              <option data-tipoprovincia="buenosaires" value="buenosaires">Buenos Aires</option>
+              <option data-tipoprovincia="capitalfederal" value="capitalfederal">Capital Federal</option>
+              <option data-tipoprovincia="catamarca" value="catamarca">Catamarca</option>
+              <option data-tipoprovincia="chaco" value="chaco">Chaco</option>
+              <option data-tipoprovincia="chubut" value="chubut">Chubut</option>
+              <option data-tipoprovincia="cordoba" value="cordoba">Córdoba</option>
+              <option data-tipoprovincia="corrientes" value="corrientes">Corrientes</option>
+              <option data-tipoprovincia="entrerios" value="entrerios">Entre Ríos</option>
+              <option data-tipoprovincia="jujuy" value="jujuy">Jujuy</option>
+              <option data-tipoprovincia="formosa" value="formosa">Formosa</option>
+              <option data-tipoprovincia="lapampa" value="lapampa">La Pampa</option>
+              <option data-tipoprovincia="larioja" value="larioja">La Rioja</option>
+              <option data-tipoprovincia="mendoza" value="mendoza">Mendoza</option>
+              <option data-tipoprovincia="neuquen" value="neuquen">Neuquén</option>
+              <option data-tipoprovincia="misiones" value="misiones">Misiones</option>
+              <option data-tipoprovincia="rionegro" value="rionegro">Río Negro</option>
+              <option data-tipoprovincia="salta" value="salta">Salta</option>
+              <option data-tipoprovincia="sanjuan" value="sanjuan">San Juan</option>
+              <option data-tipoprovincia="sanluis" value="sanluis">San Luis</option>
+              <option data-tipoprovincia="santacruz" value="santacruz">Santa Cruz</option>
+              <option data-tipoprovincia="santafe" value="santafe">Santa Fe</option>
+              <option data-tipoprovincia="santiagodelestero" value="santiagodelestero">Santiago del Estero</option>
+              <option data-tipoprovincia="tucuman" value="tucuman">Tucumán</option>
+              <option data-tipoprovincia="tierradelfuego" value="tierradelfuego">Tierra del Fuego</option>
+              
+
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Tipo de Obra</label>
+            <select id="tipo-obra" class="form-control">
+              <option data-tipoobra="todos" value="todos">Todas</option>
+              <option data-tipoobra="habitat" value="habitat">Hábitat</option>
+              <option data-tipoobra="urbana" value="urbana">Renovación Urbana</option>
+              <option data-tipoobra="cloacas" value="cloacas">Cloacas</option>
+              <option data-tipoobra="potable" value="potable">Agua potable</option>
+              <option data-tipoobra="vivienda" value="vivienda">Vivienda</option>
+              <option data-tipoobra="cultura" value="cultura">Cultura</option>
+              <option data-tipoobra="educacion" value="educacion">Educación</option>
+              <option data-tipoobra="salud" value="salud">Salud</option>
+              <option data-tipoobra="inundaciones" value="inundaciones">Obras para evitar inundaciones</option>
+              <option data-tipoobra="publico" value="publico">Espacio Público</option>
+              <option data-tipoobra="patrimonio" value="patrimonio">Patrimonio</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="list row panels-row m-y-3" data-render="tarjetas">
+      </div>
+    </div>
+  </section> 
+</div>
+
+<div data-render="modales">
+  
+
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4">
+    <a href="#obras-0" data-toggle="modal" class="panel panel-default">
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <span class="fa fa-{icono} fa-2x fa-fw text-muted" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle ">
+                    <div class="text-muted">
+                        <h4>{tipodeobra}</h4>
+                    </div>
+                </div>
+                <h3 class="nombre-obra m-t-1">{titulo}</h3>
+                <p class="text-muted descripcion-obra">{descripcion}</p>
+                <div class="media">
+                    <div class="text-muted">
+                        <div class="media m-t-1">Provincia: <span>{provincia}</span></div>
+                        <div class="media m-t-1">Localidad: <span>{localidad}</span></div>
+                        <div class="media m-t-1">Beneficiarios: <span>{beneficiarios}</span></div>
+                        <div class="media m-t-1">Estado: <span>{estado}</span></div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </a>
+</div>`,
+      modal: '<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{obras}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioobras} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finobras}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del obras</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del obras</a> </p> </div> </div> </div> </div>'
+    }
+
+    window.obras = [];
+    window.configobras = {
+      tipo: 'todos',
+      alcance: ''
+    }
+    window.configprovincia = {
+      tipo: 'todas',
+      alcance: ''
+    }
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        // console.log(response.feed.entry);
+
+
+
+
+
+
+
+
+
+        $.each(response.feed.entry, function(index, row){
+
+          
+            obras.push({
+              index: index,
+              tipodeobra: row.gsx$tipodeobra.$t,
+              titulo: row.gsx$título.$t,
+              descripción: row.gsx$descripción.$t,
+              video: row.gsx$video.$t,
+              provincia: row.gsx$provincia.$t,
+              localidad: row.gsx$localidad.$t,
+              beneficiarios: row.gsx$beneficiarios.$t,
+              estado: row.gsx$estado.$t
+            });
+
+          
+
+          
+
+        })
+
+        render.tarjetas();
+
+        var listOptions = { valueNames: [ 'nombre-obra', 'descripcion-obra' ] };
+        var obrasList = new List('obras', listOptions);
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function( ){
+
+        $('[data-render=tarjetas]').html('');
+        $('[data-render=modales]').html('');
+
+
+        $.each(obras, function(index, obras){
+
+          if ( !(configobras.tipo != 'todos' && configprovincia.tipo != 'todas' ) ) {
+
+            var html = templates.tarjeta;
+            var modal = templates.modal;
+
+            html = html.replace(/{titulo}/gi, obras.titulo)
+            .replace(/{index}/gi, index)
+            .replace(/{tipodeobra}/gi, obras.tipodeobra)
+            .replace(/{descripcion}/gi, obras.descripción.substring(0, 100) + '...')
+            
+            .replace(/{provincia}/gi, obras.provincia)
+            .replace(/{localidad}/gi, obras.localidad)
+            .replace(/{beneficiarios}/gi, obras.beneficiarios)
+            .replace(/{estado}/gi, obras.estado);
+
+
+            modal = modal.replace(/{index}/gi, index)
+            .replace(/{titulo}/gi, obras.titulo)
+            .replace(/{video}/gi, obras.video);
+
+            $('[data-render=tarjetas]').append( html );
+            $('[data-render=modales]').append( modal );      
+
+          }
+
+        });
+
+      }   
+    }
+
+    $("#tipo-provincia").on("change", function() {
+      configprovincia.tipo = $( "#tipo-provincia option:selected" ).data('tipoprovincia');
+      render.tarjetas();
+      console.log("HALA");
+      console.log(configprovincia.tipo);
+    });
+
+
+    $("#tipo-obra").on("change", function() {
+      configobra.tipo = $( "#tipo-obra option:selected" ).data('tipoobra');
+      render.tarjetas();
+      console.log("CHAW");
+    });
+
+
+
+
+    
+
+
+  });
+
+     
+</script>
+
