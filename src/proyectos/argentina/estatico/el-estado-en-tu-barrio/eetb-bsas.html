@@ -228,7 +228,12 @@ layout: argentina
 
             markers[index].addListener('click', function() {
               jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
+                 $('html,body').animate({
+                   scrollTop:  $('[data-render=barrios] > div').eq( index ).offset().top
+                 }, '500', 'swing' );
             });
+
+
 
           });
 
@@ -377,15 +382,3 @@ layout: argentina
   };
 </script>
 
-
-<script>
-  $(function() {
-    $('.goTop').on('click', function(event) {
-      event.preventDefault();
-            $('html,body').animate({
-              scrollTop: '0px'
-            }, 1000);
-            return false;
-    });
-  });  
-</script> 
