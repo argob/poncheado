@@ -139,7 +139,19 @@ layout: argentina
         </div>
     </a>
 </div>`,
-      modal: '<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{obras}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioobras} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finobras}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del obras</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del obras</a> </p> </div> </div> </div> </div>'
+      modal: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+                      <h4 class="nombre-obra modal-title">{titulo}</h4>
+                      <p class="text-muted descripcion-obra">{descripcion}</p>
+                    </div>
+                    
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="{video}"></iframe>
+                    </div>
+              </div>`
     }
 
     window.obras = [];
