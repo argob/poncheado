@@ -3,14 +3,39 @@ layout: argentina
 ---
 
 <div class="container">
-  <section>
+ <section>
 
-    <h3 class="text-center">Buscá Trámites y Servicios</h3>
+    <h3 class="text-center">Trámites y Servicios</h3>
     <div id="tramites">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">    
+        <div class="col-md-8">    
           <div class="form-group">
-            <input class="form-control search" placeholder="">
+            <label for="">Buscá Trámites y Servicios</label>
+            <input class="form-control search" placeholder="Buscá por nombre o resumen">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtrar por categoría</label>
+            <select id="tipo-tramites" class="form-control">
+            <option data-tipotramites="todos" value="todos">Registro</option>
+              <option data-tipotramites="registro" value="registro">Registro</option>
+              <option data-tipotramites="licyreg" value="licyreg">Licencias y Registros/Asociatividad</option>
+              <option data-tipotramites="licencias" value="licencias">Licencias y registros</option>
+              <option data-tipotramites="invertir" value="invertir">Invertir para producir /Beneficios para exportar / Licencias y Registros / Importar para producir</option>
+              <option data-tipotramites="creditos" value="creditos">Créditos y garantías</option>
+              <option data-tipotramites="cuidado" value="cuidado">Consumidores / Cuidado al consumo</option>
+              <option data-tipotramites="arbitraje" value="arbitraje">Consumidores / Arbitraje</option>
+              <option data-tipotramites="certificaciones" value="certificaciones">Certificaciones</option>
+              <option data-tipotramites="garantias" value="garantias">Capacitaciones / Créditos y garantías</option>
+              <option data-tipotramites="capacitaciones" value="capacitaciones">Capacitaciones</option>
+              <option data-tipotramites="exportar" value="exportar">Beneficios para exportar</option>
+              <option data-tipotramites="fiscales" value="fiscales">Beneficios fiscales / Beneficios para exportar / Licencias y Registros</option>
+              <option data-tipotramites="asociatividad" value="asociatividad">Asociatividad</option>
+
+
+
+            </select>
           </div>
         </div>
       </div>
@@ -43,6 +68,7 @@ layout: argentina
     </div>
   </section>
 </div>
+
 
 
 <!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
@@ -82,20 +108,17 @@ $(document).ready(function () {
 
         var listOptions = {
           valueNames: [ 'titulo', 'resumen', 'categoria' ], 
-          fuzzySearch: {
-            searchClass: "search",
-            location: 0,
-            distance: 100,
-            threshold: 0.4,
-            multiSearch: true
-          }  
+          
          };
         var tramitesList = new List('tramites', listOptions);
     }
+
+
 
 
 });
 })(jQuery);
 
 </script>
+
 
