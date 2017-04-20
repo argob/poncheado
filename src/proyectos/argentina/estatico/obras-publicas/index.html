@@ -120,7 +120,7 @@ layout: argentina
                 <div class="media-left media-middle">
                     <span class="fa fa-{icono} fa-2x fa-fw text-muted" aria-hidden="true"></span>
                 </div>
-                <div class="media-body media-middle ">
+                <div class="media-body media-middle">
                     <div class="text-muted">
                         <h4>{tipodeobra}</h4>
                     </div>
@@ -145,7 +145,7 @@ layout: argentina
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
                       <h4 class="nombre-obra modal-title">{titulo}</h4>
-                      <p class="text-muted descripcion-obra">{descripcion}</p>
+                      <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                     </div>
                     <div class="modal-body">
                       <div class="embed-responsive embed-responsive-16by9">
@@ -181,12 +181,14 @@ layout: argentina
               index: index,
               tipodeobra: row.gsx$tipodeobra.$t,
               titulo: row.gsx$titulo.$t,
+              icono: row.gsx$icono.$t,
               descripcion: row.gsx$descripcion.$t,
               video: row.gsx$video.$t,
               provincia: row.gsx$provincia.$t,
               localidad: row.gsx$localidad.$t,
               beneficiarios: row.gsx$beneficiarios.$t,
               estado: row.gsx$estado.$t
+              
             });
 
           
@@ -214,7 +216,7 @@ layout: argentina
         $.each(obras, function(index, obras){
 
           // if ( !(configobras != 'todos' && configprovincia != 'todas') ) {
-          if ( configobras == obras.tipodeobra || configobras == 'Todas' && configprovincia == obras.provincia || configprovincia == 'Todas' ) {
+          if ( configobras == obras.tipodeobra || configobras == 'Todas' && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra || configprovincia == 'Todas' && configobras == 'Todas') {
 
             var html = templates.tarjeta;
             var modal = templates.modal;
@@ -223,7 +225,7 @@ layout: argentina
             .replace(/{index}/gi, index)
             .replace(/{tipodeobra}/gi, obras.tipodeobra)
             .replace(/{descripcion}/gi, obras.descripcion.substring(0, 100) + '...')
-            
+            .replace(/{icono}/gi, obras.icono)
             .replace(/{provincia}/gi, obras.provincia)
             .replace(/{localidad}/gi, obras.localidad)
             .replace(/{beneficiarios}/gi, obras.beneficiarios)
