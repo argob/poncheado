@@ -130,7 +130,7 @@
           if( moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isValid() 
               && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isValid()
               && moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isBefore( moment().add(30, 'days') )
-              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment() ) 
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment().add(-1, 'days') ) 
               && row.gsx$latitud.$t != ''
               && row.gsx$longitud.$t != ''
             ){
