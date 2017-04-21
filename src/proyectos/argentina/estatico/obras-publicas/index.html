@@ -166,7 +166,6 @@ layout: argentina
       url: 'https://spreadsheets.google.com/feeds/list/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        // console.log(response.feed.entry);
 
 
 
@@ -215,8 +214,7 @@ layout: argentina
 
         $.each(obras, function(index, obras){
 
-          // if ( !(configobras != 'todos' && configprovincia != 'todas') ) {
-          if ( configobras == obras.tipodeobra || configobras == 'Todas' && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra || configprovincia == 'Todas' && configobras == 'Todas') {
+          if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
 
             var html = templates.tarjeta;
             var modal = templates.modal;
