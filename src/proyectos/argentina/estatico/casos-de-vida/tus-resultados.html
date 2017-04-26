@@ -2,8 +2,274 @@
 layout: mi-argentina
 ---
 
+<script>
+
+
+  var otra_cosa = [
+    {"name":"edad","value":"26"},
+    {"name":"nacionalidad","value":"argentina"},
+    {"name":"empleo","value":"si"},
+    {"name":"hijos","value":"si"},
+    {"name":"hijo_menor","value":"si"},
+    {"name":"hijo_menor","value":"si"},
+    {"name":"discapaciodad","value":"si"},
+    {"name":"discapaciodad_acargo","value":"si"},
+    {"name":"interes_trabajo","value":"interes_trabajo"},
+    {"name":"interes_capacitacion","value":"si"},
+    {"name":"interes_emprender","value":"si"},
+    {"name":"interes_estudiar","value":"si"},
+    {"name":"interes_mayores","value":"si"},
+    {"name":"interes_salud","value":"si"},
+    {"name":"interes_vivienda","value":"si"},
+    {"name":"interes_auto","value":"si"},
+    {"name":"interes_hijo","value":"si"},
+    {"name":"interes_violencia","value":"si"}
+  ];
+
+
+  var contents = [
+    {
+      name: "Me quiero jubilar",
+      url: 'https://back.argentina.gob.ar/tema/adultosmayores/iniciarjubilacionpension',
+      icon: 'icono-arg-tramite-jubilacion',
+      conditions: {
+        edad: '60',
+        interes_mayores: 'si'
+      }
+    },
+    {
+      name: "Soy jubilado o pensionado",
+      url: 'https://back.argentina.gob.ar/tema/adultosmayores/soyjubiladopensionado',
+      icon: 'icono-arg-jubilado',
+      conditions: {
+        edad: '60',
+        interes_mayores: 'si'
+      }
+    },
+    {
+      name: "Soy empleado en relación de dependencia",
+      url: 'https://back.argentina.gob.ar/tema/trabajar/soy-empleado',
+      icon: 'icono-arg-apostilla',
+      conditions: {
+        empleo: 'si'
+      }
+    },
+    {
+      name: "Soy monotributista",
+      url: 'https://back.argentina.gob.ar/tema/trabajar/monotributo',
+      icon: 'icono-arg-factura',
+      conditions: {
+        empleo: 'si'
+      }
+    },
+    {
+      name: "Personas con discapacidad",
+      url: 'https://www.argentina.gob.ar/tema/discapacidad',
+      icon: 'fa-wheelchair',
+      conditions: {
+        discapaciodad: 'si',
+        discapaciodad_acargo: 'si'
+      }
+    },
+    {
+      name: "Estudiar (extranjeros)",
+      url: 'https://back.argentina.gob.ar/tema/extranjeros/estudiar-en-argentina',
+      icon: 'fa-book',
+      conditions: {
+        nacionalidad: 'extranjero'
+      }
+    },
+    {
+      name: "Trabajar (extranjeros)",
+      url: 'https://back.argentina.gob.ar/tema/extranjeros/trabajar-en-argentina',
+      icon: 'fa-suitcase',
+      conditions: {
+        nacionalidad: 'extranjero'
+      }
+    },
+    {
+      name: "Obtener la ciudadanía",
+      url: 'https://back.argentina.gob.ar/tema/extranjeros/ciudadania',
+      icon: 'icono-arg-calidad-cert',
+      conditions: {
+        nacionalidad: 'extranjero'
+      }
+    },
+    {
+      name: "Busco trabajo",
+      url: 'https://back.argentina.gob.ar/tema/trabajar/buscar-trabajo',
+      icon: 'fa-newspaper-o',
+      conditions: {
+        interes_trabajo: 'si'
+      }
+    },
+    {
+      name: "Me quiero capacitar",
+      url: 'https://back.argentina.gob.ar/tema/trabajar/me-quiero-capacitar',
+      icon: 'icono-arg-capacitacion',
+      conditions: {
+        interes_capacitacion: 'si'
+      }
+    },
+    {
+      name: "Soy emprendedor (incluye economía social)",
+      url: 'https://back.argentina.gob.ar/tema/emprender/soy-emprendedor',
+      icon: 'fa-briefcase',
+      conditions: {
+        interes_emprender: 'si'
+      }
+    },
+    {
+      name: "Necesito capacitación para emprender",
+      url: 'https://back.argentina.gob.ar/tema/emprender/capacitacion',
+      icon: 'icono-arg-capacitacion',
+      conditions: {
+        interes_emprender: 'si'
+      }
+    },
+    {
+      name: "Niveles educativos",
+      url: 'https://back.argentina.gob.ar/tema/estudiar/niveles',
+      icon: 'fa-list-ol',
+      conditions: {
+        edad: '< 19',
+        hijo_menor: 'si',
+        interes_estudiar: 'si'
+      }
+    },
+    {
+      name: "Modalidades educativas",
+      url: 'https://back.argentina.gob.ar/tema/estudiar/modalidades',
+      icon: 'fa-graduation-cap',
+      conditions: {
+        edad: '< 19',
+        hijo_menor: 'si',
+        interes_estudiar: 'si'
+      }
+    },
+    {
+      name: "Beneficios, programas y becas",
+      url: 'https://back.argentina.gob.ar/tema/estudiar-programas-y-becas',
+      icon: 'icono-arg-interes-cultural',
+      conditions: {
+        edad: '< 19',
+        hijo_menor: 'si',
+        interes_estudiar: 'si'
+      }
+    },
+    {
+      name: "Cuido mi salud - adultos mayores",
+      url: 'https://back.argentina.gob.ar/tema/adultosmayores/cuido-mi-salud',
+      icon: 'icono-arg-medicina',
+      conditions: {
+        edad: '> 60',
+        interes_mayores: 'si'
+      }
+    },
+    {
+      name: "Embarazo",
+      url: 'https://back.argentina.gob.ar/tema/tenerunhijo/embarazo',
+      icon: 'icono-arg-embarazo',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Nacimiento de un bebé",
+      url: 'https://back.argentina.gob.ar/tema/tenerunhijo/nacimiento',
+      icon: 'icono-arg-chupete',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Adopción",
+      url: 'https://back.argentina.gob.ar/tema/tenerunhijo/adoptar',
+      icon: 'fa-child',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Vacunas",
+      url: 'https://back.argentina.gob.ar/tema/cuidarlasalud/vacunas',
+      icon: 'icono-arg-vacunas',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Pausa activa",
+      url: 'https://back.argentina.gob.ar/tema/cuidarlasalud/tupausaactiva',
+      icon: 'icono-arg-marcador-temporal',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Vivir en Positivo",
+      url: '',
+      icon: '',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Acceder a una vivienda ",
+      url: 'https://back.argentina.gob.ar/tema/hogar/acceder-a-vivienda',
+      icon: 'icono-arg-vivienda',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Compra o venta de un auto",
+      url: 'https://back.argentina.gob.ar/vehiculos',
+      icon: 'icono-arg-auto',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Abuso Infantil",
+      url: 'https://back.argentina.gob.ar/abusosexualinfantil',
+      icon: 'fa-child',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Trata",
+      url: 'https://back.argentina.gob.ar/denuncialatrata',
+      icon: 'fa-exchange',
+      conditions: {
+
+      }
+    },
+    {
+      name: "Mujeres en situación de violencia",
+      url: 'https://back.argentina.gob.ar/atencionmujeres',
+      icon: 'fa-female',
+      conditions: {
+
+      }
+    }
+  ]
+
+
+  if(typeof(Storage) !== "undefined") {
+    if( localStorage.getItem("wizard-form") == undefined ){
+      console.log('Todavía no guardaste nada');
+      window.location.replace('buscador-situaciones.html');
+    }
+  } else {
+      console.log('No tenés soporte :(');
+  }
+
+</script>
+
 <section class="jumbotron" style="background-image: url('img/argentina_2.jpg');">
-  <div class="jumbotron_bar jumbotron-bar-transparent">
+  <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -16,8 +282,8 @@ layout: mi-argentina
       </div>
     </div>
   </div>
-  <div class="jumbotron_body p-t-0 p-b-1">
-    <div class="container">
+  <div class="jumbotron_body">
+    <div class="container text-center">
       <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
       <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
     </div>
@@ -27,146 +293,193 @@ layout: mi-argentina
 
 <section>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Tus resultados</h2>
-        <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
+    <h2>Tus resultados</h2>
+    <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
 
-        <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
+    <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
 
-        <div class="container">
-          <div class="row panels-row m-y-2">
-            
-            <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-              <a class="panel panel-default" href="#">
-                <div class="panel-body">
-                  <div class="media">
-                    <div class="media-left padding-20">
-                      <i class="fa fa-wheelchair fa-fw fa-2x text-primary"></i>
-                    </div>
-                    <div class="media-body">
-                      <h3>Personas con discapacidad</h3>
-                      <p>Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-            <a class="panel panel-default" href="#">
-              <div class="panel-body">
-                <div class="media">
-                  <div class="media-left padding-20">
-                    <i class="fa icono-arg-trabajador fa-fw fa-2x text-primary"></i>
-                  </div>
-                  <div class="media-body">
-                    <h3>Soy empleado en relación de dependencia</h3>
-                    <p>Se trata del único documento que te habilita.</p>
-                  </div>
-                </div>
+    <div id="personal-items" class="row panels-row m-y-2">
+      
+      <div class="col-xs-12 col-sm-6 col-md-4 hidden">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa fa-wheelchair fa-fw fa-2x text-primary"></i>
               </div>
-            </a>
+              <div class="media-body">
+                <h3>Personas con discapacidad</h3>
+                <p class="text-muted">Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
+              </div>
+            </div>
           </div>
-
-        </div>
+        </a>
       </div>
 
-      <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
-
-        <div class="container">
-          <div class="row panels-row m-y-2">
-            
-            <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-              <a class="panel panel-default" href="#">
-                <div class="panel-body">
-                  <div class="media">
-                    <div class="media-left padding-20">
-                      <i class="fa fa-gittip fa-fw fa-2x text-primary"></i>
-                    </div>
-                    <div class="media-body">
-                      <h3>Embarazo</h3>
-                      <p>Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-            <a class="panel panel-default" href="#">
-              <div class="panel-body">
-                <div class="media">
-                  <div class="media-left padding-20">
-                    <i class="fa icono-arg-tener-un-hijo fa-fw fa-2x text-primary"></i>
-                  </div>
-                  <div class="media-body">
-                    <h3>Nacimiento de un bebé</h3>
-                    <p>Se trata del único documento que te habilita.</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-            <a class="panel panel-default" href="#">
-              <div class="panel-body">
-                <div class="media">
-                  <div class="media-left padding-20">
-                    <i class="fa fa-graduation-cap fa-fw fa-2x text-primary"></i>
-                  </div>
-                  <div class="media-body">
-                    <h3>Me quiero capacitar</h3>
-                    <p>Se trata del único documento que te habilita.</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-            <a class="panel panel-default" href="#">
-              <div class="panel-body">
-                <div class="media">
-                  <div class="media-left padding-20">
-                    <i class="fa fa-hospital-o fa-fw fa-2x text-primary"></i>
-                  </div>
-                  <div class="media-body">
-                    <h3>Vacunas</h3>
-                    <p>Se trata del único documento que te habilita.</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-            <a class="panel panel-default" href="#">
-              <div class="panel-body">
-                <div class="media">
-                  <div class="media-left padding-20">
-                    <i class="fa fa-book fa-fw fa-2x text-primary"></i>
-                  </div>
-                  <div class="media-body">
-                    <h3>Beneficios, programas y becas</h3>
-                    <p>Se trata del único documento que te habilita.</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-       <div class="">
-  <a class="btn btn-primary m-r-1" href="#">CAMBIAR RESPUESTAS</a>
-  <a class="btn btn-link" href="#">VOLVER A COMENZAR</a>
-</div>
-
-       
-      </div>
     </div>
+
+    <!-- <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+
+    <div class="container">
+      <div class="row panels-row m-y-2">
+        
+        <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
+          <a class="panel panel-default" href="#">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left padding-20">
+                  <i class="fa fa-gittip fa-fw fa-2x text-primary"></i>
+                </div>
+                <div class="media-body">
+                  <h3>Embarazo</h3>
+                  <p>Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
+                </div>
+              </div>
+            </div>
+          </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-tener-un-hijo fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Nacimiento de un bebé</h3>
+                <p>Se trata del único documento que te habilita.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa fa-graduation-cap fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Me quiero capacitar</h3>
+                <p>Se trata del único documento que te habilita.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa fa-hospital-o fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Vacunas</h3>
+                <p>Se trata del único documento que te habilita.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
+        <a class="panel panel-default" href="#">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa fa-book fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Beneficios, programas y becas</h3>
+                <p>Se trata del único documento que te habilita.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div> -->
+
+    <div class="">
+      <a class="btn btn-primary m-r-1" href="buscador-situaciones.html">Cambiar respuestas</a>
+      <a id="wipe-form" class="btn btn-link" href="buscador-situaciones.html">Volver a comenzar</a>
+    </div>
+
   </div>
+  
 </section>
+
+
+
+<script>
+  
+  var templates = {
+    item: '<div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="{url}"> <div class="panel-body"> <div class="media"> <div class="media-left padding-20"> <i class="fa {icon} fa-fw fa-2x text-primary"></i> </div> <div class="media-body"> <h3>{title}</h3> <p class="text-muted">{description}</p> </div> </div> </div> </a> </div>'
+  };
+
+  var form_data;
+  var data = {};
+
+  // Leo si hay algo guardado
+
+  if(typeof(Storage) !== "undefined") {
+    if( localStorage.getItem("wizard-form") != undefined ){
+
+      form_data = JSON.parse( localStorage.getItem("wizard-form"))
+
+      $.each(form_data, function(key, item){
+        data[item.name] = item.value;
+      });
+
+      console.log( data );
+
+      $.each(contents, function(key, content){
+
+        var show = false;
+
+        $.each(content.conditions, function(condition, value){
+          // console.log(condition);
+
+          if( data[condition] == value ){
+            show = true;
+          }
+        });
+
+        if(show){
+
+          console.log(content);
+
+          var html = templates.item;
+
+          html = html.replace(/{url}/gi, content.url)
+            .replace(/{icon}/gi, content.icon)
+            .replace(/{title}/gi, content.name)
+            .replace(/{description}/gi, content.name)
+
+          $('#personal-items').append( html )
+        }
+
+        console.log(show);
+      })
+
+      
+
+    }else{
+      console.log('Todavía no guardaste nada');
+      window.location.replace('buscador-situaciones.html');
+    }
+
+  } else {
+    console.log('No tenés soporte :(');
+  }
+
+  $('#wipe-form').on('click', function(){
+    localStorage.removeItem('wizard-form');
+  });
+
+
+</script>

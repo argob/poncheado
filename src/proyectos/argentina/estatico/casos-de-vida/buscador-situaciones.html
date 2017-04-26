@@ -3,7 +3,7 @@ layout: mi-argentina
 ---
 
 <section class="jumbotron" style="background-image: url('img/argentina_2.jpg');">
-  <div class="jumbotron_bar jumbotron-bar-transparent">
+  <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -16,8 +16,8 @@ layout: mi-argentina
       </div>
     </div>
   </div>
-  <div class="jumbotron_body p-t-0 p-b-1">
-    <div class="container">
+  <div class="jumbotron_body">
+    <div class="container text-center">
       <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
       <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
     </div>
@@ -28,10 +28,10 @@ layout: mi-argentina
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-8 col-md-offset-2">
         <p>Respondé las preguntas con tus datos o las de un ser querido con la mayor precisión posible.</p>
         
-        <form>
+        <form id="wizard-form">
 
           <div class="panel panel-default panel-border-gray m-t-2">
             <div class="panel-body">
@@ -44,14 +44,15 @@ layout: mi-argentina
                 
                   <div class="form-group m-t-1">
                     <label>¿Cuál es tu edad?</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="number" name="edad" class="form-control" placeholder="">
                   </div>
 
                   <div class="form-group m-t-3">
                     <label>¿Cuál es tu nacionalidad?</label>
-                    <select class="form-control">
-                      <option value="todos">Soy argentino</option>
-                      <option value="todos">Soy extranjero</option>
+                    <select class="form-control" name="nacionalidad">
+                      <option value=""></option>
+                      <option value="argentina">Soy argentino</option>
+                      <option value="extranjero">Soy extranjero</option>
                     </select>
                   </div>
 
@@ -59,8 +60,8 @@ layout: mi-argentina
                     <label>¿Tenés empleo?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="empleo">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="empleo">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="si">Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="no">No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -69,34 +70,30 @@ layout: mi-argentina
                     <label>¿Tenés hijos?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="hijos">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="hijos">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="si">Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="no">No tengo</label>
                       </div>
                     </div>
                   </div>
-
-
 
                   <div class="form-group m-t-3">
                     <label>¿Qué edad tienen tus hijos?</label><br />
                     <label class="text-muted">Podés seleccionar más de una opción</label>
                     <div class="form-item form-type-checkbox checkbox">
                       <div class="checkbox">
-                        <label><input type="checkbox" value="menor">Menores de 18 años.</label>
+                        <label><input type="checkbox" name="hijo_menor" value="si">Menores de 18 años.</label>
                         <br />
-                        <label class="m-t-1"><input type="checkbox" value="mayor">Mayores de 18 años.</label>
+                        <label class="m-t-1"><input type="checkbox" name="hijo_mayor" value="si">Mayores de 18 años.</label>
                       </div>
                     </div>
                   </div>
-
-                  
 
                   <div class="form-group m-t-3">
                     <label>¿Tenés alguna discapacidad?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="discapaciodad">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="discapaciodad">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="si">Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="no">No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -105,8 +102,8 @@ layout: mi-argentina
                     <label>¿Alguno de tus familiares o personas a cargo tiene una discapacidad?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="acargo">Sí</label>
-                        <label class="radio-inline"><input type="radio" name="acargo">No</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="si">Sí</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="no">No</label>
                       </div>
                     </div>
                   </div>
@@ -124,35 +121,85 @@ layout: mi-argentina
               <div class="form-group">
                 <div class="form-item form-type-checkbox checkbox">
                   <div class="checkbox">
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="busqueda">Buscar trabajo</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_trabajo" value="si">Buscar trabajo</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="capacitacion">Capacitarme para trabajar</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_capacitacion" value="si">Capacitarme para trabajar</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="emprender">Emprender</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_emprender" value="si">Emprender</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="estudiar">Estudiar</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_estudiar" value="si">Estudiar</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="mayores">Cuidar a un adulto mayor</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_mayores" value="si">Cuidar a un adulto mayor</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="salud">Cuidar mi salud</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_salud" value="si">Cuidar mi salud</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="vivienda">Acceder a una vivienda</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_vivienda" value="si">Acceder a una vivienda</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="auto">Tener un auto</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_auto" value="si">Tener un auto</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="hijo">Tener un hijo</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_hijo" value="si">Tener un hijo</label>
                     <br />
-                    <label class="m-t-1"><input type="checkbox" name="intereses" value="violencia">Conozco una situación de violencia o abuso</label>
+                    <label class="m-t-1"><input type="checkbox" name="interes_violencia" value="si">Conozco una situación de violencia o abuso</label>
                   </div>
                 </div>
               </div>
             </div>     
           </div>
           <div class="m-t-1">
-            <label class="btn btn-success btn-md "<input type="submit">Ver Resultados</label>
+            <input class="btn btn-success btn-md" type="submit" value="Ver Resultados">
           </div>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  
+var data;
+
+  // Leo si hay algo guardado
+
+  if(typeof(Storage) !== "undefined") {
+    if( localStorage.getItem("wizard-form") != undefined ){
+
+      data = JSON.parse( localStorage.getItem("wizard-form"))
+      // console.log( data );
+
+      $.each(data, function(key, item){
+        if(item.name == 'edad' || item.name == 'nacionalidad'){
+          $('[name='+ item.name +']').val(item.value);
+
+        }else{
+          // console.log($('[name='+ item.name +'][value='+ item.value +']'));
+          $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+        }
+      })
+
+    }else{
+      console.log('Todavía no guardaste nada');
+    }
+
+  } else {
+    console.log('No tenés soporte :(');
+  }
+
+  // Cuando mando el formulario guardo lo que se modificó
+
+  $('#wizard-form').on('submit', function(event){
+    event.preventDefault();
+
+    data = $(this).serializeArray();
+    console.log(data);
+
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem("wizard-form", JSON.stringify(data));
+      window.location.href = 'tus-resultados.html';
+
+    } else {
+      console.log('Pucha, che!');
+    }
+  });
+
+
+</script>
