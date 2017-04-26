@@ -1,0 +1,77 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="Redes" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="redes" %}
+
+      </aside>
+      <div class="col-md-8">
+
+
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+            <h2>Vincula tu cuenta a las redes sociales</h2>
+            <p>Para infresar más rápido podés vincular tus redes sociales con tu cuenta de Argentina.gob.ar.
+            <br />Vas a poder desvincularlas cuando lo desees.</p>
+
+            <hr class="m-y-2">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-facebook fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Facebook</h3>
+                <p class="text-muted">Tenés vinculada tu cuenta a nombre de Jorge Martinez desde el 10/01/2017.</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+            <hr class="m-y-2">
+
+            <div class="media m-b-1">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-google fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Google</h3>
+                <p class="text-muted">Tenés vinculada tu cuenta a nombre de Marie J. desde el 20/03/2017.</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+           
+          </div>
+        </div>
+
+        
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#continue').click(function() {
+            $(this).remove();
+            $('form').fadeIn();
+        });
+    });
+</script>
