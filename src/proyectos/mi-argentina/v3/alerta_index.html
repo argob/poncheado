@@ -1,0 +1,51 @@
+---
+layout: mi-argentina
+---
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <h1 class="h2">Ingresá a tu cuenta de Argentina.gob.ar</h1>
+
+      <div class="alert alert-warning">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-exclamation-circle fa-fw fa-4x"></i>
+          </div>
+          <div class="media-body m-y-0">
+            <p>Necesitamos que ingreses tu CUIL o pasaporte.</p>
+            <p>Este dato te lo pediremos una única vez.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="well p-x-3 p-y-2">
+        <form method="get" action="login_2.html">
+          <div class="form-group">
+            <label class="control-label lead" for="id_number">Cuil o pasaporte</label>
+            <input id="id_number" class="form-control input-lg" type="text" name="id_number">
+          </div>
+          <div class="form-group m-b-0">
+            <button type="submit" class="btn btn-success">Continuar &nbsp; <i class="fa fa-arrow-right"></i></button>
+          </div>
+        </form>
+      </div>
+      <p><a href="#">Consultar mi CUIL</a></p>
+      <p><a href="#">Tramitar el pasaporte</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(function(){
+    var next = false;
+    $('.well button').on('click', function(event){
+      if(!next){
+        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número de CUIL o pasaporte no es válido, por favor intentá de nuevo.</span>');
+        $('#id_number').parent().addClass('has-error');
+        next = true;
+        return false;
+      }
+    });
+  });
+</script>
