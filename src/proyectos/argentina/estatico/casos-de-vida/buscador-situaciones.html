@@ -49,11 +49,12 @@ layout: mi-argentina
 
                   <div class="form-group m-t-3">
                     <label>¿Cuál es tu nacionalidad?</label>
-                    <select class="form-control" name="nacionalidad">
-                      <option value=""></option>
-                      <option value="argentino">Soy argentino</option>
-                      <option value="extranjero">Soy extranjero</option>
-                    </select>
+                    <div class="form-item form-type-radio radio">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="argentino">Soy argentino</label>
+                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="extranjero">Soy extranjero</label>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="form-group m-t-3">
@@ -167,7 +168,7 @@ var data;
       // console.log( data );
 
       $.each(data, function(key, item){
-        if(item.name == 'edad' || item.name == 'nacionalidad'){
+        if(item.name == 'edad'){
           $('[name='+ item.name +']').val(item.value);
 
         }else{
