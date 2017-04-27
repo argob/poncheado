@@ -4,36 +4,15 @@ layout: mi-argentina
 
 <script>
 
-
-  var otra_cosa = [
-    {"name":"edad","value":"26"},
-    {"name":"nacionalidad","value":"argentina"},
-    {"name":"empleo","value":"si"},
-    {"name":"hijos","value":"si"},
-    {"name":"hijo_menor","value":"si"},
-    {"name":"hijo_menor","value":"si"},
-    {"name":"discapaciodad","value":"si"},
-    {"name":"discapaciodad_acargo","value":"si"},
-    {"name":"interes_trabajo","value":"interes_trabajo"},
-    {"name":"interes_capacitacion","value":"si"},
-    {"name":"interes_emprender","value":"si"},
-    {"name":"interes_estudiar","value":"si"},
-    {"name":"interes_mayores","value":"si"},
-    {"name":"interes_salud","value":"si"},
-    {"name":"interes_vivienda","value":"si"},
-    {"name":"interes_auto","value":"si"},
-    {"name":"interes_hijo","value":"si"},
-    {"name":"interes_violencia","value":"si"}
-  ];
-
-
   var contents = [
     {
       name: "Me quiero jubilar",
       url: 'https://back.argentina.gob.ar/tema/adultosmayores/iniciarjubilacionpension',
       icon: 'icono-arg-tramite-jubilacion',
+      nacionalidad: 'argentino',
+      tipo: 'personal',
       conditions: {
-        edad: '60',
+        edad: '>60',
         interes_mayores: 'si'
       }
     },
@@ -41,8 +20,10 @@ layout: mi-argentina
       name: "Soy jubilado o pensionado",
       url: 'https://back.argentina.gob.ar/tema/adultosmayores/soyjubiladopensionado',
       icon: 'icono-arg-jubilado',
+      nacionalidad: 'argentino',
+      tipo: 'personal',
       conditions: {
-        edad: '60',
+        edad: '>60',
         interes_mayores: 'si'
       }
     },
@@ -50,6 +31,8 @@ layout: mi-argentina
       name: "Soy empleado en relación de dependencia",
       url: 'https://back.argentina.gob.ar/tema/trabajar/soy-empleado',
       icon: 'icono-arg-apostilla',
+      nacionalidad: 'todas',
+      tipo: 'personal',
       conditions: {
         empleo: 'si'
       }
@@ -58,6 +41,8 @@ layout: mi-argentina
       name: "Soy monotributista",
       url: 'https://back.argentina.gob.ar/tema/trabajar/monotributo',
       icon: 'icono-arg-factura',
+      nacionalidad: 'todas',
+      tipo: 'personal',
       conditions: {
         empleo: 'si'
       }
@@ -66,6 +51,8 @@ layout: mi-argentina
       name: "Personas con discapacidad",
       url: 'https://www.argentina.gob.ar/tema/discapacidad',
       icon: 'fa-wheelchair',
+      nacionalidad: 'argentino',
+      tipo: 'personal',
       conditions: {
         discapaciodad: 'si',
         discapaciodad_acargo: 'si'
@@ -75,6 +62,8 @@ layout: mi-argentina
       name: "Estudiar (extranjeros)",
       url: 'https://back.argentina.gob.ar/tema/extranjeros/estudiar-en-argentina',
       icon: 'fa-book',
+      nacionalidad: 'extranjero',
+      tipo: 'personal',
       conditions: {
         nacionalidad: 'extranjero'
       }
@@ -83,6 +72,8 @@ layout: mi-argentina
       name: "Trabajar (extranjeros)",
       url: 'https://back.argentina.gob.ar/tema/extranjeros/trabajar-en-argentina',
       icon: 'fa-suitcase',
+      nacionalidad: 'extranjero',
+      tipo: 'personal',
       conditions: {
         nacionalidad: 'extranjero'
       }
@@ -91,6 +82,8 @@ layout: mi-argentina
       name: "Obtener la ciudadanía",
       url: 'https://back.argentina.gob.ar/tema/extranjeros/ciudadania',
       icon: 'icono-arg-calidad-cert',
+      nacionalidad: 'extranjero',
+      tipo: 'personal',
       conditions: {
         nacionalidad: 'extranjero'
       }
@@ -99,6 +92,8 @@ layout: mi-argentina
       name: "Busco trabajo",
       url: 'https://back.argentina.gob.ar/tema/trabajar/buscar-trabajo',
       icon: 'fa-newspaper-o',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
         interes_trabajo: 'si'
       }
@@ -107,6 +102,8 @@ layout: mi-argentina
       name: "Me quiero capacitar",
       url: 'https://back.argentina.gob.ar/tema/trabajar/me-quiero-capacitar',
       icon: 'icono-arg-capacitacion',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
         interes_capacitacion: 'si'
       }
@@ -115,6 +112,8 @@ layout: mi-argentina
       name: "Soy emprendedor (incluye economía social)",
       url: 'https://back.argentina.gob.ar/tema/emprender/soy-emprendedor',
       icon: 'fa-briefcase',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
         interes_emprender: 'si'
       }
@@ -123,6 +122,8 @@ layout: mi-argentina
       name: "Necesito capacitación para emprender",
       url: 'https://back.argentina.gob.ar/tema/emprender/capacitacion',
       icon: 'icono-arg-capacitacion',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
         interes_emprender: 'si'
       }
@@ -131,6 +132,8 @@ layout: mi-argentina
       name: "Niveles educativos",
       url: 'https://back.argentina.gob.ar/tema/estudiar/niveles',
       icon: 'fa-list-ol',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
         edad: '< 19',
         hijo_menor: 'si',
@@ -141,6 +144,8 @@ layout: mi-argentina
       name: "Modalidades educativas",
       url: 'https://back.argentina.gob.ar/tema/estudiar/modalidades',
       icon: 'fa-graduation-cap',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
         edad: '< 19',
         hijo_menor: 'si',
@@ -151,6 +156,8 @@ layout: mi-argentina
       name: "Beneficios, programas y becas",
       url: 'https://back.argentina.gob.ar/tema/estudiar-programas-y-becas',
       icon: 'icono-arg-interes-cultural',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
         edad: '< 19',
         hijo_menor: 'si',
@@ -161,6 +168,8 @@ layout: mi-argentina
       name: "Cuido mi salud - adultos mayores",
       url: 'https://back.argentina.gob.ar/tema/adultosmayores/cuido-mi-salud',
       icon: 'icono-arg-medicina',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
         edad: '> 60',
         interes_mayores: 'si'
@@ -170,16 +179,20 @@ layout: mi-argentina
       name: "Embarazo",
       url: 'https://back.argentina.gob.ar/tema/tenerunhijo/embarazo',
       icon: 'icono-arg-embarazo',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
-
+        interes_hijo: 'si'
       }
     },
     {
       name: "Nacimiento de un bebé",
       url: 'https://back.argentina.gob.ar/tema/tenerunhijo/nacimiento',
       icon: 'icono-arg-chupete',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
-
+        interes_hijo: 'si'
       }
     },
     {
@@ -187,71 +200,89 @@ layout: mi-argentina
       url: 'https://back.argentina.gob.ar/tema/tenerunhijo/adoptar',
       icon: 'fa-child',
       conditions: {
-
+        tipo: 'interes',
+        interes_hijo: 'si'
       }
     },
     {
       name: "Vacunas",
       url: 'https://back.argentina.gob.ar/tema/cuidarlasalud/vacunas',
       icon: 'icono-arg-vacunas',
+      nacionalidad: 'argentino',
+      tipo: 'interes',
       conditions: {
-
+        hijos: 'si',
+        interes_hijo: 'si'
       }
     },
     {
       name: "Pausa activa",
       url: 'https://back.argentina.gob.ar/tema/cuidarlasalud/tupausaactiva',
       icon: 'icono-arg-marcador-temporal',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_salud: 'si'
       }
     },
     {
       name: "Vivir en Positivo",
       url: '',
       icon: '',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_salud: 'si'
       }
     },
     {
       name: "Acceder a una vivienda ",
       url: 'https://back.argentina.gob.ar/tema/hogar/acceder-a-vivienda',
       icon: 'icono-arg-vivienda',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_vivienda: 'si'
       }
     },
     {
       name: "Compra o venta de un auto",
       url: 'https://back.argentina.gob.ar/vehiculos',
       icon: 'icono-arg-auto',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_auto: 'si'
       }
     },
     {
       name: "Abuso Infantil",
       url: 'https://back.argentina.gob.ar/abusosexualinfantil',
       icon: 'fa-child',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_violencia: 'si'
       }
     },
     {
       name: "Trata",
       url: 'https://back.argentina.gob.ar/denuncialatrata',
       icon: 'fa-exchange',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_violencia: 'si'
       }
     },
     {
       name: "Mujeres en situación de violencia",
       url: 'https://back.argentina.gob.ar/atencionmujeres',
       icon: 'fa-female',
+      nacionalidad: 'todas',
+      tipo: 'interes',
       conditions: {
-
+        interes_violencia: 'si'
       }
     }
   ]
@@ -296,121 +327,27 @@ layout: mi-argentina
     <h2>Tus resultados</h2>
     <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
 
-    <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
-
-    <div id="personal-items" class="row panels-row m-y-2">
-      
-      <div class="col-xs-12 col-sm-6 col-md-4 hidden">
-        <a class="panel panel-default" href="#">
-          <div class="panel-body">
-            <div class="media">
-              <div class="media-left padding-20">
-                <i class="fa fa-wheelchair fa-fw fa-2x text-primary"></i>
-              </div>
-              <div class="media-body">
-                <h3>Personas con discapacidad</h3>
-                <p class="text-muted">Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
+    <div id="wizard-personal" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
+      <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
     </div>
 
-    <!-- <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+    <div id="wizard-interest" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+      <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
+    </div>
 
-    <div class="container">
-      <div class="row panels-row m-y-2">
-        
-        <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-          <a class="panel panel-default" href="#">
-            <div class="panel-body">
-              <div class="media">
-                <div class="media-left padding-20">
-                  <i class="fa fa-gittip fa-fw fa-2x text-primary"></i>
-                </div>
-                <div class="media-body">
-                  <h3>Embarazo</h3>
-                  <p>Se trata del único documento que te habilita legalmente a manejar un vehículo.</p>
-                </div>
-              </div>
-            </div>
-          </a>
-      </div>
+    <div id="wizard-message" class="m-y-3 hidden">
+      <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+      <p>Probá cambiando la configuración del formulario.</p>
+    </div>
 
-      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-        <a class="panel panel-default" href="#">
-          <div class="panel-body">
-            <div class="media">
-              <div class="media-left padding-20">
-                <i class="fa icono-arg-tener-un-hijo fa-fw fa-2x text-primary"></i>
-              </div>
-              <div class="media-body">
-                <h3>Nacimiento de un bebé</h3>
-                <p>Se trata del único documento que te habilita.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-        <a class="panel panel-default" href="#">
-          <div class="panel-body">
-            <div class="media">
-              <div class="media-left padding-20">
-                <i class="fa fa-graduation-cap fa-fw fa-2x text-primary"></i>
-              </div>
-              <div class="media-body">
-                <h3>Me quiero capacitar</h3>
-                <p>Se trata del único documento que te habilita.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-        <a class="panel panel-default" href="#">
-          <div class="panel-body">
-            <div class="media">
-              <div class="media-left padding-20">
-                <i class="fa fa-hospital-o fa-fw fa-2x text-primary"></i>
-              </div>
-              <div class="media-body">
-                <h3>Vacunas</h3>
-                <p>Se trata del único documento que te habilita.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3 m-t-1">
-        <a class="panel panel-default" href="#">
-          <div class="panel-body">
-            <div class="media">
-              <div class="media-left padding-20">
-                <i class="fa fa-book fa-fw fa-2x text-primary"></i>
-              </div>
-              <div class="media-body">
-                <h3>Beneficios, programas y becas</h3>
-                <p>Se trata del único documento que te habilita.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div> -->
-
-    <div class="">
+    <div class="m-t-3">
       <a class="btn btn-primary m-r-1" href="buscador-situaciones.html">Cambiar respuestas</a>
       <a id="wipe-form" class="btn btn-link" href="buscador-situaciones.html">Volver a comenzar</a>
     </div>
 
   </div>
-  
 </section>
 
 
@@ -435,39 +372,55 @@ layout: mi-argentina
         data[item.name] = item.value;
       });
 
-      console.log( data );
+      var item_blank = true;
 
       $.each(contents, function(key, content){
 
         var show = false;
+        var nacionalidad = false;
+
+        if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
+          nacionalidad = true;
+        }
 
         $.each(content.conditions, function(condition, value){
-          // console.log(condition);
-
           if( data[condition] == value ){
             show = true;
           }
         });
 
-        if(show){
+        console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
-          console.log(content);
+        if(show && nacionalidad){
+
+          item_blank = false;
+          console.log('sumo 1');
 
           var html = templates.item;
 
           html = html.replace(/{url}/gi, content.url)
             .replace(/{icon}/gi, content.icon)
             .replace(/{title}/gi, content.name)
-            .replace(/{description}/gi, content.name)
+            .replace(/{description}/gi, content.name);
 
-          $('#personal-items').append( html )
+          if(content.tipo == 'personal'){
+            $('#wizard-personal').removeClass('hidden');
+            $('#wizard-personal-items').append( html );
+          }else{
+            $('#wizard-interest').removeClass('hidden');
+            $('#wizard-interest-items').append( html );
+          }
         }
 
-        console.log(show);
-      })
 
+      });
       
+      console.log(item_blank);
 
+      if(item_blank){
+        $('#wizard-message').removeClass('hidden');
+      }
+        
     }else{
       console.log('Todavía no guardaste nada');
       window.location.replace('buscador-situaciones.html');
