@@ -44,15 +44,15 @@ layout: mi-argentina
                 
                   <div class="form-group m-t-1">
                     <label>¿Cuál es tu edad?</label>
-                    <input type="number" name="edad" class="form-control" placeholder="">
+                    <input type="number" name="edad" class="form-control" placeholder="" required>
                   </div>
 
                   <div class="form-group m-t-3">
                     <label>¿Cuál es tu nacionalidad?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="argentino">Soy argentino</label>
-                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="extranjero">Soy extranjero</label>
+                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="argentino" required>Soy argentino</label>
+                        <label class="radio-inline"><input type="radio" name="nacionalidad" value="extranjero" required>Soy extranjero</label>
                       </div>
                     </div>
                   </div>
@@ -61,8 +61,8 @@ layout: mi-argentina
                     <label>¿Tenés empleo?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="empleo" value="si">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="empleo" value="no">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="si" required>Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="no" required>No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -71,8 +71,8 @@ layout: mi-argentina
                     <label>¿Tenés hijos?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="hijos" value="si">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="hijos" value="no">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="si" required>Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="no" required>No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -82,9 +82,9 @@ layout: mi-argentina
                     <label class="text-muted">Podés seleccionar más de una opción</label>
                     <div class="form-item form-type-checkbox checkbox">
                       <div class="checkbox">
-                        <label><input type="checkbox" name="hijo_menor" value="si">Menores de 18 años.</label>
+                        <label><input type="checkbox" name="hijo_menor" value="si" required>Menores de 18 años.</label>
                         <br />
-                        <label class="m-t-1"><input type="checkbox" name="hijo_mayor" value="si">Mayores de 18 años.</label>
+                        <label class="m-t-1"><input type="checkbox" name="hijo_mayor" value="si" required>Mayores de 18 años.</label>
                       </div>
                     </div>
                   </div>
@@ -93,8 +93,8 @@ layout: mi-argentina
                     <label>¿Tenés alguna discapacidad?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="si">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="no">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="si" required>Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad" value="no" required>No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -103,8 +103,8 @@ layout: mi-argentina
                     <label>¿Alguno de tus familiares o personas a cargo tiene una discapacidad?</label>
                     <div class="form-item form-type-radio radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="si">Sí</label>
-                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="no">No</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="si" required>Sí</label>
+                        <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="no" required>No</label>
                       </div>
                     </div>
                   </div>
@@ -155,6 +155,9 @@ layout: mi-argentina
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+
 <script>
   
 var data;
@@ -187,13 +190,20 @@ var data;
 
   // Cuando mando el formulario guardo lo que se modificó
 
+  jQuery.validator.setDefaults({
+    debug: true,
+    success: "valid"
+  });
+
+  var wizard_form = $("#wizard-form").validate();
+  wizard_form.validate();
+
   $('#wizard-form').on('submit', function(event){
     event.preventDefault();
+    // console.log(data);
 
-    data = $(this).serializeArray();
-    console.log(data);
-
-    if (typeof(Storage) !== "undefined") {
+    if (typeof(Storage) !== "undefined" && wizard_form.validate() ) {
+      data = $(this).serializeArray();
       localStorage.setItem("wizard-form", JSON.stringify(data));
       window.location.href = 'tus-resultados.html';
 
