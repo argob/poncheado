@@ -1,0 +1,134 @@
+---
+layout: argentina
+---
+
+<div class="container">
+ <section>
+
+    <h3 class="text-center">Tarifas vigentes</h3>
+    <div id="tramites">
+      <div class="row">
+        <div class="col-md-4">    
+          <div class="form-group">
+            <label for="">Buscá por peaje</label>
+            <input class="form-control search" placeholder="Buscá por nombre o resumen">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Buscá por acceso o ruta</label>
+            <select id="tipo-acceso" class="form-control">
+            <option data-tipoacceso="todos" value="todos">Todos</option>
+              <option data-tipoacceso="norte" value="norte">Acceso Norte</option>
+              <option data-tipoacceso="oeste" value="oeste">Acceso Oeste</option>
+              <option data-tipoacceso="ricchieri" value="ricchieri">Acceso Ricchieri</option>
+              <option data-tipoacceso="ruta 3" value="ruta 3">Ruta Nacional Nº3</option>
+              <option data-tipoacceso="ruta 12" value="ruta 12">Ruta Nacional Nº12</option>
+            </select>
+          </div>
+        </div>
+      
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtrá por tipo de vehículo</label>
+            <select id="tipo-vehiculo" class="form-control">
+            <option data-tipovehiculo="todos" value="todos">Todos</option>
+              <option data-tipovehiculo="moto" value="moto">1 eje (moto)</option>
+              <option data-tipovehiculo="auto" value="auto">2 ejes (auto)</option>
+              <option data-tipovehiculo="camion" value="camion">2 ejes (camión)</option>
+              <option data-tipovehiculo="3y4" value="3y4">3 y 4 ejes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="acceso">Acceso o ruta <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="peaje">Peaje <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="ejes">Ejes de vehículo <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="pago">Modo de pago <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="franja">Franja Horaria <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="tarifa">Tarifa <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="hide">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY/1/public/values?alt=json', function (data) {
+        window.tramites = data.feed.entry;
+        showTramites();
+        console.log(data);
+    });
+
+    window.showTramites = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( tramites, function( key, item ) {
+
+            html += '<tr>';
+            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
+            html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
+            html += ' <td class="ejes">'+ item.gsxejes.$t + '</td>';
+            html += ' <td class="pago">'+ item.gsxpago.$t + '</td>';
+            html += ' <td class="franja">'+ item.gsxfranja.$t + '</td>';
+            html += ' <td class="tarifa">'+ item.gsxtarifa.$t + '</td>';
+            html += '</tr>';
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'acceso', 'peaje', 'ejes', 'pago', 'franja', 'tarifa' ], 
+          
+         };
+        var tramitesList = new List('tramites', listOptions);
+    }
+
+
+
+
+});
+})(jQuery);
+
+</script>
+
+
