@@ -2,13 +2,13 @@
 layout: mi-argentina
 ---
 
-<section class="jumbotron" style="background-image: url('img/argentina_2.jpg');">
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
   <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb pull-left">
-            <li><a href="">Argentina</a></li>
+            <li><a href="/">Argentina</a></li>
             <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
             
           </ol>
@@ -29,6 +29,8 @@ layout: mi-argentina
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+
+
         <p>Respondé las preguntas con tus datos o las de un ser querido con la mayor precisión posible.</p>
         
         <form id="wizard-form">
@@ -43,13 +45,14 @@ layout: mi-argentina
                 <div class="media-body media-middle">
                 
                   <div class="form-group m-t-1">
-                    <label>¿Cuál es tu edad?</label>
+                    <label class="control-label">¿Cuál es tu edad?</label>
+                    <div class="error-container"></div>
                     <input type="number" name="edad" class="form-control" placeholder="" required>
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Cuál es tu nacionalidad?</label>
-                    <div class="form-item form-type-radio radio">
+                    <label class="control-label">¿Cuál es tu nacionalidad?</label>
+                    <div class="form-item form-type-radio">
                       <div class="radio">
                         <label class="radio-inline"><input type="radio" name="nacionalidad" value="argentino" required>Soy argentino</label>
                         <label class="radio-inline"><input type="radio" name="nacionalidad" value="extranjero" required>Soy extranjero</label>
@@ -58,8 +61,8 @@ layout: mi-argentina
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Tenés empleo?</label>
-                    <div class="form-item form-type-radio radio">
+                    <label class="control-label">¿Tenés empleo?</label>
+                    <div class="form-item form-type-radio">
                       <div class="radio">
                         <label class="radio-inline"><input type="radio" name="empleo" value="si" required>Sí, tengo</label>
                         <label class="radio-inline"><input type="radio" name="empleo" value="no" required>No tengo</label>
@@ -68,8 +71,8 @@ layout: mi-argentina
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Tenés hijos?</label>
-                    <div class="form-item form-type-radio radio">
+                    <label class="control-label">¿Tenés hijos?</label>
+                    <div class="form-item form-type-radio">
                       <div class="radio">
                         <label class="radio-inline"><input type="radio" name="hijos" value="si" required>Sí, tengo</label>
                         <label class="radio-inline"><input type="radio" name="hijos" value="no" required>No tengo</label>
@@ -78,20 +81,20 @@ layout: mi-argentina
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Qué edad tienen tus hijos?</label><br />
+                    <label class="control-label">¿Qué edad tienen tus hijos?</label><br />
                     <label class="text-muted">Podés seleccionar más de una opción</label>
                     <div class="form-item form-type-checkbox checkbox">
                       <div class="checkbox">
-                        <label><input type="checkbox" name="hijo_menor" value="si" required>Menores de 18 años.</label>
+                        <label><input type="checkbox" name="hijo_menor" value="si">Menores de 18 años.</label>
                         <br />
-                        <label class="m-t-1"><input type="checkbox" name="hijo_mayor" value="si" required>Mayores de 18 años.</label>
+                        <label class="m-t-1"><input type="checkbox" name="hijo_mayor" value="si">Mayores de 18 años.</label>
                       </div>
                     </div>
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Tenés alguna discapacidad?</label>
-                    <div class="form-item form-type-radio radio">
+                    <label class="control-label">¿Tenés alguna discapacidad?</label>
+                    <div class="form-item form-type-radio">
                       <div class="radio">
                         <label class="radio-inline"><input type="radio" name="discapaciodad" value="si" required>Sí, tengo</label>
                         <label class="radio-inline"><input type="radio" name="discapaciodad" value="no" required>No tengo</label>
@@ -100,8 +103,8 @@ layout: mi-argentina
                   </div>
 
                   <div class="form-group m-t-3">
-                    <label>¿Alguno de tus familiares o personas a cargo tiene una discapacidad?</label>
-                    <div class="form-item form-type-radio radio">
+                    <label class="control-label">¿Alguno de tus familiares o personas a cargo tiene una discapacidad?</label>
+                    <div class="form-item form-type-radio">
                       <div class="radio">
                         <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="si" required>Sí</label>
                         <label class="radio-inline"><input type="radio" name="discapaciodad_acargo" value="no" required>No</label>
@@ -150,67 +153,80 @@ layout: mi-argentina
             <input class="btn btn-success btn-md" type="submit" value="Ver Resultados">
           </div>
         </form>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+
+        <script>
+          
+          var data;
+
+          // Leo si hay algo guardado
+
+          if(typeof(Storage) !== "undefined") {
+            if( localStorage.getItem("wizard-form") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("wizard-form"))
+
+              jQuery.each(data, function(key, item){
+                if(item.name == 'edad'){
+                  jQuery('[name='+ item.name +']').val(item.value);
+
+                }else{
+                  jQuery('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+                }
+              })
+
+            }
+
+            jQuery.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var wizard_form = jQuery("#wizard-form");
+            wizard_form.validate({
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || element.is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if (jQuery(element).is(":radio") || jQuery(element).is(":checkbox")){
+                  jQuery(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  jQuery(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            jQuery('#wizard-form').on('submit', function(event){
+              event.preventDefault();
+
+              if (wizard_form.valid() ) {
+                data = jQuery(this).serializeArray();
+                localStorage.setItem("wizard-form", JSON.stringify(data));
+                window.location.href = '/tusresultados';
+              }
+            });
+
+          } else {
+            console.log('No tenés soporte :(');
+          } 
+
+        </script>
+
+
+
       </div>
     </div>
   </div>
 </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
-
-<script>
-  
-var data;
-
-  // Leo si hay algo guardado
-
-  if(typeof(Storage) !== "undefined") {
-    if( localStorage.getItem("wizard-form") != undefined ){
-
-      data = JSON.parse( localStorage.getItem("wizard-form"))
-      // console.log( data );
-
-      $.each(data, function(key, item){
-        if(item.name == 'edad'){
-          $('[name='+ item.name +']').val(item.value);
-
-        }else{
-          // console.log($('[name='+ item.name +'][value='+ item.value +']'));
-          $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
-        }
-      })
-
-    }else{
-      console.log('Todavía no guardaste nada');
-    }
-
-  } else {
-    console.log('No tenés soporte :(');
-  }
-
-  // Cuando mando el formulario guardo lo que se modificó
-
-  jQuery.validator.setDefaults({
-    debug: true,
-    success: "valid"
-  });
-
-  var wizard_form = $("#wizard-form").validate();
-  wizard_form.validate();
-
-  $('#wizard-form').on('submit', function(event){
-    event.preventDefault();
-    // console.log(data);
-
-    if (typeof(Storage) !== "undefined" && wizard_form.validate() ) {
-      data = $(this).serializeArray();
-      localStorage.setItem("wizard-form", JSON.stringify(data));
-      window.location.href = 'tus-resultados.html';
-
-    } else {
-      console.log('Pucha, che!');
-    }
-  });
-
-
-</script>
