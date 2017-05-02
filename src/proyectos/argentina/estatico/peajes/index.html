@@ -6,12 +6,12 @@ layout: argentina
  <section>
 
     <h3 class="text-center">Tarifas vigentes</h3>
-    <div id="tramites">
+    <div id="tarifas">
       <div class="row">
         <div class="col-md-4">    
           <div class="form-group">
             <label for="">Buscá por peaje</label>
-            <input class="form-control search" placeholder="Buscá por nombre o resumen">
+            <input class="form-control search" placeholder="">
           </div>
         </div>
         <div class="col-md-4">
@@ -61,20 +61,6 @@ layout: argentina
       </table>
     </div>
   </section>
-  <section class="hide">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <hr>
-        <div class="section-actions is_area social-share">
-          <p>Compartir en <br> redes sociales</p>
-          <ul class="list-inline">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 
@@ -88,27 +74,27 @@ layout: argentina
 $(document).ready(function () {
 
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY/1/public/values?alt=json', function (data) {
-        window.tramites = data.feed.entry;
-        showTramites();
+    $.getJSON('https://docs.google.com/spreadsheets/d/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/pubhtml?alt=json', function (data) {
+        window.tarifas = data.feed.entry;
+        showtarifas();
         console.log(data);
     });
 
-    window.showTramites = function(){
+    window.showtarifas = function(){
         var showData = $('#show-data');
 
         var html = '';
 
 
-        $.each( tramites, function( key, item ) {
+        $.each( tarifas, function( key, item ) {
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
+            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso_ruta.$t + '</h6></td>';
             html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsxejes.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsxpago.$t + '</td>';
-            html += ' <td class="franja">'+ item.gsxfranja.$t + '</td>';
-            html += ' <td class="tarifa">'+ item.gsxtarifa.$t + '</td>';
+            html += ' <td class="ejes">'+ item.gsx$ejes_vehiculo.$t + '</td>';
+            html += ' <td class="pago">'+ item.gsx$modo_pago.$t + '</td>';
+            html += ' <td class="franja">'+ item.gsx$franja_horaria.$t + '</td>';
+            html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
     
         });
@@ -120,7 +106,7 @@ $(document).ready(function () {
           valueNames: [ 'acceso', 'peaje', 'ejes', 'pago', 'franja', 'tarifa' ], 
           
          };
-        var tramitesList = new List('tramites', listOptions);
+        var tarifasList = new List('tarifas', listOptions);
     }
 
 
