@@ -8,17 +8,25 @@ layout: argentina
     <h3 class="text-center">Tarifas vigentes</h3>
     <div id="tarifas">
       <div class="row">
-        <div class="col-md-4">    
+
+        <div class="col-md-4">
           <div class="form-group">
-            <label for="">Buscá por peaje</label>
-            <input class="form-control search" placeholder="">
+            <label for="">Filtrá por tipo de vehículo</label>
+            <select id="tipo-vehiculo" class="form-control">
+              <option data-tipovehiculo="todos" value="todos">Todos</option>
+              <option data-tipovehiculo="moto" value="moto">1 eje (moto)</option>
+              <option data-tipovehiculo="auto" value="auto">2 ejes (auto)</option>
+              <option data-tipovehiculo="camion" value="camion">2 ejes (camión)</option>
+              <option data-tipovehiculo="3y4" value="3y4">3 y 4 ejes</option>
+            </select>
           </div>
-        </div>
+        </div>    
+
         <div class="col-md-4">
           <div class="form-group">
             <label for="">Buscá por acceso o ruta</label>
             <select id="tipo-acceso" class="form-control">
-            <option data-tipoacceso="todos" value="todos">Todos</option>
+              <option data-tipoacceso="todos" value="todos">Todos</option>
               <option data-tipoacceso="norte" value="norte">Acceso Norte</option>
               <option data-tipoacceso="oeste" value="oeste">Acceso Oeste</option>
               <option data-tipoacceso="ricchieri" value="ricchieri">Acceso Ricchieri</option>
@@ -28,22 +36,15 @@ layout: argentina
           </div>
         </div>
       
-
-      <div class="col-md-4">
+        <div class="col-md-4">    
           <div class="form-group">
-            <label for="">Filtrá por tipo de vehículo</label>
-            <select id="tipo-vehiculo" class="form-control">
-            <option data-tipovehiculo="todos" value="todos">Todos</option>
-              <option data-tipovehiculo="moto" value="moto">1 eje (moto)</option>
-              <option data-tipovehiculo="auto" value="auto">2 ejes (auto)</option>
-              <option data-tipovehiculo="camion" value="camion">2 ejes (camión)</option>
-              <option data-tipovehiculo="3y4" value="3y4">3 y 4 ejes</option>
-            </select>
+            <label for="">Buscá por peaje</label>
+            <input class="form-control search" placeholder="">
           </div>
         </div>
+      
       </div>
-
-      </div>
+    </div>
 
       <table class="table table-spaced">
         <thead>
