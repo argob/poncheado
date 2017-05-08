@@ -154,6 +154,7 @@ layout: mi-argentina
           </div>
         </form>
 
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
 
@@ -168,25 +169,25 @@ layout: mi-argentina
 
               data = JSON.parse( localStorage.getItem("wizard-form"))
 
-              jQuery.each(data, function(key, item){
+              $.each(data, function(key, item){
                 if(item.name == 'edad'){
-                  jQuery('[name='+ item.name +']').val(item.value);
+                  $('[name='+ item.name +']').val(item.value);
 
                 }else{
-                  jQuery('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+                  $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
                 }
               })
 
             }
 
-            jQuery.validator.setDefaults({
+            $.validator.setDefaults({
               // debug: true,
               success: "valid"
             });
 
             // Cuando mando el formulario guardo lo que se modificó
 
-            var wizard_form = jQuery("#wizard-form");
+            var wizard_form = $("#wizard-form");
             wizard_form.validate({
               errorPlacement: function(error, element) {
                 if (element.is(":radio") || element.is(":checkbox")){
@@ -196,10 +197,10 @@ layout: mi-argentina
                 }
               },
               highlight: function(element, errorClass) {
-                if (jQuery(element).is(":radio") || jQuery(element).is(":checkbox")){
-                  jQuery(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
                 } else{
-                  jQuery(element).parent().addClass("has-error has-feedback");
+                  $(element).parent().addClass("has-error has-feedback");
                 }
               },
               success: function(label) {
@@ -208,12 +209,22 @@ layout: mi-argentina
               },
             });
 
-            jQuery('#wizard-form').on('submit', function(event){
+            $('#wizard-form').on('submit', function(event){
               event.preventDefault();
 
               if (wizard_form.valid() ) {
-                data = jQuery(this).serializeArray();
+                data = $(this).serializeArray();
                 localStorage.setItem("wizard-form", JSON.stringify(data));
+
+
+                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                if( localStorage.getItem("wizard-form") == undefined ){
+                  ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
+                }else{
+                  ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
+                }
+
                 window.location.href = '/tusresultados';
               }
             });
