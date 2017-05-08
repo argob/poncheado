@@ -58,12 +58,75 @@ layout: mi-argentina
 
       var contents = [
         {
+          name: 'Tarifa Social',
+          description: 'Solicitar tarifa social en los servicios públicos.',
+          url: '/tarifasocial',
+          icon: 'fa-user',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '> 59',
+            empleo: 'no',
+            hijo_menor: 'si',
+            discapacidad: 'si',
+            discapaciodad_acargo: 'si'
+          }
+        },
+        {
+          name: 'Personas con discapacidad',
+          description: 'Servicios para atención de la salud, asignaciones familiares, viajar gratis y más trámites.',
+          url: 'https://www.argentina.gob.ar/discapacidad',
+          icon: 'fa-wheelchair',
+          nacionalidad: 'todas',
+          tipo: 'personal',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
+        },
+        {
+          name: 'Jubilación ordinaria o por vejez',
+          description: 'Podés iniciarla con 120 días corridos de anticipación a la fecha en que cumplís la edad requerida.',
+          url: '/jubilacion-ordinaria-o-por-vejez',
+          icon: 'icono-arg-tramite-jubilacion',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Prestación por edad avanzada',
+          description: 'Si tenés 70 o más años y no podés acreditar los años de servicios exigidos, podés solicitarla.',
+          url: '/prestacion-por-edad-avanzada',
+          icon: 'icono-arg-tramite-jubilacion',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
           name: 'Me quiero jubilar',
           description: 'Si querés jubilarte o sacar una pensión entrá al trámite que necesitás según tu situación.',
           url: '/tema/adultosmayores/iniciarjubilacionpension',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'argentino',
           tipo: 'personal',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Reparación Histórica',
+          description: 'Si sos jubilado o pensionado, podés consultar si estás incluido en el Programa de Reparación Histórica.',
+          url: '/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
+          icon: 'icono-arg-jubilado',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
           conditions: {
             edad: '> 57',
             interes_mayores: 'si'
@@ -101,18 +164,6 @@ layout: mi-argentina
           tipo: 'personal',
           conditions: {
             empleo: 'si'
-          }
-        },
-        {
-          name: 'Personas con discapacidad',
-          description: 'Servicios para atención de la salud, asignaciones familiares, viajar gratis y más trámites.',
-          url: 'https://www.argentina.gob.ar/discapacidad',
-          icon: 'fa-wheelchair',
-          nacionalidad: 'argentino',
-          tipo: 'personal',
-          conditions: {
-            discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
           }
         },
         {
@@ -165,11 +216,11 @@ layout: mi-argentina
           description: 'Herramientas que potencien tus habilidades y mejoren tus oportunidades laborales.',
           url: '/tema/trabajar/me-quiero-capacitar',
           icon: 'icono-arg-capacitacion',
-          nacionalidad: 'argentino',
+          nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
             interes_capacitacion: 'si',
-            empleo: 'no'
+            empleo: 'no'  
           }
         },
         {
@@ -195,6 +246,19 @@ layout: mi-argentina
           }
         },
         {
+          name: 'PROGRESAR',
+          description: 'Acceder al Programa de Respaldo a Estudiantes de Argentina.',
+          url: '/programa-de-respaldo-estudiantes-de-argentina-progresar',
+          icon: 'fa-list-ol',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '< 25',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
+        },
+        {
           name: 'Niveles educativos',
           description: 'Información para conocer e inscribirte en los diferentes niveles educativos.',
           url: '/tema/estudiar/niveles',
@@ -202,7 +266,7 @@ layout: mi-argentina
           nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
-            edad: '< 19',
+            edad: '< 60',
             hijo_menor: 'si',
             interes_estudiar: 'si'
           }
@@ -215,7 +279,7 @@ layout: mi-argentina
           nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
-            edad: '< 19',
+            edad: '< 60',
             hijo_menor: 'si',
             interes_estudiar: 'si'
           }
@@ -228,8 +292,10 @@ layout: mi-argentina
           nacionalidad: 'argentino',
           tipo: 'interes',
           conditions: {
-            edad: '< 19',
+            edad: '< 60',
+            hijos: 'si',
             hijo_menor: 'si',
+            hijo_mayor: 'si',
             interes_estudiar: 'si'
           }
         },
@@ -246,13 +312,38 @@ layout: mi-argentina
           }
         },
         {
+          name: 'Asignación por Embarazo',
+          description: 'Obtener la Asignación por Embarazo, ésta es una prestación monetaria, no retributiva.',
+          url: '/asignacion-por-embarazo-para-proteccion-social',
+          icon: 'icono-arg-embarazo',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
           name: 'Embarazo',
           description: 'Consejos, beneficios y servicios que te acompañan y asisten durante este momento de tu vida.',
           url: '/tema/tenerunhijo/embarazo',
           icon: 'icono-arg-embarazo',
-          nacionalidad: 'argentino',
+          nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Asignación Universal por Hijo',
+          description: 'Obtener la Asignación Universal por Hijo para Protección Social.',
+          url: '/asignacion-universal-por-hijo-para-proteccion-social',
+          icon: 'icono-arg-chupete',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++ 
+          conditions: {
+            edad: '< 60',
             interes_hijo: 'si'
           }
         },
@@ -261,9 +352,10 @@ layout: mi-argentina
           description: 'Informate sobre la documentación y los beneficios que te corresponden.',
           url: '/tema/tenerunhijo/nacimiento',
           icon: 'icono-arg-chupete',
-          nacionalidad: 'argentino',
+          nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
+            edad: '< 60',
             interes_hijo: 'si'
           }
         },
@@ -282,9 +374,10 @@ layout: mi-argentina
           description: 'Calendario de vacunas para cada etapa de la vida, desde el nacimiento hasta la tercera edad.',
           url: '/tema/cuidarlasalud/vacunas',
           icon: 'icono-arg-vacunas',
-          nacionalidad: 'argentino',
+          nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
+            edad: '> 0',
             hijos: 'si',
             interes_hijo: 'si'
           }
@@ -297,6 +390,7 @@ layout: mi-argentina
           nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
+            edad: '> 0',
             interes_salud: 'si'
           }
         },
@@ -312,6 +406,18 @@ layout: mi-argentina
           }
         },
         {
+          name: 'Procrear ',
+          description: 'ProCreAr busca que las familias argentinas tengan la felicidad y la tranquilidad de acceder a su primera casa propia.',
+          url: '/procrear',
+          icon: 'icono-arg-vivienda',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
+        },
+        {
           name: 'Acceder a una vivienda ',
           description: 'Información sobre créditos, programas de vivienda y derechos de inquilinos o propietarios.',
           url: '/tema/hogar/acceder-a-vivienda',
@@ -319,6 +425,7 @@ layout: mi-argentina
           nacionalidad: 'todas',
           tipo: 'interes',
           conditions: {
+            edad: '> 18',
             interes_vivienda: 'si'
           }
         },
@@ -427,13 +534,13 @@ layout: mi-argentina
                 .replace(/{title}/gi, content.name)
                 .replace(/{description}/gi, content.description);
 
-              if(content.tipo == 'personal'){
+              // if(content.tipo == 'personal'){
                 jQuery('#wizard-personal').removeClass('hidden');
                 jQuery('#wizard-personal-items').append( html );
-              }else{
-                jQuery('#wizard-interest').removeClass('hidden');
-                jQuery('#wizard-interest-items').append( html );
-              }
+              // }else{
+              //   jQuery('#wizard-interest').removeClass('hidden');
+              //   jQuery('#wizard-interest-items').append( html );
+              // }
             }
 
 
