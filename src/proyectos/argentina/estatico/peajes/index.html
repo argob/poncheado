@@ -66,8 +66,8 @@ layout: argentina
 
 
 
-<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
-<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<!--<<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
 
 <script>
 
@@ -75,7 +75,7 @@ layout: argentina
 $(document).ready(function () {
 
 
-    $.getJSON('https://docs.google.com/spreadsheets/d/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/pubhtml?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1/public/values?alt=json', function (data) {
         window.tarifas = data.feed.entry;
         showtarifas();
         console.log(data);
@@ -90,11 +90,11 @@ $(document).ready(function () {
         $.each( tarifas, function( key, item ) {
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso_ruta.$t + '</h6></td>';
+            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
             html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsx$ejes_vehiculo.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsx$modo_pago.$t + '</td>';
-            html += ' <td class="franja">'+ item.gsx$franja_horaria.$t + '</td>';
+            html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
+            html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
+            html += ' <td class="franja">'+ item.gsx$franja.$t + '</td>';
             html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
     
