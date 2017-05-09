@@ -3,7 +3,7 @@ layout: argentina
 ---
 
 <section class="jumbotron" style="background-image: url('');">
-  <div class="jumbotron_body">
+  <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
@@ -164,21 +164,24 @@ layout: argentina
   $(function(){
 
     var templates = {
-      tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4">
+      tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
     <a class="panel panel-default" href="{vinculo}">
       <div class="panel-body">
-        <div class="media">
-          <div class="media-left padding-20">
-            <i class="fa {icono} fa-fw fa-3x text-secondary"></i>
-          </div>
-          <div class="media-body">
-            <h3>{categoria}</h3>
-            <hr class="m-y-1">
-            <p class="text-muted">{mes}</p>
-            <p>{descripcion}</p>
-          </div>
+            <div class="media">
+                <div class="media-left media-middle">
+                    <span class="fa {icono} fa-2x fa-fw text-primary" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                    <div class="text-muted">
+                        <h3>{categoria}</h3>
+                    </div>
+                </div>
+                <h4 class="h3 m-t-1">{titulo}</h4>
+                <p>{descripcion}</p>
+                <p class="text-muted">{mes}</p>
+                
+              </div>
         </div>
-      </div>
     </a>
   </div>`
     }
@@ -197,6 +200,7 @@ layout: argentina
           
             tabla.push({
               normcat: row.gsx$normcat.$t,
+              titulo: row.gsx$titulo.$t,
               categoria: row.gsx$categoria.$t,
               icono: row.gsx$icono.$t,
               mes: row.gsx$mes.$t,
@@ -233,8 +237,9 @@ layout: argentina
             var html = templates.tarjeta;
 
             html = html.replace(/{categoria}/gi, tabla.categoria)
-            .replace(/{descripcion}/gi, tabla.descripcion.substring(0, 100) + '...')
+            .replace(/{descripcion}/gi, tabla.descripcion)
             .replace(/{icono}/gi, tabla.icono)
+            .replace(/{titulo}/gi, tabla.titulo)
             .replace(/{mes}/gi, tabla.mes)
             .replace(/{vinculo}/gi, tabla.vinculo);
 
