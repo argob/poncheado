@@ -22,16 +22,23 @@ layout: argentina
     
 
     <div class="row panels-row">
-
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <a data-region="todas" value="todas" class="panel panel-default" href="#">
+      <div class="panel-body">
+        <div class="media">
+          <div class="media-body">
+            <p class="h4">Ver todas</p>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
   <div class="col-xs-12 col-sm-6 col-md-4">
     <a data-region="derechos" value="derechos" class="panel panel-default" href="#">
       <div class="panel-body">
         <div class="media">
           <div class="media-body">
             <p class="h4">Derechos y democracia</p>
-          </div>
-          <div class="media-right">
-            <span class="badge">24</span>
           </div>
         </div>
       </div>
@@ -44,9 +51,6 @@ layout: argentina
           <div class="media-body">
             <p class="h4">Educación</p>
           </div>
-          <div class="media-right">
-            <span class="badge">24</span>
-          </div>
         </div>
       </div>
     </a>
@@ -57,9 +61,6 @@ layout: argentina
         <div class="media">
           <div class="media-body">
             <p class="h4">Ciencia y Tecnología</p>
-          </div>
-          <div class="media-right">
-            <span class="badge">24</span>
           </div>
         </div>
       </div>
@@ -73,9 +74,6 @@ layout: argentina
           <div class="media-body">
             <p class="h4">Energía y Ambiente</p>
           </div>
-          <div class="media-right">
-            <span class="badge">24</span>
-          </div>
         </div>
       </div>
     </a>
@@ -87,9 +85,6 @@ layout: argentina
           <div class="media-body">
             <p class="h4">Humor Social</p>
           </div>
-          <div class="media-right">
-            <span class="badge">24</span>
-          </div>
         </div>
       </div>
     </a>
@@ -100,9 +95,6 @@ layout: argentina
         <div class="media">
           <div class="media-body">
             <p class="h4">Economía</p>
-          </div>
-          <div class="media-right">
-            <span class="badge">24</span>
           </div>
         </div>
       </div>
@@ -116,9 +108,6 @@ layout: argentina
           <div class="media-body">
             <p class="h4">Transporte e Infraestructura</p>
           </div>
-          <div class="media-right">
-            <span class="badge">24</span>
-          </div>
         </div>
       </div>
     </a>
@@ -130,9 +119,6 @@ layout: argentina
           <div class="media-body">
             <p class="h4">Política Social</p>
           </div>
-          <div class="media-right">
-            <span class="badge">345</span>
-          </div>
         </div>
       </div>
     </a>
@@ -143,9 +129,6 @@ layout: argentina
         <div class="media">
           <div class="media-body">
             <p class="h4">Trámites y Servicios</p>
-          </div>
-          <div class="media-right">
-            <span class="badge">345</span>
           </div>
         </div>
       </div>
@@ -170,7 +153,13 @@ layout: argentina
 <script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
 
+
 <script>
+
+
+
+
+
 
   $(function(){
 
@@ -195,7 +184,7 @@ layout: argentina
     }
 
     window.tabla = [];
-    window.configobras = 'Todas';
+    window.configobras = 'todas';
 
     $.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/12dPbkTkRmNh4KW3snGFINCgwfyVsMeQ7NRQSvJS0ac4/1/public/values?alt=json',
@@ -203,21 +192,16 @@ layout: argentina
       success: function(response){
 
 
-
-        window.data = data.feed.entry;
-        
-
-
-
-        $.each(windows.response.feed.entry, function(index, row){
+        $.each(response.feed.entry, function(index, row){
 
           
             tabla.push({
-              index: index,
+              normcat: row.gsx$normcat.$t,
               categoria: row.gsx$categoria.$t,
               icono: row.gsx$icono.$t,
+              mes: row.gsx$mes.$t,
               descripcion: row.gsx$descripcion.$t,
-              video: row.gsx$vinculo.$t,
+              vinculo: row.gsx$vinculo.$t,
 
               
             });
@@ -244,12 +228,11 @@ layout: argentina
 
         $.each(tabla, function(index, tabla){
 
-          if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == tabla.tipodeobra && configprovincia == tabla.provincia || configprovincia == 'Todas' && configobras == tabla.tipodeobra ||  configprovincia == tabla.provincia && configobras == 'Todas' ) {
+          if ( configobras == 'todas' || configobras == tabla.normcat) {
 
             var html = templates.tarjeta;
 
-            html = html.replace(/{index}/gi, index)
-            .replace(/{categoria}/gi, tabla.categoria)
+            html = html.replace(/{categoria}/gi, tabla.categoria)
             .replace(/{descripcion}/gi, tabla.descripcion.substring(0, 100) + '...')
             .replace(/{icono}/gi, tabla.icono)
             .replace(/{mes}/gi, tabla.mes)
@@ -267,13 +250,11 @@ layout: argentina
 
 
 
-    $("[data-region]").on("click", function() {
+    $("[data-region]").on("click", function(e) {
+      e.preventDefault();
       configobras = $(this).data("region");
       render.tarjetas();
     });    
-
-
-
 
     
 
@@ -287,33 +268,7 @@ layout: argentina
 
 
 </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <nav class="text-center">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">6</a></li>
-              <li><a href="#">7</a></li>
-              <li><a href="#">8</a></li>
-              <li><a href="#">9</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+
 
   </section>
   <hr class="m-y-0">
