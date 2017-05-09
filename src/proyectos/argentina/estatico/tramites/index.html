@@ -18,20 +18,24 @@ layout: argentina
           <div class="form-group">
             <label for="">Filtrar por categoría</label>
             <select id="tipo-tramites" class="form-control">
-            <option data-tipotramites="todos" value="todos">Registro</option>
-              <option data-tipotramites="registro" value="registro">Registro</option>
-              <option data-tipotramites="licyreg" value="licyreg">Licencias y Registros/Asociatividad</option>
-              <option data-tipotramites="licencias" value="licencias">Licencias y registros</option>
-              <option data-tipotramites="invertir" value="invertir">Invertir para producir /Beneficios para exportar / Licencias y Registros / Importar para producir</option>
-              <option data-tipotramites="creditos" value="creditos">Créditos y garantías</option>
-              <option data-tipotramites="cuidado" value="cuidado">Consumidores / Cuidado al consumo</option>
-              <option data-tipotramites="arbitraje" value="arbitraje">Consumidores / Arbitraje</option>
-              <option data-tipotramites="certificaciones" value="certificaciones">Certificaciones</option>
-              <option data-tipotramites="garantias" value="garantias">Capacitaciones / Créditos y garantías</option>
-              <option data-tipotramites="capacitaciones" value="capacitaciones">Capacitaciones</option>
-              <option data-tipotramites="exportar" value="exportar">Beneficios para exportar</option>
-              <option data-tipotramites="fiscales" value="fiscales">Beneficios fiscales / Beneficios para exportar / Licencias y Registros</option>
-              <option data-tipotramites="asociatividad" value="asociatividad">Asociatividad</option>
+            <option data-tipotramites="todos" value="todos">Todos</option>
+              <option data-tipotramites="Asociatividad" value="Asociatividad">Asociatividad</option>
+              <option data-tipotramites="Beneficios fiscales / Beneficios para exportar / Licencias y Registros" value="Beneficios fiscales / Beneficios para exportar / Licencias y Registros">Beneficios fiscales / Beneficios para exportar / Licencias y Registros</option>
+              <option data-tipotramites="Beneficios para exportar" value="Beneficios para exportar">Beneficios para exportar</option>
+              <option data-tipotramites="Capacitaciones" value="Capacitaciones">Capacitaciones</option>
+              <option data-tipotramites="Capacitaciones / Créditos y garantías" value="Capacitaciones / Créditos y garantías">Capacitaciones / Créditos y garantías</option>
+              <option data-tipotramites="Certificaciones" value="Certificaciones">Certificaciones</option>
+              <option data-tipotramites="Consumidores / Arbitraje" value="Consumidores / Arbitraje">Consumidores / Arbitraje</option>
+              <option data-tipotramites="Consumidores / Cuidado al consumo" value="Consumidores / Cuidado al consumo">Consumidores / Cuidado al consumo</option>
+              <option data-tipotramites="Créditos y garantías" value="Créditos y garantías">Créditos y garantías</option>
+              <option data-tipotramites="Invertir en producir / Beneficios para exportar / Importar para producir" value="Invertir en producir / Beneficios para exportar / Importar para producir">Invertir en producir / Beneficios para exportar / Importar para producir</option>
+              <option data-tipotramites="Invertir para producir / Beneficios impositivos" value="Invertir para producir / Beneficios impositivos">Invertir para producir / Beneficios impositivos</option>
+              <option data-tipotramites="Invertir para producir / Beneficios para exportar / Capacitaciones / Créditos y garantías / Beneficios impositivos" value="Invertir para producir / Beneficios para exportar / Capacitaciones / Créditos y garantías / Beneficios impositivos">Invertir para producir / Beneficios para exportar / Capacitaciones / Créditos y garantías / Beneficios impositivos</option>
+              <option data-tipotramites="Invertir para producir / Beneficios para exportar / Créditos y garantías / Beneficios impositivos" value="Invertir para producir / Beneficios para exportar / Créditos y garantías / Beneficios impositivos">Invertir para producir / Beneficios para exportar / Créditos y garantías / Beneficios impositivos</option>
+              <option data-tipotramites="Invertir para producir / Beneficios para exportar / Licencias y Registros / Beneficios impositivos" value="Invertir para producir / Beneficios para exportar / Licencias y Registros / Beneficios impositivos">Invertir para producir / Beneficios para exportar / Licencias y Registros / Beneficios impositivos</option>
+              <option data-tipotramites="Licencias y registros" value="Licencias y registros">Licencias y registros</option>
+              <option data-tipotramites="Licencias y Registros / Asociatividad" value="Licencias y Registros / Asociatividad">Licencias y Registros / Asociatividad</option>
+              <option data-tipotramites="Registro" value="Registro">Registro</option>
 
 
 
@@ -72,8 +76,8 @@ layout: argentina
 
 
 
-<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
-<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
 
 <script>
 
@@ -83,11 +87,11 @@ $(document).ready(function () {
 
     $.getJSON('https://spreadsheets.google.com/feeds/list/1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY/1/public/values?alt=json', function (data) {
         window.tramites = data.feed.entry;
-        showTramites();
+        showTramites("todos");
         console.log(data);
     });
 
-    window.showTramites = function(){
+    window.showTramites = function(tipoTramites){
         var showData = $('#show-data');
 
         var html = '';
@@ -95,12 +99,27 @@ $(document).ready(function () {
 
         $.each( tramites, function( key, item ) {
 
+           if( item.gsx$categorías.$t == tipoTramites ){
+
             html += '<tr>';
             html += ' <td class="titulo"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
             html += ' <td class="resumen">'+ item.gsx$resumen.$t + '</td>';
             html += ' <td class="categoria">'+ item.gsx$categorías.$t + '</td>';
             html += ' <td><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
             html += '</tr>';
+
+           }
+
+           else if  (tipoTramites == "todos") {
+
+            html += '<tr>';
+            html += ' <td class="titulo"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="resumen">'+ item.gsx$resumen.$t + '</td>';
+            html += ' <td class="categoria">'+ item.gsx$categorías.$t + '</td>';
+            html += ' <td><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
+            html += '</tr>';            
+
+           }
     
         });
 
@@ -114,6 +133,11 @@ $(document).ready(function () {
         var tramitesList = new List('tramites', listOptions);
     }
 
+    $("#tipo-tramites").on("change", function() {
+      var tipoTramites = $( "#tipo-tramites option:selected" ).data('tipotramites');
+      showTramites(tipoTramites);
+
+    });
 
 
 

@@ -74,9 +74,9 @@ layout: argentina
       <table class="table table-spaced">
         <thead>
           <tr>
-            <th><a class="sort" data-sort="acceso">Acceso o ruta <span class="caret"></span></a></th>
+            <th style="width: 150px;"><a class="sort" data-sort="acceso">Acceso o ruta <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="peaje">Peaje <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="ejes">Ejes de vehículo <span class="caret"></span></a></th>
+            <th style="width: 170px;"><a class="sort" data-sort="ejes">Ejes de vehículo <span class="caret"></span></a></th>
             <th style="width: 150px;"><a class="sort" data-sort="pago">Modo de pago <span class="caret"></span></a></th>
             <th style="width: 150px;"><a class="sort" data-sort="franja">Franja Horaria <span class="caret"></span></a></th>
             <th style="width: 100px;"><a class="sort" data-sort="tarifa">Tarifa <span class="caret"></span></a></th>
@@ -85,6 +85,9 @@ layout: argentina
         <tbody class="list" id="show-data">
         </tbody>
       </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
        <div id="alerta" class="alert alert-warning col-md-4 no-result">
         <div class="media">
           <div class="media-left media-middle">
@@ -101,14 +104,19 @@ layout: argentina
 
 
 
-<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<!--<<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 
 <script>
 
 (function($) {
 $(document).ready(function () {
 
+    $('body').tooltip({
+    selector: '[data-toggle="tooltip"]'
+    });
 
     $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1/public/values?alt=json', function (data) {
         window.tarifas = data.feed.entry;
@@ -124,6 +132,12 @@ $(document).ready(function () {
 
         $.each( tarifas, function( key, item ) {
 
+            var franja = '<td class="franja">'+ item.gsx$franja.$t + '</td>'; 
+
+            if (item.gsx$comentario.$t != "") {
+              franja = '<td class="franja" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body">'+ item.gsx$franja.$t + '</td>';
+            }
+
            if( item.gsx$ejes.$t == vehiculo || item.gsx$acceso.$t == vehiculo ){
 
             html += '<tr>';
@@ -131,7 +145,7 @@ $(document).ready(function () {
             html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
             html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
             html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
-            html += ' <td class="franja">'+ item.gsx$franja.$t + '</td>';
+            html += franja;
             html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
           }
@@ -142,10 +156,12 @@ $(document).ready(function () {
             html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
             html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
             html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
-            html += ' <td class="franja">'+ item.gsx$franja.$t + '</td>';
+            html += franja;
             html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
           }
+
+          console.log(franja);
 
 
         });
@@ -154,9 +170,12 @@ $(document).ready(function () {
         showData.append(html);
 
         var listOptions = {
-          valueNames: [ 'acceso', 'peaje', 'ejes', 'pago', 'franja', 'tarifa' ]
+          valueNames: [ 'acceso', 'peaje', 'ejes', 'pago', 'franja', 'tarifa' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
           
          };
+
         var tarifasList = new List('tarifas', listOptions);  
 
         jQuery('.search').on("keyup",function(){
@@ -187,6 +206,8 @@ $(document).ready(function () {
       showtarifas(vehiculo);
 
     });
+
+    
 
 });
 })(jQuery);
