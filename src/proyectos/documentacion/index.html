@@ -498,11 +498,20 @@ layout: argentina
 
               <!-- Forms -->
               <hr>
-              <h3 id="formularios">Ejemplo de formulario</h3>
+              <h3 id="formularios">Formularios</h3>
 
-              <p>Los formulario permite que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logueos, establecer contacto, sacar turnos, etc.</p><br>
-              <form>
-                <h5>Tamaño de los campos para formulario</h5>
+              <p>Los formularios permiten que el usuario cargue datos y sean enviados al servidor. Es el medio ideal para realizar logueos, establecer contacto, sacar turnos, etc.</p><br>
+              
+              <h4>Inputs de tipo texto</h4>
+              <p>Son los campos de inserción de texto corto. Suelen utilizarse para datos como nombre, apellido, mail, etc.</p>
+              <br>
+
+              <h5>Tamaño de los campos para formulario</h5>
+
+              <p>Se utilizan tres tamaños diferentes dependiendo del uso:</p>
+              <br>
+            
+                
                 <div class="form-group"><input class="form-control input-lg" type="text" placeholder=".input-lg"></div>
                 <div class="form-group"><input class="form-control" type="text" placeholder=".input-default"></div>
                 <div class="form-group"><input class="form-control input-sm" type="text" placeholder=".input-sm"></div>
@@ -520,31 +529,55 @@ layout: argentina
                       &#60;div class="form-group">
                         &#60;input class="form-control input-sm" type="text" placeholder=".input-sm">
                       &#60;/div&#62;
-                     &#60;/form&#62;
+                    &#60;/form&#62;
                   </code>
                 </pre>
                 <br>
 
-                <div class="form-group"><select class="form-control input-lg"><option value="">.input-lg</option></select></div>
-                <div class="form-group"><select class="form-control"><option value="">Default</option></select></div>
-                <div class="form-group"><select class="form-control input-sm"><option value="">.input-sm</option></select></div>
+                <h5>Input con lista de opciones</h5>
+
+              <p>Con este elemento el usuario no puede insertar texto, si no que se le da una lista de opciones para elegir.</p>
+              <br>
+
+                <div class="form-group">
+                  <select class="form-control">
+                    <option value="">Opción 1</option>
+                    <option value="">Opción 2</option>
+                    <option value="">Opción 3</option>
+                    <option value="">Opción 4</option>
+                  </select>
+                </div>
 
                 <br>
                 <pre>
                   <code class="language-markup">
                     &#60;form&#62;
                       &#60;div class="form-group"&#62;
-                        &#60;select class="form-control input-lg">&#60;option value="">.input-lg&#60;/option>&#60;/select&#62;
+                        &#60;select class="form-control">
+                          &#60;option value="">Opción 1&#60;/option>
+                        &#60;/select&#62;
                       &#60;/div&#62;
                       &#60;div class="form-group"&#62;
-                        &#60;select class="form-control">&#60;option value="">Default&#60;/option>&#60;/select&#62;
+                        &#60;select class="form-control">
+                          &#60;option value="">Opción 2&#60;/option>
+                        &#60;/select&#62;
                       &#60;/div&#62;
                       &#60;div class="form-group"&#62;
-                        &#60;select class="form-control input-sm">&#60;option value="">.input-sm&#60;/option>&#60;/select&#62;
+                        &#60;select class="form-control">
+                          &#60;option value="">Opción 3&#60;/option>
+                        &#60;/select&#62;
+                      &#60;/div&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;select class="form-control">
+                          &#60;option value="">Opción 4&#60;/option>
+                        &#60;/select&#62;
                       &#60;/div&#62;
                      &#60;/form&#62;
                   </code>
                 </pre>
+                <br>
+                <h5>Ejemplo con label</h5>
+                <p>Los input de tipo texto suelen acompañarse de una etiqueta label que indica que tipo de información se espera.</p>
                 <br>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Dirección Email</label>
@@ -554,20 +587,7 @@ layout: argentina
                   <label for="exampleInputPassword1">Contraseña</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
                 </div>
-                <div class="form-group">
-                  <p>Adjuntar archivo:</p>
-                  <input type="file" id="exampleInputFile" class="inputfile">
-                  <label for="exampleInputFile">Seleccionar archivo</label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Campo de verificación (Check)
-                  </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-              </form>
 
-              <br>
                 <pre>
                   <code class="language-markup">
                     &#60;form&#62;
@@ -579,32 +599,20 @@ layout: argentina
                         &#60;label for="exampleInputPassword1">Contraseña&#60;/label&#62;
                         &#60;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"&#62;
                       &#60;/div&#62;
-                      &#60;div class="form-group"&#62;
-                        &#60;p&#62;Adjuntar archivo:&#60;/p&#62;
-                        &#60;input type="file" id="exampleInputFile" class="inputfile"&#62;
-                        &#60;label for="exampleInputFile"&#62;Seleccionar archivo&#60;/label&#62;
-                      &#60;/div&#62;
-                      &#60;div class="checkbox"&#62;
-                        &#60;label&#62;
-                          &#60;input type="checkbox"&#62; Campo de verificación (Check)
-                        &#60;/label&#62;
-                      &#60;/div&#62;
-                      &#60;button type="submit" class="btn btn-primary"&#62;Enviar&#60;/button&#62;
                      &#60;/form&#62;
                   </code>
                 </pre>
 
-              <hr>
-              <h3>Estado de validación </h3>
+                <br>
 
-              <div class="form-group has-success has-feedback">
+                 <h5>Estado de validación</h5>
+                <p>Se utilizan para validar la entrada del usuario cuando se espera que entre ciertos parámetros en el input.</p>
+
+                <br>
+
+                <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess2">Campo de entrada con éxito</label>
                 <input type="text" class="form-control" id="inputSuccess2">
-                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-              </div>
-              <div class="form-group has-success has-feedback">
-                <label class="control-label" for="inputSuccess2">Campo de entrada pequeño con éxito</label>
-                <input type="text" class="form-control input-sm" id="inputSuccess2">
                 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
               </div>
               <div class="form-group has-warning has-feedback">
@@ -626,11 +634,6 @@ layout: argentina
                     &#60;input type="text" class="form-control" id="inputSuccess2"&#62;
                     &#60;span class="glyphicon glyphicon-ok form-control-feedback">&#60;/span&#62;
                   &#60;/div&#62;
-                  &#60;div class="form-group has-success has-feedback"&#62;
-                    &#60;label class="control-label" for="inputSuccess2">Campo de entrada pequeño con éxito&#60;/label&#62;
-                    &#60;input type="text" class="form-control input-sm" id="inputSuccess2"&#62;
-                    &#60;span class="glyphicon glyphicon-ok form-control-feedback">&#60;/span&#62;
-                  &#60;/div&#62;
                   &#60;div class="form-group has-warning has-feedback"&#62;
                     &#60;label class="control-label" for="inputWarning2">Campo de entrada con advertencia&#60;/label&#62;
                     &#60;input type="text" class="form-control" id="inputWarning2"&#62;
@@ -644,9 +647,13 @@ layout: argentina
                 </code>
               </pre>
 
-              <hr>
+                <br>
 
-              <h3>Campos especiales</h3>
+                <h4>Campos especiales</h4>
+
+                <p>Añaden una lista de opciones a la izquierda del input.</p>
+
+                <br>
 
               <div class="form-group">
                 <div class="input-group">
@@ -774,6 +781,81 @@ layout: argentina
 
                 </code>
               </pre>
+
+              <br>
+
+                <h4>Adjuntar archivo</h4>
+              <p>Este elemento se utliza para cuando se le da al usuario la posibilidad de adjuntar un archivo al formulario.</p>
+
+              <br>
+
+                <div class="form-group">
+                  <p>Adjuntar archivo:</p>
+                  <input type="file" id="exampleInputFile" class="inputfile">
+                  <label for="exampleInputFile">Seleccionar archivo</label>
+                </div>
+
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;div class="form-group"&#62;
+                        &#60;p&#62;Adjuntar archivo:&#60;/p&#62;
+                        &#60;input type="file" id="exampleInputFile" class="inputfile"&#62;
+                        &#60;label for="exampleInputFile"&#62;Seleccionar archivo&#60;/label&#62;
+                      &#60;/div&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
+
+                <br>
+
+                <h4>Verificación</h4>
+              <p>Este cneckbox suele utlizarse cuando se le pide al usuario aceptar términos y condiciones</p>
+
+              <br>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Campo de verificación (Check)
+                  </label>
+                </div>
+
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;div class="checkbox"&#62;
+                        &#60;label&#62;
+                          &#60;input type="checkbox"&#62; Campo de verificación (Check)
+                        &#60;/label&#62;
+                      &#60;/div&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
+
+                <br>
+
+                <h4>Botón de envío</h4>
+              <p>Se inserta al final del formulario para enviarlo.</p>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+
+              <br>
+                <pre>
+                  <code class="language-markup">
+                    &#60;form&#62;
+                      &#60;button type="submit" class="btn btn-primary"&#62;Enviar&#60;/button&#62;
+                     &#60;/form&#62;
+                  </code>
+                </pre>
+
+            
+
+              
+
+              <hr>
+
+              
 
               <hr>
 
