@@ -59,13 +59,15 @@ layout: argentina
   </section>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
 <script>
 
-jQuery(function(){
+(function($) {
+$(document).ready(function () {
 
   window.ferias = {
     semana: [],
@@ -130,30 +132,55 @@ jQuery(function(){
 
 
     var listOptions = {
-      valueNames: [ 'barrio', 'dia', 'timestamps', 'provincia', 'lugar' ],
-      fuzzySearch: {
-        searchClass: "search",
-        location: 0,
-        distance: 5,
-        threshold: 0.2,
-        multiSearch: true
-      }
+      valueNames: [ 'barrio', 'dia', 'timestamps', 'provincia', 'lugar' ]
     };
 
     var feriasSemanaList = new List('table-semana', listOptions);
     var feriasProximasList = new List('table-proximas', listOptions);
 
+      // generic accent removal from input string, add any missing characters
+      var removeAccents = (function () {
+          var letters1 = "äáàâăëéèêĕíüúùûŭöóòôŏÄÁÀÂĂËÉÈÊĔÜÚÙÛŬÖÓÒÔŎßșȘ",
+              letters2 = "aaaaaeeeeeiuuuuuoooooAAAAAEEEEEUUUUUOOOOOssS",
+              patternLetters = new RegExp("[" + letters1 + "]", "g"),
+              lookupLetters = {}, letterTranslator;
+
+          letters1.split("").forEach(function (letter, i) {
+              lookupLetters[letter] = letters2[i];
+          });
+
+          letterTranslator = function(match) { 
+              return lookupLetters[match] || match;
+          };
+
+          return function removeAccents(input) {
+              return input.replace(patternLetters, letterTranslator);
+          };
+      })();
+
+      // creates a specific filter function for use in List.js
+      function getAccentInsensitiveFilter(property, search) {
+          search = removeAccents(search).toLowerCase();
+
+          return function (item) {
+              var value = removeAccents(item.values()[property]).toLowerCase();
+              console.log(value.indexOf(search)+' - '+search+' - '+removeAccents(item.values()[property] || "").toLowerCase());
+              return value.indexOf(search) > -1;
+          };
+      }
 
 
-    jQuery('.search').on("keyup",function(){
+    jQuery('.search').on("keyup",function(event){
+        event.preventDefault();
         var valueSearch = jQuery(".search").val();
-        feriasSemanaList.fuzzySearch(valueSearch);
-        feriasProximasList.fuzzySearch(valueSearch);
+        feriasSemanaList.filter(getAccentInsensitiveFilter("barrio", valueSearch));        
+        feriasProximasList.filter(getAccentInsensitiveFilter("barrio", valueSearch));        
     });
 
   }
 
 });
+})(jQuery);
 
 </script>
 

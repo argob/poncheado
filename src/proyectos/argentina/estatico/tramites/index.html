@@ -86,9 +86,8 @@ layout: argentina
 
 
 
-<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/proyectos/argentina/estatico/tramites/js/accent-fold.js" | prepend: site.baseurl }}"></script>
-<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 
 <script>
 
@@ -188,9 +187,8 @@ $(document).ready(function () {
 
       jQuery('.filtered-search').on("keyup",function(event){
         event.preventDefault();
-        console.log('Hola');
         var valueSearch = jQuery(".filtered-search").val();
-        tramitesList.filter(("titulo", valueSearch));
+        tramitesList.filter(getAccentInsensitiveFilter("titulo", valueSearch));
       });
 
   }
@@ -199,9 +197,6 @@ $(document).ready(function () {
     var tipoTramites = $( "#tipo-tramites option:selected" ).data('tipotramites');
     showTramites(tipoTramites);
   });
-
-  
-
 
 
 });
