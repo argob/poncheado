@@ -2,249 +2,253 @@
 layout: argentina
 ---
 
-<div class="row">
-    <div class="column-12">
-        <div>
-            <div class="consultas" id="containerFormConsulta">
-                <div class="row container no-margin cont-full">
-                    <div class="pad-b15 filete">
-                        <h2>Formulario de Contacto</h2>
-                        <span class="bajada-l"><spa>(*) </spa></span>Campos obligatorios.
-                    </div>
-                    <form action="atencion-al-usuario.html" enctype="multipart/form-data" id="formConsulta" method="post" novalidate="novalidate">
-                        <div class="unaclasecualquiera">
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="localidad">Selecionar motivo
-                                    </label>
-                                    <div>
-                                        <input id="tipo_consulta-consulta" name="tipo_consulta" selected="selected" type="radio" value="Consulta" />
-                                        <span class="estiloRadio">Consulta</span> 
-                                        <input id="tipo_consulta-reclamo" name="tipo_consulta" type="radio" value="Reclamo" />
-                                        <span class="estiloRadio">Reclamo</span> 
-                                        <input id="tipo_consulta-sugerencia" name="tipo_consulta" type="radio" value="Sugerencia" />
-                                        <span class="estiloRadio">Sugerencia</span> 
-                                        <input id="tipo_consulta-otros" name="tipo_consulta" type="radio" value="Otros" />
-                                        <span class="estiloRadio">Otros</span>
+<div class="container">
+  <section>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div>
+                <div class="consultas" id="containerFormConsulta">
+                    <div class="row container no-margin cont-full">
+                        <div class="pad-b15 filete">
+                            <h2>Formulario de Contacto</h2>
+                            <span class="bajada-l"><spa>(*) </spa></span>Campos obligatorios.
+                        </div>
+                        <form action="atencion-al-usuario.html" enctype="multipart/form-data" id="formConsulta" method="post" novalidate="novalidate">
+                            <div class="unaclasecualquiera">
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="localidad">Selecionar motivo
+                                        </label>
+                                        <div>
+                                            <input id="tipo_consulta-consulta" name="tipo_consulta" selected="selected" type="radio" value="Consulta" />
+                                            <span class="estiloRadio">Consulta</span> 
+                                            <input id="tipo_consulta-reclamo" name="tipo_consulta" type="radio" value="Reclamo" />
+                                            <span class="estiloRadio">Reclamo</span> 
+                                            <input id="tipo_consulta-sugerencia" name="tipo_consulta" type="radio" value="Sugerencia" />
+                                            <span class="estiloRadio">Sugerencia</span> 
+                                            <input id="tipo_consulta-otros" name="tipo_consulta" type="radio" value="Otros" />
+                                            <span class="estiloRadio">Otros</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="nombre">Nombre y Apellido
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span>
-                                    </label> 
-                                    <input class="estiloBase" id="nombre" maxlength="150" name="nombre" size="70" type="text" value="" />
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="nombre">Nombre y Apellido
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span>
+                                        </label> 
+                                        <input class="estiloBase" id="nombre" maxlength="150" name="nombre" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_hide">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="apellidos">Apellidos</label> 
+                                        <input class="estiloBase" id="apellidos" maxlength="150" name="apellidos" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="doc">Tipo de documento
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <select class="estiloBase" id="doc" name="doc">
+                                            <option value="">Seleccionar</option>
+                                            <optgroup id="doc-optgroup-Claves" label="Claves">
+                                                <option value="6">CUIL</option>
+                                                <option value="7">CUIT</option>
+                                            </optgroup> 
+                                            <optgroup id="doc-optgroup-Documentos" label="Documentos">
+                                                <option selected="selected" value="1">DNI</option>
+                                                <option value="2">LE</option>
+                                                <option value="3">LC</option>
+                                                <option value="4">LI</option>
+                                                <option value="5">Pasaporte</option>
+                                            </optgroup> 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="nrodoc">Número de documento
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <input class="estiloBase" id="nrodoc" maxlength="20" name="nrodoc" size="20" type="text" value="" />
+                                        <p class="description">El campo solo puede contener números; no debe haber espacios ni caracteres especiales.</p>
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="tel">Teléfono
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <input class="estiloBase" id="tel" maxlength="255" name="tel" size="70" type="text" value="" />
+                                        <p class="description">El campo solo puede contener números; no debe haber espacios ni caracteres especiales.</p>
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="direccion">Domicilio y CP
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <input class="estiloBase" id="direccion" maxlength="255" name="direccion" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="id_prov">Provincia
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <select class="estiloBase" id="id_prov" name="id_prov">
+                                            <option selected="selected" value="">Seleccionar</option>
+                                            <option value="2">Cdad. Autónoma de Buenos Aires</option>
+                                            <option value="6">Buenos Aires</option>
+                                            <option value="10">Catamarca</option>
+                                            <option value="14">Córdoba</option>
+                                            <option value="18">Corrientes</option>
+                                            <option value="22">Chaco</option>
+                                            <option value="26">Chubut</option>
+                                            <option value="30">Entre Ríos</option>
+                                            <option value="34">Formosa</option>
+                                            <option value="38">Jujuy</option>
+                                            <option value="42">La Pampa</option>
+                                            <option value="46">La Rioja</option>
+                                            <option value="50">Mendoza</option>
+                                            <option value="54">Misiones</option>
+                                            <option value="58">Neuquen</option>
+                                            <option value="62">Río Negro</option>
+                                            <option value="66">Salta</option>
+                                            <option value="70">San Juan</option>
+                                            <option value="74">San Luís</option>
+                                            <option value="78">Santa Cruz</option>
+                                            <option value="82">Santa Fe</option>
+                                            <option value="86">Santiago del Estero</option>
+                                            <option value="90">Tucumán</option>
+                                            <option value="94">Tierra del Fuego</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="ciudad">Ciudad
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <input class="estiloBase" id="ciudad" maxlength="255" name="ciudad" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="email">Correo electrónico
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label> 
+                                        <input class="estiloBase" id="email" maxlength="255" name="email" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_hide">
+                                    <div class="form-separator">
+                                        <dl><dt id="id_tema-label">&nbsp;</dt></dl>
+                                        <input id="id_tema" name="id_tema" type="hidden" value="735b90b4568125ed6c3f678819b6e058" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="concesionaria">Concesionaria
+                                        </label> 
+                                        <select class="estiloBase" id="concesionaria" name="concesionaria">
+                                            <option selected="selected" value="">Seleccionar</option>
+                                            <option value="Acceso Norte - Autopistas del Sol S.A.">Acceso Norte - Autopistas del Sol S.A.</option>
+                                            <option value="Acceso Ricccheri - AEC S.A.">Acceso Ricccheri - AEC S.A.</option>
+                                            <option value="Acceso Norte - Autopista del Oeste S.A.">Acceso Norte - Autopista del Oeste S.A.</option>
+                                            <option value="CV1 Concesionaria S.A.">CV1 Concesionaria S.A.</option>
+                                            <option value="Corredor de Integración Pampeana S.A.">Corredor de Integración Pampeana S.A.</option>
+                                            <option value="Autovía Bs. As. a Los Andes S.A.">Autovía Bs. As. a Los Andes S.A.</option>
+                                            <option value="Carreteras Centrales de Argentina S.A.">Carreteras Centrales de Argentina S.A.</option>
+                                            <option value="Cincovial S.A.">Cincovial S.A.</option>
+                                            <option value="Caminos del Paraná S.A.">Caminos del Paraná S.A.</option>
+                                            <option value="Vialnoa S.A.">Vialnoa S.A.</option>
+                                            <option value="Corredor Central S.A.">Corredor Central S.A.</option>
+                                            <option value="Caminos del Río Uruguay S.A.H5 S.A.">Caminos del Río Uruguay S.A.H5 S.A.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="ruta">Ruta
+                                        </label> 
+                                        <input class="estiloBase error" id="ruta" maxlength="255" name="ruta" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="km">Km
+                                        </label> 
+                                        <input class="estiloBase error" id="km" maxlength="255" name="km" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="sentido">Sentido
+                                        </label> 
+                                        <input class="estiloBase error" id="sentido" maxlength="255" name="sentido" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="provincia">Provincia
+                                        </label> 
+                                        <input class="estiloBase error" id="provincia" maxlength="255" name="provincia" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="localidad">Localidad
+                                        </label> 
+                                        <input class="estiloBase error" id="localidad" maxlength="255" name="localidad" size="70" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="consultas_show">
+                                    <div class="form-separator">
+                                        <label class="labelBlock" for="consulta">Consulta
+                                            <span class="form_obligatorio" title="Campo obligatorio">*</span> 
+                                        </label>
+                                        <textarea class="estiloBase" cols="80" id="consulta" maxlength="1500" name="consulta" rows="15"></textarea>
+                                    </div>
+                                </div>
+                                <div class="consultas_hide">
+                                    <dl><dt id="ip_client-label">&nbsp;</dt></dl>
+                                    <input id="ip_client" name="ip_client" type="hidden" value="htmlversion" />
+                                </div>
+                                <div class="consultas_hide">
+                                    <dl><dt id="wsdl-label">&nbsp;</dt></dl>
+                                    <input id="wsdl" name="wsdl" type="hidden" value="" />
+                                </div>
+                                <div class="consultas_show">
+                                    <input id="register" name="register" type="submit" value="Enviar consulta" />
                                 </div>
                             </div>
-                            <div class="consultas_hide">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="apellidos">Apellidos</label> 
-                                    <input class="estiloBase" id="apellidos" maxlength="150" name="apellidos" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="doc">Tipo de documento
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <select class="estiloBase" id="doc" name="doc">
-                                        <option value="">Seleccionar</option>
-                                        <optgroup id="doc-optgroup-Claves" label="Claves">
-                                            <option value="6">CUIL</option>
-                                            <option value="7">CUIT</option>
-                                        </optgroup> 
-                                        <optgroup id="doc-optgroup-Documentos" label="Documentos">
-                                            <option selected="selected" value="1">DNI</option>
-                                            <option value="2">LE</option>
-                                            <option value="3">LC</option>
-                                            <option value="4">LI</option>
-                                            <option value="5">Pasaporte</option>
-                                        </optgroup> 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="nrodoc">Número de documento
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <input class="estiloBase" id="nrodoc" maxlength="20" name="nrodoc" size="20" type="text" value="" />
-                                    <p class="description">El campo solo puede contener números; no debe haber espacios ni caracteres especiales.</p>
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="tel">Teléfono
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <input class="estiloBase" id="tel" maxlength="255" name="tel" size="70" type="text" value="" />
-                                    <p class="description">El campo solo puede contener números; no debe haber espacios ni caracteres especiales.</p>
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="direccion">Domicilio y CP
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <input class="estiloBase" id="direccion" maxlength="255" name="direccion" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="id_prov">Provincia
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <select class="estiloBase" id="id_prov" name="id_prov">
-                                        <option selected="selected" value="">Seleccionar</option>
-                                        <option value="2">Cdad. Autónoma de Buenos Aires</option>
-                                        <option value="6">Buenos Aires</option>
-                                        <option value="10">Catamarca</option>
-                                        <option value="14">Córdoba</option>
-                                        <option value="18">Corrientes</option>
-                                        <option value="22">Chaco</option>
-                                        <option value="26">Chubut</option>
-                                        <option value="30">Entre Ríos</option>
-                                        <option value="34">Formosa</option>
-                                        <option value="38">Jujuy</option>
-                                        <option value="42">La Pampa</option>
-                                        <option value="46">La Rioja</option>
-                                        <option value="50">Mendoza</option>
-                                        <option value="54">Misiones</option>
-                                        <option value="58">Neuquen</option>
-                                        <option value="62">Río Negro</option>
-                                        <option value="66">Salta</option>
-                                        <option value="70">San Juan</option>
-                                        <option value="74">San Luís</option>
-                                        <option value="78">Santa Cruz</option>
-                                        <option value="82">Santa Fe</option>
-                                        <option value="86">Santiago del Estero</option>
-                                        <option value="90">Tucumán</option>
-                                        <option value="94">Tierra del Fuego</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="ciudad">Ciudad
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <input class="estiloBase" id="ciudad" maxlength="255" name="ciudad" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="email">Correo electrónico
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label> 
-                                    <input class="estiloBase" id="email" maxlength="255" name="email" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_hide">
-                                <div class="form-separator">
-                                    <dl><dt id="id_tema-label">&nbsp;</dt></dl>
-                                    <input id="id_tema" name="id_tema" type="hidden" value="735b90b4568125ed6c3f678819b6e058" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="concesionaria">Concesionaria
-                                    </label> 
-                                    <select class="estiloBase" id="concesionaria" name="concesionaria">
-                                        <option selected="selected" value="">Seleccionar</option>
-                                        <option value="Acceso Norte - Autopistas del Sol S.A.">Acceso Norte - Autopistas del Sol S.A.</option>
-                                        <option value="Acceso Ricccheri - AEC S.A.">Acceso Ricccheri - AEC S.A.</option>
-                                        <option value="Acceso Norte - Autopista del Oeste S.A.">Acceso Norte - Autopista del Oeste S.A.</option>
-                                        <option value="CV1 Concesionaria S.A.">CV1 Concesionaria S.A.</option>
-                                        <option value="Corredor de Integración Pampeana S.A.">Corredor de Integración Pampeana S.A.</option>
-                                        <option value="Autovía Bs. As. a Los Andes S.A.">Autovía Bs. As. a Los Andes S.A.</option>
-                                        <option value="Carreteras Centrales de Argentina S.A.">Carreteras Centrales de Argentina S.A.</option>
-                                        <option value="Cincovial S.A.">Cincovial S.A.</option>
-                                        <option value="Caminos del Paraná S.A.">Caminos del Paraná S.A.</option>
-                                        <option value="Vialnoa S.A.">Vialnoa S.A.</option>
-                                        <option value="Corredor Central S.A.">Corredor Central S.A.</option>
-                                        <option value="Caminos del Río Uruguay S.A.H5 S.A.">Caminos del Río Uruguay S.A.H5 S.A.</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="ruta">Ruta
-                                    </label> 
-                                    <input class="estiloBase error" id="ruta" maxlength="255" name="ruta" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="km">Km
-                                    </label> 
-                                    <input class="estiloBase error" id="km" maxlength="255" name="km" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="sentido">Sentido
-                                    </label> 
-                                    <input class="estiloBase error" id="sentido" maxlength="255" name="sentido" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="provincia">Provincia
-                                    </label> 
-                                    <input class="estiloBase error" id="provincia" maxlength="255" name="provincia" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="localidad">Localidad
-                                    </label> 
-                                    <input class="estiloBase error" id="localidad" maxlength="255" name="localidad" size="70" type="text" value="" />
-                                </div>
-                            </div>
-                            <div class="consultas_show">
-                                <div class="form-separator">
-                                    <label class="labelBlock" for="consulta">Consulta
-                                        <span class="form_obligatorio" title="Campo obligatorio">*</span> 
-                                    </label>
-                                    <textarea class="estiloBase" cols="80" id="consulta" maxlength="1500" name="consulta" rows="15"></textarea>
-                                </div>
-                            </div>
-                            <div class="consultas_hide">
-                                <dl><dt id="ip_client-label">&nbsp;</dt></dl>
-                                <input id="ip_client" name="ip_client" type="hidden" value="htmlversion" />
-                            </div>
-                            <div class="consultas_hide">
-                                <dl><dt id="wsdl-label">&nbsp;</dt></dl>
-                                <input id="wsdl" name="wsdl" type="hidden" value="" />
-                            </div>
-                            <div class="consultas_show">
-                                <input id="register" name="register" type="submit" value="Enviar consulta" />
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="msj error" id="showMsgError">
+                        <h5 class="titulo">
+                            <strong>Se produjeron los siguientes errores en la consulta:</strong>
+                        </h5>
+                    </div>
+                    <div>
+                        <a href="../../../../../../../confirmacion.html">link hidden para confirmación</a>
+                    </div>
                 </div>
-                <div class="msj error" id="showMsgError">
-                    <h5 class="titulo">
-                        <strong>Se produjeron los siguientes errores en la consulta:</strong>
-                    </h5>
+                <div class="consultas">
+                    <section class="msj exito" id="showMsgSuccess">
+                        <h2 class="titulo">La consulta se envió exitosamente</h2>
+                        <p>Un <span lang="en">e-mail</span> con instrucciones para continuar con el proceso de consultas ha sido enviado a su casilla de correo electrónico.</p><br />
+                        <p>En 5 segundos será redirigido a la página principal.</p>
+                        <script>
+                            var SERVER_URL = "http://www.occovi.gob.ar/";
+                        </script>
+                    </section>
                 </div>
-                <div>
-                    <a href="../../../../../../../confirmacion.html">link hidden para confirmación</a>
-                </div>
-            </div>
-            <div class="consultas">
-                <section class="msj exito" id="showMsgSuccess">
-                    <h2 class="titulo">La consulta se envió exitosamente</h2>
-                    <p>Un <span lang="en">e-mail</span> con instrucciones para continuar con el proceso de consultas ha sido enviado a su casilla de correo electrónico.</p><br />
-                    <p>En 5 segundos será redirigido a la página principal.</p>
-                    <script>
-                        var SERVER_URL = "http://www.occovi.gob.ar/";
-                    </script>
-                </section>
             </div>
         </div>
     </div>
+  </section>
 </div>
 <script type="text/javascript" defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
 <script type="text/javascript" defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/localization/messages_es.min.js"></script>
