@@ -89,20 +89,24 @@ layout: argentina
   </section> 
 </div>
 
-<div data-render="modales">
-  
+<div data-render="modales"></div> 
 
-
-</div> 
-
-
-
-
-
-
-
-
-
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+     <div id="alerta" class="alert alert-warning col-md-4 no-result">
+      <div class="media">
+        <div class="media-left media-middle">
+          <i class="fa fa-warning fa-fw fa-2x"></i>
+        </div>
+        <div class="media-body">
+          <p>No hay resultados para mostrar</p>
+        </div>
+      </div>
+    </div> 
+   </div>
+ </div> 
+</div>
 
 <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
@@ -201,6 +205,17 @@ layout: argentina
         var listOptions = { valueNames: [ 'nombre-obra', 'descripcion-obra' ] };
         var obrasList = new List('obras', listOptions);
 
+        $('.no-result').hide()
+        
+        obrasList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+
       }
     });
 
@@ -240,26 +255,22 @@ layout: argentina
 
           }
 
+          $("#tipo-provincia").on("change", function() {
+            configprovincia = $( "#tipo-provincia option:selected" ).val();
+            render.tarjetas();
+          });
+
+
+          $("#tipo-obra").on("change", function() {
+            configobras = $( "#tipo-obra option:selected" ).val();
+            render.tarjetas();
+          });
+
+
         });
 
       }   
     }
-
-    $("#tipo-provincia").on("change", function() {
-      configprovincia = $( "#tipo-provincia option:selected" ).val();
-      render.tarjetas();
-    });
-
-
-    $("#tipo-obra").on("change", function() {
-      configobras = $( "#tipo-obra option:selected" ).val();
-      render.tarjetas();
-    });
-
-
-
-
-    
 
 
   });
