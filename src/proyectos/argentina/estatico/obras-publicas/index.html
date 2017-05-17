@@ -205,13 +205,15 @@ layout: argentina
         var listOptions = { valueNames: [ 'nombre-obra', 'descripcion-obra' ] };
         var obrasList = new List('obras', listOptions);
 
-        $('.no-result').hide()
-        
+        $('.no-result').hide();
+
         obrasList.on('updated', function(list) {
           if (list.matchingItems.length > 0) {
-            $('.no-result').hide()
+            $('.no-result').hide();
+            $('.list').show();
           } else {
-            $('.no-result').show()
+            $('.no-result').show();
+            $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
           }
         })                
 
@@ -259,9 +261,11 @@ layout: argentina
 
           if (html == "") {
                 $('.no-result').show();
+                $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
           }
           else {
                 $('.no-result').hide();
+                $('.list').show();
           } 
 
 
