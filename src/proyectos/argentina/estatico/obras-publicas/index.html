@@ -226,12 +226,14 @@ layout: argentina
         $('[data-render=tarjetas]').html('');
         $('[data-render=modales]').html('');
 
+       var html = "";
+
 
         $.each(obras, function(index, obras){
 
           if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
 
-            var html = templates.tarjeta;
+            html = templates.tarjeta;
             var modal = templates.modal;
 
             html = html.replace(/{titulo}/gi, obras.titulo)
@@ -255,22 +257,30 @@ layout: argentina
 
           }
 
-          $("#tipo-provincia").on("change", function() {
-            configprovincia = $( "#tipo-provincia option:selected" ).val();
-            render.tarjetas();
-          });
-
-
-          $("#tipo-obra").on("change", function() {
-            configobras = $( "#tipo-obra option:selected" ).val();
-            render.tarjetas();
-          });
+          if (html == "") {
+                $('.no-result').show();
+          }
+          else {
+                $('.no-result').hide();
+          } 
 
 
         });
 
       }   
+
     }
+
+    $("#tipo-provincia").on("change", function() {
+      configprovincia = $( "#tipo-provincia option:selected" ).val();
+      render.tarjetas();
+    });
+
+    $("#tipo-obra").on("change", function() {
+      configobras = $( "#tipo-obra option:selected" ).val();
+      render.tarjetas();
+    });
+
 
 
   });
