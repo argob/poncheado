@@ -1,0 +1,268 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Banco de datos Opinión Pública</h2>
+          <p>Conocé los resultados de las encuestas públicas que realiza Jefatura de Gabinete de Ministros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+      <div class="row">
+  <section>
+
+  
+
+    <div id="tabla">  
+    <h3>Temáticas</h3>
+    
+
+
+<div class="form-group">
+
+<style type="text/css">
+  input[type="checkbox"]{
+    opacity: 0;
+  }
+
+</style>
+
+    <div class="col-md-12 m-b-3">
+      
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+          <span class="fa hidden fa-institution fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="derechos" data-region="derechos" value="derechos"> Derechos y democracia
+        </label>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-pencil-square-o fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="educacion" data-region="educacion" value="educacion"> Educación
+        </label>               
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-flask fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="ciencia" data-region="ciencia" value="ciencia"> Ciencia y Tecnología
+        </label>              
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-flash fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="energia" data-region="energia" value="energia"> Energía y Ambiente
+        </label>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-smile-o fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="humor" data-region="humor" value="humor"> Humor Social
+        </label>              
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-dollar fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="economia" data-region="economia" value="economia"> Economía
+        </label>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+        <span class="fa hidden fa-bus fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="transporte" data-region="transporte" value="transporte"> Transporte e Infraestructura
+        </label>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+          <span class="fa hidden fa-users fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="politica" data-region="politica" value="politica"> Política Social
+        </label>              
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+          <span class="fa hidden fa-file-text-o fa-1x fa-fw text-primary" aria-hidden="true"></span>
+          <input type="checkbox" name="tramites" data-region="tramites" value="tramites"> Trámites y Servicios
+        </label>
+      </div>
+            
+      <div class="col-sm-6 col-md-4">
+        <label class="btn btn-link btn-block">
+          <input type="checkbox" name="todas" data-region="todas" value="todas"> Ver Todas
+        </label>
+      </div>
+      
+
+    </div>
+
+
+
+    <div class="col-md">
+      <h3 class="m-t-2 m-b-1">Encuestas destacadas</h3>
+
+      <div class="list row panels-row m-y-3" data-render="tarjetas">
+      </div>
+
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
+    <a class="panel panel-default" href="{vinculo}">
+      <div class="panel-body">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <span class="fa {icono} fa-1x fa-fw text-primary" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                    <div class="text-muted">
+                        <h3 class="h4">{categoria}</h3>
+                    </div>
+                </div>
+                <h4 class="h3 m-t-1">{titulo}</h4>
+                <p class="text-muted">{descripcion}</p>
+                <p><small>{mes}</small></p>
+                
+              </div>
+        </div>
+    </a>
+  </div>`
+    }
+
+    window.tabla = [];
+    window.configobras = 'todas';
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/12dPbkTkRmNh4KW3snGFINCgwfyVsMeQ7NRQSvJS0ac4/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+
+
+        $.each(response.feed.entry, function(index, row){
+
+          
+            tabla.push({
+              normcat: row.gsx$normcat.$t,
+              titulo: row.gsx$titulo.$t,
+              categoria: row.gsx$categoria.$t,
+              icono: row.gsx$icono.$t,
+              mes: row.gsx$mes.$t,
+              descripcion: row.gsx$descripcion.$t,
+              vinculo: row.gsx$vinculo.$t,
+
+              
+            });
+
+          
+
+          
+
+        })
+
+        render.tarjetas();
+
+
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function( ){
+
+        $('[data-render=tarjetas]').html('');
+
+
+        $.each(tabla, function(index, tabla){
+
+          if ( configobras == 'todas' || configobras == tabla.normcat) {
+
+            var html = templates.tarjeta;
+
+            html = html.replace(/{categoria}/gi, tabla.categoria)
+            .replace(/{descripcion}/gi, tabla.descripcion)
+            .replace(/{icono}/gi, tabla.icono)
+            .replace(/{titulo}/gi, tabla.titulo)
+            .replace(/{mes}/gi, tabla.mes)
+            .replace(/{vinculo}/gi, tabla.vinculo);
+
+
+            $('[data-render=tarjetas]').append( html );   
+
+          }
+
+        });
+
+      }   
+    }
+
+
+
+    $("[data-region]").on("click", function(e) {
+      e.preventDefault();
+      configobras = $(this).data("region");
+      render.tarjetas();
+    });    
+
+    
+
+
+  });
+
+     
+</script>
+
+
+</div>
+
+
+
+</div>
+
+
+  </section>
+  <hr class="m-y-0">
+  <section>
+    <div class="row">
+      <div class="col-md-12">
+       
+       <h2 class="text-muted h4">CONTACTO</h2>
+
+          <p><strong>Dirección:</strong> Balcarce 24. Ciudad Autónoma de Buenos Aires, Argentina.</p>
+          <p><strong>Código postal:</strong> C1064AAB</p>
+          <p><strong>Teléfono:</strong> (54–11) 4344-3600</p>
+          <p><strong>Correo electrónico:</strong> <a href="mailto:opinionpublica@jefatura.gob.ar">opinionpublica@jefatura.gob.ar</p>
+
+
+      </div>
+      <div class="col-md-offset-3 col-md-8 ">
+        
+
+      </div>
+
+  </section>
+  </div>
+</div>
+
+
