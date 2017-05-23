@@ -13,7 +13,7 @@ layout: argentina
   }
 
   a h3{
-    font-size: 1em;
+    font-size: 0.9em;
     margin: .2em 0;
   }
 
@@ -64,52 +64,52 @@ layout: argentina
 
             <div class="row panels-row">
                 
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="derechos">
                     <h3><span class="fa fa-institution fa-1x fa-fw text-primary" aria-hidden="true"></span> Derechos y democracia</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="educacion">
                       <h3><span class="fa fa-pencil-square-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Educación</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="ciencia">
                     <h3><span class="fa fa-flask fa-1x fa-fw text-primary" aria-hidden="true"></span> Ciencia y Tecnología</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="energia">
                     <h3><span class="fa fa-flash fa-1x fa-fw text-primary" aria-hidden="true"></span> Energía y Ambiente</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="humor">
                     <h3><span class="fa fa-smile-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Humor Social</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="economia">
                     <h3><span class="fa fa-dollar fa-1x fa-fw text-primary" aria-hidden="true"></span> Economía</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="transporte">
                     <h3><span class="fa fa-bus fa-1x fa-fw text-primary" aria-hidden="true"></span> Transporte e Infraestructura</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="politica">
                     <h3><span class="fa fa-users fa-1x fa-fw text-primary" aria-hidden="true"></span> Política Social</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="tramites">
                     <h3><span class="fa fa-file-text-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Trámites y Servicios</h3>
                   </a>
                 </div>
-                <div class="col-xs-12 col-md-6 panel-body paneltema">
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="todas">
                     <h3>Ver Todas</h3>
                   </a>
@@ -129,14 +129,22 @@ layout: argentina
         <div class="col-md-12">
           <h3 class="m-t-2 m-b-1">Encuestas destacadas</h3>
 
+          <div id="encuestas"> 
           <div class="list row panels-row m-y-3" data-render="tarjetas">
           </div>
 
+          <!-- el nav tiene que estar siempre dentro del div que tenga el id contenedor -->
+          <nav class="text-center">
+            <ul class="pagination"></ul>
+          </nav>
+
+          </div>
+
+              
 
 
-<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script>
 
   $(function(){
@@ -154,9 +162,10 @@ layout: argentina
                         <h3 class="h4">{categoria}</h3>
                     </div>
                 </div>
-                <h4 class="h3 m-t-1">{titulo}</h4>
+                <p><small class="m-t-1">{mes}</small></p>
+                <h4 class="h3 m-t-0">{titulo}</h4>
                 <p class="text-muted">{descripcion}</p>
-                <p><small>{mes}</small></p>
+                
                 
               </div>
         </div>
@@ -196,7 +205,12 @@ layout: argentina
 
         render.tarjetas();
 
+        var listOptions = {
+          page: 12,
+          plugins: [ ListPagination({}) ]     
+         };
 
+        var listita = new List('encuestas', listOptions);  
 
       }
     });
@@ -231,6 +245,12 @@ layout: argentina
       }   
     }
 
+    
+
+
+
+
+
 
 
     $("[data-region]").on("click", function(e) {
@@ -249,12 +269,13 @@ layout: argentina
   </div>
 </section>
 
-<hr class="m-y-0">
+
   
 <section>
   <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-10 col-md-offset-1">
+    <div class="container">
+
+      <hr>
       <h2 class="text-muted h4">CONTACTO</h2>
         <p><strong>Dirección:</strong> Balcarce 24. Ciudad Autónoma de Buenos Aires, Argentina.</p>
         <p><strong>Código postal:</strong> C1064AAB</p>
@@ -262,7 +283,7 @@ layout: argentina
         <p><strong>Correo electrónico:</strong> <a href="mailto:opinionpublica@jefatura.gob.ar">opinionpublica@jefatura.gob.ar</p>
       </div>   
     </div>
-  </div>    
+  
 </section>
   
 
