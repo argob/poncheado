@@ -35,59 +35,70 @@ layout: argentina
       <div class="col-md-12">
         
         
-        <div class="col-md-6 col-md-offset-3 p-t-2">
+        <div class="col-md-8 col-md-offset-2 p-t-2">
           
-          <h1 class="h3 m-y-0 m-t-2">Completá los datos para saber a dónde ir y qué llevar</h2>
+          <h1 class="h3 m-y-2">Completá los datos para saber a dónde ir y qué llevar</h2>
 
           <form>
 
-            <h2 class="h4 m-y-0 m-t-3">Datos de la persona con discapacidad</h2>
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+            <h2>Datos de la persona con discapacidad</h2>
+            <hr class="m-t-1 m-b-2 m-b-2"/>
 
-            <hr />
             <div class="form-group">
                 <label class="control-label">¿Tiene 18 años o más?</label><br>
                   <div class="radio">
                     <label for="mayor18" class="m-t-0">
-                      <input id="mayor18" type="radio" name="mayor18" value="si" />
+                      <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" />
                       Si
                     </label><br>
                     <label for="menor18" class="m-t-1">
-                      <input id="menor18" type="radio" name="mayor18" value="no" />
+                      <input id="menor18" type="radio" name="mayor18" value="no" data-toogle-collapse="#collapse-escuela" />
                       No
                     </label>
                   </div> 
             </div>
-            <div class="form-group">
-                <label class="control-label">¿La persona se encuentra bajo curatela o tutoría?</label><br>
-                  <div class="radio">
-                    <label for="tutoriasi" class="m-t-0">
-                      <input id="tutoriasi" type="radio" name="tutoria" value="si" />
-                      Si
-                    </label><br>
-                    <label for="tutoriano" class="m-t-1">
-                      <input id="tutoriano" type="radio" name="tutoria" value="no" />
-                      No
-                    </label>
-                  </div> 
+
+             <div class="collapse" id="collapse-tutoria">
+              <div class="form-group">
+                  <label class="control-label">¿La persona se encuentra bajo curatela o tutoría?</label><br>
+                    <div class="radio">
+                      <label for="tutoriasi" class="m-t-0">
+                        <input id="tutoriasi" type="radio" name="tutoria" value="si" />
+                        Si
+                      </label><br>
+                      <label for="tutoriano" class="m-t-1">
+                        <input id="tutoriano" type="radio" name="tutoria" value="no" />
+                        No
+                      </label>
+                    </div> 
+              </div>            
             </div>
-            <div class="form-group">
-                <label class="control-label">¿Asiste a la escuela?</label><br>
-                  <div class="radio">
-                    <label for="asistesi" class="m-t-0">
-                      <input id="asistesi" type="radio" name="asiste" value="si" />
-                      Si
-                    </label><br>
-                    <label for="asisteno" class="m-t-1">
-                      <input id="asisteno" type="radio" name="asiste" value="no" />
-                      No
-                    </label>
-                  </div> 
-            </div>  
+
+            <div class="collapse" id="collapse-escuela">
+              <div class="form-group">
+                  <label class="control-label">¿Asiste a la escuela?</label><br>
+                    <div class="radio">
+                      <label for="asistesi" class="m-t-0">
+                        <input id="asistesi" type="radio" name="asiste" value="si" />
+                        Si
+                      </label><br>
+                      <label for="asisteno" class="m-t-1">
+                        <input id="asisteno" type="radio" name="asiste" value="no" />
+                        No
+                      </label>
+                    </div> 
+              </div>  
+            </div>
+
+
+
             <div class="form-group">
                 <label class="control-label">Cobertura médica</label><br>
                   <div class="radio">
                     <label for="obrasocial" class="m-t-0">
-                      <input id="obrasocial" type="radio" name="coberturamedica" value="obrasocial" />
+                      <input id="obrasocial" type="radio" name="coberturamedica" value="obrasocial" data-toogle-collapse="#collapse-situacionlaboral" />
                       Obra social
                     </label><br>
                     <label for="medicinapre-paga" class="m-t-1">
@@ -100,6 +111,10 @@ layout: argentina
                     </label>
                   </div> 
             </div>     
+
+
+             <div class="collapse" id="collapse-situacionlaboral">
+
             <div class="form-group">
                 <label class="control-label">Situación laboral</label><br>
                 <label><small>Del titular de la obra social con la cual se atiende la persona con discapacidad</small></label>
@@ -117,7 +132,9 @@ layout: argentina
                       ¿Tiene recibo de cobro de jubilación o pensión?
                     </label>
                   </div> 
-            </div>                           
+            </div> 
+
+            </div>                          
             <div class="form-group">
                 <label class="control-label">Tipo de discapacidad para la cual solicita el certificado</label>
                 <div class="checkbox">
@@ -163,9 +180,15 @@ layout: argentina
                   </label>
                 </div>              
             </div>
+            
+          </div>
+        </div>  
 
-            <h2 class="h4 m-t-3">Domicilio</h2>
-            <hr />
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+
+            <h2>Domicilio</h2>
+            <hr class="m-t-1 m-b-2" />
             <p class="text-muted m-b-3">El domicilio debe ser el que figura en el DNI de la persona para la cual se solicita el CUD</p>
 
 
@@ -191,7 +214,7 @@ layout: argentina
               </select>
             </div>
 
-            <div class="form-groun">
+            <div class="form-group">
               <div class="col-md-12 p-x-0">
                 <div class="col-md-8 col-xs-8 p-x-0">
                 <label class="control-label">Calle</label>
@@ -206,10 +229,24 @@ layout: argentina
               </div>  
             </div>
 
+          </div>
+        </div>  
 
+        <a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>
 
-             <a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>
-
+          <script>
+            $('[data-toogle-collapse]').each(function(key,item){
+              var value = $(item).val();
+              var target = $(item).data('toogle-collapse');
+              $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                if($(this).val() == value){
+                  $(target).collapse('show');
+                }else{
+                  $(target).collapse('hide');
+                }
+              });
+            });
+          </script>
 
           </form>
         </div>
