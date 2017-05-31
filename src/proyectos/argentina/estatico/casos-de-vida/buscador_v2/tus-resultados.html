@@ -681,9 +681,9 @@ layout: mi-argentina
           description: '',
           url: 'tarifasocial',
           icon: 'icono-arg-sube',
-        },
-
         }
+
+        
       ];
       
       var templates = {
@@ -696,12 +696,13 @@ layout: mi-argentina
       // Leo si hay algo guardado
 
       if(typeof(Storage) !== "undefined") {
-        if( localStorage.getItem("wizard-form") != undefined ){
+        if( localStorage.getItem("wizard-form2") != undefined ){
 
-          form_data = JSON.parse( localStorage.getItem("wizard-form"))
+          form_data = JSON.parse( localStorage.getItem("wizard-form2"))
 
           jQuery.each(form_data, function(key, item){
             data[item.name] = item.value;
+
           });
 
           var item_blank = true;
@@ -709,32 +710,16 @@ layout: mi-argentina
           jQuery.each(contents, function(key, content){
 
             var show = false;
-            var nacionalidad = false;
-
-            if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
-              nacionalidad = true;
+            
+            if (content.corto == 'quierojubilarme_tramites'){
+              console.log(data);
+              
             }
-
-            jQuery.each(content.conditions, function(condition, value){
-              if(condition == 'edad'){
-                new_condition = value.split(' ');
-
-                if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
-                  show = true;
-                }
-
-                if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
-                  show = true;
-                }
-
-              }else if( data[condition] == value ){
-                show = true;
-              }
-            });
+            
 
             // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
-            if(show && nacionalidad){
+            if(show){
 
               item_blank = false;
 
@@ -780,7 +765,7 @@ layout: mi-argentina
 
       jQuery('#wipe-form').on('click', function(event){
         event.preventDefault();
-        localStorage.removeItem('wizard-form');
+        localStorage.removeItem('wizard-form2');
         ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
         window.location.href = '/quemebrinda';
       });
