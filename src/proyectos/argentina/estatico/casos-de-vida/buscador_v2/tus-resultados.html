@@ -711,10 +711,28 @@ layout: mi-argentina
 
             var show = false;
             
-            if (content.corto == 'quierojubilarme_tramites'){
-              console.log(data);
-              
+            if (content.corto == 'quierojubilarme_tramites' || content.corto == 'quierojubilarme_iniciar'){
+              if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
+                || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
+                || (data.edad <= 60 && data.discapacidad == 'si')){
+                  var show = true;
+              }
             }
+
+            if (content.corto == 'quierojubilarme_ordinaria' || content.corto == 'quierojubilarme_fallecimiento' || content.corto == 'quierojubilarme_fallecimiento'){
+              if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
+                || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
+                || (data.edad <= 60 && data.discapacidad == 'si')){
+                  var show = true;
+              }
+            }
+
+            if (content.corto == 'soyjubilado_beneficios' || content.corto == 'soyjubilado_reparacion' || content.corto == 'soyjubilado_calendario' || content.corto == 'soyjubilado_asignacion' || content.corto == 'soyjubilado_solicitarasignacion' || content.corto == 'soyjubilado_solicitarasignacionescolar' || content.corto == 'soyjubilado_tarifasocial' || content.corto == 'soyjubilado_supervivencia' || content.corto == 'soyjubilado_apoderado'){
+              if (data.empleo == 'no' && data.notrabajo == 'jubilado'){
+                var show = true;
+              }
+            }
+
             
 
             // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
