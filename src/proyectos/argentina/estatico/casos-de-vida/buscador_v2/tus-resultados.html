@@ -1,0 +1,346 @@
+---
+layout: mi-argentina
+---
+
+
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
+      <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Tus resultados</h2>
+    <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
+
+
+
+
+
+    <div id="wizard-personal" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
+      <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
+    </div>
+
+    <div id="wizard-interest" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+      <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
+    </div>
+
+    <div id="wizard-message" class="m-y-3 hidden">
+      <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+      <p>Probá cambiando la configuración del formulario.</p>
+    </div>
+
+    <div class="m-y-3">
+      <a id="edit-form" class="btn btn-primary m-r-1" href="/quemebrinda">Cambiar respuestas</a>
+      <a id="wipe-form" class="btn btn-link" href="/quemebrinda">Volver a comenzar</a>
+    </div>
+
+    <script>
+
+      var contents = [
+        {
+          name: 'Trámites para jubilarse',
+          corto: 'quierojubilarme_tramites',
+          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
+          url: 'adultosmayores/iniciarjubilacionpension',
+          icon: 'icono-arg-tramite-jubilacion',
+        },
+        {
+          name: 'Iniciá el trámite de tu jubilación por Internet',
+          corto: 'quierojubilarme_iniciar',
+          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
+          url: 'https://www.argentina.gob.ar/jubilacion-automatica-por-internet',
+          icon: 'icono-arg-tramite-jubilacion',
+        },
+        {
+          name: 'Jubilación ordinaria o por vejez',
+          corto: 'quierojubilarme_ordinaria',
+          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
+          url: 'https://www.argentina.gob.ar/jubilacion-ordinaria-o-jubilacion-por-vejez',
+          icon: 'icono-arg-tramite-jubilacion',
+        },
+        {
+          name: 'Pensión por fallecimiento de un beneficiario',
+          corto: 'quierojubilarme_fallecimiento',
+          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
+          url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-beneficiario',
+          icon: 'icono-arg-tramite-jubilacion',
+        },
+        {
+          name: 'Pensión por fallecimiento de un trabajador',
+          corto: 'quierojubilarme_trabajador',
+          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
+          url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-trabajador',
+          icon: 'icono-arg-tramite-jubilacion',
+        },
+
+        {
+          name: 'Beneficios para jubilados y pensionados',
+          corto: 'soyjubilado_beneficios',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'adultosmayores/soyjubiladopensionado',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Reparación histórica',
+          corto: 'soyjubilado_reparacion',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Consultar el calendario de pagos de ANSES',
+          corto: 'soyjubilado_calendario',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'consultar-calendario-de-pago-de-anses',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Asignación Familiar por cónyuge',
+          corto: 'soyjubilado_asignacion',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'asignacion-familiar-por-conyuge',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Solicitar Asignación Familiar por hijo o hijo con discapacidad',
+          corto: 'soyjubilado_solicitarasignacion',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'solicitar-asignacion-familiar-por-hijo-con-discapacidad',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
+          corto: 'soyjubilado_solicitarasignacionescolar',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Tarifa Social en los Servicios Públicos',
+          corto: 'soyjubilado_tarifasocial',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'tarifasocial',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Dar Fe de vida (supervivencia)',
+          corto: 'soyjubilado_supervivencia',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'dar-fe-de-vida-supervivencia-para-jubilados-y-pensionados',
+          icon: 'icono-arg-jubilado',
+        },
+        {
+          name: 'Solicitar un apoderado',
+          corto: 'soyjubilado_apoderado',
+          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
+          url: 'solicitar-un-apoderado-para-jubilados-y-pensionados',
+          icon: 'icono-arg-jubilado',
+        },
+
+        {
+          name: 'Empleados en relación de dependencia',
+          corto: 'dependencia_empleado',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'tema/trabajar/soy-empleado',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Asignación prenatal',
+          corto: 'dependencia_prenatal',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'asignacion-familiar-por-prenatal',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Solicitar Licencia por maternidad',
+          corto: 'dependencia_maternidad',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Asignación Familiar por hijo o hijo con discapacidad',
+          corto: 'dependencia_discapacidad',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'solicitar-asignacion-familiar-por-hijo-con-discapacidad',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Asignación Familiar por Ayuda Escolar Anual',
+          corto: 'dependencia_ayudaescolar',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Asignación Familiar por matrimonio',
+          corto: 'dependencia_matrimonio',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'asignacion-familiar-por-matrimonio',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Asignación Familiar por Nacimiento o Adopción',
+          corto: 'dependencia_nacimiento',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'asignacion-familiar-por-nacimiento-o-adopcion',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Prestación por Desempleo',
+          corto: 'dependencia_desempleo',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'prestacion-por-desempleo',
+          icon: 'icono-arg-apostilla',
+        },
+        {
+          name: 'Obra Social para beneficiarios de la Prestación por Desempleo',
+          corto: 'dependencia_obrasocial_desempleo',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'obra-social-para-beneficiarios-de-la-prestacion-por-desempleo',
+          icon: 'icono-arg-apostilla',
+        },
+
+        
+        {
+          name: 'Obra Social para beneficiarios de la Prestación por Desempleo',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: 'obra-social-para-beneficiarios-de-la-prestacion-por-desempleo',
+          icon: 'icono-arg-apostilla',
+        },
+
+
+
+
+        }
+      ];
+      
+      var templates = {
+        item: '<div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="{url}"> <div class="panel-body"> <div class="media"> <div class="media-left padding-20"> <i class="fa {icon} fa-fw fa-2x text-primary"></i> </div> <div class="media-body"> <h3>{title}</h3> <p class="text-muted">{description}</p> </div> </div> </div> </a> </div>'
+      };
+
+      var form_data;
+      var data = {};
+
+      // Leo si hay algo guardado
+
+      if(typeof(Storage) !== "undefined") {
+        if( localStorage.getItem("wizard-form") != undefined ){
+
+          form_data = JSON.parse( localStorage.getItem("wizard-form"))
+
+          jQuery.each(form_data, function(key, item){
+            data[item.name] = item.value;
+          });
+
+          var item_blank = true;
+
+          jQuery.each(contents, function(key, content){
+
+            var show = false;
+            var nacionalidad = false;
+
+            if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
+              nacionalidad = true;
+            }
+
+            jQuery.each(content.conditions, function(condition, value){
+              if(condition == 'edad'){
+                new_condition = value.split(' ');
+
+                if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
+                  show = true;
+                }
+
+                if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
+                  show = true;
+                }
+
+              }else if( data[condition] == value ){
+                show = true;
+              }
+            });
+
+            // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
+
+            if(show && nacionalidad){
+
+              item_blank = false;
+
+              var html = templates.item;
+
+              html = html.replace(/{url}/gi, content.url)
+                .replace(/{icon}/gi, content.icon)
+                .replace(/{title}/gi, content.name)
+                .replace(/{description}/gi, content.description);
+
+              // if(content.tipo == 'personal'){
+                jQuery('#wizard-personal').removeClass('hidden');
+                jQuery('#wizard-personal-items').append( html );
+              // }else{
+              //   jQuery('#wizard-interest').removeClass('hidden');
+              //   jQuery('#wizard-interest-items').append( html );
+              // }
+            }
+
+
+          });
+          
+          // console.log(item_blank);
+
+          if(item_blank){
+            jQuery('#wizard-message').removeClass('hidden');
+          }
+            
+        }else{
+          // console.log('Todavía no guardaste nada');
+          window.location.replace('/quemebrinda');
+        }
+
+      } else {
+        console.log('No tenés soporte :(');
+      }
+
+      jQuery('#edit-form').on('click', function(event){
+        event.preventDefault();
+        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        window.location.href = '/quemebrinda';
+      });
+
+      jQuery('#wipe-form').on('click', function(event){
+        event.preventDefault();
+        localStorage.removeItem('wizard-form');
+        ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
+        window.location.href = '/quemebrinda';
+      });
+
+
+    </script>
+
+
+    
+
+  </div>
+</section>
+
+
