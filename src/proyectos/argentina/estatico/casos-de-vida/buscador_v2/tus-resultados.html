@@ -752,13 +752,13 @@ layout: mi-argentina
             }
 
             if(content.corto == 'dependencia_hijodiscapacidad'){
-              if (data.empleo == 'si' && (hijo_menor == 'si' || data.tenerHijos == 'si' || discapaciodad_acargo == 'si')){
+              if (data.empleo == 'si' && (data.hijo_menor == 'si' || data.tenerHijos == 'si' || data.discapacidad_acargo == 'si')){
                 var show = true;
               }
             }
             
             if(content.corto == 'dependencia_ayudaescolar' || content.corto == 'dependencia_nacimiento'){
-              if (data.empleo == 'si' && (hijo_menor == 'si' || data.tenerHijos == 'si')){
+              if (data.empleo == 'si' && (data.hijo_menor == 'si' || data.tenerHijos == 'si')){
                 var show = true;
               }
             }
@@ -794,7 +794,7 @@ layout: mi-argentina
             }
 
             if(content.corto == 'discapacidad_beneficios' || content.corto == 'discapacidad_cud'){
-              if (data.nacionalidad == 'argentino' && (data.discapaciodad == 'si' || data.discapaciodad_acargo == 'si')){
+              if (data.nacionalidad == 'argentino' && (data.discapacidad == 'si' || data.discapacidad_acargo == 'si')){
                 var show = true;
               }
             }
@@ -806,7 +806,7 @@ layout: mi-argentina
             }
 
             if(content.corto == 'busco_trabajo'){
-              if (data.estudio == 'si' || hijo_menor == 'si' || data.notrabajo == 'desempleado' || data.notrabajo == 'otros' || interes_trabajo == 'si'){
+              if (data.estudio == 'si' || data.hijo_menor == 'si' || data.notrabajo == 'desempleado' || data.notrabajo == 'otros' || data.interes_trabajo == 'si'){
                 var show = true;
               }
             }
@@ -836,7 +836,7 @@ layout: mi-argentina
             }
 
             if(content.corto == 'estudiar_asignacion'){
-              if ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapaciodad_acargo == 'si')){
+              if ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si')){
                 var show = true;
               }
             }
