@@ -835,6 +835,12 @@ layout: mi-argentina
               }
             }
 
+            if(content.corto == 'estudiar_asignacion'){
+              if ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapaciodad_acargo == 'si')){
+                var show = true;
+              }
+            }
+
             // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
             if(show){
