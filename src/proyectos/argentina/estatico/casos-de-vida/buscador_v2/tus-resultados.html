@@ -582,7 +582,7 @@ layout: mi-argentina
         },
         {
           name: 'Vacunas para adolescentes',
-          corto: 'salud_vacunas_asolewscentes',
+          corto: 'salud_vacunas_adolescentes',
           description: '',
           url: 'vacunas/adolescentes',
           icon: 'icono-arg-medicina',
@@ -1009,6 +1009,37 @@ layout: mi-argentina
               }
             }
 
+            if(content.corto == 'salud_vacunas'){
+              if (data.interes_salud == 'si') {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'salud_vacunas_adolescentes' || content.corto == 'salud_vacunas_niños' || content.corto == 'salud_vacunas_bebe'){
+              if (data.edad <= 17 && (data.hijos == 'si' && data.hijo_menor == 'si') || data.interes_salud == 'si' )
+
+              {
+                var show = true;
+              }
+            }            
+
+            if(content.corto == 'salud_vacunas_adultos' ){
+              if (data.edad >= 18 && data.edad <= 59 && (data.empleo == 'si' && data.trabajo == 'autonomo') || data.interes_salud == 'si' ) {
+                var show = true;
+              }
+            }   
+
+            if(content.corto == 'salud_positivo' || content.corto == 'salud_pausa' ){
+              if (data.edad <= 40 || data.edad >= 60 && (((data.empleo == 'si' && data.trabajo == 'autonomo') || (data.empleo == 'no' && data.notrabajo == 'jubilado') || data.interes_salud == 'si'))) {
+                var show = true;
+              }
+            }            
+
+            if(content.corto == 'salud_cuido' || content.corto == 'salud_vacunas_mayores'){
+              if (data.edad >= 60 && ((data.empleo == 'no' && data.notrabajo == 'jubilado') || data.interes_salud == 'si')) {
+                var show = true;
+              }
+            }
 
             if(content.corto == 'vivienda_acceder'){
               if (data.interes_vivienda == 'si') {
