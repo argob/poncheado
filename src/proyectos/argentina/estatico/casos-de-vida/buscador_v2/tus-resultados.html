@@ -648,28 +648,28 @@ layout: mi-argentina
 
         {
           name: 'Abuso sexual infantil',
-          corto: 'violencia_',
+          corto: 'violencia_infantil',
           description: '',
           url: 'abusosexualinfantil',
           icon: 'fa-exclamation-triangle',
         },
         {
           name: 'Trata de personas',
-          corto: 'violencia_',
+          corto: 'violencia_trata',
           description: '',
           url: 'denuncialatrata',
           icon: 'fa-exclamation-triangle',
         },
         {
           name: 'Mujeres en situación de violencia',
-          corto: 'violencia_',
+          corto: 'violencia_mujeres',
           description: '',
           url: 'atencionmujeres',
           icon: 'fa-exclamation-triangle',
         },
         {
           name: 'Violencia y abuso',
-          corto: 'violencia_',
+          corto: 'violencia_abuso',
           description: 'Qué hacer ante una situación de violencia o abuso.',
           url: 'tema/violenciayabuso',
           icon: 'fa-exclamation-triangle',
@@ -840,6 +840,45 @@ layout: mi-argentina
                 var show = true;
               }
             }
+
+            if(content.corto == 'vivienda_acceder'){
+              if (data.interes_vivienda == 'si') {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'vivienda_procrear'){
+              if ((data.edad <= 59) && data.interes_vivienda == 'si') {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'auto'){
+              if (data.edad >= 18 && data.interes_auto == 'si') {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'violencia_infantil' 
+              || content.corto == 'violencia_trata' 
+              || content.corto == 'violencia_mujeres' 
+              || content.corto == 'violencia_abuso'){
+              if (data.interes_violencia == 'si') {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'tarifasocial'){
+              if (data.edad <= 60 
+                || data.nacionalidad == 'argentino' && (data.empleo == 'si' && data.trabajo == 'particulares' ) 
+                || data.nacionalidad == 'argentino' && (data.empleo == 'no' && (data.notrabajo == 'jubilado' || data.notrabajo == 'desempleado' ))
+                || data.edad >= 18 && data.discapacidad == 'si'
+                || data.nacionalidad == 'argentino' && ((data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si'))
+                || data.nacionalidad == 'argentino' && data.interes_vivienda == 'si')  {
+                var show = true;
+              }
+            }
+
 
             // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
