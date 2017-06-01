@@ -712,134 +712,302 @@ layout: mi-argentina
             var show = false;
             
             if (content.corto == 'quierojubilarme_tramites' || content.corto == 'quierojubilarme_iniciar'){
+
               if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
                 || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
-                || (data.edad <= 60 && data.discapacidad == 'si')){
+                || (data.edad <= 60 && data.discapacidad == 'si'))
+
+              {
                   var show = true;
               }
             }
 
             if (content.corto == 'quierojubilarme_ordinaria' || content.corto == 'quierojubilarme_fallecimiento' || content.corto == 'quierojubilarme_fallecimiento'){
+
               if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
                 || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
-                || (data.edad <= 60 && data.discapacidad == 'si')){
+                || (data.edad <= 60 && data.discapacidad == 'si'))
+
+              {
                   var show = true;
               }
             }
 
             if (content.corto == 'soyjubilado_beneficios' || content.corto == 'soyjubilado_reparacion' || content.corto == 'soyjubilado_calendario' || content.corto == 'soyjubilado_asignacion' || content.corto == 'soyjubilado_solicitarasignacion' || content.corto == 'soyjubilado_solicitarasignacionescolar' || content.corto == 'soyjubilado_tarifasocial' || content.corto == 'soyjubilado_supervivencia' || content.corto == 'soyjubilado_apoderado'){
-              if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'jubilado'){
+
+              if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'jubilado')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_empleado'){
-              if (data.empleo == 'si' && data.trabajo == 'dependencia'){
+              
+              if (data.empleo == 'si' && data.trabajo == 'dependencia')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_prenatal' || content.corto == 'dependencia_maternidad'){
-              if (data.empleo == 'si' && data.tenerHijos == 'si'){
+
+              if (data.empleo == 'si' && data.tenerHijos == 'si')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_prenatal' || content.corto == 'dependencia_maternidad'){
-              if (data.empleo == 'si' && data.tenerHijos == 'si'){
+
+              if (data.empleo == 'si' && data.tenerHijos == 'si')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_hijodiscapacidad'){
-              if (data.empleo == 'si' && (data.hijo_menor == 'si' || data.tenerHijos == 'si' || data.discapacidad_acargo == 'si')){
+              
+              if (data.empleo == 'si' && 
+                (data.hijos == 'si' && data.hijo_menor == 'si') 
+                || data.tenerHijos == 'si' 
+                || data.discapacidad_acargo == 'si')
+              {
                 var show = true;
               }
             }
             
             if(content.corto == 'dependencia_ayudaescolar' || content.corto == 'dependencia_nacimiento'){
-              if (data.empleo == 'si' && (data.hijo_menor == 'si' || data.tenerHijos == 'si')){
+              
+              if (data.empleo == 'si' 
+                && (data.hijo_menor == 'si' || data.tenerHijos == 'si'))
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_matrimonio'){
-              if (data.trabajo == 'dependencia' && data.nacionalidad == 'argentino'){
+              
+              if (data.trabajo == 'dependencia' && data.nacionalidad == 'argentino')
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'dependencia_desempleo' || content.corto == 'dependencia_obrasocial_desempleo'){
-              if (data.nacionalidad == 'argentino' && (data.trabajo == 'dependencia' || data.notrabajo == 'desempleado')){
+              
+              if (data.nacionalidad == 'argentino' 
+                && ((data.empleo == 'si' && data.trabajo == 'dependencia') || (data.empleo == 'no' && data.notrabajo == 'desempleado')))
+
+              {
                 var show = true;
               }
             }
 
-            if(content.corto == 'monotributo_prenatal' || content.corto == 'monotributo_hijodiscapacidad' || content.corto == 'monotributo_escolar'){
-              if (data.tenerHijos == 'si' && data.trabajo == 'monotributista'){
+            if(content.corto == 'monotributo_prenatal' || content.corto == 'monotributo_hijodiscapacidad' || content.corto == 'monotributo_escolar')
+
+            {
+              if (data.tenerHijos == 'si' && (data.empleo == 'si' && data.trabajo == 'monotributista'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'monotributo_monotributista'){
-              if (data.trabajo == 'monotributista' || (data.nacionalidad == 'argentino' && data.interes_emprender == 'si')){
+              
+              if ((data.empleo == 'si' && (data.empleo == 'si' && data.trabajo == 'monotributista')) 
+                || (data.nacionalidad == 'argentino' && data.interes_emprender == 'si'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'particulares_trabajadores' || content.corto == 'particulares_embarazo' || content.corto == 'particulares_asignacionhijos' || content.corto == 'particulares_maternidad' || content.corto == 'particulares_obrasocial' || content.corto == 'particulares_sube'){
-              if (data.nacionalidad == 'argentino' && data.trabajo == 'particulares'){
+
+              if (data.nacionalidad == 'argentino' && (data.empleo == 'si' && data.trabajo == 'particulares'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'discapacidad_beneficios' || content.corto == 'discapacidad_cud'){
-              if (data.nacionalidad == 'argentino' && (data.discapacidad == 'si' || data.discapacidad_acargo == 'si')){
+              
+              if (data.nacionalidad == 'argentino' && (data.discapacidad == 'si' || data.discapacidad_acargo == 'si'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'extranjeros_turistas' || content.corto == 'extranjeros_estudiantes' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_ciudadania'){
-              if (data.nacionalidad == 'extranjero'){
+              
+              if (data.nacionalidad == 'extranjero')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'busco_trabajo'){
-              if (data.estudio == 'si' || data.hijo_menor == 'si' || data.notrabajo == 'desempleado' || data.notrabajo == 'otros' || data.interes_trabajo == 'si'){
+
+              if (data.estudio == 'si' 
+                || data.hijo_menor == 'si' 
+                || (data.empleo == 'no' && data.notrabajo == 'desempleado') 
+                || data.notrabajo == 'otros' 
+                || data.interes_trabajo == 'si')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'capacitarme' || content.corto == 'capacitarme_beneficios'){
-              if (data.interes_capacitacion == 'si'){
+              
+              if (data.interes_capacitacion == 'si')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'capacitarme_emprender'){
-              if (data.interes_capacitacion == 'si' && data.interes_emprender == 'si'){
+              
+              if (data.interes_capacitacion == 'si' && data.interes_emprender == 'si')
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'emprendedor_financiamiento' || content.corto == 'emprendedor_registrar' || content.corto == 'emprendedor_inscribirme' || content.corto == 'emprendedor_rump'){
-              if (data.nacionalidad == 'argentino' && (data.trabajo == 'autonomo' || data.interes_emprender == 'si')){
+              
+              if (data.nacionalidad == 'argentino' 
+                && ((data.empleo == 'si' && data.trabajo == 'autonomo')
+                || data.interes_emprender == 'si'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'emprendedor_capacitarme'){
-              if (data.nacionalidad == 'argentino' && (data.empleo == 'si' || data.trabajo == 'autonomo' || data.interes_emprender == 'si')){
+              
+              if (data.nacionalidad == 'argentino' && 
+                (data.empleo == 'si' 
+                  || (data.empleo == 'si' && data.trabajo == 'autonomo') 
+                  || data.interes_emprender == 'si'))
+
+              {
                 var show = true;
               }
             }
 
             if(content.corto == 'estudiar_asignacion'){
-              if ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si')){
+              
+              if (data.nacionalidad == 'argentino' 
+                && ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si')))
+
+              {
                 var show = true;
               }
             }
+
+            if(content.corto == 'estudiar_progresar'){
+              
+              if(data.nacionalidad == 'argentino' && ((data.estudio == 'si' && (data.edad >= 18 && data.edad <= 24)) || ((data.edad >= 18 && data.edad <= 24) && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) || data.hijo_mayor == 'si' || (data.interes_capacitacion == 'si' && (data.edad >= 18 && data.edad <= 24))))
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'estudiar_11mil' || content.corto == 'estudiar_beca'){
+              
+              if (data.nacionalidad == 'argentino' && (data.estudio == 'si' || data.hijo_menor == 'si' || data.interes_capacitacion == 'si'))
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'estudiar_becar'){
+              
+              if (data.nacionalidad == 'argentino' && ((data.estudio == 'si' && (data.edad >= 22)) || data.hijo_mayor == 'si' || (data.interes_capacitacion == 'si' && (data.edad >= 22))))
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'estudiar_boleto'){
+              
+              if (data.nacionalidad == 'argentino' && (data.edad <= 17 || (data.estudio == 'si' && (data.edad <= 17)) || data.hijo_menor == 'si'))
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'estudiar_beneficios'){
+              
+              if (data.nacionalidad == 'argentino' && (data.edad <= 40 || data.estudio == 'si' || data.hijos == 'si' || data.interes_capacitacion == 'si'))
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'hijo_licencia'){
+              
+              if (data.nacionalidad == 'argentino' && data.empleo == 'si' && data.tenerHijos == 'si')
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'hijo_asignacion_embarazo' || content.corto == 'hijo_asignacion_nacimiento' || content.corto == 'hijo_asignacion_proteccion' || content.corto == 'hijo_asignacion_discapacidad' || content.corto == 'hijo_pension7' || content.corto == 'hijo_crecer'){
+              
+              if (data.nacionalidad == 'argentino' && data.tenerHijos == 'si')
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'hijo_vacunas_bebe'){
+              
+              if (data.hijo_menor == 'si' || data.tenerHijos == 'si')
+
+              {
+                var show = true;
+              }
+            }
+
+            if(content.corto == 'hijo_vacunas_embarazo' || content.corto == 'hijo_asistida' || content.corto == 'hijo_nacimiento' || content.corto == 'hijo_embarazo' || content.corto == 'hijo_adopcion'){
+              
+              if (data.tenerHijos == 'si')
+
+              {
+                var show = true;
+              }
+            }
+
+            if (content.corto == 'hijo_crecer'){
+              
+              if (data.nacionalidad == 'argentino' && (data.tenerHijos == 'si' || (data.hijo_menor == 'si' && data.interes_salud == 'si') ))
+
+              {
+                var show = true;
+              }
+            }
+
 
             // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
