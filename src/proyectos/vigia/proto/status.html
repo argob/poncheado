@@ -23,9 +23,9 @@ layout: capataz
     <table id="table" class="table table-align-middle table-spaced">
       <thead>
         <th>Dominio</th>
-        <th>Http</th>
-        <th>Última caida</th>
-        <th>SSl</th>
+        <th class="text-center">Http</th>
+        <th class="text-center">Última caida</th>
+        <th class="text-center">SSl</th>
       </thead>
       <tbody></tbody>
    </table>
@@ -73,9 +73,14 @@ $(function(){
       console.log('hola')
 
       var http = site.http.replace('http:', '').split(':');
+      var httpOk = http[0] == 'green' ? 'success' : 'danger';
       var ssl = site.sslcert.replace('sslcert:', '').split(':');
+      var sslOk = ssl[0] == 'green' ? 'success' : 'danger';
 
-      var html = '<tr><td>'+ site.name +'</td><td>'+ http[0] +'</td><td>'+ http[1].replace(/d|h/gi, function(x){ return x+' ' }) +'</td><td>'+ ssl[0] +'</td></tr>';
+      var html = '<tr><td>'+ site.name +'</td>';
+      html += '<td class="text-center '+ httpOk +'">'+ http[0].replace('green', 'ok') +'</td>';
+      html += '<td class="text-center">'+ http[1].replace(/d|h/gi, function(x){ return x+' ' }) +'</td>';
+      html += '<td class="text-center '+ sslOk +'">'+ ssl[0].replace('green', 'ok') +'</td></tr>';
 
       table.append(html);
     });
