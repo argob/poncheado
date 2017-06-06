@@ -152,7 +152,7 @@ layout: argentina
 
           <!-- el nav tiene que estar siempre dentro del div que tenga el id contenedor -->
           <nav class="text-center">
-            <ul class="pagination"></ul>
+            <ul class="pagination m-y-0"></ul>
           </nav>
 
           </div>
@@ -164,7 +164,7 @@ layout: argentina
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script>
 
-  $(function(){
+  (function($){
 
     var templates = {
       tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
@@ -192,6 +192,15 @@ layout: argentina
 
     window.tabla = [];
     window.configobras = 'todas';
+
+    var configLista = function configLista() {
+      var listOptions = {
+        page: 12,
+        plugins: [ ListPagination({}) ]     
+       };
+
+      var listita = new List('encuestas', listOptions);  
+    }    
 
     $.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/12dPbkTkRmNh4KW3snGFINCgwfyVsMeQ7NRQSvJS0ac4/1/public/values?alt=json',
@@ -221,13 +230,8 @@ layout: argentina
         })
 
         render.tarjetas();
+        configLista();
 
-        var listOptions = {
-          page: 12,
-          plugins: [ ListPagination({}) ]     
-         };
-
-        var listita = new List('encuestas', listOptions);  
 
       }
     });
@@ -274,12 +278,13 @@ layout: argentina
       e.preventDefault();
       configobras = $(this).data("region");
       render.tarjetas();
+      configLista();       
     });    
 
     
 
 
-  });
+  })(jQuery);
 </script>
 
     </div>
