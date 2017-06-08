@@ -31,9 +31,6 @@ layout: mi-argentina
     <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
 
 
-
-
-
     <div id="wizard-personal" class="hidden">
       
       <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
@@ -774,8 +771,8 @@ layout: mi-argentina
       ];
       
             var templates = {
-        item: `<div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default" href="{url}">
+        item: `<div class="titleCategory"></div><div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default category-{category}" href="{url}">
                   <div class="panel-body">
                     <div class="media">
                       <div class="media-left padding-20">
@@ -1255,7 +1252,8 @@ layout: mi-argentina
               html = html.replace(/{url}/gi, content.url)
                 .replace(/{icon}/gi, content.icon)
                 .replace(/{title}/gi, content.name)
-                .replace(/{description}/gi, content.description);
+                .replace(/{description}/gi, content.description)
+                .replace(/{category}/gi, content.category);
 
               // if(content.tipo == 'personal'){
                 jQuery('#wizard-personal').removeClass('hidden');
@@ -1264,6 +1262,7 @@ layout: mi-argentina
               //   jQuery('#wizard-interest').removeClass('hidden');
               //   jQuery('#wizard-interest-items').append( html );
               // }
+
             }
 
 
@@ -1300,6 +1299,20 @@ layout: mi-argentina
 
     </script>
 
+    <script>
+      $('.panel').each(function(key,item){
+
+       var panelClass = this.classList;
+       var categoriesClass = panelClass[2];
+
+        var categoryClass = document.getElementById("wizard-personal-items").querySelectorAll("." +categoriesClass);
+        var firstTypeCategoryClass = categoryClass[0];
+        $(firstTypeCategoryClass).addClass('first-type');  
+
+
+      });
+
+    </script>
 
     
 
