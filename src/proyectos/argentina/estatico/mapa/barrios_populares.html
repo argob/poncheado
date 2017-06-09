@@ -1,0 +1,85 @@
+---
+layout: argentina
+---
+
+
+<div id="map" style="height: 700px;" class="state-loading"></div>
+
+<script>
+
+  var initMap = function() {
+
+    // Setup map
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: false
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
+      data: 'json',
+      success: function(response){
+        var rows = response.feed.entry;
+
+        var geojson = '{"type": "FeatureCollection", "features": [';
+
+        rows.forEach(function(row, key){
+
+          // console.log(row);
+          geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
+
+        });
+
+        geojson = geojson.slice(0, -1);
+        geojson += ']}';
+
+        // console.log(geojson);
+
+        map.data.addGeoJson( JSON.parse(geojson) );
+        
+        map.data.setStyle({
+          // fillColor: '#0695d6',
+          fillColor: '#ef4d3d',
+          fillOpacity: 0.6,
+          strokeColor: '#ef4d3d',
+          strokeWeight: 2
+        });
+
+        // global infowindow
+        var infowindow = new google.maps.InfoWindow();
+
+        // When the user clicks, open an infowindow
+        map.data.addListener('click', function(event) {
+          var nombre = event.feature.getProperty("nombre");
+          var localidad = event.feature.getProperty("localidad");
+          var partido = event.feature.getProperty("partido");
+          var provincia = event.feature.getProperty("provincia");
+          infowindow.setContent("<div style='max-width:300px;'><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+
+          var bounds = new google.maps.LatLngBounds();
+          event.feature.getGeometry().forEachLatLng(function(LatLng){
+            bounds.extend(LatLng);
+          });
+          infowindow.setPosition(bounds.getCenter());
+          infowindow.open(map);
+        });
+
+        $('#map').removeClass('state-loading');
+
+      },
+      error: function(){
+        console.log('nope');
+      }
+    });
+  }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
+
