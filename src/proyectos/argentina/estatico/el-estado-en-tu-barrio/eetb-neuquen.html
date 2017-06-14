@@ -1,8 +1,8 @@
 ---
 layout: argentina
 ---
-
-<section class="jumbotron" style="background-image: url('/sites/default/files/eetb_sanjuan_header.jpg');">
+ 
+<section class="jumbotron" style="background-image: url(/sites/default/files/eetb-gral.jpg);">
   <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -10,7 +10,7 @@ layout: argentina
           <ol class="breadcrumb pull-left">
             <li><a href="/">Inicio</a></li>
             <li><a href="/elestadoentubarrio">El Estado en tu Barrio</a></li>
-            <li class="active">TEST</li>
+            <li class="active">Neuquén</li>
           </ol>
         </div>
       </div>
@@ -22,7 +22,7 @@ layout: argentina
         <div class="col-md-7">
           <p><img src="/sites/default/files/presidencia.svg" style="width: 160px;"></p>
           <p><img src="/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
-          <h1 class="sr-only">El estado en tu barrio - TEST</h1>
+          <h1 class="sr-only">El estado en tu barrio - Neuquén</h1>
           <p>Te acercamos las soluciones que vos y tu familia necesitan. A través de los servicios de El Estado en tu Barrio vas a poder resolver tus trámites, cerca de tu casa, de una manera fácil, rápida y sin intermediarios. Estamos haciendo lo que hay que hacer.</p>
         </div>
       </div>
@@ -30,8 +30,6 @@ layout: argentina
   </div>
   <div class="overlay"></div>
 </section>
-
- ""
 
 <div class="container lugares-mapa hidden">
   <section>
@@ -53,7 +51,7 @@ layout: argentina
   <div class="container">
     <div class="row">
       <div class="col-md-12 lugares-mensaje text-center hidden">
-        <h2>Por el momento no estamos en TEST</h2>
+        <h2>Por el momento no estamos en Neuquén</h2>
       </div>
       <div class="col-sm-12 text-center"> 
         <p>¿Querés que te avisemos cuando estemos cerca de tu casa?</p>
@@ -96,7 +94,7 @@ layout: argentina
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio en San Juan</h3>
+        <h3 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio en Neuquén</h3>
       </div>
       <div class="col-md-4">
           <img src="/sites/default/files/eetb_tucuman_1.jpg" class="img-responsive img-rounded m-b-1">
@@ -279,8 +277,8 @@ layout: argentina
               && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isValid()
               && moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isBefore( moment().add(30, 'days') )
               && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment().add(-1, 'days') ) 
-              // && row.gsx$latitud.$t != ''
-              // && row.gsx$longitud.$t != ''
+              && row.gsx$latitud.$t != ''
+              && row.gsx$longitud.$t != ''
             ){
 
 
@@ -296,20 +294,6 @@ layout: argentina
               lng: row.gsx$longitud.$t,
               estado: row.gsx$motivosuspendido.$t
             });
-
-            $lat = row.gsx$latitud.$t;
-            $lng = row.gsx$longitud.$t;
-
-              if($lat == '' || $lng == ''){
-
-                console.log("HALA");
-                jQuery('#map').addClass('hidden');
-                console.log('HALA');
-
-              }else{
-                jQuery('#map').removeClass('hidden');
-                console.log('CHAU');              
-              }
           }
 
         });
