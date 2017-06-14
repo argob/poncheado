@@ -17,8 +17,8 @@ layout: argentina
 
       <div class="well">
         <h4 class="m-t-2">Esta semana estamos en: </h4>
-        <div class="table-responsive">
-          <table id="table-semana" class="table table-align-middle">
+        <div class="table-responsive" id="table-semana">
+          <table class="table table-align-middle">
             <thead>
               <tr>
                 <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
@@ -32,13 +32,16 @@ layout: argentina
             <tbody class="list" id="ferias-semana">
             </tbody>
           </table>
+          <nav class="text-center">
+            <ul class="pagination"></ul>
+          </nav>            
         </div>
       </div>
 
       <div class="well">
         <h4 class="m-t-2">Las próximas semanas estaremos en: </h4>
-        <div class="table-responsive">
-          <table id="table-proximas" class="table table-align-middle">
+        <div class="table-responsive" id="table-proximas">
+          <table class="table table-align-middle">
             <thead>
               <tr>
                 <th><a class="sort" data-sort="dia">Día <span class="caret"></span></a></th>
@@ -52,6 +55,9 @@ layout: argentina
             <tbody class="list" id="ferias-proximas">
             </tbody>
           </table>
+          <nav class="text-center">
+            <ul class="pagination"></ul>
+          </nav>            
         </div> 
       </div>
 
@@ -61,6 +67,7 @@ layout: argentina
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>-->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
@@ -131,12 +138,19 @@ $(document).ready(function () {
     });
 
 
-    var listOptions = {
-      valueNames: [ 'barrio', 'dia', 'timestamps', 'provincia', 'lugar' ]
+    var feriasSemanalistOptions = {
+      valueNames: [ 'barrio', 'dia', 'timestamps', 'provincia', 'lugar' ],
+      page: 20,
+      plugins: [ ListPagination({}) ]     
     };
+    var feriasProximaslistOptions = {
+      valueNames: [ 'barrio', 'dia', 'timestamps', 'provincia', 'lugar' ],
+      page: 20,
+      plugins: [ ListPagination({}) ]     
+    };    
 
-    var feriasSemanaList = new List('table-semana', listOptions);
-    var feriasProximasList = new List('table-proximas', listOptions);
+    var feriasSemanaList = new List('table-semana', feriasSemanalistOptions);
+    var feriasProximasList = new List('table-proximas', feriasProximaslistOptions);
 
       // generic accent removal from input string, add any missing characters
       var removeAccents = (function () {
