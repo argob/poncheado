@@ -1,0 +1,83 @@
+---
+layout: argentina
+---
+
+
+<section>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div id="test-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script> -->
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+    window.data;
+    window.questions = [];
+    window.contents = {};
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/15WrBedfggCBXBPhXEsBRSD3Jrh31BwOC4jM3Ov4clQU/1/public/values?alt=json', function (response) {
+        data = response.feed.entry;
+
+        // console.log(data);
+
+        $.each(data, function(index, row){
+          if(contents[row.gsx$agrupador.$t] == undefined){
+            contents[row.gsx$agrupador.$t] = [row.gsx$caso.$t];
+          }else if(contents[row.gsx$agrupador.$t].indexOf(row.gsx$caso.$t) < 0){
+            contents[row.gsx$agrupador.$t].push(row.gsx$caso.$t)
+          }
+
+          if(row.gsx$contenido.$t != ''){
+            questions.push({
+              text: row.gsx$contenido.$t,
+              group:row.gsx$agrupador.$t,
+              content: row.gsx$caso.$t
+            })
+          }
+        });
+
+        console.log(contents);
+        console.log(questions);
+
+
+        renderList();
+    });
+
+    window.renderList = function(){
+        var $list = $('#test-list');
+        var html = '<ul>';
+
+        $.each(contents, function( group, cases ){
+
+            console.log(group)
+
+            html += '<li><a href="#">'+ group +'</a> <ul>';
+
+            $.each(cases, function(index, content){
+              html += '<li><a href="#">'+ content +'</a></li>';
+            });
+
+            html += '</ul></li>';    
+    
+        });
+
+        $list.empty();
+        $list.append(html);
+
+    }
+
+});
+})(jQuery);
+
+</script>
