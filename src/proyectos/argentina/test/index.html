@@ -3,81 +3,232 @@ layout: argentina
 ---
 
 
-<section>
+<section id="test-section" class="state-loading">
   <div class="container">
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div id="test-list"></div>
+        <div class="test-container">
+          <h2>Prueba de navegación</h2>
+          <p>Leé el siguiente enunciado y elegí de la lista de abajo en qué agrupador buscarías la información. Si crees que no hay un agrupador para ese enunciado, abajo de todo podes proponer uno.</p>
+          <hr>
+          <blockquote id="question" class="lead m-t-3 m-b-4"></blockquote>
+          <h5 class="text-muted m-b-2">Agrupadores:</h5>
+          <div id="test-list" role="tablist" aria-multiselectable="true"></div>
+          <hr>
+          <p>Si crees que no está el agrupador que buscarías, podes proponer uno.</p>
+
+          <div class="m-t-2">
+            <form id="proposeForm" class="hidden">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="proposeField">Escribí el agrupador que buscarías:</label>
+                    <input type="text" class="form-control" id="proposeField" maxlength="30">
+                  </div>
+                  <button class="btn btn-success">Proponer agrupador</button>
+                </div>
+              </div>
+            </form>
+            <a id="proposeButton" href="#" class="btn btn-link">Proponer un agrupador</a>
+          </div>
+        </div>
+        <div class="test-thanks p-t-2 p-b-4 hidden">
+          <h2>Gracias por ayudarnos!</h2>
+          <p>Estamos constantemente trabajando en mejorar los servicios y contenidos de Argentina.gob.ar para que a todos les sea más fácil y útil usarlo.</p>
+          <p>Si te interesa volver a participar de nuevas pruebas con usuarios, podes anotarte completando <a href="#">este formulario</a>, y posiblemente nos contactemos con vos cuando te necesitemos.</p>
+          <p class="m-t-3"><a href="/" class="btn btn-primary">Volver a la página principal</a></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script> -->
+<style>
+  blockquote {
+    padding-left: 1em;
+    margin-left: 1em;
+    border-left: 4px solid #EEE;
+  }
+  #test-list .panel-heading {
+    cursor: pointer;
+  }
+  #test-list .panel-body {
+    border-top: 1px solid #EEE;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #test-list .panel-body p {
+    margin: 0;
+  }
+  #test-list .panel-body p:first-of-type {
+    margin-top: 10px;
+  }
+  #test-list .panel-body p:last-of-type {
+    margin-bottom: 10px;
+  }
+  #test-list .panel-body p a:not(.btn) {
+    display: inline-block;
+    padding: 5px 0;
+  }
+</style>
 
 <script>
 
-(function($) {
-$(document).ready(function () {
+$(function(){
 
-    window.data;
-    window.questions = [];
-    window.contents = {};
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/15WrBedfggCBXBPhXEsBRSD3Jrh31BwOC4jM3Ov4clQU/1/public/values?alt=json', function (response) {
-        data = response.feed.entry;
+  ga('create', 'UA-71585203-12', 'auto', 'ux');
 
-        // console.log(data);
+  var raw;
+  var data = {
+    list: [],
+    contents: {},
+    questions: [],
+    question,
+    results:{
+      start: Date.now(),
+      finish: null,
+      result: null,
+      groups: 0,
+      contents: 0,
+      flow: []
+    }
+  };
 
-        $.each(data, function(index, row){
-          if(contents[row.gsx$agrupador.$t] == undefined){
-            contents[row.gsx$agrupador.$t] = [row.gsx$caso.$t];
-          }else if(contents[row.gsx$agrupador.$t].indexOf(row.gsx$caso.$t) < 0){
-            contents[row.gsx$agrupador.$t].push(row.gsx$caso.$t)
-          }
+  var shuffle = function (array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
-          if(row.gsx$contenido.$t != ''){
-            questions.push({
-              text: row.gsx$contenido.$t,
-              group:row.gsx$agrupador.$t,
-              content: row.gsx$caso.$t
-            })
-          }
-        });
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
-        console.log(contents);
-        console.log(questions);
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-
-        renderList();
-    });
-
-    window.renderList = function(){
-        var $list = $('#test-list');
-        var html = '<ul>';
-
-        $.each(contents, function( group, cases ){
-
-            console.log(group)
-
-            html += '<li><a href="#">'+ group +'</a> <ul>';
-
-            $.each(cases, function(index, content){
-              html += '<li><a href="#">'+ content +'</a></li>';
-            });
-
-            html += '</ul></li>';    
-    
-        });
-
-        $list.empty();
-        $list.append(html);
-
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
 
+    return array;
+  }
+
+  var renderList = function(){
+
+    $.each(raw, function(index, row){
+      if(data.contents[row.gsx$agrupador.$t] == undefined){
+        data.contents[row.gsx$agrupador.$t] = [row.gsx$caso.$t];
+        data.list.push(row.gsx$agrupador.$t);
+
+      }else if(data.contents[row.gsx$agrupador.$t].indexOf(row.gsx$caso.$t) < 0){
+        data.contents[row.gsx$agrupador.$t].push(row.gsx$caso.$t)
+      }
+
+      if(row.gsx$contenido.$t != ''){
+        data.questions.push({
+          text: row.gsx$contenido.$t,
+          group:row.gsx$agrupador.$t,
+          content: row.gsx$caso.$t
+        })
+      }
+    });
+
+    var $list = $('#test-list');
+    var html = '<div id="sarasa">';
+    data.list = shuffle(data.list);
+
+    $.each(data.list, function( groupIndex, group ){
+
+        html += '<div class="panel m-b-1" role="tab"><div class="panel-heading" data-toggle="collapse" href="#group-'+ groupIndex +'" data-parent="#sarasa"><h4>'+ group +'</h4></div> <div class="panel-body collapse" role="tabpanel" id="group-'+ groupIndex +'">';
+        cases = shuffle(data.contents[group]);
+
+        $.each(cases, function(index, content){
+          html += '<p><a href="#">'+ content +'</a></p>';
+        });
+
+        html += '</div></div>';    
+
+    });
+
+    data.question = data.questions[ Math.floor( Math.random() * data.questions.length ) ]
+    $('#question').text( data.question.text );
+    $list.append(html);
+
+    $('#test-section').removeClass('state-loading');
+
+  }
+
+  var showThanks = function(){
+    $('.test-container, .test-thanks').toggleClass('hidden')
+  }
+
+  $('body').on('click', '#test-list .panel-heading', function(event){
+    data.results.groups ++;
+    data.results.flow.push( 'A | '+ $(this).find('h4').text() );
+  })
+  .on('click', '#test-list .panel-body a', function(event){
+
+    if( $(this).hasClass('btn-selector') ){
+
+      data.results.result = $(this).prev().text() == data.question.content;
+      data.results.finish = Date.now();
+      // console.log( data.results );
+      // console.log( JSON.stringify( [ data.results, data.question] ) );
+
+      showThanks();
+
+      ga('ux.send', {
+        hitType: 'event',
+        eventCategory: 'Árbol',
+        eventAction: 'Casos de vida (test)',
+        eventLabel: JSON.stringify( [ data.results, data.question] )
+      });
+
+    }else{
+      event.preventDefault();
+      $('.btn-selector').remove();
+      $(this).parent().append('<a class="btn-selector btn btn-success btn-sm m-b-0 m-l-2" style="vertical-align: middle;">Lo buscaría acá</a>')
+
+      data.results.contents ++;
+      data.results.flow.push( 'C | '+ $(this).text() );
+    }
+  }).on('click', '#proposeButton', function(event){
+    event.preventDefault();
+
+    $(this).addClass('hidden');
+    $('#proposeForm').removeClass('hidden');
+
+  }).on('submit', '#proposeForm', function(event){
+    event.preventDefault();
+
+    data.results.result = false;
+    data.results.propose = $('#proposeField').val();
+    data.results.finish = Date.now();
+
+    ga('ux.send', {
+      hitType: 'event',
+      eventCategory: 'Árbol',
+      eventAction: 'Casos de vida (test)',
+      eventLabel: JSON.stringify( [ data.results, data.question] )
+    });
+    
+    showThanks();
+
+  });
+
+
+  $.getJSON('https://spreadsheets.google.com/feeds/list/15WrBedfggCBXBPhXEsBRSD3Jrh31BwOC4jM3Ov4clQU/1/public/values?alt=json', function (response) {
+    raw = response.feed.entry;
+    renderList();
+  });
+
 });
-})(jQuery);
 
 </script>
