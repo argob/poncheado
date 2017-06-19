@@ -39,52 +39,51 @@ function nuevoParrafo(){
     parrafo.value="";
 }
 
+
+function nuevoItem(){
+    var lista = d.getElementById("listaDeLista");
+    var listitim = d.createElement("li");
+    var textin = d.createElement("textarea");
+    textin.className = "itemLista";
+    lista.appendChild(listitim);
+    listitim.appendChild(textin);
+}
+
+
 function nuevaLista(){
     var cosote = d.createElement("tr");
     var cosotin = d.createElement("td");
     var cosoUL = d.createElement("ul");
-  
-    var element = document.getElementById("ACA");
+    
+    var element = d.getElementById("ACA");
     element.appendChild(cosote);
     
-    var coso1 = document.createElement("li");
-    var coso2 = document.createElement("li");
-    var coso3 = document.createElement("li");
-    var coso4 = document.createElement("li");
-    var coso5 = document.createElement("li");
-    coso1.className = "listita";
-    coso2.className = "listita";
-    coso3.className = "listita";
-    coso4.className = "listita";
-    coso5.className = "listita";
-    var item1 = d.getElementById("item1");
-    var item2 = d.getElementById("item2");
-    var item3 = d.getElementById("item3");
-    var item4 = d.getElementById("item4");
-    var item5 = d.getElementById("item5");
-    var node = document.createTextNode(item1.value);
-    coso1.appendChild(node);
-    cosoUL.appendChild(coso1);
-    node = document.createTextNode(item2.value);
-    coso2.appendChild(node);
-    cosoUL.appendChild(coso2);
-    node = document.createTextNode(item3.value);
-    coso3.appendChild(node);
-    cosoUL.appendChild(coso3);
-    node = document.createTextNode(item4.value);
-    coso4.appendChild(node);
-    cosoUL.appendChild(coso4);
-    node = document.createTextNode(item5.value);
-    coso5.appendChild(node);
-    cosoUL.appendChild(coso5);
+    var cositosLista = [];
+    cositosLista = d.getElementsByClassName("itemLista");
+    
+    
+    var i = 0;
+    do{ 
+        var coso = d.createElement("li");
+        coso.className = "listita";
+        var node = document.createTextNode(cositosLista[i].value)
+        coso.appendChild(node);
+        cosoUL.appendChild(coso);    
+        i++;
+    }while (i < cositosLista.length);
+    
     cosotin.appendChild(cosoUL);
     cosote.appendChild(cosotin);
-    item1.value="";
-    item2.value="";
-    item3.value="";
-    item4.value="";
-    item5.value="";
+    
+    
+    var x = 0;
+    do{ 
+        cositosLista[x].value = "";
+        x++;
+    }while (x < cositosLista.length);
+    
 }
+
 
 function NuevaImagen(){
     var cosote = d.createElement("tr");
