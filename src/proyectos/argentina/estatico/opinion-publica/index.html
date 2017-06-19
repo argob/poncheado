@@ -41,7 +41,7 @@ layout: argentina
           <ol class="breadcrumb pull-left">
             <li><a href="/">Inicio</a></li>
             <li><a href="/">Jefatura de Gabinete de Ministros</a></li>
-            <li class="active"><span>Banco de datos Opinión Pública</span></li>
+            <li class="active"><span>Banco de datos de Opinión Pública</span></li>
             
           </ol>
         </div>
@@ -50,7 +50,7 @@ layout: argentina
   </div>
   <div class="jumbotron_body">
     <div class="container text-center">
-      <h2>Banco de datos Opinión Pública</h2>
+      <h2>Banco de datos de Opinión Pública</h2>
           <p>Conocé los resultados de las encuestas públicas que realiza Jefatura de Gabinete de Ministros.</p>
     </div>
   </div>
@@ -88,12 +88,7 @@ layout: argentina
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="educacion">
-                      <h3><span class="fa fa-pencil-square-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Educación</h3>
-                  </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
-                  <a class="btn-link btn tema" href="#" data-region="ciencia">
-                    <h3><span class="fa fa-flask fa-1x fa-fw text-primary" aria-hidden="true"></span> Ciencia y Tecnología</h3>
+                      <h3><span class="fa fa-pencil-square-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Educación y Tecnología</h3>
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
@@ -108,12 +103,12 @@ layout: argentina
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="economia">
-                    <h3><span class="fa fa-dollar fa-1x fa-fw text-primary" aria-hidden="true"></span> Economía</h3>
+                    <h3><span class="fa icono-arg-trabajador fa-1x fa-fw text-primary" aria-hidden="true"></span> Trabajo y Producción</h3>
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="transporte">
-                    <h3><span class="fa fa-bus fa-1x fa-fw text-primary" aria-hidden="true"></span> Transporte e Infraestructura</h3>
+                    <h3><span class="fa fa-bus fa-1x fa-fw text-primary" aria-hidden="true"></span> Transporte</h3>
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
@@ -123,7 +118,12 @@ layout: argentina
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
                   <a class="btn-link btn tema" href="#" data-region="tramites">
-                    <h3><span class="fa fa-file-text-o fa-1x fa-fw text-primary" aria-hidden="true"></span> Trámites y Servicios</h3>
+                    <h3><span class="fa fa-home fa-1x fa-fw text-primary" aria-hidden="true"></span> Vivienda e Infraestructura</h3>
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
+                  <a class="btn-link btn tema" href="#" data-region="misc">
+                    <h3><span class="fa fa-bar-chart fa-1x fa-fw text-primary" aria-hidden="true"></span> Misceláneas</h3>
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 panel-body paneltema">
@@ -133,9 +133,6 @@ layout: argentina
                 </div>
 
             </div>
-
-
-
 
 
 
@@ -272,10 +269,12 @@ layout: argentina
 
 
 
+    $("#tabla [data-region]").on("click", function(e) {
+      e.preventDefault();
+    });    
 
 
     $("[data-region]").on("click", function(e) {
-      e.preventDefault();
       configobras = $(this).data("region");
       render.tarjetas();
       configLista();       
