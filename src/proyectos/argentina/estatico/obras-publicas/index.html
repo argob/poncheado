@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('img/obras.jpg');">
+<section class="jumbotron" style="background-image: url('/sites/default/files/obras.jpg');">
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
@@ -108,13 +108,19 @@ layout: argentina
  </div> 
 </div>
 
+<!--
 <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+-->
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
 <script>
 
-  $(function(){
+  (function($){
 
     var templates = {
       tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
@@ -287,7 +293,7 @@ layout: argentina
 
 
 
-  });
+  })(jQuery);
 
      
 </script>
