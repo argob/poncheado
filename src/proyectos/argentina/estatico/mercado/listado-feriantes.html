@@ -38,7 +38,94 @@ layout: argentina
         </ul>
         <h4>Listado de Feriantes</h4>
 
+        <div id="feriantesPj">
+          <div class="table-responsive">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Razón Social</th>
+                  <th style="width: 170px;">Rubro</th>
+                  <th style="width: 140px;">CUIT</th>
+                </tr>
+              </thead> 
+              <tbody id="show-data"></tbody>
+            </table>
+          </div>           
+        </div>
+
+        <div id="feriantesPf">
+          <div class="table-responsive">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Personas físicas</th>
+                  <th style="width: 170px;">Rubro</th>
+                </tr>
+              </thead> 
+              <tbody id="show-data-pf"></tbody>
+            </table>
+          </div>           
+        </div>
       </div>
     </article>
   </section>
 </div>
+
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+      $.getJSON('https://spreadsheets.google.com/feeds/list/18rp5DdSDrfZMBfWwIvVqsSOqizo_SFrCBKROOpnuEBY/1/public/values?alt=json', function (data) {
+          window.feriantesPj = data.feed.entry;
+          showFeriantesPj();
+          console.log(data);
+      });
+
+      window.showFeriantesPj = function(){
+          var showData = $('#show-data');
+
+          var html = '';
+          $.each( feriantesPj, function( key, item ) {
+              html += '<tr>';
+              html += ' <td>'+ item.gsx$razónsocial.$t + '</td>';
+              html += ' <td>'+ item.gsx$rubro.$t + '</td>';
+              html += ' <td>'+ item.gsx$cuit.$t + '</td>';
+              html += '</tr>';
+      
+          });
+
+          showData.empty();
+          showData.append(html);
+
+      }
+
+
+      $.getJSON('https://spreadsheets.google.com/feeds/list/18rp5DdSDrfZMBfWwIvVqsSOqizo_SFrCBKROOpnuEBY/2/public/values?alt=json', function (data) {
+          window.feriantesPf = data.feed.entry;
+          showFeriantesPf();
+          console.log(data);
+      });
+
+      window.showFeriantesPf = function(){
+          var showData = $('#show-data-pf');
+
+          var html = '';
+          $.each( feriantesPf, function( key, item ) {
+              html += '<tr>';
+              html += ' <td>'+ item.gsx$personasfísicas.$t + '</td>';
+              html += ' <td>'+ item.gsx$rubro.$t + '</td>';
+              html += '</tr>';
+      
+          });
+
+          showData.empty();
+          showData.append(html);
+
+      }
+
+
+
+  });
+  })(jQuery);
+  
+</script>
