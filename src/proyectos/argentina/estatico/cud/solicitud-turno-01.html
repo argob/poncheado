@@ -39,197 +39,279 @@ layout: argentina
           
           <h1 class="h3 m-y-2">Completá los datos para saber a dónde ir y qué llevar</h2>
 
-          <form>
+          <form id="wizard-form-cud">
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h2>Datos de la persona con discapacidad</h2>
-            <hr class="m-t-1 m-b-2 m-b-2"/>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h2>Datos de la persona con discapacidad</h2>
+                <hr class="m-t-1 m-b-2 m-b-2"/>
 
-            <div class="form-group">
-                <label class="control-label">Tipo de trámite</label><br>
-                  <div class="radio">
-                    <label for="primeravezcud" class="m-t-0">
-                      <input id="primeravezcud" type="radio" name="tipotramite" value="primeravezcud" />
-                      Solicitud por primera vez.
-                    </label><br>
-                    <label for="renovacioncud" class="m-t-1">
-                      <input id="renovacioncud" type="radio" name="tipotramite" value="renovacioncud" />
-                      Renovación
-                    </label><br>
-                    <label for="perdidacud" class="m-t-1">
-                      <input id="perdidacud" type="radio" name="tipotramite" value="perdidacud" />
-                      Pérdida del certificado
-                    </label>
-                  </div> 
-            </div>
+                <div class="form-group">
+                    <label class="control-label">Tipo de trámite</label><br>
+                      <div class="radio">
+                        <label for="primeravezcud" class="m-t-0">
+                          <input id="primeravezcud" type="radio" name="tipotramite" value="primeravezcud" />
+                          Solicitud por primera vez.
+                        </label><br>
+                        <label for="renovacioncud" class="m-t-1">
+                          <input id="renovacioncud" type="radio" name="tipotramite" value="renovacioncud" />
+                          Renovación
+                        </label><br>
+                        <label for="perdidacud" class="m-t-1">
+                          <input id="perdidacud" type="radio" name="tipotramite" value="perdidacud" />
+                          Pérdida del certificado
+                        </label>
+                      </div> 
+                </div>
 
-            <div class="form-group">
-                <label class="control-label">¿Tiene 18 años o más?</label><br>
-                  <div class="radio">
-                    <label for="mayor18" class="m-t-0">
-                      <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" />
-                      Si
-                    </label><br>
-                    <label for="menor18" class="m-t-1">
-                      <input id="menor18" type="radio" name="mayor18" value="no" />
-                      No
-                    </label>
-                  </div> 
-            </div>
+                <div class="form-group">
+                    <label class="control-label">¿Tiene 18 años o más?</label><br>
+                      <div class="radio">
+                        <label for="mayor18" class="m-t-0">
+                          <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" />
+                          Si
+                        </label><br>
+                        <label for="menor18" class="m-t-1">
+                          <input id="menor18" type="radio" name="mayor18" value="no" />
+                          No
+                        </label>
+                      </div> 
+                </div>
 
-             <div class="collapse" id="collapse-tutoria">
-              <div class="form-group">
-                  <label class="control-label">¿La persona se encuentra bajo curatela o tutoría?</label><br>
-                    <div class="radio">
-                      <label for="tutoriasi" class="m-t-0">
-                        <input id="tutoriasi" type="radio" name="tutoria" value="si" />
-                        Si
+                <div class="collapse" id="collapse-tutoria">
+                  <div class="form-group">
+                      <label class="control-label">¿La persona se encuentra bajo curatela o tutoría?</label><br>
+                        <div class="radio">
+                          <label for="tutoriasi" class="m-t-0">
+                            <input id="tutoriasi" type="radio" name="tutoria" value="si" />
+                            Si
+                          </label><br>
+                          <label for="tutoriano" class="m-t-1">
+                            <input id="tutoriano" type="radio" name="tutoria" value="no" />
+                            No
+                          </label>
+                        </div> 
+                  </div>            
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Cobertura médica</label><br>
+                      <div class="radio">
+                        <label for="obrasocial" class="m-t-0">
+                          <input id="obrasocial" type="radio" name="coberturamedica" value="obrasocial" />
+                          Obra social
+                        </label><br>
+                        <label for="medicinapre-paga" class="m-t-1">
+                          <input id="medicinapre-paga" type="radio" name="coberturamedica" value="medicinapre-paga" />
+                          Medicina pre-paga
+                        </label><br>
+                        <label for="sincobertura" class="m-t-1">
+                          <input id="sincobertura" type="radio" name="coberturamedica" value="sincobertura" />
+                          Sin cobertura
+                        </label>
+                      </div> 
+                </div>     
+
+                            
+                <div class="form-group">
+                    <label class="control-label">Tipo de discapacidad para la cual solicita el certificado</label>
+                    <div class="checkbox">
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadvisual"> 
+                        Discapacidad de origen visual
                       </label><br>
-                      <label for="tutoriano" class="m-t-1">
-                        <input id="tutoriano" type="radio" name="tutoria" value="no" />
-                        No
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadmotora"> 
+                        Discapacidad de origen motor neurológico
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico"> 
+                        Discapacidad de origen motor traumatológico
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologico"> 
+                        Discapacidad de origen motor reumatológico reumatológico
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadauditiva"> 
+                        Discapacidad de origen auditiva
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidrespiratorio"> 
+                        Discapacidad de origen respiratorio
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular"> 
+                        Discapacidad de origen cardiovascular
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadurologico"> 
+                        Discapacidad de origen renal urológico
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapaciddigestivo"> 
+                        Discapacidad de origen digestivo
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidhepatico"> 
+                        Discapacidad de origen hepático
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadmental"> 
+                        Discapacidad mental intelectual  
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"> 
+                        Discapacidad por epilepsia
                       </label>
-                    </div> 
-              </div>            
-            </div>
+                    </div>              
+                </div>
+                
+              </div>
+            </div>  
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <h2>Domicilio</h2>
+                <hr class="m-t-1 m-b-2" />
+                <p class="text-muted m-b-3">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
 
 
+                <div class="form-group">
+                  <label class="control-label">Provincia</label>
+                  <select name="provincia" class="form-control">
+                    <option value="" disabled selected>Indicar provincia</option>
+                    <option value="BuenosAires">Buenos Aires</option>
+                    <option value="Jujuy">Jujuy</option>
+                    <option value="Chaco">Chaco</option>
+                    <option value="Mendoza">Mendoza</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Localidad</label>
+                  <select name="localidad" class="form-control">
+                    <option value="" disabled selected>Indicar localidad</option>
+                    <option value="Almagro">Almagro</option>
+                    <option value="Ituzaingo">Ituzaingó</option>
+                    <option value="LosPatos">Los Patos</option>
+                    <option value="Boedo">Boedo</option>
+                  </select>
+                </div>
 
 
-            <div class="form-group">
-                <label class="control-label">Cobertura médica</label><br>
-                  <div class="radio">
-                    <label for="obrasocial" class="m-t-0">
-                      <input id="obrasocial" type="radio" name="coberturamedica" value="obrasocial" />
-                      Obra social
-                    </label><br>
-                    <label for="medicinapre-paga" class="m-t-1">
-                      <input id="medicinapre-paga" type="radio" name="coberturamedica" value="medicinapre-paga" />
-                      Medicina pre-paga
-                    </label><br>
-                    <label for="sincobertura" class="m-t-1">
-                      <input id="sincobertura" type="radio" name="coberturamedica" value="sincobertura" />
-                      Sin cobertura
-                    </label>
-                  </div> 
-            </div>     
+              </div>
+            </div>  
 
-                        
-            <div class="form-group">
-                <label class="control-label">Tipo de discapacidad para la cual solicita el certificado</label>
-                <div class="checkbox">
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadvisual"> 
-                    Discapacidad de origen visual
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadmotora"> 
-                    Discapacidad de origen motor neurológico
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico"> 
-                    Discapacidad de origen motor traumatológico
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadreumatologico"> 
-                    Discapacidad de origen motor reumatológico reumatológico
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadauditiva"> 
-                    Discapacidad de origen auditiva
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidrespiratorio"> 
-                    Discapacidad de origen respiratorio
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular"> 
-                    Discapacidad de origen cardiovascular
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadurologico"> 
-                    Discapacidad de origen renal urológico
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapaciddigestivo"> 
-                    Discapacidad de origen digestivo
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidhepatico"> 
-                    Discapacidad de origen hepático
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadmental"> 
-                    Discapacidad mental intelectual  
-                  </label><br>
-                  <label class="m-b-1">
-                    <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"> 
-                    Discapacidad por epilepsia
-                  </label>
-                </div>              
-            </div>
-            
-          </div>
-        </div>  
+            <!--<a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>-->
+            <input class="btn btn-success btn-md" type="submit" value="Continuar">
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-
-            <h2>Domicilio</h2>
-            <hr class="m-t-1 m-b-2" />
-            <p class="text-muted m-b-3">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
-
-
-            <div class="form-group">
-              <label class="control-label">Provincia</label>
-              <select class="form-control">
-                <option value="" disabled selected>Indicar provincia</option>
-                <option value="Buenos Aires">Buenos Aires</option>
-                <option value="Jujuy">Jujuy</option>
-                <option value="Chaco">Chaco</option>
-                <option value="Mendoza">Mendoza</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="control-label">Localidad</label>
-              <select class="form-control">
-                <option value="" disabled selected>Indicar localidad</option>
-                <option value="Tandil">Almagro</option>
-                <option value="La Plata">Ituzaingó</option>
-                <option value="Luján">Los Patos</option>
-                <option value="Campana">Boedo</option>
-              </select>
-            </div>
-
-
-          </div>
-        </div>  
-
-        <a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>
-
-          <script>
-            $('[data-toogle-collapse]').each(function(key,item){
-              var value = $(item).val();
-              var target = $(item).data('toogle-collapse');
-              $('input[name='+ $(item).attr('name') +']').on('change', function(){
-                if($(this).val() == value){
-                  $(target).collapse('show');
-                }else{
-                  $(target).collapse('hide');
-                }
+            <script>
+              $('[data-toogle-collapse]').each(function(key,item){
+                var value = $(item).val();
+                var target = $(item).data('toogle-collapse');
+                $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                  if($(this).val() == value){
+                    $(target).collapse('show');
+                  }else{
+                    $(target).collapse('hide');
+                  }
+                });
               });
-            });
-          </script>
+            </script>
 
           </form>
+
         </div>
 
       </div>
     </div>
   </div>
 </section>
+
+<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+
+<script type="text/javascript">
+  
+          var data;
+
+          // Leo si hay algo guardado
+
+          if(typeof(Storage) !== "undefined") {
+            if( localStorage.getItem("wizard-form-cud") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("wizard-form-cud"))
+
+              $.each(data, function(key, item){
+                if(item.name == 'provincia' || item.name == 'localidad' ){
+                  $('[name='+ item.name +']').val(item.value);
+                }else {
+                  $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+                } 
+              })
+
+            }
+
+            $.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var wizard_form = $("#wizard-form-cud");
+            wizard_form.validate({
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || element.is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  $(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            $('#wizard-form-cud').on('submit', function(event){
+              event.preventDefault();
+
+              if (wizard_form.valid() ) {
+                data = $(this).serializeArray();
+                localStorage.setItem("wizard-form-cud", JSON.stringify(data));
+
+
+                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                if( localStorage.getItem("wizard-form-cud") == undefined ){
+                  // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
+                }else{
+                  // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
+                }
+
+                window.location.href = '/tusresultados';
+              }
+            });
+
+          } else {
+            console.log('No tenés soporte :(');
+          } 
+
+        </script>
+
+
+</script>
 
 <style type="text/css">
   .jumbotron_body.jumbotron_body_sm {

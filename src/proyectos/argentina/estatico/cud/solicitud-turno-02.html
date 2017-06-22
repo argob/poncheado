@@ -20,6 +20,10 @@ layout: argentina
           
           <p class="lead text-muted m-b-2" style="font-size: 16px;">Según los datos ingresados esta es la lista de toda la documentación que tenés que llevar y la dirección a dónde tenes que presentarla para que te asignen un turno con la Junta Evaluadora que certifica la discapacidad.</p>
 
+
+    <div id="wizard-cud" class="hidden">
+      <div id="wizard-cud-items"></div>
+    </div>
         <div class="panel panel-default">
           <div class="panel-body">
 
@@ -66,9 +70,22 @@ layout: argentina
           </div>
         </div>  
 
+              <div id="wizard-message" class="m-y-3 hidden">
+                <h3 class="text-muted h4 m-t-2">No encontramos resultados para vos</h3>
+                <p>Probá cambiando la configuración del formulario.</p>
+              </div>
+
+
+
+              <ol id="show-data" class="m-t-2"></ol>                         
+
+
+
               <div class="m-y-2">
-                <a href="solicitud-turno-01.html" class="btn btn-link">MODIFICAR CONSULTA</a>
-                <a onclick="window.print()" class="btn btn-link">IMPRIMIR RESULTADOS</a>
+                <div class="m-y-2">
+                  <a id="edit-form" class="btn btn-link" href="/quemebrinda">MODIFICAR CONSULTA</a>
+                  <a onclick="window.print()" class="btn btn-link">IMPRIMIR RESULTADOS</a>
+                </div>                
               </div>
 
         <hr class="m-y-3" />
@@ -91,6 +108,51 @@ layout: argentina
   </div>
 
 
+    <script>
+
+      var form_data;
+      var data = {};
+
+      // Leo si hay algo guardado
+
+      if(typeof(Storage) !== "undefined") {
+        if( localStorage.getItem("wizard-form-cud") != undefined ){
+
+          form_data = JSON.parse( localStorage.getItem("wizard-form-cud"))
+
+          jQuery.each(form_data, function(key, item){
+            data[item.name] = item.value;
+
+          });
+
+          var item_blank = true;
+
+          
+          console.log(item_blank);
+
+          if(item_blank){
+            jQuery('#wizard-message').removeClass('hidden');
+          }
+            
+        }else{
+          // console.log('Todavía no guardaste nada');
+          window.location.replace('/quemebrinda');
+        }
+
+      } else {
+        console.log('No tenés soporte :(');
+      }
+
+      jQuery('#edit-form').on('click', function(event){
+        event.preventDefault();
+        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        window.location.href = '/quemebrinda';
+      });
+
+
+    </script>
+
+
 <style type="text/css">
 .panel li a {
    text-decoration: underline;
@@ -100,3 +162,41 @@ layout: argentina
    text-decoration: underline;
 }
 </style>
+
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (data) {
+        window.dataDrive = data.feed.entry;
+        mostrarInformacion();
+        console.log(data);
+    });
+
+    window.mostrarInformacion = function(){
+        var showData = $('#show-data');
+
+        var html = '';
+
+        $.each( dataDrive, function( key, item ) {
+
+
+        html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+
+    }
+
+
+
+});
+})(jQuery);
+
+</script>
