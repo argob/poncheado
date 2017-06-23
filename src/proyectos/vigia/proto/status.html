@@ -45,7 +45,9 @@ $(function(){
 
   var sites = [];
 
-  $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2F104.236.225.33%2Fxymon%2Fxymon.html%22%20and%20xpath%3D%22%2Fhtml%2Fbody%2Fcenter%5B2%5D%2Fcenter%5B1%5D%2Ftable%2Ftbody%2Ftr%22&format=json&diagnostics=true&callback=', function (data) {
+  $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2F104.236.225.33%2Fxymon%2Fxymon.html%22%20and%20xpath%3D%22%2Fhtml%2Fbody%2Fcenter%5B2%5D%2Fcenter%5B1%5D%2Ftable%2Ftbody%2Ftr%22&format=json&diagnostics=true&callback=&sarasa=123', function (data) {
+
+    console.log(data)
 
     $.each(data.query.results.tr, function(index, row){
 
