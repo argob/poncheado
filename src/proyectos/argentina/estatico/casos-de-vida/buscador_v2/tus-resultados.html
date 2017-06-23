@@ -30,7 +30,7 @@ layout: mi-argentina
 
     <div id="wizard-personal" class="hidden">
       
-      <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
+      <div id="wizard-personal-items" class="row panels-row m-b-2"></div>
     </div>
 
     <div id="wizard-interest" class="hidden">
@@ -44,8 +44,8 @@ layout: mi-argentina
     </div>
 
     <div class="m-y-3">
-      <a id="edit-form" class="btn btn-primary m-r-1" href="/quemebrinda">Cambiar respuestas</a>
-      <a id="wipe-form" class="btn btn-link" href="/quemebrinda">Volver a comenzar</a>
+      <a id="edit-form" class="btn btn-primary m-r-1" href="/misservicios">Cambiar respuestas</a>
+      <a id="wipe-form" class="btn btn-link" href="/misservicios">Volver a comenzar</a>
     </div>
 
     <script>
@@ -941,7 +941,7 @@ layout: mi-argentina
         
       ];
       
-            var templates = {
+      var templates = {
         item: `<div class="col-sm-12 col-md-12 titleCategory hidden"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} <small><a href="{urlCategory}">(Más servicios de este tema)</a></small></h3></div>
               <div class="col-xs-12 col-sm-6 col-md-4">
                 <a class="panel panel-default category-{category}" href="{url}">
@@ -1434,8 +1434,6 @@ layout: mi-argentina
             }                           
 
 
-            // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
-
             if(show){
 
               item_blank = false;
@@ -1450,13 +1448,8 @@ layout: mi-argentina
                 .replace(/{iconCategory}/gi, content.iconCategory)
                 .replace(/{urlCategory}/gi, content.urlCategory);
 
-              // if(content.tipo == 'personal'){
                 jQuery('#wizard-personal').removeClass('hidden');
                 jQuery('#wizard-personal-items').append( html );
-              // }else{
-              //   jQuery('#wizard-interest').removeClass('hidden');
-              //   jQuery('#wizard-interest-items').append( html );
-              // }
 
             }
 
@@ -1471,7 +1464,7 @@ layout: mi-argentina
             
         }else{
           // console.log('Todavía no guardaste nada');
-          window.location.replace('/quemebrinda');
+          window.location.replace('/misservicios');
         }
 
       } else {
@@ -1480,15 +1473,17 @@ layout: mi-argentina
 
       jQuery('#edit-form').on('click', function(event){
         event.preventDefault();
-        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
-        window.location.href = '/quemebrinda';
+        // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        // window.location.href = '/misservicios';
+        window.location.href = 'buscador-situaciones.html';
       });
 
       jQuery('#wipe-form').on('click', function(event){
         event.preventDefault();
         localStorage.removeItem('wizard-form2');
-        ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
-        window.location.href = '/quemebrinda';
+        // ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
+        // window.location.href = '/misservicios';
+        window.location.href = 'buscador-situaciones.html';
       });
 
 
