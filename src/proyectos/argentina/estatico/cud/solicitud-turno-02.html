@@ -77,7 +77,9 @@ layout: argentina
 
 
 
-              <ol id="show-data" class="m-t-2"></ol>                         
+              <ol id="show-1data" class="m-t-2"></ol>    
+
+              <div id="show-data" class="m-t-2 hidden"></div>                                   
 
 
 
@@ -110,6 +112,12 @@ layout: argentina
 
     <script>
 
+            var templates = {
+        item: `<ol class="m-t-2">
+                  <li>{requisito}</li>
+               </ol>`
+      };    
+
       var form_data;
       var data = {};
 
@@ -127,12 +135,161 @@ layout: argentina
 
           var item_blank = true;
 
+          $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (data) {
+              window.dataDrive = data.feed.entry;
+              console.log(data);
+          });
+
+          window.mostrarInformacion = function(){
+
+              $.each( dataDrive, function( key, item ) {
+
+                var show = false;
+
+                if( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadvisual') {
+
+                    var show = true;
+                    
+                  }                
+                }
+
+                if( item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadmotora') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadtraumatologico') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadreumatologico') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadauditiva') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadauditiva') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadrespiratorio') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadcardiovascular') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadurologico') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidaddigestivo') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadhepatico') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadmental') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                if( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x"  ){
+
+                  if (data.discapacidad == 'discapacidadepilepsia') {
+
+                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
+                    
+                  }                
+                }              
+
+                 if(show){
+
+                    item_blank = false;
+
+                    var html = templates.item;
+
+                    html = html.replace(/{requisito}/gi, item.gsx$requisitos.$t);
+
+                      jQuery('#show-data').removeClass('hidden').append( html );
+
+                  }
+
+              });
+
+
+
+          }
           
+
+ 
+
+
           console.log(item_blank);
 
-          if(item_blank){
-            jQuery('#wizard-message').removeClass('hidden');
-          }
+          // if(item_blank){
+          //   jQuery('#wizard-message').removeClass('hidden');
+          // }
             
         }else{
           // console.log('Todavía no guardaste nada');
@@ -170,33 +327,7 @@ layout: argentina
 $(document).ready(function () {
 
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (data) {
-        window.dataDrive = data.feed.entry;
-        mostrarInformacion();
-        console.log(data);
-    });
 
-    window.mostrarInformacion = function(){
-        var showData = $('#show-data');
-
-        var html = '';
-
-        $.each( dataDrive, function( key, item ) {
-
-        if( row.gsx$tipo.$t == "proyecto"  ){
-
-          html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-
-        }
-
-
-        });
-
-        showData.empty();
-        showData.append(html);
-
-
-    }
 
 
 
