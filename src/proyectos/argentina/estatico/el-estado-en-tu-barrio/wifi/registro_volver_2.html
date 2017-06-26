@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>El Estado en tu Barrio</title>
+  	<meta name="description" content="Portal oficial del Estado argentino. Conocé cómo hacer trámites en organismos públicos, tramitalos en línea y recibí servicios digitales y beneficios." />
+	<meta name="keywords" content="gobierno, argentino, nacional, gobierno argentino, gobierno nacional, República Argentina, administración, gestión, pública, administración pública, gestión pública, digital, trámites, servicios, trámites en línea, gobierno digital, servicios en línea, servicios digitales, Estado, transparencia, ciudadanos, modernización, organismo, organismo público, organismos públicos, organismos, beneficios, beneficios" />
+  	<meta name="author" content="Presidencia de la Nación">
+
+	<link href="/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+	<link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+	<link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
+	<link href="/css/mi-argentina.css" rel="stylesheet">
+	<link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+<style type="text/css">
+	
+	.jumbotron{
+		background-color: #0695d6;
+	}
+
+	.jumbotron_body{
+		padding: 20px!important;
+	}
+
+	#eetb, #logoarg{
+		width: 100%;
+	}
+
+  .btn{
+    width: 100%;
+  }
+
+
+</style>
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
+<section class="jumbotron">
+  <div class="jumbotron_body">
+    <div class="container">
+    	<div class="col-sm-4">
+    		<img src="img/eetb.png" id="eetb">
+    	</div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+	<div class="container">
+    	<div class="row">
+      		<div class="col-md-6 col-md-offset-3">
+
+      			<form id="eetb-form">
+
+          			<div class="panel panel-default">
+            			<div class="panel-body">
+              				<h2>Hola, Graciela</h2>
+              				<p>Estos son los datos con los que te registrate para usar la red WiFi de El Estado en tu Barrio.</p>
+            
+              <hr class="m-y-1">
+
+              				<div class="media">
+                				<div class="media-body media-middle">
+                
+                  				<div class="form-group m-t-1">
+                    				<label class="control-label">Nombre</label>
+                    				<div class="error-container"></div>
+                    				<input type="text" name="nombre" class="form-control" value="Graciela" required>
+                  				</div>
+                  				<div class="form-group m-t-1">
+                    				<label class="control-label">Apellido</label>
+                    				<div class="error-container"></div>
+                    				<input type="text" name="apellido" class="form-control" value="Martinez" required>
+                  				</div>
+                  				<div class="form-group m-t-1">
+                    				<label class="control-label">DNI</label>
+                    				<div class="error-container"></div>
+                    				<input type="text" name="dni" class="form-control" value="22333444" required>
+                  				</div>
+                  				<div class="form-group m-t-1">
+                    				<label class="control-label">Correo electrónico</label>
+                    				<div class="error-container"></div>
+                    				<input type="email" name="mail" class="form-control" value="graciela@gmail.com" required>
+                  				</div>
+
+
+
+                          <p>Conectándote estás aceptando los <a href="#">términos y condiciones</a>.</p>
+                
+          <div class="col-xs-12 text-center m-y-1">
+            <input class="btn btn-success btn-md" type="submit" value="Guardar y conectarme">
+
+            <hr>
+          </div>
+        </form>
+        
+
+        
+
+        <div class="col-sm-6">
+
+
+	        <img src="img/argentinagob.svg" id="logoarg">
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+
+        <script>
+        	var data;
+
+          $.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var eetbform = $("#eetb-form");
+            eetbform.validate({
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || element.is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  $(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            $('#eetb-form').on('submit', function(event){
+              event.preventDefault();
+              
+            });
+        </script>
+
+      		</div>
+    	</div>
+    </div>
+</section>
