@@ -32,20 +32,13 @@ layout: argentina
 
             <hr class="m-y-1"/>
 
-            <p>Según tu localidad <strong>(Almagro)</strong> y tu provincia <strong>(CABA)</strong> tenés que ir al <strong>(Servicio Zonal de la Comuna 6)</strong> </p>
-
-            <div class="form-group m-t-2">
-              <label class="control-label">Dirección</label>
-              <p>Av. Patricias Argentinas 277, CABA, República Argentina. Teléfono 49812221</p>
-            </div>
-            <div class="form-group">
-              <label class="control-label">Horario</label>
-              <p>Lunes a Viernes de 10 a 15 hs</p>
-            </div>
+           <div id="show-data-lugar" class="m-t-2 hidden"></div>    
+           <p id="show-data-description-lugar" class="hidden"></p>    
 
             <p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
           </div>
         </div>            
+
 
         <div class="panel panel-default">
           <div class="panel-body">
@@ -54,17 +47,8 @@ layout: argentina
             <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Qué llevar para que te den un turno</h2>
             <hr class="m-y-1"/>
 
-            <p>Según el trámite a realizar <strong>(Solicitud de Certificado por primera vez)</strong> para <strong>(discapacidad por epilepsia)</strong>, de acuerdo a la edad <strong>(menor de 18 años)</strong> y el tipo de cobertura <strong>(Obra social)</strong> tenés que presentar esta lista de cosas:</p>
-
-            <ol class="m-t-2">
-              <li>DNI de la persona con discapacidad (Original y fotocopia)</li>
-              <li>DNI del adulto a cargo (Original y fotocopia).</li>
-              <li>Partida de nacimiento de la persona con discapacidad (Original y fotocopia).</li>
-              <li>Carnet de la obra social de la persona con discapacidad (Original y fotocopia).</li>
-              <li>Resumen de historia clínica <strong>(se lo tenés que pedir al médico que trata a la persona por su discapacidad)</strong>. Tiene que incluir: El diagnóstico según CIE 10, las secuelas, el estado actual, los antecedentes de la enfermedad, el tiempo de evolución, las internaciones y los tratamientos clínicos y farmacológicos recibidos. Medición en sangre de drogas antiepilépticas (en el caso de haber recibido dos drogas en monoterapia sin control de las crisis). Informes de otros profesionales (si es atendido por otros profesionales en relación a la epilepsia).</li>
-
-              <li>Planilla para discapacidad por epilepsia <strong>completada y firmada por médico y/o equipo tratante</strong> (con antigüedad no mayor a 6 meses). <a href="https://www.argentina.gob.ar/sites/default/files/cud_planilla_medica_deficiencia_intelectual_mental_0.pdf" target="_blank">Descargar planilla</a> </li>
-            </ol>
+             <p id="show-data-description" class="hidden"></p>    
+             <ol id="show-data" class="m-t-2 hidden"></ol>    
 
 
           </div>
@@ -75,11 +59,6 @@ layout: argentina
                 <p>Probá cambiando la configuración del formulario.</p>
               </div>
 
-
-
-              <ol id="show-1data" class="m-t-2"></ol>    
-
-              <div id="show-data" class="m-t-2 hidden"></div>                                   
 
 
 
@@ -108,15 +87,24 @@ layout: argentina
       </div>
     </div>
   </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 
     <script>
 
-            var templates = {
-        item: `<ol class="m-t-2">
-                  <li>{requisito}</li>
-               </ol>`
-      };    
+      var templates = {
+        description: `<p>Según el trámite a realizar <strong>({tipoTramite})</strong> para <strong>({tipoDiscapacidad})</strong>, de acuerdo a la edad <strong>({edad})</strong> y el tipo de cobertura <strong>({tipoCobertura})</strong> tenés que presentar esta lista de cosas:</p>`,
+        item: `<li>{requisito}</li>`,
+        descriptionLugar: `<p>Según tu localidad <strong>({localidad})</strong> y provincia <strong>({provincia})</strong> podés ir a cualquiera de los siguientes lugares </p>`,
+        lugar: `<div class="form-group m-t-2">
+                  <label class="control-label">Junta</label>
+                  <p>{junta}</p>
+                </div>        
+                <div class="form-group m-t-2">
+                  <label class="control-label">Dirección</label>
+                  <p>{direccion} Teléfono {telefono}</p>
+                </div>
+                <hr />`,                          
+      };
 
       var form_data;
       var data = {};
@@ -135,12 +123,10 @@ layout: argentina
 
           var item_blank = true;
 
-          $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (data) {
-              window.dataDrive = data.feed.entry;
-              console.log(data);
-          });
-
-          window.mostrarInformacion = function(){
+          $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (dataDiscapacidad) {
+              window.dataDrive = dataDiscapacidad.feed.entry;
+              mostrarDescripcion();
+              console.log(dataDiscapacidad);
 
               $.each( dataDrive, function( key, item ) {
 
@@ -269,7 +255,11 @@ layout: argentina
 
                     var html = templates.item;
 
-                    html = html.replace(/{requisito}/gi, item.gsx$requisitos.$t);
+                    var converter = new showdown.Converter(),
+                        text      = item.gsx$requisitos.$t,
+                        requisitosmd = converter.makeHtml(text);
+
+                    html = html.replace(/{requisito}/gi, requisitosmd);
 
                       jQuery('#show-data').removeClass('hidden').append( html );
 
@@ -277,13 +267,76 @@ layout: argentina
 
               });
 
+              function mostrarDescripcion () {
+
+                var htmlDescription = templates.description;
+                htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite)
+                  .replace(/{tipoDiscapacidad}/gi, data.discapacidad
+                    .replace("discapacidadvisual","Discapacidad de origen visual")
+                    .replace("discapacidadmotora","Discapacidad de origen motor neurológico")
+                    .replace("discapacidadtraumatologico","Discapacidad de origen motor traumatológico")
+                    .replace("discapacidadreumatologico","Discapacidad de origen motor reumatológico reumatológico")
+                    .replace("discapacidadauditiva","Discapacidad de origen auditiva")
+                    .replace("discapacidadrespiratorio","Discapacidad de origen respiratorio")
+                    .replace("discapacidadcardiovascular","Discapacidad de origen cardiovascular")
+                    .replace("discapacidadurologico","Discapacidad de origen renal urológico")
+                    .replace("discapacidaddigestivo","Discapacidad de origen digestivo")
+                    .replace("discapacidadhepatico","Discapacidad de origen hepático")
+                    .replace("discapacidadmental","Discapacidad mental intelectual")
+                    .replace("discapacidadepilepsia","Discapacidad por epilepsia"))
+                  .replace(/{edad}/gi, data.mayor18
+                    .replace("no","menor de 18 años")
+                    .replace("si","mayor de 18 años"))
+                  .replace(/{tipoCobertura}/gi, data.coberturamedica);
+
+                  jQuery('#show-data-description').removeClass('hidden').append( htmlDescription );
+
+              }
+
+          });          
+
+          $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
+              window.dataDrive = dataLugares.feed.entry;
+              mostrarDescripcion();
+              console.log(dataLugares);
+
+              $.each( dataDrive, function( key, item ) {
+
+                var show = false;
+
+                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.localidad ){
+                    var show = true;
+                }
 
 
-          }
-          
+                 if(show){
 
- 
+                    item_blank = false;
 
+                    var html = templates.lugar;
+
+                    html = html.replace(/{junta}/gi, item.gsx$junta.$t)
+                    .replace(/{direccion}/gi, item.gsx$domicilio.$t)
+                    //.replace(/{localidad}/gi, item.gsx$localidad.$t)
+                    .replace(/{telefono}/gi, item.gsx$telefono.$t);
+
+                      jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
+
+                  }
+
+              });
+
+              function mostrarDescripcion () {
+
+                var htmlDescription = templates.descriptionLugar;
+                htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
+                    .replace(/{localidad}/gi, data.localidad);
+
+                  jQuery('#show-data-lugar').removeClass('hidden').append( htmlDescription );
+
+              }
+
+          });      
 
           console.log(item_blank);
 
