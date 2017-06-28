@@ -184,43 +184,32 @@ layout: argentina
                     <label class="control-label">Provincia</label>
                     <select class="form-control" name="provincia">
                         <option value=""></option>
-                        <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
-                        <option value="BSA">Buenos Aires</option>
-                        <option value="CAT">Catamarca</option>
-                        <option value="COR">Córdoba</option>
-                        <option value="CRR">Corrientes</option>
-                        <option value="CHA">Chaco</option>
-                        <option value="CHU">Chubut</option>
-                        <option value="ENT">Entre Ríos</option>
-                        <option value="FOR">Formosa</option>
-                        <option value="JUJ">Jujuy</option>
-                        <option value="PAM">La Pampa</option>
-                        <option value="RIO">La Rioja</option>
-                        <option value="MEN">Mendoza</option>
-                        <option value="MIS">Misiones</option>
-                        <option value="NEU">Neuquén</option>
-                        <option value="RNE">Río Negro</option>
-                        <option value="SAL">Salta</option>
-                        <option value="SJU">San Juan</option>
-                        <option value="SLU">San Luis</option>
-                        <option value="SCR">Santa Cruz</option>
-                        <option value="SFE">Santa Fe</option>
-                        <option value="SDE">Santiago del Estero</option>
-                        <option value="TDF">Tierra del Fuego</option>
-                        <option value="TUC">Tucumán</option>
+                        <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Catamarca">Catamarca</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Entre Ríos">Entre Ríos</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="Jujuy">Jujuy</option>
+                        <option value="La Pampa">La Pampa</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquén">Neuquén</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Salta">Salta</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tierra del Fuego">Tierra del Fuego</option>
+                        <option value="Tucumán">Tucumán</option>
                     </select>
 
-
-
-
-<!--                   <label class="control-label">Provincia</label>
-                  <select name="provincia" class="form-control">
-                    <option value="" disabled selected>Indicar provincia</option>
-                    <option value="BUENOS AIRES">Buenos Aires</option>
-                    <option value="Jujuy">Jujuy</option>
-                    <option value="Chaco">Chaco</option>
-                    <option value="Mendoza">Mendoza</option>
-                  </select> -->
                 </div>
 
                 <div class="form-group">
@@ -231,20 +220,6 @@ layout: argentina
                         </select>
                     </fieldset>
                 </div>
-
-
-
-                <div class="form-group">
-                  <label class="control-label">Localidad</label>
-                  <select name="localidad" class="form-control">
-                    <option value="" disabled selected>Indicar localidad</option>
-                    <option value="Pilar">Pilar</option>
-                    <option value="La Plata">La Plata</option>
-                    <option value="LosPatos">Los Patos</option>
-                    <option value="Boedo">Boedo</option>
-                  </select>
-                </div>
-
 
               </div>
             </div>  
@@ -393,49 +368,303 @@ layout: argentina
 
             // -----------------------------------------------------------------
 
+          // $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
+          //     window.dataDrive = dataLugares.feed.entry;
+          //     console.log(dataLugares);
+
+          //     $.each( dataDrive, function( key, item ) {
+          //       console.log(item.gsx$provincia.$t);
+          //     });
+
+          // });  
+
+
+            // -----------------------------------------------------------------
+
+var dataProv = [
+                {
+                    "provincia": "BUENOS AIRES",
+                    "localidad": [
+                        "A. Saravia",
+                        "Aguaray",
+                        "Angastaco",
+                        "Animana",
+                        "Villa San Lorenzo"
+                    ]
+                },
+                {
+                    "provincia": "CATAMARCA",
+                    "localidad": [
+                        "3 de febrero",
+                        "Virrey del Pino",
+                        "Wilde",
+                        "William Morris",
+                        "Zarate"
+                    ]
+                },
+                {
+                    "provincia": "CHACO",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "CHUBUT",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "CIUDAD AUTONOMA DE BUENOS AIRES",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "CORDOBA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "CORRIENTES",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "ENTRE RIOS",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "FORMOSA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "LA PAMPA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "LA RIOJA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "MENDOZA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "MISIONES",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "NEUQUEN",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "RIO NEGRO",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SALTA",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SAN JUAN",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SAN LUIS",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SANTA CRUZ",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SANTA FE",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "SANTIAGO DEL ESTERO",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "TIERRA DEL FUEGO",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                },
+                {
+                    "provincia": "TUCUMAN",
+                    "localidad": [
+                        "Agronomia",
+                        "Almagro",
+                        "Balvanera",
+                        "Villa Santa Rita",
+                        "Villa Soldati",
+                        "Villa Urquiza"
+                    ]
+                }                                                                                                                                        
+            ]            
+
+
+            // -----------------------------------------------------------------
+
+
             function load_localidades(provincia) {
                 // First we clean all options
-                $('select[name="localidad"]').empty().append('<option value="" selected></option>');
+                $('select[name="locality"]').empty().append('<option value="" selected></option>');
                 // Make the ajax call to the server
-                $.get("https://id.argentina.gob.ar/api/localities/?provincia=" + provincia)
+                // $.get("https://id.argentina.gob.ar/api/localities/?provincia=" + provincia)
+                //  .done(function(data) {
+                //     var aux, localidad, _i, _len;
+                //     data = data['results'];
+                //     for (_i = 0, _len = data.length; _i < _len; _i++) {
+                //         localidad = data[_i];
+                //         $('select[name="localidad"]').append('<option value="'+localidad['value']+'">'+localidad['name']+'</option>');
+                //     }
 
-                    var provincias = [
-                      {
-                        provincia: {
-                          name: 'Buenos Aires',
-                          localidades: ''
-                        },
-                        provincia: 'office.jpg',
-                        likes: 0,
-                        liked: false,
-                        createdAt: new Date().getTime()
-                      },
-                      {
-                        user: {
-                          username: 'slifszyc',
-                          avatar: 'https://scontent-atl3-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/11031148_10153448564292612_2579019413701631604_n.jpg?oh=d83cdd0687c87c91b247a42375fc5a57&oe=57B12767'
-                        },
-                        url: 'office.jpg',
-                        likes: 1,
-                        liked: true,
-                        createdAt: new Date().setDate(new Date().getDate() - 10)
-                      }
-                    ];
-
-
-
-
-
-
-                 .done(function(data) {
+                // });  
                     var aux, localidad, _i, _len;
-                    data = data['results'];
-                    for (_i = 0, _len = data.length; _i < _len; _i++) {
-                        localidad = data[_i];
-                        $('select[name="localidad"]').append('<option value="'+localidad['value']+'">'+localidad['name']+'</option>');
-                    }
+                    dataProv = dataProv['results'];
 
-                });
+                    console.log(dataProv)
+
+
+                    // for (_i = 0, _len = dataProv.length; _i < _len; _i++) {
+                    //     localidad = dataProv[_i].provincia;
+                    //     $('select[name="locality"]').append('<option value="'+localidad['value']+'">'+localidad['name']+'</option>');
+                    // }
+
+
 
             }
 
