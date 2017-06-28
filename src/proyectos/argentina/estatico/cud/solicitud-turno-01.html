@@ -333,17 +333,20 @@ layout: argentina
 
 
             if ($('select[name="provincia"]').val() === '') {
-                $('select[name="localidad"]').parent().attr('disabled', true);
+                $('select[name="locality"]').parent().attr('disabled', true);
             }
 
             $('select[name="provincia"]').on('change', function() {
-                var localidadFieldset = $('select[name="localidad"]').parent();
+                var localidadFieldset = $('select[name="locality"]').parent();
                 if (this.value === '') {
                     localidadFieldset.attr('disabled', true);
                 } else {
                     localidadFieldset.removeAttr('disabled');
                 }
-                load_localidades(this.value);
+
+                var index = $('select[name="provincia"]').find(":selected").index();
+
+                load_localidades(index);
             });
 
             // Nationality logic -----------------------------------------------
@@ -368,303 +371,286 @@ layout: argentina
 
             // -----------------------------------------------------------------
 
-          // $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
-          //     window.dataDrive = dataLugares.feed.entry;
-          //     console.log(dataLugares);
-
-          //     $.each( dataDrive, function( key, item ) {
-          //       console.log(item.gsx$provincia.$t);
-          //     });
-
-          // });  
-
-
-            // -----------------------------------------------------------------
-
-var dataProv = [
-                {
-                    "provincia": "BUENOS AIRES",
-                    "localidad": [
-                        "A. Saravia",
-                        "Aguaray",
-                        "Angastaco",
-                        "Animana",
-                        "Villa San Lorenzo"
-                    ]
-                },
-                {
-                    "provincia": "CATAMARCA",
-                    "localidad": [
-                        "3 de febrero",
-                        "Virrey del Pino",
-                        "Wilde",
-                        "William Morris",
-                        "Zarate"
-                    ]
-                },
-                {
-                    "provincia": "CHACO",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "CHUBUT",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "CIUDAD AUTONOMA DE BUENOS AIRES",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "CORDOBA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "CORRIENTES",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "ENTRE RIOS",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "FORMOSA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "LA PAMPA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "LA RIOJA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "MENDOZA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "MISIONES",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "NEUQUEN",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "RIO NEGRO",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SALTA",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SAN JUAN",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SAN LUIS",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SANTA CRUZ",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SANTA FE",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "SANTIAGO DEL ESTERO",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "TIERRA DEL FUEGO",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                },
-                {
-                    "provincia": "TUCUMAN",
-                    "localidad": [
-                        "Agronomia",
-                        "Almagro",
-                        "Balvanera",
-                        "Villa Santa Rita",
-                        "Villa Soldati",
-                        "Villa Urquiza"
-                    ]
-                }                                                                                                                                        
-            ]            
+            var dataProv = [
+                            {
+                                "provincia": "CIUDAD AUTONOMA DE BUENOS AIRES",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "BUENOS AIRES",
+                                "localidad": [
+                                    "A. Saravia",
+                                    "Aguaray",
+                                    "Angastaco",
+                                    "Animana",
+                                    "Villa San Lorenzo"
+                                ]
+                            },
+                            {
+                                "provincia": "CATAMARCA",
+                                "localidad": [
+                                    "3 de febrero",
+                                    "Virrey del Pino",
+                                    "Wilde",
+                                    "William Morris",
+                                    "Zarate"
+                                ]
+                            },
+                            {
+                                "provincia": "CORDOBA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "CORRIENTES",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "CHACO",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "CHUBUT",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "ENTRE RIOS",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "FORMOSA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "JUJUY",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },                
+                            {
+                                "provincia": "LA PAMPA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "LA RIOJA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "MENDOZA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "MISIONES",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "NEUQUEN",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "RIO NEGRO",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SALTA",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SAN JUAN",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SAN LUIS",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SANTA CRUZ",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SANTA FE",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "SANTIAGO DEL ESTERO",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "TIERRA DEL FUEGO",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            },
+                            {
+                                "provincia": "TUCUMAN",
+                                "localidad": [
+                                    "Agronomia",
+                                    "Almagro",
+                                    "Balvanera",
+                                    "Villa Santa Rita",
+                                    "Villa Soldati",
+                                    "Villa Urquiza"
+                                ]
+                            }                                                                                                                                        
+                        ]            
 
 
             // -----------------------------------------------------------------
 
 
-            function load_localidades(provincia) {
+            function load_localidades(indexProvincia) {
                 // First we clean all options
                 $('select[name="locality"]').empty().append('<option value="" selected></option>');
-                // Make the ajax call to the server
-                // $.get("https://id.argentina.gob.ar/api/localities/?provincia=" + provincia)
-                //  .done(function(data) {
-                //     var aux, localidad, _i, _len;
-                //     data = data['results'];
-                //     for (_i = 0, _len = data.length; _i < _len; _i++) {
-                //         localidad = data[_i];
-                //         $('select[name="localidad"]').append('<option value="'+localidad['value']+'">'+localidad['name']+'</option>');
-                //     }
-
-                // });  
                     var aux, localidad, _i, _len;
-                    dataProv = dataProv['results'];
+                    dataProv = dataProv[indexProvincia].localidad;
 
-                    console.log(dataProv)
-
-
-                    // for (_i = 0, _len = dataProv.length; _i < _len; _i++) {
-                    //     localidad = dataProv[_i].provincia;
-                    //     $('select[name="locality"]').append('<option value="'+localidad['value']+'">'+localidad['name']+'</option>');
-                    // }
-
-
+                    for (_i = 0, _len = dataProv.length; _i < _len; _i++) {
+                        localidad = dataProv[_i];
+                        console.log(localidad)
+                        $('select[name="locality"]').append('<option value="' + localidad +'">' + localidad +'</option>');
+                    }
 
             }
 
