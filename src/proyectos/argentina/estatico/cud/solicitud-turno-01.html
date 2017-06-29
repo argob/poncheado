@@ -43,7 +43,7 @@ layout: argentina
 
             <div class="panel panel-default">
               <div class="panel-body">
-                <h2>Datos de la persona con discapacidad</h2>
+                <h2>Datos de la persona para la cual se solicita el certificado</h2>
                 <hr class="m-t-1 m-b-2 m-b-2"/>
 
                 <div class="form-group">
@@ -60,6 +60,10 @@ layout: argentina
                         <label for="perdidacud" class="m-t-1">
                           <input id="perdidacud" type="radio" name="tipotramite" value="Pérdida del certificado" />
                           Pérdida del certificado
+                        </label><br>
+                        <label for="agravamientocud" class="m-t-1">
+                          <input id="agravamientocud" type="radio" name="tipotramite" value="Agravamiento" />
+                          Agravamiento
                         </label>
                       </div> 
                 </div>
@@ -105,9 +109,9 @@ layout: argentina
                           <input id="medicinapre-paga" type="radio" name="coberturamedica" value="Medicina pre-paga" />
                           Medicina pre-paga
                         </label><br>
-                        <label for="sincobertura" class="m-t-1">
-                          <input id="sincobertura" type="radio" name="coberturamedica" value="Sin cobertura" />
-                          Sin cobertura
+                        <label for="coberturapublica" class="m-t-1">
+                          <input id="coberturapublica" type="radio" name="coberturamedica" value="Atención en hospital o centro de salud pública" />
+                          Atención en hospital o centro de salud pública
                         </label>
                       </div> 
                 </div>     
@@ -116,6 +120,14 @@ layout: argentina
                 <div class="form-group">
                     <label class="control-label">Tipo de discapacidad para la cual solicita el certificado</label>
                     <div class="checkbox">
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"> 
+                        Discapacidad por epilepsia
+                      </label><br>
+                      <label class="m-b-1">
+                        <input type="checkbox" name="discapacidad" value="discapacidadmental"> 
+                        Discapacidad mental intelectual  
+                      </label><br>
                       <label class="m-b-1">
                         <input type="checkbox" name="discapacidad" value="discapacidadvisual"> 
                         Discapacidad de origen visual
@@ -155,14 +167,6 @@ layout: argentina
                       <label class="m-b-1">
                         <input type="checkbox" name="discapacidad" value="discapacidadhepatico"> 
                         Discapacidad de origen hepático
-                      </label><br>
-                      <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmental"> 
-                        Discapacidad mental intelectual  
-                      </label><br>
-                      <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"> 
-                        Discapacidad por epilepsia
                       </label>
                     </div>              
                 </div>
@@ -173,7 +177,7 @@ layout: argentina
             <div class="panel panel-default">
               <div class="panel-body">
 
-                <h2>Domicilio</h2>
+                <h2>Lugar de Residencia</h2>
                 <hr class="m-t-1 m-b-2" />
                 <p class="text-muted m-b-3">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
 
@@ -214,6 +218,7 @@ layout: argentina
 
                 <div class="form-group">
                     <label class="control-label">Localidad</label>
+                    <p class="m-b-2">Elegí la más cercana al lugar de residencia</p>
                     <fieldset disabled="disabled">
                         <select class="form-control input-lg" name="locality">
                             <option value=""></option>
