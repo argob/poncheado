@@ -33,7 +33,7 @@ layout: argentina
             <hr class="m-y-1"/>
 
            <div id="show-data-lugar" class="m-t-2 hidden"></div>    
-           <p id="show-data-description-lugar" class="hidden"></p>    
+           <div id="show-data-description-lugar" class="hidden"></div>    
 
             <p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
           </div>
@@ -92,7 +92,9 @@ layout: argentina
     <script>
 
       var templates = {
-        description: `<p>Según el trámite a realizar <strong>({tipoTramite})</strong> para <strong>({tipoDiscapacidad})</strong>, de acuerdo a la edad <strong>({edad})</strong> y el tipo de cobertura <strong>({tipoCobertura})</strong> tenés que presentar esta lista de cosas:</p>`,
+        description: `<p>Según el trámite a realizar <strong>({tipoTramite})</strong> para 
+        <strong data-render="tipo-discapacidad">
+        </strong> de acuerdo a la edad <strong>({edad})</strong> y el tipo de cobertura <strong>({tipoCobertura})</strong> tenés que presentar esta lista de cosas:</p>`,
         item: `<li>{requisito}</li>`,
         descriptionLugar: `<p>Según tu localidad <strong>({localidad})</strong> y provincia <strong>({provincia})</strong> podés ir a cualquiera de los siguientes lugares </p>`,
         lugar: `<div class="form-group m-t-2">
@@ -103,7 +105,8 @@ layout: argentina
                   <label class="control-label">Dirección</label>
                   <p>{direccion} Teléfono {telefono}</p>
                 </div>
-                <hr />`,                          
+                <hr />`, 
+        tipoDiscapacidad: `{tipoDiscapacidad}`                                 
       };
 
       var form_data;
@@ -118,7 +121,6 @@ layout: argentina
 
           jQuery.each(form_data, function(key, item){
             data[item.name] = item.value;
-
           });
 
           var item_blank = true;
@@ -132,121 +134,52 @@ layout: argentina
 
                 var show = false;
 
-                if( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadvisual') {
-
-                    var show = true;
-                    
-                  }                
+                if( (item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x") && data.discapacidadvisual == 'si' ){
+                    show = true;
                 }
 
-                if( item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadmotora') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x") && data.discapacidadmotora == 'si'  ){
+                    show = true;
                 }              
 
-                if( item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadtraumatologico') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x") && data.discapacidadtraumatologico == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadreumatologico') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x") && data.discapacidadreumatologico == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadauditiva') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x") && data.discapacidadauditiva == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadauditiva') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x") && data.discapacidadrespiratorio == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadrespiratorio') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x") && data.discapacidadcardiovascular == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadcardiovascular') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x") && data.discapacidadurologico == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadurologico') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x") && data.discapacidaddigestivo == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidaddigestivo') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x") && data.discapacidadhepatico == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadhepatico') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x") && data.discapacidadmental == 'si' ){
+                    show = true;
                 }              
 
-                if( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadmental') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
-                }              
-
-                if( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x"  ){
-
-                  if (data.discapacidad == 'discapacidadepilepsia') {
-
-                    html += ' <li>'+ item.gsx$requisitos.$t + '</li>';
-                    
-                  }                
+                if( (item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x") && data.discapacidadepilepsia == 'si' ){
+                    show = true;
                 }              
 
                  if(show){
@@ -261,76 +194,133 @@ layout: argentina
 
                     html = html.replace(/{requisito}/gi, requisitosmd);
 
-                      jQuery('#show-data').removeClass('hidden').append( html );
+                    jQuery('#show-data').removeClass('hidden').append( html );
+
+
+                    // htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidadvisual}/gi, data.discapacidadvisual.replace("si","Discapacidad de origen visual"))
+                    // .replace(/{tipoDiscapacidadmotora}/gi, data.discapacidadmotora.replace("si","Discapacidad de origen motor neurológico"))
+                    // .replace(/{tipoDiscapacidadtraumatologico}/gi, data.discapacidadtraumatologico.replace("si","Discapacidad de origen motor traumatológico"))
+                    // .replace(/{tipoDiscapacidadreumatologico}/gi, data.discapacidadreumatologico.replace("si","Discapacidad de origen motor reumatológico reumatológico"))
+                    // .replace(/{tipoDiscapacidadauditiva}/gi, data.discapacidadauditiva.replace("si","Discapacidad de origen auditiva"))
+                    // .replace(/{tipoDiscapacidadrespiratorio}/gi, data.discapacidadrespiratorio.replace("si","Discapacidad de origen respiratorio"))
+                    // .replace(/{tipoDiscapacidadcardiovascular}/gi, data.discapacidadcardiovascular.replace("si","Discapacidad de origen cardiovascular"))
+                    // .replace(/{tipoDiscapacidadurologico}/gi, data.discapacidadurologico.replace("si","Discapacidad de origen renal urológico"))
+                    // .replace(/{tipoDiscapacidaddigestivo}/gi, data.discapacidaddigestivo.replace("si","Discapacidad de origen digestivo"))
+                    // .replace(/{tipoDiscapacidadhepatico}/gi, data.discapacidadhepatico.replace("si","Discapacidad de origen hepático"))
+                    // .replace(/{tipoDiscapacidadmental}/gi, data.discapacidadmental.replace("si","Discapacidad mental intelectual"))
+                    // .replace(/{tipoDiscapacidadepilepsia}/gi, data.discapacidadepilepsia.replace("si","Discapacidad por epilepsia"));
+
 
                   }
+
+                          
+
 
               });
 
               function mostrarDescripcion () {
 
-                var htmlDescription = templates.description;
-                htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite)
-                  .replace(/{tipoDiscapacidad}/gi, data.discapacidad
-                    .replace("discapacidadvisual","Discapacidad de origen visual")
-                    .replace("discapacidadmotora","Discapacidad de origen motor neurológico")
-                    .replace("discapacidadtraumatologico","Discapacidad de origen motor traumatológico")
-                    .replace("discapacidadreumatologico","Discapacidad de origen motor reumatológico reumatológico")
-                    .replace("discapacidadauditiva","Discapacidad de origen auditiva")
-                    .replace("discapacidadrespiratorio","Discapacidad de origen respiratorio")
-                    .replace("discapacidadcardiovascular","Discapacidad de origen cardiovascular")
-                    .replace("discapacidadurologico","Discapacidad de origen renal urológico")
-                    .replace("discapacidaddigestivo","Discapacidad de origen digestivo")
-                    .replace("discapacidadhepatico","Discapacidad de origen hepático")
-                    .replace("discapacidadmental","Discapacidad mental intelectual")
-                    .replace("discapacidadepilepsia","Discapacidad por epilepsia"))
-                  .replace(/{edad}/gi, data.mayor18
+                    var htmlDescription = templates.description;  
+
+                    htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite                    
+                    .replace("Solicitud-de-Certificado-por-primera-vez","Solicitud por primera vez")
+                    .replace("Renovacion","Renovación")
+                    .replace("Perdida-del-certificado","Pérdida del certificado"))
+                    .replace(/{edad}/gi, data.mayor18
                     .replace("no","menor de 18 años")
                     .replace("si","mayor de 18 años"))
-                  .replace(/{tipoCobertura}/gi, data.coberturamedica);
+                    .replace(/{tipoCobertura}/gi, data.coberturamedica
+                      .replace("Obrasocial","Obra social")
+                      .replace("Medicinapre-paga","Medicina pre-paga")
+                      .replace("Atencion-en-hospital-o-centro-de-salud-publica","Atención en hospital o centro de salud pública"));                    
 
-                  jQuery('#show-data-description').removeClass('hidden').append( htmlDescription );
+                    jQuery('#show-data-description').removeClass('hidden').append( htmlDescription ); 
+
+
+                    var htmlTipoDiscapacidad = templates.tipoDiscapacidad;  
+                    var tipoDiscapacidad = ''
+
+                    if (data.discapacidadepilepsia == 'si') {
+                      tipoDiscapacidad += 'Discapacidad por epilepsia, ';
+                    }
+                    if (data.discapacidadmental == 'si') {
+                      tipoDiscapacidad += 'Discapacidad mental intelectual, ';
+                    }
+                    if (data.discapacidadvisual == 'si'){
+                      tipoDiscapacidad += 'Discapacidad de origen visual, ';
+                    } 
+                    if (data.discapacidadmotora == 'si' ) {
+                      tipoDiscapacidad += 'Discapacidad de origen motor neurológico, ';
+                    } 
+                    if (data.discapacidadtraumatologico == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen motor traumatológico, ';
+                    }
+                    if (data.discapacidadreumatologico == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen motor reumatológico reumatológico, ';
+                    }
+                    if (data.discapacidadauditiva == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen auditiva, ';
+                    }
+                    if (data.discapacidadrespiratorio == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen respiratorio, ';
+                    }
+                    if (data.discapacidadcardiovascular == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen cardiovascular, ';
+                    }
+                    if (data.discapacidadurologico == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen renal urológico, ';
+                    }
+                    if (data.discapacidaddigestivo == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen digestivo, ';
+                    }
+                    if (data.discapacidadhepatico == 'si') {
+                      tipoDiscapacidad += 'Discapacidad de origen hepático, ';
+                    }
+
+                    htmlTipoDiscapacidad += htmlTipoDiscapacidad.replace(/{tipoDiscapacidad}/gi, tipoDiscapacidad.slice(0, -2));     
+
+                    $('#show-data-description').find('[data-render=tipo-discapacidad]').append( htmlTipoDiscapacidad );                         
 
               }
+
 
           });          
 
           $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
-              mostrarDescripcion();
+              showDescripcion();
               console.log(dataLugares);
 
               $.each( dataDrive, function( key, item ) {
 
-                var show = false;
+                var showLugares = false;
 
-                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.localidad ){
-                    var show = true;
+                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.locality ){
+                    showLugares = true;
                 }
 
 
-                 if(show){
-
-                    item_blank = false;
+                 if(showLugares){
 
                     var html = templates.lugar;
 
                     html = html.replace(/{junta}/gi, item.gsx$junta.$t)
                     .replace(/{direccion}/gi, item.gsx$domicilio.$t)
-                    //.replace(/{localidad}/gi, item.gsx$localidad.$t)
+                    //.replace(/{localidad}/gi, item.gsx$locality.$t)
                     .replace(/{telefono}/gi, item.gsx$telefono.$t);
 
+                    console.log(html);
                       jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
 
                   }
 
               });
 
-              function mostrarDescripcion () {
+              function showDescripcion () {
 
                 var htmlDescription = templates.descriptionLugar;
                 htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
-                    .replace(/{localidad}/gi, data.localidad);
+                    .replace(/{localidad}/gi, data.locality);
 
                   jQuery('#show-data-lugar').removeClass('hidden').append( htmlDescription );
 
@@ -373,21 +363,3 @@ layout: argentina
 }
 </style>
 
-
-<script>
-
-(function($) {
-$(document).ready(function () {
-
-
-
-
-
-
-});
-
-
-
-})(jQuery);
-
-</script>
