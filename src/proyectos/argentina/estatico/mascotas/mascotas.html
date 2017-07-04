@@ -1,0 +1,147 @@
+---
+layout: argentina
+---
+<style type="text/css">
+  
+  td{
+    vertical-align: top;
+  }
+
+</style>
+
+
+
+
+<div class="container">
+ <div class="container">
+ <section>
+
+    <div id="tarifas">
+      <div class="row">
+
+       
+        <div class="col-md-12">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Buscar...">
+          </div>
+        </div>
+      
+      </div>
+
+      <table class="table table-spaced table-align-middle">
+        <thead>
+          <tr>
+            <th style="width: 400px;"><a class="sort" data-sort="nombre">Programa <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="tema">Tema <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="tipo">Apoyo <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="ministerio">Organismo<span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+       <div id="alerta" class="alert alert-warning col-md-4 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>  
+
+      <div class="row">
+      <div class="col-md-12 text-center m-b-2">
+        
+        <a href="#" class="btn btn-primary btn-md">Preguntas frecuentes</a>
+
+      </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+    $('body').tooltip({
+    selector: '[data-toggle="tooltip"]'
+    });
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1ZzI-Wsygf6aHbaRWKuReXMk8oq2nOi__NvRU_oTKiqI/1/public/values?alt=json', function (data) {
+        window.tarifas = data.feed.entry;
+        showtarifas("todos");
+        console.log(data);
+    });
+
+    window.showtarifas = function(vehiculo){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( tarifas, function( key, item ) {
+
+
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$inicio.$t + '</h6><p>' + item.gsx$fin.$t + '</p></td>';
+            html += ' <td class="tema">'+ item.gsx$municipio.$t + '</td>';
+            html += ' <td class="tipo">'+ item.gsx$cupos.$t + '</td>';
+            html += ' <td class="ministerio">'+ item.gsx$contacto.$t + '</td>';
+            html += '</tr>';
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'inicio', 'fin', 'municipio', 'cupos', 'contacto' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var tarifasList = new List('tarifas', listOptions);  
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            tarifasList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        tarifasList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+    }
+
+
+
+    
+
+});
+})(jQuery);
+
+</script>
+
+

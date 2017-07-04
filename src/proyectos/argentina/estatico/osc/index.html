@@ -4,7 +4,7 @@ layout: argentina
 <style type="text/css">
   
   td{
-    vertical-align: top;
+    vertical-align: top!important;
   }
 
 </style>
@@ -42,9 +42,52 @@ layout: argentina
     <div id="tarifas">
       <div class="row">
 
-       
-        <div class="col-md-12">    
+        <div class="col-md-4">    
           <div class="form-group">
+            <label for="">Filtrá por tema</label>
+            <select id="tipo-vehiculo" class="form-control">
+              <option data-tipovehiculo="todos" value="todos">Todos</option>
+              <option data-tipovehiculo="Salud" value="Salud">Salud</option>
+              <option data-tipovehiculo="Empleabilidad / Emprendedurismo" value="Empleabilidad / Emprendedurismo">Empleabilidad / Emprendedurismo</option>
+              <option data-tipovehiculo="Niñez y adolescencia" value="Niñez y adolescencia">Niñez y adolescencia</option>
+              <option data-tipovehiculo="Ambiente" value="Ambiente">Ambiente</option>
+              <option data-tipovehiculo="Comunidad / Comunitario" value="Comunidad / Comunitario">Comunidad / Comunitario</option>
+              <option data-tipovehiculo="Educación y deportes" value="Educación y deportes">Educación y deportes</option>
+              <option data-tipovehiculo="Contexto de Encierro" value="Contexto de Encierro">Contexto de Encierro</option>
+              <option data-tipovehiculo="Cultura Fortalecimiento" value="Cultura Fortalecimiento">Cultura Fortalecimiento</option>
+              <option data-tipovehiculo="Ciencia y Tecnología / Investigación" value="Ciencia y Tecnología / Investigación">Ciencia y Tecnología / Investigación</option>
+              <option data-tipovehiculo="Transparencia" value="Transparencia">Transparencia</option>
+              <option data-tipovehiculo="Derechos Humanos" value="Derechos Humanos">Derechos Humanos</option>
+              <option data-tipovehiculo="Juventud" value="Juventud">Juventud</option>
+              <option data-tipovehiculo="Discapacidad" value="Discapacidad">Discapacidad</option>
+              <option data-tipovehiculo="Innovación" value="Innovación">Innovación</option>
+              <option data-tipovehiculo="Inclusión" value="Inclusión">Inclusión</option>
+              <option data-tipovehiculo="Personas Mayores" value="Personas Mayores">Personas Mayores</option>
+              <option data-tipovehiculo="Género" value="Género">Género</option>
+              <option data-tipovehiculo="Primera Infancia" value="Primera Infancia">Primera Infancia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtrá por apoyo</label>
+            <select id="tipo-acceso" class="form-control">
+              <option data-tipoacceso="todos" value="todos">Todos</option>
+              <option data-tipoacceso="Apoyo económico" value="Apoyo económico">Apoyo económico</option>
+              <option data-tipoacceso="Apoyo técnico" value="Apoyo técnico">Apoyo técnico</option>
+              <option data-tipoacceso="Participación Ciudadana" value="Participación Ciudadana">Participación Ciudadana</option>
+              <option data-tipoacceso="Capacitación" value="Capacitación">Capacitación</option>
+              <option data-tipoacceso="Apoyo a beneficiarios" value="Apoyo a beneficiarios">Apoyo a beneficiarios</option>
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-4">    
+          <div class="form-group">
+          <label for="">Buscá organizaciones</label>
             <input class="form-control search" placeholder="Buscar...">
           </div>
         </div>
@@ -105,7 +148,7 @@ $(document).ready(function () {
     selector: '[data-toggle="tooltip"]'
     });
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1Pdr6txwOQCo03N7C1TSNZGxBrS7Jdq53WV-REFjBYBQ/1/public/values?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1yE3ENqa9yURo3frHDlkgA2RalUUI4yUcdOaZmaid7Ek/1/public/values?alt=json', function (data) {
         window.tarifas = data.feed.entry;
         showtarifas("todos");
         console.log(data);
@@ -119,13 +162,25 @@ $(document).ready(function () {
 
         $.each( tarifas, function( key, item ) {
 
+          if( item.gsx$tema1.$t == vehiculo || item.gsx$tema2.$t == vehiculo || item.gsx$tema3.$t == vehiculo || item.gsx$tema4.$t == vehiculo || item.gsx$tema5.$t == vehiculo || item.gsx$tema6.$t == vehiculo || item.gsx$tema7.$t == vehiculo || item.gsx$tema8.$t == vehiculo || item.gsx$tema9.$t == vehiculo || item.gsx$tema10.$t == vehiculo || item.gsx$apoyo1.$t == vehiculo || item.gsx$apoyo2.$t == vehiculo || item.gsx$apoyo3.$t == vehiculo || item.gsx$apoyo4.$t == vehiculo || item.gsx$apoyo5.$t == vehiculo ){
 
             html += '<tr>';
             html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6><p>' + item.gsx$oracion.$t + '</p></td>';
-            html += ' <td class="tema">'+ item.gsx$tema.$t + '</td>';
-            html += ' <td class="tipo">'+ item.gsx$tipo.$t + '</td>';
+            html += ' <td class="tema">'+ item.gsx$tema1.$t + '<br>' + item.gsx$tema2.$t + '<br>' + item.gsx$tema3.$t + '<br>' + item.gsx$tema4.$t + '<br>' + item.gsx$tema5.$t + '<br>' + item.gsx$tema6.$t + '<br>' + item.gsx$tema7.$t + '<br>' + item.gsx$tema8.$t + '<br>' + item.gsx$tema9.$t + '<br>' + item.gsx$tema10.$t +'</td>';
+            html += ' <td class="tipo">'+ item.gsx$apoyo1.$t + '<br>' + item.gsx$apoyo2.$t + '<br>' + item.gsx$apoyo3.$t + '<br>' + item.gsx$apoyo4.$t + '<br>' + item.gsx$apoyo5.$t + '</td>';
             html += ' <td class="ministerio">'+ item.gsx$ministerio.$t + '</td>';
             html += '</tr>';
+
+          }else if  (vehiculo == "todos") {
+
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6><p>' + item.gsx$oracion.$t + '</p></td>';
+            html += ' <td class="tema">'+ item.gsx$tema1.$t + '<br>' + item.gsx$tema2.$t + '<br>' + item.gsx$tema3.$t + '<br>' + item.gsx$tema4.$t + '<br>' + item.gsx$tema5.$t + '<br>' + item.gsx$tema6.$t + '<br>' + item.gsx$tema7.$t + '<br>' + item.gsx$tema8.$t + '<br>' + item.gsx$tema9.$t + '<br>' + item.gsx$tema10.$t +'</td>';
+            html += ' <td class="tipo">'+ item.gsx$apoyo1.$t + '<br>' + item.gsx$apoyo2.$t + '<br>' + item.gsx$apoyo3.$t + '<br>' + item.gsx$apoyo4.$t + '<br>' + item.gsx$apoyo5.$t + '</td>';
+            html += ' <td class="ministerio">'+ item.gsx$ministerio.$t + '</td>';
+            html += '</tr>';
+
+          }  
 
         });
 
@@ -133,7 +188,7 @@ $(document).ready(function () {
         showData.append(html);
 
         var listOptions = {
-          valueNames: [ 'nombre', 'oracion', 'tema', 'tipo', 'ministerio' ],
+          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
           page: 20,
           plugins: [ ListPagination({}) ]
           
@@ -159,7 +214,17 @@ $(document).ready(function () {
     }
 
 
+    $("#tipo-vehiculo").on("change", function() {
+      var vehiculo = $( "#tipo-vehiculo option:selected" ).data('tipovehiculo');
+      showtarifas(vehiculo);
 
+    });
+
+    $("#tipo-acceso").on("change", function() {
+      var vehiculo = $( "#tipo-acceso option:selected" ).data('tipoacceso');
+      showtarifas(vehiculo);
+
+    });
     
 
 });
