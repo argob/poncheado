@@ -18,9 +18,9 @@
           <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
           <li>
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar Trámite">
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                <button class="btn btn-primary" id="buscar" type="button"><i class="fa fa-search"></i></button>
               </span>
             </div>
           </li>              
@@ -31,3 +31,14 @@
     </div>
   </nav>
 </header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
