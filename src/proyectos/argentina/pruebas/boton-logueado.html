@@ -196,9 +196,9 @@
           </a>
           <a class="btn btn-azul btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar Trámite">
+              <input type="text" class="form-control" id="busqueda" placeholder="Buscar trámites, servicios u organismos...">
               <span class="input-group-btn">
-                <button class="btn btn-azul" type="button"><i class="fa fa-search"></i></button>
+                <button class="btn btn-primary" id="buscar" type="button"><i class="fa fa-search"></i></button>
               </span>
             </div>
           <!--<a class="btn btn-inv btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>-->
@@ -209,7 +209,7 @@
           <li>
             
           </li>          
-          <a href="#" class="dropdown-toggle btn btn-azul-inv hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; <span>Hola, Juan</span></a>
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; <span>Hola, Juan</span></a>
         </ul>
 
       </div>
@@ -602,6 +602,16 @@
 </div>
 </footer>
 
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
 
 
 

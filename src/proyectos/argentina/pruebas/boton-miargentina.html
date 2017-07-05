@@ -194,11 +194,11 @@
             <img alt="Logo Argentina.gob.ar" src="img/argentinagob.svg" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <a class="btn btn-azul btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar Trámite">
+              <input type="text" class="form-control" id="busqueda" placeholder="Buscar trámites, servicios u organismos...">
               <span class="input-group-btn">
-                <button class="btn btn-azul" type="button"><i class="fa fa-search"></i></button>
+                <button class="btn btn-primary" id="buscar" type="button"><i class="fa fa-search"></i></button>
               </span>
             </div>
           <!--<a class="btn btn-inv btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>-->
@@ -209,7 +209,7 @@
           <li>
             
           </li>          
-          <a href="#" class="dropdown-toggle btn btn-azul hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; <span>Mi Argentina</span></a>
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; <span>Mi Argentina</span></a>
         </ul>
 
       </div>
@@ -229,9 +229,9 @@
         <p class="m-y-2">Portal oficial del Estado argentino. Conocé cómo hacer trámites en organismos públicos, tramitalos en línea y recibí servicios digitales y beneficios.</p>
           <form role="search">
             <div class="input-group input-group-lg">
-              <input class="form-control" type="text" placeholder="Buscar trámites, servicios o áreas...">
+              <input class="form-control" type="text" placeholder="Buscar trámites, servicios u organismos...">
               <span class="input-group-btn">
-                <button class="btn btn-inv" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
               </span>
             </div>
           </form>
@@ -590,7 +590,7 @@
 
       
   <ul class="menu nav">
-<li class="first leaf sugerencia btn btn-azul btn-xs"><a href="/acerca">Hacer una sugerencia</a></li>
+<li class="first leaf sugerencia btn btn-primary btn-xs"><a href="/acerca">Hacer una sugerencia</a></li>
 <li class="leaf"><a href="/sugerencias">Acerca de este sitio</a></li>
 <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
 <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
@@ -601,6 +601,17 @@
   </div>
 </div>
 </footer>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
 
 
 
