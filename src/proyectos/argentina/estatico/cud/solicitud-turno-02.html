@@ -92,11 +92,11 @@ layout: argentina
     <script>
 
       var templates = {
-        description: `<p>Según el trámite a realizar <strong>({tipoTramite})</strong> para 
+        description: `<p>Según el trámite a realizar ({tipoTramite}) para 
         <strong data-render="tipo-discapacidad">
-        </strong> de acuerdo a la edad <strong>({edad})</strong> y el tipo de cobertura <strong>({tipoCobertura})</strong> tenés que presentar esta lista de cosas:</p>`,
+        </strong> de acuerdo a la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta lista de cosas:</p>`,
         item: `<li>{requisito}</li>`,
-        descriptionLugar: `<p>Según tu localidad <strong>({localidad})</strong> y provincia <strong>({provincia})</strong> podés ir a cualquiera de los siguientes lugares </p>`,
+        descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a cualquiera de los siguientes lugares </p>`,
         lugar: `<div class="form-group m-t-2">
                   <label class="control-label">Junta</label>
                   <p>{junta}</p>
@@ -294,11 +294,19 @@ layout: argentina
               showDescripcion();
               console.log(dataLugares);
 
+
+
               $.each( dataDrive, function( key, item ) {
 
                 var showLugares = false;
 
+
+                console.log(item.gsx$localidad.$t);
+                console.log(item.gsx$provincia.$t == data.provincia);
+                console.log(item.gsx$localidad.$t == data.locality);
+
                 if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.locality ){
+                    console.log("ENTRÓ!!");
                     showLugares = true;
                 }
 
