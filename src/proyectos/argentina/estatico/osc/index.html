@@ -7,10 +7,15 @@ layout: argentina
     vertical-align: top!important;
   }
 
-  .apoyo{
-    box-sizing: border-box;
-    width: 20%!important;
+  .recursos{
+    color: white!important;
+    font-size: 70px;
+    padding: 30px 0;        
   }
+
+.panel-heading{
+  text-align: center;
+}
 
 </style>
 
@@ -46,52 +51,52 @@ layout: argentina
 
     <div class="row panels-row m-t-2">
 
-    <div class="col-xs-12 col-sm-6 col-md-2 p-y-1 apoyo">
+    <div class="col-xs-12 col-sm-6 col-md-4 p-y-1">
       <div class="panel panel-default panel-disabled">
-        <div style="background-image:url('/sites/default/files/nena_bolsa.jpg');" class="panel-heading"></div>
+        <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-ciencia-apoyo-economico"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo económico</h2>
-          <p>xxxxxxxxxx</p>
+          <p>Convocatorias, subsidios, premios, becas, concursos y otras formas de financiamiento.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-2 p-y-1 apoyo">
+    <div class="col-xs-12 col-sm-6 col-md-4 p-y-1">
       <div class="panel panel-default panel-disabled">
-        <div style="background-image:url('/sites/default/files/nene_chipa.jpg');" class="panel-heading"></div>
+        <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-solidaridad"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo técnico</h2>
-          <p>xxxxxxxxxx</p>
+          <p>Asistencia técnica, tecnológica y distinto tipo de ayuda para equipamiento o innovación.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-2 p-y-1 apoyo">
+    <div class="col-xs-12 col-sm-6 col-md-4 p-y-1">
       <div class="panel panel-default panel-disabled">
-        <div style="background-image:url('/sites/default/files/nena_flores.jpg');" class="panel-heading"></div>
+        <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-social"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo a beneficiarios</h2>
-          <p>xxxxxxxxxx</p>
+          <p>Ayudas para la población beneficiaria de las OSC, en articulación con ellas o en forma conjunta.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-2 p-y-1 apoyo">
+    <div class="col-xs-12 col-sm-6 col-md-4 p-y-1">
       <div class="panel panel-default panel-disabled">
-        <div style="background-image:url('/sites/default/files/nene_ladrillos.jpg');" class="panel-heading"></div>
+        <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-capacitacion"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Capacitaciones</h2>
-          <p>xxxxxxxxxx</p>
+          <p>Cursos, talleres, jornadas, seminarios, simposios y diversas actividades de formación.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-2 p-y-1 apoyo">
+    <div class="col-xs-12 col-sm-6 col-md-4 p-y-1">
       <div class="panel panel-default panel-disabled">
-        <div style="background-image:url('/sites/default/files/nena_cocinando.jpg');" class="panel-heading"></div>
+        <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-servicios"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Participación ciudadana</h2>
-          <p>xxxxxxxxxx</p>
+          <p>Eventos, encuentros, mesas de diálogo, apoyo al voluntariado, auspicios institucionales.</p>
         </div>
       </div>
     </div>
@@ -182,8 +187,10 @@ layout: argentina
 
       <div class="row">
       <div class="col-md-12 text-center m-b-2">
+
+      <p>Si formás parte de una de esas organizaciones, con o sin personería jurídica, este espacio de participación ciudadana seguramente te va a interesar.</p>
         
-        <a href="#" class="btn btn-primary btn-md">Preguntas frecuentes</a>
+        <a href="https://www.argentina.gob.ar/guia-osc/preguntas-frecuentes" class="btn btn-primary btn-md">Preguntas frecuentes</a>
 
       </div>
       </div>
@@ -225,7 +232,7 @@ $(document).ready(function () {
           if( item.gsx$tema1.$t == vehiculo || item.gsx$tema2.$t == vehiculo || item.gsx$tema3.$t == vehiculo || item.gsx$tema4.$t == vehiculo || item.gsx$tema5.$t == vehiculo || item.gsx$tema6.$t == vehiculo || item.gsx$tema7.$t == vehiculo || item.gsx$tema8.$t == vehiculo || item.gsx$tema9.$t == vehiculo || item.gsx$tema10.$t == vehiculo || item.gsx$apoyo1.$t == vehiculo || item.gsx$apoyo2.$t == vehiculo || item.gsx$apoyo3.$t == vehiculo || item.gsx$apoyo4.$t == vehiculo || item.gsx$apoyo5.$t == vehiculo ){
 
             html += '<tr>';
-            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6><p>' + item.gsx$oracion.$t + '</p></td>';
+            html += ' <td class="nombre"> <h6> <a href="'+ item.gsx$info.$t + '" target="_blank">'+ item.gsx$nombre.$t + '</a></h6><p>' + item.gsx$oracion.$t + '</p></td>';
             html += ' <td class="tema">'+ item.gsx$tema1.$t + '<br>' + item.gsx$tema2.$t + '<br>' + item.gsx$tema3.$t + '<br>' + item.gsx$tema4.$t + '<br>' + item.gsx$tema5.$t + '<br>' + item.gsx$tema6.$t + '<br>' + item.gsx$tema7.$t + '<br>' + item.gsx$tema8.$t + '<br>' + item.gsx$tema9.$t + '<br>' + item.gsx$tema10.$t +'</td>';
             html += ' <td class="tipo">'+ item.gsx$apoyo1.$t + '<br>' + item.gsx$apoyo2.$t + '<br>' + item.gsx$apoyo3.$t + '<br>' + item.gsx$apoyo4.$t + '<br>' + item.gsx$apoyo5.$t + '</td>';
             html += ' <td class="ministerio">'+ item.gsx$ministerio.$t + '</td>';
@@ -234,7 +241,7 @@ $(document).ready(function () {
           }else if  (vehiculo == "todos") {
 
             html += '<tr>';
-            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6><p>' + item.gsx$oracion.$t + '</p></td>';
+            html += ' <td class="nombre"> <h6> <a href="'+ item.gsx$info.$t + '" target="_blank">'+ item.gsx$nombre.$t + '</a></h6><p>' + item.gsx$oracion.$t + '</p></td>';
             html += ' <td class="tema">'+ item.gsx$tema1.$t + '<br>' + item.gsx$tema2.$t + '<br>' + item.gsx$tema3.$t + '<br>' + item.gsx$tema4.$t + '<br>' + item.gsx$tema5.$t + '<br>' + item.gsx$tema6.$t + '<br>' + item.gsx$tema7.$t + '<br>' + item.gsx$tema8.$t + '<br>' + item.gsx$tema9.$t + '<br>' + item.gsx$tema10.$t +'</td>';
             html += ' <td class="tipo">'+ item.gsx$apoyo1.$t + '<br>' + item.gsx$apoyo2.$t + '<br>' + item.gsx$apoyo3.$t + '<br>' + item.gsx$apoyo4.$t + '<br>' + item.gsx$apoyo5.$t + '</td>';
             html += ' <td class="ministerio">'+ item.gsx$ministerio.$t + '</td>';
