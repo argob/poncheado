@@ -16,51 +16,28 @@ layout: argentina
  <div class="container">
  <section>
 
-    <div id="tarifas">
-      <div class="row">
+    <div id="ferias">
 
-       
-        <div class="col-md-12">    
-          <div class="form-group">
-            <input class="form-control search" placeholder="Buscar...">
-          </div>
+      <div id="hoy" class="well">
+        <h3 class="h2 text-center text-primary"></h3>
+
+        <div class="table-responsive hidden">
+          <table class="table table-align-middle">
+            <thead>
+              <tr>
+                <th>Provincia</th>
+                <th>Zona</th>
+                <th>Horario</th>
+                <th>Cupos</th>
+                <th>Contacto</th>
+              </tr>
+            </thead>
+            <tbody id="ferias-hoy">
+            </tbody>
+          </table>
         </div>
-      
       </div>
 
-      <table class="table table-spaced table-align-middle">
-        <thead>
-          <tr>
-            <th style="width: 400px;"><a class="sort" data-sort="nombre">Programa <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="tema">Tema <span class="caret"></span></a></th>
-            <th style="width: 180px;"><a class="sort" data-sort="tipo">Apoyo <span class="caret"></span></a></th>
-            <th style="width: 180px;"><a class="sort" data-sort="ministerio">Organismo<span class="caret"></span></a></th>
-          </tr>
-        </thead>
-        <tbody class="list" id="show-data">
-        </tbody>
-      </table>
-      <nav class="text-center">
-        <ul class="pagination"></ul>
-      </nav>        
-       <div id="alerta" class="alert alert-warning col-md-4 no-result">
-        <div class="media">
-          <div class="media-left media-middle">
-            <i class="fa fa-warning fa-fw fa-2x"></i>
-          </div>
-          <div class="media-body">
-            <p>No hay resultados para mostrar</p>
-          </div>
-        </div>
-      </div>  
-
-      <div class="row">
-      <div class="col-md-12 text-center m-b-2">
-        
-        <a href="#" class="btn btn-primary btn-md">Preguntas frecuentes</a>
-
-      </div>
-      </div>
 
     </div>
   </section>
@@ -68,79 +45,68 @@ layout: argentina
 
 
 
-<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
-<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.3.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
 <script>
 
-(function($) {
-$(document).ready(function () {
+jQuery(function(){
 
-    $('body').tooltip({
-    selector: '[data-toggle="tooltip"]'
-    });
+  window.ferias = {
+    hoy: []
+  }
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1ZzI-Wsygf6aHbaRWKuReXMk8oq2nOi__NvRU_oTKiqI/1/public/values?alt=json', function (data) {
-        window.tarifas = data.feed.entry;
-        showtarifas("todos");
-        console.log(data);
-    });
+  var test = 0;
 
-    window.showtarifas = function(vehiculo){
-        var showData = $('#show-data');
+  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1ZzI-Wsygf6aHbaRWKuReXMk8oq2nOi__NvRU_oTKiqI/1/public/values?alt=json', 
+    function (data) {
+      window.raw = data.feed.entry;
 
-        var html = '';
+      jQuery.each( raw, function( key, item ) {
+        var fecha = moment(item.gsx$fecha.$t, "DD/MM/YYYY");
+
+        if( fecha.startOf('day').isSame( moment().startOf('day').add(test, 'day') )){
+          ferias.hoy.push( item );
+        } 
+
+      });
+
+      printFerias();
+  });
+
+  var getTr = function(item){
 
 
-        $.each( tarifas, function( key, item ) {
 
+    var html = '<tr class="item">';
+        html += '<td class="provincia">'+ item.gsx$provincia.$t + '</td>';
+        html += '<td class="zona"><strong>'+ item.gsx$zona.$t + '</strong></td>';
+        html += '<td class="horario">'+ item.gsx$horario.$t + '</td>';
+        html += '<td class="cupos">'+ item.gsx$cupos.$t + '</td>';
+        html += '<td class="contacto">'+ item.gsx$contacto.$t + '</td></tr>';
 
-            html += '<tr>';
-            html += ' <td class="nombre"> <h6>'+ item.gsx$inicio.$t + '</h6><p>' + item.gsx$fin.$t + '</p></td>';
-            html += ' <td class="tema">'+ item.gsx$municipio.$t + '</td>';
-            html += ' <td class="tipo">'+ item.gsx$cupos.$t + '</td>';
-            html += ' <td class="ministerio">'+ item.gsx$contacto.$t + '</td>';
-            html += '</tr>';
+    return html;
+  }
 
-        });
+  window.printFerias = function(){
 
-        showData.empty();
-        showData.append(html);
+    // console.log(ferias);
 
-        var listOptions = {
-          valueNames: [ 'inicio', 'fin', 'municipio', 'cupos', 'contacto' ],
-          page: 20,
-          plugins: [ ListPagination({}) ]
-          
-         };
-
-        var tarifasList = new List('tarifas', listOptions);  
-
-        jQuery('.search').on("keyup",function(){
-            var valueSearch = jQuery(".search").val();
-            tarifasList.search(valueSearch);
-        });
-
-        $('.no-result').hide()
-        
-        tarifasList.on('updated', function(list) {
-          if (list.matchingItems.length > 0) {
-            $('.no-result').hide()
-          } else {
-            $('.no-result').show()
-          }
-        })                
-
+    if(ferias.hoy.length == 0){
+      jQuery('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' no hay ferias abiertas.');
+    }else{
+      jQuery('#hoy h3').text('Hoy '+ moment().add(test, 'day').format("dddd D [de] MMMM") +' estamos en:');
+      jQuery('#hoy .table-responsive').removeClass('hidden');
+      
+      jQuery.each( ferias.hoy, function( key, item ) {
+        jQuery('#ferias-hoy').append( getTr( item, true ) );
+      });
     }
 
-
-
-    
+  }
 
 });
-})(jQuery);
 
 </script>
 
