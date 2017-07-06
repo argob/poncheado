@@ -186,7 +186,7 @@ layout: argentina
 
 
                     <label class="control-label">Provincia</label>
-                    <select class="form-control" name="provincia">
+                    <select class="form-control" name="provincia" id="provincia">
                         <option value=""></option>
                         <option value="CIUDAD AUTONOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
                         <option value="BUENOS AIRES">Buenos Aires</option>
@@ -260,6 +260,7 @@ layout: argentina
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
 
 <script type="text/javascript">
+
   
           var data;
 
@@ -335,432 +336,423 @@ layout: argentina
           } 
 
 
+
+
+
+          
+
+
+
+
+
+
             // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
             var dataProv = [
                             {
                                 provincia: "CIUDAD AUTONOMA DE BUENOS AIRES",
-                                localidad: [
-                                    "Ciudad Autonoma de Buenos Aires"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "BUENOS AIRES",
-                                localidad: [
-                                    "Pilar",
-                                    "Magdalena",
-                                    "Coronel Dorrego",
-                                    "Coronel Pringles",
-                                    "Punta Alta",
-                                    "25 de Mayo",
-                                    "Alberti",
-                                    "Avellaneda",
-                                    "Bahia Blanca",
-                                    "Berisso",
-                                    "Bragado",
-                                    "Capitan Sarmiento",
-                                    "Carhue",
-                                    "Carmen de Areco",
-                                    "Castelli",
-                                    "Chacabuco",
-                                    "Coronel Suarez",
-                                    "Ensenada",
-                                    "General Arenales",
-                                    "General Belgrano",
-                                    "General Pinto",
-                                    "General Viamonte",
-                                    "Ituzaingó",
-                                    "La Plata",
-                                    "Lobos",
-                                    "Luján",
-                                    "Mercedes",
-                                    "Monte Hermoso",
-                                    "NAVARRO",
-                                    "Pehuajó",
-                                    "Roque Perez",
-                                    "Saladillo",
-                                    "San Miguel del Monte",
-                                    "Suipacha",
-                                    "Azul",
-                                    "Benito Juárez",
-                                    "Bolivar",
-                                    "Chascomús",
-                                    "9 de Julio",
-                                    "Almirante Brown",
-                                    "Ameghino",
-                                    "Arrecifes",
-                                    "Ayacucho",
-                                    "Bahia Blanca",
-                                    "Balcarce",
-                                    "Baradero",
-                                    "Berazategui",
-                                    "Brandsen",
-                                    "Campana",
-                                    "Cañuelas",
-                                    "Carlos Casares",
-                                    "Carmen de Patagones",
-                                    "Chivilcoy",
-                                    "Colón",
-                                    "Daireux",
-                                    "Dolores",
-                                    "Ensenada",
-                                    "Escobar",
-                                    "Esteban Echeverría",
-                                    "Ezeiza",
-                                    "Florencio Varela",
-                                    "General Guido",
-                                    "General Villegas",
-                                    "Gonzalez Chavez",
-                                    "Guaminí",
-                                    "Jose C. Paz",
-                                    "Junín",
-                                    "La Matanza",
-                                    "La Plata",
-                                    "Lanús",
-                                    "Lezama",
-                                    "Lincoln",
-                                    "Lobería",
-                                    "Lomas de Zamora",
-                                    "Maipú",
-                                    "Mar del Plata",
-                                    "Alejandro Korn",
-                                    "Merlo",
-                                    "Miramar",
-                                    "Moreno",
-                                    "Necochea",
-                                    "Luján",
-                                    "Pellegrini",
-                                    "Pergamino",
-                                    "Pila",
-                                    "Pinamar",
-                                    "Punta Indio",
-                                    "Quilmes",
-                                    "Ramallo",
-                                    "Ranchos",
-                                    "Rauch",
-                                    "America",
-                                    "Rojas",
-                                    "SALLIQUELÓ",
-                                    "Salto",
-                                    "San Andres de Giles",
-                                    "San Antonio de Areco",
-                                    "San Cayetano",
-                                    "San Fernando",
-                                    "San Isidro",
-                                    "San Martín",
-                                    "San Nicolás",
-                                    "San Pedro",
-                                    "Tandil",
-                                    "Tigre",
-                                    "Trenque Lauquen",
-                                    "Tres Arroyos",
-                                    "Vicente López",
-                                    "Villa Gesell",
-                                    "Zárate",
-                                    "Exaltacion de la Cruz",
-                                    "General Alvear",
-                                    "General La Madrid",
-                                    "Genaral Lavalle",
-                                    "General Madariaga",
-                                    "Henderson",
-                                    "Tortuguitas",
-                                    "La Plata",
-                                    "Laprida",
-                                    "Las Flores",
-                                    "Las Toninas",
-                                    "Olavarria",
-                                    "Pigüé",
-                                    "San Miguel del Monte",
-                                    "San Miguel",
-                                    "Tornquist",
-                                    "Medanos",
-                                    "General Las Heras",
-                                    "General Rodriguez",
-                                    "San Martín",
-                                    "San Vicente",
-                                    "Tres Lomas",
-                                    "La Plata",
-                                    "Tapalqué",
-                                    "Puan",
-                                    "La Plata",
-                                    "Florencio Varela",
-                                    "Hurlingham",
-                                    "Vedia",
-                                    "Marcos Paz",
-                                    "Moron",
-                                    "Carlos Tejedor",
-                                    "Coronel Vidal",
-                                    "Santa Clara del Mar",
-                                    "Presidente Peron",
-                                    "Ensenada",
-                                    "Tres de Febrero"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "CATAMARCA",
-                                localidad: [
-                                    "San Fernando Del Valle De Catamarca",
-                                    "Tinogasta",
-                                    "Catamarca",
-                                    "Santa María"
-                                ]
+                                localidad: []
                             },
                             {
-                                provincia: "CORDOBA",
-                                localidad: [
-                                    "Cruz Del Eje",                       
-                                    "Córdoba",                            
-                                    "Laboulaye",                          
-                                    "Córdoba",                            
-                                    "Villa Dolores",                      
-                                    "Villa María",                        
-                                    "Córdoba",                            
-                                    "Alta Gracia",                        
-                                    "Bell Ville",                         
-                                    "Deán Funes",                         
-                                    "Jesús María",                        
-                                    "Marcos Juárez",                      
-                                    "Río Cuarto",                         
-                                    "Unquillo",                           
-                                    "Villa Allende",                      
-                                    "Villa Del Rosario",                  
-                                    "Colonia Santa María",
-                                    "Arroyito"
-                                ]
+                                provincia: "CÓRDOBA",
+                                localidad: []
                             },
                             {
                                 provincia: "CORRIENTES",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "CHACO",
-                                localidad: [
-                                    "Resistencia",
-                                    "Villa Angela",
-                                    "Las Breñas",
-                                    "Resistencia",
-                                    "Presidencia Roque Sáenz Peña",
-                                    "General San Martín",
-                                    "Juan José Castelli",
-                                    "Presidencia Roque Sáenz Peña",
-                                    "Las Breñas",
-                                    "General San Martín",
-                                    "Juan José Castelli",
-                                    "Villa Angela"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "CHUBUT",
-                                localidad: [
-                                    "Rawson",
-                                    "Gaiman",
-                                    "El Maitén",
-                                    "Esquel",
-                                    "Sarmiento",
-                                    "Rawson",
-                                    "Lago Puelo",
-                                    "Trevelin",
-                                    "Esquel",
-                                    "Puerto Madryn",
-                                    "Trelew"         ,
-                                    "Comodoro Rivadavia"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "ENTRE RIOS",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "FORMOSA",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "JUJUY",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },                
                             {
                                 provincia: "LA PAMPA",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "LA RIOJA",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "MENDOZA",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "MISIONES",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "NEUQUEN",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "RIO NEGRO",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SALTA",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SAN JUAN",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SAN LUIS",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SANTA CRUZ",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SANTA FE",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "SANTIAGO DEL ESTERO",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "TIERRA DEL FUEGO",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             },
                             {
                                 provincia: "TUCUMAN",
-                                localidad: [
-                                    "Agronomia",
-                                    "Almagro",
-                                    "Balvanera",
-                                    "Villa Santa Rita",
-                                    "Villa Soldati",
-                                    "Villa Urquiza"
-                                ]
+                                localidad: []
                             }                                                                                                                                        
                         ]            
+
+
+
+
+
+// pusheo localidades
+
+
+
+
+
+$.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
+
+
+window.dataDrive = dataLugares.feed.entry;
+
+   
+
+
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CIUDAD AUTÓNOMA DE BUENOS AIRES"){
+
+    if(dataProv[0].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[0].localidad.push(item.gsx$localidad.$t);
+      dataProv[0].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "BUENOS AIRES"){
+
+    if(dataProv[1].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[1].localidad.push(item.gsx$localidad.$t);
+      dataProv[1].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CATAMARCA"){
+
+    if(dataProv[2].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[2].localidad.push(item.gsx$localidad.$t);
+      dataProv[2].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CÓRDOBA"){
+
+    if(dataProv[3].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[3].localidad.push(item.gsx$localidad.$t);
+      dataProv[3].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CORRIENTES"){
+
+    if(dataProv[4].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[4].localidad.push(item.gsx$localidad.$t);
+      dataProv[4].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CHACO"){
+
+    if(dataProv[5].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[5].localidad.push(item.gsx$localidad.$t);
+      dataProv[5].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "CHUBUT"){
+
+    if(dataProv[6].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[6].localidad.push(item.gsx$localidad.$t);
+      dataProv[6].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "ENTRE RIOS"){
+
+    if(dataProv[7].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[7].localidad.push(item.gsx$localidad.$t);
+      dataProv[7].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "FORMOSA"){
+
+    if(dataProv[8].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[8].localidad.push(item.gsx$localidad.$t);
+      dataProv[8].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "JUJUY"){
+
+    if(dataProv[9].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[9].localidad.push(item.gsx$localidad.$t);
+      dataProv[9].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "LA PAMPA"){
+
+    if(dataProv[10].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[10].localidad.push(item.gsx$localidad.$t);
+      dataProv[10].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "LA RIOJA"){
+
+    if(dataProv[11].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[11].localidad.push(item.gsx$localidad.$t);
+      dataProv[11].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "MENDOZA"){
+
+    if(dataProv[12].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[12].localidad.push(item.gsx$localidad.$t);
+      dataProv[12].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "MISIONES"){
+
+    if(dataProv[13].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[13].localidad.push(item.gsx$localidad.$t);
+      dataProv[13].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "NEUQUEN"){
+
+    if(dataProv[14].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[14].localidad.push(item.gsx$localidad.$t);
+      dataProv[14].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "RIO NEGRO"){
+
+    if(dataProv[15].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[15].localidad.push(item.gsx$localidad.$t);
+      dataProv[15].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SALTA"){
+
+    if(dataProv[16].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[16].localidad.push(item.gsx$localidad.$t);
+      dataProv[16].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SAN JUAN"){
+
+    if(dataProv[17].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[17].localidad.push(item.gsx$localidad.$t);
+      dataProv[17].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SAN LUIS"){
+
+    if(dataProv[18].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[18].localidad.push(item.gsx$localidad.$t);
+      dataProv[18].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SANTA CRUZ"){
+
+    if(dataProv[19].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[19].localidad.push(item.gsx$localidad.$t);
+      dataProv[19].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SANTA FE"){
+
+    if(dataProv[20].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[20].localidad.push(item.gsx$localidad.$t);
+      dataProv[20].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "SANTIAGO DEL ESTERO"){
+
+    if(dataProv[21].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[21].localidad.push(item.gsx$localidad.$t);
+      dataProv[21].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "TIERRA DEL FUEGO"){
+
+    if(dataProv[22].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[22].localidad.push(item.gsx$localidad.$t);
+      dataProv[22].localidad.sort();
+    }
+
+  }
+});
+
+$.each( dataDrive, function( key, item ) {
+  if (item.gsx$provincia.$t == "TUCUMAN"){
+
+    if(dataProv[23].localidad.indexOf(item.gsx$localidad.$t) == -1){
+      dataProv[23].localidad.push(item.gsx$localidad.$t);
+      dataProv[23].localidad.sort();
+    }
+
+  }
+});
+
+
+
+});
+
+
+// hasta acá pusheo
+
+
+
+
+
+
+
 
 
            if ($('select[name="provincia"]').val() === '') {
@@ -819,6 +811,12 @@ layout: argentina
                     }
 
             }
+
+
+
+
+
+
 
 
 
