@@ -2,7 +2,7 @@
 layout: argentina
 ---
 
-<section class="jumbotron" style="background-image: url('/sites/default/files/eetb_tecnopolis_header.jpg');">
+<section class="jumbotron" style="background-image: url('/sites/default/files/tecnopolis.jpg');">
   <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -10,6 +10,7 @@ layout: argentina
           <ol class="breadcrumb pull-left">
             <li><a href="/">Inicio</a></li>
             <li><a href="/elestadoentubarrio">El Estado en tu Barrio</a></li>
+            <li><a href="/elestadoentubarrio/buenosaires">Buenos Aires</a></li>
             <li class="active">Tecnópolis</li>
           </ol>
         </div>
@@ -30,8 +31,6 @@ layout: argentina
   </div>
   <div class="overlay"></div>
 </section>
-
- ""
 
 <div class="container lugares-mapa hidden">
   <section>
@@ -57,7 +56,7 @@ layout: argentina
       </div>
       <div class="col-sm-12 text-center"> 
         <p>¿Querés que te avisemos cuando estemos cerca de tu casa?</p>
-        <p><a href="/elestadoentubarrio/dondeestuvimos" class="btn btn-primary btn-success m-t-1">Registrate</a></p>
+        <p><a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" target="_blank" class="btn btn-primary btn-success m-t-1">Registrate</a></p>
       </div>
     </div>
   </div>
@@ -92,6 +91,8 @@ layout: argentina
 
 <div class="container"> <hr> </div>
 
+
+<!--
 <section>
   <div class="container">
     <div class="row">
@@ -99,17 +100,18 @@ layout: argentina
         <h3 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio en Tecnópolis</h3>
       </div>
       <div class="col-md-4">
-          <img src="/sites/default/files/eetb_tecnopolis_1.jpg" class="img-responsive img-rounded m-b-1">
+          <img src="/sites/default/files/eetb_tucuman_1.jpg" class="img-responsive img-rounded m-b-1">
       </div>      
       <div class="col-md-4">
-         <img src="/sites/default/files/eetb_tecnopolis_2.jpg" class="img-responsive img-rounded m-b-1">
+         <img src="/sites/default/files/eetb_tucuman_2.jpg" class="img-responsive img-rounded m-b-1">
       </div>
       <div class="col-md-4">
-         <img src="/sites/default/files/eetb_tecnopolis_3.jpg" class="img-responsive img-rounded m-b-1">
+         <img src="/sites/default/files/eetb_tucuman_3.jpg" class="img-responsive img-rounded m-b-1">
       </div>
     </div>    
   </div>
 </section>
+-->
 
 <section class="bg-gray">
   <div class="container text-center">
@@ -124,9 +126,9 @@ layout: argentina
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/es.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
 
-<script> var idProvincia = 13; </script>
+<script> var idProvincia = 21; </script>
 
 <script>
     jQuery('[data-render=mes]').text( moment().format('MMMM') );
@@ -134,7 +136,7 @@ layout: argentina
   var initMap = function(){
 
     var templates = {
-      barrio: '<div class="col-xs-12 col-sm-6 col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
+      barrio: '<div class="col-xs-12 col-sm-6 col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><div data-estado="estado" class="alert alert-warning {alerta}"><div class="media"><div class="media-left media-middle"><i class="fa fa-warning fa-fw fa-2x"></i></div><div class="media-body"><p class="m-b-0"><small><span>{estado}</span></small></p></div></div></div><p><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
       servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
     }
 
@@ -176,7 +178,18 @@ layout: argentina
             .replace(/{fin}/gi, item.fin)
             .replace(/{hora}/gi, item.hora)
             .replace(/{direccion}/gi, item.direccion)
-            .replace(/{lugar}/gi, item.lugar);
+            .replace(/{lugar}/gi, item.lugar)
+            .replace(/{estado}/gi, item.estado);
+
+            var urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+
+            if(item.estado != '') {
+              html = html.replace(/{alerta}/gi, '');
+              urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker_disabled.png";
+            }else{
+              html = html.replace(/{alerta}/gi, 'hidden');
+            }
+
 
             jQuery('[data-render=barrios]').append( html );
 
@@ -186,7 +199,7 @@ layout: argentina
               position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
               title: item.lugar,
               icon: {
-                url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+                url: urlMarker,
                 size: new google.maps.Size(20, 20),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -197,12 +210,17 @@ layout: argentina
 
             markers[index].addListener('click', function() {
               jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
+                 jQuery('html,body').animate({
+                   scrollTop:  jQuery('[data-render=barrios] > div').eq( index ).offset().top
+                 }, '500', 'swing' );
             });
+
+
 
           });
 
           map.setCenter(latlngbounds.getCenter());
-          map.fitBounds(latlngbounds);
+          map.setZoom( 16 );
           
 
           jQuery('body').on('click', '[data-render=barrios] > div', function(){
@@ -258,10 +276,10 @@ layout: argentina
 
         jQuery.each(response.feed.entry, function(index, row){
 
-          if( moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isValid() 
-              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isValid()
-              && moment(row.gsx$inicio.$t, 'DD-MM-AAAA').isBefore( moment().add(30, 'days') )
-              && moment(row.gsx$fin.$t, 'DD-MM-AAAA').isAfter( moment() ) 
+          if( moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isValid() 
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isValid()
+              && moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isBefore( moment().add(30, 'days') )
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment().add(-1, 'days') ) 
               && row.gsx$latitud.$t != ''
               && row.gsx$longitud.$t != ''
             ){
@@ -277,6 +295,7 @@ layout: argentina
               lugar: row.gsx$lugar.$t,
               lat: row.gsx$latitud.$t,
               lng: row.gsx$longitud.$t,
+              estado: row.gsx$motivosuspendido.$t
             });
           }
 
