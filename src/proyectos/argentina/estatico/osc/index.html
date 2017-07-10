@@ -56,7 +56,7 @@ layout: argentina
         <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-ciencia-apoyo-economico"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo económico</h2>
-          <p>Convocatorias, subsidios, premios, becas, concursos y otras formas de financiamiento.</p>
+          <p>Incluye convocatorias, premios, subsidios, concursos, becas y otras formas de financiamiento.</p>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ layout: argentina
         <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-solidaridad"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo técnico</h2>
-          <p>Asistencia técnica, tecnológica y distinto tipo de ayuda para equipamiento o innovación.</p>
+          <p>Comprende asistencia técnica y equipamiento.</p>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ layout: argentina
         <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-social"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Apoyo a beneficiarios</h2>
-          <p>Ayudas para la población beneficiaria de las OSC, en articulación con ellas o en forma conjunta.</p>
+          <p>Incluye recursos destinados al público/ población beneficiaria de las OSC, que complementan el trabajo de dichas organizaciones o que se realizan en articulación con ellas.</p>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@ layout: argentina
         <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-capacitacion"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Capacitaciones</h2>
-          <p>Cursos, talleres, jornadas, seminarios, simposios y diversas actividades de formación.</p>
+          <p>Comprende capacitaciones, cursos y talleres.</p>
         </div>
       </div>
     </div>
@@ -96,13 +96,30 @@ layout: argentina
         <div class="panel-heading hidden-xs bg-primary"><i class="fa recursos icono-arg-servicios"></i></div>
         <div class="panel-body">
           <h2 class="h3 m-b-1">Participación ciudadana</h2>
-          <p>Eventos, encuentros, mesas de diálogo, apoyo al voluntariado, auspicios institucionales.</p>
+          <p>Incluye distintas instancias de participación ciudadana, eventos, encuentros, mesas de diálogo, mesas de trabajo, apoyo al voluntariado y auspicio institucional.</p>
         </div>
       </div>
     </div>
 
 
     </div>
+
+
+      <div class="row">
+        <div class="col-md-12">    
+            <h3>Encontrá los recursos para tu OSC</h3>
+            <label class="m-t-2">Filtrá por apoyo</label>
+            <div id="tipo-acceso" class="btn-group btn-group-justified margin-60">
+                <a data-tipoacceso="todos" class="btn btn-default active" value="todos">Todos</a>
+                <a data-tipoacceso="Apoyo económico" class="btn btn-default" value="Apoyo económico">Apoyo económico</a>
+                <a data-tipoacceso="Apoyo técnico" class="btn btn-default" value="Apoyo técnico">Apoyo técnico</a>
+                <a data-tipoacceso="Participación Ciudadana" class="btn btn-default" value="Participación Ciudadana">Participación Ciudadana</a>
+                <a data-tipoacceso="Capacitación" class="btn btn-default" value="Capacitación">Capacitación</a>
+                <a data-tipoacceso="Apoyo a beneficiarios" class="btn btn-default" value="Apoyo a beneficiarios">Apoyo a beneficiarios</a>
+            </div>
+        </div>
+      </div>
+
 
     <div id="tarifas">
       <div class="row">
@@ -134,7 +151,7 @@ layout: argentina
           </div>
         </div>
 
-        <div class="col-md-4">
+<!--         <div class="col-md-4">
           <div class="form-group">
             <label for="">Filtrá por apoyo</label>
             <select id="tipo-acceso" class="form-control">
@@ -146,11 +163,11 @@ layout: argentina
               <option data-tipoacceso="Apoyo a beneficiarios" value="Apoyo a beneficiarios">Apoyo a beneficiarios</option>
             </select>
           </div>
-        </div>
+        </div> -->
 
 
 
-        <div class="col-md-4">    
+        <div class="col-md-8">    
           <div class="form-group">
           <label for="">Buscá organizaciones</label>
             <input class="form-control search" placeholder="Buscar...">
@@ -165,7 +182,7 @@ layout: argentina
             <th style="width: 400px;"><a class="sort" data-sort="nombre">Programa <span class="caret"></span></a></th>
             <th><a class="sort" data-sort="tema">Tema <span class="caret"></span></a></th>
             <th style="width: 180px;"><a class="sort" data-sort="tipo">Apoyo <span class="caret"></span></a></th>
-            <th style="width: 180px;"><a class="sort" data-sort="ministerio">Organismo<span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="ministerio">Organismos<span class="caret"></span></a></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
@@ -188,8 +205,8 @@ layout: argentina
       <div class="row">
       <div class="col-md-12 text-center m-b-2">
 
-      <p>Si formás parte de una de esas organizaciones, con o sin personería jurídica, este espacio de participación ciudadana seguramente te va a interesar.</p>
-        
+<!--       <p>Si formás parte de una de esas organizaciones, con o sin personería jurídica, este espacio de participación ciudadana seguramente te va a interesar.</p>
+ -->        
         <a href="https://www.argentina.gob.ar/guia-osc/preguntas-frecuentes" class="btn btn-primary btn-md">Preguntas frecuentes</a>
 
       </div>
@@ -287,12 +304,17 @@ $(document).ready(function () {
 
     });
 
-    $("#tipo-acceso").on("change", function() {
-      var vehiculo = $( "#tipo-acceso option:selected" ).data('tipoacceso');
-      showtarifas(vehiculo);
+    // $("#tipo-acceso").on("change", function() {
+    //   var vehiculo = $( "#tipo-acceso option:selected" ).data('tipoacceso');
+    //   showtarifas(vehiculo);
 
-    });
+    // });
     
+    $("#tipo-acceso a").on("click", function() {
+      $(this).addClass('active').siblings().removeClass('active'); 
+      var acceso = $(this).data("tipoacceso");
+      showtarifas(acceso);
+    });      
 
 });
 })(jQuery);
