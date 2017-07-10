@@ -53,6 +53,8 @@ layout: argentina
             <table class="table table-spaced table-hover">
               <thead>
                 <tr>
+                  <th>Provincia</th>
+                  <th>Municipio</th>
                   <th>Razón Social</th>
                   <th style="width: 170px;">Rubro</th>
                   <th style="width: 140px;">CUIT</th>
@@ -103,6 +105,8 @@ layout: argentina
 
           $.each( feriantesPj, function( key, item ) {
               html += '<tr>';
+              html += ' <td class="Provincia">'+ item.gsx$provincia.$t + '</td>';
+              html += ' <td class="Municipio">'+ item.gsx$municipio.$t + '</td>';
               html += ' <td class="Razón Social">'+ item.gsx$razónsocial.$t + '</td>';
               html += ' <td class="Rubro">'+ item.gsx$rubro.$t + '</td>';
               html += ' <td class="CUIT">'+ item.gsx$cuit.$t + '</td>';
@@ -114,7 +118,7 @@ layout: argentina
           showData.append(html);
 
           var listOptions = {
-          valueNames: [ 'Rubro', 'Razón Social', 'CUIT' ],
+          valueNames: [ 'Provincia', 'Municipio', 'Rubro', 'Razón Social', 'CUIT' ],
           page: 20,
           plugins: [ ListPagination({}) ]
           };
