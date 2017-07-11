@@ -136,7 +136,8 @@ layout: argentina
               <option data-tipovehiculo="Comunidad / Comunitario" value="Comunidad / Comunitario">Comunidad / Comunitario</option>
               <option data-tipovehiculo="Educación y deportes" value="Educación y deportes">Educación y deportes</option>
               <option data-tipovehiculo="Contexto de Encierro" value="Contexto de Encierro">Contexto de Encierro</option>
-              <option data-tipovehiculo="Cultura Fortalecimiento" value="Cultura Fortalecimiento">Cultura Fortalecimiento</option>
+              <option data-tipovehiculo="Cultura" value="Cultura">Cultura</option>
+              <option data-tipovehiculo="Fortalecimiento" value="Fortalecimiento">Fortalecimiento</option>
               <option data-tipovehiculo="Ciencia y Tecnología / Investigación" value="Ciencia y Tecnología / Investigación">Ciencia y Tecnología / Investigación</option>
               <option data-tipovehiculo="Transparencia" value="Transparencia">Transparencia</option>
               <option data-tipovehiculo="Derechos Humanos" value="Derechos Humanos">Derechos Humanos</option>
@@ -169,7 +170,7 @@ layout: argentina
 
         <div class="col-md-8">    
           <div class="form-group">
-          <label for="">Buscá por Organismos</label>
+          <label for="">Busca por Ministerio u Organismo</label>
             <input class="form-control search" placeholder="Buscar...">
           </div>
         </div>
@@ -324,13 +325,16 @@ $(document).ready(function () {
 
 <script type="text/javascript">
   $(document).ready( function() {
-    $('table').addClass('table-mobile');
-    var texto = [];
-    $("table th").each( function(index, value){
-      texto.push($(this).text());
-      $("table tr td").each( function(indice, value){
-        $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
+    setTimeout(function() {
+      $('table').addClass('table-mobile');
+      var texto = [];
+      $("table th").each( function(index, value){
+        texto.push($(this).text());
+        $("table tr td").each( function(indice, value){
+          $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
+        })
       })
-    })
+    }, 1000);
+
   });
 </script>

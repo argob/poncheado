@@ -72,7 +72,7 @@ a.panel.active i {
               </div>
               <div class="media-body">
                 <h3>Apoyo económico</h3>
-                <p>Incluye convocatorias, premios, subsidios, concursos, becas y otras formas de financiamiento.</p>
+                <p>Comprende financiamiento como subsidios, concursos, entre otros.</p>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ a.panel.active i {
               </div>
               <div class="media-body">
                 <h3>Apoyo a beneficiarios</h3>
-                <p>Incluye recursos destinados al público/ población beneficiaria de las OSC, que complementan el trabajo de dichas organizaciones o que se realizan en articulación con ellas.</p>
+                <p>Comprende programas destinados al público beneficiario de OSC.</p>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ a.panel.active i {
               </div>
               <div class="media-body">
                 <h3>Capacitaciones</h3>
-                <p>Comprende capacitaciones, cursos y talleres.</p>
+                <p>Comprende capacitaciones, cursos y talleres para OSC o sus beneficiarios</p>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ a.panel.active i {
               </div>
               <div class="media-body">
                 <h3>Participación ciudadana</h3>
-                <p>Incluye distintas instancias de participación ciudadana, eventos, encuentros, mesas de diálogo, mesas de trabajo, apoyo al voluntariado y auspicio institucional.</p>
+                <p>Comprende eventos, encuentros, mesas de trabajo,  entre otros.</p>
               </div>
             </div>
           </div>
@@ -146,9 +146,9 @@ a.panel.active i {
       <div class="col-xs-12 col-sm-6 col-md-4">
         <a class="panel panel-default active" data-tipoacceso="todos">
           <div class="panel-body">
-            <div class="media">
+            <div class="media media-middle">
               <div class="media-left padding-20">
-                <i class="fa icono-arg-social fa-fw fa-2x text-primary"></i>
+                <i class="fa icono-arg-chequeado fa-fw fa-2x text-primary"></i>
               </div>
               <div class="media-body">
                 <h3>Todos</h3>
@@ -193,7 +193,8 @@ a.panel.active i {
               <option data-tipovehiculo="Comunidad / Comunitario" value="Comunidad / Comunitario">Comunidad / Comunitario</option>
               <option data-tipovehiculo="Educación y deportes" value="Educación y deportes">Educación y deportes</option>
               <option data-tipovehiculo="Contexto de Encierro" value="Contexto de Encierro">Contexto de Encierro</option>
-              <option data-tipovehiculo="Cultura Fortalecimiento" value="Cultura Fortalecimiento">Cultura Fortalecimiento</option>
+              <option data-tipovehiculo="Cultura" value="Cultura">Cultura</option>
+              <option data-tipovehiculo="Fortalecimiento" value="Fortalecimiento">Fortalecimiento</option>
               <option data-tipovehiculo="Ciencia y Tecnología / Investigación" value="Ciencia y Tecnología / Investigación">Ciencia y Tecnología / Investigación</option>
               <option data-tipovehiculo="Transparencia" value="Transparencia">Transparencia</option>
               <option data-tipovehiculo="Derechos Humanos" value="Derechos Humanos">Derechos Humanos</option>
@@ -211,7 +212,7 @@ a.panel.active i {
 
         <div class="col-md-8">    
           <div class="form-group">
-          <label for="">Buscá por Organismos</label>
+          <label for="">Busca por Ministerio u Organismo</label>
             <input class="form-control search" placeholder="Buscar...">
           </div>
         </div>
@@ -367,13 +368,16 @@ $(document).ready(function () {
 
 <script type="text/javascript">
   $(document).ready( function() {
-    $('table').addClass('table-mobile');
-    var texto = [];
-    $("table th").each( function(index, value){
-      texto.push($(this).text());
-      $("table tr td").each( function(indice, value){
-        $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
+    setTimeout(function() {
+      $('table').addClass('table-mobile');
+      var texto = [];
+      $("table th").each( function(index, value){
+        texto.push($(this).text());
+        $("table tr td").each( function(indice, value){
+          $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
+        })
       })
-    })
+    }, 1000);
+
   });
 </script>
