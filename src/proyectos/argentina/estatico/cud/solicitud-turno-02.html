@@ -92,9 +92,8 @@ layout: argentina
     <script>
 
       var templates = {
-        description: `<p>Según el trámite a realizar ({tipoTramite}) para 
-        <strong data-render="tipo-discapacidad">
-        </strong> de acuerdo a la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta lista de cosas:</p>`,
+        description: `<p>Según el trámite a realizar ({tipoTramite}) el origen del problema de salud por el cual se solicita el certificado (<strong data-render="tipo-discapacidad">)
+        </strong>, la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>`,
         item: `<li>{requisito}</li>`,
         descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a cualquiera de los siguientes lugares </p>`,
         lugar: `<div class="form-group m-t-2">
@@ -150,7 +149,7 @@ layout: argentina
                     show = true;
                 }              
 
-                if( (item.gsx$auditivo.$t == "X" || item.gsx$auditivo.$t == "x") && data.discapacidadauditivo == 'si' ){
+                if( (item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x") && data.discapacidadauditivo == 'si' ){
                     show = true;
                 }              
 
