@@ -265,6 +265,7 @@ a.panel.active i {
 <!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="{{ "/proyectos/argentina/estatico/osc/js/tableMobile.js" | prepend: site.baseurl }}"></script>
 
 <script>
 
@@ -365,19 +366,8 @@ $(document).ready(function () {
 
 </script>
 
-
 <script type="text/javascript">
   $(document).ready( function() {
-    setTimeout(function() {
-      $('table').addClass('table-mobile');
-      var texto = [];
-      $("table th").each( function(index, value){
-        texto.push($(this).text());
-        $("table tr td").each( function(indice, value){
-          $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
-        })
-      })
-    }, 1000);
-
+    $("table").tableMobile();
   });
 </script>

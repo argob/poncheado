@@ -322,19 +322,10 @@ $(document).ready(function () {
 
 </script>
 
+<script src="{{ "/proyectos/argentina/estatico/osc/js/tableMobile.js" | prepend: site.baseurl }}"></script>
 
 <script type="text/javascript">
   $(document).ready( function() {
-    setTimeout(function() {
-      $('table').addClass('table-mobile');
-      var texto = [];
-      $("table th").each( function(index, value){
-        texto.push($(this).text());
-        $("table tr td").each( function(indice, value){
-          $('table tr:eq('+indice+') td:eq('+index+')').append('<span class="td-label">'+ texto[index] +'</span>');
-        })
-      })
-    }, 1000);
-
+    $("table").tableMobile();
   });
 </script>
