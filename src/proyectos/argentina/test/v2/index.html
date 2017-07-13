@@ -376,57 +376,32 @@ layout: argentina-nosearch
   </div>
 </section> 
 
-<div data-render="modales"></div> 
+
+<div id="modal-test" class="modal fade" tabindex="-1" role="dialog"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+        <h4 class="modal-title">¿Querés ayudarnos a mejorar Argentina.gob.ar?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Sólo te va a llevar un momento.</p>
+        <p><a href="test.html" class="btn btn-link">Comenzar</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
 
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/11J5eayFQky_uaAMUic-I1N0jPDUB1Jl2TQOwkIAxAeU/1/public/values?alt=json', function (data) {
-        window.testeos = data.feed.entry;
-        showTesteos();
-        console.log(data);
-    });
-
-    window.showTesteos = function(){
-        var showModal = $('[data-render=modales]');
-
-        var modal = '';
-
-        $.each( testeos, function( key, item ) {
-
-            modal += '<div id="testeo-'+ key + '" class="modal fade" tabindex="-1" role="dialog">';
-            modal += '  <div class="modal-dialog modal-lg">';
-            modal += '    <div class="modal-content">';
-            modal += '      <div class="modal-header">';
-            modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
-            modal += '          <h4 class="modal-title">'+ item.gsx$ejercicio.$t + '</h4>';
-            modal += '      </div>';
-            modal += '      <div class="modal-body p-x-2">';
-            modal += '        <p>'+ item.gsx$contenido.$t + '</p>';
-            modal += '      </div>';
-            modal += '    </div>';
-            modal += '  </div>';
-            modal += '</div>';            
-    
-        });
-
-        showModal.empty();
-        showModal.append(modal); 
-
-    }
-
-  function numberRandom(min,max) { 
-    return Math.floor(Math.random() * (max - min + 1) + min); 
-  }
-  var n = numberRandom(1,17); 
-  console.log(n);
-
   setTimeout(function() {
-    $('#testeo-'+ n + '').modal('show');
+    $('#modal-test').modal('show');
   }, 500);
-      
+     
 
 });
 })(jQuery);
