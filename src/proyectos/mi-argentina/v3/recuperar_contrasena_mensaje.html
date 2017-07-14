@@ -9,8 +9,39 @@ layout: mi-argentina
       <h1 class="h2">Revisá tu correo electrónico para recuperar tu contraseña</h1>
       <p>Te va a llegar un correo electrónico a <strong>maripau@gmail.com</strong> con instrucciones para poder ingresar a tu cuenta.</p>
 
-      <p class="m-t-4"><a href="recuperar_contrasena_vuelta.html" class="btn btn-primary">Argentina.gob.ar</a></p>
+      <p class="m-t-4" id="botones"><a href="recuperar_contrasena_vuelta.html" class="btn btn-primary m-r-2">Argentina.gob.ar</a></p>
 
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+
+	var contenedorBotones = document.getElementById('botones');
+	
+    var url = window.location.href;
+    var mail = url.split("@");
+    var dominio = mail[1];
+
+    var boton = document.createElement("a");
+	boton.className = "btn btn-link";
+	boton.innerHTML = "Abrir mi mi correo electrónico";
+
+if (dominio == "gmail.com"){
+	boton.setAttribute("href", "https://mail.gmail.com");
+	}else if (dominio == "yahoo.com"){
+		boton.setAttribute("href", "https://mail.yahoo.com");
+		}else if (dominio == "outlook.com"){
+			boton.setAttribute("href", "https://outlook.live.com");
+			}else if (dominio == "hotmail.com"){
+				boton.setAttribute("href", "https://www.hotmail.com");
+				}else if (dominio == "live.com"){
+					boton.setAttribute("href", "https://mail.live.com");
+					}
+
+	contenedorBotones.appendChild(boton);
+
+
+
+
+</script>
