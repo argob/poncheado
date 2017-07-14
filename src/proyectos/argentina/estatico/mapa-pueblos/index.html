@@ -26,6 +26,10 @@
           mapTypeId: 'roadmap'
         });
 
+        infoWindow = new google.maps.InfoWindow({
+          content: ""
+        });
+
         map.data.loadGeoJson('pueblos.geojson');
 
         map.data.setStyle({
@@ -34,20 +38,18 @@
           strokeWeight: 2
         });
 
+
+        //listen for click events
+      map.data.addListener('click', function(event) {
+        //show an infowindow on click   
+        infoWindow.setContent('<div style="line-height:1.35;overflow:hidden;white-space:nowrap;"> Pueblo: '+
+                      event.feature.f.Pueblo  + "</div>");
+        var anchor = new google.maps.MVCObject();
+        anchor.set("position",event.latLng);
+        infoWindow.open(map,anchor);
+      });
       }
 
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      window.eqfeed_callback = function(results) {
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-        }
-      }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&callback=initMap">
