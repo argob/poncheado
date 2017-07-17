@@ -133,53 +133,166 @@ layout: argentina
 
                 var show = false;
 
-                if( (item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x") && data.discapacidadvisual == 'si' ){
+                // if(data.tipotramite == "Renovacion") {
+                //     show = true;
+                // }
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")) {
                     show = true;
                 }
 
-                if( (item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x") && data.discapacidadmotora == 'si'  ){
+                if(( item.gsx$mayorde18años.$t == "") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && data.mayor18 == 'no'  ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x") && data.discapacidadtraumatologico == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$curatela.$t == "X" || item.gsx$curatela.$t == "x")  && data.mayor18 == 'si' && data.tutoria == 'si'  ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x") && data.discapacidadreumatologico == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "") 
+                  && data.mayor18 == 'si' ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x") && data.discapacidadauditivo == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && ( item.gsx$obrasocial.$t == "X" || item.gsx$obrasocial.$t == "x") && data.coberturamedica == 'Obrasocial' ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x") && data.discapacidadrespiratorio == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && ( item.gsx$coberturaprepaga.$t == "X" || item.gsx$coberturaprepaga.$t == "x") && data.coberturamedica == 'Medicinapre-paga' ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x") && data.discapacidadcardiovascular == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "") && ( item.gsx$obrasocial.$t == "X" || item.gsx$obrasocial.$t == "x") && data.mayor18 == 'si' && data.coberturamedica == 'Obrasocial' ){
                     show = true;
-                }              
+                } 
 
-                if( (item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x") && data.discapacidadurologico == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "") && (item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && ( item.gsx$obrasocial.$t == "X" || item.gsx$obrasocial.$t == "x") && data.mayor18 == 'no' && data.coberturamedica == 'Obrasocial' ){
                     show = true;
-                }              
+                }        
 
-                if( (item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x") && data.discapacidaddigestivo == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x") && data.discapacidadmental == 'si' ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x") && data.discapacidadhepatico == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x") && data.discapacidadepilepsia == 'si' ){
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x") && data.discapacidadmental == 'si' ){
+                if(
+                  ( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") 
+                  && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  
+                  && (
+                    ( item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x" && data.discapacidadmotora == 'si' ) 
+                    || ( item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x" && data.discapacidadtraumatologico == 'si') 
+                    || ( item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x") && data.discapacidadreumatologico == 'si') ) {
                     show = true;
-                }              
+                }
 
-                if( (item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x") && data.discapacidadepilepsia == 'si' ){
+                if(( item.gsx$mayorde18años.$t == "") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x") && data.discapacidadvisual == 'si' ){
                     show = true;
-                }              
+                }                
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "")  && ( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x") && data.discapacidadvisual == 'si' ){
+                    show = true;
+                }                
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && ( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x") && data.discapacidadauditivo == 'si' ){
+                    show = true;
+                }
+
+                if(( item.gsx$mayorde18años.$t == "" ) && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") && ( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x")  && data.discapacidadauditivo == 'si' ){
+                    show = true;
+                }
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "") && ( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x")  && data.discapacidadauditivo == 'si' ){
+                    show = true;
+                }                
+
+                if( item.gsx$mayorde18años.$t == "" && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  
+                  && (
+                    ( item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x") && data.discapacidadrespiratorio == 'si' 
+                    || ( item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x") && data.discapacidadcardiovascular == 'si' 
+                    || ( item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x") && data.discapacidadurologico == 'si' 
+                    || ( item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x") && data.discapacidaddigestivo == 'si' 
+                    || ( item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x") && data.discapacidadhepatico == 'si' )) {
+                    show = true;
+                }
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") 
+                  && ( item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x"  && data.discapacidadrespiratorio == 'si' )) {
+                    show = true;
+                }                
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") 
+                  && ( item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x" && data.discapacidadhepatico == 'si')) {
+                    show = true;
+                }    
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x") 
+                  && ( item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x"  && data.discapacidaddigestivo == 'si')) {
+                    show = true;
+                }    
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  
+                  && (( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x" && data.discapacidadvisual == 'si') 
+                  || ( item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x" && data.discapacidadmotora == 'si') 
+                  || ( item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x" && data.discapacidadtraumatologico == 'si') 
+                  || ( item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x" && data.discapacidadreumatologico == 'si') 
+                  || ( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x" && data.discapacidadauditivo == 'si') 
+                  || ( item.gsx$visceralrespiratoria.$t == "X" || item.gsx$visceralrespiratoria.$t == "x" && data.discapacidadrespiratorio == 'si') 
+                  || ( item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x" && data.discapacidadcardiovascular == 'si') 
+                  || ( item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x" && data.discapacidadurologico == 'si') 
+                  || ( item.gsx$visceraldigestivo.$t == "X" || item.gsx$visceraldigestivo.$t == "x" && data.discapacidaddigestivo == 'si') 
+                  || ( item.gsx$visceralhepático.$t == "X" || item.gsx$visceralhepático.$t == "x" && data.discapacidadhepatico == 'si') 
+                  || ( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x" && data.discapacidadmental == 'si') 
+                  || ( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x" && data.discapacidadepilepsia == 'si') )) {
+                    show = true;
+                }
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  
+                  && (( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x" && data.discapacidadmental == 'si') 
+                  || ( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x" && data.discapacidadepilepsia == 'si') )) {
+                    show = true;
+                }                
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$epilepsia.$t == "X" || item.gsx$epilepsia.$t == "x" && data.discapacidadepilepsia == 'si')) {
+                    show = true;
+                }   
+
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$mentalintelectual.$t == "X" || item.gsx$mentalintelectual.$t == "x" && data.discapacidadmental == 'si')) {
+                    show = true;
+                }   
+
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$motoraneurológica.$t == "X" || item.gsx$motoraneurológica.$t == "x" && data.discapacidadmotora == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$motoratraumatológica.$t == "X" || item.gsx$motoratraumatológica.$t == "x" && data.discapacidadtraumatologico == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$motorareumatológica.$t == "X" || item.gsx$motorareumatológica.$t == "x" && data.discapacidadreumatologico == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x" && data.discapacidadvisual == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$auditiva.$t == "X" || item.gsx$auditiva.$t == "x" && data.discapacidadauditivo == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$visceralcardiovascular.$t == "X" || item.gsx$visceralcardiovascular.$t == "x" && data.discapacidadcardiovascular == 'si')) {
+                    show = true;
+                }  
+
+                if(( item.gsx$mayorde18años.$t == "X" || item.gsx$mayorde18años.$t == "x") && ( item.gsx$menor18años.$t == "X" || item.gsx$menor18años.$t == "x")  && ( item.gsx$visceralrenalurológica.$t == "X" || item.gsx$visceralrenalurológica.$t == "x" && data.discapacidadurologico == 'si')) {
+                    show = true;
+                }  
+
 
                  if(show){
 
@@ -314,7 +427,6 @@ layout: argentina
                     //.replace(/{localidad}/gi, item.gsx$locality.$t)
                     .replace(/{telefono}/gi, item.gsx$telefono.$t);
 
-                    console.log(html);
                       jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
 
                   }
