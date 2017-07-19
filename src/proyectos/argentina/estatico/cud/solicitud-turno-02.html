@@ -36,6 +36,7 @@ layout: argentina
            <div id="show-data-description-lugar" class="hidden"></div>    
 
             <p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
+            <p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certidicado.</p>
           </div>
         </div>            
 
@@ -104,7 +105,11 @@ layout: argentina
                 </div>        
                 <div class="form-group m-t-2">
                   <label class="control-label">Dirección</label>
-                  <p>{direccion} Teléfono {telefono}</p>
+                  <p>{direccion}</p>
+                </div>
+                <div class="form-group m-t-2">
+                  <label class="control-label">Teléfono</label>
+                  <p>{telefono}</p>
                 </div>
                 <hr />`, 
         tipoDiscapacidad: `{tipoDiscapacidad}`                                 
@@ -547,7 +552,7 @@ layout: argentina
 
                     if(data.tipotramite == "Renovacion") {
 
-                        var htmlRenovacion = 'Llevar <strong>certificado vencido</strong>.';
+                        var htmlRenovacion = 'Llevar <strong>certificado vencido</strong> o <strong>próximo a vencer</strong> en los siguientes 30 días.';
 
                         $('#show-renovacion').removeClass('hidden').append( htmlRenovacion );                      
                     }
