@@ -57,7 +57,7 @@ layout: argentina
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="userProvincia">Provincia </label>
-                    <select class="form-control form-select" id="userProvincia" name="provincia" required>
+                    <select class="form-control form-select chosen-select" id="userProvincia" name="provincia" required>
                       <option value="0">Elegir provincia</option>
                       <option value="02">CIUDAD DE BUENOS AIRES</option>
                       <option value="06">BUENOS AIRES</option>
@@ -89,7 +89,7 @@ layout: argentina
                 </div>
               </div>
               <div class="m-t-2 m-b-1">
-                <button class="btn btn-link">Continuar</button>
+                <button class="btn btn-success">Continuar</button>
               </div>
 
             </form>
@@ -102,6 +102,11 @@ layout: argentina
     </article>
   </section>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet" />
+<script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
 
 <script>
 
@@ -146,3 +151,17 @@ $(function(){
 });
 
 </script>
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({width: '100%'});
+  });
+</script>
+
+<style>
+
+.chosen-container-single .chosen-single span {
+    line-height: 42px;
+}
+
+ </style>
