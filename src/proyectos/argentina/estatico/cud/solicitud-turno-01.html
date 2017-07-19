@@ -130,51 +130,51 @@ layout: argentina
                     <div class="checkbox">
                     <fieldset>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadepilepsia" value="si" required/> 
+                        <input type="checkbox" name="discapacidadepilepsia" value="si"/> 
                         Epilepsia
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmental" value="si" required/> 
+                        <input type="checkbox" name="discapacidadmental" value="si"/> 
                         Trastorno mental intelectual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadvisual" value="si" required/> 
+                        <input type="checkbox" name="discapacidadvisual" value="si"/> 
                         Origen visual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmotora" value="si" required/> 
+                        <input type="checkbox" name="discapacidadmotora" value="si"/> 
                         Trastorno motor neurológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadtraumatologico" value="si" required/> 
+                        <input type="checkbox" name="discapacidadtraumatologico" value="si"/> 
                         Trastorno motor traumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadreumatologico" value="si" required/> 
+                        <input type="checkbox" name="discapacidadreumatologico" value="si"/> 
                         Trastorno motor reumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadauditivo" value="si" required/> 
+                        <input type="checkbox" name="discapacidadauditivo" value="si"/> 
                         Origen auditivo
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadrespiratorio" value="si" required/> 
+                        <input type="checkbox" name="discapacidadrespiratorio" value="si"/> 
                         Enfermedad respiratoria
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadcardiovascular" value="si" required/> 
+                        <input type="checkbox" name="discapacidadcardiovascular" value="si"/> 
                         Enfermedad cardiovascular
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadurologico" value="si" required/> 
+                        <input type="checkbox" name="discapacidadurologico" value="si"/> 
                         Enfermedad renal urológica
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidaddigestivo" value="si" required/> 
+                        <input type="checkbox" name="discapacidaddigestivo" value="si"/> 
                         Enfermedad digestiva
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadhepatico" value="si" required/> 
+                        <input type="checkbox" name="discapacidadhepatico" value="si"/> 
                         Enfermedad hepática
                       </label>
                       </fieldset>
@@ -302,14 +302,14 @@ layout: argentina
             var wizard_form = $("#wizard-form-cud");
             wizard_form.validate({
               errorPlacement: function(error, element) {
-                if (element.is(":radio") || element.is(":checkbox")){
+                if (element.is(":radio")){
                   error.insertBefore(element.parent().parent());
                 } else{
                   error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
                 }
               },
               highlight: function(element, errorClass) {
-                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                if ($(element).is(":radio")){
                   $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
                 } else{
                   $(element).parent().addClass("has-error has-feedback");
@@ -824,17 +824,6 @@ $.each( dataDrive, function( key, item ) {
 
             }
 
-
-            $(function(){
-                var requiredCheckboxes = $('.options :checkbox[required]');
-                requiredCheckboxes.change(function(){
-                    if(requiredCheckboxes.is(':checked')) {
-                        requiredCheckboxes.removeAttr('required');
-                    } else {
-                        requiredCheckboxes.attr('required', 'required');
-                    }
-                });
-            });
 
 
 
