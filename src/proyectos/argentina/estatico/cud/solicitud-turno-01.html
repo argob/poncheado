@@ -16,7 +16,7 @@ layout: argentina
       </div>
     </div>
   </div>
-  <div class="jumbotron_body jumbotron_body_sm">
+  <div class="jumbotron_body">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
@@ -39,7 +39,7 @@ layout: argentina
           
           <h1 class="h3 m-y-2">Completá los datos para saber a dónde ir y qué llevar</h2>
 
-          <form id="wizard-form-cud" novalidate>
+          <form id="wizard-form-cud">
 
             <div class="panel panel-default">
               <div class="panel-body">
@@ -51,7 +51,7 @@ layout: argentina
                       <div class="radio">
                       <fieldset>
                         <label for="primeravezcud" class="m-t-0">
-                          <input id="primeravezcud" type="radio" name="tipotramite" value="Solicitud-de-Certificado-por-primera-vez" />
+                          <input id="primeravezcud" type="radio" name="tipotramite" value="Solicitud-de-Certificado-por-primera-vez" required/>
                           Solicitud por primera vez
                         </label><br>
                         <label for="renovacioncud" class="m-t-1">
@@ -75,7 +75,7 @@ layout: argentina
                       <div class="radio">
                       <fieldset>
                         <label for="mayor18" class="m-t-0">
-                          <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" />
+                          <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" required/>
                           Si
                         </label><br>
                         <label for="menor18" class="m-t-1">
@@ -109,7 +109,7 @@ layout: argentina
                       <div class="radio">
                       <fieldset>
                         <label for="obrasocial" class="m-t-0">
-                          <input id="obrasocial" type="radio" name="coberturamedica" value="Obrasocial" />
+                          <input id="obrasocial" type="radio" name="coberturamedica" value="Obrasocial" required/>
                           Obra social
                         </label><br>
                         <label for="medicinapre-paga" class="m-t-1">
@@ -130,51 +130,51 @@ layout: argentina
                     <div class="checkbox">
                     <fieldset>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadepilepsia" value="si"> 
+                        <input type="checkbox" name="discapacidadepilepsia" value="si" required/> 
                         Epilepsia
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmental" value="si"> 
+                        <input type="checkbox" name="discapacidadmental" value="si" required/> 
                         Trastorno mental intelectual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadvisual" value="si"> 
+                        <input type="checkbox" name="discapacidadvisual" value="si" required/> 
                         Origen visual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmotora" value="si"> 
+                        <input type="checkbox" name="discapacidadmotora" value="si" required/> 
                         Trastorno motor neurológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadtraumatologico" value="si"> 
+                        <input type="checkbox" name="discapacidadtraumatologico" value="si" required/> 
                         Trastorno motor traumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadreumatologico" value="si"> 
+                        <input type="checkbox" name="discapacidadreumatologico" value="si" required/> 
                         Trastorno motor reumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadauditivo" value="si"> 
+                        <input type="checkbox" name="discapacidadauditivo" value="si" required/> 
                         Origen auditivo
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadrespiratorio" value="si"> 
+                        <input type="checkbox" name="discapacidadrespiratorio" value="si" required/> 
                         Enfermedad respiratoria
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadcardiovascular" value="si"> 
+                        <input type="checkbox" name="discapacidadcardiovascular" value="si" required/> 
                         Enfermedad cardiovascular
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadurologico" value="si"> 
+                        <input type="checkbox" name="discapacidadurologico" value="si" required/> 
                         Enfermedad renal urológica
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidaddigestivo" value="si"> 
+                        <input type="checkbox" name="discapacidaddigestivo" value="si" required/> 
                         Enfermedad digestiva
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadhepatico" value="si"> 
+                        <input type="checkbox" name="discapacidadhepatico" value="si" required/> 
                         Enfermedad hepática
                       </label>
                       </fieldset>
@@ -825,17 +825,18 @@ $.each( dataDrive, function( key, item ) {
             }
 
 
-
-
-
-
+            $(function(){
+                var requiredCheckboxes = $('.options :checkbox[required]');
+                requiredCheckboxes.change(function(){
+                    if(requiredCheckboxes.is(':checked')) {
+                        requiredCheckboxes.removeAttr('required');
+                    } else {
+                        requiredCheckboxes.attr('required', 'required');
+                    }
+                });
+            });
 
 
 
 </script>
 
-<style type="text/css">
-  .jumbotron_body.jumbotron_body_sm {
-    padding: 20px 0;
-}
-</style>
