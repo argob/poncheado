@@ -130,51 +130,51 @@ layout: argentina
                     <div class="checkbox">
                     <fieldset>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadepilepsia" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"/> 
                         Epilepsia
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmental" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmental"/> 
                         Trastorno mental intelectual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadvisual" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadvisual"/> 
                         Origen visual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadmotora" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmotora"/> 
                         Trastorno motor neurológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadtraumatologico" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico"/> 
                         Trastorno motor traumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadreumatologico" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologico"/> 
                         Trastorno motor reumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadauditivo" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadauditivo"/> 
                         Origen auditivo
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadrespiratorio" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadrespiratorio"/> 
                         Enfermedad respiratoria
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadcardiovascular" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular"/> 
                         Enfermedad cardiovascular
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadurologico" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadurologico"/> 
                         Enfermedad renal urológica
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidaddigestivo" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidaddigestivo"/> 
                         Enfermedad digestiva
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidadhepatico" value="si"/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadhepatico"/> 
                         Enfermedad hepática
                       </label>
                       </fieldset>
@@ -272,7 +272,6 @@ layout: argentina
 <script type="text/javascript">
 
 
-  
           var data;
 
           // Leo si hay algo guardado
@@ -301,15 +300,21 @@ layout: argentina
 
             var wizard_form = $("#wizard-form-cud");
             wizard_form.validate({
+              rules: {
+                  discapacidad: {
+                      required: true,
+                      minlength: 1
+                  }
+               },                           
               errorPlacement: function(error, element) {
-                if (element.is(":radio")){
+                if (element.is(":radio") || $(element).is(":checkbox")){
                   error.insertBefore(element.parent().parent());
                 } else{
                   error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
                 }
               },
               highlight: function(element, errorClass) {
-                if ($(element).is(":radio")){
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
                   $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
                 } else{
                   $(element).parent().addClass("has-error has-feedback");
@@ -351,24 +356,7 @@ layout: argentina
 
 
 
-
-          
-
-
-
-
-
-
             // -----------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
             var dataProv = [
@@ -482,290 +470,289 @@ layout: argentina
 
 $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
 
+    window.dataDrive = dataLugares.feed.entry;
 
-window.dataDrive = dataLugares.feed.entry;
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CIUDAD AUTONOMA DE BUENOS AIRES"){
 
+        if(dataProv[0].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[0].localidad.push(item.gsx$localidad.$t);
+          dataProv[0].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "BUENOS AIRES"){
+
+        if(dataProv[1].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[1].localidad.push(item.gsx$localidad.$t);
+          dataProv[1].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CATAMARCA"){
+
+        if(dataProv[2].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[2].localidad.push(item.gsx$localidad.$t);
+          dataProv[2].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CÓRDOBA"){
+
+        if(dataProv[3].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[3].localidad.push(item.gsx$localidad.$t);
+          dataProv[3].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CORRIENTES"){
+
+        if(dataProv[4].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[4].localidad.push(item.gsx$localidad.$t);
+          dataProv[4].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CHACO"){
+
+        if(dataProv[5].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[5].localidad.push(item.gsx$localidad.$t);
+          dataProv[5].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "CHUBUT"){
+
+        if(dataProv[6].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[6].localidad.push(item.gsx$localidad.$t);
+          dataProv[6].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "ENTRE RIOS"){
+
+        if(dataProv[7].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[7].localidad.push(item.gsx$localidad.$t);
+          dataProv[7].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "FORMOSA"){
+
+        if(dataProv[8].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[8].localidad.push(item.gsx$localidad.$t);
+          dataProv[8].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "JUJUY"){
+
+        if(dataProv[9].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[9].localidad.push(item.gsx$localidad.$t);
+          dataProv[9].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "LA PAMPA"){
+
+        if(dataProv[10].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[10].localidad.push(item.gsx$localidad.$t);
+          dataProv[10].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "LA RIOJA"){
+
+        if(dataProv[11].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[11].localidad.push(item.gsx$localidad.$t);
+          dataProv[11].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "MENDOZA"){
+
+        if(dataProv[12].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[12].localidad.push(item.gsx$localidad.$t);
+          dataProv[12].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "MISIONES"){
+
+        if(dataProv[13].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[13].localidad.push(item.gsx$localidad.$t);
+          dataProv[13].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "NEUQUEN"){
+
+        if(dataProv[14].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[14].localidad.push(item.gsx$localidad.$t);
+          dataProv[14].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "RIO NEGRO"){
+
+        if(dataProv[15].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[15].localidad.push(item.gsx$localidad.$t);
+          dataProv[15].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SALTA"){
+
+        if(dataProv[16].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[16].localidad.push(item.gsx$localidad.$t);
+          dataProv[16].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SAN JUAN"){
+
+        if(dataProv[17].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[17].localidad.push(item.gsx$localidad.$t);
+          dataProv[17].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SAN LUIS"){
+
+        if(dataProv[18].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[18].localidad.push(item.gsx$localidad.$t);
+          dataProv[18].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SANTA CRUZ"){
+
+        if(dataProv[19].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[19].localidad.push(item.gsx$localidad.$t);
+          dataProv[19].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SANTA FE"){
+
+        if(dataProv[20].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[20].localidad.push(item.gsx$localidad.$t);
+          dataProv[20].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "SANTIAGO DEL ESTERO"){
+
+        if(dataProv[21].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[21].localidad.push(item.gsx$localidad.$t);
+          dataProv[21].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "TIERRA DEL FUEGO"){
+
+        if(dataProv[22].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[22].localidad.push(item.gsx$localidad.$t);
+          dataProv[22].localidad.sort();
+        }
+
+      }
+    });
+
+    $.each( dataDrive, function( key, item ) {
+      if (item.gsx$provincia.$t == "TUCUMAN"){
+
+        if(dataProv[23].localidad.indexOf(item.gsx$localidad.$t) == -1){
+          dataProv[23].localidad.push(item.gsx$localidad.$t);
+          dataProv[23].localidad.sort();
+        }
+
+      }
+    });
+
+    localidadFn();
+
+});
+
+
+function localidadFn( jQuery ) {
+    var localidadFieldset = $('select[name="locality"]').parent();
+    if ($('select[name="provincia"]').value === '') {
+        localidadFieldset.attr('disabled', true);
+    } else {
+        localidadFieldset.removeAttr('disabled');
+    }
+    var indexProvincia = $('select[name="provincia"]').find(":selected").index();
+    load_localidades(indexProvincia);
+}
    
-
-
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CIUDAD AUTONOMA DE BUENOS AIRES"){
-
-    if(dataProv[0].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[0].localidad.push(item.gsx$localidad.$t);
-      dataProv[0].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "BUENOS AIRES"){
-
-    if(dataProv[1].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[1].localidad.push(item.gsx$localidad.$t);
-      dataProv[1].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CATAMARCA"){
-
-    if(dataProv[2].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[2].localidad.push(item.gsx$localidad.$t);
-      dataProv[2].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CÓRDOBA"){
-
-    if(dataProv[3].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[3].localidad.push(item.gsx$localidad.$t);
-      dataProv[3].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CORRIENTES"){
-
-    if(dataProv[4].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[4].localidad.push(item.gsx$localidad.$t);
-      dataProv[4].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CHACO"){
-
-    if(dataProv[5].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[5].localidad.push(item.gsx$localidad.$t);
-      dataProv[5].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "CHUBUT"){
-
-    if(dataProv[6].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[6].localidad.push(item.gsx$localidad.$t);
-      dataProv[6].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "ENTRE RIOS"){
-
-    if(dataProv[7].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[7].localidad.push(item.gsx$localidad.$t);
-      dataProv[7].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "FORMOSA"){
-
-    if(dataProv[8].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[8].localidad.push(item.gsx$localidad.$t);
-      dataProv[8].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "JUJUY"){
-
-    if(dataProv[9].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[9].localidad.push(item.gsx$localidad.$t);
-      dataProv[9].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "LA PAMPA"){
-
-    if(dataProv[10].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[10].localidad.push(item.gsx$localidad.$t);
-      dataProv[10].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "LA RIOJA"){
-
-    if(dataProv[11].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[11].localidad.push(item.gsx$localidad.$t);
-      dataProv[11].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "MENDOZA"){
-
-    if(dataProv[12].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[12].localidad.push(item.gsx$localidad.$t);
-      dataProv[12].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "MISIONES"){
-
-    if(dataProv[13].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[13].localidad.push(item.gsx$localidad.$t);
-      dataProv[13].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "NEUQUEN"){
-
-    if(dataProv[14].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[14].localidad.push(item.gsx$localidad.$t);
-      dataProv[14].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "RIO NEGRO"){
-
-    if(dataProv[15].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[15].localidad.push(item.gsx$localidad.$t);
-      dataProv[15].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SALTA"){
-
-    if(dataProv[16].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[16].localidad.push(item.gsx$localidad.$t);
-      dataProv[16].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SAN JUAN"){
-
-    if(dataProv[17].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[17].localidad.push(item.gsx$localidad.$t);
-      dataProv[17].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SAN LUIS"){
-
-    if(dataProv[18].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[18].localidad.push(item.gsx$localidad.$t);
-      dataProv[18].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SANTA CRUZ"){
-
-    if(dataProv[19].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[19].localidad.push(item.gsx$localidad.$t);
-      dataProv[19].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SANTA FE"){
-
-    if(dataProv[20].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[20].localidad.push(item.gsx$localidad.$t);
-      dataProv[20].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "SANTIAGO DEL ESTERO"){
-
-    if(dataProv[21].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[21].localidad.push(item.gsx$localidad.$t);
-      dataProv[21].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "TIERRA DEL FUEGO"){
-
-    if(dataProv[22].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[22].localidad.push(item.gsx$localidad.$t);
-      dataProv[22].localidad.sort();
-    }
-
-  }
-});
-
-$.each( dataDrive, function( key, item ) {
-  if (item.gsx$provincia.$t == "TUCUMAN"){
-
-    if(dataProv[23].localidad.indexOf(item.gsx$localidad.$t) == -1){
-      dataProv[23].localidad.push(item.gsx$localidad.$t);
-      dataProv[23].localidad.sort();
-    }
-
-  }
-});
-
-
-
-});
-
-
 // hasta acá pusheo
-
-
-
-
-
-
-
 
 
            if ($('select[name="provincia"]').val() === '') {
@@ -784,27 +771,6 @@ $.each( dataDrive, function( key, item ) {
                 load_localidades(indexProvincia);
 
             });
-
-            // Nationality logic -----------------------------------------------
-
-            toogle_nationality_inputs($('select[name="country"]').val())
-
-            $('select[name="country"]').on('change', function() {
-                toogle_nationality_inputs(this.value);
-            });
-
-            function toogle_nationality_inputs(value) {
-                if (value !== 'ARG') {
-                    $('.only-arg').fadeOut();
-                    if (value !== '') {
-                        $('.except-arg').fadeIn();
-                    }
-                } else {
-                    $('.except-arg').fadeOut();
-                    $('.only-arg').fadeIn();
-                }
-            }
-
 
 
             // -----------------------------------------------------------------

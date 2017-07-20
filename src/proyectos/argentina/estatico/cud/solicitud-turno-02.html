@@ -36,7 +36,7 @@ layout: argentina
            <div id="show-data-description-lugar" class="hidden"></div>    
 
             <p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
-            <p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certidicado.</p>
+            <p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certificado.</p>
           </div>
         </div>            
 
@@ -128,6 +128,9 @@ layout: argentina
           console.log(form_data);
 
           jQuery.each(form_data, function(key, item){
+            if(item.name == 'discapacidad') {
+              data[item.value] = 'si';
+            }
             data[item.name] = item.value;
           });
 
@@ -672,7 +675,7 @@ layout: argentina
 
       jQuery('#edit-form').on('click', function(event){
         event.preventDefault();
-        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
         window.location.href = '/quemebrinda';
       });
 
