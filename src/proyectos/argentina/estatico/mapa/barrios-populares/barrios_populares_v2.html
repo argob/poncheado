@@ -82,33 +82,9 @@ title: Mapa de Barrios Populares
           <div class="row">
             <div class="col-md-12">    
               <div class="form-group">
-                <label for="">Provincia</label>
-                <select id="tipo-provincia" class="form-control">
-                  <option value="Todas">Todas</option>
-                  <option value="Buenos Aires">Buenos Aires</option>
-                  <option value="Capital Federal">Capital Federal</option>
-                  <option value="Catamarca">Catamarca</option>
-                  <option value="Chaco">Chaco</option>
-                  <option value="Chubut">Chubut</option>
-                  <option value="Córdoba">Córdoba</option>
-                  <option value="Corrientes">Corrientes</option>
-                  <option value="Entre Ríos">Entre Ríos</option>
-                  <option value="Jujuy">Jujuy</option>
-                  <option value="Formosa">Formosa</option>
-                  <option value="La Pampa">La Pampa</option>
-                  <option value="La Rioja">La Rioja</option>
-                  <option value="Mendoza">Mendoza</option>
-                  <option value="Neuquén">Neuquén</option>
-                  <option value="Misiones">Misiones</option>
-                  <option value="Río Negro">Río Negro</option>
-                  <option value="Salta">Salta</option>
-                  <option value="San Juan">San Juan</option>
-                  <option value="San Luis">San Luis</option>
-                  <option value="Santa Cruz">Santa Cruz</option>
-                  <option value="Santa Fe">Santa Fe</option>
-                  <option value="Santiago del Estero">Santiago del Estero</option>
-                  <option value="Tucumán">Tucumán</option>
-                  <option value="Tierra del Fuego">Tierra del Fuego</option>
+                <label for="">Barrio</label>
+                <select id="tipo-barrio" class="form-control">
+                  <option value="blank"></option>
                 </select>
               </div>
             </div>
@@ -130,11 +106,11 @@ title: Mapa de Barrios Populares
  -->
 <script>
 
-  var initMap = function(nameProvincia) {
+  var initMap = function() {
 
     // Setup map
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    window.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: mapCenter,
       scrollwheel: true,
@@ -145,8 +121,6 @@ title: Mapa de Barrios Populares
 
     var markers = [];
     var detalles = [];
-    var nameProvincia = 'Todas';
-    console.log(nameProvincia);
 
     $.ajax({
       url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
@@ -157,22 +131,15 @@ title: Mapa de Barrios Populares
         var geojson = '{"type": "FeatureCollection", "features": [';
 
         rows.forEach(function(row, key){
-          if (row.gsx$provincianombre.$t == nameProvincia) {
             // console.log(row);
-            geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
-          }
-          else if (nameProvincia == 'Todas') {
-            // console.log(row);
-            geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
-          }
+            geojson += '{"type": "Feature", "id": '+key+', "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
         });
     
 
         geojson = geojson.slice(0, -1);
         geojson += ']}';
 
-        // console.log(geojson);
-
+       
         map.data.addGeoJson( JSON.parse(geojson) );
         
         map.data.setStyle({
@@ -200,7 +167,26 @@ title: Mapa de Barrios Populares
           });
           infowindow.setPosition(bounds.getCenter());
           infowindow.open(map);
+          map.fitBounds(bounds);
         });
+
+        map.data.forEach(function(barrio){ 
+
+          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +'</option>');
+          //console.log(sarasa) 
+        });
+
+        $("#tipo-barrio").on("change", function() {
+
+          var feature = map.data.getFeatureById( $(this).val() )
+          var bounds = new google.maps.LatLngBounds();
+          feature.getGeometry().forEachLatLng(function(LatLng){
+            bounds.extend(LatLng);
+          });
+          map.fitBounds(bounds);
+        }); 
+
+
 
         $('#map-container').removeClass('state-loading');
 
@@ -259,10 +245,7 @@ title: Mapa de Barrios Populares
       $(this).parent().parent().addClass('hidden').siblings().removeClass('hidden'); 
   });
 
-    $("#tipo-provincia").on("change", function() {
-      nameProvincia = $( "#tipo-provincia option:selected" ).val();
-      initMap(nameProvincia);
-    });
+
 
 
 </script>
