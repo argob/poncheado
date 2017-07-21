@@ -35,6 +35,8 @@ title: Mapa de Barrios Populares
   .main-footer {
     display: none;
   }
+ 
+
 </style>
 
 <header id="map-header">
@@ -56,22 +58,6 @@ title: Mapa de Barrios Populares
           <div class="navbar-brand visible-xs-inline-block">
             <small>Barrios Populares</small>
           </div>
-          <div class="visible-xs-inline-block pull-right typeSearchMobile">
-            <div class="row">
-              <div class="col-md-12">    
-                <div class="form-group" style="margin-bottom: 0;">
-                  <div class="pull-right"><a href="#">Buscar Barrios</a></div>
-                  <label>Buscar Dirección</label>
-                  <input class="form-control input-sm" style="width: 300px;">
-                </div>
-                <div class="form-group hidden" style="margin-bottom: 0;">
-                  <div class="pull-right"><a href="#">Buscar Dirección</a></div>
-                  <label>Buscar Barrios</label>
-                  <input class="form-control input-sm" style="width: 300px;">
-                </div>              
-              </div>
-            </div>        
-          </div>            
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
@@ -96,15 +82,35 @@ title: Mapa de Barrios Populares
           <div class="row">
             <div class="col-md-12">    
               <div class="form-group">
-                <div class="pull-right"><a href="#" style="color: #fff;text-decoration: underline;">Buscar Barrios</a></div>
-                <label>Buscar Dirección</label>
-                <input class="form-control input-sm" style="width: 300px;">
+                <label for="">Provincia</label>
+                <select id="tipo-provincia" class="form-control">
+                  <option value="Todas">Todas</option>
+                  <option value="Buenos Aires">Buenos Aires</option>
+                  <option value="Capital Federal">Capital Federal</option>
+                  <option value="Catamarca">Catamarca</option>
+                  <option value="Chaco">Chaco</option>
+                  <option value="Chubut">Chubut</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Corrientes">Corrientes</option>
+                  <option value="Entre Ríos">Entre Ríos</option>
+                  <option value="Jujuy">Jujuy</option>
+                  <option value="Formosa">Formosa</option>
+                  <option value="La Pampa">La Pampa</option>
+                  <option value="La Rioja">La Rioja</option>
+                  <option value="Mendoza">Mendoza</option>
+                  <option value="Neuquén">Neuquén</option>
+                  <option value="Misiones">Misiones</option>
+                  <option value="Río Negro">Río Negro</option>
+                  <option value="Salta">Salta</option>
+                  <option value="San Juan">San Juan</option>
+                  <option value="San Luis">San Luis</option>
+                  <option value="Santa Cruz">Santa Cruz</option>
+                  <option value="Santa Fe">Santa Fe</option>
+                  <option value="Santiago del Estero">Santiago del Estero</option>
+                  <option value="Tucumán">Tucumán</option>
+                  <option value="Tierra del Fuego">Tierra del Fuego</option>
+                </select>
               </div>
-              <div class="form-group hidden">
-                <div class="pull-right"><a href="#" style="color: #fff;text-decoration: underline;">Buscar Dirección</a></div>
-                <label>Buscar Barrios</label>
-                <input class="form-control input-sm" style="width: 300px;">
-              </div>              
             </div>
           </div>        
         </div>
@@ -124,7 +130,7 @@ title: Mapa de Barrios Populares
  -->
 <script>
 
-  var initMap = function() {
+  var initMap = function(nameProvincia) {
 
     // Setup map
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
@@ -139,6 +145,8 @@ title: Mapa de Barrios Populares
 
     var markers = [];
     var detalles = [];
+    var nameProvincia = 'Todas';
+    console.log(nameProvincia);
 
     $.ajax({
       url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
@@ -149,11 +157,16 @@ title: Mapa de Barrios Populares
         var geojson = '{"type": "FeatureCollection", "features": [';
 
         rows.forEach(function(row, key){
-
-          // console.log(row);
-          geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
-
+          if (row.gsx$provincianombre.$t == nameProvincia) {
+            // console.log(row);
+            geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
+          }
+          else if (nameProvincia == 'Todas') {
+            // console.log(row);
+            geojson += '{"type": "Feature", "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
+          }
         });
+    
 
         geojson = geojson.slice(0, -1);
         geojson += ']}';
@@ -245,6 +258,11 @@ title: Mapa de Barrios Populares
       e.preventDefault();
       $(this).parent().parent().addClass('hidden').siblings().removeClass('hidden'); 
   });
+
+    $("#tipo-provincia").on("change", function() {
+      nameProvincia = $( "#tipo-provincia option:selected" ).val();
+      initMap(nameProvincia);
+    });
 
 
 </script>
