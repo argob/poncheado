@@ -35,6 +35,9 @@ title: Mapa de Barrios Populares
   .main-footer {
     display: none;
   }
+  .chosen-container-single .chosen-search input[type="text"] {
+    color: #111;
+  }
  
 
 </style>
@@ -69,29 +72,31 @@ title: Mapa de Barrios Populares
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a></li> 
-            <li><a href="/barrios-populares/index.html">Acerca de Barrios Populares</a></li>
+            <li><a href="https://www.argentina.gob.ar/barriospopulares">Acerca de Barrios Populares</a></li>
           </ul>           
         </div>
       </div>
     </div>
   </nav>
-  <section class="jumbotron hidden-xs">
+  <section class="jumbotron">
     <div class="jumbotron_bar">
       <div class="container">
         <div class="pull-right typeSearch">
           <div class="row">
             <div class="col-md-12">    
               <div class="form-group">
-                <label for="">Barrio</label>
-                <select id="tipo-barrio" class="form-control">
+                <!-- <label for="">Barrio</label> -->
+                <select id="tipo-barrio" style="width: 300px;" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
               </div>
             </div>
           </div>        
         </div>
-        <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
-        <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>
+        <div class="hidden-xs">
+          <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
+          <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
+        </div>
       </div>
     </div>
     <div class="overlay"></div>
@@ -172,8 +177,7 @@ title: Mapa de Barrios Populares
 
         map.data.forEach(function(barrio){ 
 
-          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +'</option>');
-          //console.log(sarasa) 
+          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +' , '+ barrio.getProperty("localidad") +' , '+ barrio.getProperty("partido") +' , '+ barrio.getProperty("provincia") +'  </option>');
         });
 
         $("#tipo-barrio").on("change", function() {
@@ -187,9 +191,9 @@ title: Mapa de Barrios Populares
         }); 
 
 
-
         $('#map-container').removeClass('state-loading');
 
+        $(".chosen-select").chosen({width: '300px'});
       },
       error: function(){
         console.log('nope');
@@ -239,12 +243,6 @@ title: Mapa de Barrios Populares
     setGeolocation();
 
   }
-
-  $('body').on('click', '.typeSearch a', function(e){
-      e.preventDefault();
-      $(this).parent().parent().addClass('hidden').siblings().removeClass('hidden'); 
-  });
-
 
 
 
