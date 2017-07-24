@@ -35,6 +35,10 @@ title: Mapa de Barrios Populares
   .main-footer {
     display: none;
   }
+  .chosen-container {
+      border-radius: 3px;
+      margin-top: 10px!important;
+  }  
   .chosen-container-single .chosen-search input[type="text"] {
     color: #111;
   }
@@ -81,21 +85,19 @@ title: Mapa de Barrios Populares
   <section class="jumbotron">
     <div class="jumbotron_bar">
       <div class="container">
-        <div class="pull-right typeSearch">
-          <div class="row">
-            <div class="col-md-12">    
+        <div class="row">
+          <div class="col-md-6 hidden-xs">
+            <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
+            <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
+          </div>
+          <div class="col-md-6">
               <div class="form-group">
                 <!-- <label for="">Barrio</label> -->
-                <select id="tipo-barrio" style="width: 300px;" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
+                <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
               </div>
-            </div>
           </div>        
-        </div>
-        <div class="hidden-xs">
-          <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
-          <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
         </div>
       </div>
     </div>
@@ -177,7 +179,7 @@ title: Mapa de Barrios Populares
 
         map.data.forEach(function(barrio){ 
 
-          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +' , '+ barrio.getProperty("localidad") +' , '+ barrio.getProperty("partido") +' , '+ barrio.getProperty("provincia") +'  </option>');
+          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +', '+ barrio.getProperty("localidad") +', '+ barrio.getProperty("partido") +', '+ barrio.getProperty("provincia") +'  </option>');
         });
 
         $("#tipo-barrio").on("change", function() {
@@ -193,7 +195,10 @@ title: Mapa de Barrios Populares
 
         $('#map-container').removeClass('state-loading');
 
-        $(".chosen-select").chosen({width: '300px'});
+        $(".chosen-select").chosen({
+          width: '100%',
+          search_contains:true
+        });
       },
       error: function(){
         console.log('nope');
