@@ -251,13 +251,13 @@ a.panel.active i {
   $(function(){
 
     var templates = {
-      tabla: '<tr><td class="nombre"> <h6> <a href="{info}" target="_blank">{nombre}</a></h6><p>{oracion}</p></td><td class="tema">{tema1}<br>{tema2}<br>{tema3}<br>{tema4}<br>{tema5}<br>{tema6}<br>{tema7}<br>{tema8}<br>{tema9}<br>{tema10}</td><td class="tipo">{apoyo1}<br>{apoyo2}<br>{apoyo3}<br>{apoyo4}<br>{apoyo5}</td><td class="ministerio">{ministerio}</td></tr>'
+      tabla: '<tr><td class="nombre"> <h6> <a href="{info}" target="_blank">{nombre}</a></h6><p>{oracion}</p></td><td class="tema">{tema1}<br>{tema2}<br>{tema3}<br>{tema4}<br>{tema5}<br>{tema6}<br>{tema7}<br>{tema8}<br>{tema9}<br>{tema10}<br>{tema11}<br>{tema12}<br>{tema13}<br>{tema14}<br>{tema15}<br>{tema16}<br>{tema17}<br>{tema18}<br>{tema19}</td><td class="tipo">{apoyo1}<br>{apoyo2}<br>{apoyo3}<br>{apoyo4}<br>{apoyo5}</td><td class="ministerio">{ministerio}</td></tr>'
     }
 
     window.proyectos = [];
     window.config = {
-      tipo: 'todos',
-      alcance: ''
+      tema: 'todos',
+      apoyo: 'todos'
     }
 
     $.ajax({
@@ -283,6 +283,15 @@ a.panel.active i {
               tema8: row.gsx$tema8.$t, 
               tema9: row.gsx$tema9.$t, 
               tema10: row.gsx$tema10.$t, 
+              tema11: row.gsx$tema11.$t, 
+              tema12: row.gsx$tema12.$t, 
+              tema13: row.gsx$tema13.$t, 
+              tema14: row.gsx$tema14.$t, 
+              tema15: row.gsx$tema15.$t, 
+              tema16: row.gsx$tema16.$t, 
+              tema17: row.gsx$tema17.$t, 
+              tema18: row.gsx$tema18.$t, 
+              tema19: row.gsx$tema19.$t, 
               apoyo1: row.gsx$apoyo1.$t, 
               apoyo2: row.gsx$apoyo2.$t, 
               apoyo3: row.gsx$apoyo3.$t, 
@@ -296,7 +305,7 @@ a.panel.active i {
         render.items();
 
         var listOptions = {
-          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
+          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'tema11', 'tema12', 'tema13', 'tema14', 'tema15', 'tema16', 'tema17', 'tema18', 'tema19', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
           page: 20,
           plugins: [ ListPagination({}) ]
           
@@ -330,7 +339,12 @@ a.panel.active i {
 
         $.each(proyectos, function(index, proyecto){
 
-          if ( !(config.tipo != 'todos' && config.tipo != proyecto.tema1) && !(config.alcance && proyecto[config.alcance] != 'todos') ) {
+          // if () {
+
+            console.log("config.tema" + config.tema);
+            console.log("proyecto.tema1" + proyecto.tema1);
+            console.log("config.apoyo" + config.apoyo);
+            console.log("proyecto[config.apoyo]" + proyecto[config.apoyo]);
 
             var html = templates.tabla;
 
@@ -349,6 +363,15 @@ a.panel.active i {
             .replace(/{tema8}/gi, proyecto.tema8)
             .replace(/{tema9}/gi, proyecto.tema9)
             .replace(/{tema10}/gi, proyecto.tema10)
+            .replace(/{tema11}/gi, proyecto.tema11)
+            .replace(/{tema12}/gi, proyecto.tema12)
+            .replace(/{tema13}/gi, proyecto.tema13)
+            .replace(/{tema14}/gi, proyecto.tema14)
+            .replace(/{tema15}/gi, proyecto.tema15)
+            .replace(/{tema16}/gi, proyecto.tema16)
+            .replace(/{tema17}/gi, proyecto.tema17)
+            .replace(/{tema18}/gi, proyecto.tema18)
+            .replace(/{tema19}/gi, proyecto.tema19)
             .replace(/{apoyo1}/gi, proyecto.apoyo1)
             .replace(/{apoyo2}/gi, proyecto.apoyo2)
             .replace(/{apoyo3}/gi, proyecto.apoyo3)
@@ -358,7 +381,7 @@ a.panel.active i {
 
             $('[data-render=items]').append( html );
 
-          }
+          // }
 
         });
 
@@ -366,10 +389,10 @@ a.panel.active i {
     }
 
     $("#tipo-tema").on("change", function() {
-      config.tipo = $( "#tipo-tema option:selected" ).data('tipotema');
-      console.log(config.tipo)
-      config.alcance = $('.active[data-filtro]').attr('data-filtro');
-      console.log(config.alcance)
+      config.tema = $( "#tipo-tema option:selected" ).data('tipotema');
+      console.log(config.tema)
+      config.apoyo = $('.active[data-filtro]').attr('data-filtro');
+      console.log(config.apoyo)
 
       render.items();
     });
@@ -377,12 +400,12 @@ a.panel.active i {
     $("#filtro [data-filtro]").bind("click", function() {
       if( $(this).hasClass('active') ){
         $(this).removeClass('active');
-        config.alcance = '';
+        config.apoyo = '';
       }else{
         $("#filtro [data-filtro]").removeClass('active');
         $(this).addClass('active');
-        config.alcance = $(this).attr('data-filtro');
-        console.log(config.alcance)
+        config.apoyo = $(this).attr('data-filtro');
+        console.log(config.apoyo)
       }
 
       render.items();
