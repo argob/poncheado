@@ -251,7 +251,7 @@ a.panel.active i {
   $(function(){
 
     var templates = {
-      tabla: '<tr><td class="nombre"> <h6> <a href="{info}" target="_blank">{nombre}</a></h6><p>{oracion}</p></td><td class="tema">{tema1}<br>{tema2}<br>{tema3}<br>{tema4}<br>{tema5}<br>{tema6}<br>{tema7}<br>{tema8}<br>{tema9}<br>{tema10}<br>{tema11}<br>{tema12}<br>{tema13}<br>{tema14}<br>{tema15}<br>{tema16}<br>{tema17}<br>{tema18}<br>{tema19}</td><td class="tipo">{apoyo1}<br>{apoyo2}<br>{apoyo3}<br>{apoyo4}<br>{apoyo5}</td><td class="ministerio">{ministerio}</td></tr>'
+      tabla: '<tr><td class="nombre"> <h6> <a href="{info}" target="_blank">{nombre}</a></h6><p>{oracion}</p></td><td class="tema">{temas}</td><td class="tipo">{apoyos}</td><td class="ministerio">{ministerio}</td></tr>'
     }
 
     window.proyectos = [];
@@ -264,41 +264,32 @@ a.panel.active i {
       url: 'https://spreadsheets.google.com/feeds/list/1yE3ENqa9yURo3frHDlkgA2RalUUI4yUcdOaZmaid7Ek/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-        console.log(response.feed.entry);
+        // console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
-            proyectos.push({
-              index: index,
-              info: row.gsx$info.$t,
-              nombre: row.gsx$nombre.$t,
-              oracion: row.gsx$oracion.$t,
-              tema1: row.gsx$tema1.$t, 
-              tema2: row.gsx$tema2.$t, 
-              tema3: row.gsx$tema3.$t, 
-              tema4: row.gsx$tema4.$t, 
-              tema5: row.gsx$tema5.$t, 
-              tema6: row.gsx$tema6.$t, 
-              tema7: row.gsx$tema7.$t, 
-              tema8: row.gsx$tema8.$t, 
-              tema9: row.gsx$tema9.$t, 
-              tema10: row.gsx$tema10.$t, 
-              tema11: row.gsx$tema11.$t, 
-              tema12: row.gsx$tema12.$t, 
-              tema13: row.gsx$tema13.$t, 
-              tema14: row.gsx$tema14.$t, 
-              tema15: row.gsx$tema15.$t, 
-              tema16: row.gsx$tema16.$t, 
-              tema17: row.gsx$tema17.$t, 
-              tema18: row.gsx$tema18.$t, 
-              tema19: row.gsx$tema19.$t, 
-              apoyo1: row.gsx$apoyo1.$t, 
-              apoyo2: row.gsx$apoyo2.$t, 
-              apoyo3: row.gsx$apoyo3.$t, 
-              apoyo4: row.gsx$apoyo4.$t, 
-              apoyo5: row.gsx$apoyo5.$t, 
-              ministerio: row.gsx$ministerio.$t
-            });
+
+          proyecto = {
+            index: index,
+            info: row.gsx$info.$t,
+            nombre: row.gsx$nombre.$t,
+            oracion: row.gsx$oracion.$t,
+            temas: [],
+            apoyos: [],
+            ministerio: row.gsx$ministerio.$t
+          }
+
+          for(i=1; i<20; i++){
+            if( row['gsx$tema'+i].$t != '' )
+            proyecto.temas.push(row['gsx$tema'+i].$t);
+          }
+
+          for(i=1; i<6; i++){
+            if( row['gsx$apoyo'+i].$t != '' )
+            proyecto.apoyos.push(row['gsx$apoyo'+i].$t);
+          }
+
+          proyectos.push( proyecto );
 
         })
 
@@ -339,12 +330,8 @@ a.panel.active i {
 
         $.each(proyectos, function(index, proyecto){
 
-          // if () {
 
-            console.log("config.tema" + config.tema);
-            console.log("proyecto.tema1" + proyecto.tema1);
-            console.log("config.apoyo" + config.apoyo);
-            console.log("proyecto[config.apoyo]" + proyecto[config.apoyo]);
+          if( (config.tema == 'todos' || proyecto.temas.indexOf(config.tema) > 0) && (config.apoyo == 'todos' || proyecto.apoyos.indexOf(config.apoyo) > 0 ) ) {
 
             var html = templates.tabla;
 
@@ -353,35 +340,13 @@ a.panel.active i {
             .replace(/{info}/gi, proyecto.info)
             .replace(/{nombre}/gi, proyecto.nombre)
             .replace(/{oracion}/gi, proyecto.oracion)
-            .replace(/{tema1}/gi, proyecto.tema1)
-            .replace(/{tema2}/gi, proyecto.tema2)
-            .replace(/{tema3}/gi, proyecto.tema3)
-            .replace(/{tema4}/gi, proyecto.tema4)
-            .replace(/{tema5}/gi, proyecto.tema5)
-            .replace(/{tema6}/gi, proyecto.tema6)
-            .replace(/{tema7}/gi, proyecto.tema7)
-            .replace(/{tema8}/gi, proyecto.tema8)
-            .replace(/{tema9}/gi, proyecto.tema9)
-            .replace(/{tema10}/gi, proyecto.tema10)
-            .replace(/{tema11}/gi, proyecto.tema11)
-            .replace(/{tema12}/gi, proyecto.tema12)
-            .replace(/{tema13}/gi, proyecto.tema13)
-            .replace(/{tema14}/gi, proyecto.tema14)
-            .replace(/{tema15}/gi, proyecto.tema15)
-            .replace(/{tema16}/gi, proyecto.tema16)
-            .replace(/{tema17}/gi, proyecto.tema17)
-            .replace(/{tema18}/gi, proyecto.tema18)
-            .replace(/{tema19}/gi, proyecto.tema19)
-            .replace(/{apoyo1}/gi, proyecto.apoyo1)
-            .replace(/{apoyo2}/gi, proyecto.apoyo2)
-            .replace(/{apoyo3}/gi, proyecto.apoyo3)
-            .replace(/{apoyo4}/gi, proyecto.apoyo4)
-            .replace(/{apoyo5}/gi, proyecto.apoyo5)
+            .replace(/{temas}/gi, proyecto.temas.join(', '))
+            .replace(/{apoyos}/gi, proyecto.apoyos.join(', '))
             .replace(/{ministerio}/gi, proyecto.ministerio);
 
             $('[data-render=items]').append( html );
 
-          // }
+          }
 
         });
 
@@ -390,9 +355,6 @@ a.panel.active i {
 
     $("#tipo-tema").on("change", function() {
       config.tema = $( "#tipo-tema option:selected" ).data('tipotema');
-      console.log(config.tema)
-      config.apoyo = $('.active[data-filtro]').attr('data-filtro');
-      console.log(config.apoyo)
 
       render.items();
     });
@@ -400,12 +362,11 @@ a.panel.active i {
     $("#filtro [data-filtro]").bind("click", function() {
       if( $(this).hasClass('active') ){
         $(this).removeClass('active');
-        config.apoyo = '';
+        config.apoyo = 'todos';
       }else{
         $("#filtro [data-filtro]").removeClass('active');
         $(this).addClass('active');
         config.apoyo = $(this).attr('data-filtro');
-        console.log(config.apoyo)
       }
 
       render.items();
