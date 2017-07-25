@@ -1,0 +1,222 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('/sites/default/files/styles/jumbotron/public/occovi_landing_encabezado.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Ejemplos</a></li>
+            <li class="active"><span>Tabla con filtros y buscador</span></li>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">Ejemplo de tabla</h1>
+      <p class="lead">Ejemplo de tabla con filtro, buscador y paginador</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+<div class="container">
+ <section>
+
+    <div id="ejemplos">
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtro</label>
+            <select id="tipo-filtro" class="form-control">
+              <option data-tipofiltro="todos" value="todos">Todos</option>
+              <option data-tipofiltro="filtro 1" value="filtro 1">filtro 1</option>
+              <option data-tipofiltro="filtro 2" value="filtro 2">filtro 2</option>
+              <option data-tipofiltro="filtro 3" value="filtro 3">filtro 3</option>
+              <option data-tipofiltro="filtro 4" value="filtro 4">filtro 4</option>
+              <option data-tipofiltro="filtro 5" value="filtro 5">filtro 5</option>
+            </select>
+          </div>
+        </div>    
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtrá por nombre</label>
+            <select id="tipo-nombre" class="form-control">
+              <option data-tiponombre="todos" value="todos">Todos</option>
+              <option data-tiponombre="nombre 1" value="nombre 1">nombre 1</option>
+              <option data-tiponombre="nombre 2" value="nombre 2">nombre 2</option>
+              <option data-tiponombre="nombre 3" value="nombre 3">nombre 3</option>
+              <option data-tiponombre="nombre 4" value="nombre 4">nombre 4</option>
+              <option data-tiponombre="nombre 5" value="nombre 5">nombre 5</option>
+              <option data-tiponombre="nombre 6" value="nombre 6">nombre 6</option>
+              <option data-tiponombre="nombre 7" value="nombre 7">nombre 7</option>
+              <option data-tiponombre="nombre 8" value="nombre 8">nombre 8</option>
+              <option data-tiponombre="nombre 9" value="nombre 9">nombre 9</option>
+              <option data-tiponombre="nombre 10" value="nombre 10">nombre 10</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="col-md-4">    
+          <div class="form-group">
+            <label for="">Buscá por descripcion</label>
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      
+      </div>
+
+      <table class="table table-spaced table-align-middle">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
+            <th style="width: 300px;"><a class="sort" data-sort="descripcion">Descripción <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="filtro">Filtro <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna1">Columna 1 <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna2">Columna 2 <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="columna2">Comentario <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+       <div id="alerta" class="alert alert-warning col-md-4 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="{{ "js/tableMobile.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/111OA4kwmHGFh0HZZnW6gvx4t1j47qLwh3r61edrH4OU/1/public/values?alt=json', function (data) {
+        window.ejemplos = data.feed.entry;
+        showejemplos("todos");
+    });
+
+    window.showejemplos = function(filtro){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( ejemplos, function( key, item ) {
+
+
+            if (item.gsx$comentario.$t != "") {
+              columna2 = '<td class="columna2" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body">'+ item.gsx$columna2.$t + '</td>';
+            }
+
+           if( item.gsx$filtro.$t == filtro || item.gsx$nombre.$t == filtro ){
+
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="descripcion">'+ item.gsx$descripcion.$t + '</td>';
+            html += ' <td class="filtro">'+ item.gsx$filtro.$t + '</td>';
+            html += ' <td class="columna1">'+ item.gsx$columna1.$t + '</td>';
+            html += ' <td class="columna2">'+ item.gsx$columna2.$t + '</td> ';
+            html += ' <td class="columna2">'+ item.gsx$comentario.$t + '</td> ';
+            html += '</tr>';
+          }
+           else if  (filtro == "todos") {
+
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="descripcion">'+ item.gsx$descripcion.$t + '</td>';
+            html += ' <td class="filtro">'+ item.gsx$filtro.$t + '</td>';
+            html += ' <td class="columna1">'+ item.gsx$columna1.$t + '</td>';
+            html += ' <td class="columna2">'+ item.gsx$columna2.$t + '</td> ';
+            html += ' <td class="columna2">'+ item.gsx$comentario.$t + '</td> ';
+            html += '</tr>';
+          }
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var ejemplosList = new List('ejemplos', listOptions);  
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            ejemplosList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        ejemplosList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+    }
+
+    $("#tipo-filtro").on("change", function() {
+      var filtro = $( "#tipo-filtro option:selected" ).data('tipofiltro');
+      showejemplos(filtro);
+
+    });
+
+    $("#tipo-nombre").on("change", function() {
+      var filtro = $( "#tipo-nombre option:selected" ).data('tiponombre');
+      showejemplos(filtro);
+
+    });
+
+
+  $(document).ready( function() {
+    $("table").tableMobile();
+  });
+    
+
+});
+})(jQuery);
+
+
+
+
+
+
+
+</script>
+
+
