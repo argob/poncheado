@@ -1,0 +1,401 @@
+---
+layout: argentina
+---
+
+<style type="text/css">
+  
+  td{
+    vertical-align: top!important;
+  }
+
+  .recursos{
+    color: white!important;
+    font-size: 70px;
+    padding: 30px 0;        
+  }
+
+.panel-heading{
+  text-align: center;
+}
+
+a.panel:hover {
+    cursor: pointer;
+}
+
+a.panel.active {
+    background: #0695d6;
+    color: #fff;
+}
+a.panel.active i {
+    color: #fff!important;
+}
+
+
+</style>
+
+
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/manos.png');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/transporte">Jefatura de Gabinete</a></li>
+            <li class="active"><span>Guía para Organizaciones de la Sociedad Civil</span></li>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">Guía para Organizaciones de la Sociedad Civil</h1>
+      <p class="lead">Aquí vas a encontrar todos los recursos (programas, acciones, proyectos y actividades) que el Estado Nacional brinda a las organizaciones de la sociedad civil (OSC) para trabajar en conjunto.</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+<div class="container">
+  <section>
+
+<div class="row panels-row m-t-2" id="filtro">
+       
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" data-filtro="Apoyo económico">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-ciencia-apoyo-economico fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Apoyo económico</h3>
+                <p>Comprende financiamiento como subsidios, concursos, entre otros.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" data-filtro="Apoyo técnico">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-solidaridad fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Apoyo técnico</h3>
+                <p>Comprende asistencia técnica y equipamiento.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" data-filtro="Apoyo a beneficiarios">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-social fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Apoyo a beneficiarios</h3>
+                <p>Comprende programas destinados al público beneficiario de OSC.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" data-filtro="Capacitación">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-capacitacion fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Capacitaciones</h3>
+                <p>Comprende capacitaciones, cursos y talleres para OSC o sus beneficiarios</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" data-filtro="Participación Ciudadana">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-servicios fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Participación ciudadana</h3>
+                <p>Comprende eventos, encuentros, mesas de trabajo, entre otros.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default active" data-filtro="todos">
+          <div class="panel-body">
+            <div class="media media-middle">
+              <div class="media-left padding-20">
+                <i class="fa icono-arg-chequeado fa-fw fa-2x text-primary"></i>
+              </div>
+              <div class="media-body">
+                <h3>Todos</h3>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div id="proyectos">
+      <div class="row">
+        <div class="col-md-4">    
+          <div class="form-group">
+            <label for="">Filtrá por tema</label>
+            <select id="tipo-tema" class="form-control">
+              <option data-tipotema="todos" value="todos">Todos</option>
+              <option data-tipotema="Salud" value="Salud">Salud</option>
+              <option data-tipotema="Empleabilidad / Emprendedurismo" value="Empleabilidad / Emprendedurismo">Empleabilidad / Emprendedurismo</option>
+              <option data-tipotema="Niñez y adolescencia" value="Niñez y adolescencia">Niñez y adolescencia</option>
+              <option data-tipotema="Ambiente" value="Ambiente">Ambiente</option>
+              <option data-tipotema="Comunidad / Comunitario" value="Comunidad / Comunitario">Comunidad / Comunitario</option>
+              <option data-tipotema="Educación y deportes" value="Educación y deportes">Educación y deportes</option>
+              <option data-tipotema="Contexto de Encierro" value="Contexto de Encierro">Contexto de Encierro</option>
+              <option data-tipotema="Cultura" value="Cultura">Cultura</option>
+              <option data-tipotema="Fortalecimiento" value="Fortalecimiento">Fortalecimiento</option>
+              <option data-tipotema="Ciencia y Tecnología / Investigación" value="Ciencia y Tecnología / Investigación">Ciencia y Tecnología / Investigación</option>
+              <option data-tipotema="Transparencia" value="Transparencia">Transparencia</option>
+              <option data-tipotema="Derechos Humanos" value="Derechos Humanos">Derechos Humanos</option>
+              <option data-tipotema="Juventud" value="Juventud">Juventud</option>
+              <option data-tipotema="Discapacidad" value="Discapacidad">Discapacidad</option>
+              <option data-tipotema="Innovación" value="Innovación">Innovación</option>
+              <option data-tipotema="Inclusión" value="Inclusión">Inclusión</option>
+              <option data-tipotema="Personas Mayores" value="Personas Mayores">Personas Mayores</option>
+              <option data-tipotema="Género" value="Género">Género</option>
+              <option data-tipotema="Primera Infancia" value="Primera Infancia">Primera Infancia</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-8">    
+          <div class="form-group">
+          <label for="">Busca por Ministerio u Organismo</label>
+            <input class="form-control search" placeholder="Buscar...">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced table-align-middle">
+        <thead>
+          <tr>
+            <th style="width: 400px;"><a class="sort" data-sort="nombre">Programa <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="tema">Tema <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="tipo">Apoyo <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="ministerio">Organismo<span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" data-render="items">
+        </tbody>
+      </table>      
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+       <div id="alerta" class="alert alert-warning col-md-4 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>  
+
+    </div>
+
+      <div class="row">
+      <div class="col-md-12 text-center m-b-2">
+
+<!--       <p>Si formás parte de una de esas organizaciones, con o sin personería jurídica, este espacio de participación ciudadana seguramente te va a interesar.</p>
+ -->        
+        <a href="https://www.argentina.gob.ar/guia-osc/preguntas-frecuentes" class="btn btn-primary btn-md">Preguntas frecuentes</a>
+
+      </div>
+      </div>
+
+  </section> 
+</div>
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="{{ "/proyectos/argentina/estatico/osc/js/tableMobile.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tabla: '<tr><td class="nombre"> <h6> <a href="{info}" target="_blank">{nombre}</a></h6><p>{oracion}</p></td><td class="tema">{tema1}<br>{tema2}<br>{tema3}<br>{tema4}<br>{tema5}<br>{tema6}<br>{tema7}<br>{tema8}<br>{tema9}<br>{tema10}</td><td class="tipo">{apoyo1}<br>{apoyo2}<br>{apoyo3}<br>{apoyo4}<br>{apoyo5}</td><td class="ministerio">{ministerio}</td></tr>'
+    }
+
+    window.proyectos = [];
+    window.config = {
+      tipo: 'todos',
+      alcance: ''
+    }
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1yE3ENqa9yURo3frHDlkgA2RalUUI4yUcdOaZmaid7Ek/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+            proyectos.push({
+              index: index,
+              info: row.gsx$info.$t,
+              nombre: row.gsx$nombre.$t,
+              oracion: row.gsx$oracion.$t,
+              tema1: row.gsx$tema1.$t, 
+              tema2: row.gsx$tema2.$t, 
+              tema3: row.gsx$tema3.$t, 
+              tema4: row.gsx$tema4.$t, 
+              tema5: row.gsx$tema5.$t, 
+              tema6: row.gsx$tema6.$t, 
+              tema7: row.gsx$tema7.$t, 
+              tema8: row.gsx$tema8.$t, 
+              tema9: row.gsx$tema9.$t, 
+              tema10: row.gsx$tema10.$t, 
+              apoyo1: row.gsx$apoyo1.$t, 
+              apoyo2: row.gsx$apoyo2.$t, 
+              apoyo3: row.gsx$apoyo3.$t, 
+              apoyo4: row.gsx$apoyo4.$t, 
+              apoyo5: row.gsx$apoyo5.$t, 
+              ministerio: row.gsx$ministerio.$t
+            });
+
+        })
+
+        render.items();
+
+        var listOptions = {
+          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var proyectosList = new List('proyectos', listOptions);
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            proyectosList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        proyectosList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+      }
+    });
+
+
+    var render = {
+      items: function( ){
+
+        $('[data-render=items]').html('');
+
+        $.each(proyectos, function(index, proyecto){
+
+          if ( !(config.tipo != 'todos' && config.tipo != proyecto.tema1) && !(config.alcance && proyecto[config.alcance] != 'todos') ) {
+
+            var html = templates.tabla;
+
+            html = html.replace(/{nombre}/gi, proyecto.nombre)
+            .replace(/{index}/gi, index)
+            .replace(/{info}/gi, proyecto.info)
+            .replace(/{nombre}/gi, proyecto.nombre)
+            .replace(/{oracion}/gi, proyecto.oracion)
+            .replace(/{tema1}/gi, proyecto.tema1)
+            .replace(/{tema2}/gi, proyecto.tema2)
+            .replace(/{tema3}/gi, proyecto.tema3)
+            .replace(/{tema4}/gi, proyecto.tema4)
+            .replace(/{tema5}/gi, proyecto.tema5)
+            .replace(/{tema6}/gi, proyecto.tema6)
+            .replace(/{tema7}/gi, proyecto.tema7)
+            .replace(/{tema8}/gi, proyecto.tema8)
+            .replace(/{tema9}/gi, proyecto.tema9)
+            .replace(/{tema10}/gi, proyecto.tema10)
+            .replace(/{apoyo1}/gi, proyecto.apoyo1)
+            .replace(/{apoyo2}/gi, proyecto.apoyo2)
+            .replace(/{apoyo3}/gi, proyecto.apoyo3)
+            .replace(/{apoyo4}/gi, proyecto.apoyo4)
+            .replace(/{apoyo5}/gi, proyecto.apoyo5)
+            .replace(/{ministerio}/gi, proyecto.ministerio);
+
+            $('[data-render=items]').append( html );
+
+          }
+
+        });
+
+      }   
+    }
+
+    $("#tipo-tema").on("change", function() {
+      config.tipo = $( "#tipo-tema option:selected" ).data('tipotema');
+      console.log(config.tipo)
+      config.alcance = $('.active[data-filtro]').attr('data-filtro');
+      console.log(config.alcance)
+
+      render.items();
+    });
+
+    $("#filtro [data-filtro]").bind("click", function() {
+      if( $(this).hasClass('active') ){
+        $(this).removeClass('active');
+        config.alcance = '';
+      }else{
+        $("#filtro [data-filtro]").removeClass('active');
+        $(this).addClass('active');
+        config.alcance = $(this).attr('data-filtro');
+        console.log(config.alcance)
+      }
+
+      render.items();
+    });
+
+
+  });
+
+     
+</script>
+
+<script type="text/javascript">
+  $(document).ready( function() {
+    $("table").tableMobile();
+  });
+</script>
