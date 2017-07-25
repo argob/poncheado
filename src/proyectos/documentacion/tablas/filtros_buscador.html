@@ -8,10 +8,8 @@ layout: argentina
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb pull-left">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/transporte">Ministerio de Transporte</a></li>
-            <li><a href="/occovi">Órgano de Control de Concesiones Viales - OCCOVI </a></li>
-            <li class="active"><span>Tarifas</span></li>
+            <li><a href="/">Ejemplos</a></li>
+            <li class="active"><span>Tabla con filtros y buscador</span></li>
             
           </ol>
         </div>
@@ -20,8 +18,8 @@ layout: argentina
   </div>
   <div class="jumbotron_body">
     <div class="container text-center">
-      <h1 class="h2 m-b-0">Tarifas de peajes</h1>
-      <p class="lead">Conocé los precios de todos los peajes del país.</p>
+      <h1 class="h2 m-b-0">Ejemplo de tabla</h1>
+      <p class="lead">Ejemplo de tabla con filtro, buscador y paginador</p>
     </div>
   </div>
   <div class="overlay"></div>
@@ -31,65 +29,45 @@ layout: argentina
 <div class="container">
  <section>
 
-    <div id="tarifas">
+    <div id="ejemplos">
       <div class="row">
 
         <div class="col-md-4">
           <div class="form-group">
-            <label for="">Filtrá por tipo de vehículo</label>
-            <select id="tipo-vehiculo" class="form-control">
-              <option data-tipovehiculo="todos" value="todos">Todos</option>
-              <option data-tipovehiculo="1 eje" value="1 eje">1 eje</option>
-              <option data-tipovehiculo="2 ejes altura mayor a 2.10 m o rueda doble" value="2 ejes altura mayor a 2.10 m o rueda doble">2 ejes altura mayor a 2.10 m o rueda doble</option>
-              <option data-tipovehiculo="2 ejes altura menor a 2.10 m" value="2 ejes altura menor a 2.10 m">2 ejes altura menor a 2.10 m</option>
-              <option data-tipovehiculo="Hasta 2 ejes y hasta 2.30 m" value="Hasta 2 ejes y hasta 2.30 m">Hasta 2 ejes y hasta 2.30 m</option>
-              <option data-tipovehiculo="Hasta 2 ejes y más de 2.30 m o con rueda doble" value="Hasta 2 ejes y más de 2.30 m o con rueda doble">Hasta 2 ejes y más de 2.30 m o con rueda doble</option>
-              <option data-tipovehiculo="3 y 4 ejes altura mayor a 2.10 m o rueda doble" value="3 y 4 ejes altura mayor a 2.10 m o rueda doble">3 y 4 ejes altura mayor a 2.10 m o rueda doble</option>
-              <option data-tipovehiculo="3 y 4 ejes altura menor a 2.10 m" value="3 y 4 ejes altura menor a 2.10 m">3 y 4 ejes altura menor a 2.10 m</option>
-              <option data-tipovehiculo="3 y 4 ejes y hasta 2,30 m sin rueda doble" value="3 y 4 ejes y hasta 2,30 m sin rueda doble">3 y 4 ejes y hasta 2,30 m sin rueda doble</option>
-              <option data-tipovehiculo="3 y 4 ejes y más 2,30 m y/o con rueda doble" value="3 y 4 ejes y más 2,30 m y/o con rueda doble">3 y 4 ejes y más 2,30 m y/o con rueda doble</option>
-              <option data-tipovehiculo="5 y 6 ejes" value="5 y 6 ejes">5 y 6 ejes</option>
-              <option data-tipovehiculo="7 ejes" value="7 ejes">7 ejes</option>
-              <option data-tipovehiculo="Más de 6 ejes" value="Más de 6 ejes">Más de 6 ejes</option>
+            <label for="">Filtro</label>
+            <select id="tipo-filtro" class="form-control">
+              <option data-tipofiltro="todos" value="todos">Todos</option>
+              <option data-tipofiltro="filtro 1" value="filtro 1">filtro 1</option>
+              <option data-tipofiltro="filtro 2" value="filtro 2">filtro 2</option>
+              <option data-tipofiltro="filtro 3" value="filtro 3">filtro 3</option>
+              <option data-tipofiltro="filtro 4" value="filtro 4">filtro 4</option>
+              <option data-tipofiltro="filtro 5" value="filtro 5">filtro 5</option>
             </select>
           </div>
         </div>    
 
         <div class="col-md-4">
           <div class="form-group">
-            <label for="">Buscá por acceso o ruta</label>
-            <select id="tipo-acceso" class="form-control">
-              <option data-tipoacceso="todos" value="todos">Todos</option>
-              <option data-tipoacceso="Acceso Norte" value="Acceso Norte">Acceso Norte</option>
-              <option data-tipoacceso="Acceso Oeste" value="Acceso Oeste">Acceso Oeste</option>
-              <option data-tipoacceso="Acceso Riccheri" value="Acceso Riccheri">Acceso Riccheri</option>
-              <option data-tipoacceso="Au. Rosario Córdoba - Corredor Vial N° 5" value="Au. Rosario Córdoba - Corredor Vial N° 5">Au. Rosario Córdoba - Corredor Vial N° 5</option>
-              <option data-tipoacceso="RN Nº 11 - Corredor Vial N° 5" value="RN Nº 11 - Corredor Vial N° 5">RN Nº 11 - Corredor Vial N° 5</option>
-              <option data-tipoacceso="RN Nº 12 - Corredor Vial N° 18" value="RN Nº 12 - Corredor Vial N° 18">RN Nº 12 - Corredor Vial N° 18</option>
-              <option data-tipoacceso="RN Nº 12 - Corredor Vial N° 6" value="RN Nº 12 - Corredor Vial N° 6">RN Nº 12 - Corredor Vial N° 6</option>
-              <option data-tipoacceso="RN Nº 14 - Corredor Vial N° 18" value="RN Nº 14 - Corredor Vial N° 18">RN Nº 14 - Corredor Vial N° 18</option>
-              <option data-tipoacceso="RN Nº 16 - Corredor Vial N° 6" value="RN Nº 16 - Corredor Vial N° 6">RN Nº 16 - Corredor Vial N° 6</option>
-              <option data-tipoacceso="RN Nº 188 - Corredor Vial N° 2" value="RN Nº 188 - Corredor Vial N° 2">RN Nº 188 - Corredor Vial N° 2</option>
-              <option data-tipoacceso="RN Nº 19 - Corredor Vial N° 4" value="RN Nº 19 - Corredor Vial N° 4">RN Nº 19 - Corredor Vial N° 4</option>
-              <option data-tipoacceso="RN Nº 205 - Corredor Vial N° 1" value="RN Nº 205 - Corredor Vial N° 1">RN Nº 205 - Corredor Vial N° 1</option>
-              <option data-tipoacceso="RN Nº 226 - Corredor Vial N° 1" value="RN Nº 226 - Corredor Vial N° 1">RN Nº 226 - Corredor Vial N° 1</option>
-              <option data-tipoacceso="RN Nº 3 - Corredor Vial N° 1" value="RN Nº 3 - Corredor Vial N° 1">RN Nº 3 - Corredor Vial N° 1</option>
-              <option data-tipoacceso="RN Nº 33 - Corredor Vial N° 8" value="RN Nº 33 - Corredor Vial N° 8">RN Nº 33 - Corredor Vial N° 8</option>
-              <option data-tipoacceso="RN Nº 34 - Corredor Vial N° 3" value="RN Nº 34 - Corredor Vial N° 3">RN Nº 34 - Corredor Vial N° 3</option>
-              <option data-tipoacceso="RN Nº 34 - Corredor Vial N° 4" value="RN Nº 34 - Corredor Vial N° 4">RN Nº 34 - Corredor Vial N° 4</option>
-              <option data-tipoacceso="RN Nº 38 - Corredor Vial N° 4" value="RN Nº 38 - Corredor Vial N° 4">RN Nº 38 - Corredor Vial N° 4</option>
-              <option data-tipoacceso="RN Nº 5 - Corredor Vial N° 2" value="RN Nº 5 - Corredor Vial N° 2">RN Nº 5 - Corredor Vial N° 2</option>
-              <option data-tipoacceso="RN Nº 7 - Corredor Vial N° 3" value="RN Nº 7 - Corredor Vial N° 3">RN Nº 7 - Corredor Vial N° 3</option>
-              <option data-tipoacceso="RN Nº 8 - Corredor Vial N° 8" value="RN Nº 8 - Corredor Vial N° 8">RN Nº 8 - Corredor Vial N° 8</option>
-              <option data-tipoacceso="RN Nº 9 - Corredor Vial N° 3" value="RN Nº 9 - Corredor Vial N° 3">RN Nº 9 - Corredor Vial N° 3</option>
-              <option data-tipoacceso="RN Nº 9 - Corredor Vial N° 5" value="RN Nº 9 - Corredor Vial N° 5">RN Nº 9 - Corredor Vial N° 5</option>
+            <label for="">Filtrá por nombre</label>
+            <select id="tipo-nombre" class="form-control">
+              <option data-tiponombre="todos" value="todos">Todos</option>
+              <option data-tiponombre="nombre 1" value="nombre 1">nombre 1</option>
+              <option data-tiponombre="nombre 2" value="nombre 2">nombre 2</option>
+              <option data-tiponombre="nombre 3" value="nombre 3">nombre 3</option>
+              <option data-tiponombre="nombre 4" value="nombre 4">nombre 4</option>
+              <option data-tiponombre="nombre 5" value="nombre 5">nombre 5</option>
+              <option data-tiponombre="nombre 6" value="nombre 6">nombre 6</option>
+              <option data-tiponombre="nombre 7" value="nombre 7">nombre 7</option>
+              <option data-tiponombre="nombre 8" value="nombre 8">nombre 8</option>
+              <option data-tiponombre="nombre 9" value="nombre 9">nombre 9</option>
+              <option data-tiponombre="nombre 10" value="nombre 10">nombre 10</option>
             </select>
           </div>
         </div>
       
         <div class="col-md-4">    
           <div class="form-group">
-            <label for="">Buscá por peaje</label>
+            <label for="">Buscá por descripcion</label>
             <input class="form-control search" placeholder="">
           </div>
         </div>
@@ -99,12 +77,12 @@ layout: argentina
       <table class="table table-spaced table-align-middle">
         <thead>
           <tr>
-            <th style="width: 150px;"><a class="sort" data-sort="acceso">Acceso o ruta <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="peaje">Peaje <span class="caret"></span></a></th>
-            <th style="width: 170px;"><a class="sort" data-sort="ejes">Ejes de vehículo <span class="caret"></span></a></th>
-            <th style="width: 150px;"><a class="sort" data-sort="pago">Modo de pago <span class="caret"></span></a></th>
-            <th style="width: 150px;"><a class="sort" data-sort="franja">Franja Horaria <span class="caret"></span></a></th>
-            <th style="width: 100px;"><a class="sort" data-sort="tarifa">Tarifa <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
+            <th style="width: 300px;"><a class="sort" data-sort="descripcion">Descripción <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="filtro">Filtro <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna1">Columna 1 <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna2">Columna 2 <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="columna2">Comentario <span class="caret"></span></a></th>
           </tr>
         </thead>
         <tbody class="list" id="show-data">
@@ -133,61 +111,53 @@ layout: argentina
 <!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="{{ "js/tableMobile.js" | prepend: site.baseurl }}"></script>
 
 <script>
 
 (function($) {
 $(document).ready(function () {
 
-    $('body').tooltip({
-    selector: '[data-toggle="tooltip"]'
+    $.getJSON('https://spreadsheets.google.com/feeds/list/111OA4kwmHGFh0HZZnW6gvx4t1j47qLwh3r61edrH4OU/1/public/values?alt=json', function (data) {
+        window.ejemplos = data.feed.entry;
+        showejemplos("todos");
     });
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1/public/values?alt=json', function (data) {
-        window.tarifas = data.feed.entry;
-        showtarifas("todos");
-        console.log(data);
-    });
-
-    window.showtarifas = function(vehiculo){
+    window.showejemplos = function(filtro){
         var showData = $('#show-data');
 
         var html = '';
 
 
-        $.each( tarifas, function( key, item ) {
+        $.each( ejemplos, function( key, item ) {
 
-            var franja = '<td class="franja">'+ item.gsx$franja.$t + '</td>'; 
 
             if (item.gsx$comentario.$t != "") {
-              franja = '<td class="franja" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body">'+ item.gsx$franja.$t + '</td>';
+              columna2 = '<td class="columna2" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body">'+ item.gsx$columna2.$t + '</td>';
             }
 
-           if( item.gsx$ejes.$t == vehiculo || item.gsx$acceso.$t == vehiculo ){
+           if( item.gsx$filtro.$t == filtro || item.gsx$nombre.$t == filtro ){
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
-            html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
-            html += franja;
-            html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="descripcion">'+ item.gsx$descripcion.$t + '</td>';
+            html += ' <td class="filtro">'+ item.gsx$filtro.$t + '</td>';
+            html += ' <td class="columna1">'+ item.gsx$columna1.$t + '</td>';
+            html += ' <td class="columna2">'+ item.gsx$columna2.$t + '</td> ';
+            html += ' <td class="columna2">'+ item.gsx$comentario.$t + '</td> ';
             html += '</tr>';
           }
-           else if  (vehiculo == "todos") {
+           else if  (filtro == "todos") {
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
-            html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
-            html += franja;
-            html += ' <td class="tarifa"><strong class="text-muted">$ '+ item.gsx$tarifa.$t + '</strong></td>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="descripcion">'+ item.gsx$descripcion.$t + '</td>';
+            html += ' <td class="filtro">'+ item.gsx$filtro.$t + '</td>';
+            html += ' <td class="columna1">'+ item.gsx$columna1.$t + '</td>';
+            html += ' <td class="columna2">'+ item.gsx$columna2.$t + '</td> ';
+            html += ' <td class="columna2">'+ item.gsx$comentario.$t + '</td> ';
             html += '</tr>';
           }
-
-          console.log(franja);
-
 
         });
 
@@ -195,22 +165,22 @@ $(document).ready(function () {
         showData.append(html);
 
         var listOptions = {
-          valueNames: [ 'acceso', 'peaje', 'ejes', 'pago', 'franja', 'tarifa' ],
+          valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
           page: 20,
           plugins: [ ListPagination({}) ]
           
          };
 
-        var tarifasList = new List('tarifas', listOptions);  
+        var ejemplosList = new List('ejemplos', listOptions);  
 
         jQuery('.search').on("keyup",function(){
             var valueSearch = jQuery(".search").val();
-            tarifasList.search(valueSearch);
+            ejemplosList.search(valueSearch);
         });
 
         $('.no-result').hide()
         
-        tarifasList.on('updated', function(list) {
+        ejemplosList.on('updated', function(list) {
           if (list.matchingItems.length > 0) {
             $('.no-result').hide()
           } else {
@@ -220,22 +190,32 @@ $(document).ready(function () {
 
     }
 
-    $("#tipo-vehiculo").on("change", function() {
-      var vehiculo = $( "#tipo-vehiculo option:selected" ).data('tipovehiculo');
-      showtarifas(vehiculo);
+    $("#tipo-filtro").on("change", function() {
+      var filtro = $( "#tipo-filtro option:selected" ).data('tipofiltro');
+      showejemplos(filtro);
 
     });
 
-    $("#tipo-acceso").on("change", function() {
-      var vehiculo = $( "#tipo-acceso option:selected" ).data('tipoacceso');
-      showtarifas(vehiculo);
+    $("#tipo-nombre").on("change", function() {
+      var filtro = $( "#tipo-nombre option:selected" ).data('tiponombre');
+      showejemplos(filtro);
 
     });
 
+
+  $(document).ready( function() {
+    $("table").tableMobile();
+  });
     
 
 });
 })(jQuery);
+
+
+
+
+
+
 
 </script>
 
