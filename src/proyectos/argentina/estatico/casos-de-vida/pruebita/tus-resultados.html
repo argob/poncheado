@@ -1,0 +1,265 @@
+---
+layout: mi-argentina
+---
+
+
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
+      <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Tus resultados</h2>
+    <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
+
+
+
+
+
+    <div id="wizard-personal" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
+      <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
+      <div id="wizard-personal-category-items" class="row panels-row m-y-2"></div>
+
+    </div>
+
+    <div id="wizard-interest" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+      <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
+    </div>
+
+    <div id="wizard-message" class="m-y-3 hidden">
+      <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+      <p>Probá cambiando la configuración del formulario.</p>
+    </div>
+
+    <div class="m-y-3">
+      <a id="edit-form" class="btn btn-primary m-r-1" href="/quemebrinda">Cambiar respuestas</a>
+      <a id="wipe-form" class="btn btn-link" href="/quemebrinda">Volver a comenzar</a>
+    </div>
+
+    <script>
+
+
+
+var categories = [
+  {
+   name:"Categoria 1",
+   contents:[
+        {
+          name: 'Tarifa Social',
+          description: 'Solicitar tarifa social en los servicios públicos.',
+          url: '/tarifasocial',
+          icon: 'fa-user',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '> 59',
+            empleo: 'no',
+            hijo_menor: 'si',
+            discapacidad: 'si',
+            discapaciodad_acargo: 'si'
+          }
+        },
+        {
+          name: 'Mujeres en situación de violencia',
+          description: 'Atención a las víctimas de abusos o maltratos domésticos.',
+          url: '/atencionmujeres',
+          icon: 'fa-female',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_violencia: 'si'
+          }
+        }
+   ]
+ },
+ {
+   name:"Categoria 2",
+   contents:[
+        {
+          name: 'Cuido mi salud (adultos mayores)',
+          description: 'Consejos, servicios y trámites de cobertura médica que ayuden a mejorar tu calidad de vida.',
+          url: '/tema/adultosmayores/cuido-mi-salud',
+          icon: 'icono-arg-medicina',
+          nacionalidad: 'argentino',
+          tipo: 'interes',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Vivir en Positivo',
+          description: 'Qué es, cómo se transmite, tratamientos y derechos que protegen a las personas con VIH.',
+          url: '/vivirenpositivo',
+          icon: 'fa-users',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_salud: 'si'
+          }
+        }
+
+   ]
+ }
+];
+      
+      var templates = {
+        item: '<div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="{url}"> <div class="panel-body"> <div class="media"> <div class="media-left padding-20"> <i class="fa {icon} fa-fw fa-2x text-primary"></i> </div> <div class="media-body"> <h3>{title}</h3> <p class="text-muted">{description}</p> </div> </div> </div> </a> </div>',
+        category: '<div class="col-md-12"><h3>{category}</h3></div>{items}'
+      };
+
+      var form_data;
+      var data = {};
+
+      // Leo si hay algo guardado
+
+      if(typeof(Storage) !== "undefined") {
+        if( localStorage.getItem("wizard-form") != undefined ){
+
+          form_data = JSON.parse( localStorage.getItem("wizard-form"))
+
+          jQuery.each(form_data, function(key, item){
+            data[item.name] = item.value;
+          });
+
+          var item_blank = true;
+
+          jQuery.each(categories, function(key, category){
+
+            var showCategory = false;
+            var htmlCategoryItems = "";
+
+            jQuery.each(category.contents, function(key, content){
+              
+
+
+              var show = false;
+              var nacionalidad = false;
+
+              if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
+                nacionalidad = true;
+              }
+
+
+              jQuery.each(content.conditions, function(condition, value){
+                if(condition == 'edad'){
+                  new_condition = value.split(' ');
+
+                  if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
+                    show = true;
+                  }
+
+                  if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
+                    show = true;
+                  }
+
+                }else if( data[condition] == value ){
+                  show = true;
+                }
+              });
+
+              // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
+
+              if(show && nacionalidad){
+                showCategory = true;
+
+                item_blank = false;
+
+                var html = templates.item;
+
+                html = html.replace(/{url}/gi, content.url)
+                  .replace(/{icon}/gi, content.icon)
+                  .replace(/{title}/gi, content.name)
+                  .replace(/{description}/gi, content.description);
+
+                // if(content.tipo == 'personal'){
+                  jQuery('#wizard-personal').removeClass('hidden');
+                  // jQuery('#wizard-personal-items').append( html );
+
+
+                  htmlCategoryItems += html;
+                // }else{
+                //   jQuery('#wizard-interest').removeClass('hidden');
+                //   jQuery('#wizard-interest-items').append( html );
+                // }
+
+
+              }
+
+
+            });
+
+            if(showCategory) {
+
+                var htmlCategory = templates.category;
+
+                htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
+                  .replace(/{items}/gi, htmlCategoryItems);
+
+                // if(content.tipo == 'personal'){
+                  jQuery('#wizard-personal').removeClass('hidden');
+                  jQuery('#wizard-personal-category-items').append( htmlCategory );
+
+            }
+
+          });//termino de cargar categoria
+          
+          
+          // console.log(item_blank);
+
+          if(item_blank){
+            jQuery('#wizard-message').removeClass('hidden');
+          }
+            
+        }else{
+          // console.log('Todavía no guardaste nada');
+          window.location.replace('/quemebrinda');
+        }
+
+      } else {
+        console.log('No tenés soporte :(');
+      }
+
+      jQuery('#edit-form').on('click', function(event){
+        event.preventDefault();
+        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        window.location.href = '/quemebrinda';
+      });
+
+      jQuery('#wipe-form').on('click', function(event){
+        event.preventDefault();
+        localStorage.removeItem('wizard-form');
+        ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
+        window.location.href = '/quemebrinda';
+      });
+
+
+    </script>
+
+
+    
+
+  </div>
+</section>
+
+
