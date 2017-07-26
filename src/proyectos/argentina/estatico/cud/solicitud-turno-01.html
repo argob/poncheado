@@ -213,7 +213,7 @@ layout: argentina
 
 
                     <label class="control-label">Provincia</label><br>
-                    <select class="form-control" name="provincia" id="provincia" required="">
+                    <select class="form-control" name="provincia" id="provincia">
                         <option value=""></option>
                         <option value="CIUDAD AUTONOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
                         <option value="BUENOS AIRES">Buenos Aires</option>
@@ -249,7 +249,7 @@ layout: argentina
                     <legend class="control-label">Localidad</legend>
                     <p class="m-b-2">Elegí tu localidad o la más cercana a tu domicilio</p>
                     <fieldset disabled="disabled">
-                        <select class="form-control" name="locality" required>
+                        <select class="form-control" name="locality">
                             <option value=""></option>
                         </select>
                     </fieldset>
@@ -332,7 +332,13 @@ layout: argentina
                   },
                   coberturamedica: {
                       required: true
-                  }                                                           
+                  },                                                           
+                  provincia: {
+                      required: true
+                  },
+                  locality: {
+                      required: true
+                  },
 
                },                           
               errorPlacement: function(error, element) {
