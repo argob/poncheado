@@ -155,7 +155,7 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X")
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológica.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológica.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                    
+                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                    
                   ) 
                 {
                     show = true;
@@ -168,7 +168,7 @@ layout: argentina
                     && 
                     (data.mayor18 == 'no' )  
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológica.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológica.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                     
+                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                     
                   )
                 {
                     show = true;
@@ -248,9 +248,9 @@ layout: argentina
 
                 if(
                    (
-                     ( item.gsx$motoraneurológica.$t == "X" && data.discapacidadmotora == 'si' ) 
+                     ( item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "X" && data.discapacidadmotoranomiastenia == 'si' ) 
                      || ( item.gsx$motoratraumatológica.$t == "X" && data.discapacidadtraumatologico == 'si') 
-                     || ( item.gsx$motorareumatológica.$t == "X" && data.discapacidadreumatologico == 'si') 
+                     || ( item.gsx$motorareumatológicanoartritisreumatoidea.$t == "X" && data.discapacidadreumatologiconoartritis == 'si') 
                     )
                   ) 
                 {
@@ -417,9 +417,37 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X" )  
                     &&                      
-                    ( item.gsx$motoraneurológica.$t == "X" 
+                    ( item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "X" 
                       && 
-                      data.discapacidadmotora == 'si'
+                      data.discapacidadmotoranomiastenia == 'si'
+                    )
+                  ) 
+                {
+                    show = true;
+                }  
+
+                if( 
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X" )  
+                    &&                      
+                    ( item.gsx$motoraneurológicapormiasteniagravis.$t == "X" 
+                      && 
+                      data.discapacidadmotoramiastenia == 'si'
+                    )
+                  ) 
+                {
+                    show = true;
+                }  
+
+                if( 
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X" )  
+                    &&                      
+                    ( item.gsx$motoraneurológicaporesclerosismultiple.$t == "X" 
+                      && 
+                      data.discapacidadmotoraesclerosis == 'si'
                     )
                   ) 
                 {
@@ -444,8 +472,21 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X" )  
                     &&                   
-                    ( item.gsx$motorareumatológica.$t == "X" 
-                      && data.discapacidadreumatologico == 'si'
+                    ( item.gsx$motorareumatológicanoartritisreumatoidea.$t == "X" 
+                      && data.discapacidadreumatologiconoartritis == 'si'
+                    )
+                  ) 
+                {
+                    show = true;
+                }  
+
+                if( 
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X" )  
+                    &&                   
+                    ( item.gsx$motoraartritisreumatoidea.$t == "X" 
+                      && data.discapacidadreumatologicoartritis == 'si'
                     )
                   ) 
                 {
@@ -520,9 +561,9 @@ layout: argentina
 
 
                     // htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidadvisual}/gi, data.discapacidadvisual.replace("si","Discapacidad de origen visual"))
-                    // .replace(/{tipoDiscapacidadmotora}/gi, data.discapacidadmotora.replace("si","Discapacidad de origen motor neurológico"))
+                    // .replace(/{tipodiscapacidadmotoranomiastenia}/gi, data.discapacidadmotoranomiastenia.replace("si","Discapacidad de origen motor neurológico"))
                     // .replace(/{tipoDiscapacidadtraumatologico}/gi, data.discapacidadtraumatologico.replace("si","Discapacidad de origen motor traumatológico"))
-                    // .replace(/{tipoDiscapacidadreumatologico}/gi, data.discapacidadreumatologico.replace("si","Discapacidad de origen motor reumatológico reumatológico"))
+                    // .replace(/{tipodiscapacidadreumatologiconoartritis}/gi, data.discapacidadreumatologiconoartritis.replace("si","Discapacidad de origen motor reumatológico reumatológico"))
                     // .replace(/{tipoDiscapacidadauditivo}/gi, data.discapacidadauditivo.replace("si","Discapacidad de origen auditivo"))
                     // .replace(/{tipoDiscapacidadrespiratorio}/gi, data.discapacidadrespiratorio.replace("si","Discapacidad de origen respiratorio"))
                     // .replace(/{tipoDiscapacidadcardiovascular}/gi, data.discapacidadcardiovascular.replace("si","Discapacidad de origen cardiovascular"))
@@ -579,14 +620,20 @@ layout: argentina
                     if (data.discapacidadvisual == 'si'){
                       tipoDiscapacidad += 'Origen visual, ';
                     } 
-                    if (data.discapacidadmotora == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico, ';
+                    if (data.discapacidadmotoranomiastenia == 'si' ) {
+                      tipoDiscapacidad += 'Trastorno motor neurológico (no miastenia gravis ni esclerosis múltiple), ';
+                    } 
+                    if (data.discapacidadmotoramiastenia == 'si' ) {
+                      tipoDiscapacidad += 'Trastorno motor neurológico (por miastenia gravis), ';
+                    } 
+                    if (data.discapacidadmotoraesclerosis == 'si' ) {
+                      tipoDiscapacidad += 'Trastorno motor neurológico (por esclerosis múltiple), ';
                     } 
                     if (data.discapacidadtraumatologico == 'si') {
                       tipoDiscapacidad += 'Trastorno motor traumatológico, ';
                     }
-                    if (data.discapacidadreumatologico == 'si') {
-                      tipoDiscapacidad += 'Trastorno motor reumatológico, ';
+                    if (data.discapacidadreumatologiconoartritis == 'si') {
+                      tipoDiscapacidad += 'Trastorno motor reumatológico (no artritis reumatoidea), ';
                     }
                     if (data.discapacidadauditivo == 'si') {
                       tipoDiscapacidad += 'Origen auditivo, ';
