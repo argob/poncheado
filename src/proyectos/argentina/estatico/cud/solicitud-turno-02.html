@@ -33,7 +33,7 @@ layout: argentina
             <hr class="m-y-1"/>
 
            <div id="show-data-lugar" class="m-t-2 hidden"></div>    
-           <div id="show-data-description-lugar" class="hidden"></div>    
+           <ul id="show-data-description-lugar" class="hidden"></ul>    
 
             <p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
             <p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certificado.</p>
@@ -135,7 +135,7 @@ layout: argentina
         , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>`,
         item: `<li>{requisito}</li>`,
         descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
-        lugar: `<div class="form-group m-t-2">
+        lugar: `<li><div class="form-group m-t-2">
                   <label class="control-label">Junta</label>
                   <p>{junta}</p>
                 </div>        
@@ -147,7 +147,7 @@ layout: argentina
                   <label class="control-label">Teléfono</label>
                   <p>{telefono}</p>
                 </div>
-                <hr />`, 
+                <hr /></li>`, 
         tipoDiscapacidad: `{tipoDiscapacidad}`                                 
       };
 
@@ -654,19 +654,19 @@ layout: argentina
                       tipoDiscapacidad += 'Origen visual, ';
                     } 
                     if (data.discapacidadmotoranomiastenia == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico (no miastenia gravis ni esclerosis múltiple), ';
+                      tipoDiscapacidad += 'Trastorno motor neurológico no miastenia gravis ni esclerosis múltiple, ';
                     } 
                     if (data.discapacidadmotoramiastenia == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico (por miastenia gravis), ';
+                      tipoDiscapacidad += 'Trastorno motor neurológico por miastenia gravis, ';
                     } 
                     if (data.discapacidadmotoraesclerosis == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico (por esclerosis múltiple), ';
+                      tipoDiscapacidad += 'Trastorno motor neurológico por esclerosis múltiple, ';
                     } 
                     if (data.discapacidadtraumatologico == 'si') {
                       tipoDiscapacidad += 'Trastorno motor traumatológico, ';
                     }
                     if (data.discapacidadreumatologiconoartritis == 'si') {
-                      tipoDiscapacidad += 'Trastorno motor reumatológico (no artritis reumatoidea), ';
+                      tipoDiscapacidad += 'Trastorno motor reumatológico no artritis reumatoidea, ';
                     }
                     if (data.discapacidadauditivo == 'si') {
                       tipoDiscapacidad += 'Origen auditivo, ';
