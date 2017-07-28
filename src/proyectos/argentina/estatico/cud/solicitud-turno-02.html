@@ -710,7 +710,7 @@ layout: argentina
                 var showLugares = false;
 
 
-                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.locality ){
+                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.localidad ){
                     showLugares = true;
                 }
 
@@ -721,7 +721,7 @@ layout: argentina
 
                     html = html.replace(/{junta}/gi, item.gsx$junta.$t)
                     .replace(/{direccion}/gi, item.gsx$domicilio.$t)
-                    //.replace(/{localidad}/gi, item.gsx$locality.$t)
+                    //.replace(/{localidad}/gi, item.gsx$localidad.$t)
                     .replace(/{telefono}/gi, item.gsx$telefono.$t);
 
                       jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
@@ -734,7 +734,7 @@ layout: argentina
 
                 var htmlDescription = templates.descriptionLugar;
                 htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
-                    .replace(/{localidad}/gi, data.locality);
+                    .replace(/{localidad}/gi, data.localidad);
 
                   jQuery('#show-data-lugar').removeClass('hidden').append( htmlDescription );
 

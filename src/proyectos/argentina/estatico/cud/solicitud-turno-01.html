@@ -267,10 +267,10 @@ div[disabled] .form-control {
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="locality">Localidad</label>
+                    <label class="control-label" for="localidad">Localidad</label>
                     <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p>
                     <div disabled="disabled">
-                        <select class="form-control" name="locality" id="localidad">
+                        <select class="form-control" name="localidad" id="localidad">
                             <option value=""></option>
                         </select>
                     </div>
@@ -324,7 +324,7 @@ div[disabled] .form-control {
               data = JSON.parse( localStorage.getItem("wizard-form-cud"))
 
               $.each(data, function(key, item){
-                if(item.name == 'provincia' || item.name == 'locality' ){
+                if(item.name == 'provincia' || item.name == 'localidad' ){
                   $('[name='+ item.name +']').val(item.value);
                 }else {
                   $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
@@ -359,7 +359,7 @@ div[disabled] .form-control {
                   provincia: {
                       required: true
                   },
-                  locality: {
+                  localidad: {
                       required: true
                   }
 
@@ -800,7 +800,7 @@ $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfb
 
 
 function localidadFn( jQuery ) {
-    var localidadFieldset = $('select[name="locality"]').parent();
+    var localidadFieldset = $('select[name="localidad"]').parent();
     if ($('select[name="provincia"]').value === '') {
         localidadFieldset.attr('disabled', true);
     } else {
@@ -814,11 +814,11 @@ function localidadFn( jQuery ) {
 
 
            if ($('select[name="provincia"]').val() === '') {
-                $('select[name="locality"]').parent().attr('disabled', true);
+                $('select[name="localidad"]').parent().attr('disabled', true);
             }
 
             $('select[name="provincia"]').on('change', function() {
-                var localidadFieldset = $('select[name="locality"]').parent();
+                var localidadFieldset = $('select[name="localidad"]').parent();
                 if (this.value === '') {
                     localidadFieldset.attr('disabled', true);
                 } else {
@@ -837,13 +837,13 @@ function localidadFn( jQuery ) {
             function load_localidades(indexProvincia) {
                 // First we clean all options
 
-                $('select[name="locality"]').empty().append('<option value="" selected></option>');
+                $('select[name="localidad"]').empty().append('<option value="" selected></option>');
                     var aux, localidad, _i, _len;
                     dataLocalidades = dataProv[indexProvincia - 1].localidad;
 
                     for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
                         localidad = dataLocalidades[_i];
-                        $('select[name="locality"]').append('<option value="' + localidad +'">' + localidad +'</option>');
+                        $('select[name="localidad"]').append('<option value="' + localidad +'">' + localidad +'</option>');
                     }
 
             }
