@@ -7,6 +7,19 @@ layout: argentina
       margin-bottom: 0;
       border-bottom: none;
   }  
+
+div[disabled] {
+    background-color: #ccc;
+}
+
+div[disabled] .form-control {
+    background-color: #e9e9e9;
+}
+
+.form-control[disabled], div[disabled] .form-control {
+    cursor: not-allowed;
+}
+
 </style>
 
 <section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/dsc_0212.jpg');">
@@ -256,11 +269,11 @@ layout: argentina
                 <div class="form-group">
                     <label class="control-label" for="locality">Localidad</label>
                     <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p>
-                    <fieldset disabled="disabled">
+                    <div disabled="disabled">
                         <select class="form-control" name="locality">
                             <option value=""></option>
                         </select>
-                    </fieldset>
+                    </div>
                 </div>
 
                 </fieldset>
