@@ -51,6 +51,7 @@ layout: argentina
              <p id="show-data-description" class="hidden"></p>    
              <ol id="show-data" class="m-t-2 hidden">
                <li id="show-renovacion" class="hidden"></li>
+               <li id="show-perdida" class="hidden"></li>
              </ol>    
 
 
@@ -633,11 +634,17 @@ layout: argentina
 
                     if(data.tipotramite == "Renovacion") {
 
-                        var htmlRenovacion = 'Llevar <strong>certificado vencido</strong> o <strong>próximo a vencer</strong> en los siguientes 30 días.';
+                        var htmlRenovacion = 'Llevar <strong>certificado vencido</strong> o <strong>próximo a vencer</strong>.';
 
                         $('#show-renovacion').removeClass('hidden').append( htmlRenovacion );                      
                     }
 
+                    if(data.tipotramite == "Perdida-del-certificado") {
+
+                        var htmlPerdida = 'Llevar <strong>denuncia policial</strong> que certifique la pérdida.';
+
+                        $('#show-perdida').removeClass('hidden').append( htmlPerdida );                      
+                    }
 
 
                     var htmlTipoDiscapacidad = templates.tipoDiscapacidad;  
@@ -671,19 +678,19 @@ layout: argentina
                       tipoDiscapacidad += 'Origen auditivo, ';
                     }
                     if (data.discapacidadrespiratorio == 'si') {
-                      tipoDiscapacidad += 'Enfermedad respiratoria, ';
+                      tipoDiscapacidad += 'Trastorno respiratorio, ';
                     }
                     if (data.discapacidadcardiovascular == 'si') {
-                      tipoDiscapacidad += 'Enfermedad cardiovascular, ';
+                      tipoDiscapacidad += 'Trastorno cardiovascular, ';
                     }
                     if (data.discapacidadurologico == 'si') {
-                      tipoDiscapacidad += 'Enfermedad renal urológica, ';
+                      tipoDiscapacidad += 'Trastorno renal urológica, ';
                     }
                     if (data.discapacidaddigestivo == 'si') {
-                      tipoDiscapacidad += 'Enfermedad digestiva, ';
+                      tipoDiscapacidad += 'Trastorno digestivo, ';
                     }
                     if (data.discapacidadhepatico == 'si') {
-                      tipoDiscapacidad += 'Enfermedad hepática, ';
+                      tipoDiscapacidad += 'Trastorno hepático, ';
                     }
 
 
