@@ -47,6 +47,7 @@ layout: mi-argentina
     <div id="wizard-personal" class="hidden">
       
       <div id="wizard-personal-items" class="row panels-row m-b-2"></div>
+      <div id="wizard-personal-category-items" class="row panels-row m-y-2"></div>
     </div>
 
     <div id="wizard-interest" class="hidden">
@@ -69,6 +70,8 @@ layout: mi-argentina
 var categories = [
   {
    name:"Personas con discapacidad",
+   urlCategory: 'https://www.argentina.gob.ar/discapacidad',   
+   iconCategory: 'fa-wheelchair',
    contents:[
         {
           name: 'Solicitar Asignación Familiar por hijo o hija con discapacidad',
@@ -76,9 +79,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-jubilado',
-          category: 'Personas con discapacidad',
-          iconCategory: 'fa-wheelchair',
-          urlCategory: 'https://www.argentina.gob.ar/discapacidad'
+          nacionalidad: 'todas',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
@@ -86,9 +91,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-factura',
-          category: 'Personas con discapacidad',
-          iconCategory: 'fa-wheelchair',
-          urlCategory: 'https://www.argentina.gob.ar/discapacidad'
+          nacionalidad: 'todas',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         },
         {
           name: 'Beneficios para personas con discapacidad',
@@ -96,9 +103,11 @@ var categories = [
           description: 'Beneficios, asignaciones y acceso a la educación, el deporte y la cultura.',
           url: 'https://www.argentina.gob.ar/discapacidad',
           icon: 'fa-wheelchair',
-          category: 'Personas con discapacidad',
-          iconCategory: 'fa-wheelchair',
-          urlCategory: 'https://www.argentina.gob.ar/discapacidad'
+          nacionalidad: 'todas',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         },
         {
           name: 'Certificado Único de Discapacidad (CUD)',
@@ -106,14 +115,18 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-el-certificado-unico-de-discapacidad-cud',
           icon: 'fa-wheelchair',
-          category: 'Personas con discapacidad',
-          iconCategory: 'fa-wheelchair',
-          urlCategory: 'https://www.argentina.gob.ar/discapacidad'
+          nacionalidad: 'todas',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         }
    ]
  },
  {
    name:"Tener un hijo",
+   iconCategory: 'icono-arg-tener-un-hijo',   
+   urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo',
    contents:[
         {
           name: 'Asignación prenatal',
@@ -121,9 +134,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
           icon: 'icono-arg-apostilla',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Solicitar Licencia por maternidad',
@@ -131,9 +146,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
           icon: 'icono-arg-apostilla',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
@@ -141,9 +158,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-apostilla',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por Nacimiento o Adopción',
@@ -151,9 +170,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
           icon: 'icono-arg-apostilla',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Asignación prenatal',
@@ -161,9 +182,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
           icon: 'icono-arg-factura',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Asignación universal por embarazo',
@@ -171,9 +194,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
           icon: 'fa-female',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Asignación Universal por Hijo para Protección Social',
@@ -181,9 +206,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
           icon: 'fa-female',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Solicitar Licencia por maternidad',
@@ -191,9 +218,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
           icon: 'fa-female',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Asignación universal por embarazo',
@@ -201,9 +230,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Solicitar Licencia por maternidad',
@@ -211,9 +242,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Asignación Familiar por Nacimiento o Adopción',
@@ -221,9 +254,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Asignación Universal por Hijo para Protección Social',
@@ -231,9 +266,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
@@ -241,9 +278,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Pensión no contributiva a madre de 7 o más hijos',
@@ -251,9 +290,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/pension-no-contributiva-madre-de-7-o-mas-hijos',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Vacunas para bebés',
@@ -261,9 +302,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/bebes',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Vacunas durante el embarazo',
@@ -271,9 +314,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/embarazadas',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Reproducción asistida',
@@ -281,9 +326,11 @@ var categories = [
           description: 'Te contamos lo que tenés que saber sobre reproducción asistida.',
           url: 'https://www.argentina.gob.ar/tema/tenerunhijo/fertilizacion-asistida',
           icon: 'icono-arg-fertilizacion-asistida',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }          
         },
         {
           name: 'Nacimiento de un bebé',
@@ -291,9 +338,11 @@ var categories = [
           description: 'Toda la documentación y los beneficios que te corresponden.',
           url: 'https://www.argentina.gob.ar/tema/tenerunhijo/nacimiento',
           icon: 'icono-arg-chupete',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Embarazo',
@@ -301,9 +350,11 @@ var categories = [
           description: 'Consejos y beneficios que te asisten durante el embarazo.',
           url: 'https://www.argentina.gob.ar/tema/tenerunhijo/embarazo',
           icon: 'icono-arg-embarazo',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Adopción',
@@ -311,9 +362,11 @@ var categories = [
           description: 'Pasos a seguir y beneficios que te corresponden.',
           url: 'https://www.argentina.gob.ar/tema/tenerunhijo/adoptar',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            tipo: 'interes',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Crecer con salud',
@@ -321,14 +374,18 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/crecerconsalud',
           icon: 'fa-child',
-          category: 'Tener un hijo',
-          iconCategory: 'icono-arg-tener-un-hijo',
-          urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo'
+          nacionalidad: 'todas',
+          conditions: {
+            tipo: 'interes',
+            interes_hijo: 'si'
+          }
         }
    ]
  },
  {
    name:"Hogar pareja y familia",
+   iconCategory: 'icono-arg-hogar-y-familia',
+   urlCategory: 'https://www.argentina.gob.ar/tema/hogar',
    contents:[
         {
           name: 'Tarifa Social en los Servicios Públicos',
@@ -336,9 +393,14 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tarifasocial',
           icon: 'icono-arg-jubilado',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 59',
+            empleo: 'no',
+            hijo_menor: 'si',
+            discapacidad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por matrimonio',
@@ -346,9 +408,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-matrimonio',
           icon: 'icono-arg-apostilla',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
         },
         {
           name: 'Acceder a una vivienda',
@@ -356,9 +420,11 @@ var categories = [
           description: 'Créditos, programas y derechos de inquilinos o propietarios.',
           url: 'https://www.argentina.gob.ar/tema/hogar/acceder-vivienda',
           icon: 'icono-arg-vivienda',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
         },
         {
           name: 'PROCREAR',
@@ -366,9 +432,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/procrear',
           icon: 'icono-arg-vivienda',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
         },
 
         {
@@ -377,9 +445,10 @@ var categories = [
           description: 'Información para comprar, registrar o vender un auto.',
           url: 'https://www.argentina.gob.ar/vehiculos',
           icon: 'icono-arg-auto',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_auto: 'si'
+          }
         },
         {
           name: 'Tarifa Social en los servicios públicos',
@@ -387,14 +456,21 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tarifasocial',
           icon: 'icono-arg-sube',
-          category: 'Hogar pareja y familia',
-          iconCategory: 'icono-arg-hogar-y-familia',
-          urlCategory: 'https://www.argentina.gob.ar/tema/hogar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 59',
+            empleo: 'no',
+            hijo_menor: 'si',
+            discapacidad: 'si',
+            discapaciodad_acargo: 'si'
+          }
         }
    ]
  },
  {
    name:"Trabajar",
+   iconCategory: 'icono-arg-trabajador',
+   urlCategory: 'https://www.argentina.gob.ar/tema/trabajar',
    contents:[
         {
           name: 'Empleados en relación de dependencia',
@@ -402,10 +478,10 @@ var categories = [
           description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
           url: 'https://www.argentina.gob.ar/tema/trabajar/soy-empleado',
           icon: 'icono-arg-apostilla',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
         {
           name: 'Obra Social para beneficiarios de la Prestación por Desempleo',
@@ -413,10 +489,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/obra-social-para-beneficiarios-de-la-prestacion-por-desempleo',
           icon: 'icono-arg-apostilla',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_trabajo: 'si',
+            empleo: 'no'
+          }
         },
         {
           name: 'Soy monotributista',
@@ -424,10 +501,10 @@ var categories = [
           description: 'Prestaciones y trámites para los monotributistas.',
           url: 'https://www.argentina.gob.ar/tema/trabajar/monotributo',
           icon: 'icono-arg-factura',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
 
         {
@@ -436,10 +513,10 @@ var categories = [
           description: 'Conocé los derechos y beneficios de tu relación laboral.',
           url: 'https://www.argentina.gob.ar/Casas particulares',
           icon: 'fa-female',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
         {
           name: 'Prestación por Desempleo',
@@ -447,10 +524,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/prestacion-por-desempleo',
           icon: 'icono-arg-apostilla',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
         {
           name: 'Obra social y ART',
@@ -458,10 +535,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/casasparticulares/obrasocialart',
           icon: 'fa-female',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
         {
           name: 'Tarifa Social SUBE para trabajadores de casas particulares',
@@ -469,10 +546,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/casasparticulares/sube',
           icon: 'fa-female',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            empleo: 'si'
+          }
         },
         {
           name: 'Busco Trabajo',
@@ -480,10 +557,11 @@ var categories = [
           description: 'Beneficios de ayuda económica, capacitación y asistencia en la búsqueda.',
           url: 'https://www.argentina.gob.ar/trabajar',
           icon: 'fa-newspaper-o',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_trabajo: 'si',
+            empleo: 'no'
+          }
         },
 
         {
@@ -492,10 +570,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/trabajar/capacitacion',
           icon: 'icono-arg-capacitacion',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_capacitacion: 'si',
+            empleo: 'no'  
+          }
         },
         {
           name: 'Necesito capacitación para emprender',
@@ -503,10 +582,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
           icon: 'icono-arg-capacitacion',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_capacitacion: 'si',
+            empleo: 'no'  
+          }
         },
         {
           name: 'Beneficios, programas y becas',
@@ -514,9 +594,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
           icon: 'icono-arg-capacitacion',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_capacitacion: 'si',
+            empleo: 'no'  
+          }
 
         },
 
@@ -526,10 +608,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
           icon: 'fa-briefcase',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_emprender: 'si'
+          }
         },
         {
           name: 'Financiamiento para emprendedores',
@@ -537,10 +619,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/emprender/financiamiento',
           icon: 'fa-briefcase',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_emprender: 'si'
+          }
         },
         {
           name: 'Registrar mi PyME para obtener los beneficios de la Ley PyME',
@@ -548,10 +630,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/registrar-una-pyme-para-obtener-los-beneficios-de-la-ley-pyme',
           icon: 'fa-briefcase',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_emprender: 'si'
+          }
         },
         {
           name: 'Inscribirme como Monotributista',
@@ -559,10 +641,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/inscribirme-como-monotributista',
           icon: 'fa-briefcase',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_emprender: 'si'
+          }
         },
         {
           name: 'Registro Único del Ministerio de Producción (RUMP)',
@@ -570,15 +652,17 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/registro-unico-del-ministerio-de-produccion-rump',
           icon: 'fa-briefcase',
-          category: 'Trabajar',
-          iconCategory: 'icono-arg-trabajador',
-          urlCategory: 'https://www.argentina.gob.ar/tema/trabajar'
-
+          nacionalidad: 'todas',
+          conditions: {
+            interes_emprender: 'si'
+          }
         }
    ]
  },
  {
    name:"Cuidar la salud",
+   iconCategory: 'icono-arg-medicamentos',
+   urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud',
    contents:[
         {
           name: 'Vacunas',
@@ -586,9 +670,12 @@ var categories = [
           description: 'Calendario de vacunas para cada etapa de la vida.',
           url: 'https://www.argentina.gob.ar/vacunas',
           icon: 'icono-arg-vacunas',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Vacunas para niños y niñas',
@@ -596,9 +683,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/niniosyninias',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Vacunas para adolescentes',
@@ -606,9 +696,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/adolescentes',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Vacunas para adultos',
@@ -616,9 +709,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/adultos',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Vacunas para adultos mayores',
@@ -626,9 +722,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vacunas/adultosmayores',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Pausa activa',
@@ -636,9 +735,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tupausaactiva',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Vivir en Positivo',
@@ -646,9 +748,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/vivirenpositivo',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         },
         {
           name: 'Cuido mi salud (adultos mayores)',
@@ -656,14 +761,19 @@ var categories = [
           description: 'Consejos de salud, servicios y trámites de cobertura médica.',
           url: 'https://www.argentina.gob.ar/tema/adultosmayores/salud',
           icon: 'icono-arg-medicina',
-          category: 'Cuidar la salud',
-          iconCategory: 'icono-arg-medicamentos',
-          urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
         }
    ]
  },
  {
    name:"Estudiar",
+   iconCategory: 'icono-arg-educacion',
+   urlCategory: 'https://www.argentina.gob.ar/tema/estudiar',
    contents:[
         {
           name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
@@ -671,9 +781,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
           icon: 'icono-arg-jubilado',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por Ayuda Escolar Anual',
@@ -681,9 +794,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
           icon: 'icono-arg-apostilla',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por Ayuda Escolar Anual',
@@ -691,9 +807,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
           icon: 'icono-arg-factura',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por Ayuda Escolar Anual',
@@ -701,9 +820,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'PROGRESAR',
@@ -711,9 +833,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/programa-de-respaldo-estudiantes-de-argentina-progresar',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Plan 111mil',
@@ -721,9 +846,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/111mil',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Programa Argentina Beca',
@@ -731,9 +859,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'http://argentinabeca.educacion.gob.ar/',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Bec.ar (becas para profesionales en ciencia y tecnología)',
@@ -741,9 +872,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/becar',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Boleto escolar y boleto estudiantil',
@@ -751,9 +885,12 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.cnrt.gob.ar/content/automotor/usuarios/descuentoestudiantes',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
         },
         {
           name: 'Beneficios, programas y becas',
@@ -761,15 +898,22 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
           icon: 'fa-book',
-          category: 'Estudiar',
-          iconCategory: 'icono-arg-educacion',
-          urlCategory: 'https://www.argentina.gob.ar/tema/estudiar'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '< 60',
+            hijos: 'si',
+            hijo_menor: 'si',
+            hijo_mayor: 'si',
+            interes_estudiar: 'si'
+          }
         }
 
    ]
  },
  {
    name:"Adultos Mayores",
+   iconCategory: 'icono-arg-jubilado',
+   urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores',
    contents:[
         {
           name: 'Trámites para jubilarse',
@@ -777,9 +921,11 @@ var categories = [
           description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
           url: 'https://www.argentina.gob.ar/adultosmayores/iniciarjubilacionpension',
           icon: 'icono-arg-tramite-jubilacion',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Iniciá el trámite de tu jubilación por Internet',
@@ -787,9 +933,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/jubilacion-automatica-por-internet',
           icon: 'icono-arg-tramite-jubilacion',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Jubilación ordinaria o por vejez',
@@ -797,9 +945,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/jubilacion-ordinaria-o-jubilacion-por-vejez',
           icon: 'icono-arg-tramite-jubilacion',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Pensión por fallecimiento de un beneficiario',
@@ -807,9 +957,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-beneficiario',
           icon: 'icono-arg-tramite-jubilacion',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Pensión por fallecimiento de un trabajador',
@@ -817,9 +969,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-trabajador',
           icon: 'icono-arg-tramite-jubilacion',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
 
         {
@@ -828,9 +982,11 @@ var categories = [
           description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
           url: 'https://www.argentina.gob.ar/adultosmayores/soyjubiladopensionado',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Reparación histórica',
@@ -838,9 +994,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Consultar el calendario de pagos de ANSES',
@@ -848,9 +1006,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/consultar-calendario-de-pago-de-anses',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Asignación Familiar por cónyuge',
@@ -858,9 +1018,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-conyuge',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Dar Fe de vida (supervivencia)',
@@ -868,9 +1030,11 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/dar-fe-de-vida-supervivencia-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         },
         {
           name: 'Solicitar un apoderado',
@@ -878,14 +1042,18 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/solicitar-un-apoderado-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
-          category: 'Adultos Mayores',
-          iconCategory: 'icono-arg-jubilado',
-          urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores'
+          nacionalidad: 'todas',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
         }
    ]
  },
  {
    name:"Extranjeros en Argentina",
+   iconCategory: 'icono-arg-social',
+   urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros',
    contents:[
         {
           name: 'Turistas',
@@ -893,9 +1061,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/turistas',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         },
         {
           name: 'Estudiantes',
@@ -903,9 +1072,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/estudiar',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         },
         {
           name: 'Trabajador',
@@ -913,9 +1083,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/trabajar',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         },
         {
           name: 'Inversionistas',
@@ -923,9 +1094,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/invertir',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         },
         {
           name: 'Radicación de un familiar',
@@ -933,9 +1105,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/radicacion',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         },
         {
           name: 'Obtener la ciudadanía',
@@ -943,14 +1116,17 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/ciudadania',
           icon: 'fa-plane',
-          category: 'Extranjeros en Argentina',
-          iconCategory: 'icono-arg-social',
-          urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros'
+          nacionalidad: 'todas',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
         }
    ]
  },
  {
    name:"Violencia y abuso",
+   iconCategory: 'fa-exclamation-triangle',
+   urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso',
    contents:[
         {
           name: 'Abuso sexual infantil',
@@ -958,9 +1134,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/abusosexualinfantil',
           icon: 'fa-exclamation-triangle',
-          category: 'Violencia y abuso',
-          iconCategory: 'fa-exclamation-triangle',
-          urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_violencia: 'si'
+          }
         },
         {
           name: 'Trata de personas',
@@ -968,9 +1145,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/denuncialatrata',
           icon: 'fa-exclamation-triangle',
-          category: 'Violencia y abuso',
-          iconCategory: 'fa-exclamation-triangle',
-          urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_violencia: 'si'
+          }
         },
         {
           name: 'Mujeres en situación de violencia',
@@ -978,9 +1156,10 @@ var categories = [
           description: 'Esta es la descripción de este panel.',
           url: 'https://www.argentina.gob.ar/atencionmujeres',
           icon: 'fa-exclamation-triangle',
-          category: 'Violencia y abuso',
-          iconCategory: 'fa-exclamation-triangle',
-          urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_violencia: 'si'
+          }
         },
         {
           name: 'Violencia y abuso',
@@ -988,9 +1167,10 @@ var categories = [
           description: 'Qué hacer ante una situación de violencia o abuso.',
           url: 'https://www.argentina.gob.ar/tema/violenciayabuso',
           icon: 'fa-exclamation-triangle',
-          category: 'Violencia y abuso',
-          iconCategory: 'fa-exclamation-triangle',
-          urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso'
+          nacionalidad: 'todas',
+          conditions: {
+            interes_violencia: 'si'
+          }
         }
    ]
  }
@@ -999,9 +1179,8 @@ var categories = [
 
      
       var templates = {
-        item: `<div class="col-sm-12 col-md-12 titleCategory hidden"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} <small><a href="{urlCategory}">(Más servicios de este tema)</a></small></h3></div>
-              <div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default category-{category}" href="{url}">
+        item: `<div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default" href="{url}">
                   <div class="panel-body">
                     <div class="media">
                       <div class="media-body">
@@ -1011,7 +1190,8 @@ var categories = [
                     </div>
                   </div>
                 </a>
-              </div>`
+              </div>`,
+        category: '<div class="col-md-12"><h3><i class="fa {iconCategory} fa-fw text-success"></i> {category} <small><a href="{urlCategory}">(Más servicios de este tema)</a></small></h3></div>{items}'
       };
 
       var form_data;
@@ -1031,467 +1211,45 @@ var categories = [
 
           var item_blank = true;
 
-          jQuery.each(contents, function(key, content){
+          jQuery.each(categories, function(key, category){
 
-            var show = false;
+            var showCategory = false;
+            var htmlCategoryItems = "";
 
-            if(content.category == 'Adultos Mayores') {
-              if (content.corto == 'quierojubilarme_tramites' || content.corto == 'quierojubilarme_iniciar'){
-
-                if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
-                  || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
-                  || (data.edad <= 60 && data.discapacidad == 'si'))
-
-                {
-                    var show = true;
-                }
-              }
-
-              if (content.corto == 'quierojubilarme_ordinaria' || content.corto == 'quierojubilarme_fallecimiento' || content.corto == 'quierojubilarme_fallecimiento'){
-
-                if((data.edad >= 59 && data.empleo == 'si' && data.trabajo == 'dependencia') 
-                  || (data.edad >= 60 && data.empleo == 'no' && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) 
-                  || (data.edad <= 60 && data.discapacidad == 'si'))
-
-                {
-                    var show = true;
-                }
-              }     
-
-              if (content.corto == 'soyjubilado_beneficios' || content.corto == 'soyjubilado_reparacion' || content.corto == 'soyjubilado_calendario' || content.corto == 'soyjubilado_asignacion' || content.corto == 'soyjubilado_supervivencia' || content.corto == 'soyjubilado_apoderado'){
-
-                if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'Jubilado')
-
-                {
-                  var show = true;
-                }
-              }  
-
-
-            }
-
-            if(content.category == 'Personas con discapacidad') {
-
-              if (content.corto == 'soyjubilado_solicitarasignacion'){
-
-                if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'Jubilado')
-
-                {
-                  var show = true;
-                }
-              }       
-
-              if(content.corto == 'monotributo_hijodiscapacidad')
-
-              {
-                if (data.tenerHijos == 'si' && (data.empleo == 'si' && data.trabajo == 'Monotributista'))
-
-                {
-                  var show = true;
-                }
-              }    
-
-              if(content.corto == 'discapacidad_beneficios' || content.corto == 'discapacidad_cud'){
-                
-                if (data.nacionalidad == 'argentino' && (data.discapacidad == 'si' || data.discapacidad_acargo == 'si'))
-
-                {
-                  var show = true;
-                }
-              }
-
-
-            }
-
-            if(content.category == 'Estudiar') {
-
-              if (content.corto == 'soyjubilado_solicitarasignacionescolar'){
-
-                if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'Jubilado')
-
-                {
-                  var show = true;
-                }
-              }    
-
-              if(content.corto == 'monotributo_escolar')
-
-              {
-                if (data.tenerHijos == 'si' && (data.empleo == 'si' && data.trabajo == 'Monotributista'))
-
-                {
-                  var show = true;
-                }
-              }  
-
-              if(content.corto == 'estudiar_asignacion'){
-                
-                if (data.nacionalidad == 'argentino' 
-                  && ((data.edad <= 17 && data.estudio == 'si') || (data.empleo == 'si' && (data.trabajo == 'dependencia' || data.trabajo == 'Monotributista' || data.trabajo == 'particulares')) || (data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si')))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'estudiar_progresar'){
-                
-                if(data.nacionalidad == 'argentino' && ((data.estudio == 'si' && (data.edad >= 18 && data.edad <= 24)) || ((data.edad >= 18 && data.edad <= 24) && (data.notrabajo == 'desempleado' || data.notrabajo == 'otros')) || data.hijo_mayor == 'si' || (data.interes_capacitacion == 'si' && (data.edad >= 18 && data.edad <= 24))))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'estudiar_11mil' || content.corto == 'estudiar_beca'){
-                
-                if (data.nacionalidad == 'argentino' && (data.estudio == 'si' || data.hijo_menor == 'si' || data.interes_capacitacion == 'si'))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'estudiar_becar'){
-                
-                if (data.nacionalidad == 'argentino' && ((data.estudio == 'si' && (data.edad >= 22)) || data.hijo_mayor == 'si' || (data.interes_capacitacion == 'si' && (data.edad >= 22))))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'estudiar_boleto'){
-                
-                if (data.edad <= 17 || (data.estudio == 'si' && (data.edad <= 17)) || (data.hijos == 'si' && data.hijo_menor == 'si'))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'estudiar_beneficios'){
-                
-                if (data.nacionalidad == 'argentino' && (data.edad <= 40 || data.estudio == 'si' || data.hijos == 'si' || data.interes_capacitacion == 'si'))
-
-                {
-                  var show = true;
-                }
-              }                                      
+            jQuery.each(category.contents, function(key, content){
               
-            }
-
-            if(content.category == 'Hogar pareja y familia') {
-
-              if (content.corto == 'soyjubilado_tarifasocial'){
-
-                if (data.nacionalidad == 'argentino' && data.empleo == 'no' && data.notrabajo == 'Jubilado')
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'dependencia_matrimonio'){
-                
-                if (data.trabajo == 'dependencia' && data.nacionalidad == 'argentino')
-                {
-                  var show = true;
-                }
-              }     
-
-              if(content.corto == 'vivienda_acceder'){
-                if (data.interes_vivienda == 'si') {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'vivienda_procrear'){
-                if (data.edad <= 59 && data.interes_vivienda == 'si') {
-                  var show = true;
-                }
-              }     
-
-              if(content.corto == 'auto'){
-                if (data.edad >= 18 && data.interes_auto == 'si') {
-                  var show = true;
-                }
-              }  
-
-              if(content.corto == 'tarifasocial'){
-                if (data.edad <= 60 
-                  || data.nacionalidad == 'argentino' && (data.empleo == 'si' && data.trabajo == 'particulares' ) 
-                  || data.nacionalidad == 'argentino' && (data.empleo == 'no' && (data.notrabajo == 'Jubilado' || data.notrabajo == 'desempleado' ))
-                  || data.edad >= 18 && data.discapacidad == 'si'
-                  || data.nacionalidad == 'argentino' && ((data.hijo_menor == 'si') || (data.discapacidad_acargo == 'si'))
-                  || data.nacionalidad == 'argentino' && data.interes_vivienda == 'si')  {
-                  var show = true;
-                }
-              }                                                             
-              
-            }
-
-            if(content.category == 'Trabajar') {
-
-              if(content.corto == 'dependencia_empleado'){
-                
-                if (data.empleo == 'si' && data.trabajo == 'dependencia')
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'dependencia_desempleo' || content.corto == 'dependencia_obrasocial_desempleo'){
-                
-                if (data.nacionalidad == 'argentino' 
-                  && ((data.empleo == 'si' && data.trabajo == 'dependencia') || (data.empleo == 'no' && data.notrabajo == 'desempleado')))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'monotributo_monotributista'){
-                
-                if ((data.empleo == 'si' && (data.empleo == 'si' && data.trabajo == 'Monotributista')) 
-                  || (data.nacionalidad == 'argentino' && data.interes_emprender == 'si'))
-
-                {
-                  var show = true;
-                }
-              }      
 
 
-              if(content.corto == 'particulares_trabajadores' || content.corto == 'particulares_obrasocial' || content.corto == 'particulares_sube'){
+              var show = false;
+              var nacionalidad = false;
 
-                if (data.nacionalidad == 'argentino' && (data.empleo == 'si' && data.trabajo == 'particulares'))
-
-                {
-                  var show = true;
-                }
-              }     
-
-              if(content.corto == 'busco_trabajo'){
-
-                if (data.estudio == 'si' 
-                  || data.hijo_menor == 'si' 
-                  || (data.empleo == 'no' && data.notrabajo == 'desempleado') 
-                  || data.notrabajo == 'otros' 
-                  || data.interes_trabajo == 'si')
-
-                {
-                  var show = true;
-                }
-              }     
-
-              if(content.corto == 'capacitarme' || content.corto == 'capacitarme_beneficios'){
-                
-                if (data.interes_capacitacion == 'si')
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'capacitarme_emprender'){
-                
-                if (data.interes_capacitacion == 'si' && data.interes_emprender == 'si')
-
-                {
-                  var show = true;
-                }
-              } 
-
-              if(content.corto == 'emprendedor_financiamiento' || content.corto == 'emprendedor_registrar' || content.corto == 'emprendedor_inscribirme' || content.corto == 'emprendedor_rump'){
-                
-                if (data.nacionalidad == 'argentino' 
-                  && ((data.empleo == 'si' && data.trabajo == 'autonomo')
-                  || data.interes_emprender == 'si'))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'emprendedor_capacitarme'){
-                
-                if (data.nacionalidad == 'argentino' && 
-                  (data.empleo == 'si' 
-                    || (data.empleo == 'si' && data.trabajo == 'autonomo') 
-                    || data.interes_emprender == 'si'))
-
-                {
-                  var show = true;
-                }
-              }                                                            
-
-              
-            }
-
-            if(content.category == 'Tener un hijo') {
-
-              if(content.corto == 'dependencia_prenatal' || content.corto == 'dependencia_maternidad'){
-
-                if (data.empleo == 'si' && data.tenerHijos == 'si')
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'dependencia_hijodiscapacidad'){
-                
-                if (data.empleo == 'si' && 
-                  (data.hijos == 'si' && data.hijo_menor == 'si') 
-                  || data.tenerHijos == 'si' 
-                  || data.discapacidad_acargo == 'si')
-                {
-                  var show = true;
-                }
-              }
-              
-              if(content.corto == 'dependencia_nacimiento'){
-                
-                if (data.empleo == 'si' 
-                  && (data.hijo_menor == 'si' || data.tenerHijos == 'si'))
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'particulares_embarazo' || content.corto == 'particulares_asignacionhijos' || content.corto == 'particulares_maternidad'){
-
-                if (data.nacionalidad == 'argentino' && (data.empleo == 'si' && data.trabajo == 'particulares'))
-
-                {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'hijo_licencia'){
-                
-                if (data.nacionalidad == 'argentino' && data.empleo == 'si' && data.tenerHijos == 'si')
-
-                {
-                  var show = true;
-                }
+              if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
+                nacionalidad = true;
               }
 
 
-              if(content.corto == 'hijo_asignacion_embarazo' || content.corto == 'hijo_asignacion_nacimiento' || content.corto == 'hijo_asignacion_proteccion' || content.corto == 'hijo_asignacion_discapacidad' || content.corto == 'hijo_pension7' || content.corto == 'hijo_crecer'){
-                
-                if (data.nacionalidad == 'argentino' && data.tenerHijos == 'si')
+              jQuery.each(content.conditions, function(condition, value){
+                if(condition == 'edad'){
+                  new_condition = value.split(' ');
 
-                {
-                  var show = true;
+                  if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
+                    show = true;
+                  }
+
+                  if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
+                    show = true;
+                  }
+
+                }else if( data[condition] == value ){
+                  show = true;
                 }
-              }
+              });
 
-              if(content.corto == 'hijo_vacunas_bebe'){
-                
-                if (data.hijo_menor == 'si' || data.tenerHijos == 'si')
+              // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
-                {
-                  var show = true;
-                }
-              }
+            if(show && nacionalidad){
 
-              if(content.corto == 'hijo_vacunas_embarazo' || content.corto == 'hijo_asistida' || content.corto == 'hijo_nacimiento' || content.corto == 'hijo_embarazo' || content.corto == 'hijo_adopcion'){
-                
-                if (data.tenerHijos == 'si')
-
-                {
-                  var show = true;
-                }
-              }
-
-              if (content.corto == 'hijo_crecer'){
-                
-                if (data.nacionalidad == 'argentino' && (data.tenerHijos == 'si' || (data.hijo_menor == 'si' && data.interes_salud == 'si') ))
-
-                {
-                  var show = true;
-                }
-              }   
-
-              if(content.corto == 'salud_vacunas_bebe'){
-                if (data.edad <= 17 && (data.hijos == 'si' && data.hijo_menor == 'si') || data.interes_salud == 'si' )
-
-                {
-                  var show = true;
-                }
-              }            
-
-
-            }
-
-            if(content.category == 'Extranjeros') {
-
-              if(content.corto == 'extranjeros_turistas' || content.corto == 'extranjeros_estudiantes' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_trabajador' || content.corto == 'extranjeros_ciudadania'){
-                
-                if (data.nacionalidad == 'extranjero')
-
-                {
-                  var show = true;
-                }
-              }              
-
-            }                    
- 
-            
-            if(content.category == 'Cuidar la salud') {
-
-              if(content.corto == 'salud_vacunas'){
-                if (data.interes_salud == 'si') {
-                  var show = true;
-                }
-              }
-
-              if(content.corto == 'salud_vacunas_adolescentes' || content.corto == 'salud_vacunas_niños'){
-                if (data.edad <= 17 && (data.hijos == 'si' && data.hijo_menor == 'si') || data.interes_salud == 'si' )
-
-                {
-                  var show = true;
-                }
-              }            
-
-              if(content.corto == 'salud_vacunas_adultos' ){
-                if (data.edad >= 18 && data.edad <= 59 && (data.empleo == 'si' && data.trabajo == 'autonomo') || data.interes_salud == 'si' ) {
-                  var show = true;
-                }
-              }   
-
-              if(content.corto == 'salud_positivo' || content.corto == 'salud_pausa' ){
-                if (data.edad <= 40 || data.edad >= 60 && (((data.empleo == 'si' && data.trabajo == 'autonomo') || (data.empleo == 'no' && data.notrabajo == 'Jubilado') || data.interes_salud == 'si'))) {
-                  var show = true;
-                }
-              }            
-
-              if(content.corto == 'salud_cuido' || content.corto == 'salud_vacunas_mayores'){
-                if (data.edad >= 60 && ((data.empleo == 'no' && data.notrabajo == 'Jubilado') || data.interes_salud == 'si')) {
-                  var show = true;
-                }
-              }
-
-              
-            } 
-
-            if(content.category == 'Violencia y abuso') {
-
-              if(content.corto == 'violencia_infantil' 
-                || content.corto == 'violencia_trata' 
-                || content.corto == 'violencia_mujeres' 
-                || content.corto == 'violencia_abuso'){
-                if (data.interes_violencia == 'si') {
-                  var show = true;
-                }
-              }
-
-            }                           
-
-
-            if(show){
+              showCategory = true;
 
               item_blank = false;
 
@@ -1500,18 +1258,34 @@ var categories = [
               html = html.replace(/{url}/gi, content.url)
                 .replace(/{icon}/gi, content.icon)
                 .replace(/{title}/gi, content.name)
-                .replace(/{description}/gi, content.description)
-                .replace(/{category}/gi, content.category)
-                .replace(/{iconCategory}/gi, content.iconCategory)
-                .replace(/{urlCategory}/gi, content.urlCategory);
+                .replace(/{description}/gi, content.description);
 
                 jQuery('#wizard-personal').removeClass('hidden');
-                jQuery('#wizard-personal-items').append( html );
+                // jQuery('#wizard-personal-items').append( html );
+                htmlCategoryItems += html;
+
+
+            }              
+
+
+            });
+
+            if(showCategory) {
+
+                var htmlCategory = templates.category;
+
+                htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
+                  .replace(/{iconCategory}/gi, category.iconCategory)
+                  .replace(/{urlCategory}/gi, category.urlCategory)
+                  .replace(/{items}/gi, htmlCategoryItems);
+
+                // if(content.tipo == 'personal'){
+                  jQuery('#wizard-personal').removeClass('hidden');
+                  jQuery('#wizard-personal-category-items').append( htmlCategory );
 
             }
 
-
-          });
+          });//termino de cargar categoria
           
           // console.log(item_blank);
 
