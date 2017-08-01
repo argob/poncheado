@@ -1,0 +1,91 @@
+---
+layout: argentina
+---
+
+
+<section>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="p-t-2 p-b-4">
+          <h2>Completá el formulario</h2>
+          
+<div class="pane-content">
+    <form class="webform-client-form webform-client-form-27182" action="/completa-el-formulario" method="post" id="webform-client-form-27182" accept-charset="UTF-8">
+        <div>
+            <div class="form-item webform-component webform-component-textfield webform-component--nombre form-group">
+                <label class="control-label" for="edit-submitted-nombre">Nombre <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                <input required="required" class="form-control form-text required" type="text" id="edit-submitted-nombre" name="submitted[nombre]" value="" size="60" maxlength="128" />
+            </div>
+            <div class="form-item webform-component webform-component-email webform-component--correo-electronico form-group">
+                <label class="control-label" for="edit-submitted-correo-electronico">Correo Electrónico <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                <input required="required" class="email form-control form-text form-email required" type="email" id="edit-submitted-correo-electronico" name="submitted[correo_electronico]" size="60" />
+            </div>
+            <div class="form-item webform-component webform-component-textfield webform-component--edad form-group">
+                <label class="control-label" for="edit-submitted-edad">Edad <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                <input required="required" class="edad form-control form-text required" type="text" id="edit-submitted-edad" name="submitted[edad]" value="" size="60" maxlength="128" />
+            </div>
+            <div class="form-item webform-component webform-component-select webform-component--provincia form-group">
+                <label class="control-label" for="edit-submitted-provincia">Provincia <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                <select required="required" class="provincia form-control form-select required" id="edit-submitted-provincia" name="submitted[provincia]"><option value="" selected="selected">Elegir provincia...</option><option value="1">Buenos Aires</option><option value="2">Catamarca</option><option value="3">Chaco</option><option value="4">Chubut</option><option value="5">Ciudad Autonoma de Buenos Aires</option><option value="6">Córdoba</option><option value="7">Corrientes</option><option value="8">Entre Ríos</option><option value="9">Formosa</option><option value="10">Jujuy</option><option value="11">La Pampa</option><option value="12">La Rioja</option><option value="13">Mendoza</option><option value="14">Misiones</option><option value="15">Neuquén</option><option value="16">Río Negro</option><option value="17">Salta</option><option value="18">San Juan</option><option value="19">San Luis</option><option value="20">Santa Cruz</option><option value="21">Santa Fe</option><option value="22">Santiago del Estero</option><option value="23">Tierra del Fuego</option><option value="24">Tucumán</option></select>
+            </div>
+            <div class="form-item webform-component webform-component-textarea webform-component--tenes-algun-comentario form-group">
+                <label class="control-label" for="edit-submitted-tenes-algun-comentario">¿Tenés algún comentario? </label>
+                <div class="form-textarea-wrapper resizable"><textarea class="form-control form-textarea" id="edit-submitted-tenes-algun-comentario" name="submitted[tenes_algun_comentario]" cols="60" rows="5"></textarea></div>
+            </div>
+            <input type="hidden" name="details[sid]" />
+            <input type="hidden" name="details[page_num]" value="1" />
+            <input type="hidden" name="details[page_count]" value="1" />
+            <input type="hidden" name="details[finished]" value="0" />
+            <input type="hidden" name="form_build_id" value="form-_Q38F9ITHsF44WTfSxc3LfIpSu47T87o-vrUWa0TSok" />
+            <input type="hidden" name="form_token" value="MSQTlDfwSY-3ZzP-KH6FemmotlukPvBXQAaDUiLhSOA" />
+            <input type="hidden" name="form_id" value="webform_client_form_27182" />
+            <div style="display:none;">
+                <div class="form-item form-item-tarro-de-miel form-type-textfield form-group"> <label class="control-label" for="edit-tarro-de-miel">Dejar en blanco </label>
+                    <input class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value="" size="60" maxlength="128" /></div>
+            </div>
+            <div class="form-actions"><button class="webform-submit button-primary btn btn-primary form-submit" type="submit" name="op" value="Submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  var inputEdad = document.getElementsByClassName("edad")[0];
+  var selectProvincia = document.getElementsByClassName("provincia")[0];
+
+          var data;
+
+          // Leo si hay algo guardado
+
+          if(typeof(Storage) !== "undefined") {
+            if( localStorage.getItem("dataUser") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("dataUser"));
+              var edad = data[0].value;
+              var provincia = data[1].value;
+
+              inputEdad.value = edad;
+              selectProvincia.value = provincia;
+
+
+            }
+
+          } else {
+            console.log('No tenés soporte :(');
+          }  
+
+
+</script>
+
+
