@@ -62,29 +62,7 @@ a.panel.active i {
 <div class="container">
   <section>
 
-<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/manos.png');">
-  <div class="jumbotron_bar">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ol class="breadcrumb pull-left">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/transporte">Jefatura de Gabinete</a></li>
-            <li class="active"><span>Guía para Organizaciones de la Sociedad Civil</span></li>
-            
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="jumbotron_body">
-    <div class="container text-center">
-      <h1 class="h2 m-b-0">Guía para Organizaciones de la Sociedad Civil</h1>
-      <p class="lead">Aquí vas a encontrar todos los recursos (programas, acciones, proyectos y actividades) que el Estado Nacional brinda a las organizaciones de la sociedad civil (OSC) para trabajar en conjunto.</p>
-    </div>
-  </div>
-  <div class="overlay"></div>
-</section>
+
 <div class="row panels-row m-t-2" id="filtro">
        
       <div class="col-xs-12 col-sm-6 col-md-4">
@@ -318,29 +296,6 @@ a.panel.active i {
 
         render.items();
 
-        var listOptions = {
-          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'tema11', 'tema12', 'tema13', 'tema14', 'tema15', 'tema16', 'tema17', 'tema18', 'tema19', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
-          page: 20,
-          plugins: [ ListPagination({}) ]
-          
-         };
-
-        var proyectosList = new List('proyectos', listOptions);
-
-        jQuery('.search').on("keyup",function(){
-            var valueSearch = jQuery(".search").val();
-            proyectosList.search(valueSearch);
-        });
-
-        $('.no-result').hide()
-        
-        proyectosList.on('updated', function(list) {
-          if (list.matchingItems.length > 0) {
-            $('.no-result').hide()
-          } else {
-            $('.no-result').show()
-          }
-        })                
 
       }
     });
@@ -372,6 +327,31 @@ a.panel.active i {
           }
 
         });
+
+        var listOptions = {
+          valueNames: [ 'nombre', 'oracion', 'tema1', 'tema2', 'tema3', 'tema4', 'tema5', 'tema6', 'tema7', 'tema8', 'tema9', 'tema10', 'tema11', 'tema12', 'tema13', 'tema14', 'tema15', 'tema16', 'tema17', 'tema18', 'tema19', 'apoyo1', 'apoyo2', 'apoyo3', 'apoyo4', 'apoyo5', 'ministerio' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var proyectosList = new List('proyectos', listOptions);
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            proyectosList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        proyectosList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+        
 
       }   
     }
