@@ -16,30 +16,6 @@ layout: argentina
           
           <p class="m-b-3"><strong>Elegí una opción</strong> del siguiente menú donde creas que podés encontrar lo que estás buscando:</p>          
           <div id="test-list" role="tablist" aria-multiselectable="true"></div>
- <!--         <hr>
-           <p>Si crees que no está el agrupador que buscarías, podes proponer uno.</p>
-
-          <div class="m-t-2">
-            <form id="proposeForm" class="hidden">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label for="proposeField">Escribí el agrupador que buscarías:</label>
-                    <input type="text" class="form-control" id="proposeField" maxlength="30">
-                  </div>
-                  <button class="btn btn-success">Proponer agrupador</button>
-                </div>
-              </div>
-            </form>
-            <a id="proposeButton" href="#" class="btn btn-link">Proponer un agrupador</a>
-          </div> -->
-        </div>
-        <div class="test-thanks p-t-2 p-b-4 hidden">
-          <h2>¡Gracias por ayudarnos!</h2>
-          <p>Estamos trabajando para mejorar el contenido de Argentina.gob.ar y que sea más fácil de usar.</p>
-          <p>Si te interesa participar de pruebas con usuarios, anotate completando <a href="registro-pruebas">este formulario</a>, para que podamos contactarte.</p>
-          
-          <p class="m-t-3"><a href="/tareapropuesta" class="btn btn-link">Volver al inicio</a></p>
         </div>
       </div>
     </div>
@@ -170,24 +146,23 @@ layout: argentina
 
   }
 
-  var showThanks = function(){
-    $('.test-container, .test-thanks').toggleClass('hidden')
-  }
+
 
   $('body').on('click', '#test-list .panel-heading', function(event){
+    event.preventDefault();
     data.results.groups ++;
     data.results.flow.push( 'A | '+ $(this).find('h4').text() );
   })
   .on('click', '#test-list .panel-body a', function(event){
-
+    
     if( $(this).hasClass('btn-selector') ){
-
+      
       data.results.result = $(this).prev().text() == data.question.content;
       data.results.finish = Date.now();
       // console.log( data.results );
       // console.log( JSON.stringify( [ data.results, data.question] ) );
 
-      showThanks();
+
 
       ga('ux.send', {
         hitType: 'event',
@@ -199,19 +174,18 @@ layout: argentina
     }else{
       
       $('.btn-selector').remove();
-      $(this).parent().append('<a class="btn-selector btn btn-success btn-sm m-b-0 m-l-2" href="http://argentina.gob.ar" style="vertical-align: middle;">Lo buscaría acá</a>')
-
+      $(this).parent().append('<a class="btn-selector btn btn-success btn-sm m-b-0 m-l-2" href="/registro-pruebas" style="vertical-align: middle;">Lo buscaría acá</a>')
+      event.preventDefault();
       data.results.contents ++;
       data.results.flow.push( 'C | '+ $(this).text() );
     }
   }).on('click', '#proposeButton', function(event){
-    event.preventDefault();
 
-    $(this).addClass('hidden');
-    $('#proposeForm').removeClass('hidden');
+
+
 
   }).on('submit', '#proposeForm', function(event){
-    event.preventDefault();
+    
 
     data.results.result = false;
     data.results.propose = $('#proposeField').val();
