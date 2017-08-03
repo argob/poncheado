@@ -1,0 +1,197 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li class="active">¿Querés ayudarnos a mejorar Argentina.gob.ar?</li>
+  </ol>
+
+  <section>
+    <article class="content_format row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>¿Querés ayudarnos a mejorar Argentina.gob.ar?</h1>
+        <hr>
+
+        <p>Con tu colaboración y la de todos los usuarios vamos a poder brindar de forma más sencilla los trámites y servicios para los ciudadanos. La actividad es anónima.</p>
+
+        <p><strong>Así funciona la actividad:</strong></p>
+
+        <ol>
+          <li>Te proponemos una situación imaginaria para que busques información en un menú de opciones.</li>
+          <li>Seleccioná la opción para buscar la información que requiera la situación.</li>
+          <li>Si no la encontrás podes volver al inicio y buscar en las otras opciones.</li>
+          <li>Cuando llegues a la opción que te parezca adecuada hacé clic en el botón <strong>"Lo encontraría aquí"</strong> para completar la actividad.</li>
+        </ol>
+
+        <div class="row">
+          <div class="col-md-4">
+              <img src="sites/default/files/ref1.jpg" class="img-responsive img-rounded center-block m-y-1">
+          </div>      
+          <div class="col-md-4">
+             <img src="sites/default/files/ref2.jpg" class="img-responsive img-rounded center-block m-y-1">
+          </div>
+          <div class="col-md-4">
+             <img src="sites/default/files/ref3.jpg" class="img-responsive img-rounded center-block m-y-1">
+          </div>
+        </div>         
+
+        <p>Si no lo encontrás no importa, nos ayuda igual.</p>
+
+          <hr>
+          <p class="m-b-2">Antes de comenzar te pedimos que completes 2 datos:</p>     
+
+          <div class="m-t-2">
+
+            <form id="dataUser">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="control-label" for="UserAge">Edad:</label>
+                    <input type="number" min="15" max="120" name="edad" class="form-control required" id="UserAge" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="userProvincia">Provincia </label>
+                    <select class="form-control form-select chosen-select required" id="userProvincia" name="provincia" required>
+                        <option value="1">Buenos Aires</option><option value="2">Catamarca</option><option value="3">Chaco</option><option value="4">Chubut</option><option value="5">Ciudad Autonoma de Buenos Aires</option><option value="6">Córdoba</option><option value="7">Corrientes</option><option value="8">Entre Ríos</option><option value="9">Formosa</option><option value="10">Jujuy</option><option value="11">La Pampa</option><option value="12">La Rioja</option><option value="13">Mendoza</option><option value="14">Misiones</option><option value="15">Neuquén</option><option value="16">Río Negro</option><option value="17">Salta</option><option value="18">San Juan</option><option value="19">San Luis</option><option value="20">Santa Cruz</option><option value="21">Santa Fe</option><option value="22">Santiago del Estero</option><option value="23">Tierra del Fuego</option><option value="24">Tucumán</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+              <div class="m-t-2 m-b-1">
+                <button class="btn btn-success">Continuar</button>
+              </div>
+
+            </form>
+          </div>     
+
+
+
+
+      </div>
+    </article>
+  </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet" />
+<script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+
+<script>
+
+$(function(){
+
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71585203-12', 'auto', 'ux');
+
+
+  // var data = {
+  //   users:{
+  //     age: null,
+  //     provincia: null
+  //   }
+  // };
+
+  // console.log(data)
+
+
+          var data;
+
+          // Leo si hay algo guardado
+
+          if(typeof(Storage) !== "undefined") {
+            if( localStorage.getItem("dataUser") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("dataUser"))
+
+              $.each(data, function(key, item){
+                  $('[name='+ item.name +']').val(item.value);
+              })
+
+            }
+
+            $.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var user_form = $("#dataUser");
+            user_form.validate({
+              rules: {
+                      provincia: { required: true }
+                  },              
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || element.is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  $(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            $('#dataUser').on('submit', function(event){
+              event.preventDefault();
+
+              if (user_form.valid() ) {
+                data = $(this).serializeArray();
+                localStorage.setItem("dataUser", JSON.stringify(data));
+
+
+                // var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                // // if( localStorage.getItem("dataUser") == undefined ){
+
+                // // }else{
+
+                // // }
+
+                window.location.href = 'mejorar/tareapropuesta';
+              }
+            });
+
+          } else {
+            console.log('No tenés soporte :(');
+          }  
+
+});
+
+</script>
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({width: '100%'});
+  });
+</script>
+
+<style>
+
+.chosen-container-single .chosen-single span {
+    line-height: 42px;
+}
+
+ </style>
