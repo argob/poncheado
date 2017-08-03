@@ -467,7 +467,7 @@ var categories = [
           conditions: {
             interes_auto: 'si'
           }
-        }
+        },
         {
           name: 'Tarifa Social en los servicios públicos',
           corto: 'tarifasocial',
@@ -1275,9 +1275,6 @@ var categories = [
               var show = false;
               var nacionalidad = false;
 
-              console.log('Nacionalidad es: ' + content.nacionalidad)
-              console.log('Condiciones: ' + content.conditions)
-
               if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
                 nacionalidad = true;
               }
@@ -1285,16 +1282,8 @@ var categories = [
 
               jQuery.each(content.conditions, function(condition, value){
 
-                console.log('condition es: ' + condition)
-
                 if(condition == 'edad'){
                   new_condition = value.split(' ');
-
-                  console.log('new_condition es: ' + new_condition)
-                  console.log('new_condition[0] es: ' + new_condition[0])
-                  // console.log('data[condition] : ' + data[condition])
-                  console.log('new_condition[1] : ' + new_condition[1])
-
 
                   if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
                     show = true;
@@ -1305,9 +1294,6 @@ var categories = [
                   }
 
                 }else if( data[condition] == value ){
-
-                  console.log('data[condition] : ' + data[condition])
-                  console.log('value : ' + value)
 
                   show = true;
                 }
