@@ -104,7 +104,7 @@ layout: mi-argentina
                         <label class="radio-inline"><input type="radio" name="trabajo" value="monotributista" required>Soy monotributista</label><br>
                         <label class="radio-inline"><input type="radio" name="trabajo" value="autonomo" required>Soy autónomo</label><br>
                         <label class="radio-inline"><input type="radio" name="trabajo" value="particulares" required>Trabajo en casas particulares</label><br>
-                        <label class="radio-inline"><input type="radio" name="trabajo" value="infomal" required>Trabajo infomal</label>
+                        <label class="radio-inline"><input type="radio" name="trabajo" value="informal" required>Trabajo informal</label>
                       </div>
                     </div>
 
@@ -235,6 +235,10 @@ layout: mi-argentina
             var opcion1 = d.getElementById(opcion1);
             var opcion2 = d.getElementById(opcion2);
 
+            $('input[name=trabajo]').attr('checked',false);
+            $('input[name=notrabajo]').attr('checked',false);
+            $('input[name=hijo_menor]').attr('checked',false);
+            $('input[name=hijo_mayor]').attr('checked',false);
 
             if (si.checked){
               opcion1.classList.remove('hidden');
@@ -246,6 +250,8 @@ layout: mi-argentina
               opcion1.classList.add('hidden');
             }
           }
+
+
 
           var data;
 
@@ -327,12 +333,6 @@ layout: mi-argentina
           } else {
             console.log('No tenés soporte :(');
           } 
-
-        // $("document").ready(function() {
-        //     setTimeout(function() {
-        //         $("#trabajoSi, #hijosSi").trigger('click');
-        //     },10);
-        // });
 
         </script>
 

@@ -76,7 +76,7 @@ var categories = [
         {
           name: 'Solicitar Asignación Familiar por hijo o hija con discapacidad',
           corto: 'soyjubilado_solicitarasignacion',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
@@ -88,7 +88,7 @@ var categories = [
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
           corto: 'monotributo_hijodiscapacidad',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-factura',
           nacionalidad: 'todas',
@@ -112,7 +112,7 @@ var categories = [
         {
           name: 'Certificado Único de Discapacidad (CUD)',
           corto: 'discapacidad_cud',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-el-certificado-unico-de-discapacidad-cud',
           icon: 'fa-wheelchair',
           nacionalidad: 'todas',
@@ -131,7 +131,7 @@ var categories = [
         {
           name: 'Asignación prenatal',
           corto: 'dependencia_prenatal',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
@@ -144,7 +144,7 @@ var categories = [
         {
           name: 'Solicitar Licencia por maternidad',
           corto: 'dependencia_maternidad',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
@@ -157,12 +157,12 @@ var categories = [
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
           corto: 'dependencia_hijodiscapacidad',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
           conditions: {
-            notrabajo: 'desempleado',
+            // notrabajo: 'desempleado',
             discapacidad: 'si',
             hijos: 'si',
             discapaciodad_acargo: 'si'
@@ -171,7 +171,7 @@ var categories = [
         {
           name: 'Asignación Familiar por Nacimiento o Adopción',
           corto: 'dependencia_nacimiento',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
@@ -180,27 +180,28 @@ var categories = [
             tenerHijos: 'si'
           }
         },
-        {
-          name: 'Asignación prenatal',
-          corto: 'monotributo_prenatal',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
-          icon: 'icono-arg-factura',
-          nacionalidad: 'todas',
-          conditions: {
-            hijos: 'si',
-            hijo_menor: 'si',
-            tenerHijos: 'si'
-          }
-        },
+        // {
+        //   name: 'Asignación prenatal',
+        //   corto: 'monotributo_prenatal',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
+        //   icon: 'icono-arg-factura',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     hijos: 'si',
+        //     hijo_menor: 'si',
+        //     tenerHijos: 'si'
+        //   }
+        // },
         {
           name: 'Asignación universal por embarazo',
           corto: 'particulares_embarazo',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
           icon: 'fa-female',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',
             notrabajo: 'desempleado',
             hijos: 'si',
             hijo_menor: 'si',
@@ -210,103 +211,107 @@ var categories = [
         {
           name: 'Asignación Universal por Hijo para Protección Social',
           corto: 'particulares_asignacionhijos',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
           icon: 'fa-female',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',
             notrabajo: 'desempleado',
             hijos: 'si',
             hijo_menor: 'si',
             tenerHijos: 'si'
           }
         },
-        {
-          name: 'Solicitar Licencia por maternidad',
-          corto: 'particulares_maternidad',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            hijos: 'si',
-            hijo_menor: 'si',
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Asignación universal por embarazo',
-          corto: 'hijo_asignacion_embarazo',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            notrabajo: 'desempleado',
-            hijos: 'si',
-            hijo_menor: 'si',
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Solicitar Licencia por maternidad',
-          corto: 'hijo_licencia',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            hijos: 'si',
-            hijo_menor: 'si',
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Asignación Familiar por Nacimiento o Adopción',
-          corto: 'hijo_asignacion_nacimiento',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            hijos: 'hijos',
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Asignación Universal por Hijo para Protección Social',
-          corto: 'hijo_asignacion_proteccion',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            notrabajo: 'desempleado',
-            hijos: 'si',
-            hijo_menor: 'si',
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Asignación Familiar por hijo o hija con discapacidad',
-          corto: 'hijo_asignacion_discapacidad',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
+        // {
+        //   name: 'Solicitar Licencia por maternidad',
+        //   corto: 'particulares_maternidad',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
+        //   icon: 'fa-female',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     hijos: 'si',
+        //     hijo_menor: 'si',
+        //     tenerHijos: 'si'
+        //   }          
+        // },
+        // {
+        //   name: 'Asignación universal por embarazo',
+        //   corto: 'hijo_asignacion_embarazo',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
+        //   icon: 'fa-child',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     empleo: 'no',         
+        //     notrabajo: 'desempleado',
+        //     hijos: 'si',
+        //     hijo_menor: 'si',
+        //     tenerHijos: 'si'
+        //   }          
+        // },
+        // {
+        //   name: 'Solicitar Licencia por maternidad',
+        //   corto: 'hijo_licencia',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
+        //   icon: 'fa-child',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     hijos: 'si',
+        //     hijo_menor: 'si',
+        //     tenerHijos: 'si'
+        //   }          
+        // },
+        // {
+        //   name: 'Asignación Familiar por Nacimiento o Adopción',
+        //   corto: 'hijo_asignacion_nacimiento',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
+        //   icon: 'fa-child',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     hijos: 'hijos',
+        //     tenerHijos: 'si'
+        //   }          
+        // },
+        // {
+        //   name: 'Asignación Universal por Hijo para Protección Social',
+        //   corto: 'hijo_asignacion_proteccion',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
+        //   icon: 'fa-child',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     empleo: 'no',    
+        //     notrabajo: 'desempleado',
+        //     hijos: 'si',
+        //     hijo_menor: 'si',
+        //     tenerHijos: 'si'
+        //   }          
+        // },
+        // {
+        //   name: 'Asignación Familiar por hijo o hija con discapacidad',
+        //   corto: 'hijo_asignacion_discapacidad',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
+        //   icon: 'fa-child',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     discapaciodad: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
         {
           name: 'Pensión no contributiva a madre de 7 o más hijos',
           corto: 'hijo_pension7',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/pension-no-contributiva-madre-de-7-o-mas-hijos',
           icon: 'fa-child',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado',
             hijos: 'si',
             tenerHijos: 'si'
@@ -315,7 +320,7 @@ var categories = [
         {
           name: 'Vacunas para bebés',
           corto: 'hijo_vacunas_bebe',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/bebes',
           icon: 'fa-child',
           nacionalidad: 'todas',
@@ -329,7 +334,7 @@ var categories = [
         {
           name: 'Vacunas durante el embarazo',
           corto: 'hijo_vacunas_embarazo',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/embarazadas',
           icon: 'fa-child',
           nacionalidad: 'todas',
@@ -391,7 +396,7 @@ var categories = [
         {
           name: 'Crecer con salud',
           corto: 'hijo_crecer',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/crecerconsalud',
           icon: 'fa-child',
           nacionalidad: 'todas',
@@ -412,12 +417,14 @@ var categories = [
         {
           name: 'Tarifa Social en los Servicios Públicos',
           corto: 'soyjubilado_tarifasocial',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tarifasocial',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado',
+            notrabajo: 'desempleado',
             discapacidad: 'si',
             discapaciodad_acargo: 'si'
           }
@@ -425,11 +432,12 @@ var categories = [
         {
           name: 'Asignación Familiar por matrimonio',
           corto: 'dependencia_matrimonio',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-matrimonio',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado',
             tenerHijos: 'si'
           }
@@ -448,7 +456,7 @@ var categories = [
         {
           name: 'PROCREAR',
           corto: 'vivienda_procrear',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/procrear',
           icon: 'icono-arg-vivienda',
           nacionalidad: 'todas',
@@ -467,20 +475,20 @@ var categories = [
           conditions: {
             interes_auto: 'si'
           }
-        },
-        {
-          name: 'Tarifa Social en los servicios públicos',
-          corto: 'tarifasocial',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/tarifasocial',
-          icon: 'icono-arg-sube',
-          nacionalidad: 'todas',
-          conditions: {
-            notrabajo: 'desempleado',
-            discapacidad: 'si',
-            discapaciodad_acargo: 'si'
-          }
         }
+        // {
+        //   name: 'Tarifa Social en los servicios públicos',
+        //   corto: 'tarifasocial',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/tarifasocial',
+        //   icon: 'icono-arg-sube',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     notrabajo: 'desempleado',
+        //     discapacidad: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // }
    ]
  },
  {
@@ -503,11 +511,12 @@ var categories = [
         {
           name: 'Obra Social para beneficiarios de la Prestación por Desempleo',
           corto: 'dependencia_obrasocial_desempleo',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/obra-social-para-beneficiarios-de-la-prestacion-por-desempleo',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado',
             interes_trabajo: 'si'
           }
@@ -541,11 +550,12 @@ var categories = [
         {
           name: 'Prestación por Desempleo',
           corto: 'dependencia_desempleo',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/prestacion-por-desempleo',
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado',
             interes_trabajo: 'si'
           }
@@ -553,18 +563,19 @@ var categories = [
         {
           name: 'Obra social y ART',
           corto: 'particulares_obrasocial',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/casasparticulares/obrasocialart',
           icon: 'fa-female',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'si',     
             trabajo: 'particulares'
           }
         },
         {
           name: 'Tarifa Social SUBE para trabajadores de casas particulares',
           corto: 'particulares_sube',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-la-tarifa-social-sube',
           icon: 'fa-female',
           nacionalidad: 'todas',
@@ -593,7 +604,7 @@ var categories = [
         {
           name: 'Me quiero capacitar',
           corto: 'capacitarme',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/trabajar/capacitacion',
           icon: 'icono-arg-capacitacion',
           nacionalidad: 'todas',
@@ -606,7 +617,7 @@ var categories = [
         {
           name: 'Necesito capacitación para emprender',
           corto: 'capacitarme_emprender',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
           icon: 'icono-arg-capacitacion',
           nacionalidad: 'todas',
@@ -618,7 +629,7 @@ var categories = [
         {
           name: 'Beneficios, programas y becas',
           corto: 'capacitarme_beneficios',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
           icon: 'icono-arg-capacitacion',
           nacionalidad: 'todas',
@@ -634,11 +645,12 @@ var categories = [
         {
           name: 'Necesito capacitación para emprender',
           corto: 'emprendedor_capacitarme',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'si',     
             trabajo: 'autonomo',
             interes_capacitacion: 'si',
             interes_emprender: 'si'
@@ -647,11 +659,12 @@ var categories = [
         {
           name: 'Financiamiento para emprendedores',
           corto: 'emprendedor_financiamiento',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/emprender/financiamiento',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'si',     
             trabajo: 'autonomo',
             interes_capacitacion: 'si',
             interes_emprender: 'si'
@@ -660,11 +673,12 @@ var categories = [
         {
           name: 'Registrar mi PyME para obtener los beneficios de la Ley PyME',
           corto: 'emprendedor_registrar',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/registrar-una-pyme-para-obtener-los-beneficios-de-la-ley-pyme',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'si',     
             trabajo: 'autonomo',
             interes_capacitacion: 'si',
             interes_emprender: 'si'
@@ -673,11 +687,12 @@ var categories = [
         {
           name: 'Inscribirme como Monotributista',
           corto: 'emprendedor_inscribirme',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/inscribirme-como-monotributista',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'si',     
             trabajo: 'monotributista',
             trabajo: 'autonomo',
             interes_emprender: 'si'
@@ -686,7 +701,7 @@ var categories = [
         {
           name: 'Registro Único del Ministerio de Producción (RUMP)',
           corto: 'emprendedor_rump',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/registro-unico-del-ministerio-de-produccion-rump',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
@@ -717,7 +732,7 @@ var categories = [
         {
           name: 'Vacunas para bebés',
           corto: 'salud_vacunas_bebe',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/bebes',
           icon: 'icono-arg-vacunas',
           nacionalidad: 'todas',
@@ -731,7 +746,7 @@ var categories = [
         {
           name: 'Vacunas para niños y niñas',
           corto: 'salud_vacunas_niños',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/niniosyninias',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -744,7 +759,7 @@ var categories = [
         {
           name: 'Vacunas para adolescentes',
           corto: 'salud_vacunas_adolescentes',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/adolescentes',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -757,7 +772,7 @@ var categories = [
         {
           name: 'Vacunas para adultos',
           corto: 'salud_vacunas_adultos',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/adultos',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -768,7 +783,7 @@ var categories = [
         {
           name: 'Vacunas para adultos mayores',
           corto: 'salud_vacunas_mayores',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vacunas/adultosmayores',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -780,7 +795,7 @@ var categories = [
         {
           name: 'Pausa activa',
           corto: 'salud_pausa',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tupausaactiva',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -791,7 +806,7 @@ var categories = [
         {
           name: 'Vivir en Positivo',
           corto: 'salud_positivo',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/vivirenpositivo',
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
@@ -808,6 +823,7 @@ var categories = [
           nacionalidad: 'todas',
           conditions: {
             edad: '> 59',
+            empleo: 'no',     
             notrabajo: 'jubilado',
             interes_salud: 'si'
           }
@@ -822,64 +838,67 @@ var categories = [
         {
           name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
           corto: 'soyjubilado_solicitarasignacionescolar',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
-            notrabajo: 'jubilado',
-            notrabajo: 'desempleado',
+            // empleo: 'no',     
+            // notrabajo: 'jubilado',
+            // notrabajo: 'desempleado',
             discapacidad: 'si',
             hijos: 'si',
             discapaciodad_acargo: 'si'
           }
         },
-        {
-          name: 'Asignación Familiar por Ayuda Escolar Anual',
-          corto: 'dependencia_ayudaescolar',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'dependencia',
-            hijos: 'si',
-            tenerHijos: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Asignación Familiar por Ayuda Escolar Anual',
-          corto: 'monotributo_escolar',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-          icon: 'icono-arg-factura',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'monotributo',
-            hijos: 'si',
-            tenerHijos: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Asignación Familiar por Ayuda Escolar Anual',
-          corto: 'estudiar_asignacion',
-          description: 'Esta es la descripción de este panel.',
-          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
-          conditions: {
-            estudio: 'si',
-            hijos: 'si',
-            tenerHijos: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
+        // {
+        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
+        //   corto: 'dependencia_ayudaescolar',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+        //   icon: 'icono-arg-apostilla',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     empleo: 'si',     
+        //     trabajo: 'dependencia',
+        //     hijos: 'si',
+        //     tenerHijos: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
+        // {
+        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
+        //   corto: 'monotributo_escolar',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+        //   icon: 'icono-arg-factura',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     empleo: 'si',     
+        //     trabajo: 'monotributo',
+        //     hijos: 'si',
+        //     tenerHijos: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
+        // {
+        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
+        //   corto: 'estudiar_asignacion',
+        //   description: 'Esta es la descripción del trámite',
+        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+        //   icon: 'fa-book',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     estudio: 'si',
+        //     hijos: 'si',
+        //     tenerHijos: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
         {
           name: 'PROGRESAR',
           corto: 'estudiar_progresar',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/programa-de-respaldo-estudiantes-de-argentina-progresar',
           icon: 'fa-book',
           nacionalidad: 'todas',
@@ -892,7 +911,7 @@ var categories = [
         {
           name: 'Plan 111mil',
           corto: 'estudiar_11mil',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/111mil',
           icon: 'fa-book',
           nacionalidad: 'todas',
@@ -906,7 +925,7 @@ var categories = [
         {
           name: 'Programa Argentina Beca',
           corto: 'estudiar_beca',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'http://argentinabeca.educacion.gob.ar/',
           icon: 'fa-book',
           nacionalidad: 'todas',
@@ -920,7 +939,7 @@ var categories = [
         {
           name: 'Bec.ar (becas para profesionales en ciencia y tecnología)',
           corto: 'estudiar_becar',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/becar',
           icon: 'fa-book',
           nacionalidad: 'todas',
@@ -933,7 +952,7 @@ var categories = [
         {
           name: 'Boleto escolar y boleto estudiantil',
           corto: 'estudiar_boleto',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.cnrt.gob.ar/content/automotor/usuarios/descuentoestudiantes',
           icon: 'fa-book',
           nacionalidad: 'todas',
@@ -947,12 +966,13 @@ var categories = [
         {
           name: 'Beneficios, programas y becas',
           corto: 'estudiar_beneficios',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
           icon: 'fa-book',
           nacionalidad: 'todas',
           conditions: {
             estudio: 'si',
+            empleo: 'no',     
             notrabajo: 'desempleado',
             interes_capacitacion: 'si',
             interes_emprender: 'si'
@@ -980,7 +1000,7 @@ var categories = [
         {
           name: 'Iniciá el trámite de tu jubilación por Internet',
           corto: 'quierojubilarme_iniciar',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/jubilacion-automatica-por-internet',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
@@ -991,7 +1011,7 @@ var categories = [
         {
           name: 'Jubilación ordinaria o por vejez',
           corto: 'quierojubilarme_ordinaria',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/jubilacion-ordinaria-o-jubilacion-por-vejez',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
@@ -1002,22 +1022,24 @@ var categories = [
         {
           name: 'Pensión por fallecimiento de un beneficiario',
           corto: 'quierojubilarme_fallecimiento',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-beneficiario',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado'
           }
         },
         {
           name: 'Pensión por fallecimiento de un trabajador',
           corto: 'quierojubilarme_trabajador',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-trabajador',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'desempleado'
           }
         },
@@ -1030,6 +1052,7 @@ var categories = [
           nacionalidad: 'todas',
           conditions: {
             edad: '> 59',
+            empleo: 'no',     
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si',
@@ -1039,11 +1062,12 @@ var categories = [
         {
           name: 'Reparación histórica',
           corto: 'soyjubilado_reparacion',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado',
             notrabajo: 'desempleado'
           }
@@ -1051,11 +1075,12 @@ var categories = [
         {
           name: 'Consultar el calendario de pagos de ANSES',
           corto: 'soyjubilado_calendario',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/consultar-calendario-de-pago-de-anses',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si',
@@ -1065,33 +1090,36 @@ var categories = [
         {
           name: 'Asignación Familiar por cónyuge',
           corto: 'soyjubilado_asignacion',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-conyuge',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado'
           }
         },
         {
           name: 'Dar Fe de vida (supervivencia)',
           corto: 'soyjubilado_supervivencia',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/dar-fe-de-vida-supervivencia-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado'
           }
         },
         {
           name: 'Solicitar un apoderado',
           corto: 'soyjubilado_apoderado',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/solicitar-un-apoderado-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
+            empleo: 'no',     
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si'
@@ -1107,7 +1135,7 @@ var categories = [
         {
           name: 'Turistas',
           corto: 'extranjeros_turistas',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/turistas',
           icon: 'fa-plane',
           nacionalidad: 'todas',
@@ -1118,19 +1146,19 @@ var categories = [
         {
           name: 'Estudiantes',
           corto: 'extranjeros_estudiantes',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/estudiar',
           icon: 'fa-plane',
-          nacionalidad: 'todas',
+          nacionalidad: 'extranjero',
           conditions: {
-            nacionalidad: 'extranjero',
-            estudio: 'si'
+            estudio: 'si',
+            nacionalidad: 'extranjero'
           }
         },
         {
           name: 'Trabajador',
           corto: 'extranjeros_trabajador',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/trabajar',
           icon: 'fa-plane',
           nacionalidad: 'todas',
@@ -1142,7 +1170,7 @@ var categories = [
         {
           name: 'Inversionistas',
           corto: 'extranjeros_trabajador',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/invertir',
           icon: 'fa-plane',
           nacionalidad: 'todas',
@@ -1154,7 +1182,7 @@ var categories = [
         {
           name: 'Radicación de un familiar',
           corto: 'extranjeros_trabajador',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/radicacion',
           icon: 'fa-plane',
           nacionalidad: 'todas',
@@ -1165,7 +1193,7 @@ var categories = [
         {
           name: 'Obtener la ciudadanía',
           corto: 'extranjeros_ciudadania',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/ciudadania',
           icon: 'fa-plane',
           nacionalidad: 'todas',
@@ -1183,7 +1211,7 @@ var categories = [
         {
           name: 'Abuso sexual infantil',
           corto: 'violencia_infantil',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/abusosexualinfantil',
           icon: 'fa-exclamation-triangle',
           nacionalidad: 'todas',
@@ -1194,7 +1222,7 @@ var categories = [
         {
           name: 'Trata de personas',
           corto: 'violencia_trata',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/denuncialatrata',
           icon: 'fa-exclamation-triangle',
           nacionalidad: 'todas',
@@ -1205,7 +1233,7 @@ var categories = [
         {
           name: 'Mujeres en situación de violencia',
           corto: 'violencia_mujeres',
-          description: 'Esta es la descripción de este panel.',
+          description: 'Esta es la descripción del trámite',
           url: 'https://www.argentina.gob.ar/atencionmujeres',
           icon: 'fa-exclamation-triangle',
           nacionalidad: 'todas',
@@ -1293,8 +1321,8 @@ var categories = [
                     show = true;
                   }
 
-                }else if( data[condition] == value ){
-
+                }
+                else if( data[condition] == value ){
                   show = true;
                 }
               });
