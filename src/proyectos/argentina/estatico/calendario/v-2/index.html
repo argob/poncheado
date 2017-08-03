@@ -65,7 +65,7 @@ layout: argentina
     <div class="container">
         <div class="row">
 
-            <div class="row numbers m-b-3">
+            <div class="row numbers m-b-3" role="presentation" >
               <div class="col-md-4 col-md-offset-4 text-center">
                 <p class="text-muted">Faltan</p>
                 <div><p class="h1 text-success"><span id="faltan"></span> DÍAS</p></div>
@@ -73,6 +73,8 @@ layout: argentina
                 <p class="lead" id="proximo"></p>
               </div>
             </div>
+
+            <div class="sr-only"><p id="lector"></p></div>
 
 
 
@@ -84,7 +86,7 @@ layout: argentina
                         <div class="col-md-12 mes">
 
                             <h2 class="h5 text-center">Enero</h2>
-                            <table class="table table-striped text-center">
+                            <table class="table table-striped text-center" role="presentation" >
                                 <thead>
                                     <tr>
                                         <th class="text-center">Dom</th>
@@ -1972,10 +1974,11 @@ layout: argentina
 //mando esa info
 var faltanHTML = document.getElementById("faltan");
 var proximoHTML = document.getElementById("proximo");
+var lectorHTML = document.getElementById("lector");
 
 faltanHTML.innerHTML = faltan;
 proximoHTML.innerHTML = proximo;
-    
+lectorHTML.innerHTML = "Faltan " + faltan + " días para el próximo feriado. El próximo feriado es el " + proximo + ".";
 
 
 </script>
