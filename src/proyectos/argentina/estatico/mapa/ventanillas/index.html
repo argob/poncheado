@@ -167,7 +167,7 @@ title: Mapa de Ventanillas
     var currentMaxPob = 0;
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1dqfiNONeRegUwThPOMs4_h4UAx522QcbgfkJu4B42Tw/1/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1yi0cUHY2pF-h_6jDgtkIgrKRLTV8utUDCvgQMi_Peek/1/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -281,14 +281,14 @@ title: Mapa de Ventanillas
           }
 
 
-          if( row.gsx$anses.$t > 0 ){
+          /*if( row.gsx$anses.$t > 0 ){
             // if( localidades.anses.length < 79 ){
               localidades.anses.push(row)
               markerImage = 'img/marker.png';
               currentCount ++;
               countProv(row);
             // }
-          }else if( row.gsx$nac.$t > 0 ){
+          }else */if( row.gsx$nac.$t > 0 ){
             // if( localidades.nac.length < 28 ){
               localidades.nac.push(row)
               markerImage = 'img/marker_uva.png';
@@ -357,7 +357,7 @@ title: Mapa de Ventanillas
           }
 
           detalles[index] = new google.maps.InfoWindow({
-            content: '<h5>'+ row.gsx$localidad.$t +'<br><small>'+ row.gsx$municipio.$t +', '+ row.gsx$provincia.$t +'</h5><p><strong>Poblacion</strong>: '+ row.gsx$poblacion.$t +'<br><strong>Ventanillas</strong>: '+ row.gsx$ventanillas.$t +'<br> <strong>Ciudadanos por ventanillas: </strong>'+ cxv +'</p>',
+            content: '<h5>'+ row.gsx$localidad.$t +'<br>'+ row.gsx$provincia.$t +'</h5><p><strong>Poblacion</strong>: '+ row.gsx$poblacion.$t +'<br><strong>Ventanillas</strong>: '+ row.gsx$ventanillas.$t +'<br> <strong>Ciudadanos por ventanillas: </strong>'+ cxv +'</p>',
             maxWidth: 400
           })
 
