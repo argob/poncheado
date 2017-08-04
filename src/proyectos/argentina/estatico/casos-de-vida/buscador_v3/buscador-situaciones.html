@@ -92,8 +92,8 @@ layout: mi-argentina
                     <label class="control-label">¿Estás trabajando?</label>
                     <div class="form-item form-type-radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="empleo" value="si" id="trabajoSi" required onclick="muestra('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Sí</label>
-                        <label class="radio-inline"><input type="radio" name="empleo" value="no" id="trabajoNo" required onclick="muestra('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">No</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="si" id="trabajoSi" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Sí</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="no" id="trabajoNo" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">No</label>
                       </div>
                     </div>
                   </div>
@@ -142,8 +142,8 @@ layout: mi-argentina
                     <label class="control-label">¿Tenés hijos?</label>
                     <div class="form-item form-type-radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="hijos" value="si" id="hijosSi" required onclick="muestra('hijosSi', 'hijosNo', 'edadHijos', 'nada');">Sí, tengo</label>
-                        <label class="radio-inline"><input type="radio" name="hijos" value="no" id="hijosNo" required onclick="muestra('hijosSi', 'hijosNo', 'edadHijos', 'nada');">No tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="si" id="hijosSi" required onclick="muestraHijo('hijosSi', 'hijosNo', 'edadHijos', 'nada');">Sí, tengo</label>
+                        <label class="radio-inline"><input type="radio" name="hijos" value="no" id="hijosNo" required onclick="muestraHijo('hijosSi', 'hijosNo', 'edadHijos', 'nada');">No tengo</label>
                       </div>
                     </div>
                   </div>
@@ -226,19 +226,39 @@ layout: mi-argentina
 
         <script>
 
+
           //este codiguito despliega la opción de acuerdo a lo que se le seleccione. hay que pasarle los argumentos.        
           var d = document;
-          function muestra(si, no, opcion1, opcion2){
+          function muestraTrabajo(si, no, opcion1, opcion2){
 
             var si = d.getElementById(si);
             var no = d.getElementById(no);
             var opcion1 = d.getElementById(opcion1);
             var opcion2 = d.getElementById(opcion2);
 
-            $('input[name=trabajo]').attr('checked',false);
-            $('input[name=notrabajo]').attr('checked',false);
-            $('input[name=hijo_menor]').attr('checked',false);
-            $('input[name=hijo_mayor]').attr('checked',false);
+            jQuery('input[name=trabajo]').attr('checked',false);
+            jQuery('input[name=notrabajo]').attr('checked',false);
+
+            if (si.checked){
+              opcion1.classList.remove('hidden');
+              opcion2.classList.add('hidden');
+            }
+
+            if (no.checked){
+              opcion2.classList.remove('hidden');
+              opcion1.classList.add('hidden');
+            }
+          }
+
+          function muestraHijo(si, no, opcion1, opcion2){
+
+            var si = d.getElementById(si);
+            var no = d.getElementById(no);
+            var opcion1 = d.getElementById(opcion1);
+            var opcion2 = d.getElementById(opcion2);
+
+            jQuery('input[name=hijo_menor]').attr('checked',false);
+            jQuery('input[name=hijo_mayor]').attr('checked',false);
 
             if (si.checked){
               opcion1.classList.remove('hidden');
@@ -262,32 +282,32 @@ layout: mi-argentina
 
               data = JSON.parse( localStorage.getItem("wizard-form2"))
 
-              $.each(data, function(key, item){
+              jQuery.each(data, function(key, item){
                 if(item.name == 'edad'){
-                  $('[name='+ item.name +']').val(item.value);
+                  jQuery('[name='+ item.name +']').val(item.value);
 
                 }else{
-                  $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+                  jQuery('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
 
                   if(item.name == 'empleo' && item.value == 'si'){
-                    muestra('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
+                    muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
                   }
                   if(item.name == 'hijos' && item.value == 'si'){
-                    muestra('hijosSi', 'hijosNo', 'edadHijos', 'nada');
+                    muestraHijo('hijosSi', 'hijosNo', 'edadHijos', 'nada');
                   }
                 }
               })
 
             }
 
-            $.validator.setDefaults({
+            jQuery.validator.setDefaults({
               // debug: true,
               success: "valid"
             });
 
             // Cuando mando el formulario guardo lo que se modificó
 
-            var wizard_form = $("#wizard-form2");
+            var wizard_form = jQuery("#wizard-form2");
             wizard_form.validate({
               errorPlacement: function(error, element) {
                 if (element.is(":radio") || element.is(":checkbox")){
@@ -297,10 +317,10 @@ layout: mi-argentina
                 }
               },
               highlight: function(element, errorClass) {
-                if ($(element).is(":radio") || $(element).is(":checkbox")){
-                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                if (jQuery(element).is(":radio") || jQuery(element).is(":checkbox")){
+                  jQuery(element).parent().parent().parent().parent().addClass("has-error has-feedback");
                 } else{
-                  $(element).parent().addClass("has-error has-feedback");
+                  jQuery(element).parent().addClass("has-error has-feedback");
                 }
               },
               success: function(label) {
@@ -309,15 +329,15 @@ layout: mi-argentina
               },
             });
 
-            $('#wizard-form2').on('submit', function(event){
+            jQuery('#wizard-form2').on('submit', function(event){
               event.preventDefault();
 
               if (wizard_form.valid() ) {
-                data = $(this).serializeArray();
+                data = jQuery(this).serializeArray();
                 localStorage.setItem("wizard-form2", JSON.stringify(data));
 
 
-                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+                var ga_data = jQuery(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
 
                 if( localStorage.getItem("wizard-form2") == undefined ){
                   // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
@@ -325,8 +345,8 @@ layout: mi-argentina
                   // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
                 }
 
-                //window.location.href = '/tusresultados';
-                window.location.href = 'tus-resultados.html';
+                window.location.href = '/tusresultados';
+                // window.location.href = 'tus-resultados.html';
               }
             });
 
@@ -334,9 +354,15 @@ layout: mi-argentina
             console.log('No tenés soporte :(');
           } 
 
+
         </script>
 
+<style type="text/css">
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  padding: 0;
+}  
 
+</style>
 
       </div>
     </div>
