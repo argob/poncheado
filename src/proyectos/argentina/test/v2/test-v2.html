@@ -56,13 +56,6 @@ layout: argentina
 
 (function($){
 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-71585203-12', 'auto', 'ux');
-
   var raw;
   var data = {
     list: [],
@@ -76,10 +69,38 @@ layout: argentina
       groups: 0,
       contents: 0,
       flow: []
-    }
+    },
+    user: {}
   };
 
-  console.log(data)
+  if(typeof(Storage) !== "undefined") {
+    if( localStorage.getItem("testUser") != undefined ){
+      var localUser = JSON.parse( localStorage.getItem("testUser"))
+
+      $.each(localUser, function(key, item){
+          if(item.name == 'edad'){
+            data.user.age = item.value;
+          }else if(item.name == 'provincia'){
+            data.user.province = item.value;
+          }
+      })
+
+    }else{
+
+      window.location.href = '/mejorar';
+
+    }
+  } else {
+    console.log('No tenés soporte :(');
+  } 
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71585203-12', 'auto', 'ux');
 
   var shuffle = function (array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -101,8 +122,7 @@ layout: argentina
   }
 
   var renderList = function(){
-
-    $.each(raw, function(index, row){
+    jQuery.each(raw, function(index, row){
       if(data.contents[row.gsx$agrupador.$t] == undefined){
         data.contents[row.gsx$agrupador.$t] = [row.gsx$caso.$t];
         data.list.push(row.gsx$agrupador.$t);
@@ -121,16 +141,16 @@ layout: argentina
       }
     });
 
-    var $list = $('#test-list');
+    var $list = jQuery('#test-list');
     var html = '<div id="test">';
     data.list = shuffle(data.list);
 
-    $.each(data.list, function( groupIndex, group ){
+    jQuery.each(data.list, function( groupIndex, group ){
 
         html += '<div class="panel m-b-1" role="tab"><div class="panel-heading" data-toggle="collapse" href="#group-'+ groupIndex +'" data-parent="#test"><h4>'+ group +'</h4></div> <div class="panel-body collapse" role="tabpanel" id="group-'+ groupIndex +'">';
         cases = shuffle(data.contents[group]);
 
-        $.each(cases, function(index, content){
+        jQuery.each(cases, function(index, content){
           html += '<p><a href="#">'+ content +'</a></p>';
         });
 
@@ -139,78 +159,66 @@ layout: argentina
     });
 
     data.question = data.questions[ Math.floor( Math.random() * data.questions.length ) ]
-    $('#question').text( data.question.text );
+    jQuery('#question').text( data.question.text );
     $list.append(html);
+    jQuery('#test-section').removeClass('state-loading');
 
-    $('#test-section').removeClass('state-loading');
+  }
 
+  var anotherQuestion = function(){
+
+    ga('ux.send', {
+      hitType: 'event',
+      eventCategory: 'Árbol - Casos de vida',
+      eventAction: 'Cambio de situación',
+      eventLabel: JSON.stringify( [ data.question, data.user] )
+    });
+
+    data.question = data.questions[ Math.floor( Math.random() * data.questions.length ) ]
+    jQuery('#question').text( data.question.text );
   }
 
 
 
-  $('body').on('click', '#test-list .panel-heading', function(event){
+  jQuery('body').on('click', '#test-list .panel-heading', function(event){
     event.preventDefault();
     data.results.groups ++;
-    data.results.flow.push( 'A | '+ $(this).find('h4').text() );
+    data.results.flow.push( 'A | '+ jQuery(this).find('h4').text() );
+    jQuery('#reloadButton').addClass('invisible');
   })
   .on('click', '#test-list .panel-body a', function(event){
     
-    if( $(this).hasClass('btn-selector') ){
+    if( jQuery(this).hasClass('btn-selector') ){
       
-      data.results.result = $(this).prev().text() == data.question.content;
+      data.results.result = jQuery(this).prev().text() == data.question.content;
       data.results.finish = Date.now();
-      // console.log( data.results );
-      // console.log( JSON.stringify( [ data.results, data.question] ) );
-
-
 
       ga('ux.send', {
         hitType: 'event',
-        eventCategory: 'Árbol',
-        eventAction: 'Casos de vida (test)',
-        eventLabel: JSON.stringify( [ data.results, data.question] )
+        eventCategory: 'Árbol - Casos de vida',
+        eventAction: 'Finalizado',
+        eventLabel: JSON.stringify( [ data.results, data.question, data.user] )
       });
 
     }else{
       
-      $('.btn-selector').remove();
-      $(this).parent().append('<a class="btn-selector btn btn-success btn-sm m-b-0 m-l-2" href="/registro-pruebas" style="vertical-align: middle;">Lo buscaría acá</a>')
+      jQuery('.btn-selector').remove();
+      jQuery(this).parent().append('<a class="btn-selector btn btn-success btn-sm m-b-0 m-l-2" href="/registro-pruebas" style="vertical-align: middle;">Lo buscaría acá</a>')
       event.preventDefault();
       data.results.contents ++;
-      data.results.flow.push( 'C | '+ $(this).text() );
+      data.results.flow.push( 'C | '+ jQuery(this).text() );
     }
-  }).on('click', '#proposeButton', function(event){
-
-
-
-
-  }).on('submit', '#proposeForm', function(event){
-    
-
-    data.results.result = false;
-    data.results.propose = $('#proposeField').val();
-    data.results.finish = Date.now();
-
-    ga('ux.send', {
-      hitType: 'event',
-      eventCategory: 'Árbol',
-      eventAction: 'Casos de vida (test)',
-      eventLabel: JSON.stringify( [ data.results, data.question] )
-    });
-    
-    showThanks();
-
   });
 
 
-  $.getJSON('https://spreadsheets.google.com/feeds/list/15WrBedfggCBXBPhXEsBRSD3Jrh31BwOC4jM3Ov4clQU/1/public/values?alt=json', function (response) {
+  jQuery.getJSON('https://spreadsheets.google.com/feeds/list/15WrBedfggCBXBPhXEsBRSD3Jrh31BwOC4jM3Ov4clQU/1/public/values?alt=json', function (response) {
     raw = response.feed.entry;
     renderList();
   });
 
-  $('#reloadButton').click( function(event) {
+  jQuery('#reloadButton').click( function(event) {
     event.preventDefault();
-    location.reload();
+    anotherQuestion();
   })
 
 })(jQuery);
