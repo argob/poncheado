@@ -1294,8 +1294,12 @@ var categories = [
           icon: 'fa-plane',
           nacionalidad: 'extranjero',
           conditions: {
-            estudio: 'si',
-            nacionalidad: 'extranjero'
+            and: [
+              {
+                estudio: 'si',
+                nacionalidad: 'extranjero'
+              }
+            ]//,              
           }
         },
         {
@@ -1304,10 +1308,14 @@ var categories = [
           description: '',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/trabajar',
           icon: 'fa-plane',
-          nacionalidad: 'todas',
+          nacionalidad: 'extranjero',
           conditions: {
-            nacionalidad: 'extranjero',
-            interes_trabajo: 'si',
+            and: [
+              {
+                nacionalidad: 'extranjero',
+                interes_emprender: 'si'
+              }
+            ]//,            
           }
         },
         {
@@ -1316,10 +1324,14 @@ var categories = [
           description: '',
           url: 'https://www.argentina.gob.ar/tema/extranjeros/invertir',
           icon: 'fa-plane',
-          nacionalidad: 'todas',
+          nacionalidad: 'extranjero',
           conditions: {
-            nacionalidad: 'extranjero',
-            interes_emprender: 'si'
+            and: [
+              {
+                nacionalidad: 'extranjero',
+                interes_emprender: 'si'
+              }
+            ]//,
           }
         },
         {
