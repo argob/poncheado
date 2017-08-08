@@ -161,7 +161,7 @@ layout: argentina
         </div>
     </a>
 </div>`,
-      modal: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+      modal_v: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -179,6 +179,28 @@ layout: argentina
                       <div class="embed-responsive embed-responsive-16by9">
                         
                       <iframe class="embed-responsive-item" src="{video}" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`,
+      modal_im: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+                      <h4 class="nombre-obra modal-title">{titulo}</h4>
+                      <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
+                      <div class="text-muted">
+                        <div class="media m-t-1">Provincia: <span>{provincia}</span></div>
+                        <div class="media m-t-1">Localidad: <span>{localidad}</span></div>
+                        <div class="media m-t-1">Beneficiarios: <span>{beneficiarios}</span></div>
+                        <div class="media m-t-1">Estado: <span>{estado}</span></div>
+                      </div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="embed-responsive embed-responsive-16by9">
+                        
                       <img src="{imagen}" alt="imagen de obra pública"/>
                       </div>
                     </div>
@@ -267,7 +289,8 @@ layout: argentina
           if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
 
             html = templates.tarjeta;
-            var modal = templates.modal;
+            var modal_v = templates.modal_v;
+            var modal_im = templates.modal_im;
 
             html = html.replace(/{titulo}/gi, obras.titulo)
             .replace(/{index}/gi, index)
@@ -276,7 +299,7 @@ layout: argentina
             .replace(/{icono}/gi, obras.icono),
 
 
-            modal = modal.replace(/{index}/gi, index)
+            modal_v = modal_v.replace(/{index}/gi, index)
             .replace(/{titulo}/gi, obras.titulo)
             .replace(/{descripcion}/gi, obras.descripcion)
             .replace(/{video}/gi, obras.video)
@@ -286,8 +309,39 @@ layout: argentina
             .replace(/{beneficiarios}/gi, obras.beneficiarios)
             .replace(/{estado}/gi, obras.estado);
 
+            modal_im = modal_im.replace(/{index}/gi, index)
+            .replace(/{titulo}/gi, obras.titulo)
+            .replace(/{descripcion}/gi, obras.descripcion)
+            .replace(/{video}/gi, obras.video)
+            .replace(/{imagen}/gi, obras.imagen)
+            .replace(/{provincia}/gi, obras.provincia)
+            .replace(/{localidad}/gi, obras.localidad)
+            .replace(/{beneficiarios}/gi, obras.beneficiarios)
+            .replace(/{estado}/gi, obras.estado);
+
+
+
+
             $('[data-render=tarjetas]').append( html );
-            $('[data-render=modales]').append( modal );      
+     
+
+
+
+            if(obras.video){
+              console.log("HALA video");
+              console.log(obras.video);
+              $('[data-render=modales]').append( modal_v ); 
+            }
+
+            if(obras.imagen){
+              console.log("HALA imagen");
+              console.log(obras.imagen);
+              $('[data-render=modales]').append( modal_im ); 
+
+            }
+
+
+
 
           }
 
