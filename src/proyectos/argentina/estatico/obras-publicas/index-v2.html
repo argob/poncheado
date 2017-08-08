@@ -1,0 +1,327 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('/sites/default/files/obras.jpg');">
+<div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li class="active">Ministerio del Interior</li>
+          </ol>                    
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Obras para mejorar la calidad de vida de todos los argentinos</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  
+  <section>
+    <h2 class="text-center m-b-2 h1">Buscador de obras</h2>
+    <div id="obras">
+      <div class="row">
+        <div class="col-md-6">    
+          <div class="form-group">
+            <label>Buscá por obra</label>
+            <input class="form-control search" placeholder="Buscá obras por nombre o descripcion">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Provincia</label>
+            <select id="tipo-provincia" class="form-control">
+              <option value="Todas">Todas</option>
+              <option value="Buenos Aires">Buenos Aires</option>
+              <option value="Capital Federal">Capital Federal</option>
+              <option value="Catamarca">Catamarca</option>
+              <option value="Chaco">Chaco</option>
+              <option value="Chubut">Chubut</option>
+              <option value="Córdoba">Córdoba</option>
+              <option value="Corrientes">Corrientes</option>
+              <option value="Entre Ríos">Entre Ríos</option>
+              <option value="Jujuy">Jujuy</option>
+              <option value="Formosa">Formosa</option>
+              <option value="La Pampa">La Pampa</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="Mendoza">Mendoza</option>
+              <option value="Neuquén">Neuquén</option>
+              <option value="Misiones">Misiones</option>
+              <option value="Río Negro">Río Negro</option>
+              <option value="Salta">Salta</option>
+              <option value="San Juan">San Juan</option>
+              <option value="San Luis">San Luis</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="Santa Fe">Santa Fe</option>
+              <option value="Santiago del Estero">Santiago del Estero</option>
+              <option value="Tucumán">Tucumán</option>
+              <option value="Tierra del Fuego">Tierra del Fuego</option>
+              
+
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="">Tipo de Obra</label>
+            <select id="tipo-obra" class="form-control">
+              <option value="Todas">Todas</option>
+              <option value="Hábitat">Hábitat</option>
+              <option value="Renovación Urbana">Renovación Urbana</option>
+              <option value="Cloacas">Cloacas</option>
+              <option value="Agua potable">Agua potable</option>
+              <option value="Vivienda">Vivienda</option>
+              <option value="Cultura">Cultura</option>
+              <option value="Educación">Educación</option>
+              <option value="Salud">Salud</option>
+              <option value="Obras para evitar inundaciones">Obras para evitar inundaciones</option>
+              <option value="Espacio Público">Espacio Público</option>
+              <option value="Patrimonio">Patrimonio</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div>
+      <div class="list row panels-row m-y-3" data-render="tarjetas">
+      </div>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>       
+      </div>
+    </div>
+  </section> 
+</div>
+
+
+<div data-render="modales"></div> 
+
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+     <div id="alerta" class="alert alert-warning col-md-4 no-result">
+      <div class="media">
+        <div class="media-left media-middle">
+          <i class="fa fa-warning fa-fw fa-2x"></i>
+        </div>
+        <div class="media-body">
+          <p>No hay resultados para mostrar</p>
+        </div>
+      </div>
+    </div> 
+   </div>
+ </div>  
+</div>
+
+<!--
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+-->
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+
+<script>
+
+  (function($){
+
+    var templates = {
+      tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
+    <a href="#obras-{index}" data-toggle="modal" class="panel panel-default">
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <span class="fa fa-{icono} fa-2x fa-fw text-muted" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                    <div class="text-muted">
+                        <h4>{tipodeobra}</h4>
+                    </div>
+                </div>
+                <h3 class="nombre-obra m-t-1">{titulo}</h3>
+                <p class="text-muted descripcion-obra">{descripcion}</p>
+                
+              </div>
+        </div>
+    </a>
+</div>`,
+      modal: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+                      <h4 class="nombre-obra modal-title">{titulo}</h4>
+                      <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
+                      <div class="text-muted">
+                        <div class="media m-t-1">Provincia: <span>{provincia}</span></div>
+                        <div class="media m-t-1">Localidad: <span>{localidad}</span></div>
+                        <div class="media m-t-1">Beneficiarios: <span>{beneficiarios}</span></div>
+                        <div class="media m-t-1">Estado: <span>{estado}</span></div>
+                      </div>
+                    </div>
+                    <div class="modal-body">
+                      <div class="embed-responsive embed-responsive-16by9">
+                        
+                      <iframe class="embed-responsive-item" src="{video}" frameborder="0" allowfullscreen></iframe>
+                      <img src="{imagen}" alt="imagen de obra pública"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+    }
+
+    window.obras = [];
+    window.configobras = 'Todas';
+    window.configprovincia = 'Todas';
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+
+
+
+
+
+
+
+        $.each(response.feed.entry, function(index, row){
+
+          
+            obras.push({
+              index: index,
+              tipodeobra: row.gsx$tipodeobra.$t,
+              titulo: row.gsx$titulo.$t,
+              icono: row.gsx$icono.$t,
+              descripcion: row.gsx$descripcion.$t,
+              video: row.gsx$video.$t,
+              imagen: row.gsx$imagen.$t,
+              provincia: row.gsx$provincia.$t,
+              localidad: row.gsx$localidad.$t,
+              beneficiarios: row.gsx$beneficiarios.$t,
+              estado: row.gsx$estado.$t
+              
+            });
+
+          
+
+          
+
+        })
+
+        render.tarjetas();
+
+        var listOptions = { 
+          valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
+          page: 6,
+          plugins: [ ListPagination({}) ]
+        };
+
+        var obrasList = new List('obras', listOptions);
+
+        $('.no-result').hide();
+
+        obrasList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide();
+            $('.list').show();
+          } else {
+            $('.no-result').show();
+            $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+          }
+        })                
+
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function( ){
+
+        $('[data-render=tarjetas]').html('');
+        $('[data-render=modales]').html('');
+
+       var html = "";
+
+
+        $.each(obras, function(index, obras){
+
+          if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
+
+            html = templates.tarjeta;
+            var modal = templates.modal;
+
+            html = html.replace(/{titulo}/gi, obras.titulo)
+            .replace(/{index}/gi, index)
+            .replace(/{tipodeobra}/gi, obras.tipodeobra)
+            .replace(/{descripcion}/gi, obras.descripcion.substring(0, 100) + '...')
+            .replace(/{icono}/gi, obras.icono),
+
+
+            modal = modal.replace(/{index}/gi, index)
+            .replace(/{titulo}/gi, obras.titulo)
+            .replace(/{descripcion}/gi, obras.descripcion)
+            .replace(/{video}/gi, obras.video)
+            .replace(/{imagen}/gi, obras.imagen)
+            .replace(/{provincia}/gi, obras.provincia)
+            .replace(/{localidad}/gi, obras.localidad)
+            .replace(/{beneficiarios}/gi, obras.beneficiarios)
+            .replace(/{estado}/gi, obras.estado);
+
+            $('[data-render=tarjetas]').append( html );
+            $('[data-render=modales]').append( modal );      
+
+          }
+
+          if (html == "") {
+                $('.no-result').show();
+                $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+          }
+          else {
+                $('.no-result').hide();
+                $('.list').show();
+          } 
+
+
+        });
+
+      }   
+
+    }
+
+    $("#tipo-provincia").on("change", function() {
+      configprovincia = $( "#tipo-provincia option:selected" ).val();
+      render.tarjetas();
+    });
+
+    $("#tipo-obra").on("change", function() {
+      configobras = $( "#tipo-obra option:selected" ).val();
+      render.tarjetas();
+    });
+
+
+
+  })(jQuery);
+
+
+     
+</script>
+
