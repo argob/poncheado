@@ -308,8 +308,7 @@ a.panel.active i {
 
         $.each(proyectos, function(index, proyecto){
 
-
-          if( (config.tema == 'todos' || proyecto.temas.indexOf(config.tema) > 0) && (config.apoyo == 'todos' || proyecto.apoyos.indexOf(config.apoyo) > 0 ) ) {
+          if( (config.tema == 'todos' || proyecto.temas.indexOf(config.tema) > -1) && (config.apoyo == 'todos' || proyecto.apoyos.indexOf(config.apoyo) > -1 ) ) {
 
             var html = templates.tabla;
 
@@ -323,7 +322,6 @@ a.panel.active i {
             .replace(/{ministerio}/gi, proyecto.ministerio);
 
             $('[data-render=items]').append( html );
-
           }
 
         });
