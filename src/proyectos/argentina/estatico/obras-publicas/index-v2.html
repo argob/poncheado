@@ -1,6 +1,12 @@
 ---
 layout: argentina
 ---
+    <style>
+       #map {
+        height: 600px;
+        width: 100%;
+       }
+    </style>
 
 <section class="jumbotron" style="background-image: url('/sites/default/files/obras.jpg');">
 <div class="jumbotron_bar">
@@ -28,7 +34,13 @@ layout: argentina
 </section>
 
 <div class="container">
-  
+  <section>
+    <div class="row">
+      <div class="col-md-12">
+          <div id="map"></div>
+      </div>
+    </div>
+  </section>
   <section>
     <h2 class="text-center m-b-2 h1">Buscador de obras</h2>
     <div id="obras">
@@ -141,6 +153,7 @@ layout: argentina
 
   (function($){
 
+
     var templates = {
       tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
     <a href="#obras-{index}" data-toggle="modal" class="panel panel-default">
@@ -206,10 +219,11 @@ layout: argentina
                     </div>
                   </div>
                 </div>
-              </div>`
+              </div>`,
     }
 
     window.obras = [];
+    window.locations = [];
     window.configobras = 'Todas';
     window.configprovincia = 'Todas';
 
@@ -217,10 +231,6 @@ layout: argentina
       url: 'https://spreadsheets.google.com/feeds/list/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1/public/values?alt=json',
       data: 'json',
       success: function(response){
-
-
-
-
 
 
 
@@ -239,12 +249,15 @@ layout: argentina
               localidad: row.gsx$localidad.$t,
               beneficiarios: row.gsx$beneficiarios.$t,
               estado: row.gsx$estado.$t
-              
             });
 
-          
+            locations.push({
+              index: index,
+              latitud: row.gsx$latitud.$t,
+              longitud: row.gsx$longitud.$t
+            });
 
-          
+
 
         })
 
@@ -273,7 +286,7 @@ layout: argentina
 
       }
     });
-
+console.log(locations);
 
     var render = {
       tarjetas: function( ){
@@ -328,14 +341,10 @@ layout: argentina
 
 
             if(obras.video){
-              console.log("HALA video");
-              console.log(obras.video);
               $('[data-render=modales]').append( modal_v ); 
             }
 
             if(obras.imagen){
-              console.log("HALA imagen");
-              console.log(obras.imagen);
               $('[data-render=modales]').append( modal_im ); 
 
             }
@@ -376,6 +385,25 @@ layout: argentina
   })(jQuery);
 
 
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: new google.maps.LatLng(-40.1698743, -62.9550729),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[latitud][i], locations[longitud][i]),
+        map: map
+      });
+
+    }
+
+
      
 </script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap"></script>
 
