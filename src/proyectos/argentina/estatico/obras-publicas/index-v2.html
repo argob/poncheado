@@ -34,14 +34,24 @@ layout: argentina
 </section>
 
 <div class="container">
-  <section>
+  <div class="row">
+    <div class="col-xs-12 text-center m-t-3">
+      <a id="botonCambia" class="btn btn-primary btn-md" href="#" onclick="cambiaDisplay()">Buscador de obras</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section id="mapaObras">
     <div class="row">
       <div class="col-md-12">
+          <h2 class="text-center m-b-2 h1">Mapa de obras</h2>
           <div id="map"></div>
+          
       </div>
     </div>
   </section>
-  <section>
+  <section id="buscadorObras" class="hidden">
     <h2 class="text-center m-b-2 h1">Buscador de obras</h2>
     <div id="obras">
       <div class="row">
@@ -385,25 +395,67 @@ console.log(locations);
   })(jQuery);
 
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+
+
+
+
+  //MAPA
+
+
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: new google.maps.LatLng(-40.1698743, -62.9550729),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: 'terrain'
         });
 
+      }
+
+      google.maps.event.addListenerOnce( map, 'idle', cargarPuntos );
+
+      function cargarPuntos(){
+
         var marker, i;
+        for (i = 0; i < locations.length; i++) {  
+          marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
+          map: map
+        });
+      }
 
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[latitud][i], locations[longitud][i]),
-        map: map
-      });
+      }
 
+
+  // DOM botón
+
+  
+
+  function cambiaDisplay(){
+
+    var botonCambia = document.getElementById("botonCambia");
+    var mapaObras = document.getElementById("mapaObras");
+    var buscadorObras = document.getElementById("buscadorObras");
+
+    event.preventDefault()
+
+    if (botonCambia.innerHTML == "Buscador de obras"){
+      botonCambia.innerHTML = "Mapa de Obras";
+      mapaObras.classList.add('hidden');
+      buscadorObras.classList.remove('hidden');
+    }else{
+      botonCambia.innerHTML = "Buscador de obras";
+      buscadorObras.classList.add('hidden');
+      mapaObras.classList.remove('hidden');
     }
+}
+
+
+ 
 
 
      
 </script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap" 
+    async defer></script>
 
