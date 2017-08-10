@@ -787,7 +787,45 @@ var categories = [
           conditions: {
             interes_emprender: 'si'
           }
-        }
+        },
+        {
+          name: 'Asignación Familiar por Ayuda Escolar Anual',
+          corto: 'monotributo_escolar',
+          description: '',
+          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+          icon: 'icono-arg-factura',
+          nacionalidad: 'todas',
+          conditions: {
+               and: [
+                 {
+                   estudio: 'no', 
+                   empleo: 'no',     
+                   hijos: 'si',
+                   discapacidad: 'si'
+                 },
+                 {
+                   estudio: 'no', 
+                   empleo: 'no',     
+                   hijos: 'si',
+                   discapaciodad_acargo: 'si'
+                 }, 
+                 { 
+                   estudio: 'no',
+                   empleo: 'si',  
+                   trabajo: 'dependencia',   
+                   hijos: 'si',
+                   discapacidad: 'si'
+                 },
+                 {
+                   estudio: 'no',
+                   empleo: 'si',     
+                   trabajo: 'monotributo',   
+                   hijos: 'si',
+                   discapaciodad_acargo: 'si'
+                 }
+               ]             
+          }
+        }        
    ]
  },
  {
@@ -936,58 +974,51 @@ var categories = [
    iconCategory: 'icono-arg-educacion',
    urlCategory: 'https://www.argentina.gob.ar/tema/estudiar',
    contents:[
-        {
-          name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
-          corto: 'soyjubilado_solicitarasignacionescolar',
-          description: '',
-          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',     
-                hijos: 'si',
-                discapacidad: 'si'
-              },
-              {
-                empleo: 'no',     
-                hijos: 'si',
-                discapaciodad_acargo: 'si'
-              }              
-            ]            
-          }
-        },
         // {
-        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
-        //   corto: 'dependencia_ayudaescolar',
+        //   name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
+        //   corto: 'soyjubilado_solicitarasignacionescolar',
         //   description: '',
         //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-        //   icon: 'icono-arg-apostilla',
+        //   icon: 'icono-arg-jubilado',
         //   nacionalidad: 'todas',
         //   conditions: {
-        //     empleo: 'si',     
-        //     trabajo: 'dependencia',
-        //     hijos: 'si',
-        //     tenerHijos: 'si',
-        //     discapaciodad_acargo: 'si'
+        //     and: [
+        //       {
+        //         empleo: 'no',     
+        //         hijos: 'si',
+        //         discapacidad: 'si'
+        //       },
+        //       {
+        //         empleo: 'no',     
+        //         hijos: 'si',
+        //         discapaciodad_acargo: 'si'
+        //       }              
+        //     ]            
         //   }
         // },
-        // {
-        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
-        //   corto: 'monotributo_escolar',
-        //   description: '',
-        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-        //   icon: 'icono-arg-factura',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     empleo: 'si',     
-        //     trabajo: 'monotributo',
-        //     hijos: 'si',
-        //     tenerHijos: 'si',
-        //     discapaciodad_acargo: 'si'
-        //   }
-        // },
+           {
+             name: 'Asignación Familiar por Ayuda Escolar Anual',
+             corto: 'dependencia_ayudaescolar',
+             description: '',
+             url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
+             icon: 'icono-arg-apostilla',
+             nacionalidad: 'todas',
+             conditions: {
+               and: [
+                 {
+                   estudio: 'si',
+                   hijos: 'si',
+                   discapacidad: 'si'
+                 },                 
+                 {
+                   estudio: 'si',
+                   hijos: 'si',
+                   discapaciodad_acargo: 'si'
+                 }                 
+               ]             
+             }
+           },
+
         // {
         //   name: 'Asignación Familiar por Ayuda Escolar Anual',
         //   corto: 'estudiar_asignacion',
