@@ -296,7 +296,7 @@ layout: argentina
 
       }
     });
-console.log(locations);
+
 
     var render = {
       tarjetas: function( ){
@@ -399,6 +399,8 @@ console.log(locations);
 
 
       var map;
+      var marker = [];
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
@@ -406,21 +408,56 @@ console.log(locations);
           mapTypeId: 'terrain'
         });
 
+        setTimeout(function () {
+          
+          var i, x;
+          for (i = 0; i < locations.length; i++) {
+            marker[i] = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
+              map: map
+            });
+          }
+
+
+            marker[0].addListener('click', function() {
+              console.log("entró!");
+
+              $("#obras-" + 0).modal('show');
+            });
+
+
+            marker[1].addListener('click', function() {
+              console.log("entró!");
+
+              $("#obras-" + 1).modal('show');
+            });
+
+
+
+            /*
+          for (x = 0; x < marker.length;) {
+
+            marker[x].addListener('click', function() {
+              console.log("entró!");
+              console.log(x);
+
+              $("#obras-" + x).modal('show');
+
+              x++;
+            });
+          }
+
+
+*/
+
+
+
+          console.log(marker);
+
+      }, 2000);
+
       }
 
-      google.maps.event.addListenerOnce( map, 'idle', cargarPuntos );
-
-      function cargarPuntos(){
-
-        var marker, i;
-        for (i = 0; i < locations.length; i++) {  
-          marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
-          map: map
-        });
-      }
-
-      }
 
 
   // DOM botón
