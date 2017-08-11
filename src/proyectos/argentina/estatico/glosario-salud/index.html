@@ -287,15 +287,15 @@ layout: mi-argentina
     var saludList = new List('listado-salud', listOptions);
     saludList.sort('titulo', { order: "asc" }); 
 
-        $('.no-result').hide();
+        jQuery('.no-result').hide();
 
         saludList.on('updated', function(list) {
           if (list.matchingItems.length > 0) {
-            $('.no-result').hide();
-            $('.list').show();
+            jQuery('.no-result').hide();
+            jQuery('.list').show();
           } else {
-            $('.no-result').show();
-            $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+            jQuery('.no-result').show();
+            jQuery('.list').hide();//se esconde para sacar marginado cuando no hay resultados
           }
         })        
 

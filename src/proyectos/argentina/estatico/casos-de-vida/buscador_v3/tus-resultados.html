@@ -76,30 +76,6 @@ var categories = [
    iconCategory: 'fa-wheelchair',
    contents:[
         {
-          name: 'Solicitar Asignación Familiar por hijo o hija con discapacidad',
-          corto: 'soyjubilado_solicitarasignacion',
-          description: '',
-          url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {
-            discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Asignación Familiar por hijo o hija con discapacidad',
-          corto: 'monotributo_hijodiscapacidad',
-          description: '',
-          url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-          icon: 'icono-arg-factura',
-          nacionalidad: 'todas',
-          conditions: {
-            discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
-          }
-        },
-        {
           name: 'Beneficios para personas con discapacidad',
           corto: 'discapacidad_beneficios',
           description: '',
@@ -122,7 +98,28 @@ var categories = [
             discapaciodad: 'si',
             discapaciodad_acargo: 'si'
           }
+        },
+        {
+          name: 'Tarifa Social en los Servicios Públicos',
+          corto: 'soyjubilado_tarifasocial',
+          description: '',
+          url: 'https://www.argentina.gob.ar/tarifasocial',
+          icon: 'icono-arg-jubilado',
+          nacionalidad: 'todas',
+          conditions: {
+            and: [
+              {
+                empleo: 'no',
+                discapacidad: 'si'
+              },
+              {
+                empleo: 'no',
+                discapaciodad_acargo: 'si'
+              }
+            ]
+          }          
         }
+
    ]
  },
  {
@@ -150,7 +147,7 @@ var categories = [
           }
         },
         {
-          name: 'Solicitar Licencia por maternidad',
+          name: 'Asignación por maternidad',
           corto: 'dependencia_maternidad',
           description: '',
           url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
@@ -168,6 +165,31 @@ var categories = [
             tenerHijos: 'si'
           }
         },
+        // {
+        //   name: 'Solicitar Asignación Familiar por hijo o hija con discapacidad',
+        //   corto: 'soyjubilado_solicitarasignacion',
+        //   description: '',
+        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
+        //   icon: 'icono-arg-jubilado',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     discapaciodad: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
+        // {
+        //   name: 'Asignación Familiar por hijo o hija con discapacidad',
+        //   corto: 'monotributo_hijodiscapacidad',
+        //   description: '',
+        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
+        //   icon: 'icono-arg-factura',
+        //   nacionalidad: 'todas',
+        //   conditions: {
+        //     discapaciodad: 'si',
+        //     discapaciodad_acargo: 'si'
+        //   }
+        // },
+
         {
           name: 'Asignación Familiar por hijo o hija con discapacidad',
           corto: 'dependencia_hijodiscapacidad',
@@ -185,8 +207,8 @@ var categories = [
                 hijos: 'si',
                 discapaciodad_acargo: 'si'
               }
-
-            ]           
+            ],
+            interes_vivienda: 'no'           
           }
         },
         {
@@ -226,13 +248,20 @@ var categories = [
               {
                 hijos: 'si',
                 hijo_menor: 'si'
+              },
+              {
+                tenerHijos: 'si'
               }
             ],  
             // empleo: 'no',
-            // notrabajo: 'desempleado',                      
+            notrabajo: 'desempleado',                      
+            trabajo: 'monotributo',                      
+            trabajo: 'autonomo',                      
+            trabajo: 'particulares',  
+            trabajo: 'informal'
             // hijos: 'si',
             // hijo_menor: 'si',
-            tenerHijos: 'si'
+            // tenerHijos: 'si'
           }          
         },
         {
@@ -467,36 +496,10 @@ var categories = [
    ]
  },
  {
-   name:"Hogar pareja y familia",
+   name:"Pareja y familia",
    iconCategory: 'icono-arg-hogar-y-familia',
    urlCategory: 'https://www.argentina.gob.ar/tema/hogar',
    contents:[
-        {
-          name: 'Tarifa Social en los Servicios Públicos',
-          corto: 'soyjubilado_tarifasocial',
-          description: '',
-          url: 'https://www.argentina.gob.ar/tarifasocial',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',
-                discapacidad: 'si'
-              },
-              {
-                empleo: 'no',
-                discapaciodad_acargo: 'si'
-              }              
-            ]//,
-            // empleo: 'no',     
-            // notrabajo: 'jubilado',
-            // notrabajo: 'desempleado',
-            // discapacidad: 'si',
-            // discapaciodad_acargo: 'si'
-          }          
-
-        },
         {
           name: 'Asignación Familiar por matrimonio',
           corto: 'dependencia_matrimonio',
@@ -563,6 +566,25 @@ var categories = [
         // }
    ]
  },
+ {
+   name:"Acceder a una vivienda",
+   iconCategory: 'icono-arg-hogar-y-familia',
+   urlCategory: 'https://www.argentina.gob.ar/tema/hogar',
+   contents:[
+        {
+          name: 'Tarifa Social en los Servicios Públicos',
+          corto: 'soyjubilado_tarifasocial',
+          description: '',
+          url: 'https://www.argentina.gob.ar/tarifasocial',
+          icon: 'icono-arg-jubilado',
+          nacionalidad: 'todas',
+          conditions: {
+            interes_vivienda: 'si'             
+          }          
+        }
+   ]
+ },
+
  {
    name:"Trabajar",
    iconCategory: 'icono-arg-trabajador',
@@ -834,6 +856,24 @@ var categories = [
    urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud',
    contents:[
         {
+          name: 'Cuido mi salud (adultos mayores)',
+          corto: 'salud_cuido',
+          description: '',
+          url: 'https://www.argentina.gob.ar/tema/adultosmayores/salud',
+          icon: 'icono-arg-medicina',
+          nacionalidad: 'todas',
+          conditions: {
+            and: [
+              {
+                edad: '> 59',
+                empleo: 'no',     
+                notrabajo: 'jubilado'
+              }
+            ],
+             interes_salud: 'si'
+          }           
+        },
+        {
           name: 'Vacunas',
           corto: 'salud_vacunas',
           description: '',
@@ -947,25 +987,6 @@ var categories = [
           conditions: {
             interes_salud: 'si'
           }
-        },
-        {
-          name: 'Cuido mi salud (adultos mayores)',
-          corto: 'salud_cuido',
-          description: '',
-          url: 'https://www.argentina.gob.ar/tema/adultosmayores/salud',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                edad: '> 59',
-                empleo: 'no',     
-                notrabajo: 'jubilado',                
-                interes_salud: 'si'
-              }
-            ],
-             interes_salud: 'si'
-          }           
         }
    ]
  },
@@ -1487,7 +1508,6 @@ var categories = [
 
           jQuery.each(form_data, function(key, item){
             data[item.name] = item.value;
-
           });
 
           var item_blank = true;
