@@ -410,13 +410,37 @@ layout: argentina
 
         setTimeout(function () {
           
-          var i, x;
+          var i;
           for (i = 0; i < locations.length; i++) {
             marker[i] = new google.maps.Marker({
               position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
               map: map
             });
-          }
+          
+
+}
+
+
+index = 1;
+
+
+marker.forEach(function(marcador){
+
+  marcador.addListener('click', function() {
+    $("#obras-" + index).modal('show');
+    console.log(index);
+  });
+
+  index++;
+});
+
+
+
+
+
+
+
+/*
 
 
             marker[0].addListener('click', function() {
@@ -435,6 +459,9 @@ layout: argentina
 
 
             /*
+
+          var x;
+
           for (x = 0; x < marker.length;) {
 
             marker[x].addListener('click', function() {
@@ -448,6 +475,11 @@ layout: argentina
           }
 
 
+    
+
+
+
+
 */
 
 
@@ -457,6 +489,32 @@ layout: argentina
       }, 2000);
 
       }
+
+
+
+      setTimeout(function () {
+
+      console.log(marker);
+
+
+
+/*
+
+for(var i=0; i< marker.length; i++) {
+   (function(index) {
+        marker[index].addEventListener("click", function() {
+           console.log("you clicked region number " + index);
+         })
+   })(i);
+}
+
+
+*/
+
+
+
+
+      }, 3000);
 
 
 
