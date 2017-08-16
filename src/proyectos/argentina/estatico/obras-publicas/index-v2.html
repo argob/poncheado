@@ -408,115 +408,27 @@ layout: argentina
           mapTypeId: 'terrain'
         });
 
-        setTimeout(function () {
-          
-          var i;
-          for (i = 0; i < locations.length; i++) {
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+
+          for (var i = 0; i < locations.length; i++) {
             marker[i] = new google.maps.Marker({
               position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
               map: map
-            });
-          
-
-}
-
-
-
-
-/*
-
-index = 1;
-marker.forEach(function(marcador){
-
-  marcador.addListener('click', function() {
-    $("#obras-" + index).modal('show');
-    console.log(index);
-  });
-
-  index++;
-});
-
-
-*/
-
-
-
-
-
-
-
-            marker[0].addListener('click', function() {
-              console.log("entró!");
-
-              $("#obras-" + 0).modal('show');
-            });
-
-
-            marker[1].addListener('click', function() {
-              console.log("entró!");
-
-              $("#obras-" + 1).modal('show');
-            });
-
-
-
-            /*
-
-          var x;
-
-          for (x = 0; x < marker.length;) {
-
-            marker[x].addListener('click', function() {
-              console.log("entró!");
-              console.log(x);
-
-              $("#obras-" + x).modal('show');
-
-              x++;
-            });
+            }, false);
           }
 
 
-    
+          for (let x = 0; x < marker.length; x++) {
 
+            marker[x].addListener('click', function() {
+              console.log(x);
+              $("#obras-" + x).modal('show');
+            }, false);
+          }
 
-
-
-*/
-
-
-
-          console.log(marker);
-
-      }, 2000);
+      });
 
       }
-
-
-
-      setTimeout(function () {
-
-      console.log(marker);
-
-
-
-/*
-
-for(var i=0; i< marker.length; i++) {
-   (function(index) {
-        marker[index].addEventListener("click", function() {
-           console.log("you clicked region number " + index);
-         })
-   })(i);
-}
-
-
-*/
-
-
-
-
-      }, 3000);
 
 
 
