@@ -279,7 +279,8 @@ layout: argentina
             locations.push({
               index: index,
               latitud: row.gsx$latitud.$t,
-              longitud: row.gsx$longitud.$t
+              longitud: row.gsx$longitud.$t,
+              destacado: row.gsx$destacado.$t
             });
 
 
@@ -415,6 +416,7 @@ layout: argentina
 
       var map;
       var marker = [];
+      var image;
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -426,9 +428,20 @@ layout: argentina
         google.maps.event.addListenerOnce(map, 'idle', function(){
 
           for (var i = 0; i < locations.length; i++) {
+
+
+            if (locations[i]["destacado"] == "S"){
+              image = 'img/marker-01.png';
+            }else{
+              image = 'img/marker-02.png';
+            }
+
+
+
             marker[i] = new google.maps.Marker({
               position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
-              map: map
+              map: map,
+              icon: image
             }, false);
           }
 
