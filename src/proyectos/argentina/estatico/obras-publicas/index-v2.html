@@ -8,7 +8,7 @@ layout: argentina
        }
     </style>
 
-<section class="jumbotron" style="background-image: url('/sites/default/files/obras.jpg');">
+<section class="jumbotron" style="background-image: url('img/jt_obras.jpg');">
 <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -25,7 +25,8 @@ layout: argentina
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-          <h2>Obras para mejorar la calidad de vida de todos los argentinos</h2>
+          <h2>Obras del Ministerio del Interior</h2>
+          <p>Conocé las obras que mejoran la calidad de vida de todos los argentinos.</p>
         </div>
       </div>
     </div>
@@ -36,7 +37,21 @@ layout: argentina
 <div class="container">
   <div class="row">
     <div class="col-xs-12 text-center m-t-3">
-      <a id="botonCambia" class="btn btn-primary btn-md" href="#" onclick="cambiaDisplay()">Buscador de obras</a>
+            <form name="cambiaMuestra">
+              <div class="radio">
+                <label for="mapa">
+                  <input id="mapa" type="radio" name="mostrar" value="mapa" checked>
+                  Mapa de obras
+                </label>
+                <label for="buscador" class="m-l-1">
+                  <input id="buscador" type="radio" name="mostrar" value="buscador">
+                  Listado de obras
+                </label>
+              </div> 
+              </form>
+
+
+      <!-- <a id="botonCambia" class="btn btn-primary btn-md" href="#" onclick="cambiaDisplay()">Buscador de obras</a> -->
     </div>
   </div>
 </div>
@@ -45,14 +60,14 @@ layout: argentina
   <section id="mapaObras">
     <div class="row">
       <div class="col-md-12">
-          <h2 class="text-center m-b-2 h1">Mapa de obras</h2>
-          <div id="map"></div>
+          <!-- <h2 class="text-center m-b-2 h1">Mapa de obras</h2> -->
+          <div id="map" class="m-b-4"></div>
           
       </div>
     </div>
   </section>
   <section id="buscadorObras" class="hidden">
-    <h2 class="text-center m-b-2 h1">Buscador de obras</h2>
+    <!-- <h2 class="text-center m-b-2 h1">Buscador de obras</h2> -->
     <div id="obras">
       <div class="row">
         <div class="col-md-6">    
@@ -275,7 +290,7 @@ layout: argentina
 
         var listOptions = { 
           valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
-          page: 6,
+          page: 9,
           plugins: [ ListPagination({}) ]
         };
 
@@ -395,7 +410,7 @@ layout: argentina
   })(jQuery);
 
 
-  //MAPA
+  // MAPA
 
 
       var map;
@@ -431,9 +446,11 @@ layout: argentina
 
 
 
-  // DOM botón
 
+
+  /*
   
+    // DOM botón
 
   function cambiaDisplay(){
 
@@ -453,6 +470,29 @@ layout: argentina
       mapaObras.classList.remove('hidden');
     }
 }
+
+*/
+
+
+  // DOM radio
+
+  var radios = document.cambiaMuestra.mostrar;
+    var prev = null;
+    for(var i = 0; i < radios.length; i++) {
+        radios[i].onclick = function() {
+            
+            if(radios[0].checked) {
+              buscadorObras.classList.add('hidden');
+              mapaObras.classList.remove('hidden');
+            }else{
+              mapaObras.classList.add('hidden');
+              buscadorObras.classList.remove('hidden');
+            }
+
+        };
+    }
+
+
 
 
  
