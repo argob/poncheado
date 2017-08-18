@@ -101,7 +101,7 @@ layout: mi-argentina
     <div class="row panels-row">
       <div class="col-xs-12 col-sm-3">
       <a href="/salud/glosario/quemaduras" class="panel panel-default"><div class="panel-body">
-    <h3>Quemaduras</h3>  </div>
+    <h3>1 Quemaduras</h3>  </div>
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/salud/glosario/polio" class="panel panel-default"><div class="panel-body">
@@ -203,7 +203,7 @@ layout: mi-argentina
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/salud/glosario/encefalitisdesanluis" class="panel panel-default"><div class="panel-body">
-    <h3>Encefalitis de San Luis</h3>  </div>
+    <h3>Éncefalitis de San Luis</h3>  </div>
 </a>    </div>
     </div>
     <div class="row panels-row">
@@ -267,6 +267,7 @@ layout: mi-argentina
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <!-- <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
  -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script>
 	var salud = {
 		$el: jQuery('#pruebaloca'),
@@ -285,7 +286,10 @@ layout: mi-argentina
 		});
     var listOptions = { valueNames: [ 'titulo' ] };
     var saludList = new List('listado-salud', listOptions);
-    saludList.sort('titulo', { order: "asc" }); 
+    saludList.sort('titulo', { 
+      order: "asc",
+      alphabet: "AÁBCDEÉFGHIÍJKLMNOÓPQRSTUÚVWXYZaábcdeéfghiíjklmnoópqrstuúvwxyz"        
+    }); 
 
         jQuery('.no-result').hide();
 
