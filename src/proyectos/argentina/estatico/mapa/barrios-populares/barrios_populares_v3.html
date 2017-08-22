@@ -46,7 +46,15 @@ title: Mapa de Barrios Populares
       line-height: 43px!important;
   }
 
-  #floating-panel {
+  header .btn {
+      padding: 16px 25px;
+  } 
+
+  .input-group {
+    margin-top: 10px!important;
+  } 
+
+/*  #floating-panel {
     position: absolute;
     top: 200px;
     left: 25%;
@@ -58,7 +66,7 @@ title: Mapa de Barrios Populares
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
-  }  
+  }  */
 
 </style>
 
@@ -81,6 +89,26 @@ title: Mapa de Barrios Populares
           <div class="navbar-brand visible-xs-inline-block">
             <small>Barrios Populares</small>
           </div>
+
+<!--             <div class="visible-xs-inline-block pull-right typeSearchMobile">
+              <div class="row">
+                <div class="col-md-12">    
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <div class="pull-right"><a href="#">Buscar Barrios</a></div>
+                    <label>Buscar Dirección</label>
+                    <input class="form-control input-sm" style="width: 300px;">
+                  </div>
+                  <div class="form-group hidden" style="margin-bottom: 0;">
+                    <div class="pull-right"><a href="#">Buscar Dirección</a></div>
+                    <label>Buscar Barrios</label>
+                    <input class="form-control input-sm" style="width: 300px;">
+                  </div>              
+                </div>
+              </div>        
+            </div>  -->           
+
+
+
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
@@ -106,13 +134,22 @@ title: Mapa de Barrios Populares
             <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
             <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 typeSearch">
               <div class="form-group">
-                <!-- <label for="">Barrio</label> -->
+                <div class="text-right"><a class="switch" href="#" style="color: #fff;text-decoration: underline;">Buscar Barrios</a></div>
                 <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
               </div>
+              <div class="form-group hidden">
+                <div class="text-right"><a class="switch" href="#" style="color: #fff;text-decoration: underline;">Buscar Dirección</a></div>
+                <div class="input-group">
+                  <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección o provincia" value="">
+                  <span class="input-group-btn">
+                    <button class="btn-primary btn" type="button" id="submit" value="<i class=&quot;fa fa-search&quot;></i>"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </div>              
           </div>        
         </div>
       </div>
@@ -122,10 +159,6 @@ title: Mapa de Barrios Populares
 </header>
 
 
-<div id="floating-panel">
-  <input id="address" type="textbox" placeholder="Buscar por dirección o provincia" value="">
-  <input id="submit" type="button" value="Enviar">
-</div>
 <div id="map-container" class="state-loading">
   <div id="map"></div>
 </div>
@@ -300,7 +333,10 @@ title: Mapa de Barrios Populares
 
   }
 
-
+$('body').on('click', '.typeSearch a.switch', function(e){
+     e.preventDefault();
+     $(this).parent().parent().addClass('hidden').siblings().removeClass('hidden'); 
+});
 
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
