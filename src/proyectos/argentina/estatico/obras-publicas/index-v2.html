@@ -2,10 +2,32 @@
 layout: argentina
 ---
     <style>
-       #map {
+      #map {
         height: 600px;
         width: 100%;
-       }
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+
     </style>
 
 <section class="jumbotron" style="background-image: url('img/jt_obras.jpg');">
@@ -37,18 +59,29 @@ layout: argentina
 <div class="container">
   <div class="row">
     <div class="col-xs-12 text-center m-t-3">
+
+<!--
             <form name="cambiaMuestra">
-              <div class="radio">
-                <label for="mapa">
+              <div class="radio btn-group btn-group-justified" data-toggle="buttons">
+                <label for="mapa" class="btn btn-default active">
                   <input id="mapa" type="radio" name="mostrar" value="mapa" checked>
                   Mapa de obras
                 </label>
-                <label for="buscador" class="m-l-1">
+                <label for="buscador" class="btn btn-default">
                   <input id="buscador" type="radio" name="mostrar" value="buscador">
                   Listado de obras
                 </label>
               </div> 
               </form>
+-->
+
+
+        <div class="btn-group" role="group">
+          <button id="mapa" type="button" class="botones btn btn-primary" onclick="cambiaAlistado()">Mapa de Obras</button>
+          <button id="buscador" type="button" class="botones btn btn-default" onclick="cambiaAmapa()">Listado de Obras</button>
+        </div>
+
+
 
 
       <!-- <a id="botonCambia" class="btn btn-primary btn-md" href="#" onclick="cambiaDisplay()">Buscador de obras</a> -->
@@ -176,6 +209,8 @@ layout: argentina
 
 <script>
 
+
+
   (function($){
 
 
@@ -185,7 +220,7 @@ layout: argentina
         <div class="panel-body">
             <div class="media">
                 <div class="media-left media-middle">
-                    <span class="fa fa-{icono} fa-2x fa-fw text-muted" aria-hidden="true"></span>
+                    <span class="fa {icono} fa-2x fa-fw" aria-hidden="true"></span>
                 </div>
                 <div class="media-body media-middle">
                     <div class="text-muted">
@@ -194,8 +229,33 @@ layout: argentina
                 </div>
                 <h3 class="nombre-obra m-t-1">{titulo}</h3>
                 <p class="text-muted descripcion-obra">{descripcion}</p>
-                
-              </div>
+            </div>
+        </div>
+    </a>
+</div>`,
+
+    tarjeta_destacado: `<div class="col-xs-12 col-sm-6 col-md-4 item">
+    <a href="#obras-{index}" data-toggle="modal" class="panel panel-default">
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <span class="fa {icono} fa-2x fa-fw" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                    <div class="text-muted">
+                        <h4>{tipodeobra}</h4>
+                    </div>
+                </div>
+                <h3 class="nombre-obra m-t-1">{titulo}</h3>
+                <p class="text-muted descripcion-obra">{descripcion}</p>
+                <div class="pie">
+                <div class="izq">
+                  <p>
+                    <span class="label label-success">Obra destacada</span>
+                  </p>
+                </div>
+                </div>
+            </div>
         </div>
     </a>
 </div>`,
@@ -273,6 +333,7 @@ layout: argentina
               provincia: row.gsx$provincia.$t,
               localidad: row.gsx$localidad.$t,
               beneficiarios: row.gsx$beneficiarios.$t,
+              destacado: row.gsx$destacado.$t,
               estado: row.gsx$estado.$t
             });
 
@@ -320,18 +381,26 @@ layout: argentina
         $('[data-render=tarjetas]').html('');
         $('[data-render=modales]').html('');
 
-       var html = "";
+       var html_tarjetas = "";
 
 
         $.each(obras, function(index, obras){
 
           if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
 
-            html = templates.tarjeta;
+
+            if(obras.destacado){
+              html_tarjetas = templates.tarjeta_destacado;
+            }else{
+              html_tarjetas = templates.tarjeta;
+            }
+
+
+            
             var modal_v = templates.modal_v;
             var modal_im = templates.modal_im;
 
-            html = html.replace(/{titulo}/gi, obras.titulo)
+            html_tarjetas = html_tarjetas.replace(/{titulo}/gi, obras.titulo)
             .replace(/{index}/gi, index)
             .replace(/{tipodeobra}/gi, obras.tipodeobra)
             .replace(/{descripcion}/gi, obras.descripcion.substring(0, 100) + '...')
@@ -361,7 +430,7 @@ layout: argentina
 
 
 
-            $('[data-render=tarjetas]').append( html );
+            $('[data-render=tarjetas]').append( html_tarjetas );
      
 
 
@@ -380,7 +449,7 @@ layout: argentina
 
           }
 
-          if (html == "") {
+          if (html_tarjetas == "") {
                 $('.no-result').show();
                 $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
           }
@@ -430,7 +499,7 @@ layout: argentina
           for (var i = 0; i < locations.length; i++) {
 
 
-            if (locations[i]["destacado"] == "S"){
+            if (locations[i]["destacado"] == "X"){
               image = 'img/marker-01.png';
             }else{
               image = 'img/marker-02.png';
@@ -486,7 +555,7 @@ layout: argentina
 
 */
 
-
+  /*
   // DOM radio
 
   var radios = document.cambiaMuestra.mostrar;
@@ -505,8 +574,34 @@ layout: argentina
         };
     }
 
+    */
 
 
+  // DOM botones
+
+  var botones = document.getElementsByClassName("botones");
+  var mapaObras = document.getElementById("mapaObras");
+  var buscadorObras = document.getElementById("buscadorObras");
+
+  function cambiaAlistado(){
+    event.preventDefault();
+    buscadorObras.classList.add('hidden');
+    mapaObras.classList.remove('hidden');
+    botones[0].classList.add('btn-primary');
+    botones[0].classList.remove('btn-default');
+    botones[1].classList.remove('btn-primary');
+    botones[1].classList.add('btn-default');
+  }
+
+  function cambiaAmapa(){
+    event.preventDefault();
+    buscadorObras.classList.remove('hidden');
+    mapaObras.classList.add('hidden');
+    botones[1].classList.add('btn-primary');
+    botones[1].classList.remove('btn-default');
+    botones[0].classList.remove('btn-primary');
+    botones[0].classList.add('btn-default');
+  }
 
  
 
