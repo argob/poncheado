@@ -1,0 +1,202 @@
+---
+layout: afip_casas_particulares
+---
+
+{% include afip/usuario_casas_particulares_tr.html hijo="Inicio" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+
+        {% include afip/menu_casas_particulares_tr.html active="aportes" %}
+
+      </aside>
+      <div class="col-md-8">
+
+        <h1 class="sr-only">Pago adicionales</h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body p-y-2">
+
+				<form>            
+	              <div class="media">
+	                <div class="media-left p-x-1 hidden-xs">
+	                  <i class="fa fa-dollar fa-fw fa-2x text-muted m-t-1"></i>
+	                </div>
+	                <div class="media-body media-middle">
+	                  <h3 class="m-t-0">Pago adicionales mes Julio/17</h3>
+	                  <p>Generar formulario o VEP para pagar los adicionales </p>
+	                </div>
+	              </div>
+	              <hr>
+	              <div class="well m-y-1">seleccionaste 3 adicionales para el pago</div>
+	              <table class="table table-bordered table-align-middle table-mobile">
+	                <thead>
+	                  <tr class="bg-gray">
+	                    <th></th>
+	                    <th>Adicional</th>
+	                    <th>Vencimiento</th>
+	                    <th style="width: 100px;">Monto</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+		                <tr class="f-w-400">
+		                    <td>
+		                      <span class="td-label">Seleccionar</span>
+	                        <label>
+	                          <input type="checkbox" checked="checked"> 
+	                        </label>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Adicional</span>
+		                      <strong>Adicional para cobertura obra social</strong>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Vencimiento</span>
+		                      10/08/17
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Monto</span>
+		                      <strong class="text-success">$ 355.00</strong>
+		                    </td>
+		                </tr>
+		                <tr class="f-w-400">
+		                    <td>
+		                      <span class="td-label">Seleccionar</span>
+	                        <label>
+	                          <input type="checkbox" checked="checked"> 
+	                        </label>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Adicional</span>
+		                      <div class="row">
+								  <div class="col-xs-10">
+								    <strong>Adicional para extender de obra social a familiar</strong>
+								  </div>		                      
+								  <div class="col-xs-2">
+								    <input id="input-5" class="form-control input-sm" type="number" min="1" value="1" placeholder="">
+								  </div>		                      
+		                      </div>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Vencimiento</span>
+		                      10/08/17
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Monto</span>
+		                      <strong class="text-success">$ 419.00</strong>
+		                    </td>
+		                </tr>
+		                <tr class="f-w-400">
+		                    <td>
+		                      <span class="td-label">Seleccionar</span>
+	                        <label>
+	                          <input type="checkbox" checked="checked"> 
+	                        </label>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Adicional</span>
+		                      <strong>Adicional para aporte jubilatorio</strong>
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Vencimiento</span>
+		                      10/08/17
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Monto</span>
+		                      <strong class="text-success">$ 11.00</strong>
+		                    </td>
+		                </tr>		                		                
+		                  <tr class="success">
+		                    <td></td>
+		                    <td><strong>PAGO A REALIZAR</strong></td>
+		                    <td class="hidden-xs"></td>
+		                    <td>
+		                      <strong>$ 744.00</strong>
+		                    </td>
+		                  </tr>	                                
+	                </tbody>
+	              </table>
+		            <div class="media m-y-2">
+		              <div class="media-left padding-20">
+		                <i class="fa fa-credit-card fa-2x fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <h3>Medio de pago</h3>
+		                <p class="text-muted">Selecciona la forma de pago</p>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <div class="btn-group btn-group-justified" data-toggle="radios">
+		                <label class="m-r-1">
+		                  <input type="radio" name="tipo-pago" value="pagoElectronico" data-toogle-collapse="#collapse-medio-pago-electronico"> Pago Electrónico
+		                </label>
+		                <label class="">
+		                  <input type="radio" name="tipo-pago" value="pagoManual" data-toogle-collapse="#collapse-medio-pago-manual"> Pago Manual
+		                </label>
+		              </div>
+		            </div>
+
+		            <div class="collapse" id="collapse-medio-pago-electronico">
+
+		                <div class="form-group">
+		                  <label class="control-label">Selecciona donde vas a pagarlo</label>
+
+		                    <div class="btn-group btn-group-justified m-y-1" data-toggle="buttons">
+		                      <label class="btn btn-image" style="background-image: url('img/link.gif');">
+		                        <input type="radio" name="mediopago" value="link"> 
+		                      </label>
+		                      <label class="btn btn-image" style="background-image: url('img/pagomiscuentas.gif');">
+		                        <input type="radio" name="mediopago" value="pagomiscuentas"> 
+		                      </label>
+		                      <label class="btn btn-image" style="background-image: url('img/interbanking.gif');">
+		                        <input type="radio" name="mediopago" value="interbanking"> 
+		                      </label>
+		                      <label class="btn btn-image" style="background-image: url('img/xngroup.gif');">
+		                        <input type="radio" name="mediopago" value="xngroup">
+		                      </label>
+		                    </div>	                  
+
+		                </div>
+
+				        <div class="m-y-1">
+				          <a href="" id="generar-vep" class="btn btn-success disabled">GENERAR VEP</a>
+				        </div>
+		            </div>
+
+		            <div class="collapse" id="collapse-medio-pago-manual">
+				        <div class="m-y-1">
+				          <a href="" class="btn btn-success">DESCARGAR FORMULARIOS</a>
+				        </div>
+		            </div>
+		        </form>    
+
+            </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    $('[data-toogle-collapse]').each(function(key,item){
+      var value = $(item).val();
+      var target = $(item).data('toogle-collapse');
+      $('input[name='+ $(item).attr('name') +']').on('change', function(){
+        if($(this).val() == value){
+          $(target).collapse('show');
+        }else{
+          $(target).collapse('hide');
+        }
+      });
+    });
+
+    $('.btn-image').click(function() {
+	    if ($("#generar-vep").hasClass("disabled")) {
+	    	$('#generar-vep').removeClass('disabled');
+	    }    	
+    });    
+  </script>
