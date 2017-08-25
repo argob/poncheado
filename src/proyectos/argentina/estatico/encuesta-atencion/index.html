@@ -24,7 +24,7 @@ layout: argentina
     }
     /* botones */
     
-    #portaSig {
+    .portaSig {
         text-align: right;
     }
 
@@ -71,20 +71,21 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body form-group">
-                                    <h3 class="m-b-1">Indicá el medio por el cual realizaste el trámite</h3>
+                                    <h3>Indicá el medio por el cual realizaste el trámite</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="Presencial">
-                                      <input id="Presencial" type="radio" name="medio" value="Presencial" />
+                                    <label class="m-t-1" for="Presencial">
+                                      <input id="Presencial" type="radio" name="medio" value="Presencial" onclick="habilitaSiguiente();" />
                                       Presencial
                                     </label>
 
                                     <label for="Telefónico">
-                                      <input id="Telefónico" type="radio" name="medio" value="Telefónico" />
+                                      <input id="Telefónico" type="radio" name="medio" value="Telefónico" onclick="habilitaSiguiente();" />
                                       Telefónico
                                     </label>  
 
                                     <label for="Correo electrónico">
-                                      <input id="Correo electrónico" type="radio" name="medio" value="Correo electrónico" />
+                                      <input id="Correo electrónico" type="radio" name="medio" value="Correo electrónico" onclick="habilitaSiguiente();" />
                                       Correo electrónico
                                     </label>
 
@@ -92,6 +93,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-xs-6">
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta1();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 1 -->
@@ -112,11 +122,12 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <h3 class="m-b-1">Indicá el organismo, provincia y localidad donde realizaste el trámite</h3>
+                                    <h3>Indicá el organismo, provincia y localidad donde realizaste el trámite</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <div class="form-group">
+                                    <div class="form-group m-t-1">
                                       <label class="control-label">Organismo</label>
-                                      <select class="form-control">
+                                      <select class="form-control" onchange="habilitaPregunta2()">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="AFIP">AFIP</option>
                                         <option value="ANSES">ANSES</option>
@@ -127,7 +138,7 @@ layout: argentina
 
                                     <div class="form-group">
                                       <label class="control-label">Provincia</label>
-                                      <select class="form-control">
+                                      <select class="form-control" onchange="habilitaPregunta2()">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="Buenos Aires">Buenos Aires</option>
                                         <option value="Jujuy">Jujuy</option>
@@ -138,7 +149,7 @@ layout: argentina
 
                                     <div class="form-group">
                                       <label class="control-label">Localidad</label>
-                                      <select class="form-control">
+                                      <select class="form-control" onchange="habilitaPregunta2()">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="Tandil">Tandil</option>
                                         <option value="La Plata">La Plata</option>
@@ -151,6 +162,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta2();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 2 -->
@@ -174,11 +194,12 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <h3 class="m-b-1">Indicá el trámite que realizaste</h3>
+                                    <h3>Indicá el trámite que realizaste</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <div class="form-group">
+                                    <div class="form-group m-t-1">
                                       <label class="control-label">Organismo</label>
-                                      <select class="form-control">
+                                      <select class="form-control" onchange="habilitaPregunta3()">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="DNI">DNI</option>
                                         <option value="Pasaporte">Pasaporte</option>
@@ -190,6 +211,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta3();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 3 -->
@@ -214,30 +244,31 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body form-group">
-                                    <h3 class="m-b-1">En general, ¿qué te pareció la atención que te brindaron durante el trámite?</h3>
+                                    <h3>En general, ¿qué te pareció la atención que te brindaron durante el trámite?</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="Muy mala">
-                                      <input id="Muy mala" type="radio" name="atencion" value="Muy mala" />
+                                    <label for="Muy mala" class="m-t-1">
+                                      <input id="Muy mala" type="radio" name="atencion" value="Muy mala" onclick="habilitaSiguiente();" />
                                       Muy mala
                                     </label>
 
                                     <label for="Mala">
-                                      <input id="Mala" type="radio" name="atencion" value="Mala" />
+                                      <input id="Mala" type="radio" name="atencion" value="Mala" onclick="habilitaSiguiente();" />
                                       Mala
                                     </label>
 
                                     <label for="Regular">
-                                      <input id="Regular" type="radio" name="atencion" value="Regular" />
+                                      <input id="Regular" type="radio" name="atencion" value="Regular" onclick="habilitaSiguiente();" />
                                       Regular
                                     </label>  
 
                                     <label for="Buena">
-                                      <input id="Buena" type="radio" name="atencion" value="Buena" />
+                                      <input id="Buena" type="radio" name="atencion" value="Buena" onclick="habilitaSiguiente();" />
                                       Buena
                                     </label>
 
                                     <label for="Muy buena">
-                                      <input id="Muy buena" type="radio" name="atencion" value="Muy buena" />
+                                      <input id="Muy buena" type="radio" name="atencion" value="Muy buena" onclick="habilitaSiguiente();" />
                                       Muy buena
                                     </label>
 
@@ -245,6 +276,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta4();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 4 -->
@@ -269,30 +309,31 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body form-group">
-                                    <h3 class="m-b-1">¿Cuánto tiempo esperaste hasta que te atendieron?</h3>
+                                    <h3>¿Cuánto tiempo esperaste hasta que te atendieron?</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="más de 20">
-                                      <input id="más de 20" type="radio" name="espera" value="más de 20" />
+                                    <label for="más de 20" class="m-t-1">
+                                      <input id="más de 20" type="radio" name="espera" value="más de 20" onclick="habilitaSiguiente();" />
                                       Más de 20 minutos de espera
                                     </label>
 
                                     <label for="entre 20 y 15">
-                                      <input id="entre 20 y 15" type="radio" name="espera" value="entre 20 y 15" />
+                                      <input id="entre 20 y 15" type="radio" name="espera" value="entre 20 y 15" onclick="habilitaSiguiente();" />
                                       Entre 20 y 15 minutos de espera
                                     </label>
 
                                     <label for="entre 15 y 10">
-                                      <input id="entre 15 y 10" type="radio" name="espera" value="entre 15 y 10" />
+                                      <input id="entre 15 y 10" type="radio" name="espera" value="entre 15 y 10" onclick="habilitaSiguiente();" />
                                       Entre 15 y 10 minutos de espera
                                     </label>  
 
                                     <label for="entre 10 y 5">
-                                      <input id="entre 10 y 5" type="radio" name="espera" value="entre 10 y 5" />
+                                      <input id="entre 10 y 5" type="radio" name="espera" value="entre 10 y 5" onclick="habilitaSiguiente();" />
                                       Entre 10 a 5 minutos de espera
                                     </label>
 
                                     <label for="menos de 5">
-                                      <input id="menos de 5" type="radio" name="espera" value="menos de 5" />
+                                      <input id="menos de 5" type="radio" name="espera" value="menos de 5" onclick="habilitaSiguiente();" />
                                       Menos de 5 minutos de espera
                                     </label>
 
@@ -300,6 +341,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta5();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 5 -->
@@ -324,30 +374,31 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body form-group">
-                                    <h3 class="m-b-1">A partir de que te atendieron, ¿cuánto tiempo tardó en realizarse el trámite?</h3>
+                                    <h3>A partir de que te atendieron, ¿cuánto tiempo tardó en realizarse el trámite?</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="más de 20">
-                                      <input id="más de 20" type="radio" name="tiempotramite" value="más de 20" />
+                                    <label for="más de 20" class="m-t-1">
+                                      <input id="más de 20" type="radio" name="tiempotramite" value="más de 20" onclick="habilitaSiguiente();" />
                                       Más de 20 minutos
                                     </label>
 
                                     <label for="entre 20 y 15">
-                                      <input id="entre 20 y 15" type="radio" name="tiempotramite" value="entre 20 y 15" />
+                                      <input id="entre 20 y 15" type="radio" name="tiempotramite" value="entre 20 y 15" onclick="habilitaSiguiente();" />
                                       Entre 20 y 15 minutos
                                     </label>
 
                                     <label for="entre 15 y 10">
-                                      <input id="entre 15 y 10" type="radio" name="tiempotramite" value="entre 15 y 10" />
+                                      <input id="entre 15 y 10" type="radio" name="tiempotramite" value="entre 15 y 10" onclick="habilitaSiguiente();" />
                                       Entre 15 y 10 minutos
                                     </label>  
 
                                     <label for="entre 10 y 5">
-                                      <input id="entre 10 y 5" type="radio" name="tiempotramite" value="entre 10 y 5" />
+                                      <input id="entre 10 y 5" type="radio" name="tiempotramite" value="entre 10 y 5" onclick="habilitaSiguiente();" />
                                       Entre 10 a 5 minutos
                                     </label>
 
                                     <label for="menos de 5">
-                                      <input id="menos de 5" type="radio" name="tiempotramite" value="menos de 5" />
+                                      <input id="menos de 5" type="radio" name="tiempotramite" value="menos de 5" onclick="habilitaSiguiente();" />
                                       Menos de 5 minutos
                                     </label>
 
@@ -355,6 +406,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta6();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 6 -->
@@ -379,30 +439,31 @@ layout: argentina
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-body form-group">
-                                    <h3 class="m-b-1">¿Qué tan útil te resultó la atención que te brindaron?</h3>
+                                    <h3>¿Qué tan útil te resultó la atención que te brindaron?</h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="Inútil">
-                                      <input id="Inútil" type="radio" name="utilidad" value="Inútil" />
+                                    <label for="Inútil" class="m-t-1">
+                                      <input id="Inútil" type="radio" name="utilidad" value="Inútil" onclick="habilitaSiguiente();" />
                                       Inútil
                                     </label>
 
                                     <label for="Poco útil">
-                                      <input id="Poco útil" type="radio" name="utilidad" value="Poco útil" />
+                                      <input id="Poco útil" type="radio" name="utilidad" value="Poco útil" onclick="habilitaSiguiente();" />
                                       Poco útil
                                     </label>
 
                                     <label for="Regular">
-                                      <input id="Regular" type="radio" name="utilidad" value="Regular" />
+                                      <input id="Regular" type="radio" name="utilidad" value="Regular" onclick="habilitaSiguiente();" />
                                       Regular
                                     </label>  
 
                                     <label for="Útil">
-                                      <input id="Útil" type="radio" name="utilidad" value="Útil" />
+                                      <input id="Útil" type="radio" name="utilidad" value="Útil" onclick="habilitaSiguiente();" />
                                       Útil
                                     </label>
 
                                     <label for="Muy útil">
-                                      <input id="Muy útil" type="radio" name="utilidad" value="Muy útil" />
+                                      <input id="Muy útil" type="radio" name="utilidad" value="Muy útil" onclick="habilitaSiguiente();" />
                                       Muy útil
                                     </label>
 
@@ -410,6 +471,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#" onclick="validarPregunta7();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 7 -->
@@ -431,6 +501,7 @@ layout: argentina
                             <div class="media">
                                 <div class="media-body form-group">
                                     <h3 class="m-b-1">¿Querés contar qué pasó o algún detalle sobre la atención del trámite? <span class="text-muted">(opcional)</span></h3>
+                                    <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
                                     <textarea class="form-control m-b-2" style="resize: none" rows="5" id="comment" placeholder="Dejanos tu comentario"></textarea>
 
@@ -438,6 +509,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md sig" href="#" onclick="checkearPanel();">Siguiente</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 8 -->
@@ -474,6 +554,15 @@ layout: argentina
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md hidden" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md sig" href="#" onclick="checkearPanel();">Finalizar</a>
+                      </div>
+                    </div>
+
                 </div>
 
         <!-- / PREGUNTA 9 -->
@@ -482,12 +571,7 @@ layout: argentina
 
 <!-- ACÁ TERMINA EL PANEL QUE VA CAMBIANDO -->
 
-                <div class="col-xs-4 col-xs-offset-2">
-                    <a class="btn btn-link btn-md hidden" id="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
-                </div>
-                <div class="col-xs-4" id="portaSig">
-                    <a class="btn btn-success btn-md" href="#" id="sig" onclick="siguiente(); checkearPanel();">Siguiente</a>
-                </div>
+                
 
 
             </form>
@@ -496,28 +580,30 @@ layout: argentina
     </div>
 </section>
 
-<!-- <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script> -->
-<!-- <script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script> -->
-<!-- <script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script> -->
-
 <script>
 
+  // Define variables
+
   var preguntas = document.getElementsByClassName("preguntas");
+
+  var mensajeError = document.getElementsByClassName("mensajeError");
   
-  var ant = document.getElementById("ant");
-  var sig = document.getElementById("sig");
+  var ant = document.getElementsByClassName("ant");
+  var sig = document.getElementsByClassName("sig");
 
   var preguntaActual = 0;
+
+
+  // Va cambiando el valor de preguntaActual cada vez que se hace click en anterior
 
   function anterior(){
     event.preventDefault();
     preguntaActual -= 1;
-  }
+    }
 
-  function siguiente(){
-    event.preventDefault();
-    preguntaActual += 1;
-  }
+
+
+  // Hace aparecer el panel que corresponda cada vez que se cambia de pregunta
 
   function checkearPanel(){
     
@@ -527,19 +613,230 @@ layout: argentina
 
     preguntas[preguntaActual].classList.remove('hidden');
 
-    if(preguntaActual == 0){
-      ant.classList.add('hidden');
-    }else{
-      ant.classList.remove('hidden');
+  }
+
+
+  // Valida cada pregunta
+
+  function validarPregunta1(){
+      
+    event.preventDefault();
+      
+    var inputsPregunta1 = preguntas[0].getElementsByTagName("input");
+    var pasa = 0;
+
+    for(var i = 0; i < inputsPregunta1.length; i++) {
+      if(inputsPregunta1[i].checked){
+        pasa += 1;
+      }
     }
 
-    if(preguntaActual == 8){
-      sig.innerHTML = "Finalizar";
+    if(pasa == 0){
+      mensajeError[0].classList.remove('hidden');
     }else{
-      sig.innerHTML = "Siguiente";
+      mensajeError[0].classList.add('hidden');
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
     }
 
   }
+
+
+  function validarPregunta2(){
+
+    event.preventDefault();
+
+    var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
+    var pasa = 0;
+
+    for(var i = 0; i < selectsPregunta2.length; i++) {
+      if(selectsPregunta2[i].value != ""){
+        pasa += 1;
+      }
+    }
+
+    if (pasa < 3){
+      mensajeError[1].classList.remove('hidden');
+    }else{
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+  }
+
+
+  function validarPregunta3(){
+
+    event.preventDefault();
+
+    var selectsPregunta3 = preguntas[2].getElementsByTagName("select");
+    var pasa = 0;
+
+      if(selectsPregunta3[0].value != ""){
+        pasa += 1;
+      }
+
+    if (pasa < 1){
+      mensajeError[1].classList.remove('hidden');
+    }else{
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+  }
+
+
+    function validarPregunta4(){
+      
+    event.preventDefault();
+      
+    var inputsPregunta1 = preguntas[3].getElementsByTagName("input");
+    var pasa = 0;
+
+    for(var i = 0; i < inputsPregunta1.length; i++) {
+      if(inputsPregunta1[i].checked){
+        pasa += 1;
+      }
+    }
+
+    if(pasa == 0){
+      mensajeError[3].classList.remove('hidden');
+    }else{
+      mensajeError[3].classList.add('hidden');
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+
+  }
+
+  function validarPregunta5(){
+      
+    event.preventDefault();
+      
+    var inputsPregunta1 = preguntas[4].getElementsByTagName("input");
+    var pasa = 0;
+
+    for(var i = 0; i < inputsPregunta1.length; i++) {
+      if(inputsPregunta1[i].checked){
+        pasa += 1;
+      }
+    }
+
+    if(pasa == 0){
+      mensajeError[4].classList.remove('hidden');
+    }else{
+      mensajeError[4].classList.add('hidden');
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+
+  }
+
+  function validarPregunta6(){
+      
+    event.preventDefault();
+      
+    var inputsPregunta1 = preguntas[5].getElementsByTagName("input");
+    var pasa = 0;
+
+    for(var i = 0; i < inputsPregunta1.length; i++) {
+      if(inputsPregunta1[i].checked){
+        pasa += 1;
+      }
+    }
+
+    if(pasa == 0){
+      mensajeError[5].classList.remove('hidden');
+    }else{
+      mensajeError[5].classList.add('hidden');
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+
+  }
+
+  function validarPregunta7(){
+      
+    event.preventDefault();
+      
+    var inputsPregunta1 = preguntas[6].getElementsByTagName("input");
+    var pasa = 0;
+
+    for(var i = 0; i < inputsPregunta1.length; i++) {
+      if(inputsPregunta1[i].checked){
+        pasa += 1;
+      }
+    }
+
+    if(pasa == 0){
+      mensajeError[6].classList.remove('hidden');
+    }else{
+      mensajeError[6].classList.add('hidden');
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+    }
+
+  }
+
+
+  //Acá arrancan las validaciones para habilitar (o no) el botón de siguiente:
+
+  // Saca la clase disabled del botón siguiente
+  function habilitaSiguiente(){
+    for(var i = 0; i < sig.length; i++) {
+      sig[i].classList.remove('disabled');
+    }
+  }
+
+  // Agrega la clase disabled al botón siguiente
+
+  function deshabilitaSiguiente(){
+    for(var i = 0; i < sig.length; i++) {
+      sig[i].classList.add('disabled');
+    }
+  }
+
+
+
+  // Saca la clase disabled cuando se seleccionan TODOS los campos de la pregunta 2
+
+  function habilitaPregunta2(){
+    var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
+    var pasa = 0;
+
+    for(var i = 0; i < selectsPregunta2.length; i++) {
+      if(selectsPregunta2[i].value != ""){
+        pasa += 1;
+      }
+    }
+
+    if (pasa == 3){
+      habilitaSiguiente();
+    }
+
+  }
+
+    // Saca la clase disabled cuando se selecciona el campo de la pregunta 3
+
+  function habilitaPregunta3(){
+    var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
+    var pasa = 0;
+
+    if(selectsPregunta2[0].value != ""){
+        pasa += 1;
+      }
+
+    if (pasa == 1){
+      habilitaSiguiente();
+    }
+
+  }
+
 
 
 </script>
