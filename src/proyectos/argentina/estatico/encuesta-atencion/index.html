@@ -127,7 +127,7 @@ layout: argentina
 
                                     <div class="form-group m-t-1">
                                       <label class="control-label">Organismo</label>
-                                      <select class="form-control" onchange="habilitaPregunta2()">
+                                      <select class="form-control" onchange="habilitaPregunta2(); guardaOrganismo();" id="organismo">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="AFIP">AFIP</option>
                                         <option value="ANSES">ANSES</option>
@@ -138,7 +138,7 @@ layout: argentina
 
                                     <div class="form-group">
                                       <label class="control-label">Provincia</label>
-                                      <select class="form-control" onchange="habilitaPregunta2()">
+                                      <select class="form-control" onchange="habilitaPregunta2();">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="Buenos Aires">Buenos Aires</option>
                                         <option value="Jujuy">Jujuy</option>
@@ -149,7 +149,7 @@ layout: argentina
 
                                     <div class="form-group">
                                       <label class="control-label">Localidad</label>
-                                      <select class="form-control" onchange="habilitaPregunta2()">
+                                      <select class="form-control" onchange="habilitaPregunta2(); guardaLocalidad(); " id="localidad">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="Tandil">Tandil</option>
                                         <option value="La Plata">La Plata</option>
@@ -187,8 +187,8 @@ layout: argentina
                     </div>
                     
 
-                    <p class="m-t-2"><b>Administración Federal de Ingresos Públicos</b></p>
-                    <p class="text-muted">Buenos Aires - Glew</p>
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -198,12 +198,12 @@ layout: argentina
                                     <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
                                     <div class="form-group m-t-1">
-                                      <label class="control-label">Organismo</label>
-                                      <select class="form-control" onchange="habilitaPregunta3()">
+                                      <label class="control-label">Trámite</label>
+                                      <select class="form-control" onchange="habilitaPregunta3(); guardaTramite();" id="tramite">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="DNI">DNI</option>
                                         <option value="Pasaporte">Pasaporte</option>
-                                        <option value="CETA">CETA - Certificado de Transferencia de Automóvil</option>
+                                        <option value="CETA - Certificado de Transferencia de Automóvil">CETA - Certificado de Transferencia de Automóvil</option>
                                       </select>
                                     </div> 
 
@@ -236,9 +236,9 @@ layout: argentina
                     </div>
                     
 
-                    <p class="m-t-2"><b>Administración Federal de Ingresos Públicos</b></p>
-                    <p class="text-muted">Buenos Aires - Glew</p>
-                    <small class="text-primary">CETA - Certificado de Transferencia de Automóvil</small>
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -301,9 +301,9 @@ layout: argentina
                     </div>
                     
 
-                    <p class="m-t-2"><b>Administración Federal de Ingresos Públicos</b></p>
-                    <p class="text-muted">Buenos Aires - Glew</p>
-                    <small class="text-primary">CETA - Certificado de Transferencia de Automóvil</small>
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -366,9 +366,9 @@ layout: argentina
                     </div>
                     
 
-                    <p class="m-t-2"><b>Administración Federal de Ingresos Públicos</b></p>
-                    <p class="text-muted">Buenos Aires - Glew</p>
-                    <small class="text-primary">CETA - Certificado de Transferencia de Automóvil</small>
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -377,28 +377,28 @@ layout: argentina
                                     <h3>A partir de que te atendieron, ¿cuánto tiempo tardó en realizarse el trámite?</h3>
                                     <small class="text-danger hidden mensajeError">Por favor completá esta pregunta para seguir.</small>
 
-                                    <label for="más de 20" class="m-t-1">
-                                      <input id="más de 20" type="radio" name="tiempotramite" value="más de 20" onclick="habilitaSiguiente();" />
+                                    <label for="trámite más de 20" class="m-t-1">
+                                      <input id="trámite más de 20" type="radio" name="tiempotramite" value="trámite más de 20" onclick="habilitaSiguiente();" />
                                       Más de 20 minutos
                                     </label>
 
-                                    <label for="entre 20 y 15">
-                                      <input id="entre 20 y 15" type="radio" name="tiempotramite" value="entre 20 y 15" onclick="habilitaSiguiente();" />
+                                    <label for="trámite entre 20 y 15">
+                                      <input id="trámite entre 20 y 15" type="radio" name="tiempotramite" value="trámite entre 20 y 15" onclick="habilitaSiguiente();" />
                                       Entre 20 y 15 minutos
                                     </label>
 
-                                    <label for="entre 15 y 10">
-                                      <input id="entre 15 y 10" type="radio" name="tiempotramite" value="entre 15 y 10" onclick="habilitaSiguiente();" />
+                                    <label for="trámite entre 15 y 10">
+                                      <input id="trámite entre 15 y 10" type="radio" name="tiempotramite" value="trámite entre 15 y 10" onclick="habilitaSiguiente();" />
                                       Entre 15 y 10 minutos
                                     </label>  
 
-                                    <label for="entre 10 y 5">
-                                      <input id="entre 10 y 5" type="radio" name="tiempotramite" value="entre 10 y 5" onclick="habilitaSiguiente();" />
+                                    <label for="trámite entre 10 y 5">
+                                      <input id="trámite entre 10 y 5" type="radio" name="tiempotramite" value="trámite entre 10 y 5" onclick="habilitaSiguiente();" />
                                       Entre 10 a 5 minutos
                                     </label>
 
-                                    <label for="menos de 5">
-                                      <input id="menos de 5" type="radio" name="tiempotramite" value="menos de 5" onclick="habilitaSiguiente();" />
+                                    <label for="trámite menos de 5">
+                                      <input id="trámite menos de 5" type="radio" name="tiempotramite" value="trámite menos de 5" onclick="habilitaSiguiente();" />
                                       Menos de 5 minutos
                                     </label>
 
@@ -431,9 +431,9 @@ layout: argentina
                     </div>
                     
 
-                    <p class="m-t-2"><b>Administración Federal de Ingresos Públicos</b></p>
-                    <p class="text-muted">Buenos Aires - Glew</p>
-                    <small class="text-primary">CETA - Certificado de Transferencia de Automóvil</small>
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -452,8 +452,8 @@ layout: argentina
                                       Poco útil
                                     </label>
 
-                                    <label for="Regular">
-                                      <input id="Regular" type="radio" name="utilidad" value="Regular" onclick="habilitaSiguiente();" />
+                                    <label for="atencionRegular">
+                                      <input id="atencionRegular" type="radio" name="utilidad" value="Regular" onclick="habilitaSiguiente();" />
                                       Regular
                                     </label>  
 
@@ -495,6 +495,9 @@ layout: argentina
                         </div>
                     </div>
                     
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
 
                     <div class="panel panel-default m-t-2">
                         <div class="panel-body">
@@ -514,7 +517,7 @@ layout: argentina
                         <a class="btn btn-link btn-md" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
                       </div>
                       <div class="col-xs-6 portaSig">
-                        <a class="btn btn-success btn-md sig" href="#" onclick="checkearPanel();">Siguiente</a>
+                        <a class="btn btn-success btn-md sig" href="#" onclick="noValida(); ">Siguiente</a>
                       </div>
                     </div>
 
@@ -559,7 +562,7 @@ layout: argentina
                         <a class="btn btn-link btn-md hidden" class="ant" href="#" onclick="anterior(); checkearPanel();">Anterior</a>
                       </div>
                       <div class="col-xs-6 portaSig">
-                        <a class="btn btn-success btn-md sig" href="#" onclick="checkearPanel();">Finalizar</a>
+                        <a class="btn btn-success btn-md sig" href="enviado" onclick="">Finalizar</a>
                       </div>
                     </div>
 
@@ -662,6 +665,7 @@ layout: argentina
       preguntaActual += 1;
       checkearPanel();
       deshabilitaSiguiente();
+      checkearInfo();
     }
   }
 
@@ -678,11 +682,12 @@ layout: argentina
       }
 
     if (pasa < 1){
-      mensajeError[1].classList.remove('hidden');
+      mensajeError[2].classList.remove('hidden');
     }else{
       preguntaActual += 1;
       checkearPanel();
       deshabilitaSiguiente();
+      checkearInfo();
     }
   }
 
@@ -778,8 +783,16 @@ layout: argentina
       mensajeError[6].classList.add('hidden');
       preguntaActual += 1;
       checkearPanel();
-      deshabilitaSiguiente();
     }
+
+  }
+
+
+  function noValida(){
+      
+    event.preventDefault();
+    preguntaActual += 1;
+    checkearPanel();
 
   }
 
@@ -836,6 +849,48 @@ layout: argentina
     }
 
   }
+
+
+  // Acá arrancan las funciones que guardan valores para mostrarse después
+
+  var organismo;
+
+  function guardaOrganismo(){
+    organismo = document.getElementById("organismo").value;
+  }
+
+  var localidad;
+
+  function guardaLocalidad(){
+    localidad = document.getElementById("localidad").value;
+  }
+
+  var tramite;
+
+  function guardaTramite(){
+    tramite = document.getElementById("tramite").value;
+  }
+
+  
+  // Acá arranca la movida de DOM para levantar la info que fuimos levantando
+
+  var muestraOrganismo = document.getElementsByClassName("muestraOrganismo");
+  var muestraLocalidad = document.getElementsByClassName("muestraLocalidad");
+  var muestraTramite = document.getElementsByClassName("muestraTramite");
+
+  function checkearInfo(){
+    
+    for(var i = 0; i < muestraOrganismo.length; i++) {
+      muestraOrganismo[i].innerHTML = organismo;
+      muestraLocalidad[i].innerHTML = localidad;
+    }
+
+    for(var i = 0; i < muestraTramite.length; i++) {
+      muestraTramite[i].innerHTML = tramite;
+    }
+
+  }
+
 
 
 
