@@ -35,7 +35,7 @@ layout: argentina
     <div class="jumbotron_body">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-md-8 col-md-offset-2 text-center">
                     <h2>Encuesta de atención</h2>
                     <p>Si realizaste un trámite te invitamos a responder unas pocas preguntas para ayudarnos a mejorar los servicios que te ofrecemos.</p>
                 </div>
@@ -138,7 +138,7 @@ layout: argentina
 
                                     <div class="form-group">
                                       <label class="control-label">Provincia</label>
-                                      <select class="form-control" onchange="habilitaPregunta2();">
+                                      <select class="form-control" onchange="habilitaPregunta2(); guardaProvincia();" id="provincia">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="Buenos Aires">Buenos Aires</option>
                                         <option value="Jujuy">Jujuy</option>
@@ -602,6 +602,7 @@ layout: argentina
   function anterior(){
     event.preventDefault();
     preguntaActual -= 1;
+    habilitaSiguiente();
     }
 
 
@@ -865,6 +866,12 @@ layout: argentina
     localidad = document.getElementById("localidad").value;
   }
 
+  var provincia;
+
+  function guardaProvincia(){
+    provincia = document.getElementById("provincia").value;
+  }
+
   var tramite;
 
   function guardaTramite(){
@@ -876,13 +883,14 @@ layout: argentina
 
   var muestraOrganismo = document.getElementsByClassName("muestraOrganismo");
   var muestraLocalidad = document.getElementsByClassName("muestraLocalidad");
+
   var muestraTramite = document.getElementsByClassName("muestraTramite");
 
   function checkearInfo(){
     
     for(var i = 0; i < muestraOrganismo.length; i++) {
       muestraOrganismo[i].innerHTML = organismo;
-      muestraLocalidad[i].innerHTML = localidad;
+      muestraLocalidad[i].innerHTML = localidad + " - " + provincia;
     }
 
     for(var i = 0; i < muestraTramite.length; i++) {
