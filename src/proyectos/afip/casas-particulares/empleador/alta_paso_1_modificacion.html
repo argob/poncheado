@@ -2,7 +2,7 @@
 layout: afip_casas_particulares
 ---
 
-{% include afip/jumbotron_alta_casas_particulares.html hijo="Alta de empleado" altaTitulo='Alta del trabajador' altaDesc='Completá los datos del trabajador y la relación laboral para darlo de alta.' %}
+{% include afip/jumbotron_alta_casas_particulares.html hijo="Modificación de los datos de un empleado" altaModificacionTitulo='Modificación de los datos de un trabajador' altaModificacionDesc='Cambiá los datos que quieras actualizar del trabajador y de la relación laboral.' %}
 
 <div class="container">
   <section>
@@ -18,43 +18,41 @@ layout: afip_casas_particulares
             </div>
         </div>
 
-		<form action="alta_paso_2.html">
+		<form action="alta_paso_2_modificacion.html">
 
 
   		    <h1 class="h2">Datos del trabajador</h1>
-		    <p>Cargá los datos de la persona que va a trabajar</p>
+		    <p>Modificá los datos que quieras actualizar.</p>
 		    <hr>
 
 		    <div class="copete">
 <!-- 		    <h3 class="m-b-2">Datos personales del trabajador</h3>
  -->
-				<p>Ingresá el CUIL para completar automáticamente los datos que tenemos registrados.</p>
+				<p>Estás modificando los datos de alta del siguiente trabajador :</p>
 		    	
 		    </div>
 
 
+			<div class="datos-trabajador">
 
-			<div class="form-group search-content">
-		        <label class="control-label">CUIL *</label>
-				<div class="input-group">
-				  <input type="text" class="form-control" value="27285698740" placeholder="">
-				  <span class="input-group-btn">
-				    <a class="btn btn-primary search" href="" >Buscar</a>
-				  </span>
-				</div>
-			</div>		
+              <div class="media">
+                <div class="media-left p-x-1 hidden-xs">
+                  <i class="fa fa-user fa-fw fa-2x text-muted m-t-1"></i>
+                </div>
+                <div class="media-body media-middle">
+                  <h3 class="m-t-0">Mirtha García Anuncio</h3>
+                </div>
+              </div>
 
-			<div class="datos-trabajador hide">
-				<h3>Datos personales del trabajador</h3>
-				<p>Estos son los datos correspondientes al CUIL que ingresaste. Podés cambiar el CUIL si no es el correcto</p>
+
+
 				<div class="well m-b-3">
+					<div class="form-group">
+						<p>Estos datos no son modificables.</p>
+					</div>				
 					<div class="form-group">
 						<label class="control-label">CUIL</label>
 						<p>27-28569874-0</p>
-					</div>
-					<div class="form-group">
-						<label class="control-label">Nombre y Apellido</label>
-						<p>Mirtha García Anuncio</p>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Obra social</label>
@@ -80,9 +78,6 @@ layout: afip_casas_particulares
 			              </div>
 			            </div> 							
 					</div>	
-					<div class="form-group">
-						<a href="#" class="btn btn-link cambiar-cuil">CAMBIAR CUIL</a>
-					</div>																			
 				</div>	
 
 				<div class="form-group m-t-3">
@@ -94,24 +89,24 @@ layout: afip_casas_particulares
 		          </div>
 		          <div class="radio">
 		            <label>
-		              <input type="radio" name="jubilado" value="no">No
+		              <input type="radio" name="jubilado" value="no" checked>No
 		            </label>
 		          </div>
 		        </div>	
 
 				<div class="form-group">
 		            <label class="control-label" for="input-5">CBU</label>
-		            <input id="input-5" class="form-control" type="number" placeholder="">
+		            <input id="input-5" class="form-control" type="number" value="522332 55332 2553" placeholder="">
 		        </div>
 
 				<div class="form-group">
 		            <label class="control-label" for="input-5">Número de teléfono</label>
-		            <input id="input-5" class="form-control" type="number" placeholder="">
+		            <input id="input-5" class="form-control" value="48635579" type="number" placeholder="">
 		        </div>	
 
 				<div class="form-group">
 		            <label class="control-label" for="input-5">Correo electrónico</label>
-		            <input id="input-5" class="form-control" type="text" placeholder="">
+		            <input id="input-5" class="form-control" type="text" value="Ejemplo@ejemplo.com" placeholder="">
 		        </div>
 
 			</div>
@@ -133,19 +128,8 @@ layout: afip_casas_particulares
 </div>      
 
 <script type="text/javascript">
-  $(".search").click(function(event) {
-  	   event.preventDefault();
-  	   $(".copete, .search-content").addClass("hide");
-       $(".datos-trabajador").removeClass("hide");
-       $(".cancel, .siguiente").removeClass("disabled");
-  });
   $(".cancel").click(function() {
-       $(".datos-trabajador").addClass("hide");
        $(".cancel, .siguiente").addClass("disabled");
   });
-  $(".cambiar-cuil").click(function(event) {
-  	event.preventDefault();
-    $(".copete, .search-content").removeClass("hide");
-    $(".datos-trabajador").addClass("hide");
-  });  	  	
+ 	  	
 </script>

@@ -25,8 +25,24 @@
   </div>
   <div class="jumbotron_body p-y-2">
     <div class="container">
-      <h2 class="h3 m-b-0">Alta del trabajador</h2>
-      <p>Completá los datos del trabajador y la relación laboral para darlo de alta.</p>
+      <h2 class="h3 m-b-0">
+      {% if include.altaTitulo %} 
+        {{ include.altaTitulo }}
+      {% endif %}
+
+      {% if include.altaModificacionTitulo %} 
+        {{ include.altaModificacionTitulo }}
+      {% endif %}
+      </h2>  
+      <p>
+      {% if include.altaDesc %} 
+        {{ include.altaDesc }}
+      {% endif %}
+
+      {% if include.altaModificacionDesc %} 
+        {{ include.altaModificacionDesc }}
+      {% endif %}
+      </p>        
     </div>
   </div>
   <div class="overlay"></div>
