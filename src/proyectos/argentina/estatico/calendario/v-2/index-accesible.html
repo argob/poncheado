@@ -41,11 +41,19 @@ layout: argentina
       font-size: 20px;
     }
 
+    #detalle{
+        margin-top: 30px;
+    }
+
 
   .jumbotron{
     background-size: inherit;
     background-color: #0695D6;
   }
+
+  #block-system-main > div > div.panel-pane.pane-jumbotron > div > section > div.jumbotron_bar > div > div > div > ul{
+      display:none !important;
+    }
 
 </style>
 
@@ -65,12 +73,21 @@ layout: argentina
     <div class="container">
         <div class="row">
 
-            <div class="row numbers m-b-3" role="presentation" aria-hidden="true">
+            <div class="row numbers m-b-3" role="presentation" aria-hidden="true" id="hoyNoEs">
               <div class="col-md-4 col-md-offset-4 text-center">
                 <p class="text-muted">Faltan</p>
-                <div><p class="h1 text-success"><span id="faltan"></span> DÍAS</p></div>
+                <div><p class="h1 text-success m-y-0"><span id="faltan"></span> DÍAS</p></div>
                 <p class="text-muted">para el próximo feriado que es el</p>
                 <p class="lead" id="proximo"></p>
+                <p class="text-primary" id="detalle"></p>
+              </div>
+            </div>
+
+            <div class="row numbers m-b-3 hidden" role="presentation" aria-hidden="true" id="hoyEs">
+              <div class="col-md-4 col-md-offset-4 text-center">
+                <div><p class="h1 text-success">HOY</p></div>
+                <p class="text-muted">es feriado</p>
+                <p class="text-success" id="detalleHoy"></p>
               </div>
             </div>
 
@@ -622,7 +639,7 @@ layout: argentina
                                         <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td aria-hidden="true">
+                                        <td class="bg-nl" aria-hidden="true">
                                             24
                                         </td>
                                         <td aria-hidden="true">
@@ -671,7 +688,7 @@ layout: argentina
                             <p>2. Día del Veterano y de los Caídos en la Guerra de Malvinas. <span class="sr-only">Feriado inamovible</span></p>
                             <p>11, 12, 13, 17 y 18. Pascuas Judías. <span class="sr-only">Día no laborable</span></p>
                             <p>13 y 14. Jueves y Viernes Santo. <span class="sr-only">Feriado inamovible</span></p>
-                            <p>24. Día de Acción por la tolerancia y el respeto entre los pueblos</p>
+                            <p>24. Día de Acción por la tolerancia y el respeto entre los pueblos.</p>
                         </div>
                     </div>
 
@@ -814,8 +831,8 @@ layout: argentina
                             </table>
                         </div>
                         <div class="col-md-12 fer">
-                            <p>1. Día del trabajador <span class="sr-only">Feriado inamovible</span></p>
-                            <p>25. Día de la Revolución de Mayo <span class="sr-only">Feriado inamovible</span></p>
+                            <p>1. Día del trabajador. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>25. Día de la Revolución de Mayo. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
@@ -1954,7 +1971,26 @@ layout: argentina
     feriados.push(new Date("12/08/2017"));
     feriados.push(new Date("12/25/2017"));
 
+    feriados[0]["fecha"] = "Año nuevo";
+    feriados[1]["fecha"] = "Carnaval";
+    feriados[2]["fecha"] = "Carnaval";
+    feriados[3]["fecha"] = "Día Nacional de la Memoria por la Verdad y la Justicia";
+    feriados[4]["fecha"] = "Día del Veterano y de los Caídos en la Guerra de Malvinas";
+    feriados[5]["fecha"] = "Jueves Santo";
+    feriados[6]["fecha"] = "Viernes Santo";
+    feriados[7]["fecha"] = "Día del trabajador";
+    feriados[8]["fecha"] = "Día de la Revolución de Mayo";
+    feriados[9]["fecha"] = "Día Paso a la Inmortalidad del General Martín Miguel de Güemes";
+    feriados[10]["fecha"] = "Día Paso a la Inmortalidad del General Manuel Belgrano";
+    feriados[11]["fecha"] = "Día de la Independencia";
+    feriados[12]["fecha"] = "Paso a la Inmortalidad del General José de San Martín";
+    feriados[13]["fecha"] = "Día del Respeto a la Diversidad Cultural";
+    feriados[14]["fecha"] = "Día de la Soberanía Nacional";
+    feriados[15]["fecha"] = "Inmaculada Concepción de María";
+    feriados[16]["fecha"] = "Navidad";
+
 //recorro los feriados para ver cuando es el próximo
+
     for (var indice in feriados) {
         if (hoy < feriados[indice]) {
             var timeDiff = Math.abs(feriados[indice].getTime() - hoy.getTime());
@@ -1963,6 +1999,7 @@ layout: argentina
             var dia = feriados[indice].getDate();
             var mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][feriados[indice].getMonth()];
             var proximo = dia + ' de ' + mes + ' de ' + feriados[indice].getFullYear();
+            var detalle = feriados[indice]["fecha"];
 
             break;
         }
@@ -1974,11 +2011,32 @@ layout: argentina
 //mando esa info
 var faltanHTML = document.getElementById("faltan");
 var proximoHTML = document.getElementById("proximo");
+var detalleHTML = document.getElementById("detalle");
 var lectorHTML = document.getElementById("lector");
 
 faltanHTML.innerHTML = faltan;
 proximoHTML.innerHTML = proximo;
-lectorHTML.innerHTML = "Faltan " + faltan + " días para el próximo feriado. El próximo feriado es el " + proximo + ".";
+detalleHTML.innerHTML = detalle;
+lectorHTML.innerHTML = "Faltan " + faltan + " días para el próximo feriado. El próximo feriado es el " + proximo + ". " + detalle;
+
+
+// checkeo si hoy es feriado y (si lo es) lo muestro
+
+var hoyNoEs = document.getElementById("hoyNoEs");
+var hoyEs = document.getElementById("hoyEs");
+var detalleHoy = document.getElementById("detalleHoy");
+
+    for (var indice in feriados) {
+        if (hoy.getDate() == feriados[indice].getDate() && hoy.getMonth() == feriados[indice].getMonth()) {            
+            hoyEs.classList.remove('hidden');
+            hoyNoEs.classList.add('hidden');
+            detalleHoy.innerHTML = feriados[indice]["fecha"];
+            lectorHTML.innerHTML = "Hoy es feriado. " + feriados[indice]["fecha"];
+
+            break;
+        }
+    }
+
 
 
 </script>
