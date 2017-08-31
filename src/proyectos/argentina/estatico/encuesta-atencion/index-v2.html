@@ -199,7 +199,7 @@ layout: argentina
 
                                     <div class="form-group m-t-1">
                                       <label class="control-label">Trámite</label>
-                                      <select class="form-control" id="tramite">
+                                      <select class="form-control habilitaPregunta3" id="tramite">
                                         <option value="" disabled selected>Elegir...</option>
                                         <option value="DNI">DNI</option>
                                         <option value="Pasaporte">Pasaporte</option>
@@ -609,7 +609,7 @@ layout: argentina
   var habilitaSiguiente = document.getElementsByClassName("habilitarSiguiente");
 
   for (let i = 0; i < habilitaSiguiente.length; i++){
-    habilitaSiguiente[i].addEventListener("click", habilitaSiguiente);
+    habilitaSiguiente[i].addEventListener("click", FhabilitaSiguiente);
   }
 
   // va levantando el botón de cada pregunta y le agrega la función a un evento click
@@ -617,29 +617,31 @@ layout: argentina
     var validarPregunta1 = document.getElementById("validarPregunta1");
     validarPregunta1.addEventListener("click", validaPregunta1);
     var validarPregunta2 = document.getElementById("validarPregunta2");
-    validarPregunta2.addEventListener("click", validaPregunta1);
+    validarPregunta2.addEventListener("click", validaPregunta2);
     var validarPregunta3 = document.getElementById("validarPregunta3");
-    validarPregunta3.addEventListener("click", validaPregunta1);
+    validarPregunta3.addEventListener("click", validaPregunta3);
     var validarPregunta4 = document.getElementById("validarPregunta4");
-    validarPregunta4.addEventListener("click", validaPregunta1);
+    validarPregunta4.addEventListener("click", validaPregunta4);
     var validarPregunta5 = document.getElementById("validarPregunta5");
-    validarPregunta5.addEventListener("click", validaPregunta1);
+    validarPregunta5.addEventListener("click", validaPregunta5);
     var validarPregunta6 = document.getElementById("validarPregunta6");
-    validarPregunta6.addEventListener("click", validaPregunta1);
+    validarPregunta6.addEventListener("click", validaPregunta6);
     var validarPregunta7 = document.getElementById("validarPregunta7");
-    validarPregunta7.addEventListener("click", validaPregunta1);
+    validarPregunta7.addEventListener("click", validaPregunta7);
 
   // va levantando cada pregunta y le agrega la función a un evento change
 
     var habilitaPregunta2 = document.getElementsByClassName("habilitaPregunta2");
 
     for (let i = 0; i < habilitaPregunta2.length; i++){
-      habilitaPregunta2[i].addEventListener("change", habilitaPregunta2);
+      habilitaPregunta2[i].addEventListener("change", FhabilitaPregunta2);
     }
 
-        var habilitaPregunta3 = document.getElementById("habilitaPregunta3");
+    var habilitaPregunta3 = document.getElementsByClassName("habilitaPregunta3");
 
-      habilitaPregunta3.addEventListener("change", habilitaPregunta3);
+    for (let i = 0; i < habilitaPregunta3.length; i++){
+      habilitaPregunta3[i].addEventListener("change", FhabilitaPregunta3);
+    }
 
     // levanta campos de la pregunta 2 para guardarlos
 
@@ -666,7 +668,7 @@ layout: argentina
   function anterior(){
     event.preventDefault();
     preguntaActual -= 1;
-    habilitaSiguiente();
+    FhabilitaSiguiente();
     }
 
 
@@ -711,7 +713,7 @@ layout: argentina
   }
 
 
-  function validarPregunta2(){
+  function validaPregunta2(){
 
     event.preventDefault();
 
@@ -735,7 +737,7 @@ layout: argentina
   }
 
 
-  function validarPregunta3(){
+  function validaPregunta3(){
 
     event.preventDefault();
 
@@ -757,7 +759,7 @@ layout: argentina
   }
 
 
-    function validarPregunta4(){
+    function validaPregunta4(){
       
     event.preventDefault();
       
@@ -781,7 +783,7 @@ layout: argentina
 
   }
 
-  function validarPregunta5(){
+  function validaPregunta5(){
       
     event.preventDefault();
       
@@ -805,7 +807,7 @@ layout: argentina
 
   }
 
-  function validarPregunta6(){
+  function validaPregunta6(){
       
     event.preventDefault();
       
@@ -829,7 +831,7 @@ layout: argentina
 
   }
 
-  function validarPregunta7(){
+  function validaPregunta7(){
       
     event.preventDefault();
       
@@ -848,6 +850,7 @@ layout: argentina
       mensajeError[6].classList.add('hidden');
       preguntaActual += 1;
       checkearPanel();
+      FhabilitaSiguiente();
     }
 
   }
@@ -865,7 +868,7 @@ layout: argentina
   //Acá arrancan las validaciones para habilitar (o no) el botón de siguiente:
 
   // Saca la clase disabled del botón siguiente
-  function habilitaSiguiente(){
+  function FhabilitaSiguiente(){
     for(var i = 0; i < sig.length; i++) {
       sig[i].classList.remove('disabled');
     }
@@ -883,7 +886,7 @@ layout: argentina
 
   // Saca la clase disabled cuando se seleccionan TODOS los campos de la pregunta 2
 
-  function habilitaPregunta2(){
+  function FhabilitaPregunta2(){
     var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
     var pasa = 0;
 
@@ -894,14 +897,14 @@ layout: argentina
     }
 
     if (pasa == 3){
-      habilitaSiguiente();
+      FhabilitaSiguiente();
     }
 
   }
 
     // Saca la clase disabled cuando se selecciona el campo de la pregunta 3
 
-  function habilitaPregunta3(){
+  function FhabilitaPregunta3(){
     var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
     var pasa = 0;
 
@@ -910,7 +913,7 @@ layout: argentina
       }
 
     if (pasa == 1){
-      habilitaSiguiente();
+      FhabilitaSiguiente();
     }
 
   }
