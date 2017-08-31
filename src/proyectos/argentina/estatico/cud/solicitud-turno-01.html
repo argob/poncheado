@@ -142,59 +142,59 @@ layout: argentina
                         Epilepsia
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmental" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmental"/> 
                         Trastorno mental intelectual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadvisual" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadvisual"/> 
                         Origen visual
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoranomiastenia" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmotoranomiastenia"/> 
                         Trastorno motor neurológico (no miastenia gravis ni esclerosis múltiple)
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoramiastenia" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmotoramiastenia"/> 
                         Trastorno motor neurológico (por miastenia gravis)
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoraesclerosis" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadmotoraesclerosis"/> 
                         Trastorno motor neurológico (por esclerosis múltiple)
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico"/> 
                         Trastorno motor traumatológico
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologiconoartritis" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologiconoartritis"/> 
                         Trastorno motor reumatológico (no artritis reumatoidea)
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologicoartritis" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologicoartritis"/> 
                         Trastorno motor reumatológico (artritis reumatoidea)
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadauditivo" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadauditivo"/> 
                         Origen auditivo
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadrespiratorio" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadrespiratorio"/> 
                         Trastorno respiratorio
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular"/> 
                         Trastorno cardiovascular
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadurologico" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadurologico"/> 
                         Trastorno renal urológica
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidaddigestivo" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidaddigestivo"/> 
                         Trastorno digestivo
                       </label><br>
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadhepatico" required/> 
+                        <input type="checkbox" name="discapacidad" value="discapacidadhepatico"/> 
                         Trastorno hepático
                       </label>
                       
@@ -332,44 +332,42 @@ layout: argentina
                   discapacidad: {
                       required: true,
                       minlength: 1
+                  },
+                  tipotramite: {
+                      required: true
+                  },
+                  mayor18: {
+                      required: true
+                  },
+                  coberturamedica: {
+                      required: true
+                  },                                                           
+                  provincia: {
+                      required: true
+                  },
+                  localidad: {
+                      required: true
                   }
-                  // ,
-                  // tipotramite: {
-                  //     required: true
-                  // },
-                  // mayor18: {
-                  //     required: true
-                  // },
-                  // coberturamedica: {
-                  //     required: true
-                  // },                                                           
-                  // provincia: {
-                  //     required: true
-                  // },
-                  // localidad: {
-                  //     required: true
-                  // }
 
-               }
-               // ,                           
-            //   errorPlacement: function(error, element) {
-            //     if (element.is(":radio") || $(element).is(":checkbox")){
-            //       error.insertBefore(element.parent().parent());
-            //     } else{
-            //       error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
-            //     }
-            //   },
-            //   highlight: function(element, errorClass) {
-            //     if ($(element).is(":radio") || $(element).is(":checkbox")){
-            //       $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
-            //     } else{
-            //       $(element).parent().addClass("has-error has-feedback");
-            //     }
-            //   },
-            //   success: function(label) {
-            //     label.parent().parent().removeClass("has-error has-feedback");
-            //     label.remove();
-            //   },
+               },                           
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || $(element).is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  $(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
             });
 
             
