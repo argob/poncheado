@@ -1,14 +1,18 @@
 main {
 	a {
-    &[href^="http://"]:after,
-    &[href^="https://"]:after {
-      content: " \f08e";
-      display: inline-block;
-      margin-left: 5px;
-      vertical-align: -1px;
-      font: normal normal normal 14px/1 FontAwesome;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
+    &[href^="http://"],
+    &[href^="https://"] {
+      &[target^="_blank"]:after,
+      &[target^="_blank"]:after {
+          content: " \f08e";
+          display: inline-block;
+          margin-left: 5px;
+          vertical-align: -1px;
+          font: normal normal normal 14px/1 FontAwesome;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;        
+        }
+
     }
 
     &.btn:after,
