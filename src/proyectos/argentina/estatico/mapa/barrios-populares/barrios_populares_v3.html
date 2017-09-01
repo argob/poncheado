@@ -136,15 +136,15 @@ title: Mapa de Barrios Populares
           </div>
           <div class="col-md-6 typeSearch">
               <div class="form-group">
-                <div class="text-right"><a class="switch" href="#" style="color: #fff;text-decoration: underline;">Buscar por direcciones</a></div>
                 <label class="control-label">Buscar barrios</label>
+                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por direcciones</a>
                 <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
               </div>
               <div class="form-group hidden">
-                <div class="text-right"><a class="switch" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a></div>
                 <label class="control-label">Buscar direcciones</label>
+                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a>
                 <div class="input-group">
                   <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección o provincia" value="">
                   <span class="input-group-btn">
@@ -172,7 +172,16 @@ title: Mapa de Barrios Populares
  <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
 <script>
 
+  var placeSearch, autocomplete;
+
   var initMap = function() {
+
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('address')),
+    {types: ['geocode']});
+
 
     // Setup map
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
@@ -193,6 +202,7 @@ title: Mapa de Barrios Populares
       geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
           resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(17);
           var marker = new google.maps.Marker({
             map: resultsMap,
             position: results[0].geometry.location
@@ -337,8 +347,8 @@ title: Mapa de Barrios Populares
 
 $('body').on('click', '.typeSearch a.switch', function(e){
      e.preventDefault();
-     $(this).parent().parent().addClass('hidden').siblings().removeClass('hidden'); 
+     $(this).parent().addClass('hidden').siblings().removeClass('hidden'); 
 });
 
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&libraries=places&callback=initMap"></script>
