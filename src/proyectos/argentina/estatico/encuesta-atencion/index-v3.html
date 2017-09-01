@@ -31,7 +31,7 @@ layout: argentina
 
 </style>
 
-
+ 
 <section class="jumbotron" style="background-image: url('img/trama-opinion.png');">
     <div class="jumbotron_body">
         <div class="container">
@@ -658,6 +658,7 @@ layout: argentina
       preguntaActual += 1;
       checkearPanel();
       deshabilitaSiguiente();
+      checkearInfo();
     }
 
   // Cuando hacemos click en siguiente del que no se valida:
@@ -735,25 +736,25 @@ layout: argentina
 
   // Acá arrancan las funciones que guardan valores para mostrarse después
 
-  var organismo;
+  var organismo = "";
 
   function guardaOrganismo(){
     organismo = document.getElementById("organismo").value;
   }
 
-  var localidad;
+  var localidad = "";
 
   function guardaLocalidad(){
     localidad = document.getElementById("localidad").value;
   }
 
-  var provincia;
+  var provincia = "";
 
   function guardaProvincia(){
     provincia = document.getElementById("provincia").value;
   }
 
-  var tramite;
+  var tramite = "";
 
   function guardaTramite(){
     tramite = document.getElementById("tramite").value;
@@ -776,6 +777,8 @@ layout: argentina
     for(var i = 0; i < muestraTramite.length; i++) {
       muestraTramite[i].innerHTML = tramite;
     }
+
+
 
   }
 
