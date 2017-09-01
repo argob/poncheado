@@ -89,48 +89,33 @@ layout: argentina
 
     var map;
     var marker = [];
-    // var image;
+    var image = "/sites/default/files/aeropuerto-marker.png";
+    
 
       function initMap() {
+        
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: new google.maps.LatLng(-40.1698743, -62.9550729),
           mapTypeId: 'terrain'
         });
 
-        google.maps.event.addListenerOnce(map, 'idle', function(){
 
-          
+
+        google.maps.event.addListenerOnce(map, 'idle', function(){
 
           for (var i = 0; i < locations.length; i++) {
 
-        /*    
-            if (locations[i]["destacado"] == "X"){
-              image = "img/markers/" + locations[i]["markerd"];
-            }else{
-              image = "img/markers/" + locations[i]["marker"];
-            }
-        */
-
-
             marker[i] = new google.maps.Marker({
               position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
-              map: map
-              /* icon: image */
+              title:locations[i]["nombre"],
+              map: map,
+              icon: image
             }, false);
           }
-
-          /*
-          for (let x = 0; x < marker.length; x++) {
-
-            marker[x].addListener('click', function() {
-              $("#obras-" + x).modal('show');
-            }, false);
-          }
-
-          */
 
       });
+      
 
       }
 
