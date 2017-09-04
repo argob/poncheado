@@ -83,7 +83,7 @@ title: Mapa de Barrios Populares
           </button>
 
           <a class="navbar-brand hidden-xs" href="/">
-            <img alt="Argentina.gob.ar" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" height="50">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" height="50">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block">
@@ -145,11 +145,8 @@ title: Mapa de Barrios Populares
               <div class="form-group hidden">
                 <label class="control-label">Buscar direcciones</label>
                 <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a>
-                <div class="input-group">
+                <div style="margin-top: 10px;">
                   <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección o provincia" value="">
-                  <span class="input-group-btn">
-                    <button class="btn-primary btn" type="button" id="submit" value="<i class=&quot;fa fa-search&quot;></i>"><i class="fa fa-search"></i></button>
-                  </span>
                 </div>
               </div>              
           </div>        
@@ -182,6 +179,8 @@ title: Mapa de Barrios Populares
     /** @type {!HTMLInputElement} */(document.getElementById('address')),
     {types: ['geocode']});
 
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
 
     // Setup map
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
@@ -193,9 +192,10 @@ title: Mapa de Barrios Populares
     });
 
     var geocoder = new google.maps.Geocoder();    
-    document.getElementById('submit').addEventListener('click', function() {
+
+    function onPlaceChanged() {
       geocodeAddress(geocoder, map);
-    });
+    }
 
     function geocodeAddress(geocoder, resultsMap) {
       var address = document.getElementById('address').value;
@@ -220,7 +220,8 @@ title: Mapa de Barrios Populares
 
 
     $.ajax({
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
+      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
+      url: 'https://spreadsheets.google.com/feeds/list/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1/public/values?alt=json',
       data: 'json',
       success: function(response){
         var rows = response.feed.entry;
