@@ -3,110 +3,138 @@ layout: mi-argentina
 ---
 
 <section class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-      <h1 class="h2">Registrá tu nueva cuenta de Mi Argentina</h1>
-      <p>Tu número de identificación no está registrado, por favor completá estos datos para continuar.</p>
-      <p><a href="#">Ingresar con otro CUIL o pasaporte extranjero</a></p>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <h1 class="h2">Registrá tu nueva cuenta de Mi Argentina</h1>
+            <p>Tu número de identificación no está registrado, por favor completá estos datos para continuar.</p>
+            <p><a href="#">Ingresar con otro CUIL o pasaporte extranjero</a></p>
 
-      <div class="well p-x-3 p-y-2">
-        <h2 class="h4 m-b-2">Ingresá tus datos personales</h2>
-        <form method="get" action="registro_mensaje.html">
-          <label class="control-label" for="id_number">Identificación (CUIT o pasaporte extranjero)</label>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <select class="form-control">
+            <div class="well p-x-3 p-y-2">
+                <h2 class="h4 m-b-2">Ingresá tus datos personales</h2>
+                <form method="get" action="registro_mensaje.html">
+                    <label class="control-label" for="id_number">Identificación (CUIT o pasaporte extranjero)</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select class="form-control">
                   <option>DNI</option>
                   <option>LE</option>
                 </select>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="form-group">
-                <input id="id_number" class="form-control" type="text" name="id_number">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="first_name">Nombre</label>
-            <input id="first_name" class="form-control" type="first_name" name="first_name">
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="last_name">Apellido</label>
-            <input id="last_name" class="form-control" type="last_name" name="last_name">
-          </div>
-          <div class="form-group">
-            <label id="gender" class="control-label">Sexo (según tu documento)</label>
-            <div class="btn-group btn-group-justified" data-toggle="buttons">
-              <label class="btn btn-default">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input id="id_number" class="form-control" type="text" name="id_number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="first_name">Nombre</label>
+                        <input id="first_name" class="form-control" type="first_name" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="last_name">Apellido</label>
+                        <input id="last_name" class="form-control" type="last_name" name="last_name">
+                    </div>
+                    <div class="form-group">
+                        <label id="gender" class="control-label">Sexo (según tu documento)</label>
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                            <label class="btn btn-default">
                 <input type="radio" name="genero" value="F"> Femenino
               </label>
-              <label class="btn btn-default">
+                            <label class="btn btn-default">
                 <input type="radio" name="genero" value="M"> Masculino
               </label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="birthday">Fecha de Nacimiento</label>
-            <input id="birthday" class="form-control" type="birthday" name="birthday">
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="email">Correo Electrónico</label>
-            <input id="email" class="form-control" type="email" name="email">
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="password">Contraseña</label>
-            <input id="password" class="form-control" type="password" name="password">
-          </div>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="birthday">Fecha de Nacimiento</label>
+                        <input id="birthday" class="form-control" type="birthday" name="birthday">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Correo Electrónico</label>
+                        <input id="email" class="form-control" type="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Contraseña</label>
+                        <input id="password" class="form-control" type="password" name="password">
+                        <input type="checkbox" id="mostrar"> Mostrar contraseña
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
                 <input type="checkbox" id="toc" name="toc"> He leído y acepto los <a href="https://www.argentina.gob.ar/terminos-y-condiciones" target="_blank">términos y condiciones</a>
               </label>
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <button type="submit" class="btn btn-success">Ingresar</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-group m-b-0">
-            <button type="submit" class="btn btn-success">Ingresar</button>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <script>
-  $(function(){
-    var next = false;
-    $('.well button').on('click', function(event){
-      if(!next){
-        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">Falta ingresar este dato.<br>El número de CUIL o pasaporte no es válido, por favor intentá de nuevo.</span>');
-        $('#id_number').parent().addClass('has-error');
+    $(function() {
+        var next = false;
+        $('.well button').on('click', function(event) {
+            if (!next) {
+                $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">Falta ingresar este dato.<br>El número de CUIL o pasaporte no es válido, por favor intentá de nuevo.</span>');
+                $('#id_number').parent().addClass('has-error');
 
-        $('#first_name').attr('aria-describedby', 'first_name_error').after('<span id="first_name_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#first_name').parent().addClass('has-error');
+                $('#first_name').attr('aria-describedby', 'first_name_error').after('<span id="first_name_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#first_name').parent().addClass('has-error');
 
-        $('#last_name').attr('aria-describedby', 'last_name_error').after('<span id="last_name_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#last_name').parent().addClass('has-error');
+                $('#last_name').attr('aria-describedby', 'last_name_error').after('<span id="last_name_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#last_name').parent().addClass('has-error');
 
-        $('#gender').attr('aria-describedby', 'gender_error').next().after('<span id="gender_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#gender').parent().addClass('has-error');
+                $('#gender').attr('aria-describedby', 'gender_error').next().after('<span id="gender_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#gender').parent().addClass('has-error');
 
-        $('#birthday').attr('aria-describedby', 'birthday_error').after('<span id="birthday_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#birthday').parent().addClass('has-error');
+                $('#birthday').attr('aria-describedby', 'birthday_error').after('<span id="birthday_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#birthday').parent().addClass('has-error');
 
-        $('#email').attr('aria-describedby', 'email_error').after('<span id="email_error" class="help-block">Falta ingresar este dato.<br>El correo electrónico no es válido, por favor intentá de nuevo.</span>');
-        $('#email').parent().addClass('has-error');
+                $('#email').attr('aria-describedby', 'email_error').after('<span id="email_error" class="help-block">Falta ingresar este dato.<br>El correo electrónico no es válido, por favor intentá de nuevo.</span>');
+                $('#email').parent().addClass('has-error');
 
-        $('#password').attr('aria-describedby', 'password_error').after('<span id="password_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#password').parent().addClass('has-error');
+                $('#password').attr('aria-describedby', 'password_error').after('<span id="password_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#password').parent().addClass('has-error');
 
-        $('#toc').attr('aria-describedby', 'toc_error').parent().append('<span id="toc_error" class="help-block">Falta ingresar este dato.</span>');
-        $('#toc').parent().addClass('has-error');
+                $('#toc').attr('aria-describedby', 'toc_error').parent().append('<span id="toc_error" class="help-block">Falta ingresar este dato.</span>');
+                $('#toc').parent().addClass('has-error');
 
-        next = true;
-        return false;
-      }
+                next = true;
+                return false;
+            }
+        });
     });
-  });
+
+
+    // muestra/esconde la contraseña
+
+    function show() {
+        var contrasenia = document.getElementById('password');
+        contrasenia.setAttribute('type', 'text');
+    }
+
+    function hide() {
+        var contrasenia = document.getElementById('password');
+        contrasenia.setAttribute('type', 'password');
+    }
+
+    var muestraContrasenia = 0;
+
+    document.getElementById("mostrar").addEventListener("click", function() {
+        if (muestraContrasenia == 0) {
+            muestraContrasenia = 1;
+            show();
+        } else {
+            muestraContrasenia = 0;
+            hide();
+        }
+    }, false);
+
 </script>
