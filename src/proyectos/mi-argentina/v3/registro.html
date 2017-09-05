@@ -58,8 +58,10 @@ layout: mi-argentina
                     <div class="form-group">
                         <label class="control-label" for="password">Contraseña</label>
                         <input id="password" class="form-control" type="password" name="password">
-                        <input type="checkbox" id="mostrar"> Mostrar contraseña
-                        </button>
+                        <input type="checkbox" id="mostrar" class="m-t-1"> Mostrar contraseña
+                        <p class="m-t-1"><small>La contraseña debe tener:</small></p>
+                        <p><small id="mensajeCaracteres" class="text-danger">Al menos 8 caractéres</small>
+                        <br><small id="mensajeNumLet" class="text-danger">Números y letras</small></p>
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
@@ -115,13 +117,12 @@ layout: mi-argentina
 
     // muestra/esconde la contraseña
 
+    var contrasenia = document.getElementById('password');
     function show() {
-        var contrasenia = document.getElementById('password');
         contrasenia.setAttribute('type', 'text');
     }
 
     function hide() {
-        var contrasenia = document.getElementById('password');
         contrasenia.setAttribute('type', 'password');
     }
 
@@ -136,5 +137,34 @@ layout: mi-argentina
             hide();
         }
     }, false);
+
+    // va checkeando la contraseña
+
+        var pasa = false;
+        var expresion =  /\w(?=.*\d)(?=.*[A-Za-z])/;
+        var mensajeCaracteres = document.getElementById("mensajeCaracteres");
+        var mensajeNumLet = document.getElementById("mensajeNumLet");
+
+        document.getElementById("password").addEventListener("keyup", function() {
+
+            if(contrasenia.value.length >= 8){
+                mensajeCaracteres.classList.add("text-success");
+                mensajeCaracteres.classList.remove("text-danger");
+            }else{
+                mensajeCaracteres.classList.remove("text-success");
+                mensajeCaracteres.classList.add("text-danger");
+            }
+
+            if(contrasenia.value.match(expresion)){
+                mensajeNumLet.classList.add("text-success");
+                mensajeNumLet.classList.remove("text-danger");
+            }else{
+                mensajeNumLet.classList.remove("text-success");
+                mensajeNumLet.classList.add("text-danger");
+            }
+
+        }, false);
+
+
 
 </script>
