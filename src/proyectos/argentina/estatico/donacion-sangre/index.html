@@ -377,6 +377,7 @@ layout: argentina
 
     for (let i = 0; i < botonPasa.length; i++){
       botonPasa[i].addEventListener("click", checkearPanel);
+
     }
 
 
@@ -392,6 +393,7 @@ layout: argentina
   // Hace aparecer el panel que corresponda cada vez que se cambia de pregunta
 
   function checkearPanel(){
+    event.preventDefault();
     for(var i = 0; i < preguntas.length; i++) {
       preguntas[i].classList.add('hidden');
     }
