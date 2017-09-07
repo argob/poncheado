@@ -137,7 +137,7 @@ title: Mapa de Barrios Populares
           <div class="col-md-6 typeSearch">
               <div class="form-group">
                 <label class="control-label">Buscar barrios</label>
-                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por direcciones</a>
+                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por direcciones o provincias</a>
                 <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
@@ -146,8 +146,41 @@ title: Mapa de Barrios Populares
                 <label class="control-label">Buscar direcciones</label>
                 <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a>
                 <div style="margin-top: 10px;">
-                  <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección o provincia" value="">
+                  <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección" value="">
                 </div>
+                <div style="margin-top: 10px;">
+                  <label class="control-label">Buscar provincias</label>
+                  <div id="controls">
+                    <select id="provincia" class="form-control chosen-select" data-placeholder="Seleccionar por provincia">
+                        <option value="blank" selected>Elegir Provincia</option>
+                        <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                        <option value="BSA">Buenos Aires</option>
+                        <option value="CAT">Catamarca</option>
+                        <option value="COR">Córdoba</option>
+                        <option value="CRR">Corrientes</option>
+                        <option value="CHA">Chaco</option>
+                        <option value="CHU">Chubut</option>
+                        <option value="ENT">Entre Ríos</option>
+                        <option value="FOR">Formosa</option>
+                        <option value="JUJ">Jujuy</option>
+                        <option value="PAM">La Pampa</option>
+                        <option value="RIO">La Rioja</option>
+                        <option value="MEN">Mendoza</option>
+                        <option value="MIS">Misiones</option>
+                        <option value="NEU">Neuquén</option>
+                        <option value="RNE">Río Negro</option>
+                        <option value="SAL">Salta</option>
+                        <option value="SJU">San Juan</option>
+                        <option value="SLU">San Luis</option>
+                        <option value="SCR">Santa Cruz</option>
+                        <option value="SFE">Santa Fe</option>
+                        <option value="SDE">Santiago del Estero</option>
+                        <option value="TDF">Tierra del Fuego</option>
+                        <option value="TUC">Tucumán</option>
+                    </select>
+                  </div>                
+                </div>
+
               </div>              
           </div>        
         </div>
@@ -169,11 +202,81 @@ title: Mapa de Barrios Populares
  <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
 <script>
 
-  var provincias = [
-    { "provincia": " Buenos Aires", "lat": -34.58855, "lng": -60.949554 },
-    { "provincia": " Tucumán", "lat": -27.056055, "lng": -65.402168 }
-  ];
+var provincias = {
+        'CAB': {
+          center: {lat: -34.603684, lng: -58.381559}
+        },
+        'BSA': {
+          center: {lat: -34.603684, lng: -58.381559}
+        },
+        'CAT': {
+          center: {lat: -28.471588, lng: -65.787721}
+        },
+        'COR': {
+          center: {lat: -31.420083, lng: -64.188776}
+        },
+        'CRR': {
+          center: {lat: -27.469213, lng: -58.830635}
+        },
+        'CHA': {
+          center: {lat: -27.425718, lng: -59.024378}
+        },
+        'CHU': {
+          center: {lat: -43.293425, lng: -65.111482}
+        },
+        'ENT': {
+          center: {lat: -31.774665, lng: -60.495646}
+        },
+        'FOR': {
+          center: {lat: -26.185777, lng: -58.175567}
+        },
+        'JUJ': {
+          center: {lat: -24.184340, lng: -65.302177}
+        },
+        'PAM': {
+          center: {lat: -36.614757, lng: -64.283921}
+        },
+        'RIO': {
+          center: {lat: -29.419379, lng: -66.855993}
+        },
+        'MEN': {
+          center: {lat: -32.889459, lng: -68.845839}
+        },
+        'MIS': {
+          center: {lat: -27.426925, lng: -55.946708}
+        },
+        'NEU': {
+          center: {lat: -38.951678, lng: -68.059189}
+        },
+        'RNE': {
+          center: {lat: -40.826143, lng: -63.026634}
+        },
+        'SAL': {
+          center: {lat: -24.782127, lng: -65.423198}
+        },
+        'SJU': {
+          center: {lat: -31.528713, lng: -68.536040}
+        },
+        'SLU': {
+          center: {lat: -33.296204, lng: -66.329495}
+        },
+        'SCR': {
+          center: {lat: -51.635282, lng: -69.247435}
+        },
+        'SFE': {
+          center: {lat: -31.610658, lng: -60.697294}
+        },
+        'SDE': {
+          center: {lat: -27.791039, lng: -64.273442}
+        },
+        'TDF': {
+          center: {lat: -54.805400, lng: -68.324206}
+        },
+        'TUC': {
+          center: {lat: -26.822113, lng: -65.219290}
+        }
 
+      };
 
   var placeSearch, autocomplete;
 
@@ -187,12 +290,30 @@ title: Mapa de Barrios Populares
 
     autocomplete.addListener('place_changed', onPlaceChanged);
 
+    // document.getElementById('provincia').addEventListener(
+    //     'change', setAutocompleteProvincia);
 
+    $('#provincia').on('change', function() {
+        setAutocompleteProvincia();
+      });    
+
+      function setAutocompleteProvincia() {
+        var provincia = document.getElementById('provincia').value;
+        if (provincia == 'blank') {
+          map.setCenter({lat: -41.2148693, lng: -66.3996161});
+          map.setZoom(4);
+        } else {
+          map.setCenter(provincias[provincia].center);
+          map.setZoom(10);
+        }
+      }
+    
     // Setup map
-    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    // var mapCenter = {lat: -41.2148693, lng: -66.3996161};
     window.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
-      center: mapCenter,
+      // center: mapCenter,
+      center: provincias['CAB'].center,
       mapTypeControl: true,
       mapTypeControlOptions: {
           style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
