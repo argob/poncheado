@@ -1,6 +1,6 @@
 ---
 layout: argentina
-title: Mapa de recursos
+title: Ferias de El mercado en tu barrio
 ---
 
 <style>
@@ -54,6 +54,7 @@ title: Mapa de recursos
   #mobile-footer a {
     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
+
 </style>
 
 <header id="map-header">
@@ -73,7 +74,7 @@ title: Mapa de recursos
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block">
-            <small>Centros de atención</small>
+            <small>Ferias</small>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
@@ -97,10 +98,10 @@ title: Mapa de recursos
       <div class="container">
         <div class="pull-right">
           <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a> &nbsp; 
-          <a href="index" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Cerrar esta página</a>
+          <a href="index.html" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Cerrar esta página</a>
         </div>
-        <h4>Mapa de centros de donación de sangre</h4>
-        <span>Lugares dónde podés acercarte para donar.</span>
+        <h4>Mapa de ferias</h4>
+        <span>Lugares dónde va a estar El mercado en tu barrio</span>
       </div>
     </div>
     <div class="overlay"></div>
@@ -110,10 +111,7 @@ title: Mapa de recursos
 <div id="mobile-footer" class="visible-xs">
   <div class="row">
     <div class="col-xs-6">
-      <a href="tel:144" class="btn btn-success btn-block"><i class="fa fa-phone"></i> &nbsp;144</a>
-    </div>
-    <div class="col-xs-6">
-      <a href="javascript: window.location.replace('http://www.google.com.ar/webhp?ie=UTF-8#q=clima');" class="btn btn-danger btn-block pull-right">Cerrar</a>
+      <a href="index.html" class="btn btn-danger btn-block pull-right">Cerrar</a>
     </div>
   </div>
 </div>
@@ -123,6 +121,8 @@ title: Mapa de recursos
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 <script>
 
   var initMap = function() {
@@ -143,26 +143,30 @@ title: Mapa de recursos
     var detalles = [];
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1xH78vH6KhTwCKYN1l3CvbtdoLikqyrnxEg8bFjIPyLw/1/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1gDUaA7UVYxMNmY4Gww150S8yYBdVBfMvAGovHHQ5FfM/1/public/values?alt=json',
       data: 'json',
       success: function(response){
 
         // console.log(response);
 
         var rows = response.feed.entry;
+        var fechaHoy = new Date();
+        var hoy = moment(fechaHoy, "DD/MM/YYYY");
 
         rows.forEach(function(row, key){
 
-          // if(row.gsx$visible.$t == '1'){
-
             var index = markers.length;
+            var fecha = moment(row.gsx$fecha.$t, "DD/MM/YYYY");
+
+            if( fecha>= hoy ){
+
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
               // map: map,
-              title: row.gsx$institucion.$t,
+              title: row.gsx$lugar.$t,
               icon: {
-                url: '/sites/default/files/marker.png',
-                size: new google.maps.Size(20, 20),
+                url: 'http://www.argentina.gob.ar/sites/default/files/marker.png',
+                size: new google.maps.Size(20, 30),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
               }
@@ -170,7 +174,7 @@ title: Mapa de recursos
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h5>'+ row.gsx$institucion.$t +'</h5><p><strong>Servicio</strong>: '+ row.gsx$servicio.$t +'<br><strong>Horario</strong>: '+ row.gsx$horario.$t +'<br><strong>Teléfono</strong>: '+ row.gsx$telefono.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t +', '+ row.gsx$localidad.$t +'</p>',
+              content: '<h2 class="h5">'+ row.gsx$lugar.$t +'</h5><p><strong> ' + row.gsx$barrio.$t + '<br>'+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Horario</strong>: '+ row.gsx$horario.$t + '<br><strong>Fecha</strong>: '+ row.gsx$fecha.$t + '</p>',
               maxWidth: 400
             })
 
@@ -179,15 +183,16 @@ title: Mapa de recursos
               detalles[index].open(map, markers[index]);
             });
 
-          // }
+          }
         })
 
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
           gridSize: 50,
-          minimumClusterSize: 3,
+          minimumClusterSize: 4,
           maxZoom: 19
         });
+
 
         $('#map-container').removeClass('state-loading');
 
@@ -220,7 +225,7 @@ title: Mapa de recursos
               lng: position.coords.longitude
             };
 
-            map.setZoom(15);
+            map.setZoom(10);
             map.setCenter(pos);
 
             $('.localize').removeClass('state-loading disabled');
@@ -249,6 +254,6 @@ title: Mapa de recursos
   }
 
 </script>
-<script src="http://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
+<script src="markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
 
