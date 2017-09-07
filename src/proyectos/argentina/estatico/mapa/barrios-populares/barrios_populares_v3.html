@@ -169,6 +169,12 @@ title: Mapa de Barrios Populares
  <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
 <script>
 
+  var provincias = [
+    { "provincia": " Buenos Aires", "lat": -34.58855, "lng": -60.949554 },
+    { "provincia": " Tucumán", "lat": -27.056055, "lng": -65.402168 }
+  ];
+
+
   var placeSearch, autocomplete;
 
   var initMap = function() {
@@ -187,6 +193,11 @@ title: Mapa de Barrios Populares
     window.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: mapCenter,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.LEFT_BOTTOM
+      },      
       scrollwheel: true,
       streetViewControl: false
     });
@@ -241,10 +252,9 @@ title: Mapa de Barrios Populares
         map.data.addGeoJson( JSON.parse(geojson) );
         
         map.data.setStyle({
-          // fillColor: '#0695d6',
-          fillColor: '#ef4d3d',
-          fillOpacity: 0.6,
-          strokeColor: '#ef4d3d',
+          fillColor: '#0695d6',
+          fillOpacity: 0.4,
+          strokeColor: '#0695d6',
           strokeWeight: 2
         });
 
