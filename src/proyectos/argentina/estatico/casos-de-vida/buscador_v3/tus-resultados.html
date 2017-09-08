@@ -84,7 +84,7 @@ var categories = [
           nacionalidad: 'todas',
           conditions: {
             discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
+            discapacidad_acargo: 'si'
           }
         },
         {
@@ -96,7 +96,7 @@ var categories = [
           nacionalidad: 'todas',
           conditions: {
             discapaciodad: 'si',
-            discapaciodad_acargo: 'si'
+            discapacidad_acargo: 'si'
           }
         },
         {
@@ -109,12 +109,18 @@ var categories = [
           conditions: {
             and: [
               {
-                empleo: 'si',
+                empleo: 'no',
                 discapacidad: 'si'
               },
               {
-                empleo: 'si',
-                discapaciodad_acargo: 'si'
+                empleo: 'no',
+                discapacidad_acargo: 'si'
+              },
+              {
+                discapacidad: 'si'
+              },
+              {
+                discapacidad_acargo: 'si'
               }
             ]
           }          
@@ -174,7 +180,7 @@ var categories = [
         //   nacionalidad: 'todas',
         //   conditions: {
         //     discapaciodad: 'si',
-        //     discapaciodad_acargo: 'si'
+        //     discapacidad_acargo: 'si'
         //   }
         // },
         // {
@@ -186,7 +192,7 @@ var categories = [
         //   nacionalidad: 'todas',
         //   conditions: {
         //     discapaciodad: 'si',
-        //     discapaciodad_acargo: 'si'
+        //     discapacidad_acargo: 'si'
         //   }
         // },
 
@@ -205,10 +211,9 @@ var categories = [
               },
               {
                 hijos: 'si',
-                discapaciodad_acargo: 'si'
+                discapacidad_acargo: 'si'
               }
-            ],
-            interes_vivienda: 'no'           
+            ]          
           }
         },
         {
@@ -406,7 +411,7 @@ var categories = [
         //   nacionalidad: 'todas',
         //   conditions: {
         //     discapaciodad: 'si',
-        //     discapaciodad_acargo: 'si'
+        //     discapacidad_acargo: 'si'
         //   }
         // },
         {
@@ -417,10 +422,13 @@ var categories = [
           icon: 'fa-child',
           nacionalidad: 'todas',
           conditions: {
-            // empleo: 'no',     
-            // notrabajo: 'desempleado',
-            hijos: 'si',
-            tenerHijos: 'si'
+            and: [
+              {
+                empleo: 'no',
+                notrabajo: 'desempleado',
+                hijos: 'si'
+              }
+            ]
           }          
         },
         // {
@@ -466,17 +474,8 @@ var categories = [
                 hijo_edad_menor: 'si'
               },
               {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                interes_salud: 'si'
-              },
-              {
                 tenerHijos: 'si'
-              },  
-              {
-                tenerHijos: 'si',                
-                interes_salud: 'si'
-              }                                         
+              }
             ]
           }         
         },
@@ -554,17 +553,8 @@ var categories = [
                 hijo_edad_menor: 'si'
               },
               {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                interes_salud: 'si'
-              },
-              {
                 tenerHijos: 'si'
-              },  
-              {
-                tenerHijos: 'si',                
-                interes_salud: 'si'
-              }               
+              }              
             ]
           }
         },
@@ -724,7 +714,6 @@ var categories = [
           icon: 'fa-female',
           nacionalidad: 'todas',
           conditions: {
-            // empleo: 'si',
             trabajo: 'particulares'
           }
         },
@@ -736,7 +725,6 @@ var categories = [
           icon: 'icono-arg-apostilla',
           nacionalidad: 'todas',
           conditions: {
-            // empleo: 'no',     
             notrabajo: 'desempleado',
             interes_trabajo: 'si'
           }
@@ -749,7 +737,6 @@ var categories = [
           icon: 'fa-female',
           nacionalidad: 'todas',
           conditions: {
-            // empleo: 'si',     
             trabajo: 'particulares'
           }
         },
@@ -844,8 +831,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/tema/emprender/financiamiento',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'si',     
+          conditions: {     
             trabajo: 'autonomo',
             interes_capacitacion: 'si',
             interes_emprender: 'si'
@@ -872,8 +858,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/inscribirme-como-monotributista',
           icon: 'fa-briefcase',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'si',     
+          conditions: {    
             trabajo: 'monotributista',
             trabajo: 'autonomo',
             interes_emprender: 'si'
@@ -898,34 +883,13 @@ var categories = [
           icon: 'icono-arg-factura',
           nacionalidad: 'todas',
           conditions: {
-               and: [
-                 {
-                   estudio: 'no', 
-                   empleo: 'no',     
-                   hijos: 'si',
-                   discapacidad: 'si'
-                 },
-                 {
-                   estudio: 'no', 
-                   empleo: 'no',     
-                   hijos: 'si',
-                   discapaciodad_acargo: 'si'
-                 }, 
-                 { 
-                   estudio: 'no',
-                   empleo: 'si',  
-                   trabajo: 'dependencia',   
-                   hijos: 'si',
-                   discapacidad: 'si'
-                 },
-                 {
-                   estudio: 'no',
-                   empleo: 'si',     
-                   trabajo: 'monotributo',   
-                   hijos: 'si',
-                   discapaciodad_acargo: 'si'
-                 }
-               ]             
+            and: [
+              {
+               hijos: 'si',
+               hijo_edad_menor: 'si',
+               empleo: 'no'            
+              }
+            ]
           }
         },
         {
@@ -939,16 +903,17 @@ var categories = [
             and: [
               {
                 empleo: 'no',
-                discapacidad: 'si'
+                discapacidad: 'no',
+                discapacidad_acargo: 'no'
               },
               {
                 empleo: 'no',
-                discapaciodad_acargo: 'si'
-              }                            
-            ]
-          } 
-        }
-                       
+                discapacidad_acargo: 'no',
+                discapacidad: 'no'
+              }
+            ]  
+          }
+        }  
    ]
  },
  {
@@ -967,11 +932,8 @@ var categories = [
             and: [
               {
                 edad: '> 59',
-                empleo: 'no',     
-                notrabajo: 'jubilado'
               }
-            ],
-             interes_salud: 'si'
+            ]
           }           
         },
         {
@@ -1001,17 +963,8 @@ var categories = [
                 hijo_edad_menor: 'si'
               },
               {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                interes_salud: 'si'
-              },
-              {
                 tenerHijos: 'si'
-              },  
-              {
-                tenerHijos: 'si',                
-                interes_salud: 'si'
-              }                                         
+              }                                      
             ]
           }                   
         },        
@@ -1027,12 +980,7 @@ var categories = [
               {
                 hijos: 'si',
                 hijo_edad_mayor: 'si'
-              },
-              {
-                hijos: 'si',
-                hijo_edad_mayor: 'si',
-                interes_salud: 'si' 
-              }              
+              }             
             ]
           }           
         },
@@ -1044,7 +992,12 @@ var categories = [
           icon: 'icono-arg-medicina',
           nacionalidad: 'todas',
           conditions: {
-            interes_salud: 'si'
+            and: [
+              {
+                edad: '> 17',
+                interes_salud: 'si'
+              }
+            ]
           }
         },
         {
@@ -1110,7 +1063,7 @@ var categories = [
         //       {
         //         empleo: 'no',     
         //         hijos: 'si',
-        //         discapaciodad_acargo: 'si'
+        //         discapacidad_acargo: 'si'
         //       }              
         //     ]            
         //   }
@@ -1125,15 +1078,11 @@ var categories = [
              conditions: {
                and: [
                  {
-                   estudio: 'si',
                    hijos: 'si',
-                   discapacidad: 'si'
-                 },                 
-                 {
-                   estudio: 'si',
-                   hijos: 'si',
-                   discapaciodad_acargo: 'si'
-                 }                 
+                   hijo_edad_menor: 'si',
+                   empleo: 'si'
+                 }               
+
                ]             
              }
            },
@@ -1149,7 +1098,7 @@ var categories = [
         //     estudio: 'si',
         //     hijos: 'si',
         //     tenerHijos: 'si',
-        //     discapaciodad_acargo: 'si'
+        //     discapacidad_acargo: 'si'
         //   }
         // },
         {
@@ -1162,11 +1111,14 @@ var categories = [
           conditions: {
             and: [
               {
-                edad: '< 41',
-                estudio: 'si'
-              }
-            ],             
-            interes_capacitacion: 'si'
+                edad: '< 25',
+                estudio: 'si',
+              },
+              {
+                edad: '< 25',
+                interes_capacitacion: 'si'
+              }              
+            ]
           }
         },
         {
@@ -1342,14 +1294,14 @@ var categories = [
               {
                 edad: '> 59',
                 empleo: 'no',
-                discapaciodad_acargo: 'si'
+                discapacidad_acargo: 'si'
               }              
             ]//,
             //empleo: 'no',    
             //notrabajo: 'desempleado', 
             //notrabajo: 'jubilado',
             //discapacidad: 'si',
-            //discapaciodad_acargo: 'si'
+            //discapacidad_acargo: 'si'
           }
         },
         {
@@ -1377,7 +1329,7 @@ var categories = [
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si',
-            discapaciodad_acargo: 'si'
+            discapacidad_acargo: 'si'
           }
         },
         {
