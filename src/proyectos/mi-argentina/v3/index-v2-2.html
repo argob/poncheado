@@ -14,6 +14,9 @@ layout: mi-argentina
           <div class="form-group">
             <label class="control-label lead" for="password">Contraseña</label>
             <input id="password" class="form-control input-lg" type="password" name="password">
+            <label>
+              <input type="checkbox" id="mostrar" class="m-t-1"> Mostrar contraseña
+            </label>
           </div>
           <div class="form-group m-b-0">
             <button type="submit" class="btn btn-success">Ingresar</button>
@@ -39,4 +42,29 @@ layout: mi-argentina
       }
     });
   });
+
+  // muestra/esconde la contraseña
+
+    var contrasenia = document.getElementById('password');
+    function show() {
+        contrasenia.setAttribute('type', 'text');
+    }
+
+    function hide() {
+        contrasenia.setAttribute('type', 'password');
+    }
+
+    var muestraContrasenia = 0;
+
+    document.getElementById("mostrar").addEventListener("click", function() {
+        if (muestraContrasenia == 0) {
+            muestraContrasenia = 1;
+            show();
+        } else {
+            muestraContrasenia = 0;
+            hide();
+        }
+    }, false);
+
+
 </script>
