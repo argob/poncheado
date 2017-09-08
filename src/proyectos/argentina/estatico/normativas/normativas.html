@@ -134,19 +134,19 @@ layout: argentina
                 $(this).addClass('active').siblings().removeClass('active');
                 var normativa = $(this).data("normativa");
                 if (normativa == "Decretos") {
-                    $.getJSON('https://spreadsheets.google.com/feeds/list/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/1/public/values?alt=json', function(data) {
+                    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/1', function(data) {
                         window.normativas = data.feed.entry;
                         shownormativas('todas');
                     });
                 } else if (normativa == "Resoluciones MM") {
 
-                    $.getJSON('https://spreadsheets.google.com/feeds/list/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/2/public/values?alt=json', function(data) {
+                    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/2', function(data) {
                         window.normativas = data.feed.entry;
                         shownormativas('todas');
                     });
 
                 } else if (normativa == "Resoluciones SMA") {
-                    $.getJSON('https://spreadsheets.google.com/feeds/list/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/3/public/values?alt=json', function(data) {
+                    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1AcfX4PLc64koRSKcQOlQhxW2-4E404SllSnbNKjkT5s/3', function(data) {
                         window.normativas = data.feed.entry;
                         shownormativas('todas');
                     });
