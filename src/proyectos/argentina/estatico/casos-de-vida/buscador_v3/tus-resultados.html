@@ -1134,7 +1134,7 @@ var categories = [
                 estudio: 'si',
                 hijos: 'si',
                 hijo_edad_mayor: 'si'
-              }
+              }            
             ],             
             interes_capacitacion: 'si'            
           }
@@ -1180,11 +1180,14 @@ var categories = [
           conditions: {
             and: [
               {
-                edad: '< 18',                
-                estudio: 'si',
                 hijos: 'si',
                 hijo_edad_menor: 'si'
+              },
+              {
+                edad: '< 18',
+                estudio: 'si'
               }
+
             ]          
           }          
         },
@@ -1260,8 +1263,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-beneficiario',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {   
             notrabajo: 'desempleado'
           }
         },
@@ -1272,8 +1274,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-trabajador',
           icon: 'icono-arg-tramite-jubilacion',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {   
             notrabajo: 'desempleado'
           }
         },
@@ -1281,27 +1282,15 @@ var categories = [
           name: 'Beneficios para jubilados y pensionados',
           corto: 'soyjubilado_beneficios',
           description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
-          url: 'https://www.argentina.gob.ar/adultosmayores/soyjubiladopensionado',
+          url: 'https://www.argentina.gob.ar/tema/adultosmayores/soyjubiladopensionado',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
           conditions: {
-            and: [
-              {
-                edad: '> 59',
-                empleo: 'no',
-                discapacidad: 'si'
-              },
-              {
-                edad: '> 59',
-                empleo: 'no',
-                discapacidad_acargo: 'si'
-              }              
-            ]//,
-            //empleo: 'no',    
-            //notrabajo: 'desempleado', 
-            //notrabajo: 'jubilado',
-            //discapacidad: 'si',
-            //discapacidad_acargo: 'si'
+            empleo: 'no',    
+            notrabajo: 'desempleado', 
+            notrabajo: 'jubilado',
+            discapacidad: 'si',
+            discapacidad_acargo: 'si'
           }
         },
         {
@@ -1311,8 +1300,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {     
             notrabajo: 'jubilado',
             notrabajo: 'desempleado'
           }
@@ -1324,8 +1312,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/consultar-calendario-de-pago-de-anses',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {    
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si',
@@ -1339,8 +1326,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/asignacion-familiar-por-conyuge',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {    
             notrabajo: 'jubilado'
           }
         },
@@ -1351,8 +1337,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/dar-fe-de-vida-supervivencia-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {     
             notrabajo: 'jubilado'
           }
         },
@@ -1363,8 +1348,7 @@ var categories = [
           url: 'https://www.argentina.gob.ar/solicitar-un-apoderado-para-jubilados-y-pensionados',
           icon: 'icono-arg-jubilado',
           nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'no',     
+          conditions: {    
             notrabajo: 'jubilado',
             notrabajo: 'desempleado',
             discapacidad: 'si'
