@@ -50,8 +50,8 @@ layout: argentina
                       <div class="radio">
                       
                         <label for="primeravezcud" class="m-t-0">
-                          <input id="primeravezcud" type="radio" name="tipotramite" value="Solicitud-de-Certificado-por-primera-vez"/>
-                          Solicitud por primera vez
+                          <input id="primeravezcud" type="radio" name="tipotramite" value="Solicitud-de-Certificado-por-primera-vez" required/>
+                          <span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez 
                         </label><br>
                         <label for="renovacioncud" class="m-t-1">
                           <input id="renovacioncud" type="radio" name="tipotramite" value="Renovacion"/>
@@ -72,21 +72,21 @@ layout: argentina
                 </div>
 
                 <div class="form-group">
-                <fieldset>
-                    <legend class="control-label">¿Tiene 18 años o más?</legend>
-                      <div class="radio">
-                      
-                        <label for="mayor18" class="m-t-0">
-                          <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria"/>
-                          Si
-                        </label><br>
-                        <label for="menor18" class="m-t-1">
-                          <input id="menor18" type="radio" name="mayor18" value="no"/>
-                          No
-                        </label>
+                  <fieldset>
+                      <legend class="control-label">¿Tiene 18 años o más?</legend>
+                        <div class="radio">
                         
-                      </div> 
-                      </fieldset>
+                          <label for="mayor18" class="m-t-0">
+                            <input id="mayor18" type="radio" name="mayor18" value="si" data-toogle-collapse="#collapse-tutoria" required/>
+                            <span class="sr-only">Este Campo es Obligatorio</span> Si 
+                          </label><br>
+                          <label for="menor18" class="m-t-1">
+                            <input id="menor18" type="radio" name="mayor18" value="no"/>
+                            No
+                          </label>
+                          
+                        </div> 
+                  </fieldset>
                 </div>
 
                 <div class="collapse" id="collapse-tutoria">
@@ -115,8 +115,8 @@ layout: argentina
                       <div class="radio">
                       
                         <label for="obrasocial" class="m-t-0">
-                          <input id="obrasocial" type="radio" name="coberturamedica" value="Obrasocial"/>
-                          Obra social
+                          <input id="obrasocial" type="radio" name="coberturamedica" value="Obrasocial" required/>
+                          <span class="sr-only">Este Campo es Obligatorio</span> Obra social 
                         </label><br>
                         <label for="medicinapre-paga" class="m-t-1">
                           <input id="medicinapre-paga" type="radio" name="coberturamedica" value="Medicinapre-paga"/>
@@ -138,8 +138,8 @@ layout: argentina
                     <div class="checkbox">
                    
                       <label class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia"/> 
-                        Epilepsia
+                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia" required/> 
+                        <span class="sr-only">Este Campo es Obligatorio</span> Epilepsia
                       </label><br>
                       <label class="m-b-1">
                         <input type="checkbox" name="discapacidad" value="discapacidadmental"/> 
@@ -201,7 +201,7 @@ layout: argentina
                     </div>              
                     </fieldset>
                 </div>
-                
+
               </div>
             </div>  
 
@@ -215,9 +215,9 @@ layout: argentina
                 <div class="form-group">
 
               <fieldset>
-                    <label class="control-label" for="provincia">Provincia</label><br>
-                    <select class="form-control" name="provincia" id="provincia">
-                        <option value=""></option>
+                    <legend class="control-label" for="provincia" style="font-size: 16px;">Provincia</legend>
+                    <select class="form-control" name="provincia" id="provincia" required>
+                        <option value="">Elegí tu provincia</option>
                         <option value="CIUDAD AUTONOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
                         <option value="BUENOS AIRES">Buenos Aires</option>
                         <option value="CATAMARCA">Catamarca</option>
@@ -248,13 +248,12 @@ layout: argentina
 
                 <div class="form-group">
                   <fieldset> 
-                      <label class="control-label" for="localidad">Localidad</label>
-                      <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p>
-                      <div disabled="disabled">
-                          <select class="form-control" name="localidad" id="localidad">
-                              <option value=""></option>
-                          </select>
-                      </div>
+                      <legend class="control-label" for="localidad" style="font-size: 16px;">Localidad</legend>
+                      <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
+                      <select class="form-control" name="localidad" id="localidad" disabled="disabled" required>
+                          <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
+                      </select>
+                      
                   </fieldset>    
                 </div>
 
@@ -353,7 +352,8 @@ layout: argentina
               errorPlacement: function(error, element) {
                 if (element.is(":radio") || $(element).is(":checkbox")){
                   error.insertBefore(element.parent().parent());
-                } else{
+                }               
+                 else{
                   error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
                 }
               },
@@ -787,7 +787,7 @@ $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfb
 
 function localidadFn( jQuery ) {
     var localidadFieldset = $('select[name="localidad"]').parent();
-    if ($('select[name="provincia"]').value === '') {
+    if ($('select[name="provincia"]').value === ''  ) {
         localidadFieldset.attr('disabled', true);
     } else {
         localidadFieldset.removeAttr('disabled');
@@ -800,11 +800,12 @@ function localidadFn( jQuery ) {
 
 
            if ($('select[name="provincia"]').val() === '') {
-                $('select[name="localidad"]').parent().attr('disabled', true);
+                $('select[name="localidad"]').attr('disabled', true);
             }
 
             $('select[name="provincia"]').on('change', function() {
-                var localidadFieldset = $('select[name="localidad"]').parent();
+                var localidadFieldset = $('select[name="localidad"]');
+                console.log(this.value === '')
                 if (this.value === '') {
                     localidadFieldset.attr('disabled', true);
                 } else {
@@ -823,7 +824,7 @@ function localidadFn( jQuery ) {
             function load_localidades(indexProvincia) {
                 // First we clean all options
 
-                $('select[name="localidad"]').empty().append('<option value="" selected></option>');
+                $('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
                     var aux, localidad, _i, _len;
                     dataLocalidades = dataProv[indexProvincia - 1].localidad;
 
@@ -843,18 +844,23 @@ function localidadFn( jQuery ) {
   legend {
       margin-bottom: 0;
       border-bottom: none;
-  }  
+  }
 
-div[disabled] {
+select[disabled] {
     background-color: #ccc;
 }
 
-div[disabled] .form-control {
+select[disabled] .form-control {
     background-color: #e9e9e9;
 }
 
-.form-control[disabled], div[disabled] .form-control {
+.form-control[disabled], select[disabled] .form-control {
     cursor: not-allowed;
+}
+
+.error {
+    display: block;
+    color: #a94442;
 }
 
 </style>
