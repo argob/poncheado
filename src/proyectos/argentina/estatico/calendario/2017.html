@@ -2,6 +2,11 @@
 layout: argentina 
 ---
 <style type="text/css">
+
+    .dias{
+      font-weight: 500;
+    }
+
     .cont {
         height: 550px;
     }
@@ -36,14 +41,29 @@ layout: argentina
       font-size: 20px;
     }
 
+    #detalle{
+        margin-top: 20px;
+    }
+
 
   .jumbotron{
     background-size: inherit;
     background-color: #0695D6;
   }
 
-</style>
+  #block-system-main > div > div.panel-pane.pane-jumbotron > div > section > div.jumbotron_bar > div > div > div > ul{
+      display:none !important;
+    }
 
+    #jumbo-menu{
+        display: none;
+    }
+
+    .fecha{
+        font-weight: 600;
+    }
+
+</style>
 
 <section class="jumbotron" style="background-image: url('img/tramam-feriados.png');">
     <div class="jumbotron_body">
@@ -59,154 +79,161 @@ layout: argentina
 </section>
 <section>
     <div class="container">
-        <div class="row">
 
-            <div class="row numbers m-b-3" role="presentation">
+            <div class="row numbers m-b-3" role="presentation" aria-hidden="true" id="hoyNoEs">
               <div class="col-md-4 col-md-offset-4 text-center">
                 <p class="text-muted">Faltan</p>
-                <div><p class="h1 text-success"><span id="faltan"></span> DÍAS</p></div>
+                <div><p class="h1 text-success m-y-0"><span id="faltan"></span> DÍAS</p></div>
                 <p class="text-muted">para el próximo feriado que es el</p>
                 <p class="lead" id="proximo"></p>
+                <p class="text-success fecha" id="detalle"></p>
+              </div>
+            </div>
+
+            <div class="row numbers m-b-3 hidden" role="presentation" aria-hidden="true" id="hoyEs">
+              <div class="col-md-4 col-md-offset-4 text-center">
+                <div><p class="h1 text-success">HOY</p></div>
+                <p class="text-muted">es feriado</p>
+                <p class="text-success fecha" id="detalleHoy"></p>
               </div>
             </div>
 
             <div class="sr-only"><p id="lector"></p></div>
 
-
+        <div class="row">
 
             <div class="col-md-12">
                 <div class="row">
 
                     <!--Enero-->
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
-
+                        <div class="mes">
                             <h2 class="h5 text-center">Enero</h2>
-                            <table class="table table-striped text-center" role="presentation" >
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
+                            <table role="presentation" class="table table-striped text-center" role="presentation" >
                                 <tbody>
                                     <tr>
-                                        <td class="bg-primary">
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td class="bg-primary" aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -214,141 +241,141 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>1. Año nuevo</p>
+                        <div class="fer">
+                            <p>1. Año nuevo. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
                     <!--Febrero-->
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Febrero</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             27
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -356,141 +383,141 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>27 y 28. Carnaval</p>
+                        <div class="fer">
+                            <p>27 y 28. Carnaval. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
                     <!--Marzo-->
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Marzo</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -498,310 +525,310 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>24. Día Nacional de la Memoria por la Verdad y la Justicia.</p>
+                        <div class="fer">
+                            <p>24. Día Nacional de la Memoria por la Verdad y la Justicia. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
                     <!--Abril-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Abril</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             11
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             12
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             13
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             17
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td class="bg-nl" aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>2. Día del Veterano y de los Caídos en la Guerra de Malvinas.</p>
-                            <p>11, 12, 13, 17 y 18. Pascuas Judías</p>
-                            <p>13 y 14. Jueves y Viernes Santo.</p>
-                            <p>24. Día de Acción por la tolerancia y el respeto entre los pueblos</p>
+                        <div class="fer">
+                            <p>2. Día del Veterano y de los Caídos en la Guerra de Malvinas. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>11, 12, 13, 17 y 18. Pascuas Judías. <span class="sr-only">Día no laborable</span></p>
+                            <p>13 y 14. Jueves y Viernes Santo. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>24. Día de Acción por la tolerancia y el respeto entre los pueblos.</p>
                         </div>
                     </div>
 
                     <!--Mayo-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Mayo</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -809,120 +836,120 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>1. Día del trabajador</p>
-                            <p>25. Día de la Revolución de Mayo</p>
+                        <div class="fer">
+                            <p>1. Día del trabajador. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>25. Día de la Revolución de Mayo. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
                     <!--Junio-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Junio</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td class="bg-success">
+                                        <td class="bg-success" aria-hidden="true">
                                             17
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
                                     </tr>
@@ -930,22 +957,22 @@ layout: argentina
                                         <td class="bg-nl">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -953,309 +980,309 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>17. Día Paso a la Inmortalidad del General Martín Miguel de Güemes</p>
-                            <p>20. Día Paso a la Inmortalidad del General Manuel Belgrano</p>
-                            <p>25. Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán</p>
+                        <div class="fer">
+                            <p>17. Día Paso a la Inmortalidad del General Martín Miguel de Güemes. <span class="sr-only">Feriado trasladable</span></p>
+                            <p>20. Día Paso a la Inmortalidad del General Manuel Belgrano. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>25. Fiesta de la Ruptura del Ayuno del Sagrado Mes de Ramadán. <span class="sr-only">Día no laborable</span></p>
                         </div>
                     </div>
 
                     <!--Julio-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Julio</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>9. Día de la Independencia</p>
+                        <div class="fer">
+                            <p>9. Día de la Independencia. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
                     <!--Agosto-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Agosto</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td class="bg-success">
+                                        <td class="bg-success" aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -1264,142 +1291,142 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>21. Paso a la Inmortalidad del General José de San Martín</p>
+                        <div class="fer">
+                            <p>21. Paso a la Inmortalidad del General José de San Martín. <span class="sr-only">Feriado trasladable</span></p>
                         </div>
                     </div>
 
                     <!--Septiembre-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Septiembre</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             21
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             30
                                         </td>
                                     </tr>
@@ -1407,10 +1434,10 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>1. Fiesta del Sacrificio</p>
-                            <p>21 y 22. Año Nuevo Judío</p>
-                            <p>30. Día del Perdón</p>
+                        <div class="fer">
+                            <p>1. Fiesta del Sacrificio. <span class="sr-only">Día no laborable</span></p>
+                            <p>21 y 22. Año Nuevo Judío. <span class="sr-only">Día no laborable</span></p>
+                            <p>30. Día del Perdón. <span class="sr-only">Día no laborable</span></p>
                         </div>
                     </div>
 
@@ -1418,134 +1445,134 @@ layout: argentina
                     <!--Octubre-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
 
                             <h2 class="h5 text-center">Octubre</h2>
-                            <table class="table table-striped text-center">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
+                            <table role="presentation" class="table table-striped text-center">
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td class="bg-nl">
+                                        <td class="bg-nl" aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td class="bg-success">
+                                        <td class="bg-success" aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             31
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -1553,143 +1580,143 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>2. Año Nuevo Islámico</p>
-                            <p>16. Día del Respeto a la Diversidad Cultural</p>
+                        <div class="fer">
+                            <p>2. Año Nuevo Islámico. <span class="sr-only">Día no laborable</span></p>
+                            <p>16. Día del Respeto a la Diversidad Cultural. <span class="sr-only">Feriado trasladable</span></p>
                         </div>
                     </div>
 
                     <!--Noviembre-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Noviembre</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td class="bg-success">
+                                        <td class="bg-success" aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             25
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
                                     </tr>
@@ -1697,152 +1724,175 @@ layout: argentina
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>20. Día de la Soberanía Nacional</p>
+                        <div class="fer">
+                            <p>20. Día de la Soberanía Nacional. <span class="sr-only">Feriado trasladable</span></p>
                         </div>
                     </div>
 
                     <!--Diciembre-->
 
                     <div class="cont col-lg-4 col-md-6 col-sm-6">
-                        <div class="col-md-12 mes">
+                        <div class="mes">
                             <h2 class="h5 text-center">Diciembre</h2>
-                            <table class="table table-striped text-center">
+                            <table role="presentation" class="table table-striped text-center">
 
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Dom</th>
-                                        <th class="text-center">Lun</th>
-                                        <th class="text-center">Mar</th>
-                                        <th class="text-center">Mie</th>
-                                        <th class="text-center">Jue</th>
-                                        <th class="text-center">Vie</th>
-                                        <th class="text-center">Sab</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td class="text-center dias" aria-hidden="true">Dom</td>
+                                        <td class="text-center dias" aria-hidden="true">Lun</td>
+                                        <td class="text-center dias" aria-hidden="true">Mar</td>
+                                        <td class="text-center dias" aria-hidden="true">Mie</td>
+                                        <td class="text-center dias" aria-hidden="true">Jue</td>
+                                        <td class="text-center dias" aria-hidden="true">Vie</td>
+                                        <td class="text-center dias" aria-hidden="true">Sab</td>
+                                    </tr>
+                                
+                                
+                                    <tr>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
 
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             1
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             2
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             3
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             4
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             5
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             6
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             7
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             8
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             9
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             10
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             11
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             12
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             13
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             14
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             15
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             16
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             17
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             18
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             19
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             20
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             21
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             22
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             23
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td aria-hidden="true">
                                             24
                                         </td>
-                                        <td class="bg-primary">
+                                        <td class="bg-primary" aria-hidden="true">
                                             25
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             26
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             27
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             28
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             29
                                         </td>
-                                        <td>
+                                        <td aria-hidden="true">
                                             30
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td aria-hidden="true">
+                                            31
+                                        </td>
+                                        <td aria-hidden="true">
+                                            
+                                        </td>
+                                        <td aria-hidden="true">
+                                            
+                                        </td>
+                                        <td aria-hidden="true">
+                                            
+                                        </td>
+                                        <td aria-hidden="true">
+                                            
+                                        </td>
+                                        <td aria-hidden="true">
+
+                                        </td>
+                                        <td aria-hidden="true">
+
                                         </td>
                                     </tr>
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 fer">
-                            <p>8. Inmaculada Concepción de María</p>
-                            <p>25. Navidad</p>
+                        <div class="fer">
+                            <p>8. Inmaculada Concepción de María. <span class="sr-only">Feriado inamovible</span></p>
+                            <p>25. Navidad. <span class="sr-only">Feriado inamovible</span></p>
                         </div>
                     </div>
 
@@ -1852,29 +1902,29 @@ layout: argentina
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="panel-body">
 
-                            <div class="media">
+                            <div class="media" role="presentation">
                                 <div class="media-left">
                                     <i class="fa fa-2x fa-stop text-primary fa-fw fa-2x"></i>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" aria-hidden="true">
                                     <p class="text-muted">Feriados inamovibles</p>
                                 </div>
                             </div>
 
-                            <div class="media">
+                            <div class="media" role="presentation">
                                 <div class="media-left">
                                     <i class="fa fa-2x fa-stop text-success fa-fw fa-2x"></i>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" aria-hidden="true">
                                     <p class="text-muted">Feriados trasladables</p>
                                 </div>
                             </div>
 
-                            <div class="media">
+                            <div class="media" role="presentation">
                                 <div class="media-left">
                                     <i class="fa fa-2x fa-stop text-nl fa-fw fa-2x"></i>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body" aria-hidden="true">
                                     <p class="text-muted">Días no laborables</p>
                                 </div>
                             </div>
@@ -1882,16 +1932,17 @@ layout: argentina
                         </div>
 
                     </div>
+
                     <div class="col-md-12">
                       <hr>
                     </div>
-                    <div class="col-md-10 col-md-offset-1">
 
+                    <div class="col-md-10 col-md-offset-1">
                         
                         <h2 class="h5">Feriados inamovibles</h2>
-                        <p>Feriados Nacionales que se rigen por el <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/170000-174999/174389/texact.htm">Decreto 1584/2010</a> y sus modificatorios el <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do;jsessionid=A431BD990BB98C662BB416F9FBCD804C?id=271094">Decreto 52/2017, Art. 4</a> y <a href="https://www.boletinoficial.gob.ar/#!DetalleNorma/158428/20170201">80/2017</a>.</p>
+                        <p>Feriados Nacionales que se rigen por el <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/170000-174999/174389/texact.htm">Decreto 1584/2010 <span class="sr-only">(abrir en una pestaña nueva)</span></a> y sus modificatorios el <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do;jsessionid=A431BD990BB98C662BB416F9FBCD804C?id=271094">Decreto 52/2017, Art. 4</a> y <a href="https://www.boletinoficial.gob.ar/#!DetalleNorma/158428/20170201">80/2017 <span class="sr-only">(abrir en una pestaña nueva)</span></a>.</p>
                         <h2 class="h5">Feriados trasladables</h2>
-                        <p>Feriados Nacionales que se rigen por el <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/170000-174999/174389/texact.htm">Decreto 1584/2010</a> y su modificatorio el <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do;jsessionid=A431BD990BB98C662BB416F9FBCD804C?id=271094">Decreto 52/2017, Art. 4</a>.</p>
+                        <p>Feriados Nacionales que se rigen por el <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/170000-174999/174389/texact.htm">Decreto 1584/2010</a> y su modificatorio el <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do;jsessionid=A431BD990BB98C662BB416F9FBCD804C?id=271094">Decreto 52/2017, Art. 4 <span class="sr-only">(abrir en una pestaña nueva)</span></a>.</p>
                         <h2 class="h5">Días no laborables</h2>
                         <p>(a) Ley Nº 26.199 dictada en conmemoración del genocidio sufrido por el pueblo armenio. Los empleados y funcionarios de organismos públicos y los alumnos de origen armenio quedan autorizados a disponer libremente de los días 24 de abril de todos los años para poder asistir y participar de las actividades que se realicen en conmemoración de la tragedia que afectó a su comunidad. Se invita a los gobiernos provinciales a adherir a las disposiciones de la presente ley.</p>
                         <p>(b) Sólo para habitantes que profesen la Religión Judía. Dispuesto por el Decreto 1584/2010.</p>
@@ -1907,6 +1958,7 @@ layout: argentina
                             </li>
                         </ul>
                         <p>(c) Sólo para los habitantes que profesen la Religión Islámica. Dispuesto por el Decreto 1584/2010. Fechas aproximadas. Se rigen por el calendario lunar.</p>
+
                     </div>
 
 
@@ -1917,13 +1969,7 @@ layout: argentina
         </div>
 
     </div>
-    </div>
 
-    </div>
-    </div>
-
-    </div>
-    </div>
 </section>
 
 
@@ -1950,7 +1996,26 @@ layout: argentina
     feriados.push(new Date("12/08/2017"));
     feriados.push(new Date("12/25/2017"));
 
+    feriados[0]["fecha"] = "Año nuevo";
+    feriados[1]["fecha"] = "Carnaval";
+    feriados[2]["fecha"] = "Carnaval";
+    feriados[3]["fecha"] = "Día Nacional de la Memoria por la Verdad y la Justicia";
+    feriados[4]["fecha"] = "Día del Veterano y de los Caídos en la Guerra de Malvinas";
+    feriados[5]["fecha"] = "Jueves Santo";
+    feriados[6]["fecha"] = "Viernes Santo";
+    feriados[7]["fecha"] = "Día del trabajador";
+    feriados[8]["fecha"] = "Día de la Revolución de Mayo";
+    feriados[9]["fecha"] = "Día Paso a la Inmortalidad del General Martín Miguel de Güemes";
+    feriados[10]["fecha"] = "Día Paso a la Inmortalidad del General Manuel Belgrano";
+    feriados[11]["fecha"] = "Día de la Independencia";
+    feriados[12]["fecha"] = "Paso a la Inmortalidad del General José de San Martín";
+    feriados[13]["fecha"] = "Día del Respeto a la Diversidad Cultural";
+    feriados[14]["fecha"] = "Día de la Soberanía Nacional";
+    feriados[15]["fecha"] = "Inmaculada Concepción de María";
+    feriados[16]["fecha"] = "Navidad";
+
 //recorro los feriados para ver cuando es el próximo
+
     for (var indice in feriados) {
         if (hoy < feriados[indice]) {
             var timeDiff = Math.abs(feriados[indice].getTime() - hoy.getTime());
@@ -1959,6 +2024,7 @@ layout: argentina
             var dia = feriados[indice].getDate();
             var mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][feriados[indice].getMonth()];
             var proximo = dia + ' de ' + mes + ' de ' + feriados[indice].getFullYear();
+            var detalle = feriados[indice]["fecha"];
 
             break;
         }
@@ -1970,11 +2036,32 @@ layout: argentina
 //mando esa info
 var faltanHTML = document.getElementById("faltan");
 var proximoHTML = document.getElementById("proximo");
+var detalleHTML = document.getElementById("detalle");
 var lectorHTML = document.getElementById("lector");
 
 faltanHTML.innerHTML = faltan;
 proximoHTML.innerHTML = proximo;
-lectorHTML.innerHTML = "Faltan " + faltan + " días para el próximo feriado. El próximo feriado es el " + proximo + ".";
+detalleHTML.innerHTML = detalle;
+lectorHTML.innerHTML = "Faltan " + faltan + " días para el próximo feriado. El próximo feriado es el " + proximo + ". " + detalle;
+
+
+// checkeo si hoy es feriado y (si lo es) lo muestro
+
+var hoyNoEs = document.getElementById("hoyNoEs");
+var hoyEs = document.getElementById("hoyEs");
+var detalleHoy = document.getElementById("detalleHoy");
+
+    for (var indice in feriados) {
+        if (hoy.getDate() == feriados[indice].getDate() && hoy.getMonth() == feriados[indice].getMonth()) {            
+            hoyEs.classList.remove('hidden');
+            hoyNoEs.classList.add('hidden');
+            detalleHoy.innerHTML = feriados[indice]["fecha"];
+            lectorHTML.innerHTML = "Hoy es feriado. " + feriados[indice]["fecha"];
+
+            break;
+        }
+    }
+
 
 
 </script>
