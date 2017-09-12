@@ -148,22 +148,43 @@ title: Ferias de El mercado en tu barrio
         // console.log(response);
 
         var rows = response.feed.entry;
+
+        /*
         var fechaHoy = new Date();
         var hoy = moment(fechaHoy, "DD/MM/YYYY");
+        */
+
+        var fechaHoy = new Date();
+        var year = fechaHoy.getFullYear();
+        var month = (1 + fechaHoy.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+        var day = fechaHoy.getDate().toString();
+        day = day.length > 1 ? day : '0' + day;
+        hoy = day + '/' + month + '/' + year;
+        var Mhoy = moment(hoy, "DD/MM/YYYY");
+
+        var marcador;
 
         rows.forEach(function(row, key){
 
             var index = markers.length;
-            var fecha = moment(row.gsx$fecha.$t, "DD/MM/YYYY");
+            var Mfecha = moment(row.gsx$fecha.$t, "DD/MM/YYYY");
+            var fecha = row.gsx$fecha.$t;
 
-            if( fecha>= hoy ){
+            if(Mfecha >= Mhoy){        
+
+              if (fecha == hoy){
+                marcador = "img/market_open.png";
+              }else{
+                marcador = "img/market_close.png";
+              }
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
               // map: map,
               title: row.gsx$lugar.$t,
               icon: {
-                url: 'http://www.argentina.gob.ar/sites/default/files/marker.png',
+                url: marcador,
                 size: new google.maps.Size(20, 30),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(10, 10)
@@ -188,7 +209,7 @@ title: Ferias de El mercado en tu barrio
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
           gridSize: 50,
-          minimumClusterSize: 100,
+          minimumClusterSize: 300,
           maxZoom: 19
         });
       
