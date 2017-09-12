@@ -319,10 +319,10 @@ layout: argentina
                       <h4 class="nombre-obra modal-title">{titulo}</h4>
                       <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                       <div class="text-muted">
-                        <div class="media m-t-1"><b>Provincia:</b> <span>{provincia}</span></div>
-                        <div class="media m-t-1"><b>Localidad:</b> <span>{localidad}</span></div>
-                        <div class="media m-t-1"><b>Beneficiarios:</b> <span>{beneficiarios}</span></div>
-                        <div class="media m-t-1"><b>Estado:</b> <span>{estado}</span></div>
+                        {provincia}
+                        {localidad}
+                        {beneficiarios}
+                        {estado}
                       </div>
                     </div>
                     <div class="modal-body">
@@ -342,10 +342,10 @@ layout: argentina
                       <h4 class="nombre-obra modal-title">{titulo}</h4>
                       <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                       <div class="text-muted">
-                        <div class="media m-t-1"><b>Provincia:</b> <span>{provincia}</span></div>
-                        <div class="media m-t-1"><b>Localidad:</b> <span>{localidad}</span></div>
-                        <div class="media m-t-1"><b>Beneficiarios:</b> <span>{beneficiarios}</span></div>
-                        <div class="media m-t-1"><b>Estado:</b> <span>{estado}</span></div>
+                        {provincia}
+                        {localidad}
+                        {beneficiarios}
+                        {estado}
                       </div>
                     </div>
                     <div class="modal-body">
@@ -429,6 +429,30 @@ layout: argentina
               html_tarjetas = templates.tarjeta;
             }
 
+
+            if (obras.provincia == "" || obras.provincia == "-" ){
+              var provincia = '';
+            } else {
+              var provincia = '<div class="media m-t-1"><b>Provincia:</b>' + ' <span>' + obras.provincia + '</span></div>';
+            }
+
+            if (obras.localidad == "" || obras.localidad == "-" ){
+              var localidad = '';
+            } else {
+              var localidad = '<div class="media m-t-1"><b>Localidad:</b>' + ' <span>' + obras.localidad + '</span></div>';
+            }
+
+            if (obras.beneficiarios == "" || obras.beneficiarios == "-" ){
+              var beneficiarios = '';
+            } else {
+              var beneficiarios = '<div class="media m-t-1"><b>Beneficiarios:</b>' + ' <span>' + obras.beneficiarios + '</span></div>';
+            }
+
+            if (obras.estado == "" || obras.estado == "-" ){
+              var estado = '';
+            } else {
+              var estado = '<div class="media m-t-1"><b>Estado:</b>' + ' <span>' + obras.estado + '</span></div>';
+            }                                    
             
             var modal_v = templates.modal_v;
             var modal_im = templates.modal_im;
@@ -445,20 +469,20 @@ layout: argentina
             .replace(/{descripcion}/gi, obras.descripcion)
             .replace(/{video}/gi, obras.video)
             .replace(/{imagen}/gi, obras.imagen)
-            .replace(/{provincia}/gi, obras.provincia)
-            .replace(/{localidad}/gi, obras.localidad)
-            .replace(/{beneficiarios}/gi, obras.beneficiarios)
-            .replace(/{estado}/gi, obras.estado);
+            .replace(/{provincia}/gi, provincia)
+            .replace(/{localidad}/gi, localidad)
+            .replace(/{beneficiarios}/gi, beneficiarios)
+            .replace(/{estado}/gi, estado);
 
             modal_im = modal_im.replace(/{index}/gi, index)
             .replace(/{titulo}/gi, obras.titulo)
             .replace(/{descripcion}/gi, obras.descripcion)
             .replace(/{video}/gi, obras.video)
             .replace(/{imagen}/gi, obras.imagen)
-            .replace(/{provincia}/gi, obras.provincia)
-            .replace(/{localidad}/gi, obras.localidad)
-            .replace(/{beneficiarios}/gi, obras.beneficiarios)
-            .replace(/{estado}/gi, obras.estado);
+            .replace(/{provincia}/gi, provincia)
+            .replace(/{localidad}/gi, localidad)
+            .replace(/{beneficiarios}/gi, beneficiarios)
+            .replace(/{estado}/gi, estado);
 
 
 
