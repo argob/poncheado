@@ -132,7 +132,163 @@ title: Ferias de El mercado en tu barrio
       zoom: 4,
       center: mapCenter,
       scrollwheel: true,
-      streetViewControl: false
+      streetViewControl: false,
+      styles: [
+  {
+    featureType: "landscape.man_made",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "landscape.natural",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "landscape.natural.landcover",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "landscape.natural.terrain",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi",
+    elementType: "labels.text",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.attraction",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.business",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.government",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.medical",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.park",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.place_of_worship",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.school",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "poi.sports_complex",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road",
+    elementType: "labels.icon",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road.arterial",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road.highway",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road.local",
+  stylers: [
+      {
+        visibility: "on"
+      }
+    ]
+  },
+  {
+    featureType: "transit",
+  stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  }
+]
     });
 
     // Show markers loaded from spreadsheet
@@ -174,9 +330,9 @@ title: Ferias de El mercado en tu barrio
             if(Mfecha >= Mhoy){        
 
               if (fecha == hoy){
-                marcador = "img/market_open.png";
+                marcador = "https://www.argentina.gob.ar/sites/default/files/market_open.png";
               }else{
-                marcador = "img/market_close.png";
+                marcador = "https://www.argentina.gob.ar/sites/default/files/market_close.png";
               }
 
             markers[index] = new google.maps.Marker({
@@ -275,6 +431,6 @@ title: Ferias de El mercado en tu barrio
   }
 
 </script>
-<script src="markerclusterer.js"></script>
+<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
 
