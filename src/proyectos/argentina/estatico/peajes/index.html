@@ -143,7 +143,7 @@ $(document).ready(function () {
     selector: '[data-toggle="tooltip"]'
     });
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1/public/values?alt=json', function (data) {
+    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1', function (data) {
         window.tarifas = data.feed.entry;
         showtarifas("todos");
         console.log(data);

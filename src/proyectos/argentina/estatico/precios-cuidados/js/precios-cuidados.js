@@ -1,7 +1,7 @@
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/19UX2u6J8aPsON3jRZajvCD_KRhAJPApp-GW4eiGbjis/1/public/values?alt=json', function (data) {
+    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/19UX2u6J8aPsON3jRZajvCD_KRhAJPApp-GW4eiGbjis/1', function (data) {
         window.products = data.feed.entry;
         showProducts('amba');
         // console.log(data);
