@@ -404,26 +404,6 @@ layout: argentina
 
         render.tarjetas();
 
-        var listOptions = { 
-          valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
-          page: 9,
-          plugins: [ ListPagination({}) ]
-        };
-
-        var obrasList = new List('obras', listOptions);
-
-        $('.no-result').hide();
-
-        obrasList.on('updated', function(list) {
-          if (list.matchingItems.length > 0) {
-            $('.no-result').hide();
-            $('.list').show();
-          } else {
-            $('.no-result').show();
-            $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
-          }
-        })                
-
 
       }
     });
@@ -440,15 +420,14 @@ layout: argentina
 
         $.each(obras, function(index, obras){
 
-          if ( configprovincia == 'Todas' && configobras == 'Todas' || configobras == obras.tipodeobra && configprovincia == obras.provincia || configprovincia == 'Todas' && configobras == obras.tipodeobra ||  configprovincia == obras.provincia && configobras == 'Todas' ) {
 
+          if( (configobras == 'Todas' || obras.tipodeobra.indexOf(configobras) > -1) && (configprovincia == 'Todas' || obras.provincia.indexOf(configprovincia) > -1 ) ) {            
 
             if(obras.destacado){
               html_tarjetas = templates.tarjeta_destacado;
             }else{
               html_tarjetas = templates.tarjeta;
             }
-
 
             
             var modal_v = templates.modal_v;
@@ -514,6 +493,26 @@ layout: argentina
 
 
         });
+
+        var listOptions = { 
+          valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
+          page: 9,
+          plugins: [ ListPagination({}) ]
+        };
+
+        var obrasList = new List('obras', listOptions);
+
+        $('.no-result').hide();
+
+        obrasList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide();
+            $('.list').show();
+          } else {
+            $('.no-result').show();
+            $('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+          }
+        })         
 
       }   
 
