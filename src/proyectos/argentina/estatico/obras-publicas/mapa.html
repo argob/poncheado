@@ -64,13 +64,6 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
 
 
 
-
-
-
-  .bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
-                cursor: move;
-            }
-
 </style>
 
 <header id="map-header">
@@ -90,7 +83,8 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block">
-            <small>Obras del Ministerio del Interior, Obras Públicas y Vivienda</small>
+            <small class="hidden-xs">Obras del Ministerio del Interior, Obras Públicas y Vivienda</small>
+            <small class="hidden-md">Obras Públicas</small>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
@@ -388,7 +382,7 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5">'+ row.gsx$titulo.$t +'</h5><p>' + row.gsx$descripcion.$t + '</p>' + localidad + provincia + beneficiarios + estado + video,
+              content: '<h2 class="h5">'+ row.gsx$titulo.$t +'</h5><small>' + row.gsx$descripcion.$t + '</small>' + localidad + provincia + beneficiarios + estado + video,
               maxWidth: 400
             })
 
