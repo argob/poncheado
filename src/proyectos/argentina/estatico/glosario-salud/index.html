@@ -199,7 +199,7 @@ layout: mi-argentina
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/salud/glosario/encefalitisjaponesa" class="panel panel-default"><div class="panel-body">
-    <h3>Encefalitis japonesa</h3>  </div>
+    <h3>Éncefalitis japonesa</h3>  </div>
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/salud/glosario/encefalitisdesanluis" class="panel panel-default"><div class="panel-body">
@@ -335,15 +335,15 @@ layout: mi-argentina
           };
       }
 
-    jQuery('.search').on("keyup",function(event){
+    jQuery('.filtered-search').on("keyup",function(event){
         event.preventDefault();
-        var valueSearch = jQuery(".search").val();
+        var valueSearch = jQuery(".filtered-search").val();
         saludList.filter(getAccentInsensitiveFilter("titulo", valueSearch));   
     });
 
 	}
 
-	salud.$el.html('<h3 class="text-center m-t-0">¡Buscá por temas de Salud!</h3><div class="row m-b-2"><div class="col-md-8 col-md-offset-2"><div class="form-group m-b-2"><input class="form-control search" placeholder="Filtrá por temas de Salud..."></div></div></div>').append('<div class="row panels-row list" id="listado-salud"></div>');
+	salud.$el.html('<h3 class="text-center m-t-0">¡Buscá por temas de Salud!</h3><div class="row m-b-2"><div class="col-md-8 col-md-offset-2"><div class="form-group m-b-2"><input class="form-control filtered-search" placeholder="Filtrá por temas de Salud..."></div></div></div>').append('<div class="row panels-row list" id="listado-salud"></div>');
 	salud.container = salud.$el.find('.row.list');
 
 	render_devs();
