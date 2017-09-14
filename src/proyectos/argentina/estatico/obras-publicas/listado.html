@@ -47,7 +47,7 @@ layout: argentina
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-          <h2>Obras del Ministerio del Interior</h2>
+          <h2>Obras del Ministerio del interior, obras públicas y vivienda</h2>
           <p>Conocé las obras que mejoran la calidad de vida de todos los argentinos.</p>
         </div>
       </div>
@@ -60,25 +60,10 @@ layout: argentina
   <div class="row">
     <div class="col-xs-12 text-center m-t-3">
 
-<!--
-            <form name="cambiaMuestra">
-              <div class="radio btn-group btn-group-justified" data-toggle="buttons">
-                <label for="mapa" class="btn btn-default active">
-                  <input id="mapa" type="radio" name="mostrar" value="mapa" checked>
-                  Mapa de obras
-                </label>
-                <label for="buscador" class="btn btn-default">
-                  <input id="buscador" type="radio" name="mostrar" value="buscador">
-                  Listado de obras
-                </label>
-              </div> 
-              </form>
--->
 
 
         <div class="btn-group" role="group">
-          <button id="mapa" type="button" class="botones btn btn-primary" onclick="cambiaAlistado()">Mapa de Obras</button>
-          <button id="buscador" type="button" class="botones btn btn-default" onclick="cambiaAmapa()">Listado de Obras</button>
+          <button id="mapa" type="button" class="botones btn btn-primary" href="mapa.html">Mapa de Obras</button>
         </div>
 
 
@@ -90,69 +75,8 @@ layout: argentina
 </div>
 
 <div class="container">
-  <section id="mapaObras">
-    <div class="row">
-      
-      <div class="col-md-12">
-          <!-- <h2 class="text-center m-b-2 h1">Mapa de obras</h2> -->
-          <div id="map" class="m-b-3"></div>
-          
-      </div>
 
-      <div class="col-md-12 m-b-2">
-        <div class="row">
-
-          <div class="col-xs-6 col-md-3 col-md-offset-2">
-            <p><i class="icono-arg-habitat text-success"></i> Hábitat</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-urbanizacion text-danger"></i> Renovación urbana</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-tuberias text-primary"></i> Cloacas</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3 col-md-offset-2">
-            <p><i class="icono-arg-canilla text-primary"></i> Agua potable</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-vivienda text-danger text-success"></i> Vivienda</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-cultura text-success text-success"></i> Cultura</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3 col-md-offset-2">
-            <p><i class="icono-arg-educacion text-success text-success"></i> Educación</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="fa fa-hospital-o text-danger text-success"></i> Salud</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-agua text-primary text-success"></i> Obras para controlar inundaciones</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3 col-md-offset-2">
-            <p><i class="icono-arg-espacio-publico text-success text-success"></i> Espacio público</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <p><i class="icono-arg-institucion text-success text-success"></i> Patrimonio</p>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section id="buscadorObras" class="hidden">
-    <!-- <h2 class="text-center m-b-2 h1">Buscador de obras</h2> -->
+  <section id="buscadorObras">
     <div id="obras">
       <div class="row">
         <div class="col-md-6">    
@@ -350,7 +274,7 @@ layout: argentina
                     </div>
                   </div>
                 </div>
-              </div>`,        
+              </div>`,
       modal_im: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
@@ -515,8 +439,6 @@ layout: argentina
             $('[data-render=tarjetas]').append( html_tarjetas );
      
 
-
-
             if(obras.video){
               $('[data-render=modales]').append( modal_v ); 
             }else if(obras.imagen){
@@ -524,8 +446,6 @@ layout: argentina
             }else{
               $('[data-render=modales]').append( modal_n ); 
             }
-
-
 
 
           }
@@ -579,290 +499,6 @@ layout: argentina
 
 
   })(jQuery);
-
-
-  // MAPA
-
-
-      var map;
-      var marker = [];
-      var image;
-
-      function initMap() {
-
-
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: new google.maps.LatLng(-40.1698743, -62.9550729),
-          styles: [
-  {
-    featureType: "landscape.man_made",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "landscape.natural",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "landscape.natural.landcover",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "landscape.natural.terrain",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi",
-    elementType: "labels.text",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.attraction",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.business",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.government",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.medical",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.park",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.place_of_worship",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.school",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "poi.sports_complex",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "road",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "road",
-    elementType: "labels.icon",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "road.arterial",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "road.highway",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "road.local",
-  stylers: [
-      {
-        visibility: "on"
-      }
-    ]
-  },
-  {
-    featureType: "transit",
-  stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  }
-]
-        });
-
-        google.maps.event.addListenerOnce(map, 'idle', function(){
-
-          for (var i = 0; i < locations.length; i++) {
-
-
-            if (locations[i]["destacado"] == "X"){
-              image = "img/markers/" + locations[i]["markerd"];
-            }else{
-              image = "img/markers/" + locations[i]["marker"];
-            }
-
-
-
-            marker[i] = new google.maps.Marker({
-              position: new google.maps.LatLng(locations[i]["latitud"], locations[i]["longitud"]),
-              map: map,
-              icon: image
-            }, false);
-          }
-
-
-          for (let x = 0; x < marker.length; x++) {
-
-            marker[x].addListener('click', function() {
-              $("#obras-" + x).modal('show');
-            }, false);
-          }
-
-      });
-
-      }
-
-
-
-
-
-  /*
-  
-    // DOM botón
-
-  function cambiaDisplay(){
-
-    var botonCambia = document.getElementById("botonCambia");
-    var mapaObras = document.getElementById("mapaObras");
-    var buscadorObras = document.getElementById("buscadorObras");
-
-    event.preventDefault()
-
-    if (botonCambia.innerHTML == "Buscador de obras"){
-      botonCambia.innerHTML = "Mapa de Obras";
-      mapaObras.classList.add('hidden');
-      buscadorObras.classList.remove('hidden');
-    }else{
-      botonCambia.innerHTML = "Buscador de obras";
-      buscadorObras.classList.add('hidden');
-      mapaObras.classList.remove('hidden');
-    }
-}
-
-*/
-
-  /*
-  // DOM radio
-
-  var radios = document.cambiaMuestra.mostrar;
-    var prev = null;
-    for(var i = 0; i < radios.length; i++) {
-        radios[i].onclick = function() {
-            
-            if(radios[0].checked) {
-              buscadorObras.classList.add('hidden');
-              mapaObras.classList.remove('hidden');
-            }else{
-              mapaObras.classList.add('hidden');
-              buscadorObras.classList.remove('hidden');
-            }
-
-        };
-    }
-
-    */
-
-
-  // DOM botones
-
-  var botones = document.getElementsByClassName("botones");
-  var mapaObras = document.getElementById("mapaObras");
-  var buscadorObras = document.getElementById("buscadorObras");
-
-  function cambiaAlistado(){
-    event.preventDefault();
-    buscadorObras.classList.add('hidden');
-    mapaObras.classList.remove('hidden');
-    botones[0].classList.add('btn-primary');
-    botones[0].classList.remove('btn-default');
-    botones[1].classList.remove('btn-primary');
-    botones[1].classList.add('btn-default');
-  }
-
-  function cambiaAmapa(){
-    event.preventDefault();
-    buscadorObras.classList.remove('hidden');
-    mapaObras.classList.add('hidden');
-    botones[1].classList.add('btn-primary');
-    botones[1].classList.remove('btn-default');
-    botones[0].classList.remove('btn-primary');
-    botones[0].classList.add('btn-default');
-  }
-
- 
 
 
      
