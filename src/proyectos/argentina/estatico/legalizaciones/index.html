@@ -1,0 +1,261 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
+      <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="alert alert-warning m-t-2">
+            <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-warning fa-fw fa-2x"></i>
+              </div>
+              <div class="media-body">
+                <p class="m-b-0" style="text-shadow: none; line-height: 16px;"><small>Esto es una página de prueba. Estamos trabajando la versión final.</small></p>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <form id="wizard-form2">
+
+          <div class="panel panel-default panel-border-gray m-t-2">
+            <div class="panel-body">
+              <h2>Datos</h2>
+            
+              <hr class="m-y-1">
+
+              <div class="media">
+                <div class="media-body media-middle">
+                
+                  <div class="form-group m-t-3">
+                    <label class="control-label">¿Nivel del título?</label>
+                    <div class="form-item form-type-radio">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" name="empleo" value="si" id="trabajoSi" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Secundario y/o terciario</label>
+                        <label class="radio-inline"><input type="radio" name="empleo" value="no" id="trabajoNo" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Universitario</label>
+                      </div>
+                    </div>
+                  </div>
+                   
+                   <div class="form-item form-type-radio hidden" id="tiposTrabajo">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" name="trabajo" value="dependencia" required>Anterior a 01/01/2010</label><br>
+                        <label class="radio-inline"><input type="radio" name="trabajo" value="monotributista" required>Posterior a 01/01/2010</label>
+                      </div>
+                    </div>
+
+                    <div class="form-item form-type-radio hidden" id="tiposNoTrabajo">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" name="notrabajo" value="jubilado" required>Anterior a 01/01/2012</label><br>
+                        <label class="radio-inline"><input type="radio" name="notrabajo" value="desempleado" required>Posterior a 01/01/2012</label>
+                      </div>
+                    </div>
+
+                  <div class="form-group m-t-3">
+                    <label class="control-label">A quién/Dónde presentás</label>
+                    <div class="form-item form-type-radio">
+                      <div class="radio">
+                        <label class="radio-inline"><input type="radio" name="discapacidad" value="si" required>Dentro de Argentina</label>
+                        <label class="radio-inline"><input type="radio" name="discapacidad" value="no" required>Fuera de Argentina</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-t-1">
+            <input class="btn btn-success btn-md" type="submit" value="Ver Resultados">
+          </div>
+        </form>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+
+        <script>
+
+
+          //este codiguito despliega la opción de acuerdo a lo que se le seleccione. hay que pasarle los argumentos.        
+          var d = document;
+          function muestraTrabajo(si, no, opcion1, opcion2){
+
+            var si = d.getElementById(si);
+            var no = d.getElementById(no);
+            var opcion1 = d.getElementById(opcion1);
+            var opcion2 = d.getElementById(opcion2);
+
+            jQuery('input[name=trabajo]').attr('checked',false);
+            jQuery('input[name=notrabajo]').attr('checked',false);
+
+            if (si.checked){
+              opcion1.classList.remove('hidden');
+              opcion2.classList.add('hidden');
+            }
+
+            if (no.checked){
+              opcion2.classList.remove('hidden');
+              opcion1.classList.add('hidden');
+            }
+          }
+
+          function muestraHijo(si, no, opcion1, opcion2){
+
+            var si = d.getElementById(si);
+            var no = d.getElementById(no);
+            var opcion1 = d.getElementById(opcion1);
+            var opcion2 = d.getElementById(opcion2);
+
+            jQuery('input[name=hijo_edad_menor]').attr('checked',false);
+            jQuery('input[name=hijo_edad_mayor]').attr('checked',false);
+            // jQuery('input[name=tenerHijos]').attr('checked',false);
+
+
+
+
+            if (si.checked){
+              opcion1.classList.remove('hidden');
+              opcion2.classList.add('hidden');
+            }
+
+            if (no.checked){
+              opcion2.classList.remove('hidden');
+              opcion1.classList.add('hidden');
+            }
+          }
+
+
+
+          var data;
+
+          // Leo si hay algo guardado
+
+          if(typeof(Storage) !== "undefined") {
+            if( localStorage.getItem("wizard-form2") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("wizard-form2"))
+
+              jQuery.each(data, function(key, item){
+                if(item.name == 'edad'){
+                  jQuery('[name='+ item.name +']').val(item.value);
+
+                }else{
+                  jQuery('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
+
+                  if(item.name == 'empleo' && item.value == 'si'){
+                    muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
+                  }
+                  if(item.name == 'empleo' && item.value == 'no'){
+                    muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
+                  }                  
+                  if(item.name == 'hijos' && item.value == 'si'){
+                    muestraHijo('hijosSi', 'hijosNo', 'edadHijos', 'nada');
+                  }
+                }
+              })
+
+            }
+
+            jQuery.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var wizard_form = jQuery("#wizard-form2");
+            wizard_form.validate({
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || element.is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                } else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if (jQuery(element).is(":radio") || jQuery(element).is(":checkbox")){
+                  jQuery(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  jQuery(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            jQuery('#wizard-form2').on('submit', function(event){
+              event.preventDefault();
+
+              if (wizard_form.valid() ) {
+                data = jQuery(this).serializeArray();
+                localStorage.setItem("wizard-form2", JSON.stringify(data));
+
+
+                var ga_data = jQuery(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                if( localStorage.getItem("wizard-form2") == undefined ){
+                  // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
+                }else{
+                  // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
+                }
+
+                window.location.href = '/tusresultados';
+                // window.location.href = 'tus-resultados.html';
+              }
+            });
+
+          } else {
+            console.log('No tenés soporte :(');
+          } 
+
+
+        </script>
+
+<style type="text/css">
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  padding: 0;
+}  
+
+</style>
+
+      </div>
+    </div>
+  </div>
+</section>
