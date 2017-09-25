@@ -10,17 +10,17 @@ layout: afip_casas_particulares
       <div class="col-sm-8">
 
 		
-		<form action="alta_paso_5_modificacion.html">
+		<form action="alta_paso_2_modificacion.html">
 
 
   		    <h1 class="h2">Datos del trabajador</h1>
-		    <p>Datos de la persona que está trabajando.</p>
+		    <p>Modificá los datos que quieras actualizar.</p>
 		    <hr>
 
 		    <div class="copete">
 <!-- 		    <h3 class="m-b-2">Datos personales del trabajador</h3>
  -->
-				<p>Estás modificando los datos de alta del siguiente trabajador :</p>
+				<h3 class="h4 m-b-3">Estás modificando los datos del siguiente </h3>
 		    	
 		    </div>
 
@@ -88,7 +88,7 @@ layout: afip_casas_particulares
 
 				<div class="form-group">
 		            <label class="control-label" for="input-5">CBU</label>
-		            <input id="input-5" class="form-control" type="number" value="522332 55332 2553" placeholder="">
+		            <input id="input-5" class="form-control" type="number" value="522332553322553" placeholder="">
 		        </div>
 
 				<div class="form-group">
@@ -103,12 +103,681 @@ layout: afip_casas_particulares
 
 			</div>
 				
-		                
+			<h3 class="h4 m-t-4 p-t-3">Domicilio donde vive el trabajador</h3>
+		    <hr>
+
+			<div class="form-group">
+		        <label class="control-label">Dirección *</label>
+		        <p>Podés elegir un domicilio de un trabajador que ya ingresaste o cargar uno nuevo.</p>
+		        <select class="form-control" id="direccionTrabajador" name="">
+		          <option value="0">Seleccioná un domicilio</option>
+                  <option value="1" selected>Av. de Mayo 782. Piso 8. Dpto 4. Ciudad Autónoma de Buenos Aires. Pcia de Buenos Aires</option>
+			    </select>
+			</div>		
+
+			<div class="datos-domicilio-trabajador">
+				<div class="well m-b-3">
+					<div class="form-group">
+						<label>Provincia</label>
+						<p><strong>Pcia de Buenos Aires  </strong></p>
+					</div>
+					<div class="form-group">
+						<label>Localidad</label>
+						<p><strong>Ciudad Autónoma de Buenos Aires</strong></p>
+					</div>
+					<div class="form-group">
+						<label>Código postal</label>
+						<p><strong>1173</strong></p>
+					</div>
+					<div class="form-group">
+						<label>Calle</label>
+						<p><strong>Av. de Mayo</strong></p>
+					</div>	
+
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Número</label>
+							<p><strong>782</strong></p>
+						</div>	
+						<div class="form-group col-md-3">
+							<label>Piso</label>
+							<p><strong>8</strong></p>
+						</div>		
+						<div class="form-group col-md-3">
+							<label>Depto</label>
+							<p><strong>4</strong></p>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Sector</label>
+							<p><strong></strong></p>
+						</div>
+						<div class="form-group col-md-3">
+							<label>Torre</label>
+							<p><strong></strong></p>
+						</div>
+						<div class="form-group col-md-3">
+							<label>Manzana</label>
+							<p><strong></strong></p>
+						</div>																		
+					</div>
+					<div class="form-group">
+						<a href="" class="btn btn-link btn-sm modificar-domicilio">MODIFICAR DOMICILIO</a>
+					</div>																			
+				</div>	
+			</div>
+
+			<div class="formulario-domicilio-trabajador hide">	
+
+				<div class="form-group hide">
+					<p>Recordá que podés usar un domicilio que hayas ingresado anteriormente.</p>
+				    <a class="btn btn-link btn-sm elegir-direccion" href="" >Elegir una dirección que ya ingresé</a>
+				</div>
+
+              <div class="form-group">
+                <label class="control-label" for="">Provincia *</label>
+                <select class="form-control" id="" name="">
+                    <option value="" disabled selected>Elegir Provincia</option>
+                    <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="BSA">Buenos Aires</option>
+                    <option value="CAT">Catamarca</option>
+                    <option value="COR">Córdoba</option>
+                    <option value="CRR">Corrientes</option>
+                    <option value="CHA">Chaco</option>
+                    <option value="CHU">Chubut</option>
+                    <option value="ENT">Entre Ríos</option>
+                    <option value="FOR">Formosa</option>
+                    <option value="JUJ">Jujuy</option>
+                    <option value="PAM">La Pampa</option>
+                    <option value="RIO">La Rioja</option>
+                    <option value="MEN">Mendoza</option>
+                    <option value="MIS">Misiones</option>
+                    <option value="NEU">Neuquén</option>
+                    <option value="RNE">Río Negro</option>
+                    <option value="SAL">Salta</option>
+                    <option value="SJU">San Juan</option>
+                    <option value="SLU">San Luis</option>
+                    <option value="SCR">Santa Cruz</option>
+                    <option value="SFE">Santa Fe</option>
+                    <option value="SDE">Santiago del Estero</option>
+                    <option value="TDF">Tierra del Fuego</option>
+                    <option value="TUC">Tucumán</option>
+                </select>
+
+              </div>
+
+	            <div class="form-group">
+	              <label class="control-label">Localidad *</label>
+	              <select class="form-control">
+	                <option value="" disabled selected>Seleccionar</option>
+	                <option value="1">Ciudad Autónoma de Buenos Aires </option>
+	              </select>
+	            </div>               
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Código postal *</label>
+		            <input id="input-5" class="form-control" type="text" placeholder="">
+		            <div class="media">
+		              <div class="media-left">
+		                <i class="fa fa-info-circle fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <p class="text-muted"><small><a target="_blank" href="https://www.correoargentino.com.ar/formularios/cpa">Consultá el código postal</a></small></p>
+		              </div>
+		            </div> 		            
+		        </div>
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Calle *</label>
+		            <input id="input-5" class="form-control" type="text" placeholder="">
+		        </div>	
+
+
+				<div>
+			        <div>
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Número </label>
+							<input class="form-control" id="" type="number" value="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Piso</label>
+							<input class="form-control" id="" type="number" value="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Depto</label>
+							<input class="form-control" id="" type="text" value="">
+			              </div>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Sector</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Torre</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Manzana</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			            </div>
+			          </div>
+				</div>
+			</div>
+
+			<div class="formulario-modificacion-domicilio-trabajador hide">	
+
+				<div class="form-group">
+					<p>Recordá que podés usar un domicilio que hayas ingresado anteriormente.</p>
+				    <a class="btn btn-link btn-sm elegir-direccion" href="" >Elegir una dirección que ya ingresé</a>
+				</div>
+
+
+              <div class="form-group">
+                <label class="control-label" for="">Provincia *</label>
+                <select class="form-control" id="" name="">
+                    <option value="" disabled>Elegir Provincia</option>
+                    <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="BSA" selected>Buenos Aires</option>
+                    <option value="CAT">Catamarca</option>
+                    <option value="COR">Córdoba</option>
+                    <option value="CRR">Corrientes</option>
+                    <option value="CHA">Chaco</option>
+                    <option value="CHU">Chubut</option>
+                    <option value="ENT">Entre Ríos</option>
+                    <option value="FOR">Formosa</option>
+                    <option value="JUJ">Jujuy</option>
+                    <option value="PAM">La Pampa</option>
+                    <option value="RIO">La Rioja</option>
+                    <option value="MEN">Mendoza</option>
+                    <option value="MIS">Misiones</option>
+                    <option value="NEU">Neuquén</option>
+                    <option value="RNE">Río Negro</option>
+                    <option value="SAL">Salta</option>
+                    <option value="SJU">San Juan</option>
+                    <option value="SLU">San Luis</option>
+                    <option value="SCR">Santa Cruz</option>
+                    <option value="SFE">Santa Fe</option>
+                    <option value="SDE">Santiago del Estero</option>
+                    <option value="TDF">Tierra del Fuego</option>
+                    <option value="TUC">Tucumán</option>
+                </select>
+
+              </div>
+
+	            <div class="form-group">
+	              <label class="control-label">Localidad *</label>
+	              <select class="form-control">
+	                <option value="" disabled selected>Seleccionar</option>
+	                <option value="1">Ciudad Autónoma de Buenos Aires </option>
+	              </select>
+	            </div>               
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Código postal *</label>
+		            <input id="input-5" class="form-control" type="text" value="1173" placeholder="">
+		            <div class="media">
+		              <div class="media-left">
+		                <i class="fa fa-info-circle fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <p class="text-muted"><small><a target="_blank" href="https://www.correoargentino.com.ar/formularios/cpa">Consultá el código postal</a></small></p>
+		              </div>
+		            </div> 		            
+		        </div>
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Calle *</label>
+		            <input id="input-5" class="form-control" value="Av. de Mayo" type="text" placeholder="">
+		        </div>	
+
+
+				<div>
+			        <div>
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Número </label>
+							<input class="form-control" id="" type="number" value="782">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Piso</label>
+							<input class="form-control" id="" type="number" value="8">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Depto</label>
+							<input class="form-control" id="" type="text" value="4">
+			              </div>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Sector</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Torre</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Manzana</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			            </div>
+			          </div>
+				</div>
+
+
+			</div>			
+
+			<div class="form-group">
+				<a class="btn btn-link btn-sm cargar-nuevo" href="" >Nuevo domicilio del trabajador</a>
+			</div>
+
+			
+		           
+
+
+
+
+
+
+		    <h3 class="h4 m-t-4 p-t-3">Datos del trabajo a realizar</h3>
+		    <hr>
+
+			<div class="formulario-datos-trabajo">	
+
+			<div class="form-group">
+		        <label class="control-label">Tipo de trabajo (categoría)  *</label>
+		        <select class="form-control" id="tipoTrabajo" name="">
+		          <option value="0"></option>
+                  <option value="1" selected>Personal para tareas generales  </option>
+			    </select>
+			</div>	
+
+              <div class="form-group">
+                <label class="control-label" for="">Horas semanales *</label>
+                <select class="form-control" id="" name="">
+                    <option value="" disabled></option>
+                    <option value="1" selected>Menos de 12 horas </option>
+                </select>
+
+              </div>
+
+              <div class="row">
+				<div class="form-group col-md-6">
+		            <label class="control-label" for="input-5">Remuneración pactada</label>
+					<div class="input-group">
+					  <span class="input-group-addon" id="importe-pesos">$</span>
+					  <input type="number" value="1000" class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
+					</div>
+		        </div>	
+				<div class="form-group col-md-6">
+		            <label class="control-label" for="input-5">Modalidad de pago</label>
+	                <select class="form-control" id="" name="">
+	                    <option value="" disabled></option>
+	                    <option value="1" selected>Mensual   </option>
+	                    <option value="2">Semanal </option>
+	                </select>
+		        </div>
+		        <div class="col-md-12">
+		            <div class="media m-t-0 m-b-3">
+		              <div class="media-left">
+		                <i class="fa fa-info-circle fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <p class="text-muted"><small><a href="https://www.argentina.gob.ar/casasparticulares/sueldo" target="_blank">Categorías profesionales y la escalas salariales</a></small></p>
+		              </div>
+		            </div> 		        	
+		        </div>
+
+              </div>
+
+
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Modalidad de trabajo  *</label>
+	                <select class="form-control" id="" name="">
+	                    <option value="" disabled></option>
+	                    <option value="1" selected>Trabaja sólo para mi y vive en mi casa (sin retiro para un mismo empleador)   </option>
+	                    <option value="2">Trabaja solo para mi pero no vive en mi casa (con retiro para el mismo y único empleador) </option>
+	                    <option value="3">Trabaja para mi y para otros empleadores (con retiro para distintos empleadores)</option>
+	                </select>
+		        </div>			        
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Fecha de ingreso *</label>
+						<div class="input-group date">
+							<span class="input-group-addon">
+								<span class="fa fa-calendar"></span>
+							</span>
+							<input type="text" value="09-02-2017" class="form-control">
+						</div>
+		        </div>	
+
+				<div class="form-group">
+				  <label class="control-label">El trabajo, ¿es por un tiempo determinado? </label>
+		          <div class="radio">
+		            <label>
+		              <input type="radio" name="empleoPreestablecido" value="no">No
+		            </label>
+		          </div>
+		          <div class="radio">
+		            <label>
+		              <input type="radio" name="empleoPreestablecido" value="si" data-toogle-collapse="#collapse-finalizacion" checked>Sí
+		            </label>
+		          </div>
+		        </div>		        
+
+				<div class="collapse in" id="collapse-finalizacion">
+					<div class="form-group">
+						<label class="control-label">Fecha de finalización del trabajo</label>
+						<h6 class="text-muted">2017-09-02</h6>
+			            <div class="media">
+			              <div class="media-left">
+			                <i class="fa fa-info-circle fa-fw text-muted"></i>
+			              </div>
+			              <div class="media-body">
+			                <p class="text-muted"><small>Recordá que se dará de baja automáticamente al empleado en la fecha que ingreses.</small></p>
+			              </div>
+			            </div>		            
+			        </div>
+				</div>
+	
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Fecha de modificación </label>
+						<div class="input-group date">
+							<span class="input-group-addon">
+								<span class="fa fa-calendar"></span>
+							</span>
+							<input type="text" value="13/09/2017" class="form-control">
+						</div>
+		        </div>	
+
+
+			</div>
+
+			<h3 class="h4 m-t-4 p-t-3">Domicilio donde trabaja el empleado</h3>
+		    <hr>
+
+			<div class="form-group">
+		        <label class="control-label">Dirección laboral *</label>
+		        <p>Podés elegir un domicilio laboral de un trabajador que ya ingresaste o cargar uno nuevo.</p>
+		        <select class="form-control" id="direccionLaboral" name="">
+		          <option value="0">Seleccioná un domicilio</option>
+                  <option value="1" selected>Av. de Mayo 782. Piso 8. Dpto 4. Ciudad Autónoma de Buenos Aires</option>
+			    </select>
+			</div>		
+
+			<div class="datos-domicilio-laboral-trabajador">
+				<div class="well m-b-3">
+					<div class="form-group">
+						<label>Provincia</label>
+						<p><strong>Pcia de Buenos Aires  </strong></p>
+					</div>
+					<div class="form-group">
+						<label>Localidad</label>
+						<p><strong>Ciudad Autónoma de Buenos Aires</strong></p>
+					</div>
+					<div class="form-group">
+						<label>Código postal</label>
+						<p><strong>1173</strong></p>
+					</div>
+					<div class="form-group">
+						<label>Calle</label>
+						<p><strong>Av. de Mayo</strong></p>
+					</div>	
+
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Número</label>
+							<p><strong>782</strong></p>
+						</div>	
+						<div class="form-group col-md-3">
+							<label>Piso</label>
+							<p><strong>8</strong></p>
+						</div>		
+						<div class="form-group col-md-3">
+							<label>Depto</label>
+							<p><strong>4</strong></p>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Sector</label>
+							<p><strong></strong></p>
+						</div>
+						<div class="form-group col-md-3">
+							<label>Torre</label>
+							<p><strong></strong></p>
+						</div>
+						<div class="form-group col-md-3">
+							<label>Manzana</label>
+							<p><strong></strong></p>
+						</div>																		
+					</div>
+					<div class="form-group">
+						<a href="" class="btn btn-link btn-sm modificar-domicilio-laboral">MODIFICAR DOMICILIO</a>
+					</div>																		
+				</div>	
+			</div>
+
+			<div class="formulario-domicilio-laboral-trabajador hide">	
+
+				<div class="form-group hide">
+					<p>Recordá que podés usar un domicilio que hayas ingresado anteriormente.</p>
+				    <a class="btn btn-link btn-sm elegir-direccion-laboral" href="" >Elegir una dirección que ya ingresé</a>
+				</div>
+
+              <div class="form-group">
+                <label class="control-label" for="">Provincia *</label>
+                <select class="form-control" id="" name="">
+                    <option value="" disabled selected>Elegir Provincia</option>
+                    <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="BSA">Buenos Aires</option>
+                    <option value="CAT">Catamarca</option>
+                    <option value="COR">Córdoba</option>
+                    <option value="CRR">Corrientes</option>
+                    <option value="CHA">Chaco</option>
+                    <option value="CHU">Chubut</option>
+                    <option value="ENT">Entre Ríos</option>
+                    <option value="FOR">Formosa</option>
+                    <option value="JUJ">Jujuy</option>
+                    <option value="PAM">La Pampa</option>
+                    <option value="RIO">La Rioja</option>
+                    <option value="MEN">Mendoza</option>
+                    <option value="MIS">Misiones</option>
+                    <option value="NEU">Neuquén</option>
+                    <option value="RNE">Río Negro</option>
+                    <option value="SAL">Salta</option>
+                    <option value="SJU">San Juan</option>
+                    <option value="SLU">San Luis</option>
+                    <option value="SCR">Santa Cruz</option>
+                    <option value="SFE">Santa Fe</option>
+                    <option value="SDE">Santiago del Estero</option>
+                    <option value="TDF">Tierra del Fuego</option>
+                    <option value="TUC">Tucumán</option>
+                </select>
+
+              </div>
+
+	            <div class="form-group">
+	              <label class="control-label">Localidad *</label>
+	              <select class="form-control">
+	                <option value="" disabled selected>Seleccionar</option>
+	                <option value="1">Ciudad Autónoma de Buenos Aires </option>
+	              </select>
+	            </div>               
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Código postal *</label>
+		            <input id="input-5" class="form-control" type="text" placeholder="">
+		            <div class="media">
+		              <div class="media-left">
+		                <i class="fa fa-info-circle fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <p class="text-muted"><small><a target="_blank" href="https://www.correoargentino.com.ar/formularios/cpa">Consultá el código postal</a></small></p>
+		              </div>
+		            </div> 		            
+		        </div>
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Calle *</label>
+		            <input id="input-5" class="form-control" type="text" placeholder="">
+		        </div>	
+
+
+				<div>
+			        <div>
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Número </label>
+							<input class="form-control" id="" type="number" value="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Piso</label>
+							<input class="form-control" id="" type="number" value="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Depto</label>
+							<input class="form-control" id="" type="text" value="">
+			              </div>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Sector</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Torre</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Manzana</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			            </div>
+			          </div>
+				</div>
+			</div>
+
+			<div class="formulario-modificacion-domicilio-laboral-trabajador hide">	
+
+              <div class="form-group">
+                <label class="control-label" for="">Provincia *</label>
+                <select class="form-control" id="" name="">
+                    <option value="" disabled>Elegir Provincia</option>
+                    <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="BSA" selected>Buenos Aires</option>
+                    <option value="CAT">Catamarca</option>
+                    <option value="COR">Córdoba</option>
+                    <option value="CRR">Corrientes</option>
+                    <option value="CHA">Chaco</option>
+                    <option value="CHU">Chubut</option>
+                    <option value="ENT">Entre Ríos</option>
+                    <option value="FOR">Formosa</option>
+                    <option value="JUJ">Jujuy</option>
+                    <option value="PAM">La Pampa</option>
+                    <option value="RIO">La Rioja</option>
+                    <option value="MEN">Mendoza</option>
+                    <option value="MIS">Misiones</option>
+                    <option value="NEU">Neuquén</option>
+                    <option value="RNE">Río Negro</option>
+                    <option value="SAL">Salta</option>
+                    <option value="SJU">San Juan</option>
+                    <option value="SLU">San Luis</option>
+                    <option value="SCR">Santa Cruz</option>
+                    <option value="SFE">Santa Fe</option>
+                    <option value="SDE">Santiago del Estero</option>
+                    <option value="TDF">Tierra del Fuego</option>
+                    <option value="TUC">Tucumán</option>
+                </select>
+
+              </div>
+
+	            <div class="form-group">
+	              <label class="control-label">Localidad *</label>
+	              <select class="form-control">
+	                <option value="" disabled selected>Seleccionar</option>
+	                <option value="1">Ciudad Autónoma de Buenos Aires </option>
+	              </select>
+	            </div>               
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Código postal *</label>
+		            <input id="input-5" class="form-control" type="text" value="1173" placeholder="">
+		            <div class="media">
+		              <div class="media-left">
+		                <i class="fa fa-info-circle fa-fw text-muted"></i>
+		              </div>
+		              <div class="media-body">
+		                <p class="text-muted"><small><a href="">Consultá tu código postal</a></small></p>
+		              </div>
+		            </div> 		            
+		        </div>
+
+				<div class="form-group">
+		            <label class="control-label" for="input-5">Calle *</label>
+		            <input id="input-5" class="form-control" value="Av. de Mayo" type="text" placeholder="">
+		        </div>	
+
+
+				<div>
+			        <div>
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Número </label>
+							<input class="form-control" id="" type="number" value="782">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Piso</label>
+							<input class="form-control" id="" type="number" value="8">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Depto</label>
+							<input class="form-control" id="" type="text" value="4">
+			              </div>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <div class="row">
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Sector</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Torre</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			              <div class="form-group col-md-4">
+			                <label class="control-label" for="input-5">Manzana</label>
+			                <input id="input-5" class="form-control" type="text" placeholder="">
+			              </div>
+			            </div>
+			          </div>
+				</div>
+
+			</div>			
+
+			<div class="form-group">
+				<a class="btn btn-link btn-sm cargar-nuevo-laboral" href="" >Nuevo domicilio laboral</a>
+			</div>
+
+
+
 			<hr class="m-t-3">
 
 			<div class="form-group">
-				<button type="submit" class="btn btn-success siguiente disabled m-r-1">Aceptar</button>			   
-			    <a href="dashboard.html" class="btn btn-link cancel">Cancelar</a>
+			    <a href="dashboard.html" class="btn btn-link cancel">CANCELAR</a>
+				<button type="submit" class="btn btn-success siguiente disabled m-r-1">CONFIRMAR MODIFICACION</button>			   
 			</div>
 
 				        	        	                
@@ -117,7 +786,37 @@ layout: afip_casas_particulares
       </div>
     </div>  
   </section>
-</div>      
+</div>   }
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script>
+$('.date').datepicker({language: 'es'});	
+</script>	
+
+<script>
+jQuery(document).ready(function($){
+  $(".formulario-datos-trabajo").click(function() {
+       $(".siguiente").removeClass("disabled");
+  });
+}); 
+
+$('[data-toogle-collapse]').each(function(key,item){
+  var value = $(item).val();
+  var target = $(item).data('toogle-collapse');
+  $('input[name='+ $(item).attr('name') +']').on('change', function(){
+    if($(this).val() == value){
+      $(target).collapse('show');
+    }else{
+      $(target).collapse('hide');
+    }
+  });
+});
+</script>   
+
 
 <script type="text/javascript">
   $(".cancel").click(function() {
@@ -125,3 +824,86 @@ layout: afip_casas_particulares
   });
  	  	
 </script>
+
+<script>
+jQuery(document).ready(function($){
+  $(".cargar-nuevo").click(function(event) {
+  	   event.preventDefault();
+  	   $(this).parent().addClass("hide");
+       $(".formulario-domicilio-trabajador").removeClass("hide");
+       $(".elegir-direccion").parent().removeClass("hide");
+       $("#direccionTrabajador").parent().addClass("hide");
+       $('.datos-domicilio-trabajador').addClass('hide');
+       $(".formulario-modificacion-domicilio-trabajador").addClass('hide');
+       $(".siguiente").removeClass("disabled");
+  });
+  $(".elegir-direccion").click(function(event) {
+  	   event.preventDefault();
+  	   $(this).parent().addClass("hide");
+  	   $(".cargar-nuevo").parent().removeClass("hide");
+  	   $("#direccionTrabajador").parent().removeClass("hide");
+  	   $(".formulario-domicilio-trabajador").addClass("hide");
+  	   $(".formulario-modificacion-domicilio-trabajador").addClass("hide");
+  }); 
+  $(".modificar-domicilio").click(function(event) {
+  	   event.preventDefault();
+  	   $(".cargar-nuevo").parent().addClass("hide");
+  	   $('.datos-domicilio-trabajador').addClass('hide');
+  	   $('#direccionTrabajador').parent().addClass('hide');
+       $(".formulario-modificacion-domicilio-trabajador").removeClass("hide");
+  });      	
+	$("#direccionTrabajador").change(function(){
+	     if ($(this).val()=="0" ){
+			  $('.datos-domicilio-trabajador').addClass('hide');
+			  $(".siguiente").addClass("disabled");	     	
+	      }	
+	     else{
+			  $('.datos-domicilio-trabajador').removeClass('hide');
+			  $(".siguiente").removeClass("disabled");	     	
+		 }	      	
+	    
+	})
+}); 
+</script>	
+
+<script>
+jQuery(document).ready(function($){
+  $(".cargar-nuevo-laboral").click(function(event) {
+  	   event.preventDefault();
+  	   $(this).parent().addClass("hide");
+       $(".formulario-domicilio-laboral-trabajador").removeClass("hide");
+       $(".elegir-direccion-laboral").parent().removeClass("hide");
+       $("#direccionLaboral").parent().addClass("hide");
+       $('.datos-domicilio-laboral-trabajador').addClass('hide');
+       $(".formulario-modificacion-domicilio-laboral-trabajador").addClass('hide');
+       $(".siguiente").removeClass("disabled");
+  });
+  $(".elegir-direccion-laboral").click(function(event) {
+  	   event.preventDefault();
+  	   $(this).parent().addClass("hide");
+  	   $(".cargar-nuevo-laboral").parent().removeClass("hide");
+  	   $("#direccionLaboral").parent().removeClass("hide");
+  	   $(".formulario-domicilio-laboral-trabajador").addClass("hide");
+  	   $(".formulario-modificacion-domicilio-laboral-trabajador").addClass("hide");  	   
+  }); 
+  $(".modificar-domicilio-laboral").click(function(event) {
+  	   event.preventDefault();
+  	   $(".cargar-nuevo-laboral").parent().addClass("hide");
+  	   $('.datos-domicilio-laboral-trabajador').addClass('hide');
+  	   $('#direccionLaboral').parent().addClass('hide');
+       $(".formulario-modificacion-domicilio-laboral-trabajador").removeClass("hide");
+       $(".formulario-domicilio-laboral-trabajador").removeClass("hide");
+  });      	
+	$("#direccionLaboral").change(function(){
+	     if ($(this).val()=="0" ){
+			  $('.datos-domicilio-laboral-trabajador').addClass('hide');
+			  $(".siguiente").addClass("disabled");	     	
+	      }	
+	     else{
+			  $('.datos-domicilio-laboral-trabajador').removeClass('hide');
+			  $(".siguiente").removeClass("disabled");	     	
+		 }	      	
+	    
+	})
+}); 
+</script>	
