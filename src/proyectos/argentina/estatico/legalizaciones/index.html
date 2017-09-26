@@ -63,23 +63,23 @@ layout: argentina
                     <label class="control-label">¿Nivel del título?</label>
                     <div class="form-item form-type-radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="empleo" value="si" id="trabajoSi" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Secundario y/o terciario</label>
-                        <label class="radio-inline"><input type="radio" name="empleo" value="no" id="trabajoNo" required onclick="muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');">Universitario</label>
+                        <label class="radio-inline"><input type="radio" name="nivelTitulo" value="secundario" id="tituloSi" required onclick="muestraTitulo('tituloSi', 'tituloNo', 'tiposTitulo', 'tiposNoTitulo');">Secundario y/o terciario</label>
+                        <label class="radio-inline"><input type="radio" name="nivelTitulo" value="universitario" id="tituloNo" required onclick="muestraTitulo('tituloSi', 'tituloNo', 'tiposTitulo', 'tiposNoTitulo');">Universitario</label>
                       </div>
                     </div>
                   </div>
                    
-                   <div class="form-item form-type-radio hidden" id="tiposTrabajo">
+                   <div class="form-item form-type-radio hidden" id="tiposTitulo">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="trabajo" value="dependencia" required>Anterior a 01/01/2010</label><br>
-                        <label class="radio-inline"><input type="radio" name="trabajo" value="monotributista" required>Posterior a 01/01/2010</label>
+                        <label class="radio-inline"><input type="radio" name="anterior2010" value="si" required>Anterior a 01/01/2010</label><br>
+                        <label class="radio-inline"><input type="radio" name="anterior2010" value="no" required>Posterior a 01/01/2010</label>
                       </div>
                     </div>
 
-                    <div class="form-item form-type-radio hidden" id="tiposNoTrabajo">
+                    <div class="form-item form-type-radio hidden" id="tiposNoTitulo">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="notrabajo" value="jubilado" required>Anterior a 01/01/2012</label><br>
-                        <label class="radio-inline"><input type="radio" name="notrabajo" value="desempleado" required>Posterior a 01/01/2012</label>
+                        <label class="radio-inline"><input type="radio" name="anterior2012" value="si" required>Anterior a 01/01/2012</label><br>
+                        <label class="radio-inline"><input type="radio" name="anterior2012" value="no" required>Posterior a 01/01/2012</label>
                       </div>
                     </div>
 
@@ -87,8 +87,8 @@ layout: argentina
                     <label class="control-label">A quién/Dónde presentás</label>
                     <div class="form-item form-type-radio">
                       <div class="radio">
-                        <label class="radio-inline"><input type="radio" name="discapacidad" value="si" required>Dentro de Argentina</label>
-                        <label class="radio-inline"><input type="radio" name="discapacidad" value="no" required>Fuera de Argentina</label>
+                        <label class="radio-inline"><input type="radio" name="presentarArgentina" value="si" required>Dentro de Argentina</label>
+                        <label class="radio-inline"><input type="radio" name="presentarArgentina" value="no" required>Fuera de Argentina</label>
                       </div>
                     </div>
                   </div>
@@ -113,15 +113,15 @@ layout: argentina
 
           //este codiguito despliega la opción de acuerdo a lo que se le seleccione. hay que pasarle los argumentos.        
           var d = document;
-          function muestraTrabajo(si, no, opcion1, opcion2){
+          function muestraTitulo(si, no, opcion1, opcion2){
 
             var si = d.getElementById(si);
             var no = d.getElementById(no);
             var opcion1 = d.getElementById(opcion1);
             var opcion2 = d.getElementById(opcion2);
 
-            jQuery('input[name=trabajo]').attr('checked',false);
-            jQuery('input[name=notrabajo]').attr('checked',false);
+            jQuery('input[name=anterior2010]').attr('checked',false);
+            jQuery('input[name=anterior2012]').attr('checked',false);
 
             if (si.checked){
               opcion1.classList.remove('hidden');
@@ -133,32 +133,6 @@ layout: argentina
               opcion1.classList.add('hidden');
             }
           }
-
-          function muestraHijo(si, no, opcion1, opcion2){
-
-            var si = d.getElementById(si);
-            var no = d.getElementById(no);
-            var opcion1 = d.getElementById(opcion1);
-            var opcion2 = d.getElementById(opcion2);
-
-            jQuery('input[name=hijo_edad_menor]').attr('checked',false);
-            jQuery('input[name=hijo_edad_mayor]').attr('checked',false);
-            // jQuery('input[name=tenerHijos]').attr('checked',false);
-
-
-
-
-            if (si.checked){
-              opcion1.classList.remove('hidden');
-              opcion2.classList.add('hidden');
-            }
-
-            if (no.checked){
-              opcion2.classList.remove('hidden');
-              opcion1.classList.add('hidden');
-            }
-          }
-
 
 
           var data;
@@ -177,14 +151,11 @@ layout: argentina
                 }else{
                   jQuery('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
 
-                  if(item.name == 'empleo' && item.value == 'si'){
-                    muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
+                  if(item.name == 'nivelTitulo' && item.value == 'secundario'){
+                    muestraTitulo('tituloSi', 'tituloNo', 'tiposTitulo', 'tiposNoTitulo');
                   }
-                  if(item.name == 'empleo' && item.value == 'no'){
-                    muestraTrabajo('trabajoSi', 'trabajoNo', 'tiposTrabajo', 'tiposNoTrabajo');
-                  }                  
-                  if(item.name == 'hijos' && item.value == 'si'){
-                    muestraHijo('hijosSi', 'hijosNo', 'edadHijos', 'nada');
+                  if(item.name == 'nivelTitulo' && item.value == 'universitario'){
+                    muestraTitulo('tituloSi', 'tituloNo', 'tiposTitulo', 'tiposNoTitulo');
                   }
                 }
               })

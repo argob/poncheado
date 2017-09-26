@@ -71,1428 +71,158 @@ layout: argentina
 
 var categories = [
   {
-   name:"Personas con discapacidad",
-   urlCategory: 'https://www.argentina.gob.ar/discapacidad',   
-   iconCategory: 'fa-wheelchair',
+   name:"Legalizaciones",
+   iconCategory: 'fa-graduation-cap',
    contents:[
         {
-          name: 'Beneficios para personas con discapacidad',
-          corto: 'discapacidad_beneficios',
-          description: 'Conocé tus derechos, beneficios y asignaciones.',
-          url: 'https://www.argentina.gob.ar/discapacidad',
-          icon: 'fa-wheelchair',
-          nacionalidad: 'todas',
-          conditions: {
-            discapaciodad: 'si',
-            discapacidad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Certificado Único de Discapacidad (CUD)',
-          corto: 'discapacidad_cud',
-          description: 'Tramitá el CUD para acceder a beneficios y asignaciones familiares.',
-          url: 'https://www.argentina.gob.ar/solicitar-el-certificado-unico-de-discapacidad-cud',
-          icon: 'fa-wheelchair',
-          nacionalidad: 'todas',
-          conditions: {
-            discapaciodad: 'si',
-            discapacidad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Tarifa Social en los Servicios Públicos',
-          corto: 'soyjubilado_tarifasocial',
-          description: 'Tramitala para agua (en CABA y alrededores) y gas y electricidad (en todo el país).',
-          url: 'https://www.argentina.gob.ar/tarifasocial',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
+          name: 'Secundario y/o Terciario - Antes de 2010 - Argentina',
+          corto: 'Secundario y/o Terciario - Antes de 2010 - Argentina',
+          description: 'Esto son los requisitos para: Secundario y/o Terciario - Antes de 2010 - Argentina',
+          url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+          descriptionUrl: 'Legalización Interior',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                empleo: 'no',
-                discapacidad: 'si'
-              },
-              {
-                empleo: 'no',
-                discapacidad_acargo: 'si'
-              },
-              {
-                discapacidad: 'si'
-              },
-              {
-                discapacidad_acargo: 'si'
+                nivelTitulo: 'secundario',
+                anterior2010: 'si',
+                presentarArgentina: 'si'
               }
             ]
-          }          
-        }
-
-   ]
- },
- {
-   name:"Tener un hijo",
-   iconCategory: 'icono-arg-tener-un-hijo',   
-   urlCategory: 'https://www.argentina.gob.ar/tema/tenerunhijo',
-   contents:[
-        {
-          name: 'Asignación prenatal',
-          corto: 'dependencia_prenatal',
-          description: 'Durante el embarazo, podés recibir el pago mensual de la asignación.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              }
-            ],            
-            // hijos: 'si',
-            // hijo_edad_menor: 'si',
-            tenerHijos: 'si'
-          }
+          }            
         },
         {
-          name: 'Asignación por maternidad',
-          corto: 'dependencia_maternidad',
-          description: 'Si estás embarazada, podés iniciar la licencia por maternidad.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
+          name: 'Secundario y/o Terciario - Antes de 2010 - Exterior',
+          corto: 'Secundario y/o Terciario - Antes de 2010 - Exterior',
+          description: 'Esto son los requisitos para: Secundario y/o Terciario - Antes de 2010 - Exterior',
+          url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+          descriptionUrl: 'Legalización Interior',
+          urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+          descriptionUrlApostillar: 'Apostillar',          
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              }
-            ],            
-            // hijos: 'si',
-            // hijo_edad_menor: 'si',
-            tenerHijos: 'si'
-          }
-        },
-        // {
-        //   name: 'Solicitar Asignación Familiar por hijo o hija con discapacidad',
-        //   corto: 'soyjubilado_solicitarasignacion',
-        //   description: 'Tramitala por cada hijo menor de 18 años o con alguna discapacidad. ',
-        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-        //   icon: 'icono-arg-jubilado',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     discapaciodad: 'si',
-        //     discapacidad_acargo: 'si'
-        //   }
-        // },
-        // {
-        //   name: 'Asignación Familiar por hijo o hija con discapacidad',
-        //   corto: 'monotributo_hijodiscapacidad',
-        //   description: 'Tramitala por cada hijo menor de 18 años o con alguna discapacidad. ',
-        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-        //   icon: 'icono-arg-factura',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     discapaciodad: 'si',
-        //     discapacidad_acargo: 'si'
-        //   }
-        // },
-
-        {
-          name: 'Asignación Familiar por hijo o hija con discapacidad',
-          corto: 'dependencia_hijodiscapacidad',
-          description: 'Tramitala por cada hijo menor de 18 años o con alguna discapacidad. ',
-          url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                discapacidad: 'si'
-              },
-              {
-                hijos: 'si',
-                discapacidad_acargo: 'si'
-              }
-            ]          
-          }
-        },
-        {
-          name: 'Asignación Familiar por Nacimiento o Adopción',
-          corto: 'dependencia_nacimiento',
-          description: 'Si nació tu bebé o adoptaste podés solicitar el pago de la asignación por única vez.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              }
-            ],            
-            // hijos: 'si',
-            // hijo_edad_menor: 'si',
-            tenerHijos: 'si'
-          }
-        },
-        // {
-        //   name: 'Asignación prenatal',
-        //   corto: 'monotributo_prenatal',
-        //   description: 'Durante el embarazo, podés recibir el pago mensual de la asignación.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-por-prenatal',
-        //   icon: 'icono-arg-factura',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     hijos: 'si',
-        //     hijo_edad_menor: 'si',
-        //     tenerHijos: 'si'
-        //   }
-        // },
-        {
-          name: 'Asignación universal por embarazo',
-          corto: 'particulares_embarazo',
-          description: 'Te cubre desde el tercer mes hasta la fecha de parto o el momento de interrupción del embarazo.',
-          url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                notrabajo: 'desempleado'                 
-              },
-              {
-                tenerHijos: 'si',
-                notrabajo: 'desempleado' 
-              },
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                trabajo: 'monotributista'                 
-              },
-              {
-                tenerHijos: 'si',
-                trabajo: 'monotributista' 
-              },    
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                trabajo: 'autonomo'                 
-              },
-              {
-                tenerHijos: 'si',
-                trabajo: 'autonomo' 
-              }, 
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                trabajo: 'particulares'                 
-              },
-              {
-                tenerHijos: 'si',
-                trabajo: 'particulares' 
-              },  
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si',
-                trabajo: 'informal'                 
-              },
-              {
-                tenerHijos: 'si',
-                trabajo: 'informal' 
-              }                                                   
-            ]  
-            // empleo: 'no',
-            // notrabajo: 'desempleado',                      
-            // trabajo: 'monotributo',                      
-            // trabajo: 'autonomo',                      
-            // trabajo: 'particulares',  
-            // trabajo: 'informal'
-            // hijos: 'si',
-            // hijo_edad_menor: 'si',
-            // tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Asignación Universal por Hijo para Protección Social',
-          corto: 'particulares_asignacionhijos',
-          description: 'Podés solicitarla por cada hijo menor de 18 años y hasta un máximo de 5 hijos.',
-          url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              }
-            ],            
-            // empleo: 'no',
-            // notrabajo: 'desempleado',
-            tenerHijos: 'si'
-          }
-
-        },
-        // {
-        //   name: 'Solicitar Licencia por maternidad',
-        //   corto: 'particulares_maternidad',
-        //   description: 'Si estás embarazada, podés iniciar la licencia por maternidad.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
-        //   icon: 'fa-female',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     hijos: 'si',
-        //     hijo_edad_menor: 'si',
-        //     tenerHijos: 'si'
-        //   }          
-        // },
-        // {
-        //   name: 'Asignación universal por embarazo',
-        //   corto: 'hijo_asignacion_embarazo',
-        //   description: 'Te cubre desde el tercer mes hasta la fecha de parto o el momento de interrupción del embarazo.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     empleo: 'no',         
-        //     notrabajo: 'desempleado',
-        //     hijos: 'si',
-        //     hijo_edad_menor: 'si',
-        //     tenerHijos: 'si'
-        //   }          
-        // },
-        // {
-        //   name: 'Solicitar Licencia por maternidad',
-        //   corto: 'hijo_licencia',
-        //   description: 'Si estás embarazada, podés iniciar la licencia por maternidad.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-licencia-por-maternidad-o-maternidad-down',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     hijos: 'si',
-        //     hijo_edad_menor: 'si',
-        //     tenerHijos: 'si'
-        //   }          
-        // },
-        // {
-        //   name: 'Asignación Familiar por Nacimiento o Adopción',
-        //   corto: 'hijo_asignacion_nacimiento',
-        //   description: 'Si nació tu bebé o adoptaste podés solicitar el pago de la asignación por única vez.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-familiar-por-nacimiento-o-adopcion',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     hijos: 'hijos',
-        //     tenerHijos: 'si'
-        //   }          
-        // },
-        // {
-        //   name: 'Asignación Universal por Hijo para Protección Social',
-        //   corto: 'hijo_asignacion_proteccion',
-        //   description: 'Podés solicitarla por cada hijo menor de 18 años y hasta un máximo de 5 hijos.',
-        //   url: 'https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     empleo: 'no',    
-        //     notrabajo: 'desempleado',
-        //     hijos: 'si',
-        //     hijo_edad_menor: 'si',
-        //     tenerHijos: 'si'
-        //   }          
-        // },
-        // {
-        //   name: 'Asignación Familiar por hijo o hija con discapacidad',
-        //   corto: 'hijo_asignacion_discapacidad',
-        //   description: 'Tramitala por cada hijo menor de 18 años o con alguna discapacidad. ',
-        //   url: 'https://www.argentina.gob.ar/solicitar-asignacion-familiar-por-hijo-con-discapacidad',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     discapaciodad: 'si',
-        //     discapacidad_acargo: 'si'
-        //   }
-        // },
-        {
-          name: 'Pensión no contributiva a madre de 7 o más hijos',
-          corto: 'hijo_pension7',
-          description: 'Si tenés 7 o más hijos y estás en situación de vulnerabilidad económica podés solicitarla.',
-          url: 'https://www.argentina.gob.ar/pension-no-contributiva-madre-de-7-o-mas-hijos',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',
-                notrabajo: 'desempleado',
-                hijos: 'si'
+                nivelTitulo: 'secundario',
+                anterior2010: 'si',
+                presentarArgentina: 'no'
               }
             ]
-          }          
-        },
-        // {
-        //   name: 'Vacunas para bebés',
-        //   corto: 'hijo_vacunas_bebe',
-        //   description: 'Conocé las vacunas que se aplican durante el primer año de vida.',
-        //   url: 'https://www.argentina.gob.ar/vacunas/bebes',
-        //   icon: 'fa-child',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     and: [
-        //       {
-        //         hijos: 'si',
-        //         hijo_edad_menor: 'si'
-        //       },
-        //       {
-        //         hijos: 'si',
-        //         hijo_edad_menor: 'si',
-        //         interes_salud: 'si'
-        //       },
-        //       {
-        //         tenerHijos: 'si'
-        //       },  
-        //       {
-        //         tenerHijos: 'si',                
-        //         interes_salud: 'si'
-        //       }                                         
-        //     ]
-        //   }
-
-        // },
-        {
-          name: 'Vacunas durante el embarazo',
-          corto: 'hijo_vacunas_embarazo',
-          description: 'Protegete a vos y a tu bebé desde el principio del embarazo.',
-          url: 'https://www.argentina.gob.ar/vacunas/embarazadas',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                tenerHijos: 'si'
-              }
-            ]
-          }         
-        },
-        {
-          name: 'Reproducción asistida',
-          corto: 'hijo_asistida',
-          description: 'Te contamos lo que tenés que saber sobre reproducción asistida.',
-          url: 'https://www.argentina.gob.ar/tema/tenerunhijo/fertilizacion-asistida',
-          icon: 'icono-arg-fertilizacion-asistida',
-          nacionalidad: 'todas',
-          conditions: {
-            tenerHijos: 'si'
-          }          
-        },
-        {
-          name: 'Nacimiento de un bebé',
-          corto: 'hijo_nacimiento',
-          description: 'Toda la documentación y los beneficios que te corresponden.',
-          url: 'https://www.argentina.gob.ar/tema/tenerunhijo/nacimiento',
-          icon: 'icono-arg-chupete',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                tenerHijos: 'si'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Embarazo',
-          corto: 'hijo_embarazo',
-          description: 'Consejos y beneficios que te asisten durante el embarazo.',
-          url: 'https://www.argentina.gob.ar/tema/tenerunhijo/embarazo',
-          icon: 'icono-arg-embarazo',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                tenerHijos: 'si'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Adopción',
-          corto: 'hijo_adopcion',
-          description: 'Pasos a seguir y beneficios que te corresponden.',
-          url: 'https://www.argentina.gob.ar/tema/tenerunhijo/adoptar',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            tenerHijos: 'si'
-          }
-        },
-        {
-          name: 'Crecer con salud',
-          corto: 'hijo_crecer',
-          description: 'Seguí estas recomendaciones durante el embarazo, parto, puerperio, lactancia y crianza.',
-          url: 'https://www.argentina.gob.ar/crecerconsalud',
-          icon: 'fa-child',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                tenerHijos: 'si'
-              }              
-            ]
-          }
-        },
-        {
-          name: 'Vacunas para niños y niñas',
-          corto: 'salud_vacunas_niños',
-          description: 'Seguí el calendario de vacunas durante la infancia y prevení enfermedades.',
-          url: 'https://www.argentina.gob.ar/vacunas/niniosyninias',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              }
-            ],            
-            tenerHijos: 'si'
-          }          
-        }       
-   ]
- },
- {
-   name:"Pareja y familia",
-   iconCategory: 'icono-arg-hogar-y-familia',
-   urlCategory: 'https://www.argentina.gob.ar/tema/hogar',
-   contents:[
-        {
-          name: 'Asignación Familiar por matrimonio',
-          corto: 'dependencia_matrimonio',
-          description: 'Si te casás podés, vos y tu pareja pueden recibir el pago por única vez.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-matrimonio',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',
-                notrabajo: 'desempleado',
-                tenerHijos: 'si'
-              }
-            ]
-          }           
-        },
-        {
-          name: 'Acceder a una vivienda',
-          corto: 'vivienda_acceder',
-          description: 'Créditos, programas y derechos de inquilinos o propietarios.',
-          url: 'https://www.argentina.gob.ar/tema/hogar/acceder-vivienda',
-          icon: 'icono-arg-vivienda',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_vivienda: 'si'
-          }
-        },
-        {
-          name: 'PROCREAR',
-          corto: 'vivienda_procrear',
-          description: 'Accedé a líneas de crédito para compra, construcción o refacción.',
-          url: 'https://www.argentina.gob.ar/procrear',
-          icon: 'icono-arg-vivienda',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_vivienda: 'si'
-          }
-        },
-
-        {
-          name: 'Compra o venta de un auto',
-          corto: 'auto',
-          description: 'Información para comprar, registrar o vender un auto.',
-          url: 'https://www.argentina.gob.ar/vehiculos',
-          icon: 'icono-arg-auto',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_auto: 'si'
-          }
-        }
-
-   ]
- },
- // {
- //   name:"Acceder a una vivienda",
- //   iconCategory: 'icono-arg-hogar-y-familia',
- //   urlCategory: 'https://www.argentina.gob.ar/tema/hogar',
- //   contents:[
- //        {
- //          name: 'Tarifa Social en los Servicios Públicos',
- //          corto: 'soyjubilado_tarifasocial',
- //          description: 'Tramitala para agua (en CABA y alrededores) y gas y electricidad (en todo el país).',
- //          url: 'https://www.argentina.gob.ar/tarifasocial',
- //          icon: 'icono-arg-jubilado',
- //          nacionalidad: 'todas',
- //          conditions: {
- //            interes_vivienda: 'si'             
- //          }          
- //        }
- //   ]
- // },
-
- {
-   name:"Trabajar",
-   iconCategory: 'icono-arg-trabajador',
-   urlCategory: 'https://www.argentina.gob.ar/tema/trabajar',
-   contents:[
-        {
-          name: 'Empleados en relación de dependencia',
-          corto: 'dependencia_empleado',
-          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
-          url: 'https://www.argentina.gob.ar/tema/trabajar/soy-empleado',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'si',
-                trabajo: 'dependencia'
-              }
-            ]
-          }           
-
-        },
-        {
-          name: 'Obra Social para beneficiarios de la Prestación por Desempleo',
-          corto: 'dependencia_obrasocial_desempleo',
-          description: 'Seguí teniendo obra social durante la prestación por desempleo.',
-          url: 'https://www.argentina.gob.ar/obra-social-para-beneficiarios-de-la-prestacion-por-desempleo',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',
-                trabajo: 'desempleado'
-              }
-            ]
-          }           
-        },
-        {
-          name: 'Soy monotributista',
-          corto: 'monotributo_monotributista',
-          description: 'Prestaciones y trámites para los monotributistas',
-          url: 'https://www.argentina.gob.ar/tema/trabajar/monotributo',
-          icon: 'icono-arg-factura',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'monotributista',
-            interes_emprender: 'si'
-          }
-        },
-
-        {
-          name: 'Trabajadores de casas particulares',
-          corto: 'particulares_trabajadores',
-          description: 'Conocé los derechos y beneficios de tu relación laboral.',
-          url: 'https://www.argentina.gob.ar/casasparticulares',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'particulares'
-          }
-        },
-        {
-          name: 'Prestación por Desempleo',
-          corto: 'dependencia_desempleo',
-          description: 'Te quedaste sin empleo, conocé cómo tramitar la prestación por desempleo.',
-          url: 'https://www.argentina.gob.ar/prestacion-por-desempleo',
-          icon: 'icono-arg-apostilla',
-          nacionalidad: 'todas',
-          conditions: {
-            notrabajo: 'desempleado',
-            interes_trabajo: 'si'
-          }
-        },
-        {
-          name: 'Obra social y ART',
-          corto: 'particulares_obrasocial',
-          description: 'Te corresponde tener Obra Social y la Aseguradora de Riesgos de Trabajo. Informate.',
-          url: 'https://www.argentina.gob.ar/casasparticulares/obrasocialart',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'particulares'
-          }
-        },
-        {
-          name: 'Tarifa Social SUBE para trabajadores de casas particulares',
-          corto: 'particulares_sube',
-          description: 'Tramitá tu SUBE con un descuento de 55% en boletos de trenes y colectivos.',
-          url: 'https://www.argentina.gob.ar/solicitar-la-tarifa-social-sube',
-          icon: 'fa-female',
-          nacionalidad: 'todas',
-          conditions: {
-            trabajo: 'monotributista',
-            trabajo: 'particulares',
-            notrabajo: 'jubilado',
-            notrabajo: 'desempleado'
-          }
-        },
-        {
-          name: 'Busco Trabajo',
-          corto: 'busco_trabajo',
-          description: 'Beneficios de ayuda económica, capacitación y asistencia en la búsqueda.',
-          url: 'https://www.argentina.gob.ar/trabajar',
-          icon: 'fa-newspaper-o',
-          nacionalidad: 'todas',
-          conditions: {
-            notrabajo: 'desempleado',
-            notrabajo: 'otros',
-            interes_trabajo: 'si',
-            interes_capacitacion: 'si'
-          }
-        },
-
-        {
-          name: 'Me quiero capacitar',
-          corto: 'capacitarme',
-          description: 'Incorporá conocimientos para potenciar tus habilidades.',
-          url: 'https://www.argentina.gob.ar/tema/trabajar/capacitacion',
-          icon: 'icono-arg-capacitacion',
-          nacionalidad: 'todas',
-          conditions: {
-            empleo: 'si',
-            interes_trabajo: 'si',
-            interes_capacitacion: 'si'
-          }
-        },
-        {
-          name: 'Necesito capacitación para emprender',
-          corto: 'capacitarme_emprender',
-          description: 'Encontrá recursos para mejorar tu emprendimiento o empezar uno nuevo.',
-          url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
-          icon: 'icono-arg-capacitacion',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_capacitacion: 'si',
-            interes_emprender: 'si'
-          }
-        },
-        // {
-        //   name: 'Beneficios, programas y becas',
-        //   corto: 'capacitarme_beneficios',
-        //   description: 'Conocé los programas y beneficios de formación a los que podés acceder.',
-        //   url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
-        //   icon: 'icono-arg-capacitacion',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     estudio: 'si',
-        //     notrabajo: 'desempleado',
-        //     interes_capacitacion: 'si',
-        //     interes_emprender: 'si'
-        //   }
-
-        // },
-
-        // {
-        //   name: 'Necesito capacitación para emprender',
-        //   corto: 'emprendedor_capacitarme',
-        //   description: 'Encontrá recursos para mejorar tu emprendimiento o empezar uno nuevo.',
-        //   url: 'https://www.argentina.gob.ar/tema/emprender/capacitacion',
-        //   icon: 'fa-briefcase',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     // empleo: 'si',     
-        //     trabajo: 'autonomo',
-        //     interes_capacitacion: 'si',
-        //     interes_emprender: 'si'
-        //   }
-        // },
-        {
-          name: 'Financiamiento para emprendedores',
-          corto: 'emprendedor_financiamiento',
-          description: 'Obtené financiamiento para tu emprendimiento, cooperativa o PyME.',
-          url: 'https://www.argentina.gob.ar/tema/emprender/financiamiento',
-          icon: 'fa-briefcase',
-          nacionalidad: 'todas',
-          conditions: {     
-            trabajo: 'autonomo',
-            interes_capacitacion: 'si',
-            interes_emprender: 'si'
-          }
-        },
-        {
-          name: 'Registrar mi PyME para obtener los beneficios de la Ley PyME',
-          corto: 'emprendedor_registrar',
-          description: 'Registrá tu pyme en la AFIP y obtené los beneficios de la Ley Pyme.',
-          url: 'https://www.argentina.gob.ar/registrar-una-pyme-para-obtener-los-beneficios-de-la-ley-pyme',
-          icon: 'fa-briefcase',
-          nacionalidad: 'todas',
-          conditions: {
-            // empleo: 'si',     
-            trabajo: 'autonomo',
-            interes_capacitacion: 'si',
-            interes_emprender: 'si'
-          }
-        },
-        {
-          name: 'Inscribirme como Monotributista',
-          corto: 'emprendedor_inscribirme',
-          description: 'Conocé los requisitos y solicitá turno para inscribirte.',
-          url: 'https://www.argentina.gob.ar/inscribirme-como-monotributista',
-          icon: 'fa-briefcase',
-          nacionalidad: 'todas',
-          conditions: {    
-            trabajo: 'monotributista',
-            trabajo: 'autonomo',
-            interes_emprender: 'si'
-          }
-        },
-        {
-          name: 'Registro Único del Ministerio de Producción (RUMP)',
-          corto: 'emprendedor_rump',
-          description: 'Conocé los requisitos para inscribirte.',
-          url: 'https://www.argentina.gob.ar/registro-unico-del-ministerio-de-produccion-rump',
-          icon: 'fa-briefcase',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_emprender: 'si'
-          }
-        },
-        {
-          name: 'Asignación Familiar por Ayuda Escolar Anual',
-          corto: 'monotributo_escolar',
-          description: 'Pedila para tus hijos en edad escolar o para tu hijo en rehabilitación por discapacidad.',
-          url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-          icon: 'icono-arg-factura',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-               hijos: 'si',
-               hijo_edad_menor: 'si',
-               empleo: 'no'            
-              }
-            ]
-          }
-        },
-        {
-          name: 'Tarifa Social en los servicios públicos',
-          corto: 'tarifasocial',
-          description: 'Tramitala para agua (en CABA y alrededores) y gas y electricidad (en todo el país).',
-          url: 'https://www.argentina.gob.ar/tarifasocial',
-          icon: 'icono-arg-sube',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                empleo: 'no',
-                discapacidad: 'no',
-                discapacidad_acargo: 'no'
-              },
-              {
-                empleo: 'no',
-                discapacidad_acargo: 'no',
-                discapacidad: 'no'
-              }
-            ]  
-          }
-        }  
-   ]
- },
- {
-   name:"Cuidar la salud",
-   iconCategory: 'icono-arg-medicamentos',
-   urlCategory: 'https://www.argentina.gob.ar/tema/cuidarlasalud',
-   contents:[
-        {
-          name: 'Cuido mi salud (adultos mayores)',
-          corto: 'salud_cuido',
-          description: 'Consejos de salud, servicios y trámites de cobertura médica.',
-          url: 'https://www.argentina.gob.ar/tema/adultosmayores/salud',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                edad: '> 59',
-              }
-            ]
-          }           
-        },
-        {
-          name: 'Vacunas',
-          corto: 'salud_vacunas',
-          description: 'Calendario de vacunas para cada etapa de la vida.',
-          url: 'https://www.argentina.gob.ar/vacunas',
-          icon: 'icono-arg-vacunas',
-          nacionalidad: 'todas',
-          conditions: {
-            hijos: 'si',
-            tenerHijos: 'si',
-            interes_salud: 'si'
-          }
-        },
-        {
-          name: 'Vacunas para bebés',
-          corto: 'salud_vacunas_bebe',
-          description: 'Conocé las vacunas que se aplican durante el primer año de vida.',
-          url: 'https://www.argentina.gob.ar/vacunas/bebes',
-          icon: 'icono-arg-vacunas',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                tenerHijos: 'si'
-              }                                      
-            ]
-          }                   
+          }            
         },        
         {
-          name: 'Vacunas para adolescentes',
-          corto: 'salud_vacunas_adolescentes',
-          description: 'Consultá las vacunas y refuerzos indicados para los adolescentes.',
-          url: 'https://www.argentina.gob.ar/vacunas/adolescentes',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
+          name: 'Secundario y/o Terciario - Despues de 2010 - Argentina',
+          corto: 'Secundario y/o Terciario - Despues de 2010 - Argentina',
+          description: 'Esto son los requisitos para: Secundario y/o Terciario - Despues de 2010 - Argentina.',
+          url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+          descriptionUrl: 'Legalizar Educación',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                hijos: 'si',
-                hijo_edad_mayor: 'si'
-              }             
-            ]
-          }           
-        },
-        {
-          name: 'Vacunas para adultos',
-          corto: 'salud_vacunas_adultos',
-          description: 'Reforzá y completá tu esquema de vacunación.',
-          url: 'https://www.argentina.gob.ar/vacunas/adultos',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                edad: '> 17',
-                interes_salud: 'si'
+                nivelTitulo: 'secundario',
+                anterior2010: 'no',
+                presentarArgentina: 'si'
               }
             ]
           }
-        },
+        },        
         {
-          name: 'Vacunas para adultos mayores',
-          corto: 'salud_vacunas_mayores',
-          description: 'Si tenés más de 65 años necesitás prevenir enfermedades respiratorias.',
-          url: 'https://www.argentina.gob.ar/vacunas/adultosmayores',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
+          name: 'Secundario y/o Terciario - Despues de 2010 - Exterior',
+          corto: 'Secundario y/o Terciario - Despues de 2010 - Exterior',
+          description: 'Esto son los requisitos para: Secundario y/o Terciario - Despues de 2010 - Exterior.',
+          url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+          descriptionUrl: 'Legalizar Educación',
+          urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+          descriptionUrlApostillar: 'Apostillar',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                edad: '> 59',
-                interes_salud: 'si'
+                nivelTitulo: 'secundario',
+                anterior2010: 'no',
+                presentarArgentina: 'no'
               }
-            ]
-          }           
-
-        },
-        {
-          name: 'Pausa activa',
-          corto: 'salud_pausa',
-          description: 'Ejercicios para cuidar la salud y cortar la rutina.',
-          url: 'https://www.argentina.gob.ar/tupausaactiva',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_salud: 'si'
-          }
-        },
-        {
-          name: 'Vivir en Positivo',
-          corto: 'salud_positivo',
-          description: 'Informate cómo se transmite, tratamientos y derechos que te protegen.',
-          url: 'https://www.argentina.gob.ar/vivirenpositivo',
-          icon: 'icono-arg-medicina',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_salud: 'si'
-          }
-        }
-   ]
- },
- {
-   name:"Estudiar",
-   iconCategory: 'icono-arg-educacion',
-   urlCategory: 'https://www.argentina.gob.ar/tema/estudiar',
-   contents:[
-        // {
-        //   name: 'Solicitá la Asignación Familiar por ayuda escolar anual',
-        //   corto: 'soyjubilado_solicitarasignacionescolar',
-        //   description: 'Pedila para tus hijos en edad escolar o para tu hijo en rehabilitación por discapacidad.',
-        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-        //   icon: 'icono-arg-jubilado',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     and: [
-        //       {
-        //         empleo: 'no',     
-        //         hijos: 'si',
-        //         discapacidad: 'si'
-        //       },
-        //       {
-        //         empleo: 'no',     
-        //         hijos: 'si',
-        //         discapacidad_acargo: 'si'
-        //       }              
-        //     ]            
-        //   }
-        // },
-           {
-             name: 'Asignación Familiar por Ayuda Escolar Anual',
-             corto: 'dependencia_ayudaescolar',
-             description: 'Pedila para tus hijos en edad escolar o para tu hijo en rehabilitación por discapacidad.',
-             url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-             icon: 'icono-arg-apostilla',
-             nacionalidad: 'todas',
-             conditions: {
-               and: [
-                 {
-                   hijos: 'si',
-                   hijo_edad_menor: 'si',
-                   empleo: 'si'
-                 }               
-
-               ]             
-             }
-           },
-
-        // {
-        //   name: 'Asignación Familiar por Ayuda Escolar Anual',
-        //   corto: 'estudiar_asignacion',
-        //   description: 'Pedila para tus hijos en edad escolar o para tu hijo en rehabilitación por discapacidad.',
-        //   url: 'https://www.argentina.gob.ar/solicita-la-asignacion-familiar-por-ayuda-escolar-anual',
-        //   icon: 'fa-book',
-        //   nacionalidad: 'todas',
-        //   conditions: {
-        //     estudio: 'si',
-        //     hijos: 'si',
-        //     tenerHijos: 'si',
-        //     discapacidad_acargo: 'si'
-        //   }
-        // },
-        {
-          name: 'PROGRESAR',
-          corto: 'estudiar_progresar',
-          description: 'Acercate al Programa de Respaldo a Estudiantes de Argentina y terminá tus estudios.',
-          url: 'https://www.argentina.gob.ar/programa-de-respaldo-estudiantes-de-argentina-progresar',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                edad: '< 25',
-                estudio: 'si',
-              },
-              {
-                edad: '< 25',
-                interes_capacitacion: 'si'
-              }              
             ]
           }
         },
         {
-          name: 'Plan 111mil',
-          corto: 'estudiar_11mil',
-          description: 'Si te gusta la tecnología y no sabés qué carrera seguir acercate al Plan 111 Mil.',
-          url: 'https://www.argentina.gob.ar/111mil',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
+          name: 'Universitario - Antes de 2012 - Argentina',
+          corto: 'Universitario - Antes de 2012 - Argentina',
+          description: 'Esto son los requisitos para: Universitario - Antes de 2012 - Argentina.',
+          url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+          descriptionUrl: 'Legalización Interior',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                estudio: 'si',
-                hijos: 'si',
-                hijo_edad_mayor: 'si'
-              }            
-            ],             
-            interes_capacitacion: 'si'            
-          }
-        },
-        {
-          name: 'Programa Argentina Beca',
-          corto: 'estudiar_beca',
-          description: 'Conocé todas las líneas de becas que ofrece el Estado Nacional.',
-          url: 'http://argentinabeca.educacion.gob.ar/',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
-          conditions: {
-            and: [
-              {
-                estudio: 'si',
-                hijos: 'si',
-                hijo_edad_mayor: 'si'
+                nivelTitulo: 'universitario',
+                anterior2012: 'si',
+                presentarArgentina: 'si'
               }
-            ],             
-            interes_capacitacion: 'si'            
+            ]
           }
         },
         {
-          name: 'Bec.ar (becas para profesionales en ciencia y tecnología)',
-          corto: 'estudiar_becar',
-          description: 'Si sos profesional y queres formarte en el exterior en CyT postulate en Bec.Ar.',
-          url: 'https://www.argentina.gob.ar/becar',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
-          conditions: {
-            estudio: 'si',
-            interes_capacitacion: 'si',
-            interes_emprender: 'si'
-          }
-        },
-        {
-          name: 'Boleto escolar y boleto estudiantil',
-          corto: 'estudiar_boleto',
-          description: 'Descuento para chicos de primaria y secundaria en el Transporte Automotor Urbano.',
-          url: 'https://www.cnrt.gob.ar/content/automotor/usuarios/descuentoestudiantes',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
+          name: 'Universitario - Antes de 2012 - Exterior',
+          corto: 'Universitario - Antes de 2012 - Exterior',
+          description: 'Esto son los requisitos para: Universitario - Antes de 2012 - Exterior.',
+          url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+          descriptionUrl: 'Legalización Interior',
+          urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+          descriptionUrlApostillar: 'Apostillar',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                hijos: 'si',
-                hijo_edad_menor: 'si'
-              },
-              {
-                edad: '< 18',
-                estudio: 'si'
+                nivelTitulo: 'universitario',
+                anterior2012: 'si',
+                presentarArgentina: 'no'
               }
-
-            ]          
-          }          
-        },
+            ]
+          }
+        },        
         {
-          name: 'Beneficios, programas y becas',
-          corto: 'estudiar_beneficios',
-          description: 'Conocé los programas y beneficios de formación a los que podés acceder.',
-          url: 'https://www.argentina.gob.ar/tema/estudiar/programas-y-becas',
-          icon: 'fa-book',
-          nacionalidad: 'todas',
+          name: 'Universitario - Despues de 2012 - Argentina',
+          corto: 'Universitario - Despues de 2012 - Argentina',
+          description: 'Esto son los requisitos para: Universitario - Despues de 2012 - Argentina.',
+          url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+          descriptionUrl: 'Legalizar Educación',
+          urlConsultaTitulo: 'http://sicer.siu.edu.ar/consulta.php',
+          descriptionUrlConsultaTitulo: 'Consulta títulos',
+          icon: 'fa-graduation-cap',
           conditions: {
             and: [
               {
-                estudio: 'si',                
-                empleo: 'no',
-                notrabajo: 'desempleado',
-                interes_capacitacion: 'si'
-              },
+                nivelTitulo: 'universitario',
+                anterior2012: 'no',
+                presentarArgentina: 'si'
+              }
+            ]
+          }
+        },        
+        {
+          name: 'Universitario - Despues de 2012 - Exterior',
+          corto: 'Universitario - Despues de 2012 - Exterior',
+          description: 'Esto son los requisitos para: Universitario - Despues de 2012 - Exterior.',
+          url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+          descriptionUrl: 'Legalizar Educación',
+          urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+          descriptionUrlApostillar: 'Apostillar',
+          urlConsultaTitulo: 'http://sicer.siu.edu.ar/consulta.php',
+          descriptionUrlConsultaTitulo: 'Consulta títulos',
+          icon: 'fa-graduation-cap',
+          conditions: {
+            and: [
               {
-                estudio: 'si',                
-                empleo: 'no',
-                notrabajo: 'desempleado',
-                interes_emprender: 'si'
-              }             
-            ]            
+                nivelTitulo: 'universitario',
+                anterior2012: 'no',
+                presentarArgentina: 'no'
+              }
+            ]
           }
         }
 
-   ]
- },
- {
-   name:"Adultos Mayores",
-   iconCategory: 'icono-arg-jubilado',
-   urlCategory: 'https://www.argentina.gob.ar/tema/adultosmayores',
-   contents:[
-        {
-          name: 'Trámites para jubilarse',
-          corto: 'quierojubilarme_tramites',
-          description: 'Si querés jubilarte o sacar una pensión te contamos qué hacer.',
-          url: 'https://www.argentina.gob.ar/adultosmayores/iniciarjubilacionpension',
-          icon: 'icono-arg-tramite-jubilacion',
-          nacionalidad: 'todas',
-          conditions: {
-            edad: '> 58'
-          }
-        },
-        {
-          name: 'Iniciá el trámite de tu jubilación por Internet',
-          corto: 'quierojubilarme_iniciar',
-          description: 'Si tenés la edad y aportes necesarios podés iniciar el trámite en línea.',
-          url: 'https://www.argentina.gob.ar/jubilacion-automatica-por-internet',
-          icon: 'icono-arg-tramite-jubilacion',
-          nacionalidad: 'todas',
-          conditions: {
-            edad: '> 58'
-          }
-        },
-        {
-          name: 'Jubilación ordinaria o por vejez',
-          corto: 'quierojubilarme_ordinaria',
-          description: 'Consultá los pasos a seguir para jubilarte.',
-          url: 'https://www.argentina.gob.ar/jubilacion-ordinaria-o-jubilacion-por-vejez',
-          icon: 'icono-arg-tramite-jubilacion',
-          nacionalidad: 'todas',
-          conditions: {
-            edad: '> 58'
-          }
-        },
-        {
-          name: 'Pensión por fallecimiento de un beneficiario',
-          corto: 'quierojubilarme_fallecimiento',
-          description: 'Si fallece un jubilado, sus familiares pueden solicitar la pensión.',
-          url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-beneficiario',
-          icon: 'icono-arg-tramite-jubilacion',
-          nacionalidad: 'todas',
-          conditions: {   
-            notrabajo: 'desempleado'
-          }
-        },
-        {
-          name: 'Pensión por fallecimiento de un trabajador',
-          corto: 'quierojubilarme_trabajador',
-          description: 'Si fallece un trabajador sus familiares pueden tramitar la pensión.',
-          url: 'https://www.argentina.gob.ar/pension-por-fallecimiento-de-un-trabajador',
-          icon: 'icono-arg-tramite-jubilacion',
-          nacionalidad: 'todas',
-          conditions: {   
-            notrabajo: 'desempleado'
-          }
-        },
-        {
-          name: 'Beneficios para jubilados y pensionados',
-          corto: 'soyjubilado_beneficios',
-          description: 'Buscá tus cobros, asignaciones y trámites relacionados.',
-          url: 'https://www.argentina.gob.ar/tema/adultosmayores/soyjubiladopensionado',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {
-            empleo: 'no',    
-            notrabajo: 'desempleado', 
-            notrabajo: 'jubilado',
-            discapacidad: 'si',
-            discapacidad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Reparación histórica',
-          corto: 'soyjubilado_reparacion',
-          description: 'Consultá si estás incluido en el Programa de Reparación Histórica.',
-          url: 'https://www.argentina.gob.ar/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {     
-            notrabajo: 'jubilado',
-            notrabajo: 'desempleado'
-          }
-        },
-        {
-          name: 'Consultar el calendario de pagos de ANSES',
-          corto: 'soyjubilado_calendario',
-          description: 'Conocé la fecha de cobro de tus haberes sin moverte de tu casa.',
-          url: 'https://www.argentina.gob.ar/consultar-calendario-de-pago-de-anses',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {    
-            notrabajo: 'jubilado',
-            notrabajo: 'desempleado',
-            discapacidad: 'si',
-            discapacidad_acargo: 'si'
-          }
-        },
-        {
-          name: 'Asignación Familiar por cónyuge',
-          corto: 'soyjubilado_asignacion',
-          description: 'Si sos titular de una jubilación, pensión o pensión de veterano podés solicitarla.',
-          url: 'https://www.argentina.gob.ar/asignacion-familiar-por-conyuge',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {    
-            notrabajo: 'jubilado'
-          }
-        },
-        {
-          name: 'Dar Fe de vida (supervivencia)',
-          corto: 'soyjubilado_supervivencia',
-          description: 'Tenés que dar fe de vida periódicamente para cobrar tus haberes.',
-          url: 'https://www.argentina.gob.ar/dar-fe-de-vida-supervivencia-para-jubilados-y-pensionados',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {     
-            notrabajo: 'jubilado'
-          }
-        },
-        {
-          name: 'Solicitar un apoderado',
-          corto: 'soyjubilado_apoderado',
-          description: 'Podés tener un apoderado para tramitar y cobrar tus prestaciones.',
-          url: 'https://www.argentina.gob.ar/solicitar-un-apoderado-para-jubilados-y-pensionados',
-          icon: 'icono-arg-jubilado',
-          nacionalidad: 'todas',
-          conditions: {    
-            notrabajo: 'jubilado',
-            notrabajo: 'desempleado',
-            discapacidad: 'si'
-          }
-        }
-   ]
- },
- {
-   name:"Extranjeros en Argentina",
-   iconCategory: 'icono-arg-social',
-   urlCategory: 'https://www.argentina.gob.ar/tema/extranjeros',
-   contents:[
-        {
-          name: 'Turistas',
-          corto: 'extranjeros_turistas',
-          description: 'Te contamos cuáles son los pasos a seguir para ingresar a nuestro país como turista.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/turistas',
-          icon: 'fa-plane',
-          nacionalidad: 'todas',
-          conditions: {
-            nacionalidad: 'extranjero'
-          }
-        },
-        {
-          name: 'Estudiantes',
-          corto: 'extranjeros_estudiantes',
-          description: 'Si venís a estudiar a la Argentina, te detallamos los pasos a seguir para ingresar a nuestro país.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/estudiar',
-          icon: 'fa-plane',
-          nacionalidad: 'extranjero',
-          conditions: {
-            and: [
-              {
-                estudio: 'si',
-                nacionalidad: 'extranjero'
-              }
-            ]//,              
-          }
-        },
-        {
-          name: 'Trabajador',
-          corto: 'extranjeros_trabajador',
-          description: 'Si venís a trabajar a la Argentina, te orientamos paso a paso para tu ingreso al país.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/trabajar',
-          icon: 'fa-plane',
-          nacionalidad: 'extranjero',
-          conditions: {
-            and: [
-              {
-                nacionalidad: 'extranjero',
-                interes_emprender: 'si'
-              }
-            ]//,            
-          }
-        },
-        {
-          name: 'Inversionistas',
-          corto: 'extranjeros_trabajador',
-          description: 'Si venís a realizar inversiones o negocios en el país, conocé qué requisitos tenés que cumplir.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/invertir',
-          icon: 'fa-plane',
-          nacionalidad: 'extranjero',
-          conditions: {
-            and: [
-              {
-                nacionalidad: 'extranjero',
-                interes_emprender: 'si'
-              }
-            ]//,
-          }
-        },
-        {
-          name: 'Radicación de un familiar',
-          corto: 'extranjeros_trabajador',
-          description: 'Con un familiar argentino nativo o extranjero radicado en el país, vos también accedés a la residencia.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/radicacion',
-          icon: 'fa-plane',
-          nacionalidad: 'todas',
-          conditions: {
-            nacionalidad: 'extranjero'
-          }
-        },
-        {
-          name: 'Obtener la ciudadanía',
-          corto: 'extranjeros_ciudadania',
-          description: 'Conocé cómo podés obtener la ciudadanía argentina.',
-          url: 'https://www.argentina.gob.ar/tema/extranjeros/ciudadania',
-          icon: 'fa-plane',
-          nacionalidad: 'todas',
-          conditions: {
-            nacionalidad: 'extranjero'
-          }
-        }
-   ]
- },
- {
-   name:"Violencia y abuso",
-   iconCategory: 'fa-exclamation-triangle',
-   urlCategory: 'https://www.argentina.gob.ar/tema/violenciayabuso',
-   contents:[
-        {
-          name: 'Abuso sexual infantil',
-          corto: 'violencia_infantil',
-          description: 'Cualquier día, a cualquier hora y desde lugar, llamá y denunciá.',
-          url: 'https://www.argentina.gob.ar/abusosexualinfantil',
-          icon: 'fa-exclamation-triangle',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_violencia: 'si'
-          }
-        },
-        {
-          name: 'Trata de personas',
-          corto: 'violencia_trata',
-          description: 'Informate y denunciá la trata de personas.',
-          url: 'https://www.argentina.gob.ar/denuncialatrata',
-          icon: 'fa-exclamation-triangle',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_violencia: 'si'
-          }
-        },
-        {
-          name: 'Mujeres en situación de violencia',
-          corto: 'violencia_mujeres',
-          description: 'Qué hacer y dónde recurrir ante una situación de violencia o abuso.',
-          url: 'https://www.argentina.gob.ar/atencionmujeres',
-          icon: 'fa-exclamation-triangle',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_violencia: 'si'
-          }
-        },
-        {
-          name: 'Violencia y abuso',
-          corto: 'violencia_abuso',
-          description: 'Dónde llamar y denunciar ante una situación de violencia o abuso.',
-          url: 'https://www.argentina.gob.ar/tema/violenciayabuso',
-          icon: 'fa-exclamation-triangle',
-          nacionalidad: 'todas',
-          conditions: {
-            interes_violencia: 'si'
-          }
-        }
    ]
  }
 
@@ -1500,40 +230,34 @@ var categories = [
 
      
       var templates = {
-        item: `<div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default" href="{url}">
+        item: `<div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="panel panel-default panel-disabled">
                   <div class="panel-body">
                     <div class="media">
                       <div class="media-body">
                         <h3>{title}</h3>
                         <p class="text-muted">{description}</p>
+                        <ul class="m-y-2">
+                          <li>
+                            <a href="{url}">
+                              {descriptionUrl}
+                            </a>
+                          </li>
+                          {descriptionUrlConsultaTitulo}
+                          {descriptionUrlApostillar}
+                        </ul>
                       </div>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>`,
-        category: '<div class="col-md-12"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} <small><a href="{urlCategory}">(Más servicios de este tema)</a></small></h3></div>{items}'
+        category: '<div class="col-md-12"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} </h3></div>{items}'
       };
 
       var form_data;
       var data = {};
 
       // Leo si hay algo guardado
-
-      var checkAge = function(condition, value){
-        var new_condition = value.split(' ');
-        var showable = false;
-
-        if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
-          showable = true;
-        }
-
-        if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
-          showable = true;
-        }
-
-        return showable;
-      }
 
       if(typeof(Storage) !== "undefined") {
         if( localStorage.getItem("wizard-form2") != undefined ){
@@ -1559,32 +283,16 @@ var categories = [
 
 
               var show = false;
-              var nacionalidad = false;
-
-              if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
-                nacionalidad = true;
-              }
-
 
               jQuery.each(content.conditions, function(condition, value){
 
-                if(condition == 'edad'){
-                  if(checkAge(condition, value)){
-                    show = true;
-                  }
-                }
-                else if(condition == 'and'){
+                if(condition == 'and'){
                   jQuery.each(value, function(index, ands){
                     var showable = true;
 
                       // console.log(showable);
                     jQuery.each(ands, function(andCondition, andValue){
-                      if(andCondition == 'edad'){
-                        if(!checkAge(andCondition, andValue)){
-                          showable = false;
-                        }
-                      }
-                      else if( data[andCondition] != andValue ){
+                      if( data[andCondition] != andValue ){
                         showable = false;
                       }
                       // console.log(showable);
@@ -1600,9 +308,8 @@ var categories = [
                 }
               });
 
-              // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
 
-            if(show && nacionalidad){
+            if(show){
 
               showCategory = true;
 
@@ -1610,9 +317,23 @@ var categories = [
 
               var html = templates.item;
 
+              var descriptionUrlApostillar = '<li><a href="'+content.urlApostillar+'">' + content.descriptionUrlApostillar + '</a></li>';
+
+              var descriptionUrlConsultaTitulo = '<li><a href="'+content.urlConsultaTitulo+'">' + content.descriptionUrlConsultaTitulo + '</a></li>';
+
+              if (content.descriptionUrlApostillar == undefined || content.urlApostillar == undefined ) {
+                descriptionUrlApostillar = ''
+              }  
+              if (content.descriptionUrlConsultaTitulo == undefined || content.urlConsultaTitulo == undefined ) {
+                descriptionUrlConsultaTitulo = ''
+              }  
+
               html = html.replace(/{url}/gi, content.url)
                 .replace(/{icon}/gi, content.icon)
                 .replace(/{title}/gi, content.name)
+                .replace(/{descriptionUrl}/gi, content.descriptionUrl)
+                .replace(/{descriptionUrlConsultaTitulo}/gi, descriptionUrlConsultaTitulo)
+                .replace(/{descriptionUrlApostillar}/gi, descriptionUrlApostillar)
                 .replace(/{description}/gi, content.description);
 
                 jQuery('#wizard-personal').removeClass('hidden');
@@ -1631,7 +352,6 @@ var categories = [
 
                 htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
                   .replace(/{iconCategory}/gi, category.iconCategory)
-                  .replace(/{urlCategory}/gi, category.urlCategory)
                   .replace(/{items}/gi, htmlCategoryItems);
 
                 // if(content.tipo == 'personal'){
@@ -1675,24 +395,6 @@ var categories = [
 })(jQuery);
 
     </script>
-
-    <script>
-
-(function($) {  
-
-      $('.panel').each(function(key,item){
-       var panelClass = this.classList;
-       var categoriesClass = panelClass[2];
-       var categoryClass = document.getElementById("wizard-personal-items").querySelectorAll("." +categoriesClass);
-       var firstTypeCategoryClass = categoryClass[0];
-       $(firstTypeCategoryClass).parent().prev(".titleCategory").removeClass("hidden");
-      });
-
-})(jQuery);
-
-    </script>
-
-    
 
   </div>
 </section>
