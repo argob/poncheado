@@ -95,7 +95,7 @@ layout: afip_casas_particulares
 			            <div class="row">
 			              <div class="form-group col-md-4">
 			                <label class="control-label" for="">Período </label>
-			                <select class="form-control" id="" name="">
+			                <select class="form-control chosen-select" id="" name="">
 			                  <option value="1">Ene 2017</option>
 			                  <option value="2" selected="selected">Feb 2017</option>
 			                  <option value="3">Mar 2017</option>
@@ -142,9 +142,13 @@ layout: afip_casas_particulares
 			              </div>
 			              <div class="form-group col-md-4">
 			                <label class="control-label" for="input-5">Modalidad de pago </label>
-			                <select class="form-control" id="" name="">
-			                  <option value="1">Semanal</option>
-			                  <option value="2" selected="selected">Mensual</option>
+			                <select class="form-control chosen-select" id="" name="">
+			                  <option value="0" selected disabled>Seleccioná modalidad de pago</option>
+			                  <option value="1">Diaria </option>
+			                  <option value="2">Semanal </option>
+			                  <option value="3">Quincenal </option>
+			                  <option value="4">Mensual </option>
+			                  <option value="5">Otros </option>
 			                </select>			                
 			              </div>
 			              <div class="form-group col-md-4">
@@ -272,3 +276,9 @@ layout: afip_casas_particulares
 <script>
 $('.date').datepicker({language: 'es'});	
 </script>	
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({width: '100%'});
+  });
+</script>

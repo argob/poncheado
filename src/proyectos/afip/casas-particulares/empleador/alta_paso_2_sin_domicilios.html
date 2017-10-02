@@ -29,42 +29,41 @@ layout: afip_casas_particulares
 			<div class="formulario-domicilio-trabajador">	
 
               <div class="form-group">
-                <label class="control-label" for="">Provincia *</label>
-                <select class="form-control" id="" name="">
-                    <option value="" disabled selected>Elegir Provincia</option>
-                    <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
-                    <option value="BSA">Buenos Aires</option>
-                    <option value="CAT">Catamarca</option>
-                    <option value="COR">Córdoba</option>
-                    <option value="CRR">Corrientes</option>
-                    <option value="CHA">Chaco</option>
-                    <option value="CHU">Chubut</option>
-                    <option value="ENT">Entre Ríos</option>
-                    <option value="FOR">Formosa</option>
-                    <option value="JUJ">Jujuy</option>
-                    <option value="PAM">La Pampa</option>
-                    <option value="RIO">La Rioja</option>
-                    <option value="MEN">Mendoza</option>
-                    <option value="MIS">Misiones</option>
-                    <option value="NEU">Neuquén</option>
-                    <option value="RNE">Río Negro</option>
-                    <option value="SAL">Salta</option>
-                    <option value="SJU">San Juan</option>
-                    <option value="SLU">San Luis</option>
-                    <option value="SCR">Santa Cruz</option>
-                    <option value="SFE">Santa Fe</option>
-                    <option value="SDE">Santiago del Estero</option>
-                    <option value="TDF">Tierra del Fuego</option>
-                    <option value="TUC">Tucumán</option>
+                <label class="control-label" for="provincia">Provincia *</label>
+                <select class="form-control" name="provincia" id="provincia">
+                    <option value="">Elegir Provincia</option>
+                    <option value="CIUDAD AUTONOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="BUENOS AIRES">Buenos Aires</option>
+                    <option value="CATAMARCA">Catamarca</option>
+                    <option value="CÓRDOBA">Córdoba</option>
+                    <option value="CORRIENTES">Corrientes</option>
+                    <option value="CHACO">Chaco</option>
+                    <option value="CHUBUT">Chubut</option>
+                    <option value="ENTRE RIOS">Entre Ríos</option>
+                    <option value="FORMOSA">Formosa</option>
+                    <option value="JUJUY">Jujuy</option>
+                    <option value="LA PAMPA">La Pampa</option>
+                    <option value="LA RIOJA">La Rioja</option>
+                    <option value="MENDOZA">Mendoza</option>
+                    <option value="MISIONES">Misiones</option>
+                    <option value="NEUQUEN">Neuquén</option>
+                    <option value="RIO NEGRO">Río Negro</option>
+                    <option value="SALTA">Salta</option>
+                    <option value="SAN JUAN">San Juan</option>
+                    <option value="SAN LUIS">San Luis</option>
+                    <option value="SANTA CRUZ">Santa Cruz</option>
+                    <option value="SANTA FE">Santa Fe</option>
+                    <option value="SANTIAGO DEL ESTERO">Santiago del Estero</option>
+                    <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
+                    <option value="TUCUMAN">Tucumán</option>
                 </select>
 
               </div>
 
 	            <div class="form-group">
-	              <label class="control-label">Localidad *</label>
-	              <select class="form-control">
-	                <option value="" disabled selected>Seleccionar</option>
-	                <option value="1">Ciudad Autónoma de Buenos Aires </option>
+	              <label class="control-label" for="localidad">Localidad *</label>
+	              <select class="form-control" name="localidad" id="localidad" disabled="disabled">
+	                <option value="">Seleccionar</option>
 	              </select>
 	            </div>               
 
@@ -136,7 +135,9 @@ layout: afip_casas_particulares
       </div>
     </div>  
   </section>
-</div>      
+</div>
+
+<script src="../js/localidades.js"></script>      
 
 <script>
 jQuery(document).ready(function($){
@@ -145,3 +146,9 @@ jQuery(document).ready(function($){
   });
 }); 
 </script>	
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({width: '100%'});
+  });
+</script>
