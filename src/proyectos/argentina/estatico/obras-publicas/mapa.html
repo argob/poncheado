@@ -351,19 +351,19 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
             if (row.gsx$localidad.$t == "" || row.gsx$localidad.$t == "-" ){
               var localidad = '';
             } else {
-              var localidad = '<div class="m-t-1"><b>Localidad:</b>' + ' <span>' + row.gsx$localidad.$t + '</span></div>';
+              var localidad = '<div class="m-t-1"><i class="fa fa-map-marker m-r-1"></i><b>Localidad:</b>' + ' <span>' + row.gsx$localidad.$t + '</span></div>';
             }
 
             if (row.gsx$provincia.$t == "" || row.gsx$provincia.$t == "-" ){
               var provincia = '';
             } else {
-              var provincia = '<div><b>Provincia:</b>' + ' <span>' + row.gsx$provincia.$t + '</span></div>';
+              var provincia = '<div><i class="fa icono-arg-barrio"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Provincia:</b>' + ' <span>' + row.gsx$provincia.$t + '</span></div>';
             }
 
             if (row.gsx$beneficiarios.$t == "" || row.gsx$beneficiarios.$t == "-" ){
               var beneficiarios = '';
             } else {
-              var beneficiarios = '<div><b>Beneficiarios:</b>' + ' <span>' + row.gsx$beneficiarios.$t + '</span></div>';
+              var beneficiarios = '<div><i class="fa icono-arg-genero"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Beneficiarios:</b>' + ' <span>' + row.gsx$beneficiarios.$t + '</span></div>';
             }
 
             if (row.gsx$estado.$t == "" || row.gsx$estado.$t == "-" ){
@@ -382,7 +382,7 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5">'+ row.gsx$titulo.$t +'</h5><small>' + row.gsx$descripcion.$t + '</small>' + localidad + provincia + beneficiarios + estado + video,
+              content: '<h2 class="h5 text-primary">'+ row.gsx$titulo.$t +'</h5><small>' + row.gsx$descripcion.$t + '</small>' + localidad + provincia + beneficiarios + estado + video,
               maxWidth: 400
             })
 
