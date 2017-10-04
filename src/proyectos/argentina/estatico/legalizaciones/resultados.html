@@ -230,27 +230,23 @@ var categories = [
 
      
       var templates = {
-        item: `<div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="panel panel-default panel-disabled">
-                  <div class="panel-body">
-                    <div class="media">
-                      <div class="media-body">
-                        <h3>{title}</h3>
-                        <p class="text-muted">{description}</p>
-                        <ul class="m-y-2">
-                          <li>
-                            <a href="{url}">
-                              {descriptionUrl}
-                            </a>
-                          </li>
-                          {descriptionUrlConsultaTitulo}
-                          {descriptionUrlApostillar}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>`,
+        item: `<div class="col-xs-12 col-sm-6 col-md-12">
+                    <h3 class="hidden">{title}</h3>
+                    <p class="text-muted">{description}</p>
+               </div>
+               <div class="col-xs-12 col-md-8 m-t-2">
+                  <a class="panel panel-default" href="{url}">
+                    <div class="panel-body">
+                      <h3>{descriptionUrl}</h3>
+                    </div>                          
+                  </a>
+               </div>                          
+               <div class="col-xs-12 col-md-8">
+                  {descriptionUrlConsultaTitulo}
+               </div>                          
+               <div class="col-xs-12 col-md-8">
+                  {descriptionUrlApostillar}
+               </div>`,
         category: '<div class="col-md-12"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} </h3></div>{items}'
       };
 
@@ -317,9 +313,9 @@ var categories = [
 
               var html = templates.item;
 
-              var descriptionUrlApostillar = '<li><a href="'+content.urlApostillar+'">' + content.descriptionUrlApostillar + '</a></li>';
+              var descriptionUrlApostillar = '<a class="panel panel-default" href="'+content.urlApostillar+'"><div class="panel-body"><h3>' + content.descriptionUrlApostillar + '</h3></div></a>';
 
-              var descriptionUrlConsultaTitulo = '<li><a href="'+content.urlConsultaTitulo+'">' + content.descriptionUrlConsultaTitulo + '</a></li>';
+              var descriptionUrlConsultaTitulo = '<a class="panel panel-default" href="'+content.urlConsultaTitulo+'"><div class="panel-body"><h3>' + content.descriptionUrlConsultaTitulo + '</h3></div></a>';
 
               if (content.descriptionUrlApostillar == undefined || content.urlApostillar == undefined ) {
                 descriptionUrlApostillar = ''
