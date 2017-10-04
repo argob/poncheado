@@ -40,6 +40,7 @@ layout: argentina
     font-weight: 400;
   }
   
+  
 
 </style>
 
@@ -76,6 +77,8 @@ layout: argentina
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
+
+  (function($){
 
   var initMap = function() {
 
@@ -137,7 +140,7 @@ layout: argentina
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'img/m/',
           gridSize: 50,
-          minimumClusterSize: 4,
+          minimumClusterSize: 800,
           maxZoom: 19
         });
 
@@ -201,7 +204,9 @@ layout: argentina
     setGeolocation();
   }
 
+})(jQuery);
+
 </script>
-<script src="img/markerclusterer.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
 
