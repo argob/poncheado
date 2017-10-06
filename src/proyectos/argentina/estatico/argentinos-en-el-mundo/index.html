@@ -88,20 +88,27 @@ $(document).ready(function () {
 
         if(item.gsx$website.$t != '') {
           website = '<p class="margin-0">Sitio web: <a href="http://'+ item.gsx$website.$t + '" target="_blank">'+ item.gsx$website.$t + '</a></p>'
+        }     
+
+        var facebook = '';
+
+        if(item.gsx$facebook.$t != '') {
+          facebook = '<p class="margin-0">Facebook: <a target="_blank" href="'+ item.gsx$facebook.$t + '">'+ item.gsx$facebook.$t + '</a></p>'
         }        
+
 
         if( item.gsx$pais.$t == paises ){
             html += '<tr>';
             html += ' <td class="pais">'+ item.gsx$pais.$t + '</td>';
             html += ' <td class="ciudad">'+ item.gsx$ciudad.$t + '</td>';
-            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6><h6 class="text-muted">'+ item.gsx$tipo.$t + '</h6> ' + correo + ' ' + website + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6><h6 class="text-muted">'+ item.gsx$tipo.$t + '</h6> ' + correo + ' ' + website + ' ' + facebook + '</td>';
             html += '</tr>';
         }
         else if(paises == "Todos"){
             html += '<tr>';
             html += ' <td class="pais">'+ item.gsx$pais.$t + '</td>';
             html += ' <td class="ciudad">'+ item.gsx$ciudad.$t + '</td>';
-            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6><h6 class="text-muted">'+ item.gsx$tipo.$t + '</h6> ' + correo + ' ' + website + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6><h6 class="text-muted">'+ item.gsx$tipo.$t + '</h6> ' + correo + ' ' + website + ' ' + facebook + '</td>';
             html += '</tr>';
         }
 
