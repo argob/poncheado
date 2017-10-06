@@ -1,0 +1,107 @@
+---
+layout: g20
+---
+<section class="jumbotron" style="background-image: url('img/bg-noticias.jpg');">
+    <div class="jumbotron_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li class="active">Mapa de reuniones</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Mapa de reuniones</h2>
+                    <div class="barrita turquesaFondo m-b-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div id="mapdiv" style="width: 100%; background-color: rgb(255, 255, 255); height: 500px; overflow: hidden; text-align: left;"></div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script src="./mapa_archivos/ammap.js"></script>
+<script src="./mapa_archivos/argentinaHigh.js"></script>
+<script src="./mapa_archivos/light.js"></script>
+
+        <script>
+            var targetSVG = "m296.822487,200.013225q0,-0.356991 -0.237994,-0.594986l-1.203194,-1.203194q-0.237994,-0.237994 -0.594986,-0.237994t-0.594986,0.237994l-2.49894,2.49894l0,-6.637397q0,-0.34377 -0.251216,-0.594986t-0.594986,-0.251216l-1.692404,0q-0.34377,0 -0.594986,0.251216t-0.251216,0.594986l0,6.637397l-2.49894,-2.49894q-0.251216,-0.251216 -0.594986,-0.251216t-0.594986,0.251216l-1.203194,1.203194q-0.237994,0.237994 -0.237994,0.594986t0.237994,0.594986l4.78633,4.78633l1.203194,1.203194q0.237994,0.237994 0.594986,0.237994t0.594986,-0.237994l1.203194,-1.203194l4.78633,-4.78633q0.237994,-0.237994 0.237994,-0.594986zm3.331921,-0.013222q0,2.763379 -1.361856,5.097045t-3.695523,3.695523t-5.097045,1.361856t-5.097045,-1.361856t-3.695523,-3.695523t-1.361856,-5.097045t1.361856,-5.097045t3.695523,-3.695523t5.097045,-1.361856t5.097045,1.361856t3.695523,3.695523t1.361856,5.097045z";
+
+            var areas = [{"title":"Catamarca","id":"AR-K","color":"#f7941d"}];
+
+            var dataPoints = [{"title":"Ciudad de Buenos Aires","id":"AR-C","color":"#f7941d","latitude":"-34.6644918","longitude":"-58.5140821"}];
+
+            dataPoints.forEach(function(obj) { obj.svgPath = targetSVG; obj.color = '#000000'; });
+
+            var map = AmCharts.makeChart("mapdiv", {
+                imagesSettings: {
+                    rollOverColor: '#f7941d',
+                    rollOverScale: 1.5,
+                    selectable: true
+                },
+                type: "map",
+
+                dataProvider: {
+                    map: "argentinaHigh",
+                    getAreasFromMap: true,
+                    images: dataPoints,
+                    areas: areas
+                },
+
+                areasSettings: {
+                    color: '#01babd',
+                    autoZoom: true,
+                    selectedColor: "#f7941d",
+                },
+
+                listeners: [
+                    {
+                        event: 'clickMapObject',
+                        method: function(event) {
+                            jQuery('#mapa_argentina_info').html(event.mapObject.customInfo);
+                        }
+                    }
+                ]
+            });
+
+            var legend = {
+                    width: 150,
+                    backgroundAlpha: 1,
+                    backgroundColor: "#FFFFFF",
+                    borderColor: "#666666",
+                    borderAlpha: 1,
+                    bottom: 0,
+                    left: 0,
+                    horizontalGap: 10,
+                    data:[
+                            {
+                                title: "G20 Members",
+                                color: "#3366CC"
+                            },
+                            {
+                                title: "Invited Guests",
+                                color: "#82AC39"
+                            }
+                    ]
+                };
+            
+                map.addLegend(legend);
+
+        </script>
