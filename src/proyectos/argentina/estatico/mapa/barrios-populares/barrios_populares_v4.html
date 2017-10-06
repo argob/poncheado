@@ -1,0 +1,654 @@
+---
+layout: argentina
+title: Mapa de Barrios Populares
+---
+
+<style>
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }
+  .chosen-container {
+      border-radius: 3px;
+      margin-top: 10px!important;
+  }  
+  .chosen-container-single .chosen-search input[type="text"] {
+    color: #111;
+  }
+  .chosen-container-single .chosen-single span {
+      line-height: 43px!important;
+  }
+
+  header .btn {
+      padding: 16px 25px;
+  } 
+
+  .input-group {
+    margin-top: 10px!important;
+  } 
+
+/*  #floating-panel {
+    position: absolute;
+    top: 200px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }  */
+
+</style>
+
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand hidden-xs" href="/">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" height="50">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <div class="navbar-brand visible-xs-inline-block">
+            <small>Barrios Populares</small>
+          </div>
+
+<!--             <div class="visible-xs-inline-block pull-right typeSearchMobile">
+              <div class="row">
+                <div class="col-md-12">    
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <div class="pull-right"><a href="#">Buscar Barrios</a></div>
+                    <label>Buscar Dirección</label>
+                    <input class="form-control input-sm" style="width: 300px;">
+                  </div>
+                  <div class="form-group hidden" style="margin-bottom: 0;">
+                    <div class="pull-right"><a href="#">Buscar Dirección</a></div>
+                    <label>Buscar Barrios</label>
+                    <input class="form-control input-sm" style="width: 300px;">
+                  </div>              
+                </div>
+              </div>        
+            </div>  -->           
+
+
+
+        </div>
+        <div class="collapse navbar-collapse" id="map-navbar-collapse">
+          <div class="visible-xs">
+            <p class="text-muted margin-20">Mapa del relevamiento del Registro Nacional de Barrios Populares</p>
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
+            </a>
+            <hr class="margin-20">
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a></li> 
+            <li><a href="/barriospopulares">Acerca de Barrios Populares</a></li>
+          </ul>           
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="jumbotron">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 hidden-xs">
+            <h4 style="margin-top: 10px;">Mapa de Barrios Populares</h4>
+            <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
+          </div>
+          <div class="col-md-6 typeSearch">
+              <div class="form-group">
+                <label class="control-label">Buscar barrios</label>
+                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por dirección o provincia</a>
+                <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
+                  <option value="blank"></option>
+                </select>
+              </div>
+              <div class="form-group hidden">
+                <label class="control-label">Buscar direcciones</label>
+                <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a>
+                <div style="margin-top: 10px;">
+                  <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección" value="">
+                </div>
+                <div style="margin-top: 10px;">
+                  <label class="control-label">Buscar provincias</label>
+                  <div id="controls">
+                    <select id="provincia" class="form-control chosen-select" data-placeholder="Todas las Provincia">
+                        <option value="blank" selected>Todas las Provincias</option>
+                        <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
+                        <option value="BSA">Buenos Aires</option>
+                        <option value="CAT">Catamarca</option>
+                        <option value="COR">Córdoba</option>
+                        <option value="CRR">Corrientes</option>
+                        <option value="CHA">Chaco</option>
+                        <option value="CHU">Chubut</option>
+                        <option value="ENT">Entre Ríos</option>
+                        <option value="FOR">Formosa</option>
+                        <option value="JUJ">Jujuy</option>
+                        <option value="PAM">La Pampa</option>
+                        <option value="RIO">La Rioja</option>
+                        <option value="MEN">Mendoza</option>
+                        <option value="MIS">Misiones</option>
+                        <option value="NEU">Neuquén</option>
+                        <option value="RNE">Río Negro</option>
+                        <option value="SAL">Salta</option>
+                        <option value="SJU">San Juan</option>
+                        <option value="SLU">San Luis</option>
+                        <option value="SCR">Santa Cruz</option>
+                        <option value="SFE">Santa Fe</option>
+                        <option value="SDE">Santiago del Estero</option>
+                        <option value="TDF">Tierra del Fuego</option>
+                        <option value="TUC">Tucumán</option>
+                    </select>
+                  </div>                
+                </div>
+
+              </div>              
+          </div>        
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+
+
+<div id="map-container" class="state-loading">
+  <div id="map"></div>
+</div>
+
+<!-- <div id="map" style="height: 700px;" class="state-loading"></div>
+ -->
+ <link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet"> 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+ <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+<script>
+
+var rows;
+var provincias = {
+        'CAB': {
+          center: {lat: -34.603684, lng: -58.381559}
+        },
+        'BSA': {
+          center: {lat: -34.603684, lng: -58.381559}
+        },
+        'CAT': {
+          center: {lat: -28.471588, lng: -65.787721}
+        },
+        'COR': {
+          center: {lat: -31.420083, lng: -64.188776}
+        },
+        'CRR': {
+          center: {lat: -27.469213, lng: -58.830635}
+        },
+        'CHA': {
+          center: {lat: -27.425718, lng: -59.024378}
+        },
+        'CHU': {
+          center: {lat: -43.293425, lng: -65.111482}
+        },
+        'ENT': {
+          center: {lat: -31.774665, lng: -60.495646}
+        },
+        'FOR': {
+          center: {lat: -26.185777, lng: -58.175567}
+        },
+        'JUJ': {
+          center: {lat: -24.184340, lng: -65.302177}
+        },
+        'PAM': {
+          center: {lat: -36.614757, lng: -64.283921}
+        },
+        'RIO': {
+          center: {lat: -29.419379, lng: -66.855993}
+        },
+        'MEN': {
+          center: {lat: -32.889459, lng: -68.845839}
+        },
+        'MIS': {
+          center: {lat: -27.426925, lng: -55.946708}
+        },
+        'NEU': {
+          center: {lat: -38.951678, lng: -68.059189}
+        },
+        'RNE': {
+          center: {lat: -40.826143, lng: -63.026634}
+        },
+        'SAL': {
+          center: {lat: -24.782127, lng: -65.423198}
+        },
+        'SJU': {
+          center: {lat: -31.528713, lng: -68.536040}
+        },
+        'SLU': {
+          center: {lat: -33.296204, lng: -66.329495}
+        },
+        'SCR': {
+          center: {lat: -51.635282, lng: -69.247435}
+        },
+        'SFE': {
+          center: {lat: -31.610658, lng: -60.697294}
+        },
+        'SDE': {
+          center: {lat: -27.791039, lng: -64.273442}
+        },
+        'TDF': {
+          center: {lat: -54.805400, lng: -68.324206}
+        },
+        'TUC': {
+          center: {lat: -26.822113, lng: -65.219290}
+        }
+
+      };
+
+  var placeSearch, autocomplete;
+
+  var initMap = function() {
+
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('address')),
+    {types: ['geocode']});
+
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
+    // document.getElementById('provincia').addEventListener(
+    //     'change', setAutocompleteProvincia);
+
+    $('#provincia').on('change', function(event) {
+        setAutocompleteProvincia();
+      });    
+
+      function setAutocompleteProvincia() {
+        var provincia = document.getElementById('provincia').value;
+        if (provincia == 'blank') {
+          map.setCenter({lat: -41.2148693, lng: -66.3996161});
+          map.setZoom(4);
+        } else {
+          map.setCenter(provincias[provincia].center);
+          map.setZoom(10);
+        }
+      }
+    
+    // Setup map
+    // var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    window.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      // center: mapCenter,
+      center: provincias['CAB'].center,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.LEFT_BOTTOM
+      },      
+      scrollwheel: true,
+      streetViewControl: false,
+      styles: [
+          {
+            featureType: "landscape.man_made",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "landscape.natural",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "landscape.natural.landcover",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "landscape.natural.terrain",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.attraction",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.business",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.government",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.medical",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.park",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.place_of_worship",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.school",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "poi.sports_complex",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "road",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "road",
+            elementType: "labels.icon",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "road.arterial",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "road.highway",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "road.local",
+          stylers: [
+              {
+                visibility: "on"
+              }
+            ]
+          },
+          {
+            featureType: "transit",
+          stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          }
+        ]
+      
+    });
+
+    var geocoder = new google.maps.Geocoder();    
+
+    function onPlaceChanged() {
+      geocodeAddress(geocoder, map);
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(17);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }    
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+
+    $.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1f3VmNkRaBZNPadSklCao4um0dF6_HgpcnNRYl_HzkyU/1',
+      data: 'json',
+      success: function(response){
+        rows = response.feed.entry;
+        console.log(rows)
+        renderMarkers(function(){
+          renderMarkers();
+        });  
+
+      },
+      error: function(){
+        console.log('nope');
+      }
+    });
+
+    var renderMarkers = function(callback){
+
+        var geojson = '{"type": "FeatureCollection", "features": [';
+
+        rows.forEach(function(row, key){
+            // console.log(row);
+            geojson += '{"type": "Feature", "id": '+key+', "properties": {"nombre": "'+ row.gsx$barrionombre.$t.replace(/"/gi, '') +'", "localidad": "'+ row.gsx$localidadcomunanombre.$t +'", "partido": "'+ row.gsx$partidodepartamentonombre.$t +'", "provincia": "'+ row.gsx$provincianombre.$t +'"}, "geometry": '+ row.gsx$geojson.$t + '},';
+        });
+    
+
+        geojson = geojson.slice(0, -1);
+        geojson += ']}';
+
+       
+        map.data.addGeoJson( JSON.parse(geojson) );
+        
+        map.data.setStyle({
+          fillColor: '#0695d6',
+          fillOpacity: 0.4,
+          strokeColor: '#0695d6',
+          strokeWeight: 2
+        });
+
+        // global infowindow
+        var infowindow = new google.maps.InfoWindow();
+
+        // When the user clicks, open an infowindow
+        map.data.addListener('click', function(event) {
+          var nombre = event.feature.getProperty("nombre");
+          var localidad = event.feature.getProperty("localidad");
+          var partido = event.feature.getProperty("partido");
+          var provincia = event.feature.getProperty("provincia");
+          infowindow.setContent("<div style='max-width:300px;'><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+
+          var bounds = new google.maps.LatLngBounds();
+          event.feature.getGeometry().forEachLatLng(function(LatLng){
+            bounds.extend(LatLng);
+          });
+          infowindow.setPosition(bounds.getCenter());
+          infowindow.open(map);
+          map.fitBounds(bounds);
+        });
+
+        map.data.forEach(function(barrio){ 
+          jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +', '+ barrio.getProperty("localidad") +', '+ barrio.getProperty("partido") +', '+ barrio.getProperty("provincia") +'  </option>');
+        });
+
+        $("#tipo-barrio").on("change", function(event) {
+
+          var feature = map.data.getFeatureById( $(this).val() )
+          var bounds = new google.maps.LatLngBounds();
+          feature.getGeometry().forEachLatLng(function(LatLng){
+            bounds.extend(LatLng);
+          });
+          nombre = feature.getProperty("nombre");
+          localidad = feature.getProperty("localidad");
+          partido = feature.getProperty("partido");
+          provincia = feature.getProperty("provincia");
+          infowindow.setContent("<div style='max-width:300px;'><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+          infowindow.setPosition(bounds.getCenter());
+          infowindow.open(map);
+          map.fitBounds(bounds);
+        }); 
+
+
+        $('#map-container').removeClass('state-loading');
+
+        $(".chosen-select").chosen({
+          width: '100%',
+          search_contains:true
+        });
+
+
+    }  
+
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(5);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            // console.log('geo nope')
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(5);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+
+  }
+
+$('body').on('click', '.typeSearch a.switch', function(e){
+     e.preventDefault();
+     $(this).parent().addClass('hidden').siblings().removeClass('hidden'); 
+});
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&libraries=places&callback=initMap"></script>
