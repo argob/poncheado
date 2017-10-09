@@ -143,7 +143,7 @@ layout: argentina
 <div class="container">
  <div class="row">
    <div class="col-md-12">
-     <div id="alerta" class="alert alert-warning col-md-4 no-result">
+     <div id="alerta" class="alert alert-warning col-md-4 no-result hide">
       <div class="media">
         <div class="media-left media-middle">
           <i class="fa fa-warning fa-fw fa-2x"></i>
@@ -275,8 +275,8 @@ layout: argentina
                       </div>
                     </div>
                     <div class="modal-body">
-                      <div>
-                        <a type="button" class="botones btn btn-sm btn-primary" target="_blank" href="{video}">Ver video</a>
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{video}" frameborder="0" allowfullscreen></iframe>
                       </div>
                     </div>
                   </div>
@@ -319,7 +319,7 @@ layout: argentina
       data: 'json',
       success: function(response){
 
-
+        console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
 
@@ -446,17 +446,23 @@ layout: argentina
 
 
 
-
             $('[data-render=tarjetas]').append( html_tarjetas );
      
 
-            if(obras.video){
-              $('[data-render=modales]').append( modal_v ); 
-            }else if(obras.imagen){
-              $('[data-render=modales]').append( modal_im ); 
-            }else{
-              $('[data-render=modales]').append( modal_n ); 
-            }
+            $('[data-toggle="modal"]').click( function() {
+              var id = $(this).attr('href').substr(1);
+              if('obras-' + index == id){
+                $('[data-render=modales]').html('');
+                if(obras.video){
+                  $('[data-render=modales]').append( modal_v ); 
+                }else if(obras.imagen){
+                  $('[data-render=modales]').append( modal_im ); 
+                }else{
+                  $('[data-render=modales]').append( modal_n ); 
+                }
+
+              }              
+            })
 
 
           }
@@ -475,7 +481,7 @@ layout: argentina
 
         var listOptions = { 
           valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
-          page: 9,
+          page: 18,
           plugins: [ ListPagination({}) ]
         };
 
@@ -517,6 +523,7 @@ layout: argentina
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap" 
     async defer></script> -->
 
+<script type="text/javascript">
 </script>    
 
     
