@@ -26,10 +26,58 @@ layout: g20
     </div>
 </section>
 
-<section>
+<section class="fondoGris">
     <div class="container">
         <div class="row">
-            <div id="mapdiv" style="width: 100%; background-color: rgb(255, 255, 255); height: 500px; overflow: hidden; text-align: left;"></div>
+
+            <div class="col-md-8 col-md-offset-2 m-y-2 contenedorNoticia">
+                <div class="textoNoticia p-y-2">
+                    <p class="preTitulo">XXXXXXXXXXX</p>
+                    <h2 class="tituloNoticia">G20 en Argentina</h2>
+                    <div class="barrita turquesaFondo m-b-2"></div>
+
+                <div class="row">
+
+            <div class="col-md-12 m-b-4">
+                <p>Accedé desde al mapa a las reuniones de cada provincia y ver informacion turistica</p>
+            </div>
+            
+            <div class="col-md-7">
+                <div id="mapdiv" style="width: 100%; background-color: rgb(255, 255, 255); height: 700px; overflow: hidden; text-align: left;"></div>               
+            </div>
+
+            <div class="col-md-5 listaMapa">
+                <h3>Provincias con reuniones</h3>
+                <ul>
+                    <a href="mendoza.html"><li>Mendoza</li></a>
+                </ul>
+
+                <h3 class="m-t-2">Provincias sin reuniones</h3>
+                <ul>
+                    <a href="#"><li>Buenos Aires</li></a>
+                    <a href="#"><li>Catamarca</li></a>
+                    <a href="#"><li>Chaco</li></a>
+                    <a href="#"><li>Chubut</li></a>
+                    <a href="#"><li>Ciudad de Buenos Aires</li></a>
+                    <a href="#"><li>Córdoba</li></a>
+                    <a href="#"><li>Corrientes</li></a>
+                    <a href="#"><li>Entre Ríos</li></a>
+                    <a href="#"><li>Jujuy</li></a>
+                    <a href="#"><li>La Rioja</li></a>
+                    <a href="#"><li>Misiones</li></a>
+                    <a href="#"><li>Neuquén</li></a>
+                    <a href="#"><li>Río Negro</li></a>
+                    <a href="#"><li>Salta</li></a>
+                    <a href="#"><li>San Juan</li></a>
+                    <a href="#"><li>Santa Fe</li></a>
+                    <a href="#"><li>Santiago del Estero</li></a>
+                    <a href="#"><li>Tierra del Fuego</li></a>
+                    <a href="#"><li>Tucumán</li></a>
+                </ul>
+            </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -44,11 +92,11 @@ layout: g20
         <script>
             var targetSVG = "m296.822487,200.013225q0,-0.356991 -0.237994,-0.594986l-1.203194,-1.203194q-0.237994,-0.237994 -0.594986,-0.237994t-0.594986,0.237994l-2.49894,2.49894l0,-6.637397q0,-0.34377 -0.251216,-0.594986t-0.594986,-0.251216l-1.692404,0q-0.34377,0 -0.594986,0.251216t-0.251216,0.594986l0,6.637397l-2.49894,-2.49894q-0.251216,-0.251216 -0.594986,-0.251216t-0.594986,0.251216l-1.203194,1.203194q-0.237994,0.237994 -0.237994,0.594986t0.237994,0.594986l4.78633,4.78633l1.203194,1.203194q0.237994,0.237994 0.594986,0.237994t0.594986,-0.237994l1.203194,-1.203194l4.78633,-4.78633q0.237994,-0.237994 0.237994,-0.594986zm3.331921,-0.013222q0,2.763379 -1.361856,5.097045t-3.695523,3.695523t-5.097045,1.361856t-5.097045,-1.361856t-3.695523,-3.695523t-1.361856,-5.097045t1.361856,-5.097045t3.695523,-3.695523t5.097045,-1.361856t5.097045,1.361856t3.695523,3.695523t1.361856,5.097045z";
 
-            var areas = [{"title":"Catamarca","id":"AR-K","color":"#f7941d"}];
+            var areas = [{"title":"Mendoza","id":"AR-M","color":"#f7941d"}];
 
-            var dataPoints = [{"title":"Ciudad de Buenos Aires","id":"AR-C","color":"#f7941d","latitude":"-34.6644918","longitude":"-58.5140821"}];
+            /* var dataPoints = [{"title":"Ciudad de Buenos Aires","id":"AR-C","color":"#f7941d","latitude":"-34.6644918","longitude":"-58.5140821"}];
 
-            dataPoints.forEach(function(obj) { obj.svgPath = targetSVG; obj.color = '#000000'; });
+            dataPoints.forEach(function(obj) { obj.svgPath = targetSVG; obj.color = '#000000'; });  */
 
             var map = AmCharts.makeChart("mapdiv", {
                 imagesSettings: {
@@ -61,7 +109,7 @@ layout: g20
                 dataProvider: {
                     map: "argentinaHigh",
                     getAreasFromMap: true,
-                    images: dataPoints,
+                    /*images: dataPoints,*/
                     areas: areas
                 },
 
@@ -82,22 +130,22 @@ layout: g20
             });
 
             var legend = {
-                    width: 150,
+                    width: 200,
                     backgroundAlpha: 1,
                     backgroundColor: "#FFFFFF",
-                    borderColor: "#666666",
+                    borderColor: "#01babd",
                     borderAlpha: 1,
-                    bottom: 0,
+                    bottom: 200,
                     left: 0,
                     horizontalGap: 10,
                     data:[
                             {
-                                title: "G20 Members",
-                                color: "#3366CC"
+                                title: "Reuniones G20",
+                                color: "#f7941d"
                             },
                             {
-                                title: "Invited Guests",
-                                color: "#82AC39"
+                                title: "información Turistica",
+                                color: "#01babd"
                             }
                     ]
                 };
