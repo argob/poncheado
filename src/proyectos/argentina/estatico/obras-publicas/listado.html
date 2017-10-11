@@ -128,6 +128,20 @@ layout: argentina
       <div>
       <div class="list row panels-row m-y-3 state-loading" data-render="tarjetas">
       </div>
+      <div class="row" id="alerta-msj">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-warning">
+            <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-warning fa-fw fa-2x"></i>
+              </div>
+              <div class="media-body">
+                <p>Se están cargando todas las obras públicas. Este proceso puede tardar aproximadamente un minuto.</p>
+              </div>
+            </div>          
+          </div>
+        </div>        
+      </div>
       <nav class="text-center">
         <ul class="pagination"></ul>
       </nav>       
@@ -354,6 +368,8 @@ layout: argentina
 
         render.tarjetas();
         $('div[data-render="tarjetas"]').removeClass('state-loading');
+        $('#alerta-msj').hide();
+
 
 
       }
