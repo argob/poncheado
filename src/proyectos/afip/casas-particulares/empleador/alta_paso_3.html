@@ -40,7 +40,7 @@ layout: afip_casas_particulares
 			<div class="form-group">
 		        <label class="control-label">Tipo de trabajo (categoría)  </label>
 		        <select class="form-control chosen-select" id="tipoTrabajo" name="">
-		          <option value="0" selected>Seleccioná un tipo de trabajo</option>
+		          <option value="0" selected disabled>Seleccioná un tipo de trabajo</option>
                   <option value="1">Supervisora - Coordinación y control de las tareas efectuadas por dos o más personas a su cargo.</option>
                   <option value="2">Personal para tareas específicas - Cocineros/as contratados en forma exclusiva para desempeñar dicha labor, y toda otra tarea del hogar que requiera especial idoneidad del personal para llevarla a cabo.</option>
                   <option value="3">Caseros - Personal que presta tareas inherentes al cuidado general y preservación de una vivienda en donde habita con motivo del contrato de trabajo.</option>
@@ -159,7 +159,7 @@ layout: afip_casas_particulares
 			
 			<div class="form-group">
 			    <a href="alta_paso_2.html"  class="btn btn-link cancel m-r-1">ANTERIOR</a>
-				<button type="submit" class="btn btn-success siguiente disabled">Siguiente</button>			   
+				<a href="alta_paso_4.html" class="btn btn-success siguiente disabled">Siguiente</a>			   
 			</div>
 
 				        	        	                
@@ -198,7 +198,8 @@ $('.date').datepicker({language: 'es'});
 <script>
   $(function(){
     $(".chosen-select").chosen({
-    	width: '100%'
+    	width: '100%',
+    	disable_search: true
     });
   });
 

@@ -167,7 +167,7 @@ layout: afip_casas_particulares
 						</div>																		
 					</div>
 					<div class="form-group m-b-0">
-						<a href="" class="btn btn-link btn-sm modificar-domicilio">MODIFICAR DOMICILIO</a>
+						<a href="" class="btn btn-primary btn-sm modificar-domicilio">MODIFICAR DOMICILIO</a>
 					</div>																			
 				</div>	
 			</div>
@@ -573,7 +573,7 @@ layout: afip_casas_particulares
 						</div>																		
 					</div>
 					<div class="form-group m-b-0">
-						<a href="" class="btn btn-link btn-sm modificar-domicilio-laboral">MODIFICAR DOMICILIO</a>
+						<a href="" class="btn btn-primary btn-sm modificar-domicilio-laboral">MODIFICAR DOMICILIO</a>
 					</div>																		
 				</div>	
 			</div>
@@ -785,8 +785,8 @@ layout: afip_casas_particulares
 			<hr class="m-t-3">
 
 			<div class="form-group">
-			    <a href="dashboard.html" class="btn btn-link cancel">CANCELAR</a>
-				<button type="submit" class="btn btn-success siguiente disabled m-r-1">CONFIRMAR MODIFICACION</button>			   
+			    <a href="dashboard.html" class="btn btn-link cancel m-r-1">CANCELAR</a>
+				<a href="alta_paso_2_modificacion.html" class="btn btn-success siguiente disabled">CONFIRMAR MODIFICACION</a>			   
 			</div>
 
 				        	        	                
@@ -874,6 +874,9 @@ jQuery(document).ready(function($){
 		 }	      	
 	    
 	})
+	$('input').focus( function() {
+		$(".siguiente").removeClass("disabled");
+	})
 }); 
 </script>	
 
@@ -903,7 +906,6 @@ jQuery(document).ready(function($){
   	   $('.datos-domicilio-laboral-trabajador').addClass('hide');
   	   $('#direccionLaboral').parent().addClass('hide');
        $(".formulario-modificacion-domicilio-laboral-trabajador").removeClass("hide");
-       $(".formulario-domicilio-laboral-trabajador").removeClass("hide");
   });      	
 	$("#direccionLaboral").change(function(){
 	     if ($(this).val()=="0" ){
