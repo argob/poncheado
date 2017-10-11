@@ -92,14 +92,15 @@ layout: afip_casas_particulares
 
 					<div>
 			          <div>
-			            <h3 for="" class="m-y-2"> Datos del período a pagar </h3>
+			            <h3 class="m-t-2"> Datos del período a pagar </h3>
+			            <p class="m-b-2">Recordá que es a mes vencido</p>
 			            <div class="row">
 			              <div class="form-group col-md-4">
 			                <label class="control-label" for="">Período </label>
-			                <select class="form-control chosen-select" id="" name="">
-			                  <option value="0" disabled selected>Seleccioná el período</option>
+			                <select class="form-control" id="" name="">
+			                  <option value="0" disabled>Seleccioná el período</option>
 			                  <option value="1">Ene 2017</option>
-			                  <option value="2">Feb 2017</option>
+			                  <option value="2" selected>Feb 2017</option>
 			                  <option value="3">Mar 2017</option>
 			                  <option value="4">Abr 2017</option>
 			                  <option value="5">Mayo 2017</option>
@@ -118,7 +119,7 @@ layout: afip_casas_particulares
 								<span class="input-group-addon">
 									<span class="fa fa-calendar"></span>
 								</span>
-								<input type="text" class="form-control" value="">
+								<input type="text" class="form-control" value="01/02/2017">
 							</div>
 			              </div>
 			              <div class="form-group col-md-4">
@@ -127,7 +128,7 @@ layout: afip_casas_particulares
 								<span class="input-group-addon">
 									<span class="fa fa-calendar"></span>
 								</span>
-								<input type="text" class="form-control" value="">
+								<input type="text" class="form-control" value="28/02/2017">
 							</div>
 			              </div>
 			            </div>
@@ -136,26 +137,28 @@ layout: afip_casas_particulares
 			          <div class="form-group">
 			            <div class="row">
 			              <div class="form-group col-md-4">
-			                <label class="control-label" for="">Remuneración </label>
-							<div class="input-group">
-							  <span class="input-group-addon" id="importe-pesos">$</span>
-							  <input type="number" class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
-							</div>				                
-			              </div>
-			              <div class="form-group col-md-4">
 			                <label class="control-label" for="input-5">Modalidad de pago </label>
-			                <select class="form-control chosen-select" id="" name="">
+			                <select class="form-control" id="modalidad-pago" name="">
 			                  <option value="0" selected disabled>Seleccioná modalidad de pago</option>
 			                  <option value="1">Diaria </option>
 			                  <option value="2">Semanal </option>
 			                  <option value="3">Quincenal </option>
-			                  <option value="4">Mensual </option>
+			                  <option value="4" selected>Mensual </option>
 			                  <option value="5">Otros </option>
 			                </select>			                
 			              </div>
 			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Remuneración </label>
+			                <span class="tipo-modalidad-pago text-muted"></span>
+							<div class="input-group">
+							  <span class="input-group-addon" id="importe-pesos">$</span>
+							  <input type="number" value='3500' class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
+							</div>				                
+			              </div>
+			              <div class="form-group col-md-4">
 			                <label class="control-label" for="input-5">Horas trabajadas </label>
-			                <input id="input-5" class="form-control" type="number" placeholder="">
+			                <span class="tipo-modalidad-pago text-muted">Mensual</span>
+			                <input id="input-5" value="32" class="form-control" type="number" placeholder="">
 			              </div>
 			            </div>
 			            <div class="media m-t-0 m-b-3">
@@ -280,7 +283,8 @@ $('.date').datepicker({language: 'es'});
 </script>	
 
 <script>
-  $(function(){
-    $(".chosen-select").chosen({width: '100%'});
-  });
+  $('#modalidad-pago').on('change', function(){
+  	var value = $(this).find('option:selected').text();
+  	$(".tipo-modalidad-pago").text(value);
+  });  
 </script>

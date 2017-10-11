@@ -91,11 +91,12 @@ layout: afip_casas_particulares
 
 					<div>
 			          <div>
-			            <h3 for="" class="m-y-2"> Datos del período a pagar </h3>
+			            <h3 class="m-t-2"> Datos del período a pagar </h3>
+			            <p class="m-b-2">Recordá que es a mes vencido</p>
 			            <div class="row">
 			              <div class="form-group col-md-4">
 			                <label class="control-label" for="">Período </label>
-			                <select class="form-control chosen-select" id="" name="">
+			                <select class="form-control" id="" name="">
 			                  <option value="1">Ene 2017</option>
 			                  <option value="2" selected="selected">Feb 2017</option>
 			                  <option value="3">Mar 2017</option>
@@ -134,26 +135,28 @@ layout: afip_casas_particulares
 			          <div class="form-group">
 			            <div class="row">
 			              <div class="form-group col-md-4">
-			                <label class="control-label" for="">Remuneración </label>
-							<div class="input-group">
-							  <span class="input-group-addon" id="importe-pesos">$</span>
-							  <input type="number" class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
-							</div>				                
-			              </div>
-			              <div class="form-group col-md-4">
 			                <label class="control-label" for="input-5">Modalidad de pago </label>
-			                <select class="form-control chosen-select" id="" name="">
-			                  <option value="0" selected disabled>Seleccioná modalidad de pago</option>
+			                <select class="form-control" id="modalidad-pago" name="">
+			                  <option value="0" disabled>Seleccioná modalidad de pago</option>
 			                  <option value="1">Diaria </option>
 			                  <option value="2">Semanal </option>
 			                  <option value="3">Quincenal </option>
-			                  <option value="4">Mensual </option>
+			                  <option value="4" selected>Mensual </option>
 			                  <option value="5">Otros </option>
 			                </select>			                
 			              </div>
 			              <div class="form-group col-md-4">
+			                <label class="control-label" for="">Remuneración </label>
+			                <span class="tipo-modalidad-pago text-muted">Mensual</span>
+							<div class="input-group">
+							  <span class="input-group-addon" id="importe-pesos">$</span>
+							  <input type="number" value='3500' class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
+							</div>				                
+			              </div>
+			              <div class="form-group col-md-4">
 			                <label class="control-label" for="input-5">Horas trabajadas </label>
-			                <input id="input-5" class="form-control" type="number" placeholder="">
+			                <span class="tipo-modalidad-pago text-muted">Mensual</span>
+			                <input id="input-5" value="32" class="form-control" type="number" placeholder="">
 			              </div>
 			            </div>
 			            <div class="media m-t-0 m-b-3">
@@ -168,76 +171,155 @@ layout: afip_casas_particulares
 			            </div>			            
 			          </div>
 
-			          <div class="form-group">
-			            <label class="control-label" for="input-5">SAC (Sueldo Anual Complementario)</label>
-						<div class="input-group">
-						  <span class="input-group-addon" id="importe-pesos">$</span>
-						  <input type="number" class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
-						</div>			            
-			            <div class="media">
-			              <div class="media-left">
-			                <i class="fa fa-info-circle fa-fw text-muted"></i>
-			              </div>
-			              <div class="media-body">
-			                <p class="text-muted">
-			                	<small><a href="https://www.argentina.gob.ar/casasparticulares/vacaciones " target="_blank">Cómo calcular el aguinaldo y cuándo abonarlo</a></small>
-			                </p>
-			              </div>
-			            </div>			            
+			          <div class="m-b-2">
+				          <a role="button" data-toggle="collapse" href="#collapse-otros-conceptos" class="btn-agregar btn btn-primary btn-sm" aria-expanded="false" aria-controls="collapse-otros-conceptos">Agregar Aguinaldo - Vacaciones - Otros conceptos</a>
 			          </div>
 
-			          <div class="form-group">
-			            <label class="control-label" for="input-5">Vacaciones</label>
-						<div class="input-group">
-						  <span class="input-group-addon" id="basic-addon1">$</span>
-						  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
-						</div>
-			            <div class="media">
-			              <div class="media-left">
-			                <i class="fa fa-info-circle fa-fw text-muted"></i>
-			              </div>
-			              <div class="media-body">
-			                <p class="text-muted">
-			                	<small><a href="https://www.argentina.gob.ar/casasparticulares/vacaciones " target="_blank">Cómo pagar las vacaciones</a></small>
-			                </p>
-			              </div>
-			            </div>			            
-			          </div>
+			          <div class="collapse" id="collapse-otros-conceptos">
+				          <div class="form-group">
+				            <label class="control-label" for="input-5">SAC (Sueldo Anual Complementario)</label>
+							<div class="input-group">
+							  <span class="input-group-addon" id="importe-pesos">$</span>
+							  <input type="number" class="form-control" placeholder="" aria-describedby="importe en pesos argentinos">
+							</div>			            
+				            <div class="media">
+				              <div class="media-left">
+				                <i class="fa fa-info-circle fa-fw text-muted"></i>
+				              </div>
+				              <div class="media-body">
+				                <p class="text-muted">
+				                	<small><a href="https://www.argentina.gob.ar/casasparticulares/vacaciones " target="_blank">Cómo calcular el aguinaldo y cuándo abonarlo</a></small>
+				                </p>
+				              </div>
+				            </div>			            
+				          </div>
 
-			          <div class="">
-			            <label class="control-label m-b-2" for=""> Otros conceptos </label>
-			            <div class="row">
-			              <div class="form-group col-md-7">
-			                <label class="" for="">Concepto 1 </label>
-			                <input id="" class="form-control" type="text" placeholder="">
-			              </div>
-			              <div class="form-group col-md-5">
-			                <label class="" for="">Importe 1 </label>
+				          <div class="form-group">
+				            <label class="control-label" for="input-5">Vacaciones</label>
 							<div class="input-group">
 							  <span class="input-group-addon" id="basic-addon1">$</span>
 							  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
 							</div>
-			              </div>
-			            </div>	
-			            <div class="row">
-			              <div class="form-group col-md-7">
-			                <label class="" for="">Concepto 2 </label>
-			                <input id="" class="form-control" type="text" placeholder="">
-			              </div>
-			              <div class="form-group col-md-5">
-			                <label class="" for="">Importe 2 </label>
-							<div class="input-group">
-							  <span class="input-group-addon" id="basic-addon1">$</span>
-							  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
-							</div>
-			              </div>			              
-			            </div>
-			            <div class="row">
-			              <div class="form-group col-md-12 text-right">
-			              <a href="" class="btn btn-link btn-sm">agregar otros conceptos</a>
-			              </div>
-			            </div>			            
+				            <div class="media">
+				              <div class="media-left">
+				                <i class="fa fa-info-circle fa-fw text-muted"></i>
+				              </div>
+				              <div class="media-body">
+				                <p class="text-muted">
+				                	<small><a href="https://www.argentina.gob.ar/casasparticulares/vacaciones " target="_blank">Cómo pagar las vacaciones</a></small>
+				                </p>
+				              </div>
+				            </div>			            
+				          </div>
+
+				          <div class="">
+				            <label class="control-label m-b-2" for=""> Otros conceptos </label>
+				            <div class="row">
+				              <div class="form-group col-md-12">
+				                <label class="" for="">Concepto 1 </label>
+								<select class="form-control" name="" id="select-otros-conceptos">
+				                  <option value="0" selected disabled>Seleccioná un concepto</option>
+				                  <option value="1">Indenmización </option>
+				                  <option value="2">Diferencia de obra social </option>
+				                  <option value="3">Diferencia de Aportes </option>
+				                  <option value="4">Otros</option>
+				                </select>
+				              </div>
+				              <div id="otros" class="hide form-group col-md-12">
+					              <input id="" class="form-control" type="text" placeholder="">
+				              </div>				                
+					          <div class="form-group col-md-12">
+				                <label class="" for="">Importe 1 </label>
+								<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon1">$</span>
+								  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+								</div>
+				              </div>
+				            </div>	
+
+				            <div class="collapse" id="otros-conceptos">
+					            <div class="row">
+					              <div class="form-group col-md-12">
+					                <label class="" for="">Concepto 2 </label>
+									<select class="form-control" name="" id="select-otros-conceptos">
+					                  <option value="0" selected disabled>Seleccioná un concepto</option>
+					                  <option value="1">Indenmización </option>
+					                  <option value="2">Diferencia de obra social </option>
+					                  <option value="3">Diferencia de Aportes </option>
+					                  <option value="4">Otros</option>
+					                </select>
+					              </div>
+					              <div id="otros" class="hide form-group col-md-12">
+						              <input id="" class="form-control" type="text" placeholder="">
+					              </div>				                
+						          <div class="form-group col-md-12">
+					                <label class="" for="">Importe 2 </label>
+									<div class="input-group">
+									  <span class="input-group-addon" id="basic-addon1">$</span>
+									  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+									</div>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="collapse" id="otros-conceptos-3">
+					            <div class="row">
+					              <div class="form-group col-md-12">
+					                <label class="" for="">Concepto 3 </label>
+									<select class="form-control" name="" id="select-otros-conceptos">
+					                  <option value="0" selected disabled>Seleccioná un concepto</option>
+					                  <option value="1">Indenmización </option>
+					                  <option value="2">Diferencia de obra social </option>
+					                  <option value="3">Diferencia de Aportes </option>
+					                  <option value="4">Otros</option>
+					                </select>
+					              </div>
+					              <div id="otros" class="hide form-group col-md-12">
+						              <input id="" class="form-control" type="text" placeholder="">
+					              </div>				                
+						          <div class="form-group col-md-12">
+					                <label class="" for="">Importe 3 </label>
+									<div class="input-group">
+									  <span class="input-group-addon" id="basic-addon1">$</span>
+									  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+									</div>
+					              </div>	              
+					            </div>
+				            </div>
+				            <div class="collapse" id="otros-conceptos-4">
+					            <div class="row">
+					              <div class="form-group col-md-12">
+					                <label class="" for="">Concepto 4 </label>
+									<select class="form-control" name="" id="select-otros-conceptos">
+					                  <option value="0" selected disabled>Seleccioná un concepto</option>
+					                  <option value="1">Indenmización </option>
+					                  <option value="2">Diferencia de obra social </option>
+					                  <option value="3">Diferencia de Aportes </option>
+					                  <option value="4">Otros</option>
+					                </select>
+					              </div>
+					              <div id="otros" class="hide form-group col-md-12">
+						              <input id="" class="form-control" type="text" placeholder="">
+					              </div>				                
+						          <div class="form-group col-md-12">
+					                <label class="" for="">Importe 4 </label>
+									<div class="input-group">
+									  <span class="input-group-addon" id="basic-addon1">$</span>
+									  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
+									</div>
+					              </div>	              
+					            </div>
+				            </div>
+
+				            <div class="row">
+				              <div class="form-group col-md-12">
+				              <a href="#otros-conceptos" class="btn btn-primary btn-sm btn-otros-conceptos" role='button' data-toggle="collapse" href="#otros-conceptos" aria-expanded="false" aria-controls="otros-conceptos">agregar otros conceptos</a>
+				              </div>
+				            </div>			            
+				          </div>
+
+			          	
 			          </div>
+
 
 			          <div class="form-group">
 			            <label class="control-label" for="exampleFormControlTextarea1">Observaciones</label>
@@ -249,8 +331,7 @@ layout: afip_casas_particulares
 			            <input id="input-5" class="form-control" type="number" placeholder="">
 			          </div>
 					
-					</div>					
-
+					</div>	
 
 		        </form>    
 
@@ -278,7 +359,34 @@ $('.date').datepicker({language: 'es'});
 </script>	
 
 <script>
-  $(function(){
-    $(".chosen-select").chosen({width: '100%'});
+  $('#modalidad-pago').on('change', function(){
+  	var value = $(this).find('option:selected').text();
+  	$(".tipo-modalidad-pago").text(value);
+  });  
+  $('.btn-agregar').on('click', function(){
+  	var text = $(this).text();
+  	if(text == 'Agregar Aguinaldo - Vacaciones - Otros conceptos') {
+  		$(this).text('Quitar Aguinaldo - Vacaciones - Otros conceptos');
+  	}
+  	else {
+	  	$(this).text('Agregar Aguinaldo - Vacaciones - Otros conceptos');
+  	}
+  	
   });
+	$('.btn-otros-conceptos').on('click', function(){
+		var href = $(this).attr( "href" );
+		console.log(href);
+
+	  });  
+  $('#select-otros-conceptos').on('change', function(){
+  	var value = $(this).find('option:selected').text();
+  	if(value === 'Otros') {
+  		$('#otros').removeClass('hide');
+  	}
+  	else {
+  		$('#otros').addClass('hide');
+  	}
+  }); 	
+
 </script>
+
