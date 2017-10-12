@@ -214,10 +214,12 @@ layout: afip_casas_particulares
 
 				          <div class="">
 				            <label class="control-label m-b-2" for=""> Otros conceptos </label>
-				            <div class="row">
+
+				            <div class="otros-conceptos">
+					            <div class="row">
 				              <div class="form-group col-md-12">
 				                <label class="" for="">Concepto 1 </label>
-								<select class="form-control" name="" id="select-otros-conceptos">
+								<select class="form-control select-otros-conceptos" name="">
 				                  <option value="0" selected disabled>Seleccioná un concepto</option>
 				                  <option value="1">Indenmización </option>
 				                  <option value="2">Diferencia de obra social </option>
@@ -225,7 +227,7 @@ layout: afip_casas_particulares
 				                  <option value="4">Otros</option>
 				                </select>
 				              </div>
-				              <div id="otros" class="hide form-group col-md-12">
+				              <div class="otros hide form-group col-md-12">
 					              <input id="" class="form-control" type="text" placeholder="">
 				              </div>				                
 					          <div class="form-group col-md-12">
@@ -235,13 +237,14 @@ layout: afip_casas_particulares
 								  <input type="number" class="form-control" placeholder="" aria-describedby="basic-addon1">
 								</div>
 				              </div>
-				            </div>	
+					            </div>	
+				            </div>
 
-				            <div class="collapse" id="otros-conceptos">
+				            <div class="otros-conceptos">
 					            <div class="row">
 					              <div class="form-group col-md-12">
 					                <label class="" for="">Concepto 2 </label>
-									<select class="form-control" name="" id="select-otros-conceptos">
+									<select class="form-control select-otros-conceptos" name="">
 					                  <option value="0" selected disabled>Seleccioná un concepto</option>
 					                  <option value="1">Indenmización </option>
 					                  <option value="2">Diferencia de obra social </option>
@@ -249,7 +252,7 @@ layout: afip_casas_particulares
 					                  <option value="4">Otros</option>
 					                </select>
 					              </div>
-					              <div id="otros" class="hide form-group col-md-12">
+					              <div class="otros hide form-group col-md-12">
 						              <input id="" class="form-control" type="text" placeholder="">
 					              </div>				                
 						          <div class="form-group col-md-12">
@@ -261,11 +264,11 @@ layout: afip_casas_particulares
 					              </div>
 					            </div>
 				            </div>
-				            <div class="collapse" id="otros-conceptos-3">
+				            <div class="otros-conceptos">
 					            <div class="row">
 					              <div class="form-group col-md-12">
 					                <label class="" for="">Concepto 3 </label>
-									<select class="form-control" name="" id="select-otros-conceptos">
+									<select class="form-control select-otros-conceptos" name="">
 					                  <option value="0" selected disabled>Seleccioná un concepto</option>
 					                  <option value="1">Indenmización </option>
 					                  <option value="2">Diferencia de obra social </option>
@@ -273,7 +276,7 @@ layout: afip_casas_particulares
 					                  <option value="4">Otros</option>
 					                </select>
 					              </div>
-					              <div id="otros" class="hide form-group col-md-12">
+					              <div class="otros hide form-group col-md-12">
 						              <input id="" class="form-control" type="text" placeholder="">
 					              </div>				                
 						          <div class="form-group col-md-12">
@@ -285,11 +288,11 @@ layout: afip_casas_particulares
 					              </div>	              
 					            </div>
 				            </div>
-				            <div class="collapse" id="otros-conceptos-4">
+				            <div class="otros-conceptos">
 					            <div class="row">
 					              <div class="form-group col-md-12">
 					                <label class="" for="">Concepto 4 </label>
-									<select class="form-control" name="" id="select-otros-conceptos">
+									<select class="form-control select-otros-conceptos" name="">
 					                  <option value="0" selected disabled>Seleccioná un concepto</option>
 					                  <option value="1">Indenmización </option>
 					                  <option value="2">Diferencia de obra social </option>
@@ -297,7 +300,7 @@ layout: afip_casas_particulares
 					                  <option value="4">Otros</option>
 					                </select>
 					              </div>
-					              <div id="otros" class="hide form-group col-md-12">
+					              <div class="otros hide form-group col-md-12">
 						              <input id="" class="form-control" type="text" placeholder="">
 					              </div>				                
 						          <div class="form-group col-md-12">
@@ -312,7 +315,7 @@ layout: afip_casas_particulares
 
 				            <div class="row">
 				              <div class="form-group col-md-12">
-				              <a href="#otros-conceptos" class="btn btn-primary btn-sm btn-otros-conceptos" role='button' data-toggle="collapse" href="#otros-conceptos" aria-expanded="false" aria-controls="otros-conceptos">agregar otros conceptos</a>
+				              <a href="#" class="btn btn-primary btn-sm btn-otros-conceptos">agregar otros conceptos</a>
 				              </div>
 				            </div>			            
 				          </div>
@@ -373,20 +376,31 @@ $('.date').datepicker({language: 'es'});
   	}
   	
   });
-	$('.btn-otros-conceptos').on('click', function(){
-		var href = $(this).attr( "href" );
-		console.log(href);
 
-	  });  
-  $('#select-otros-conceptos').on('change', function(){
+  $(function () {
+
+  	$(".otros-conceptos").hide();
+  	$(".otros-conceptos").slice(0, 1).show();
+	$('.btn-otros-conceptos').on('click', function(e){
+		 e.preventDefault();
+		 if ($("otros-conceptos:hidden").length == 0) {
+		 	$(".otros-conceptos:hidden").slice(0, 1).slideDown();
+	     }		 
+	  }); 
+
+  });	
+
+  	 
+  $('.select-otros-conceptos').on('change', function(){
   	var value = $(this).find('option:selected').text();
   	if(value === 'Otros') {
-  		$('#otros').removeClass('hide');
+  		$(this).parent().next().removeClass('hide');
   	}
   	else {
-  		$('#otros').addClass('hide');
+  		$(this).parent().next().addClass('hide');
   	}
   }); 	
+ 	
 
 </script>
 
