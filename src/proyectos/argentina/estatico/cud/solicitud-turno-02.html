@@ -52,6 +52,10 @@ layout: argentina
              <ol id="show-data" class="m-t-2 hidden">
                <li id="show-renovacion" class="hidden"></li>
                <li id="show-perdida" class="hidden"></li>
+               <li id="show-fallecimiento" class="hidden"></li>
+               <li id="show-voluntaria" class="hidden"></li>
+               <li id="show-adopcion" class="hidden"></li>
+               <li id="show-genero" class="hidden"></li>
              </ol>    
 
 
@@ -210,6 +214,14 @@ layout: argentina
                 if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "X") && (data.mayor18 == 'si' && data.tutoria == 'si') ){
                     show = true;
                 } 
+
+                if(
+                      ( item.gsx$mayorde18años.$t == "") && 
+                      ( item.gsx$menor18años.$t == "X")  && 
+                      ( item.gsx$tutor.$t == "X") && (data.mayor18 == 'no' && data.guardador == 'si') 
+                  ) {
+                    show = true;
+                }                 
 
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
@@ -636,16 +648,45 @@ layout: argentina
 
                     if(data.tipotramite == "Renovacion") {
 
-                        var htmlRenovacion = 'Llevar <strong>certificado vencido</strong> o <strong>próximo a vencer</strong>.';
+                        var htmlRenovacion = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD anterior (ORIGINAL). En caso de pérdida del CUD traer la denuncia de extravío.';
+
 
                         $('#show-renovacion').removeClass('hidden').append( htmlRenovacion );                      
                     }
 
                     if(data.tipotramite == "Perdida-del-certificado") {
 
-                        var htmlPerdida = 'Llevar <strong>denuncia policial</strong> que certifique la pérdida.';
+                        var htmlPerdida = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD anterior (ORIGINAL). En caso de pérdida del CUD traer la denuncia de extravío.';
 
                         $('#show-perdida').removeClass('hidden').append( htmlPerdida );                      
+                    }
+
+                    if(data.tipotramite == "Baja por fallecimiento") {
+
+                        var htmlFallecimiento = 'CUD original y Certificado de defunción (ORIGINAL Y FOTOCOPIA).';
+
+                        $('#show-fallecimiento').removeClass('hidden').append( htmlFallecimiento );                      
+                    }
+
+                    if(data.tipotramite == "Baja voluntaria") {
+
+                        var htmlVoluntaria = 'DNI de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD original vigente.';
+
+                        $('#show-voluntaria').removeClass('hidden').append( htmlVoluntaria );                      
+                    }
+
+                    if(data.tipotramite == "Cambio de identidad por adopción") {
+
+                        var htmlAdopcion = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA), CUD vigente (ORIGINAL) y nueva partida de nacimiento (ORIGINAL Y FOTOCOPIA).';
+
+                        $('#show-adopcion').removeClass('hidden').append( htmlAdopcion );                      
+                    }
+
+                    if(data.tipotramite == "Cambio de identidad de género") {
+
+                        var htmlGenero = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD vigente (ORIGINAL).';
+
+                        $('#show-genero').removeClass('hidden').append( htmlGenero );                      
                     }
 
 
