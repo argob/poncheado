@@ -139,25 +139,26 @@ layout: g20
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     
-                    <div class="row">
+                    <div class="row" id="counter">
 
                         <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">19</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="19">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Países</h4>
                         </div>
-                        <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">1</p>
+
+                        <div class="col-xs-6 col-md-3 text-center bordeDer counter">
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="1">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Organismo Multinacional</h4>
                         </div>
                         <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">67</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="67">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Reuniones</h4>
                         </div>
                         <div class="col-xs-6 col-md-3 text-center">
-                            <p class="blanquito megaGrande heavy m-b-0">1</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="1">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Cumbre</h4>
                         </div>
@@ -257,3 +258,41 @@ layout: g20
         </div>
     </div>
 </section>
+
+
+<script type="text/javascript">
+    
+var a = 0;
+$(window).scroll(function() {
+
+  var oTop = $('#counter').offset().top - window.innerHeight;
+  if (a == 0 && $(window).scrollTop() > oTop) {
+    $('.counter-value').each(function() {
+      var $this = $(this),
+        countTo = $this.attr('data-count');
+      $({
+        countNum: $this.text()
+      }).animate({
+          countNum: countTo
+        },
+
+        {
+
+          duration: 2000,
+          easing: 'swing',
+          step: function() {
+            $this.text(Math.floor(this.countNum));
+          },
+          complete: function() {
+            $this.text(this.countNum);
+          }
+
+        });
+    });
+    a = 1;
+  }
+
+});
+
+
+</script>
