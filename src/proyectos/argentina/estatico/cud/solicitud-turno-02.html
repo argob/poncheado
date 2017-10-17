@@ -50,14 +50,22 @@ layout: argentina
 
              <p id="show-data-description" class="hidden"></p>    
              <ol id="show-data" class="m-t-2 hidden">
+               <li id="show-primera-vez" class="hidden"></li>
                <li id="show-renovacion" class="hidden"></li>
                <li id="show-perdida" class="hidden"></li>
+               <li id="show-agravamiento" class="hidden"></li>
                <li id="show-fallecimiento" class="hidden"></li>
                <li id="show-voluntaria" class="hidden"></li>
                <li id="show-adopcion" class="hidden"></li>
                <li id="show-genero" class="hidden"></li>
              </ol>    
 
+             <div class="well">
+               <p>
+                 <strong>NOTA:</strong> Tenga en cuenta que la Junta Evaluadora podrá solicitar nuevos estudios o informes para ampliar la documentación presentada, en los casos que la misma no sea concluyente.
+               </p>
+               <p>En caso de dudas respecto a los estudios que debe presentar, consultar con su equipo de salud/médico tratante.</p>
+             </div>
 
           </div>
         </div>  
@@ -178,7 +186,7 @@ layout: argentina
 
           var item_blank = true;
 
-          $.getJSON('https://spreadsheets.google.com/feeds/list/12acqQNoDMcA87LnqJeXtIlui6C2MIKRtAm7tu-w5m1s/1/public/values?alt=json', function (dataDiscapacidad) {
+          $.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
               window.dataDrive = dataDiscapacidad.feed.entry;
               mostrarDescripcion();
               console.log(dataDiscapacidad);
@@ -192,7 +200,7 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X")
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                    
+                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                    
                   ) 
                 {
                     show = true;
@@ -205,7 +213,7 @@ layout: argentina
                     && 
                     (data.mayor18 == 'no' )  
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                     
+                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                     
                   )
                 {
                     show = true;
@@ -215,13 +223,18 @@ layout: argentina
                     show = true;
                 } 
 
-                if(
-                      ( item.gsx$mayorde18años.$t == "") && 
-                      ( item.gsx$menor18años.$t == "X")  && 
-                      ( item.gsx$tutor.$t == "X") && (data.mayor18 == 'no' && data.guardador == 'si') 
-                  ) {
+                if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "C") && (data.mayor18 == 'si' && data.tutoria == 'conjuntamente') ){
                     show = true;
-                }                 
+                } 
+
+                if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "T") && (data.mayor18 == 'si' && data.tutoria == 'tercero') ){
+                    show = true;
+                }                
+
+                if((( item.gsx$mayorde18años.$t == "") && ( item.gsx$menor18años.$t == "X")) && ( item.gsx$tutor.$t == "X") && (data.mayor18 == 'no' && data.guardador == 'si')){
+                    show = true;
+                }  
+               
 
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
@@ -272,24 +285,6 @@ layout: argentina
                 {
                     show = true;
                 }        
-
-                if( 
-                    ( item.gsx$mentalintelectual.$t == "X") 
-                    && 
-                    data.discapacidadmental == 'si' 
-                  )
-                {
-                    show = true;
-                }
-
-                if( 
-                  ( item.gsx$epilepsia.$t == "X") 
-                  && 
-                  data.discapacidadepilepsia == 'si' 
-                  )
-                {
-                    show = true;
-                }
 
                 if(
                    (
@@ -589,6 +584,47 @@ layout: argentina
                     show = true;
                 }  
 
+//nuevos
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X" )  
+                    && 
+                    (
+                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
+                    )
+                  ) 
+                {
+                    show = true;
+                }                
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "" )  
+                    && 
+                    (
+                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
+                    )
+                  ) 
+                {
+                    show = true;
+                }  
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X" )  
+                    && 
+                    (
+                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
+                    )
+                  ) 
+                {
+                    show = true;
+                }                
+
+
 
                  if(show){
 
@@ -599,6 +635,7 @@ layout: argentina
                     var converter = new showdown.Converter({extensions: ['targetblank']}),
                         text      = item.gsx$requisitos.$t,
                         requisitosmd = converter.makeHtml(text);
+                        console.log(requisitosmd);
 
                     html = html.replace(/{requisito}/gi, requisitosmd);
 
@@ -646,6 +683,15 @@ layout: argentina
 
                     jQuery('#show-data-description').removeClass('hidden').append( htmlDescription ); 
 
+                    if(data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
+
+                        var htmlPrimeraVez = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA)';
+
+
+                        $('#show-primera-vez').removeClass('hidden').append( htmlPrimeraVez );                      
+                    }
+
+
                     if(data.tipotramite == "Renovacion") {
 
                         var htmlRenovacion = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD anterior (ORIGINAL). En caso de pérdida del CUD traer la denuncia de extravío.';
@@ -656,33 +702,40 @@ layout: argentina
 
                     if(data.tipotramite == "Perdida-del-certificado") {
 
-                        var htmlPerdida = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD anterior (ORIGINAL). En caso de pérdida del CUD traer la denuncia de extravío.';
+                        var htmlPerdida = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y denuncia de extravío del CUD.';
 
                         $('#show-perdida').removeClass('hidden').append( htmlPerdida );                      
                     }
 
-                    if(data.tipotramite == "Baja por fallecimiento") {
+                    if(data.tipotramite == "Agravamiento") {
+
+                        var htmlAgravamiento = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD original vigente.';
+
+                        $('#show-agravamiento').removeClass('hidden').append( htmlAgravamiento );                      
+                    }
+
+                    if(data.tipotramite == "Baja-por-fallecimiento") {
 
                         var htmlFallecimiento = 'CUD original y Certificado de defunción (ORIGINAL Y FOTOCOPIA).';
 
                         $('#show-fallecimiento').removeClass('hidden').append( htmlFallecimiento );                      
                     }
 
-                    if(data.tipotramite == "Baja voluntaria") {
+                    if(data.tipotramite == "Baja-voluntaria") {
 
                         var htmlVoluntaria = 'DNI de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD original vigente.';
 
                         $('#show-voluntaria').removeClass('hidden').append( htmlVoluntaria );                      
                     }
 
-                    if(data.tipotramite == "Cambio de identidad por adopción") {
+                    if(data.tipotramite == "Cambio-de-identidad-por-adopcion") {
 
                         var htmlAdopcion = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA), CUD vigente (ORIGINAL) y nueva partida de nacimiento (ORIGINAL Y FOTOCOPIA).';
 
                         $('#show-adopcion').removeClass('hidden').append( htmlAdopcion );                      
                     }
 
-                    if(data.tipotramite == "Cambio de identidad de género") {
+                    if(data.tipotramite == "Cambio-de-identidad-de-genero") {
 
                         var htmlGenero = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD vigente (ORIGINAL).';
 
