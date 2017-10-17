@@ -16,7 +16,7 @@ layout: g20
 
                     <h2 class="semilight blanquito rereGrande">EL PRINCIPAL FORO DE COOPERACIÓN
                         <br>ECONÓMICA Y POLÍTICA MUNDIAL</h2>
-                    <p class="blanquito pocoGrande"><b>SUBMMIT2018.</b> BUENOS AIRES. ARGENTINA.</p>
+                    <p class="blanquito pocoGrande"><b>SUMMIT2018.</b> BUENOS AIRES. ARGENTINA.</p>
                     <a href="#" class="btn-primary btn btn-sm m-t-2">Conocer más del G20</a>
 
                 </div>
@@ -91,7 +91,7 @@ layout: g20
                     <p class="blanquito pocoGrande">El <b>foro central para la cooperación internacional en cuestiones financieras y económicas.</b></p>
                     <p class="blanquito masGrande">En conjunto, sus miembros representan el 90% del producto bruto global,
                         <br>dos tercios de la población mundial, el 75% del comercio internacional.</p>
-                    <a href="#" class="btn-primary btn btn-sm m-t-1">Leer más</a>
+                    <a href="quees.html" class="btn-primary btn btn-sm m-t-1">Leer más</a>
 
 
                 </div>
@@ -144,25 +144,26 @@ layout: g20
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     
-                    <div class="row">
+                    <div class="row" id="counter">
 
                         <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">19</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="19">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Países</h4>
                         </div>
-                        <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">1</p>
+
+                        <div class="col-xs-6 col-md-3 text-center bordeDer counter">
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="1">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Organismo Multinacional</h4>
                         </div>
                         <div class="col-xs-6 col-md-3 text-center bordeDer">
-                            <p class="blanquito megaGrande heavy m-b-0">67</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="67">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Reuniones</h4>
                         </div>
                         <div class="col-xs-6 col-md-3 text-center">
-                            <p class="blanquito megaGrande heavy m-b-0">1</p>
+                            <p class="blanquito megaGrande heavy m-b-0 counter-value" data-count="1">0</p>
                             <div class="miniBarrita center-block turquesaFondo"></div>
                             <h4 class="caps blanquito m-t-0">Cumbre</h4>
                         </div>
@@ -262,3 +263,41 @@ layout: g20
         </div>
     </div>
 </section>
+
+
+<script type="text/javascript">
+    
+var a = 0;
+$(window).scroll(function() {
+
+  var oTop = $('#counter').offset().top - window.innerHeight;
+  if (a == 0 && $(window).scrollTop() > oTop) {
+    $('.counter-value').each(function() {
+      var $this = $(this),
+        countTo = $this.attr('data-count');
+      $({
+        countNum: $this.text()
+      }).animate({
+          countNum: countTo
+        },
+
+        {
+
+          duration: 2000,
+          easing: 'swing',
+          step: function() {
+            $this.text(Math.floor(this.countNum));
+          },
+          complete: function() {
+            $this.text(this.countNum);
+          }
+
+        });
+    });
+    a = 1;
+  }
+
+});
+
+
+</script>
