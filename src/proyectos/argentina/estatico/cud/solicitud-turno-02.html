@@ -200,7 +200,7 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X")
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                    
+                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == ""  && item.gsx$digestivohepático.$t == "")                    
                   ) 
                 {
                     show = true;
@@ -213,7 +213,7 @@ layout: argentina
                     && 
                     (data.mayor18 == 'no' )  
                     && 
-                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "" && item.gsx$motoraneurológicaporesclerosismultiple.$t == "" && item.gsx$motoraneurológicapormiasteniagravis.$t == "" && item.gsx$motoratraumatológica.$t == "" && item.gsx$motorareumatológicanoartritisreumatoidea.$t == ""  && item.gsx$motoraartritisreumatoidea.$t == "" && item.gsx$auditiva.$t == "" && item.gsx$visceralrespiratoria.$t == ""  && item.gsx$visceralcardiovascular.$t == "" && item.gsx$visceralrenalurológica.$t == "" && item.gsx$visceraldigestivo.$t == "" && item.gsx$visceralhepático.$t == "" && item.gsx$mentalintelectual.$t == "" && item.gsx$epilepsia.$t == "" )                     
+                    ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == ""  && item.gsx$digestivohepático.$t == "")                     
                   )
                 {
                     show = true;
@@ -287,28 +287,69 @@ layout: argentina
                 }        
 
                 if(
-                   (
-                     ( item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "X" && data.discapacidadmotoranomiastenia == 'si' ) 
-                     || ( item.gsx$motoratraumatológica.$t == "X" && data.discapacidadtraumatologico == 'si') 
-                     || ( item.gsx$motorareumatológicanoartritisreumatoidea.$t == "X" && data.discapacidadreumatologiconoartritis == 'si') 
-                    )
-                  ) 
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$intelectualymental.$t == "X") 
+                    && 
+                    data.discapacidadintelectualymental == 'si' 
+                  )
                 {
                     show = true;
                 }
 
                 if(
-                    ( item.gsx$mayorde18años.$t == "") 
+                    ( item.gsx$mayorde18años.$t == "" ) 
                     && 
-                    ( item.gsx$menor18años.$t == "X")  
+                    ( item.gsx$menor18años.$t == "X") 
                     && 
-                    ( item.gsx$visual.$t == "X" || item.gsx$visual.$t == "x") 
-                    && data.discapacidadvisual == 'si'
+                    ( item.gsx$intelectualymental.$t == "X") 
+                    && data.discapacidadintelectualymental == 'si' 
                     && data.mayor18 == 'no'                       
                   )
                 {
                     show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "") 
+                    && 
+                    ( item.gsx$intelectualymental.$t == "X") 
+                    && data.discapacidadintelectualymental == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
+                {
+                    show = true;
                 }                
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$visual.$t == "X") 
+                    && 
+                    data.discapacidadvisual == 'si' 
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
+                    && 
+                    ( item.gsx$menor18años.$t == "X") 
+                    && 
+                    ( item.gsx$visual.$t == "X") 
+                    && data.discapacidadvisual == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
+                {
+                    show = true;
+                }
 
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
@@ -321,6 +362,45 @@ layout: argentina
                   )
                 {
                     show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$motor.$t == "X") 
+                    && 
+                    data.discapacidadmotor == 'si' 
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
+                    && 
+                    ( item.gsx$menor18años.$t == "X") 
+                    && 
+                    ( item.gsx$motor.$t == "X") 
+                    && data.discapacidadmotor == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "") 
+                    && 
+                    ( item.gsx$motor.$t == "X") 
+                    && data.discapacidadmotor == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
+                {
+                    show = true;
                 }                
 
                 if(
@@ -328,7 +408,7 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X")  
                     &&                       
-                    ( item.gsx$auditiva.$t == "X") 
+                    ( item.gsx$auditivo.$t == "X") 
                     && 
                     data.discapacidadauditivo == 'si' 
                   )
@@ -341,7 +421,7 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "X") 
                     && 
-                    ( item.gsx$auditiva.$t == "X") 
+                    ( item.gsx$auditivo.$t == "X") 
                     && data.discapacidadauditivo == 'si' 
                     && data.mayor18 == 'no'                       
                   )
@@ -354,28 +434,10 @@ layout: argentina
                     && 
                     ( item.gsx$menor18años.$t == "") 
                     && 
-                    ( item.gsx$auditiva.$t == "X") 
+                    ( item.gsx$auditivo.$t == "X") 
                     && data.discapacidadauditivo == 'si' 
                     && data.mayor18 == 'si'                       
                   )
-                {
-                    show = true;
-                }                
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "" ) 
-                    && 
-                    ( item.gsx$menor18años.$t == "X") 
-                    && data.mayor18 == 'no'                     
-                    && 
-                    (
-                      ( item.gsx$visceralrespiratoria.$t == "X") && data.discapacidadrespiratorio == 'si' 
-                      || ( item.gsx$visceralcardiovascular.$t == "X") && data.discapacidadcardiovascular == 'si' 
-                      || ( item.gsx$visceralrenalurológica.$t == "X") && data.discapacidadurologico == 'si' 
-                      || ( item.gsx$visceraldigestivo.$t == "X") && data.discapacidaddigestivo == 'si' 
-                      || ( item.gsx$visceralhepático.$t == "X") && data.discapacidadhepatico == 'si' 
-                    )
-                  ) 
                 {
                     show = true;
                 }
@@ -383,247 +445,177 @@ layout: argentina
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
                     && 
-                    ( item.gsx$menor18años.$t == "X") 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$respiratorio.$t == "X") 
                     && 
-                    ( item.gsx$visceralrespiratoria.$t == "X" && data.discapacidadrespiratorio == 'si' )
-                  ) 
-                {
-                    show = true;
-                }                
-
-                if(
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X") 
-                    && 
-                    ( item.gsx$visceralhepático.$t == "X" && data.discapacidadhepatico == 'si')
-                  ) 
-                {
-                    show = true;
-                }    
-
-                if(
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X") 
-                    && 
-                    ( item.gsx$visceraldigestivo.$t == "X" && data.discapacidaddigestivo == 'si' )
-                  ) 
-                {
-                    show = true;
-                }    
-
-                if(
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    && 
-                    (
-                      ( item.gsx$mentalintelectual.$t == "X" && data.discapacidadmental == 'si') 
-                      || 
-                      ( item.gsx$epilepsia.$t == "X" && data.discapacidadepilepsia == 'si') 
-                    )
-                  ) 
-                {
-                    show = true;
-                }                
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                   
-                    ( item.gsx$epilepsia.$t == "X" && data.discapacidadepilepsia == 'si' )
-                  ) 
-                {
-                    show = true;
-                }   
-
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                      
-                    ( item.gsx$mentalintelectual.$t == "X" && data.discapacidadmental == 'si')
-                  ) 
-                {
-                    show = true;
-                }   
-
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                      
-                    ( item.gsx$motoraneurológicanomiasteniagravisniesclerosismultiple.$t == "X" 
-                      && 
-                      data.discapacidadmotoranomiastenia == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                      
-                    ( item.gsx$motoraneurológicapormiasteniagravis.$t == "X" 
-                      && 
-                      data.discapacidadmotoramiastenia == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                      
-                    ( item.gsx$motoraneurológicaporesclerosismultiple.$t == "X" 
-                      && 
-                      data.discapacidadmotoraesclerosis == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                    
-                    ( item.gsx$motoratraumatológica.$t == "X" 
-                      && data.discapacidadtraumatologico == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                   
-                    ( item.gsx$motorareumatológicanoartritisreumatoidea.$t == "X" 
-                      && data.discapacidadreumatologiconoartritis == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                   
-                    ( item.gsx$motoraartritisreumatoidea.$t == "X" 
-                      && data.discapacidadreumatologicoartritis == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                    
-                    ( item.gsx$visual.$t == "X" 
-                      && data.discapacidadvisual == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
-                    && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                    
-                  ( item.gsx$auditiva.$t == "X" 
-                    && data.discapacidadauditivo == 'si'
+                    data.discapacidadrespiratorio == 'si' 
                   )
-                ) 
                 {
                     show = true;
-                }  
+                }
 
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
                     && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                     
-                    ( item.gsx$visceralcardiovascular.$t == "X" 
-                      && data.discapacidadcardiovascular == 'si'
-                    )
-                  ) 
-                {
-                    show = true;
-                }  
-
-                if( 
-                    ( item.gsx$mayorde18años.$t == "X") 
+                    ( item.gsx$menor18años.$t == "X") 
                     && 
-                    ( item.gsx$menor18años.$t == "X" )  
-                    &&                   
-                    ( item.gsx$visceralrenalurológica.$t == "X") 
-                    && data.discapacidadurologico == 'si'
-                  ) 
+                    ( item.gsx$respiratorio.$t == "X") 
+                    && data.discapacidadrespiratorio == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
                 {
                     show = true;
-                }  
-
-//nuevos
+                }
 
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
                     && 
-                    ( item.gsx$menor18años.$t == "X" )  
+                    ( item.gsx$menor18años.$t == "") 
                     && 
-                    (
-                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
-                    )
-                  ) 
+                    ( item.gsx$respiratorio.$t == "X") 
+                    && data.discapacidadrespiratorio == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$cardiovascular.$t == "X") 
+                    && 
+                    data.discapacidadcardiovascular == 'si' 
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
+                    && 
+                    ( item.gsx$menor18años.$t == "X") 
+                    && 
+                    ( item.gsx$cardiovascular.$t == "X") 
+                    && data.discapacidadcardiovascular == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "") 
+                    && 
+                    ( item.gsx$cardiovascular.$t == "X") 
+                    && data.discapacidadcardiovascular == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$renalurológico.$t == "X") 
+                    && 
+                    data.discapacidadrenalurologico == 'si' 
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
+                    && 
+                    ( item.gsx$menor18años.$t == "X") 
+                    && 
+                    ( item.gsx$renalurológico.$t == "X") 
+                    && data.discapacidadrenalurologico == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
+                {
+                    show = true;
+                }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "") 
+                    && 
+                    ( item.gsx$renalurológico.$t == "X") 
+                    && data.discapacidadrenalurologico == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
                 {
                     show = true;
                 }                
+
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
                     && 
-                    ( item.gsx$menor18años.$t == "" )  
+                    ( item.gsx$menor18años.$t == "X")  
+                    &&                       
+                    ( item.gsx$digestivohepático.$t == "X") 
                     && 
-                    (
-                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
-                    )
-                  ) 
+                    data.discapacidaddigestivohepatico == 'si' 
+                  )
                 {
                     show = true;
-                }  
+                }
 
                 if(
-                    ( item.gsx$mayorde18años.$t == "") 
+                    ( item.gsx$mayorde18años.$t == "" ) 
                     && 
-                    ( item.gsx$menor18años.$t == "X" )  
+                    ( item.gsx$menor18años.$t == "X") 
                     && 
-                    (
-                      ( item.gsx$intelectualymental.$t == "X" && data.discapacidadintelectualymental == 'si') 
-                    )
-                  ) 
+                    ( item.gsx$digestivohepático.$t == "X") 
+                    && data.discapacidaddigestivohepatico == 'si' 
+                    && data.mayor18 == 'no'                       
+                  )
                 {
                     show = true;
-                }                
+                }
 
+                if(
+                    ( item.gsx$mayorde18años.$t == "X") 
+                    && 
+                    ( item.gsx$menor18años.$t == "") 
+                    && 
+                    ( item.gsx$digestivohepático.$t == "X") 
+                    && data.discapacidaddigestivohepatico == 'si' 
+                    && data.mayor18 == 'si'                       
+                  )
+                {
+                    show = true;
+                }
+
+
+                // if( 
+                //     ( item.gsx$mayorde18años.$t == "" ) 
+                //     && 
+                //     ( item.gsx$menor18años.$t == "X") 
+                //     && data.mayor18 == 'no'                     
+                //     && 
+                //     (
+                //       ( item.gsx$visceralrespiratoria.$t == "X") && data.discapacidadrespiratorio == 'si' 
+                //       || ( item.gsx$visceralcardiovascular.$t == "X") && data.discapacidadcardiovascular == 'si' 
+                //       || ( item.gsx$visceralrenalurológica.$t == "X") && data.discapacidadurologico == 'si' 
+                //       || ( item.gsx$visceraldigestivo.$t == "X") && data.discapacidaddigestivo == 'si' 
+                //       || ( item.gsx$visceralhepático.$t == "X") && data.discapacidadhepatico == 'si' 
+                //     )
+                //   ) 
+                // {
+                //     show = true;
+                // }
 
 
                  if(show){
