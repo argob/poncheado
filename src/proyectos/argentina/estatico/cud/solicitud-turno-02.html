@@ -186,7 +186,7 @@ layout: argentina
 
           var item_blank = true;
 
-          $.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
+          $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1', function (dataDiscapacidad) {
               window.dataDrive = dataDiscapacidad.feed.entry;
               mostrarDescripcion();
               console.log(dataDiscapacidad);
@@ -599,25 +599,6 @@ layout: argentina
                 }
 
 
-                // if( 
-                //     ( item.gsx$mayorde18años.$t == "" ) 
-                //     && 
-                //     ( item.gsx$menor18años.$t == "X") 
-                //     && data.mayor18 == 'no'                     
-                //     && 
-                //     (
-                //       ( item.gsx$visceralrespiratoria.$t == "X") && data.discapacidadrespiratorio == 'si' 
-                //       || ( item.gsx$visceralcardiovascular.$t == "X") && data.discapacidadcardiovascular == 'si' 
-                //       || ( item.gsx$visceralrenalurológica.$t == "X") && data.discapacidadurologico == 'si' 
-                //       || ( item.gsx$visceraldigestivo.$t == "X") && data.discapacidaddigestivo == 'si' 
-                //       || ( item.gsx$visceralhepático.$t == "X") && data.discapacidadhepatico == 'si' 
-                //     )
-                //   ) 
-                // {
-                //     show = true;
-                // }
-
-
                  if(show){
 
                     item_blank = false;
@@ -632,20 +613,6 @@ layout: argentina
                     html = html.replace(/{requisito}/gi, requisitosmd);
 
                     jQuery('#show-data').removeClass('hidden').append( html );
-
-
-                    // htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidadvisual}/gi, data.discapacidadvisual.replace("si","Discapacidad de origen visual"))
-                    // .replace(/{tipodiscapacidadmotoranomiastenia}/gi, data.discapacidadmotoranomiastenia.replace("si","Discapacidad de origen motor neurológico"))
-                    // .replace(/{tipoDiscapacidadtraumatologico}/gi, data.discapacidadtraumatologico.replace("si","Discapacidad de origen motor traumatológico"))
-                    // .replace(/{tipodiscapacidadreumatologiconoartritis}/gi, data.discapacidadreumatologiconoartritis.replace("si","Discapacidad de origen motor reumatológico reumatológico"))
-                    // .replace(/{tipoDiscapacidadauditivo}/gi, data.discapacidadauditivo.replace("si","Discapacidad de origen auditivo"))
-                    // .replace(/{tipoDiscapacidadrespiratorio}/gi, data.discapacidadrespiratorio.replace("si","Discapacidad de origen respiratorio"))
-                    // .replace(/{tipoDiscapacidadcardiovascular}/gi, data.discapacidadcardiovascular.replace("si","Discapacidad de origen cardiovascular"))
-                    // .replace(/{tipoDiscapacidadurologico}/gi, data.discapacidadurologico.replace("si","Discapacidad de origen renal urológico"))
-                    // .replace(/{tipoDiscapacidaddigestivo}/gi, data.discapacidaddigestivo.replace("si","Discapacidad de origen digestivo"))
-                    // .replace(/{tipoDiscapacidadhepatico}/gi, data.discapacidadhepatico.replace("si","Discapacidad de origen hepático"))
-                    // .replace(/{tipoDiscapacidadmental}/gi, data.discapacidadmental.replace("si","Discapacidad mental intelectual"))
-                    // .replace(/{tipoDiscapacidadepilepsia}/gi, data.discapacidadepilepsia.replace("si","Discapacidad por epilepsia"));
 
 
                   }
@@ -664,20 +631,23 @@ layout: argentina
                     htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite                    
                     .replace("Solicitud-de-Certificado-por-primera-vez","Solicitud por primera vez")
                     .replace("Renovacion","Renovación")
-                    .replace("Perdida-del-certificado","Pérdida del certificado"))
+                    .replace("Perdida-del-certificado","Pérdida del certificado")
+                    .replace("Baja-voluntaria","Baja voluntaria")
+                    .replace("Cambio-de-identidad-de-genero","Cambio de identidad de género")
+                    .replace("Baja-por-fallecimiento","Baja por fallecimiento"))
                     .replace(/{edad}/gi, data.mayor18
                     .replace("no","menor de 18 años")
                     .replace("si","mayor de 18 años"))
                     .replace(/{tipoCobertura}/gi, data.coberturamedica
                       .replace("Obrasocial","Obra social")
-                      .replace("Medicinapre-paga","Medicina pre-paga")
+                      .replace("Medicinapre-paga","Medicina prepaga")
                       .replace("Atencion-en-hospital-o-centro-de-salud-publica","Atención en hospital o centro de salud pública"));                    
 
                     jQuery('#show-data-description').removeClass('hidden').append( htmlDescription ); 
 
                     if(data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
 
-                        var htmlPrimeraVez = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA)';
+                        var htmlPrimeraVez = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia)';
 
 
                         $('#show-primera-vez').removeClass('hidden').append( htmlPrimeraVez );                      
@@ -686,7 +656,7 @@ layout: argentina
 
                     if(data.tipotramite == "Renovacion") {
 
-                        var htmlRenovacion = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD anterior (ORIGINAL). En caso de pérdida del CUD traer la denuncia de extravío.';
+                        var htmlRenovacion = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD anterior (original). En caso de pérdida del CUD traer la denuncia de extravío.';
 
 
                         $('#show-renovacion').removeClass('hidden').append( htmlRenovacion );                      
@@ -694,42 +664,42 @@ layout: argentina
 
                     if(data.tipotramite == "Perdida-del-certificado") {
 
-                        var htmlPerdida = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y denuncia de extravío del CUD.';
+                        var htmlPerdida = '<strong> DNI </strong>de la persona que será evaluada (original y fotocopia) y denuncia de extravío del CUD.';
 
                         $('#show-perdida').removeClass('hidden').append( htmlPerdida );                      
                     }
 
                     if(data.tipotramite == "Agravamiento") {
 
-                        var htmlAgravamiento = 'DNI de la persona que será evaluada (ORIGINAL Y FOTOCOPIA) y CUD original vigente.';
+                        var htmlAgravamiento = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD original vigente.';
 
                         $('#show-agravamiento').removeClass('hidden').append( htmlAgravamiento );                      
                     }
 
                     if(data.tipotramite == "Baja-por-fallecimiento") {
 
-                        var htmlFallecimiento = 'CUD original y Certificado de defunción (ORIGINAL Y FOTOCOPIA).';
+                        var htmlFallecimiento = '<strong>CUD</strong> original y Certificado de defunción (original y fotocopia).';
 
                         $('#show-fallecimiento').removeClass('hidden').append( htmlFallecimiento );                      
                     }
 
                     if(data.tipotramite == "Baja-voluntaria") {
 
-                        var htmlVoluntaria = 'DNI de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD original vigente.';
+                        var htmlVoluntaria = '<strong>DNI</strong> de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> original vigente.';
 
                         $('#show-voluntaria').removeClass('hidden').append( htmlVoluntaria );                      
                     }
 
                     if(data.tipotramite == "Cambio-de-identidad-por-adopcion") {
 
-                        var htmlAdopcion = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA), CUD vigente (ORIGINAL) y nueva partida de nacimiento (ORIGINAL Y FOTOCOPIA).';
+                        var htmlAdopcion = '<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia), <strong>CUD</strong> vigente (original) y nueva partida de nacimiento (original y fotocopia).';
 
                         $('#show-adopcion').removeClass('hidden').append( htmlAdopcion );                      
                     }
 
                     if(data.tipotramite == "Cambio-de-identidad-de-genero") {
 
-                        var htmlGenero = 'DNI que acredite la nueva identidad de la persona que fue evaluada (ORIGINAL Y FOTOCOPIA) y CUD vigente (ORIGINAL).';
+                        var htmlGenero = '<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> vigente (original).';
 
                         $('#show-genero').removeClass('hidden').append( htmlGenero );                      
                     }
@@ -738,47 +708,29 @@ layout: argentina
                     var htmlTipoDiscapacidad = templates.tipoDiscapacidad;  
                     var tipoDiscapacidad = ''
 
-                    if (data.discapacidadepilepsia == 'si') {
-                      tipoDiscapacidad += 'Epilepsia, ';
+                    if (data.discapacidadintelectualymental == 'si') {
+                      tipoDiscapacidad += 'Intelectual y Mental, ';
                     }
-                    if (data.discapacidadmental == 'si') {
-                      tipoDiscapacidad += 'Trastorno mental intelectual, ';
+                    if (data.discapacidadvisual == 'si') {
+                      tipoDiscapacidad += 'Visual, ';
                     }
-                    if (data.discapacidadvisual == 'si'){
-                      tipoDiscapacidad += 'Origen visual, ';
+                    if (data.discapacidadmotor == 'si') {
+                      tipoDiscapacidad += 'Motora, ';
+                    }
+                    if (data.discapacidadauditivo == 'si'){
+                      tipoDiscapacidad += 'Auditiva, ';
                     } 
-                    if (data.discapacidadmotoranomiastenia == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico no miastenia gravis ni esclerosis múltiple, ';
+                    if (data.discapacidadrespiratorio == 'si' ) {
+                      tipoDiscapacidad += 'Respiratoria, ';
                     } 
-                    if (data.discapacidadmotoramiastenia == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico por miastenia gravis, ';
+                    if (data.discapacidadcardiovascular == 'si' ) {
+                      tipoDiscapacidad += 'Cardiovascular, ';
                     } 
-                    if (data.discapacidadmotoraesclerosis == 'si' ) {
-                      tipoDiscapacidad += 'Trastorno motor neurológico por esclerosis múltiple, ';
+                    if (data.discapacidadrenalurologico == 'si' ) {
+                      tipoDiscapacidad += 'Renal urológico, ';
                     } 
-                    if (data.discapacidadtraumatologico == 'si') {
-                      tipoDiscapacidad += 'Trastorno motor traumatológico, ';
-                    }
-                    if (data.discapacidadreumatologiconoartritis == 'si') {
-                      tipoDiscapacidad += 'Trastorno motor reumatológico no artritis reumatoidea, ';
-                    }
-                    if (data.discapacidadauditivo == 'si') {
-                      tipoDiscapacidad += 'Origen auditivo, ';
-                    }
-                    if (data.discapacidadrespiratorio == 'si') {
-                      tipoDiscapacidad += 'Trastorno respiratorio, ';
-                    }
-                    if (data.discapacidadcardiovascular == 'si') {
-                      tipoDiscapacidad += 'Trastorno cardiovascular, ';
-                    }
-                    if (data.discapacidadurologico == 'si') {
-                      tipoDiscapacidad += 'Trastorno renal urológica, ';
-                    }
-                    if (data.discapacidaddigestivo == 'si') {
-                      tipoDiscapacidad += 'Trastorno digestivo, ';
-                    }
-                    if (data.discapacidadhepatico == 'si') {
-                      tipoDiscapacidad += 'Trastorno hepático, ';
+                    if (data.discapacidaddigestivohepatico == 'si') {
+                      tipoDiscapacidad += 'Digestivo / Hepático, ';
                     }
 
 
@@ -793,7 +745,8 @@ layout: argentina
 
           });          
 
-          $.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
+
+          $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
               showDescripcion();
               console.log(dataLugares);
@@ -874,6 +827,10 @@ layout: argentina
 #show-data-description-lugar {
     list-style-type: none;
     padding: 0!important;  
+}
+li ul,
+li ol {
+  margin: 10px 0 0!important;
 }
 </style>
 

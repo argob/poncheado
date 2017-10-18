@@ -211,67 +211,6 @@ layout: argentina
                       </label> 
 
                                                                                                                                                        
-<!--                       <label for="discapacidadepilepsia" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadepilepsia" required/> 
-                        <span class="sr-only">Este Campo es Obligatorio</span> Epilepsia
-                      </label><br>
-                      <label for="discapacidadmental" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmental"/> 
-                        Trastorno mental intelectual
-                      </label><br>
-                      <label for="discapacidadvisual" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadvisual"/> 
-                        Origen visual
-                      </label><br>
-                      <label for="discapacidadmotoranomiastenia" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoranomiastenia"/> 
-                        Trastorno motor neurológico (no miastenia gravis ni esclerosis múltiple)
-                      </label><br>
-                      <label for="discapacidadmotoramiastenia" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoramiastenia"/> 
-                        Trastorno motor neurológico (por miastenia gravis)
-                      </label><br>
-                      <label for="discapacidadmotoraesclerosis" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadmotoraesclerosis"/> 
-                        Trastorno motor neurológico (por esclerosis múltiple)
-                      </label><br>
-                      <label for="discapacidadtraumatologico" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadtraumatologico"/> 
-                        Trastorno motor traumatológico
-                      </label><br>
-                      <label for="discapacidadreumatologiconoartritis" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologiconoartritis"/> 
-                        Trastorno motor reumatológico (no artritis reumatoidea)
-                      </label><br>
-                      <label for="discapacidadreumatologicoartritis" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadreumatologicoartritis"/> 
-                        Trastorno motor reumatológico (artritis reumatoidea)
-                      </label><br>
-                      <label for="discapacidadauditivo" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadauditivo"/> 
-                        Origen auditivo
-                      </label><br>
-                      <label for="discapacidadrespiratorio" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadrespiratorio"/> 
-                        Trastorno respiratorio
-                      </label><br>
-                      <label for="discapacidadcardiovascular" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadcardiovascular"/> 
-                        Trastorno cardiovascular
-                      </label><br>
-                      <label for="discapacidadurologico" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadurologico"/> 
-                        Trastorno renal urológica
-                      </label><br>
-                      <label for="discapacidaddigestivo" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidaddigestivo"/> 
-                        Trastorno digestivo
-                      </label><br>
-                      <label for="discapacidadhepatico" class="m-b-1">
-                        <input type="checkbox" name="discapacidad" value="discapacidadhepatico"/> 
-                        Trastorno hepático
-                      </label>
--->                      
                       
                     </div>              
                     </fieldset>
@@ -580,7 +519,8 @@ layout: argentina
 
 
 
-$.getJSON('https://spreadsheets.google.com/feeds/list/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1/public/values?alt=json', function (dataLugares) {
+$.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', 
+  function (dataLugares) {
 
     window.dataDrive = dataLugares.feed.entry;
 
