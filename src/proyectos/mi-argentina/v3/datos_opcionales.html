@@ -654,7 +654,7 @@ layout: mi-argentina
           </div>
         </div>
 
-        <div class="panel panel-default panel-border-gray">
+        <div class="panel panel-default panel-border-gray" id="cud">
           <div class="panel-body">
             <h2>Agregá tu Certificado Único de Discapacidad </h2>
 
@@ -677,8 +677,8 @@ layout: mi-argentina
 
                 
                 <div class="form-group m-b-0">
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                    <button href="#" class="btn btn-link m-l-1">Cancelar</button>
+                    <a href="" class="btn btn-success">Guardar</a>
+                    <a href="#" class="btn btn-link m-l-1">Cancelar</a>
                 </div>
 
                 </div>
@@ -689,7 +689,7 @@ layout: mi-argentina
           </div>
         </div>
 
-        <div class="panel panel-default panel-border-gray">
+        <div class="panel panel-default panel-border-gray hidden" id="cud-2">
           <div class="panel-body">
             <h2>Agregá tu Certificado Único de Discapacidad </h2>
 
@@ -736,8 +736,7 @@ layout: mi-argentina
               </div>
               <div class="media-body media-middle">
                 <h3 class="m-t-0">No hay Certificado asociado a los datos que ingresaste</h3>
-                <p class="text-muted">Verificá que el DNI y el número del código de barras sean los correctos e intentá de nuevo</p>
-                
+                <p class="text-muted">Verificá que el DNI y el número del código de barras sean los correctos e <a href="">intentá de nuevo</a></p>
               <p class="text-muted"><a href="#" class="btn btn-link">Cancelar</a></p></div>
               
             </div>
@@ -778,3 +777,17 @@ layout: mi-argentina
 
  </style>
 
+
+<script type="text/javascript">
+      $('#cud .btn-success').click( function(e) {
+            e.preventDefault();
+            $('#cud').addClass('hidden');
+            $('#cud-2').removeClass('hidden');
+      });
+      $('#cud-2 .btn-link').click( function(e) {
+            e.preventDefault();
+            $('#cud-2').addClass('hidden');
+            $('#cud').removeClass('hidden');
+      });
+
+</script>
