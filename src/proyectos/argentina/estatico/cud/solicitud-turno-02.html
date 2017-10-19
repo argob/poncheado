@@ -186,10 +186,11 @@ layout: argentina
 
           var item_blank = true;
 
-          $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1', function (dataDiscapacidad) {
+
+          $.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
               window.dataDrive = dataDiscapacidad.feed.entry;
               mostrarDescripcion();
-              console.log(dataDiscapacidad);
+              // console.log(dataDiscapacidad);
 
               $.each( dataDrive, function( key, item ) {
 
@@ -305,12 +306,29 @@ layout: argentina
                     ( item.gsx$menor18años.$t == "X") 
                     && 
                     ( item.gsx$intelectualymental.$t == "X") 
-                    && data.discapacidadintelectualymental == 'si' 
+                    && data.discapacidadintelectualymental == 'si'
+                    && data.tipotramite !== 'Baja-por-fallecimiento'
                     && data.mayor18 == 'no'                       
                   )
                 {
                     show = true;
                 }
+
+                if(
+                    ( item.gsx$mayorde18años.$t == "" ) 
+                    && 
+                    ( item.gsx$menor18años.$t == "X") 
+                    && 
+                    ( item.gsx$intelectualymental.$t == "X") 
+                    && data.discapacidadintelectualymental == 'si'
+                    && data.tipotramite == 'Baja-por-fallecimiento'
+                    && item.gsx$excluiren.$t !== "BxF"
+                    && data.mayor18 == 'no'                       
+                  )
+                {
+                    show = true;
+                }
+
 
                 if(
                     ( item.gsx$mayorde18años.$t == "X") 
@@ -608,7 +626,7 @@ layout: argentina
                     var converter = new showdown.Converter({extensions: ['targetblank']}),
                         text      = item.gsx$requisitos.$t,
                         requisitosmd = converter.makeHtml(text);
-                        console.log(requisitosmd);
+                        // console.log(requisitosmd);
 
                     html = html.replace(/{requisito}/gi, requisitosmd);
 
@@ -749,14 +767,10 @@ layout: argentina
           $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
               showDescripcion();
-              console.log(dataLugares);
-
-
 
               $.each( dataDrive, function( key, item ) {
 
                 var showLugares = false;
-
 
                 if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.localidad ){
                     showLugares = true;
