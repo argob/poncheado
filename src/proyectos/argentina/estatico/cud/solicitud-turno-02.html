@@ -767,6 +767,7 @@ layout: argentina
 
           $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
+              showDescripcion();
 
               $.each( dataDrive, function( key, item ) {
 
@@ -794,15 +795,13 @@ layout: argentina
 
               });
 
-              showDescripcion();
 
               function showDescripcion () {
 
                 var htmlDescription = templates.descriptionLugar;
 
-                if($('#show-data-description-lugar li').length < 1) {
+                if($('#show-data-description-lugar li').length == 1) {
                   htmlDescription = templates.descriptionLugarSingular;
-                  console.log($('#show-data-description-lugar li').length)
                 }
 
 
