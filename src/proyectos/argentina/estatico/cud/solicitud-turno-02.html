@@ -62,9 +62,9 @@ layout: argentina
 
              <div class="well">
                <p>
-                 <strong>NOTA:</strong> Tenga en cuenta que la Junta Evaluadora podrá solicitar nuevos estudios o informes para ampliar la documentación presentada, en los casos que la misma no sea concluyente.
+                 <strong>NOTA:</strong> Tené en cuenta que la Junta Evaluadora podrá solicitar nuevos estudios o informes para ampliar la documentación presentada, en los casos que la misma no sea concluyente.
                </p>
-               <p>En caso de dudas respecto a los estudios que debe presentar, consultar con su equipo de salud/médico tratante.</p>
+               <p>En caso de dudas respecto a los estudios que debés presentar, consultá con su equipo de salud/médico tratante.</p>
              </div>
 
           </div>
@@ -149,6 +149,7 @@ layout: argentina
         , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>`,
         item: `<li>{requisito}</li>`,
         descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+        descriptionLugarSingular: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
         lugar: `<li><div class="form-group m-t-2">
                   <label class="control-label">Junta</label>
                   <p>{junta}</p>
@@ -766,7 +767,6 @@ layout: argentina
 
           $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
-              showDescripcion();
 
               $.each( dataDrive, function( key, item ) {
 
@@ -788,13 +788,24 @@ layout: argentina
 
                       jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
 
+
                   }
 
+
               });
+
+              showDescripcion();
 
               function showDescripcion () {
 
                 var htmlDescription = templates.descriptionLugar;
+
+                if($('#show-data-description-lugar li').length < 1) {
+                  htmlDescription = templates.descriptionLugarSingular;
+                  console.log($('#show-data-description-lugar li').length)
+                }
+
+
                 htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
                     .replace(/{localidad}/gi, data.localidad);
 
