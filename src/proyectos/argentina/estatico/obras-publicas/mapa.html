@@ -36,7 +36,11 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
     margin: 0;
     padding: 15px;
   }
-
+  #map-container .well.ref {
+    bottom: 24px;
+    right: initial;
+    left: 10px;
+  }
   #referencia{
     width: 20%;
     background-color: pink;
@@ -72,6 +76,36 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
       padding-top: 10px;
   }  
 
+.circle {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block; 
+  }
+
+  .navbar-default.navbar-ref {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+  .navbar-default.navbar-ref .navbar-toggle {
+      position: fixed;
+      bottom: 100px;
+      left: 5px;
+      background-color: #fff;
+  }
+  .navbar-default.navbar-ref .navbar-toggle:hover, 
+  .navbar-default.navbar-ref .navbar-toggle:focus  {
+      background-color: #0695d6;
+  }
+
+  @media (max-width: 767px) {
+    #map-container .well.ref {
+        bottom: 97px;
+        left: 60px;
+    }  
+  }
 
 
 </style>
@@ -150,6 +184,33 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
     <div class="well credits">
       <p class="m-y-0">Mapa en construcción. Si encontrás algún error de ubicación en una de las obras escribinos a: <a href="mailto:mapadeobras@mininterior.gob.ar">mapadeobras@mininterior.gob.ar</a></p>
     </div>
+
+      <div class="navbar-default navbar-ref">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-ref-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="map-ref-collapse">
+          <div class="well credits ref"> 
+            <p clasS="m-t-1"><span class="circle bg-success"></span>Hábitat   </p>
+            <p clasS="m-t-1"><span class="circle bg-fucsia"></span>Renovación urbana </p>
+            <p clasS="m-t-1"><span class="circle bg-cielo"></span>Cloacas </p>
+            <p clasS="m-t-1"><span class="circle bg-info"></span>Agua potable  </p>
+            <p clasS="m-t-1"><span class="circle bg-uva"></span>Vivienda  </p>
+            <p clasS="m-t-1"><span class="circle bg-tomate"></span>Cultura </p>
+            <p clasS="m-t-1"><span class="circle bg-warning"></span>Educación </p>
+            <p clasS="m-t-1"><span class="circle bg-tomate"></span>Salud </p>
+            <p clasS="m-t-1"><span class="circle bg-primary"></span>Obras para evitar inundaciones </p>
+            <p clasS="m-t-1"><span class="circle bg-lima"></span>Espacio público </p>
+            <p clasS="m-t-1"><span class="circle bg-arandano"></span>Patrimonio  </p>
+          </div>          
+      </div>
+        
+    </div>
+
   </div>
 
 
@@ -335,9 +396,9 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
     var detalles = [];
 
 
-
     $.ajax({
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1',
+      url: 'https://spreadsheets.google.com/feeds/list/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1/public/values?alt=json',
+      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1',
       data: 'json',
       success: function(response){
 
@@ -355,7 +416,7 @@ title: Obras del Ministerio del interior, obras públicas y vivienda
               if (row.gsx$destacado.$t == "X" || row.gsx$destacado.$t == "x"){
                 marcador = "https://www.argentina.gob.ar/sites/default/files/obras-mapa-" + row.gsx$marker.$t;
               }else{
-                marcador = "https://www.argentina.gob.ar/sites/default/files/obras-mapa-" + row.gsx$markerd.$t;
+                marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$markerd.$t;
               }
 
             markers[index] = new google.maps.Marker({
