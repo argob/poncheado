@@ -31,7 +31,7 @@ layout: argentina
 
 <section class="bg-gray section-sm">
   <ul class="nav nav-icons nav-icons-selected">
-    <li class="active">
+    <li>
       <a href="buscar-normativa.html"><i class="fa fa-search bg-primary"></i>
         <span>Buscar normativas</span>
       </a>
@@ -41,7 +41,7 @@ layout: argentina
         <span>Búsqueda avanzada</span>
       </a>
     </li>
-    <li>
+    <li class="active">
       <a href="busqueda-boletin-oficial.html"><i class="fa fa-file-text bg-primary"></i>
         <span>Búsqueda por Boletín Oficial</span>
       </a>
@@ -54,50 +54,23 @@ layout: argentina
 
       <div class="row">
           <form>
-            <div class="col-md-4">    
+            <div class="col-md-4 col-md-offset-1">
               <div class="form-group">
-                <label for="">Texto</label>
-                <input class="form-control" placeholder="norma, número, y/o dependencia">
+                <label for="">Fecha de publicación</label>
+                <div class="form-group">
+                  <div class="input-group date">
+                    <span class="input-group-addon">
+                      <span class="fa fa-calendar"></span>
+                    </span>
+                    <input type="text" class="form-control">
+                  </div>            
+                </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
-                <label for="">Tipo de norma</label>
-                <select id="tipo-norma" class="form-control">
-                    <option selected="selected" value=""></option>
-                    <option value="1">Ley</option> 
-                    <option value="2">Decreto</option> 
-                    <option value="8">Decisión Administrativa</option> 
-                    <option value="3">Resolución</option> 
-                    <option value="4">Disposición</option> 
-                    <option value="12">Acordada</option> 
-                    <option value="11">Acta</option> 
-                    <option value="27">Actuacion</option> 
-                    <option value="17">Acuerdo</option> 
-                    <option value="5">Circular</option> 
-                    <option value="6">Comunicación</option> 
-                    <option value="13">Comunicado</option> 
-                    <option value="20">Convenio</option> 
-                    <option value="14">Decisión</option> 
-                    <option value="7">Decreto/Ley</option> 
-                    <option value="15">Directiva</option> 
-                    <option value="10">Instrucción</option> 
-                    <option value="23">Interpretación</option> 
-                    <option value="24">Laudo</option> 
-                    <option value="18">Memorandum</option> 
-                    <option value="21">Misión</option> 
-                    <option value="16">Nota</option> 
-                    <option value="9">Nota Externa</option> 
-                    <option value="19">Protocolo</option> 
-                    <option value="28">Providencia</option> 
-                    <option value="22">Recomendación</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label for="">Número</label>
-                <input class="form-control" placeholder="Número">
+                <label for="">Número de boletín</label>
+                <input class="form-control">
                 <div class="media">
                   <div class="media-left">
                     <i class="fa fa-info-circle fa-fw text-muted"></i>
@@ -108,12 +81,6 @@ layout: argentina
                 </div>
               </div>
             </div>              
-            <div class="col-md-1">
-              <div class="form-group">
-                <label for="">Año</label>
-                <input class="form-control" placeholder="Año">
-              </div>
-            </div>  
             <div class="col-md-2">
               <div class="form-group">
                 <button class="btn btn-primary btn-block m-t-2" type="button">Buscar</button>
@@ -337,6 +304,9 @@ layout: argentina
 </section>
 
 <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
 
 <script>
 
@@ -349,6 +319,7 @@ $(document).ready(function () {
 
   var dataList = new List('normas', options);
 
+  $('.date').datepicker({language: 'es'});
 
 });
 })(jQuery);
