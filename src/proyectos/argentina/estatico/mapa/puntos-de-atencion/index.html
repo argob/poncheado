@@ -34,9 +34,159 @@ title: Mapa de puntos de atención
   }
   #filters {
     position: fixed;
-    top: 20%;
-    width: 100%;
+    top: 28%;
+    max-width: 100%;
+    left: 20px;
   }
+  #search {
+    position: fixed;
+    top: 20%;
+    left: 20px;
+  }  
+  .dropdown-menu {
+      width: 100%;
+  }  
+
+  .multiselect-container>li>a {
+    padding: 10px 25px 10px 0;
+  }  
+
+.material-checkbox-group__label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 30px;
+}
+.material-checkbox-group__label:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 15px;
+  opacity: .9;
+  border-right: 2px solid #eee;
+  border-top: 2px solid #eee;
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  -webkit-transform: scaleX(-1) rotate(135deg);
+  transform: scaleX(-1) rotate(135deg);
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}
+.material-checkbox-group__label:before {
+  content: "";
+  display: block;
+  border: 2px solid;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 0;
+}
+.material-checkbox-group__label {
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.material-checkbox:disabled ~ .material-checkbox-group__label {
+  cursor: no-drop;
+}
+.material-checkbox {
+  display: none;
+}
+.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:after {
+  -webkit-animation: check 0.8s;
+  animation: check 0.8s;
+  opacity: 1;
+}
+.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #000;
+}
+.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #eee;
+}
+.material-checkbox-group .material-checkbox-group__label:before {
+  border-color: #eee;
+}
+.material-checkbox:disabled ~ .material-checkbox-group__label {
+  color: #eee;
+}
+.material-checkbox-group_primary .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #fff;
+}
+.material-checkbox-group_primary .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #4092d9;
+}
+.material-checkbox-group_primary .material-checkbox-group__label:before {
+  border-color: #4092d9;
+}
+.material-checkbox-group_success .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #fff;
+}
+.material-checkbox-group_success .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #68c368;
+}
+.material-checkbox-group_success .material-checkbox-group__label:before {
+  border-color: #68c368;
+}
+.material-checkbox-group_info .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #fff;
+}
+.material-checkbox-group_info .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #8bdaf2;
+}
+.material-checkbox-group_info .material-checkbox-group__label:before {
+  border-color: #8bdaf2;
+}
+.material-checkbox-group_warning .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #fff;
+}
+.material-checkbox-group_warning .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #f2a12e;
+}
+.material-checkbox-group_warning .material-checkbox-group__label:before {
+  border-color: #f2a12e;
+}
+.material-checkbox-group_danger .material-checkbox:checked + .material-checkbox-group__label:after {
+  border-color: #fff;
+}
+.material-checkbox-group_danger .material-checkbox:checked + .material-checkbox-group__label:before {
+  background-color: #f3413c;
+}
+.material-checkbox-group_danger .material-checkbox-group__label:before {
+  border-color: #f3413c;
+}
+@-webkit-keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 5px;
+  }
+  50% {
+    height: 15px;
+    width: 5px;
+  }
+}
+@keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 5px;
+  }
+  50% {
+    height: 15px;
+    width: 5px;
+  }
+}
+
 
 
 
@@ -69,7 +219,7 @@ title: Mapa de puntos de atención
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/ayudapuntosdeatencion">Acerca de Puntos de atención</a></li>
-            <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar el mapa</a></li>
+            <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar mapa</a></li>
           </ul>           
         </div>
       </div>
@@ -87,7 +237,7 @@ title: Mapa de puntos de atención
           </div>        
         </div>
         <div class="pull-right">
-          <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a>  
+          <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a>  
         </div>
       </div>
     </div>
@@ -98,25 +248,56 @@ title: Mapa de puntos de atención
 
 <div id="map-container" class="state-loading">
   <div id="map"></div>
-    <div class="row" id="filters">
-        <div class="col-sm-6 col-md-3">
-          <div class="panel panel-default panel-disabled">
-            <div class="panel-body">
-              <div class="form-group">
-                <label class="control-label" for="input-7">Organismo</label>
-                <select class="form-control" id="input-7">
-                  <option value="1">item 1</option>
-                </select>
+    <div>
+      <div class="row">
+        <div class="col-md-4" id="search">
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="Ingrese una dirección y localidad">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>        
+        </div> 
+      </div>
+      <div class="row">
+          <div class="col-md-4" id="filters">
+            <div class="panel panel-default panel-disabled">
+              <div class="panel-body">
+                <h5>
+                  <a data-toggle="collapse" href="#filters-items" aria-expanded="true" aria-controls="filters-items">
+                    FILTRAR BUSQUEDA
+                  </a>
+                </h5>
+                <div id="filters-items" class="collapse in">
+                  <div class="form-group">
+                    <label class="control-label" for="input-7">Organismo</label><br>
+                    <select class="form-control" id="option-organismos" multiple="multiple">
+                        <optgroup label="Todos los organismos">
+                            <option value="Organismo-1">Organismo 1</option>
+                            <option value="Organismo-2">Organismo 2</option>
+                        </optgroup>
+                    </select>
+                  </div> 
+
+                  <div class="form-group">
+                    <label class="control-label" for="input-8">Accesibilidad de la dependencia</label><br>
+                    <select class="form-control" id="option-accesibilidad" multiple="multiple">
+                        <optgroup label="Informacion">
+                            <option value="Visual">Visual</option>
+                            <option value="Acustica">Acustica</option>
+                        </optgroup>
+                        <optgroup label="Puerta de Entrada">
+                            <option value="Ancho > 80cm">Ancho > 80cm</option>
+                            <option value="Automática">Automática</option>
+                        </optgroup>
+                    </select>
+                  </div> 
+                </div>
               </div>
-              <div class="form-group">
-                <label class="control-label" for="input-8">Accesibilidad de la dependencia</label>
-                <select class="form-control" id="input-8">
-                  <option value="1">item 1</option>
-                </select>
-              </div>              
             </div>
           </div>
-        </div>        
+          </div>        
+      </div>
     </div>
 </div>
 
@@ -125,6 +306,21 @@ title: Mapa de puntos de atención
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<link rel="stylesheet" href="./js/bootstrap-multiselect.css" type="text/css">
+<script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#option-organismos, #option-accesibilidad').multiselect({
+        enableClickableOptGroups: true,
+        enableCollapsibleOptGroups: true,
+        nonSelectedText: 'Ninguno seleccionado',
+        allSelectedText: 'Todo seleccionado',
+        buttonWidth: '100%'
+    });
+    });
+</script>
 
 <script>
 
