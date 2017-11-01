@@ -47,145 +47,76 @@ title: Mapa de puntos de atención
       width: 100%;
   }  
 
-  .multiselect-container>li>a {
+  #filters-items .multiselect-container>li>a {
     padding: 10px 25px 10px 0;
   }  
+  .panel-title {
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.6);
+  }  
+  .panel-title a {
+      color: #fff;
+      text-decoration: none;
+  }
+  .panel-title a:hover {
+      text-decoration: none;
+  }
+  .multiselect-container>li>a>label.radio, .multiselect-container>li>a>label.checkbox {
+      padding: 3px 20px 3px 60px;
+  }  
+  .btn-border {
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+  }
+  .btn-border:hover {
+      border: 1px solid #dbdbdb;
+  }
 
-.material-checkbox-group__label {
-  position: relative;
-  display: block;
-  cursor: pointer;
-  height: 25px;
-  line-height: 25px;
-  padding-left: 30px;
+ label.checkbox {
+  padding-left: 24px
 }
-.material-checkbox-group__label:after {
-  content: "";
-  display: block;
-  width: 5px;
-  height: 15px;
-  opacity: .9;
-  border-right: 2px solid #eee;
-  border-top: 2px solid #eee;
+input[type="checkbox"] {
+  display: none
+}  
+input[type="checkbox"] + .box:before,
+input[type="checkbox"] + .box:after {
+  transition: all .3s
+}  
+input[type="checkbox"] + .box:after {
   position: absolute;
-  left: 5px;
-  top: 15px;
-  -webkit-transform: scaleX(-1) rotate(135deg);
-  transform: scaleX(-1) rotate(135deg);
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-}
-.material-checkbox-group__label:before {
-  content: "";
-  display: block;
-  border: 2px solid;
-  width: 25px;
-  height: 25px;
+  left: 4px;
+  top: 3px;
+  margin-top: -5px
+  margin-left: -4px
+  display: inline-block
+  content: ' '
+  width: 20px
+  height: 20px
+  border: 2px solid #999
+  border-radius: 2px
+  background-color: #fff
+  z-index: 1000
+}  
+input[type="checkbox"]:checked + .box:after {
+  background-color: colors.primary
+  border-color: colors.primary
+ } 
+input[type="checkbox"]:checked + .box:before {
+  transform: rotate(45deg);
   position: absolute;
-  left: 0;
+  left: 7px;
+  top: 0px;
+  width: 6px;
+  height: 13px;
+  border-width: 2px;
+  border-style: solid;
+  border-top: 0;
+  border-left: 0;
+  border-color: #fff
+  content: '';
+  z-index: 10000
 }
-.material-checkbox-group__label {
-  font-size: 14px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-.material-checkbox:disabled ~ .material-checkbox-group__label {
-  cursor: no-drop;
-}
-.material-checkbox {
-  display: none;
-}
-.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:after {
-  -webkit-animation: check 0.8s;
-  animation: check 0.8s;
-  opacity: 1;
-}
-.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #000;
-}
-.material-checkbox-group .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #eee;
-}
-.material-checkbox-group .material-checkbox-group__label:before {
-  border-color: #eee;
-}
-.material-checkbox:disabled ~ .material-checkbox-group__label {
-  color: #eee;
-}
-.material-checkbox-group_primary .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #fff;
-}
-.material-checkbox-group_primary .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #4092d9;
-}
-.material-checkbox-group_primary .material-checkbox-group__label:before {
-  border-color: #4092d9;
-}
-.material-checkbox-group_success .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #fff;
-}
-.material-checkbox-group_success .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #68c368;
-}
-.material-checkbox-group_success .material-checkbox-group__label:before {
-  border-color: #68c368;
-}
-.material-checkbox-group_info .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #fff;
-}
-.material-checkbox-group_info .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #8bdaf2;
-}
-.material-checkbox-group_info .material-checkbox-group__label:before {
-  border-color: #8bdaf2;
-}
-.material-checkbox-group_warning .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #fff;
-}
-.material-checkbox-group_warning .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #f2a12e;
-}
-.material-checkbox-group_warning .material-checkbox-group__label:before {
-  border-color: #f2a12e;
-}
-.material-checkbox-group_danger .material-checkbox:checked + .material-checkbox-group__label:after {
-  border-color: #fff;
-}
-.material-checkbox-group_danger .material-checkbox:checked + .material-checkbox-group__label:before {
-  background-color: #f3413c;
-}
-.material-checkbox-group_danger .material-checkbox-group__label:before {
-  border-color: #f3413c;
-}
-@-webkit-keyframes check {
-  0% {
-    height: 0;
-    width: 0;
-  }
-  25% {
-    height: 0;
-    width: 5px;
-  }
-  50% {
-    height: 15px;
-    width: 5px;
-  }
-}
-@keyframes check {
-  0% {
-    height: 0;
-    width: 0;
-  }
-  25% {
-    height: 0;
-    width: 5px;
-  }
-  50% {
-    height: 15px;
-    width: 5px;
-  }
-}
+
 
 
 
@@ -218,8 +149,8 @@ title: Mapa de puntos de atención
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a></li>
             <li><a href="/ayudapuntosdeatencion">Acerca de Puntos de atención</a></li>
-            <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar mapa</a></li>
           </ul>           
         </div>
       </div>
@@ -236,9 +167,6 @@ title: Mapa de puntos de atención
             </ol>            
           </div>        
         </div>
-        <div class="pull-right">
-          <a href="javascript:setGeolocation();" class="btn btn-default localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a>  
-        </div>
       </div>
     </div>
     <div class="overlay"></div>
@@ -250,7 +178,7 @@ title: Mapa de puntos de atención
   <div id="map"></div>
     <div>
       <div class="row">
-        <div class="col-md-4" id="search">
+        <div class="col-md-4 col-lg-3" id="search">
           <div class="input-group">
             <input class="form-control" type="text" placeholder="Ingrese una dirección y localidad">
             <span class="input-group-btn">
@@ -260,14 +188,16 @@ title: Mapa de puntos de atención
         </div> 
       </div>
       <div class="row">
-          <div class="col-md-4" id="filters">
+          <div class="col-md-4 col-lg-3" id="filters">
             <div class="panel panel-default panel-disabled">
-              <div class="panel-body">
+              <div class="panel-title"> 
                 <h5>
                   <a data-toggle="collapse" href="#filters-items" aria-expanded="true" aria-controls="filters-items">
-                    FILTRAR BUSQUEDA
+                    FILTRAR BUSQUEDA <b class="caret"></b>
                   </a>
-                </h5>
+                </h5>                    
+              </div>
+              <div class="panel-body">
                 <div id="filters-items" class="collapse in">
                   <div class="form-group">
                     <label class="control-label" for="input-7">Organismo</label><br>
@@ -315,9 +245,14 @@ title: Mapa de puntos de atención
         $('#option-organismos, #option-accesibilidad').multiselect({
         enableClickableOptGroups: true,
         enableCollapsibleOptGroups: true,
+        buttonClass: 'btn btn-border',
         nonSelectedText: 'Ninguno seleccionado',
         allSelectedText: 'Todo seleccionado',
-        buttonWidth: '100%'
+        buttonWidth: '100%',
+        templates: {
+            liGroup: '<li class="multiselect-item multiselect-group"><label class="box"></label><span class="box"></span></li>'
+        }
+
     });
     });
 </script>
@@ -513,6 +448,12 @@ title: Mapa de puntos de atención
 
             var index = markers.length;
 
+            var direccionpiso = '';
+
+            if (row.gsx$direccionpiso.$t !== 'NA') {
+              direccionpiso = row.gsx$direccionpiso.$t;
+            }
+
 
             marcador = "https://www.argentina.gob.ar/sites/default/files/m1.png";
 
@@ -530,7 +471,7 @@ title: Mapa de puntos de atención
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5">'+ row.gsx$direccióncalle.$t +'</h5><p><strong> ' + row.gsx$teléfono.$t + '<br>'+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Horario</strong>: '+ row.gsx$atencióndetalle.$t + '<br><strong></strong>: '+ row.gsx$nombrenumero.$t + '</p>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div><div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t +'</strong> </small> </p></div></div><div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm">SACAR TURNO</a>&nbsp;&nbsp;<a href="" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
             })
 
