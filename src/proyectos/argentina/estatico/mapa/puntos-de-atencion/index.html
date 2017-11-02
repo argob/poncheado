@@ -236,7 +236,7 @@ input[type="checkbox"]:checked + .box:before {
     </div>
 </div>
 
-
+<div data-render="modales"></div> 
           
 
 
@@ -451,16 +451,53 @@ input[type="checkbox"]:checked + .box:before {
 
         var marcador;
 
+        var showModal = $('[data-render=modales]');
+
+        var modal = '';
+
         rows.forEach(function(row, key){
 
             var index = markers.length;
 
             var direccionpiso = '';
+            var correoelectronico = '';
+            var iconClassPB = 'fa-close';
+            var iconColorPB = 'text-danger';
+            var iconClassED = 'fa-close';
+            var iconColorED = 'text-danger';
+            var iconClassEPM = 'fa-close';
+            var iconColorEPM = 'text-danger';
+            var iconClassR = 'fa-close';
+            var iconColorR = 'text-danger';
+            var iconClassA = 'fa-close';
+            var iconColorA = 'text-danger';
 
             if (row.gsx$direccionpiso.$t !== 'NA') {
               direccionpiso = row.gsx$direccionpiso.$t;
             }
-
+            if (row.gsx$correoelectrónico.$t !== 'NA') {
+              correoelectronico = '<small>Correo electrónico</small><p><a href="mailto:'+ row.gsx$correoelectrónico.$t + '">'+ row.gsx$correoelectrónico.$t + '</a></p>';
+            }
+            if (row.gsx$atenciónenplantabaja.$t == 'SÍ') {
+              iconClassPB = 'fa-check';
+              iconColorPB = 'text-success';
+            }
+            if (row.gsx$escalerasconantideslizante.$t == 'SÍ') {
+              iconClassED = 'fa-check';
+              iconColorED = 'text-success';
+            }
+            if (row.gsx$escaleraconposamanos.$t == 'SÍ') {
+              iconClassEPM = 'fa-check';
+              iconColorEPM = 'text-success';
+            }
+            if (row.gsx$rampa.$t == 'SÍ') {
+              iconClassR = 'fa-check';
+              iconColorR = 'text-success';
+            }
+            if (row.gsx$ascensor.$t == 'SÍ') {
+              iconClassA = 'fa-check';
+              iconColorA = 'text-success';
+            }
 
             marcador = "https://www.argentina.gob.ar/sites/default/files/m1.png";
 
@@ -478,16 +515,97 @@ input[type="checkbox"]:checked + .box:before {
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div><div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t +'</strong> </small> </p></div></div><div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm">SACAR TURNO</a>&nbsp;&nbsp;<a href="" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div><div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t +'</strong> </small> </p></div></div><div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
             })
 
             markers[index].addListener('click', function() {
               closeWindows();
               detalles[index].open(map, markers[index]);
+              $('[data-toggle="modal"]').click( function() {
+                var id = $(this).attr('href').substr(1);
+                console.log(id);              
+              })  
+
             });
 
+            modal += '<div id="'+ key + '" class="modal fade" tabindex="-1" role="dialog">';
+            modal += '  <div class="modal-dialog modal-lg">';
+            modal += '    <div class="modal-content">';
+            modal += '      <div class="modal-header">';
+            modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
+            modal += '          <h4 class="modal-title"><span class="text-muted">'+ row.gsx$organismo.$t + '</span> - '+ row.gsx$nombrenumero.$t + '<br><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></h2></h4>';
+            modal += '      </div>';
+            modal += '      <div class="modal-body p-x-2">';
+            modal += '        <div class="row">';
+            modal += '            <div class="col-md-8">';
+            modal += '                <div class="media">';
+            modal += '                    <div class="media-left hidden-xs">';
+            modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
+            modal += '                    </div>';
+            modal += '                    <div class="media-body">';
+            modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
+            modal += '                        <div class="row">';
+            modal += '                            <div class="col-xs-12 col-md-7">';
+            modal += '                                <small>Teléfono</small>';
+            modal += '                                <p>'+ row.gsx$teléfono.$t +'</p>';
+            modal += '                                '+ correoelectronico +'';
+            modal += '                                <small>Horarios de atención</small>';
+            modal += '                                <p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
+            modal += '                            </div>';
+            modal += '                        </div>';
+            modal += '                    </div>';
+            modal += '                </div>';
+            modal += '            </div>';
+            modal += '            <div class="col-md-4">';
+            modal += '              <div class="media-left">';
+            modal += '                    <i class="fa fa-map-marker fa-fw fa-2x text-primary m-b-0"></i>';
+            modal += '              </div>';
+            modal += '                <div class="media-body">';
+            modal += '                    <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +'</p>';
+            modal += '                    <p class="m-t-0">'+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
+            modal += '                </div>';
+            modal += '                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.714717992431!2d-58.557308384473224!3d-34.48476068049059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbaa08edb14b7%3A0x53b19868a012ef35!2sNicol%C3%A1s+Avellaneda+3100%2C+B1642EZL+San+Isidro%2C+Buenos+Aires!5e0!3m2!1ses!2sar!4v1505758624084" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>';          
+            modal += '            </div>';
+            modal += '        </div>';
+            modal += '<div class="row">';
+            modal += '    <div class="col-md-8">';
+            modal += '        <div class="media">';
+            modal += '            <div class="media-left hidden-xs">';
+            modal += '                <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
+            modal += '            </div>';
+            modal += '            <div class="media-body">';
+            modal += '                <h3 class="m-t-0 clearfix">';
+            modal += '                    <i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>';
+            modal += '                    Información de la dependencia';
+            modal += '                </h3>';
+            modal += '            </div>';
+            modal += '        </div>';
+            modal += '        <div class="row">';
+            modal += '            <div class="col-xs-12 col-md-6">';
+            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Acceso a la dependencia</h5>';
+            modal += '            </div>';
+            modal += '            <div class="col-xs-12 col-md-6">';
+            modal += '                <div>';
+            modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
+            modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
+            modal += '                    <p><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
+            modal += '                    <p><i class="fa '+ iconClassR +' fa-fw '+ iconColorR  +'" aria-hidden="true"></i>Rampa</p>';
+            modal += '                    <p><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
+            modal += '                </div>';
+            modal += '            </div>';
+            modal += '        </div>';
+            modal += '    </div>';
+            modal += '</div>';            
+            modal += '      </div>';
+            modal += '    </div>';
+            modal += '  </div>';
+            modal += '</div>';             
+
         })
+
+        showModal.empty();
+        showModal.append(modal); 
 
 
         var markerCluster = new MarkerClusterer(map, markers, {
@@ -557,6 +675,9 @@ input[type="checkbox"]:checked + .box:before {
 
     setGeolocation();
   }
+
+
+
 
 </script>
 
