@@ -191,12 +191,9 @@ input[type="checkbox"]:checked + .box:before {
     <div>
       <div class="row">
         <div class="col-md-4 col-lg-3" id="search">
-          <div class="input-group">
-            <input class="form-control" type="text" placeholder="Ingrese una dirección y localidad">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
-            </span>
-          </div>        
+            <div class="form-group">
+              <input id="address" type="textbox" class="form-control" placeholder="Ingrese una dirección y localidad" value="">
+            </div>
         </div> 
       </div>
       <div class="row">
@@ -213,15 +210,15 @@ input[type="checkbox"]:checked + .box:before {
                 <div id="filters-items" class="collapse in">
                   <div class="form-group">
                     <label class="control-label" for="input-7">Organismo</label><br>
-                    <select class="form-control" id="option-organismos" multiple="multiple">
-                        <optgroup label="Todos los organismos">
-                            <option value="Organismo-1">Organismo 1</option>
-                            <option value="Organismo-2">Organismo 2</option>
+                    <select class="form-control" name="organismos" id="option-organismos" multiple="multiple">
+                        <optgroup label="Todos los organismos" selected>
+                          <option value="ANSES">ANSES</option>
+                          <option value="Superintendencia de Riesgos de Trabajo">Superintendencia de Riesgos de Trabajo</option>
                         </optgroup>
                     </select>
                   </div> 
 
-                  <div class="form-group">
+                  <div class="form-group hidden">
                     <label class="control-label" for="input-8">Accesibilidad de la dependencia</label><br>
                     <select class="form-control" id="option-accesibilidad" multiple="multiple">
                         <optgroup label="Informacion">
@@ -252,28 +249,21 @@ input[type="checkbox"]:checked + .box:before {
 <link rel="stylesheet" href="./js/bootstrap-multiselect.css" type="text/css">
 <script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#option-organismos, #option-accesibilidad').multiselect({
-        enableClickableOptGroups: true,
-        enableCollapsibleOptGroups: true,
-        buttonClass: 'btn btn-border',
-        nonSelectedText: 'Ninguno seleccionado',
-        allSelectedText: 'Todo seleccionado',
-        buttonWidth: '100%',
-        templates: {
-            liGroup: '<li class="multiselect-item multiselect-group"><label class="box"></label><span class="box"></span></li>'
-        }
-
-    });
-
-
-    });
-</script>
-
 <script>
 
+  var autocomplete;
+
   var initMap = function() {
+
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('address')),
+    {types: ['geocode']});
+
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
+
 
     // Setup map
 
@@ -441,10 +431,34 @@ input[type="checkbox"]:checked + .box:before {
       ]
     });
 
+    var geocoder = new google.maps.Geocoder();    
+
+    function onPlaceChanged() {
+      geocodeAddress(geocoder, map);
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(17);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }      
+
+
     // Show markers loaded from spreadsheet
 
     var markers = [];
     var detalles = [];
+    var nombreOrganismos = [];
 
     $.ajax({
       // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1TFGgNBEgi3VReO41VVusz8kTi8sqWtXYqwVtNmvZuMg/1',
@@ -729,10 +743,14 @@ input[type="checkbox"]:checked + .box:before {
 
             });
 
+
+
             detalles[index] = new google.maps.InfoWindow({
               content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div><div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t +'</strong> </small> </p></div></div><div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
-            })
+            });
+
+            nombreOrganismos[index] = row.gsx$organismo.$t;
 
             markers[index].addListener('click', function() {
               closeWindows();
@@ -744,196 +762,254 @@ input[type="checkbox"]:checked + .box:before {
 
             });
 
-            modal += '<div id="'+ key + '" class="modal fade" tabindex="-1" role="dialog">';
-            modal += '  <div class="modal-dialog modal-lg">';
-            modal += '    <div class="modal-content">';
-            modal += '      <div class="modal-header">';
-            modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
-            modal += '          <h4 class="modal-title"><span class="text-muted">'+ row.gsx$organismo.$t + '</span> - '+ row.gsx$nombrenumero.$t + '<br><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></h2></h4>';
-            modal += '      </div>';
-            modal += '      <div class="modal-body p-x-2">';
-            modal += '        <div class="row">';
-            modal += '            <div class="col-md-8">';
-            modal += '                <div class="media">';
-            modal += '                    <div class="media-left hidden-xs">';
-            modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
-            modal += '                    </div>';
-            modal += '                    <div class="media-body">';
-            modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
-            modal += '                        <div class="row">';
-            modal += '                            <div class="col-xs-12 col-md-7">';
-            modal += '                                <small>Teléfono</small>';
-            modal += '                                <p>'+ row.gsx$teléfono.$t +'</p>';
-            modal += '                                '+ correoelectronico +'';
-            modal += '                                <small>Horarios de atención</small>';
-            modal += '                                <p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
-            modal += '                            </div>';
-            modal += '                        </div>';
-            modal += '                    </div>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '            <div class="col-md-4">';
-            modal += '              <div class="media-left">';
-            modal += '                    <i class="fa fa-map-marker fa-fw fa-2x text-primary m-b-0"></i>';
-            modal += '              </div>';
-            modal += '                <div class="media-body">';
-            modal += '                    <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +'</p>';
-            modal += '                    <p class="m-t-0">'+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
-            modal += '                </div>';
-            modal += '                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.714717992431!2d-58.557308384473224!3d-34.48476068049059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbaa08edb14b7%3A0x53b19868a012ef35!2sNicol%C3%A1s+Avellaneda+3100%2C+B1642EZL+San+Isidro%2C+Buenos+Aires!5e0!3m2!1ses!2sar!4v1505758624084" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>';          
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '<div class="row">';
-            modal += '    <div class="col-md-8">';
-            modal += '        <div class="media">';
-            modal += '            <div class="media-left hidden-xs">';
-            modal += '                <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
-            modal += '            </div>';
-            modal += '            <div class="media-body">';
-            modal += '                <h3 class="m-t-0 clearfix">';
-            modal += '                    <i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>';
-            modal += '                    Información de la dependencia';
-            modal += '                </h3>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Acceso a la dependencia</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
-            modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
-            modal += '                    <p><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
-            modal += '                    <p><i class="fa '+ iconClassR +' fa-fw '+ iconColorR  +'" aria-hidden="true"></i>Rampa</p>';
-            modal += '                    <p><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Puerta de Entrada</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassA80 +' fa-fw '+iconColorA80 +'" aria-hidden="true"></i>Ancho > 80cm</p>';
-            modal += '                    <p><i class="fa '+ iconClassAU +' fa-fw '+ iconColorAU +'" aria-hidden="true"></i>Automática</p>';
-            modal += '                    <p><i class="fa '+ iconClassPCM +' fa-fw '+iconColorPCM +'" aria-hidden="true"></i>Puerta con manija</p>';
-            modal += '                    <p><i class="fa '+ iconClassPG +' fa-fw '+ iconColorPG +'" aria-hidden="true"></i>Puerta giratoria</p>';
-            modal += '                    <p><i class="fa '+ iconClassEA +' fa-fw '+ iconColorEA +'" aria-hidden="true"></i>Entrada alternativa</p>';
-            modal += '                    <p><i class="fa '+ iconClassAYP +' fa-fw '+iconColorAYP +'" aria-hidden="true"></i>Espacio anterior y posterior HORIZONTAL</p>';
-            modal += '                    <p><i class="fa '+ iconClassFLD +' fa-fw '+iconColorFLD +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Pasillos</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassCCE +' fa-fw '+iconColorCCE +'" aria-hidden="true"></i>> 80cm con el mobiliario</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Mostrador de Atención</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassDA +' fa-fw '+ iconColorDA +'" aria-hidden="true"></i>Dos alturas</p>';
-            modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Parte baja < 85cm</p>';
-            modal += '                    <p><i class="fa '+ iconClassESO +' fa-fw '+iconColorESO +'" aria-hidden="true"></i>Espacio sin obstaculos con > 60cm de fondo</p>';
-            modal += '                    <p><i class="fa '+ iconClassPD +' fa-fw '+ iconColorPD +'" aria-hidden="true"></i>Paneles divisores</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Area de Espera</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassASI +' fa-fw '+iconColorASI +'" aria-hidden="true"></i>Asientos</p>';
-            modal += '                    <p><i class="fa '+ iconClassCDA +' fa-fw '+iconColorCDA +'" aria-hidden="true"></i>40-50 cm de altura</p>';
-            modal += '                    <p><i class="fa '+ iconClassRES +' fa-fw '+iconColorRES +'" aria-hidden="true"></i>Respaldos</p>';
-            modal += '                    <p><i class="fa '+ iconClassRB +' fa-fw '+ iconColorRB +'" aria-hidden="true"></i>Reposa Brazos</p>';
-            modal += '                    <p><i class="fa '+ iconClassBPP +' fa-fw '+iconColorBPP +'" aria-hidden="true"></i>Baños para personas con discapacidad</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Información</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassVIS +' fa-fw '+iconColorVIS +'" aria-hidden="true"></i>Visual</p>';
-            modal += '                    <p><i class="fa '+ iconClassACU +' fa-fw '+iconColorACU +'" aria-hidden="true"></i>Acústica</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Visual</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassFOL +' fa-fw '+iconColorFOL +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
-            modal += '                    <p><i class="fa '+ iconClassLCD +' fa-fw '+iconColorLCD +'" aria-hidden="true"></i>Linea central de lectura a 1,6m</p>';
-            modal += '                    <p><i class="fa '+ iconClassTEB +' fa-fw '+iconColorTEB +'" aria-hidden="true"></i>Textos en Braille</p>';
-            modal += '                    <p><i class="fa '+ iconClassSGF +' fa-fw '+iconColorSGF +'" aria-hidden="true"></i>Símbolos o Gráficos facilitadores</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Sonora</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassEET +' fa-fw '+iconColorEET +'" aria-hidden="true"></i>Entendible en todo el edificio</p>';
-            modal += '                    <p><i class="fa '+ iconClassSDA +' fa-fw '+iconColorSDA +'" aria-hidden="true"></i>Señal de Atención previa al mensaje</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';
-            modal += '        <hr>';            
-            modal += '        <div class="row">';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Sistemas Interactivos de Información (totem)</h5>';
-            modal += '            </div>';
-            modal += '            <div class="col-xs-12 col-md-6">';
-            modal += '                <div>';
-            modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
-            modal += '                    <p><i class="fa '+ iconClassII +' fa-fw '+ iconColorII +'" aria-hidden="true"></i>Instrucciones Iniciales</p>';
-            modal += '                    <p><i class="fa '+ iconClassIEB +' fa-fw '+iconColorIEB +'" aria-hidden="true"></i>Instrucciones en Braille</p>';
-            modal += '                    <p><i class="fa '+ iconClassIE +' fa-fw '+ iconColorIE +'" aria-hidden="true"></i>Instrucciones enumeradas</p>';
-            modal += '                    <p><i class="fa '+ iconClassPIA +' fa-fw '+iconColorPIA +'" aria-hidden="true"></i>Panel Interactivo a > 70cm y < 130cm de altura</p>';
-            modal += '                    <p><i class="fa '+ iconClassTC +' fa-fw '+ iconColorTC +'" aria-hidden="true"></i>Textos Contrastados</p>';
-            modal += '                    <p><i class="fa '+ iconClassSCI +' fa-fw '+ iconColorSCI +'" aria-hidden="true"></i>Sistema con instrucciones sonoras</p>';
-            modal += '                </div>';
-            modal += '            </div>';
-            modal += '        </div>';                                                                                                
-            modal += '    </div>';
-            modal += '</div>';            
-            modal += '      </div>';
-            modal += '    </div>';
-            modal += '  </div>';
-            modal += '</div>';             
+
+
+            window.loadModal = function(){       
+
+              modal += '<div id="'+ key + '" class="modal fade" tabindex="-1" role="dialog">';
+              modal += '  <div class="modal-dialog modal-lg">';
+              modal += '    <div class="modal-content">';
+              modal += '      <div class="modal-header">';
+              modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
+              modal += '          <h4 class="modal-title"><span class="text-muted">'+ row.gsx$organismo.$t + '</span> - '+ row.gsx$nombrenumero.$t + '<br><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></h2></h4>';
+              modal += '      </div>';
+              modal += '      <div class="modal-body p-x-2">';
+              modal += '        <div class="row">';
+              modal += '            <div class="col-md-8">';
+              modal += '                <div class="media">';
+              modal += '                    <div class="media-left hidden-xs">';
+              modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
+              modal += '                    </div>';
+              modal += '                    <div class="media-body">';
+              modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
+              modal += '                        <div class="row">';
+              modal += '                            <div class="col-xs-12 col-md-7">';
+              modal += '                                <small>Teléfono</small>';
+              modal += '                                <p>'+ row.gsx$teléfono.$t +'</p>';
+              modal += '                                '+ correoelectronico +'';
+              modal += '                                <small>Horarios de atención</small>';
+              modal += '                                <p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
+              modal += '                            </div>';
+              modal += '                        </div>';
+              modal += '                    </div>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '            <div class="col-md-4">';
+              modal += '              <div class="media-left">';
+              modal += '                    <i class="fa fa-map-marker fa-fw fa-2x text-primary m-b-0"></i>';
+              modal += '              </div>';
+              modal += '                <div class="media-body">';
+              modal += '                    <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +'</p>';
+              modal += '                    <p class="m-t-0">'+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
+              modal += '                </div>';
+              modal += '                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.714717992431!2d-58.557308384473224!3d-34.48476068049059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbaa08edb14b7%3A0x53b19868a012ef35!2sNicol%C3%A1s+Avellaneda+3100%2C+B1642EZL+San+Isidro%2C+Buenos+Aires!5e0!3m2!1ses!2sar!4v1505758624084" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>';          
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '<div class="row">';
+              modal += '    <div class="col-md-8">';
+              modal += '        <div class="media">';
+              modal += '            <div class="media-left hidden-xs">';
+              modal += '                <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
+              modal += '            </div>';
+              modal += '            <div class="media-body">';
+              modal += '                <h3 class="m-t-0 clearfix">';
+              modal += '                    <i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>';
+              modal += '                    Información de la dependencia';
+              modal += '                </h3>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Acceso a la dependencia</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
+              modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
+              modal += '                    <p><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
+              modal += '                    <p><i class="fa '+ iconClassR +' fa-fw '+ iconColorR  +'" aria-hidden="true"></i>Rampa</p>';
+              modal += '                    <p><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Puerta de Entrada</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassA80 +' fa-fw '+iconColorA80 +'" aria-hidden="true"></i>Ancho > 80cm</p>';
+              modal += '                    <p><i class="fa '+ iconClassAU +' fa-fw '+ iconColorAU +'" aria-hidden="true"></i>Automática</p>';
+              modal += '                    <p><i class="fa '+ iconClassPCM +' fa-fw '+iconColorPCM +'" aria-hidden="true"></i>Puerta con manija</p>';
+              modal += '                    <p><i class="fa '+ iconClassPG +' fa-fw '+ iconColorPG +'" aria-hidden="true"></i>Puerta giratoria</p>';
+              modal += '                    <p><i class="fa '+ iconClassEA +' fa-fw '+ iconColorEA +'" aria-hidden="true"></i>Entrada alternativa</p>';
+              modal += '                    <p><i class="fa '+ iconClassAYP +' fa-fw '+iconColorAYP +'" aria-hidden="true"></i>Espacio anterior y posterior HORIZONTAL</p>';
+              modal += '                    <p><i class="fa '+ iconClassFLD +' fa-fw '+iconColorFLD +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Pasillos</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassCCE +' fa-fw '+iconColorCCE +'" aria-hidden="true"></i>> 80cm con el mobiliario</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Mostrador de Atención</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassDA +' fa-fw '+ iconColorDA +'" aria-hidden="true"></i>Dos alturas</p>';
+              modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Parte baja < 85cm</p>';
+              modal += '                    <p><i class="fa '+ iconClassESO +' fa-fw '+iconColorESO +'" aria-hidden="true"></i>Espacio sin obstaculos con > 60cm de fondo</p>';
+              modal += '                    <p><i class="fa '+ iconClassPD +' fa-fw '+ iconColorPD +'" aria-hidden="true"></i>Paneles divisores</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Area de Espera</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassASI +' fa-fw '+iconColorASI +'" aria-hidden="true"></i>Asientos</p>';
+              modal += '                    <p><i class="fa '+ iconClassCDA +' fa-fw '+iconColorCDA +'" aria-hidden="true"></i>40-50 cm de altura</p>';
+              modal += '                    <p><i class="fa '+ iconClassRES +' fa-fw '+iconColorRES +'" aria-hidden="true"></i>Respaldos</p>';
+              modal += '                    <p><i class="fa '+ iconClassRB +' fa-fw '+ iconColorRB +'" aria-hidden="true"></i>Reposa Brazos</p>';
+              modal += '                    <p><i class="fa '+ iconClassBPP +' fa-fw '+iconColorBPP +'" aria-hidden="true"></i>Baños para personas con discapacidad</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Información</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassVIS +' fa-fw '+iconColorVIS +'" aria-hidden="true"></i>Visual</p>';
+              modal += '                    <p><i class="fa '+ iconClassACU +' fa-fw '+iconColorACU +'" aria-hidden="true"></i>Acústica</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Visual</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassFOL +' fa-fw '+iconColorFOL +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
+              modal += '                    <p><i class="fa '+ iconClassLCD +' fa-fw '+iconColorLCD +'" aria-hidden="true"></i>Linea central de lectura a 1,6m</p>';
+              modal += '                    <p><i class="fa '+ iconClassTEB +' fa-fw '+iconColorTEB +'" aria-hidden="true"></i>Textos en Braille</p>';
+              modal += '                    <p><i class="fa '+ iconClassSGF +' fa-fw '+iconColorSGF +'" aria-hidden="true"></i>Símbolos o Gráficos facilitadores</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Sonora</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassEET +' fa-fw '+iconColorEET +'" aria-hidden="true"></i>Entendible en todo el edificio</p>';
+              modal += '                    <p><i class="fa '+ iconClassSDA +' fa-fw '+iconColorSDA +'" aria-hidden="true"></i>Señal de Atención previa al mensaje</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr>';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Sistemas Interactivos de Información (totem)</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '                <div>';
+              modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
+              modal += '                    <p><i class="fa '+ iconClassII +' fa-fw '+ iconColorII +'" aria-hidden="true"></i>Instrucciones Iniciales</p>';
+              modal += '                    <p><i class="fa '+ iconClassIEB +' fa-fw '+iconColorIEB +'" aria-hidden="true"></i>Instrucciones en Braille</p>';
+              modal += '                    <p><i class="fa '+ iconClassIE +' fa-fw '+ iconColorIE +'" aria-hidden="true"></i>Instrucciones enumeradas</p>';
+              modal += '                    <p><i class="fa '+ iconClassPIA +' fa-fw '+iconColorPIA +'" aria-hidden="true"></i>Panel Interactivo a > 70cm y < 130cm de altura</p>';
+              modal += '                    <p><i class="fa '+ iconClassTC +' fa-fw '+ iconColorTC +'" aria-hidden="true"></i>Textos Contrastados</p>';
+              modal += '                    <p><i class="fa '+ iconClassSCI +' fa-fw '+ iconColorSCI +'" aria-hidden="true"></i>Sistema con instrucciones sonoras</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';                                                                                                
+              modal += '    </div>';
+              modal += '</div>';            
+              modal += '      </div>';
+              modal += '    </div>';
+              modal += '  </div>';
+              modal += '</div>';             
+
+            }
+
+            loadModal(); 
+
 
         })
 
+              /* filter markers */
+            console.log("Nombre Organismos" + nombreOrganismos);
+
+            filterMarkers = function (organismos) {
+              console.log(" filtermarkers Organismos" + organismos);
+                for (i = 0; i < markers.length; i++) {
+                    console.log("for");
+                    var marker = markers[i];
+                    if(organismos.indexOf(nombreOrganismos[i]) > -1) {
+                      console.log("verdadero");
+                        marker.setVisible(true);
+                    }
+                    else {
+                      console.log("falso");
+                        marker.setVisible(false);
+                    }
+                }
+            }  
+
+          window.loadOrganismos = function(){
+
+              $('#option-organismos, #option-accesibilidad').multiselect({
+              enableClickableOptGroups: true,
+              enableCollapsibleOptGroups: true,
+              buttonClass: 'btn btn-border',
+              nonSelectedText: 'Ninguno seleccionado',
+              allSelectedText: 'Todo seleccionado',
+              buttonWidth: '100%',
+              templates: {
+                  liGroup: '<li class="multiselect-item multiselect-group"><label class="box"></label><span class="box"></span></li>'
+              },
+               onChange: function(element, checked) {
+                var listaOrganismos = [];
+                $('#option-organismos').find(':selected').each(function(){
+                  console.log($(this).val() + " ");
+                  listaOrganismos.push($(this).val());
+
+                });
+                filterMarkers(listaOrganismos);
+              }
+
+          });
+
+          $("#option-organismos").multiselect('selectAll', false);
+          $("#option-organismos").multiselect('updateButtonText');    
+
+          }
+
+        loadOrganismos();
+
         showModal.empty();
         showModal.append(modal); 
-
 
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
@@ -941,8 +1017,6 @@ input[type="checkbox"]:checked + .box:before {
           minimumClusterSize: 300,
           maxZoom: 19
         });
-      
-
 
         $('#map-container').removeClass('state-loading');
 
@@ -1002,12 +1076,7 @@ input[type="checkbox"]:checked + .box:before {
 
     setGeolocation();
   }
-
-
-
-
 </script>
-
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&libraries=places&callback=initMap"></script>
