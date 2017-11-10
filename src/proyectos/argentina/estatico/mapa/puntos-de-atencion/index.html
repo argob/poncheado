@@ -35,14 +35,14 @@ title: Mapa de puntos de atención
   #filters {
     position: absolute;
     top: 210px;
-    max-width: 480px;
+    max-width: 360px;
     width: 95%;
     left: 10px;
   }
   #search {
     position: absolute;
     top: 140px;
-    max-width: 480px;
+    max-width: 360px;
     width: 95%;
     left: 10px;
   }  
@@ -77,6 +77,30 @@ title: Mapa de puntos de atención
   }
   .main-footer {
     display: none;
+  }
+
+  .filters-button .navbar-toggle {
+      border-color: transparent;
+  }
+  .filters-button .navbar-toggle .icon-bar {
+      background-color: #888;
+  }
+
+  .filters-button {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+  }
+
+  #filters-map.navbar-collapse.in #search {
+        margin-top: 40px;
+  } 
+  #filters-map.navbar-collapse.in #filters {
+        margin-top: 40px;
+  }  
+  .multiselect.btn {
+    text-align: left;
+    text-transform: none;
   }
 
 /* label.checkbox {
@@ -146,13 +170,12 @@ input[type="checkbox"]:checked + .box:before {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-
           <a class="navbar-brand hidden-xs" href="/">
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
           <div class="navbar-brand visible-xs-inline-block"> Puntos de atención </div>
-        </div>
+        </div>  
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
             <a href="/">
@@ -188,7 +211,12 @@ input[type="checkbox"]:checked + .box:before {
 
 <div id="map-container" class="state-loading">
   <div id="map"></div>
-    <div>
+    <div class="filters-button">
+      <button type="button" class="navbar-toggle btn btn-default btn-sm" data-toggle="collapse" data-target="#filters-map">
+        Filtros
+      </button>
+    </div>
+    <div id="filters-map" class="collapse navbar-collapse">
       <div class="row">
         <div class="col-md-4 col-lg-3" id="search">
             <div class="form-group">
@@ -202,18 +230,17 @@ input[type="checkbox"]:checked + .box:before {
               <div class="panel-title"> 
                 <h5>
                   <a data-toggle="collapse" href="#filters-items" aria-expanded="true" aria-controls="filters-items">
-                    FILTRAR BUSQUEDA <b class="caret"></b>
+                    Filtrar Búsqueda <b class="caret"></b>
                   </a>
                 </h5>                    
               </div>
               <div class="panel-body">
                 <div id="filters-items" class="collapse in">
-                  <div class="form-group">
+                  <div>
                     <label class="control-label" for="input-7">Organismo</label><br>
                     <select class="form-control" name="organismos" id="option-organismos" multiple="multiple">
                         <optgroup label="Todos los organismos" selected>
-                          <option value="ANSES">ANSES</option>
-                          <option value="Superintendencia de Riesgos de Trabajo">Superintendencia de Riesgos de Trabajo</option>
+                          <option value="Superintendencia de Riesgos de Trabajo">SRT</option>
                         </optgroup>
                     </select>
                   </div> 
@@ -272,163 +299,7 @@ input[type="checkbox"]:checked + .box:before {
       zoom: 4,
       center: mapCenter,
       scrollwheel: true,
-      streetViewControl: false,
-      styles: [
-        {
-          featureType: "landscape.man_made",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "landscape.natural",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "landscape.natural.landcover",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "landscape.natural.terrain",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.attraction",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.business",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.government",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.medical",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.park",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.place_of_worship",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.school",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi.sports_complex",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-          elementType: "labels.icon",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road.local",
-        stylers: [
-            {
-              visibility: "on"
-            }
-          ]
-        },
-        {
-          featureType: "transit",
-        stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        }
-      ]
+      streetViewControl: false
     });
 
     var geocoder = new google.maps.Geocoder();    
@@ -482,6 +353,8 @@ input[type="checkbox"]:checked + .box:before {
 
             var direccionpiso = '';
             var correoelectronico = '';
+            var telefono = '';
+            var telefonoTarjeta = '';
 
             var iconClassPB= 'fa-close';
                 iconClassED= 'fa-close';
@@ -562,173 +435,178 @@ input[type="checkbox"]:checked + .box:before {
             if (row.gsx$direccionpiso.$t !== 'NA') {
               direccionpiso = row.gsx$direccionpiso.$t;
             }
+            if (row.gsx$teléfono.$t !== 'NA') {
+              telefono = '<small>Teléfono</small><p>'+ row.gsx$teléfono.$t + '</p>';
+              telefonoTarjeta = '<div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t + '</strong> </small> </p></div></div>';
+
+            }            
             if (row.gsx$correoelectrónico.$t !== 'NA') {
               correoelectronico = '<small>Correo electrónico</small><p><a href="mailto:'+ row.gsx$correoelectrónico.$t + '">'+ row.gsx$correoelectrónico.$t + '</a></p>';
             }
-            if (row.gsx$atenciónenplantabaja.$t == 'SÍ') {
+            if (row.gsx$atenciónenplantabaja.$t == 'SI') {
               iconClassPB = 'fa-check';
               iconColorPB = 'text-success';
             }
-            if (row.gsx$escalerasconantideslizante.$t == 'SÍ') {
+            if (row.gsx$escalerasconantideslizante.$t == 'SI') {
               iconClassED = 'fa-check';
               iconColorED = 'text-success';
             }
-            if (row.gsx$escaleraconposamanos.$t == 'SÍ') {
+            if (row.gsx$escaleraconposamanos.$t == 'SI') {
               iconClassEPM = 'fa-check';
               iconColorEPM = 'text-success';
             }
-            if (row.gsx$rampa.$t == 'SÍ') {
+            if (row.gsx$rampa.$t == 'SI') {
               iconClassR = 'fa-check';
               iconColorR = 'text-success';
             }
-            if (row.gsx$ascensor.$t == 'SÍ') {
+            if (row.gsx$ascensor.$t == 'SI') {
               iconClassA = 'fa-check';
               iconColorA = 'text-success';
             }
 
-            if (row.gsx$ancho80cm.$t == 'SÍ') {
+            if (row.gsx$ancho80cm.$t == 'SI') {
               iconClassA80 = 'fa-check';
               iconColorA80 = 'text-success';
             }
-            if (row.gsx$automática.$t == 'SÍ') {
+            if (row.gsx$automática.$t == 'SI') {
               iconClassAU = 'fa-check';
               iconColorAU = 'text-success';
             }
-            if (row.gsx$puertaconmanija.$t == 'SÍ') {
+            if (row.gsx$puertaconmanija.$t == 'SI') {
               iconClassPCM = 'fa-check';
               iconColorPCM = 'text-success';
             }
-            if (row.gsx$puertagiratoria.$t == 'SÍ') {
+            if (row.gsx$puertagiratoria.$t == 'SI') {
               iconClassPG = 'fa-check';
               iconColorPG = 'text-success';
             }
-            if (row.gsx$entradaalternativa.$t == 'SÍ') {
+            if (row.gsx$entradaalternativa.$t == 'SI') {
               iconClassEA = 'fa-check';
               iconColorEA = 'text-success';
             }
-            if (row.gsx$espacioanterioryposteriorhorizontal.$t == 'SÍ') {
+            if (row.gsx$espacioanterioryposteriorhorizontal.$t == 'SI') {
               iconClassAYP = 'fa-check';
               iconColorAYP = 'text-success';
             }
-            if (row.gsx$franjaologodecontraste.$t == 'SÍ') {
+            if (row.gsx$franjaologodecontraste.$t == 'SI') {
               iconClassFLD = 'fa-check';
               iconColorFLD = 'text-success';
             }
 
 
-            if (row.gsx$cmconelmobiliario.$t == 'SÍ') {
+            if (row.gsx$cmconelmobiliario.$t == 'SI') {
               iconClassCCE = 'fa-check';
               iconColorCCE = 'text-success';
             }
 
 
-            if (row.gsx$dosalturas.$t == 'SÍ') {
+            if (row.gsx$dosalturas.$t == 'SI') {
               iconClassDA = 'fa-check';
               iconColorDA = 'text-success';
             }
-            if (row.gsx$partebaja85cm.$t == 'SÍ') {
+            if (row.gsx$partebaja85cm.$t == 'SI') {
               iconClassPB = 'fa-check';
               iconColorPB = 'text-success';
             }
-            if (row.gsx$espaciosinobstaculoscon60cmdefondo.$t == 'SÍ') {
+            if (row.gsx$espaciosinobstaculoscon60cmdefondo.$t == 'SI') {
               iconClassESO = 'fa-check';
               iconColorESO = 'text-success';
             }
-            if (row.gsx$panelesdivisores.$t == 'SÍ') {
+            if (row.gsx$panelesdivisores.$t == 'SI') {
               iconClassPD = 'fa-check';
               iconColorPD = 'text-success';
             }
 
-            if (row.gsx$asientos.$t == 'SÍ') {
+            if (row.gsx$asientos.$t == 'SI') {
               iconClassASI = 'fa-check';
               iconColorASI = 'text-success';
             }
-            if (row.gsx$cmdealtura.$t == 'SÍ') {
+            if (row.gsx$cmdealtura.$t == 'SI') {
               iconClassCDA = 'fa-check';
               iconColorCDA = 'text-success';
             }
-            if (row.gsx$respaldos.$t == 'SÍ') {
+            if (row.gsx$respaldos.$t == 'SI') {
               iconClassRES = 'fa-check';
               iconColorRES = 'text-success';
             }
-            if (row.gsx$reposabrazos.$t == 'SÍ') {
+            if (row.gsx$reposabrazos.$t == 'SI') {
               iconClassRB = 'fa-check';
               iconColorRB = 'text-success';
             }
-            if (row.gsx$bañosparapersonascondiscapacidad.$t == 'SÍ') {
+            if (row.gsx$bañosparapersonascondiscapacidad.$t == 'SI') {
               iconClassBPP = 'fa-check';
               iconColorBPP = 'text-success';
             }
 
 
-            if (row.gsx$visual.$t == 'SÍ') {
+            if (row.gsx$visual.$t == 'SI') {
               iconClassVIS = 'fa-check';
               iconColorVIS = 'text-success';
             }
-            if (row.gsx$acústica.$t == 'SÍ') {
+            if (row.gsx$acústica.$t == 'SI') {
               iconClassACU = 'fa-check';
               iconColorACU = 'text-success';
             }
 
 
-            if (row.gsx$franjaologodecontraste.$t == 'SÍ') {
+            if (row.gsx$franjaologodecontraste.$t == 'SI') {
               iconClassFOL = 'fa-check';
               iconColorFOL = 'text-success';
             }
-            if (row.gsx$lineacentraldelecturaa16m.$t == 'SÍ') {
+            if (row.gsx$lineacentraldelecturaa16m.$t == 'SI') {
               iconClassLCD = 'fa-check';
               iconColorLCD = 'text-success';
             }
-            if (row.gsx$textosenbraille.$t == 'SÍ') {
+            if (row.gsx$textosenbraille.$t == 'SI') {
               iconClassTEB = 'fa-check';
               iconColorTEB = 'text-success';
             }
-            if (row.gsx$símbolosográficosfacilitadores.$t == 'SÍ') {
+            if (row.gsx$símbolosográficosfacilitadores.$t == 'SI') {
               iconClassSGF = 'fa-check';
               iconColorSGF = 'text-success';
             }
 
 
-            if (row.gsx$entendibleentodoeledificio.$t == 'SÍ') {
+            if (row.gsx$entendibleentodoeledificio.$t == 'SI') {
               iconClassEET = 'fa-check';
               iconColorEET = 'text-success';
             }
-            if (row.gsx$señaldeatenciónpreviaalmensaje.$t == 'SÍ') {
+            if (row.gsx$señaldeatenciónpreviaalmensaje.$t == 'SI') {
               iconClassSDA = 'fa-check';
               iconColorSDA = 'text-success';
             }
 
 
-            if (row.gsx$señalizaciónconcontraste.$t == 'SÍ') {
+            if (row.gsx$señalizaciónconcontraste.$t == 'SI') {
               iconClassSCC = 'fa-check';
               iconColorSCC = 'text-success';
             }
-            if (row.gsx$instruccionesiniciales.$t == 'SÍ') {
+            if (row.gsx$instruccionesiniciales.$t == 'SI') {
               iconClassII = 'fa-check';
               iconColorII = 'text-success';
             }
-            if (row.gsx$instruccionesenbraille.$t == 'SÍ') {
+            if (row.gsx$instruccionesenbraille.$t == 'SI') {
               iconClassIEB = 'fa-check';
               iconColorIEB = 'text-success';
             }
-            if (row.gsx$instruccionesenumeradas.$t == 'SÍ') {
+            if (row.gsx$instruccionesenumeradas.$t == 'SI') {
               iconClassIE = 'fa-check';
               iconColorIE = 'text-success';
             }
-            if (row.gsx$panelinteractivoa70cmy130cmdealtura.$t == 'SÍ') {
+            if (row.gsx$panelinteractivoa70cmy130cmdealtura.$t == 'SI') {
               iconClassPIA = 'fa-check';
               iconColorPIA = 'text-success';
             }
-            if (row.gsx$textoscontrastados.$t == 'SÍ') {
+            if (row.gsx$textoscontrastados.$t == 'SI') {
               iconClassTC = 'fa-check';
               iconColorTC = 'text-success';
             }
-            if (row.gsx$sistemaconinstruccionessonoras.$t == 'SÍ') {
+            if (row.gsx$sistemaconinstruccionessonoras.$t == 'SI') {
               iconClassSCI = 'fa-check';
               iconColorSCI = 'text-success';
             }
 
-            marcador = "https://www.argentina.gob.ar/sites/default/files/m1.png";
+            marcador = "https://www.argentina.gob.ar/sites/default/files/malt1.png";
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$geolocalizacionx.$t.replace(',', '.')), lng: parseFloat(row.gsx$geolocalizaciony.$t.replace(',', '.'))},
@@ -736,9 +614,9 @@ input[type="checkbox"]:checked + .box:before {
               title: row.gsx$direccióncalle.$t,
               icon: {
                 url: marcador,
-                size: new google.maps.Size(53, 52),
+                size: new google.maps.Size(24, 24),
                 origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(26, 26)
+                anchor: new google.maps.Point(12, 12)
               }
 
             });
@@ -746,7 +624,7 @@ input[type="checkbox"]:checked + .box:before {
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div><div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t +'</strong> </small> </p></div></div><div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
             });
 
@@ -784,17 +662,18 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-info-circle fa-fw fa-2x visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
               modal += '                        <div class="row">';
               modal += '                            <div class="col-xs-12 col-md-7">';
-              modal += '                                <small>Teléfono</small>';
-              modal += '                                <p>'+ row.gsx$teléfono.$t +'</p>';
+              modal += '                                '+ telefono +'';
               modal += '                                '+ correoelectronico +'';
               modal += '                                <small>Horarios de atención</small>';
               modal += '                                <p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
+              modal += '                                <small>Dirección</small>';
+              modal += '                                      <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +' '+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
+              modal += '                              </div>';              
               modal += '                            </div>';
               modal += '                        </div>';
               modal += '                    </div>';
               modal += '                </div>';
-              modal += '            </div>';
-              modal += '            <div class="col-md-4">';
+              modal += '            <div class="col-md-4 hidden">';
               modal += '              <div class="media-left">';
               modal += '                    <i class="fa fa-map-marker fa-fw fa-2x text-primary m-b-0"></i>';
               modal += '              </div>';
@@ -806,8 +685,8 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '        </div>';
               modal += '<div class="row">';
-              modal += '    <div class="col-md-8">';
-              modal += '        <div class="media">';
+              modal += '    <div class="col-md-12">';
+              modal += '        <div class="media m-t-2">';
               modal += '            <div class="media-left hidden-xs">';
               modal += '                <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
               modal += '            </div>';
@@ -819,10 +698,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '        </div>';
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Acceso a la dependencia</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
               modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
@@ -834,10 +713,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Puerta de Entrada</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassA80 +' fa-fw '+iconColorA80 +'" aria-hidden="true"></i>Ancho > 80cm</p>';
               modal += '                    <p><i class="fa '+ iconClassAU +' fa-fw '+ iconColorAU +'" aria-hidden="true"></i>Automática</p>';
@@ -851,10 +730,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Pasillos</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassCCE +' fa-fw '+iconColorCCE +'" aria-hidden="true"></i>> 80cm con el mobiliario</p>';
               modal += '                </div>';
@@ -862,10 +741,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Mostrador de Atención</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassDA +' fa-fw '+ iconColorDA +'" aria-hidden="true"></i>Dos alturas</p>';
               modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Parte baja < 85cm</p>';
@@ -876,10 +755,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Area de Espera</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassASI +' fa-fw '+iconColorASI +'" aria-hidden="true"></i>Asientos</p>';
               modal += '                    <p><i class="fa '+ iconClassCDA +' fa-fw '+iconColorCDA +'" aria-hidden="true"></i>40-50 cm de altura</p>';
@@ -891,10 +770,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Información</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassVIS +' fa-fw '+iconColorVIS +'" aria-hidden="true"></i>Visual</p>';
               modal += '                    <p><i class="fa '+ iconClassACU +' fa-fw '+iconColorACU +'" aria-hidden="true"></i>Acústica</p>';
@@ -903,10 +782,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Visual</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassFOL +' fa-fw '+iconColorFOL +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
               modal += '                    <p><i class="fa '+ iconClassLCD +' fa-fw '+iconColorLCD +'" aria-hidden="true"></i>Linea central de lectura a 1,6m</p>';
@@ -917,10 +796,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Sonora</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassEET +' fa-fw '+iconColorEET +'" aria-hidden="true"></i>Entendible en todo el edificio</p>';
               modal += '                    <p><i class="fa '+ iconClassSDA +' fa-fw '+iconColorSDA +'" aria-hidden="true"></i>Señal de Atención previa al mensaje</p>';
@@ -929,10 +808,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            <div class="col-xs-12 col-md-5">';
               modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Sistemas Interactivos de Información (totem)</h5>';
-              modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-6">';
+              modal += '            </div>'
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
               modal += '                    <p><i class="fa '+ iconClassII +' fa-fw '+ iconColorII +'" aria-hidden="true"></i>Instrucciones Iniciales</p>';
@@ -1012,7 +891,7 @@ input[type="checkbox"]:checked + .box:before {
         showModal.append(modal); 
 
         var markerCluster = new MarkerClusterer(map, markers, {
-          imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
+          imagePath: 'http://www.argentina.gob.ar/sites/default/files/malt',
           gridSize: 50,
           minimumClusterSize: 300,
           maxZoom: 19
