@@ -245,10 +245,10 @@ input[type="checkbox"]:checked + .box:before {
                 <div id="filters-items" class="collapse in">
                   <div>
                     <label class="control-label" for="input-7">Organismo</label><br>
-                    <select class="form-control" name="organismos" id="option-organismos">
-                        <option value="todos">Todos los organismos</option>
-                        <option value="Superintendencia de Riesgos de Trabajo">SRT</option>
-                        <option value="Anses">Anses</option>
+                    <select class="form-control" name="organismos" id="option-organismos" multiple="multiple">
+                        <optgroup label="Todos los organismos" selected>
+                          <option value="Superintendencia de Riesgos de Trabajo">SRT</option>
+                        </optgroup>
                     </select>
                   </div> 
 
@@ -360,7 +360,6 @@ input[type="checkbox"]:checked + .box:before {
 
             var direccionpiso = '';
             var correoelectronico = '';
-            var horariosdeatencion = '';
             var telefono = '';
             var telefonoTarjeta = '';
 
@@ -450,9 +449,6 @@ input[type="checkbox"]:checked + .box:before {
             }            
             if (row.gsx$correoelectrónico.$t !== 'NA') {
               correoelectronico = '<small>Correo electrónico</small><p><a href="mailto:'+ row.gsx$correoelectrónico.$t + '">'+ row.gsx$correoelectrónico.$t + '</a></p>';
-            }
-            if (row.gsx$atenciondesde.$t !== 'NA') {
-              horariosdeatencion = '<small>Horarios de atención</small><p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
             }
             if (row.gsx$atenciónenplantabaja.$t == 'SI') {
               iconClassPB = 'fa-check';
@@ -670,12 +666,13 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
               modal += '                    </div>';
               modal += '                    <div class="media-body">';
-              modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-home visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
+              modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-home fa-fw visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
               modal += '                        <div class="row">';
-              modal += '                            <div class="col-xs-12 col-md-12">';
+              modal += '                            <div class="col-xs-12 col-md-7">';
               modal += '                                '+ telefono +'';
               modal += '                                '+ correoelectronico +'';
-              modal += '                                '+ horariosdeatencion +'';
+              modal += '                                <small>Horarios de atención</small>';
+              modal += '                                <p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
               modal += '                                <small>Dirección</small>';
               modal += '                                      <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +' '+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
               modal += '                              </div>';              
@@ -702,16 +699,16 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="media-body">';
               modal += '                <h3 class="m-t-0 clearfix">';
-              modal += '                    <i class="text-secondary fa fa-info-circle visible-xs-inline pull-left" aria-hidden="true"></i>';
+              modal += '                    <i class="text-secondary fa fa-info-circle fa-fw visible-xs-inline pull-left" aria-hidden="true"></i>';
               modal += '                    Información de la dependencia';
               modal += '                </h3>';
               modal += '            </div>';
               modal += '        </div>';
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Acceso a la dependencia</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Acceso a la dependencia</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
               modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
@@ -723,10 +720,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Puerta de Entrada</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Puerta de Entrada</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassA80 +' fa-fw '+iconColorA80 +'" aria-hidden="true"></i>Ancho > 80cm</p>';
               modal += '                    <p><i class="fa '+ iconClassAU +' fa-fw '+ iconColorAU +'" aria-hidden="true"></i>Automática</p>';
@@ -740,10 +737,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Pasillos</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Pasillos</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassCCE +' fa-fw '+iconColorCCE +'" aria-hidden="true"></i>> 80cm con el mobiliario</p>';
               modal += '                </div>';
@@ -751,10 +748,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Mostrador de Atención</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Mostrador de Atención</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassDA +' fa-fw '+ iconColorDA +'" aria-hidden="true"></i>Dos alturas</p>';
               modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Parte baja < 85cm</p>';
@@ -765,10 +762,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Area de Espera</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Area de Espera</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassASI +' fa-fw '+iconColorASI +'" aria-hidden="true"></i>Asientos</p>';
               modal += '                    <p><i class="fa '+ iconClassCDA +' fa-fw '+iconColorCDA +'" aria-hidden="true"></i>40-50 cm de altura</p>';
@@ -780,10 +777,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Información</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Información</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassVIS +' fa-fw '+iconColorVIS +'" aria-hidden="true"></i>Visual</p>';
               modal += '                    <p><i class="fa '+ iconClassACU +' fa-fw '+iconColorACU +'" aria-hidden="true"></i>Acústica</p>';
@@ -792,10 +789,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Señalización Visual</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Visual</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassFOL +' fa-fw '+iconColorFOL +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
               modal += '                    <p><i class="fa '+ iconClassLCD +' fa-fw '+iconColorLCD +'" aria-hidden="true"></i>Linea central de lectura a 1,6m</p>';
@@ -806,10 +803,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Señalización Sonora</h5>';
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Señalización Sonora</h5>';
               modal += '            </div>';
-              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassEET +' fa-fw '+iconColorEET +'" aria-hidden="true"></i>Entendible en todo el edificio</p>';
               modal += '                    <p><i class="fa '+ iconClassSDA +' fa-fw '+iconColorSDA +'" aria-hidden="true"></i>Señal de Atención previa al mensaje</p>';
@@ -818,9 +815,9 @@ input[type="checkbox"]:checked + .box:before {
               modal += '        </div>';
               modal += '        <hr>';            
               modal += '        <div class="row">';
-              modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Sistemas Interactivos de Información (totem)</h5>';
-              modal += '            </div12'
+              modal += '            <div class="col-xs-12 col-md-5">';
+              modal += '                <h5><i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>Sistemas Interactivos de Información (totem)</h5>';
+              modal += '            </div>'
               modal += '            <div class="col-xs-12 col-md-7">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
@@ -853,8 +850,9 @@ input[type="checkbox"]:checked + .box:before {
             filterMarkers = function (organismos) {
               console.log(" filtermarkers Organismos" + organismos);
                 for (i = 0; i < markers.length; i++) {
+                    console.log("for");
                     var marker = markers[i];
-                    if(organismos.indexOf(nombreOrganismos[i]) > -1 || organismos == 'todos') {
+                    if(organismos.indexOf(nombreOrganismos[i]) > -1) {
                       console.log("verdadero");
                         marker.setVisible(true);
                     }
@@ -867,14 +865,30 @@ input[type="checkbox"]:checked + .box:before {
 
           window.loadOrganismos = function(){
 
-            $("#option-organismos").on("change", function() {
-                  var listaOrganismos = [];
-                  $('#option-organismos').find(':selected').each(function(){
-                    console.log($(this).val() + " ");
-                    listaOrganismos.push($(this).val());
-                  });
-                  filterMarkers(listaOrganismos);
-            });                        
+              $('#option-organismos, #option-accesibilidad').multiselect({
+              enableClickableOptGroups: true,
+              enableCollapsibleOptGroups: true,
+              buttonClass: 'btn btn-border',
+              nonSelectedText: 'Ninguno seleccionado',
+              allSelectedText: 'Todo seleccionado',
+              buttonWidth: '100%',
+              templates: {
+                  liGroup: '<li class="multiselect-item multiselect-group"><label class="box"></label><span class="box"></span></li>'
+              },
+               onChange: function(element, checked) {
+                var listaOrganismos = [];
+                $('#option-organismos').find(':selected').each(function(){
+                  console.log($(this).val() + " ");
+                  listaOrganismos.push($(this).val());
+
+                });
+                filterMarkers(listaOrganismos);
+              }
+
+          });
+
+          $("#option-organismos").multiselect('selectAll', false);
+          $("#option-organismos").multiselect('updateButtonText');    
 
           }
 
