@@ -362,6 +362,10 @@ input[type="checkbox"]:checked + .box:before {
             var horariosdeatencion = '';
             var telefono = '';
             var telefonoTarjeta = '';
+            var hiddenTotem = '';
+            var hiddenAscensor = '';
+            var hiddenEscaleraDeslizante = '';
+            var hiddenEscaleraConPosamanos = '';            
 
             var iconClassPB= 'fa-close';
                 iconClassED= 'fa-close';
@@ -437,7 +441,7 @@ input[type="checkbox"]:checked + .box:before {
                 iconColorIE = 'text-danger';
                 iconColorPIA = 'text-danger';
                 iconColorTC = 'text-danger';
-                iconColorSCI = 'text-danger';
+                iconColorSCI = 'text-danger';   
 
             if (row.gsx$direccionpiso.$t !== 'NA') {
               direccionpiso = row.gsx$direccionpiso.$t;
@@ -590,7 +594,7 @@ input[type="checkbox"]:checked + .box:before {
             if (row.gsx$señalizaciónconcontraste.$t == 'SI') {
               iconClassSCC = 'fa-check';
               iconColorSCC = 'text-success';
-            }
+            } 
             if (row.gsx$instruccionesiniciales.$t == 'SI') {
               iconClassII = 'fa-check';
               iconColorII = 'text-success';
@@ -616,6 +620,21 @@ input[type="checkbox"]:checked + .box:before {
               iconColorSCI = 'text-success';
             }
 
+            if (row.gsx$señalizaciónconcontraste.$t !== 'SI' && row.gsx$instruccionesiniciales.$t !== 'SI' && row.gsx$instruccionesenbraille.$t !== 'SI' && row.gsx$instruccionesenumeradas.$t !== 'SI' && row.gsx$panelinteractivoa70cmy130cmdealtura.$t !== 'SI' && row.gsx$textoscontrastados.$t !== 'SI' && row.gsx$sistemaconinstruccionessonoras.$t !== 'SI') {
+                  hiddenTotem = 'hidden';
+            }
+            if (row.gsx$ascensor.$t !== 'SI') {
+                  hiddenAscensor = 'hidden';
+
+            } 
+            if (row.gsx$atenciónenplantabaja.$t == 'SI' && row.gsx$escalerasconantideslizante.$t !== 'SI' && row.gsx$escaleraconposamanos.$t !== 'SI') {
+              hiddenEscaleraDeslizante = 'hidden';
+              hiddenEscaleraConPosamanos = 'hidden';
+            }
+
+
+
+
             marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
 
             markers[index] = new google.maps.Marker({
@@ -634,7 +653,7 @@ input[type="checkbox"]:checked + .box:before {
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary btn-sm">&nbsp; VER MÁS</a></div>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
             });
 
@@ -713,10 +732,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
-              modal += '                    <p><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
-              modal += '                    <p><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
+              modal += '                    <p class="'+ hiddenEscaleraDeslizante +'"><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
+              modal += '                    <p class="'+ hiddenEscaleraConPosamanos +'"><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
               modal += '                    <p><i class="fa '+ iconClassR +' fa-fw '+ iconColorR  +'" aria-hidden="true"></i>Rampa</p>';
-              modal += '                    <p><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
+              modal += '                    <p class="'+ hiddenAscensor +'"><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -816,11 +835,11 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '        </div>';
               modal += '        <hr>';            
-              modal += '        <div class="row">';
+              modal += '        <div class="row '+ hiddenTotem +'">';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <h5>Sistemas Interactivos de Información (totem)</h5>';
               modal += '            </div12'
-              modal += '            <div class="col-xs-12 col-md-7">';
+              modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
               modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
               modal += '                    <p><i class="fa '+ iconClassII +' fa-fw '+ iconColorII +'" aria-hidden="true"></i>Instrucciones Iniciales</p>';
@@ -888,6 +907,8 @@ input[type="checkbox"]:checked + .box:before {
           minimumClusterSize: 300,
           maxZoom: 19
         });
+
+
 
         $('#map-container').removeClass('state-loading');
 
