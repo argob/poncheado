@@ -103,10 +103,13 @@ title: Mapa de puntos de atención
     text-transform: none;
   }
 
-#filters-map.collapse.in {
-  overflow-y: inherit!important;
-
+  #filters-map.collapse.in {
+    overflow-y: inherit!important;
   }
+  hr.hr-sm {
+    margin: 15px 0;
+  }
+
 
 
 
@@ -219,7 +222,7 @@ input[type="checkbox"]:checked + .box:before {
 <div id="map-container" class="state-loading">
   <div id="map"></div>
     <div class="filters-button">
-      <button type="button" class="navbar-toggle btn btn-default btn-sm" data-toggle="collapse" data-target="#filters-map">
+      <button type="button" class="navbar-toggle btn btn-primary btn-sm" data-toggle="collapse" data-target="#filters-map">
         Filtros
       </button>
     </div>
@@ -627,7 +630,7 @@ input[type="checkbox"]:checked + .box:before {
                   hiddenAscensor = 'hidden';
 
             } 
-            if (row.gsx$atenciónenplantabaja.$t == 'SI' && row.gsx$escalerasconantideslizante.$t !== 'SI' && row.gsx$escaleraconposamanos.$t !== 'SI') {
+            if (row.gsx$atenciónenplantabaja.$t == 'SI') {
               hiddenEscaleraDeslizante = 'hidden';
               hiddenEscaleraConPosamanos = 'hidden';
             }
@@ -653,7 +656,7 @@ input[type="checkbox"]:checked + .box:before {
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary">&nbsp; VER MÁS</a></div>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map-marker fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary">&nbsp; VER MÁS</a></div>',
               maxWidth: 400
             });
 
@@ -678,7 +681,7 @@ input[type="checkbox"]:checked + .box:before {
               modal += '    <div class="modal-content">';
               modal += '      <div class="modal-header">';
               modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
-              modal += '          <h4 class="modal-title"><span class="text-muted">'+ row.gsx$organismo.$t + '</span> - '+ row.gsx$nombrenumero.$t + '<br><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></h2></h4>';
+              modal += '          <h4 class="modal-title"><div class="text-muted small m-t-2">'+ row.gsx$organismo.$t + '</div> '+ row.gsx$nombrenumero.$t + '<div><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></div></h4>';
               modal += '      </div>';
               modal += '      <div class="modal-body p-x-2">';
               modal += '        <div class="row">';
@@ -688,7 +691,7 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
               modal += '                    </div>';
               modal += '                    <div class="media-body">';
-              modal += '                        <h3 class="m-t-0 clearfix"><i class="text-secondary fa fa-home visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
+              modal += '                        <h3 class="m-t-0 clearfix h5"><i class="text-secondary fa fa-home visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
               modal += '                        <div class="row">';
               modal += '                            <div class="col-xs-12 col-md-12">';
               modal += '                                '+ telefono +'';
@@ -719,15 +722,13 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                <i class="text-secondary fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i>';
               modal += '            </div>';
               modal += '            <div class="media-body">';
-              modal += '                <h3 class="m-t-0 clearfix">';
+              modal += '                <h3 class="m-t-0 clearfix h5">';
               modal += '                    <i class="text-secondary fa fa-info-circle visible-xs-inline pull-left" aria-hidden="true"></i>';
               modal += '                    Información de la dependencia';
               modal += '                </h3>';
-              modal += '            </div>';
-              modal += '        </div>';
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Acceso a la dependencia</h5>';
+              modal += '                <h5 class="text-muted">Acceso a la dependencia</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -739,10 +740,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Puerta de Entrada</h5>';
+              modal += '                <h5 class="text-muted">Puerta de Entrada</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -756,10 +757,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Pasillos</h5>';
+              modal += '                <h5 class="text-muted">Pasillos</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -767,10 +768,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Mostrador de Atención</h5>';
+              modal += '                <h5 class="text-muted">Mostrador de Atención</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -781,10 +782,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Area de Espera</h5>';
+              modal += '                <h5 class="text-muted">Area de Espera</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -796,10 +797,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Información</h5>';
+              modal += '                <h5 class="text-muted">Información</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -808,10 +809,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Señalización Visual</h5>';
+              modal += '                <h5 class="text-muted">Señalización Visual</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -822,10 +823,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Señalización Sonora</h5>';
+              modal += '                <h5 class="text-muted">Señalización Sonora</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -834,10 +835,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
-              modal += '        <hr>';            
+              modal += '        <hr class="hr-sm">';            
               modal += '        <div class="row '+ hiddenTotem +'">';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <h5>Sistemas Interactivos de Información (totem)</h5>';
+              modal += '                <h5 class="text-muted">Sistemas Interactivos de Información (totem)</h5>';
               modal += '            </div12'
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
@@ -851,6 +852,8 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';                                                                                                
+              modal += '            </div>';
+              modal += '        </div>';
               modal += '    </div>';
               modal += '</div>';            
               modal += '      </div>';
