@@ -331,8 +331,35 @@ input[type="checkbox"]:checked + .box:before {
           alert('Geocode was not successful for the following reason: ' + status);
         }
       });
-    }      
+    } 
 
+
+    function isCheck(features,feature){
+      var attribute = 'gsx$' + feature;
+      return ((typeof(features[attribute]) != "undefined") && features[attribute].$t == 'SI');
+    }
+
+    function getHidden(features,feature){
+      if (feature == "totem"){
+        if (features.gsx$señalizaciónconcontraste.$t !== 'SI' && features.gsx$instruccionesiniciales.$t !== 'SI' && features.gsx$instruccionesenbraille.$t !== 'SI' && features.gsx$instruccionesenumeradas.$t !== 'SI' && features.gsx$panelinteractivoa70cmy130cmdealtura.$t !== 'SI' && features.gsx$textoscontrastados.$t !== 'SI' && features.gsx$sistemaconinstruccionessonoras.$t !== 'SI') {
+                  return 'hidden';
+          }  
+      }
+      else if (feature == "ascensor"){
+          return (features.gsx$ascensor.$t !== 'SI')? 'hidden' : '';
+      }
+      else if ( (feature == 'escaleradeslizante') || (feature == 'escaleraconposamanos')  ) {
+          return (features.gsx$atenciónenplantabaja.$t == 'SI')? 'hidden' : '';
+      }
+      return '';
+    }     
+
+    function renderIconFeature(features,feature){
+      if (isCheck(features,feature)){
+        return '<i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>';
+      }
+      return '<i class="fa fa-close fa-fw text-danger" aria-hidden="true"></i>';
+    }
 
     // Show markers loaded from spreadsheet
 
@@ -364,87 +391,7 @@ input[type="checkbox"]:checked + .box:before {
             var correoelectronico = '';
             var horariosdeatencion = '';
             var telefono = '';
-            var telefonoTarjeta = '';
-            var hiddenTotem = '';
-            var hiddenAscensor = '';
-            var hiddenEscaleraDeslizante = '';
-            var hiddenEscaleraConPosamanos = '';            
-
-            var iconClassPB= 'fa-close';
-                iconClassED= 'fa-close';
-                iconClassEPM= 'fa-close';
-                iconClassR= 'fa-close';
-                iconClassA= 'fa-close';
-                iconClassA80 = 'fa-close';
-                iconClassAU = 'fa-close';
-                iconClassPCM = 'fa-close';
-                iconClassPG = 'fa-close';
-                iconClassEA = 'fa-close';
-                iconClassAYP = 'fa-close';
-                iconClassFLD = 'fa-close';
-                iconClassCCE = 'fa-close';
-                iconClassDA = 'fa-close';
-                iconClassPB = 'fa-close';
-                iconClassESO= 'fa-close';
-                iconClassPD = 'fa-close';
-                iconClassASI = 'fa-close';
-                iconClassCDA = 'fa-close';
-                iconClassRES = 'fa-close';
-                iconClassRB = 'fa-close';
-                iconClassBPP = 'fa-close';
-                iconClassVIS = 'fa-close';
-                iconClassACU = 'fa-close';
-                iconClassFOL = 'fa-close';
-                iconClassLCD = 'fa-close';
-                iconClassTEB = 'fa-close';
-                iconClassSGF = 'fa-close';
-                iconClassEET = 'fa-close';
-                iconClassSDA = 'fa-close';
-                iconClassSCC = 'fa-close';
-                iconClassII = 'fa-close';
-                iconClassIEB = 'fa-close';
-                iconClassIE = 'fa-close';
-                iconClassPIA = 'fa-close';
-                iconClassTC = 'fa-close';
-                iconClassSCI  = 'fa-close';
-
-            var iconColorPB = 'text-danger';
-                iconColorED = 'text-danger';
-                iconColorEPM = 'text-danger';
-                iconColorR = 'text-danger';
-                iconColorA = 'text-danger';
-                iconColorA80 = 'text-danger';
-                iconColorAU = 'text-danger';
-                iconColorPCM = 'text-danger';
-                iconColorPG = 'text-danger';
-                iconColorEA = 'text-danger';
-                iconColorAYP = 'text-danger';
-                iconColorFLD = 'text-danger';
-                iconColorCCE = 'text-danger';
-                iconColorDA = 'text-danger';
-                iconColorPB = 'text-danger';
-                iconColorESO = 'text-danger';
-                iconColorPD = 'text-danger';
-                iconColorASI = 'text-danger';
-                iconColorCDA = 'text-danger';
-                iconColorRES = 'text-danger';
-                iconColorRB = 'text-danger';
-                iconColorBPP = 'text-danger';
-                iconColorVIS = 'text-danger';
-                iconColorACU = 'text-danger';
-                iconColorFOL = 'text-danger';
-                iconColorLCD = 'text-danger';
-                iconColorTEB = 'text-danger';
-                iconColorSGF = 'text-danger';
-                iconColorEET = 'text-danger';
-                iconColorSDA = 'text-danger';
-                iconColorSCC = 'text-danger';
-                iconColorII = 'text-danger';
-                iconColorIEB = 'text-danger';
-                iconColorIE = 'text-danger';
-                iconColorPIA = 'text-danger';
-                iconColorTC = 'text-danger';
-                iconColorSCI = 'text-danger';   
+            var telefonoTarjeta = '';            
 
             if (row.gsx$direccionpiso.$t !== 'NA') {
               direccionpiso = row.gsx$direccionpiso.$t;
@@ -460,184 +407,6 @@ input[type="checkbox"]:checked + .box:before {
             if (row.gsx$atenciondesde.$t !== 'NA') {
               horariosdeatencion = '<small>Horarios de atención</small><p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
             }
-            if (row.gsx$atenciónenplantabaja.$t == 'SI') {
-              iconClassPB = 'fa-check';
-              iconColorPB = 'text-success';
-            }
-            if (row.gsx$escalerasconantideslizante.$t == 'SI') {
-              iconClassED = 'fa-check';
-              iconColorED = 'text-success';
-            }
-            if (row.gsx$escaleraconposamanos.$t == 'SI') {
-              iconClassEPM = 'fa-check';
-              iconColorEPM = 'text-success';
-            }
-            if (row.gsx$rampa.$t == 'SI') {
-              iconClassR = 'fa-check';
-              iconColorR = 'text-success';
-            }
-            if (row.gsx$ascensor.$t == 'SI') {
-              iconClassA = 'fa-check';
-              iconColorA = 'text-success';
-            }
-
-            if (row.gsx$ancho80cm.$t == 'SI') {
-              iconClassA80 = 'fa-check';
-              iconColorA80 = 'text-success';
-            }
-            if (row.gsx$automática.$t == 'SI') {
-              iconClassAU = 'fa-check';
-              iconColorAU = 'text-success';
-            }
-            if (row.gsx$puertaconmanija.$t == 'SI') {
-              iconClassPCM = 'fa-check';
-              iconColorPCM = 'text-success';
-            }
-            if (row.gsx$puertagiratoria.$t == 'SI') {
-              iconClassPG = 'fa-check';
-              iconColorPG = 'text-success';
-            }
-            if (row.gsx$entradaalternativa.$t == 'SI') {
-              iconClassEA = 'fa-check';
-              iconColorEA = 'text-success';
-            }
-            if (row.gsx$espacioanterioryposteriorhorizontal.$t == 'SI') {
-              iconClassAYP = 'fa-check';
-              iconColorAYP = 'text-success';
-            }
-            if (row.gsx$franjaologodecontraste.$t == 'SI') {
-              iconClassFLD = 'fa-check';
-              iconColorFLD = 'text-success';
-            }
-
-
-            if (row.gsx$cmconelmobiliario.$t == 'SI') {
-              iconClassCCE = 'fa-check';
-              iconColorCCE = 'text-success';
-            }
-
-
-            if (row.gsx$dosalturas.$t == 'SI') {
-              iconClassDA = 'fa-check';
-              iconColorDA = 'text-success';
-            }
-            if (row.gsx$partebaja85cm.$t == 'SI') {
-              iconClassPB = 'fa-check';
-              iconColorPB = 'text-success';
-            }
-            if (row.gsx$espaciosinobstaculoscon60cmdefondo.$t == 'SI') {
-              iconClassESO = 'fa-check';
-              iconColorESO = 'text-success';
-            }
-            if (row.gsx$panelesdivisores.$t == 'SI') {
-              iconClassPD = 'fa-check';
-              iconColorPD = 'text-success';
-            }
-
-            if (row.gsx$asientos.$t == 'SI') {
-              iconClassASI = 'fa-check';
-              iconColorASI = 'text-success';
-            }
-            if (row.gsx$cmdealtura.$t == 'SI') {
-              iconClassCDA = 'fa-check';
-              iconColorCDA = 'text-success';
-            }
-            if (row.gsx$respaldos.$t == 'SI') {
-              iconClassRES = 'fa-check';
-              iconColorRES = 'text-success';
-            }
-            if (row.gsx$reposabrazos.$t == 'SI') {
-              iconClassRB = 'fa-check';
-              iconColorRB = 'text-success';
-            }
-            if (row.gsx$bañosparapersonascondiscapacidad.$t == 'SI') {
-              iconClassBPP = 'fa-check';
-              iconColorBPP = 'text-success';
-            }
-
-
-            if (row.gsx$visual.$t == 'SI') {
-              iconClassVIS = 'fa-check';
-              iconColorVIS = 'text-success';
-            }
-            if (row.gsx$acústica.$t == 'SI') {
-              iconClassACU = 'fa-check';
-              iconColorACU = 'text-success';
-            }
-
-
-            if (row.gsx$franjaologodecontraste.$t == 'SI') {
-              iconClassFOL = 'fa-check';
-              iconColorFOL = 'text-success';
-            }
-            if (row.gsx$lineacentraldelecturaa16m.$t == 'SI') {
-              iconClassLCD = 'fa-check';
-              iconColorLCD = 'text-success';
-            }
-            if (row.gsx$textosenbraille.$t == 'SI') {
-              iconClassTEB = 'fa-check';
-              iconColorTEB = 'text-success';
-            }
-            if (row.gsx$símbolosográficosfacilitadores.$t == 'SI') {
-              iconClassSGF = 'fa-check';
-              iconColorSGF = 'text-success';
-            }
-
-
-            if (row.gsx$entendibleentodoeledificio.$t == 'SI') {
-              iconClassEET = 'fa-check';
-              iconColorEET = 'text-success';
-            }
-            if (row.gsx$señaldeatenciónpreviaalmensaje.$t == 'SI') {
-              iconClassSDA = 'fa-check';
-              iconColorSDA = 'text-success';
-            }
-
-
-            if (row.gsx$señalizaciónconcontraste.$t == 'SI') {
-              iconClassSCC = 'fa-check';
-              iconColorSCC = 'text-success';
-            } 
-            if (row.gsx$instruccionesiniciales.$t == 'SI') {
-              iconClassII = 'fa-check';
-              iconColorII = 'text-success';
-            }
-            if (row.gsx$instruccionesenbraille.$t == 'SI') {
-              iconClassIEB = 'fa-check';
-              iconColorIEB = 'text-success';
-            }
-            if (row.gsx$instruccionesenumeradas.$t == 'SI') {
-              iconClassIE = 'fa-check';
-              iconColorIE = 'text-success';
-            }
-            if (row.gsx$panelinteractivoa70cmy130cmdealtura.$t == 'SI') {
-              iconClassPIA = 'fa-check';
-              iconColorPIA = 'text-success';
-            }
-            if (row.gsx$textoscontrastados.$t == 'SI') {
-              iconClassTC = 'fa-check';
-              iconColorTC = 'text-success';
-            }
-            if (row.gsx$sistemaconinstruccionessonoras.$t == 'SI') {
-              iconClassSCI = 'fa-check';
-              iconColorSCI = 'text-success';
-            }
-
-            if (row.gsx$señalizaciónconcontraste.$t !== 'SI' && row.gsx$instruccionesiniciales.$t !== 'SI' && row.gsx$instruccionesenbraille.$t !== 'SI' && row.gsx$instruccionesenumeradas.$t !== 'SI' && row.gsx$panelinteractivoa70cmy130cmdealtura.$t !== 'SI' && row.gsx$textoscontrastados.$t !== 'SI' && row.gsx$sistemaconinstruccionessonoras.$t !== 'SI') {
-                  hiddenTotem = 'hidden';
-            }
-            if (row.gsx$ascensor.$t !== 'SI') {
-                  hiddenAscensor = 'hidden';
-
-            } 
-            if (row.gsx$atenciónenplantabaja.$t == 'SI') {
-              hiddenEscaleraDeslizante = 'hidden';
-              hiddenEscaleraConPosamanos = 'hidden';
-            }
-
-
-
-
             marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
 
             markers[index] = new google.maps.Marker({
@@ -732,11 +501,11 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Atención en Planta Baja</p>';
-              modal += '                    <p class="'+ hiddenEscaleraDeslizante +'"><i class="fa '+ iconClassED +' fa-fw '+ iconColorED +'" aria-hidden="true"></i>Escaleras con antideslizante</p>';
-              modal += '                    <p class="'+ hiddenEscaleraConPosamanos +'"><i class="fa '+ iconClassEPM +' fa-fw '+ iconColorEPM +'" aria-hidden="true"></i>Escalera con posa manos</p>';
-              modal += '                    <p><i class="fa '+ iconClassR +' fa-fw '+ iconColorR  +'" aria-hidden="true"></i>Rampa</p>';
-              modal += '                    <p class="'+ hiddenAscensor +'"><i class="fa '+ iconClassA +' fa-fw '+ iconColorA  +'" aria-hidden="true"></i>Ascensor</p>';
+              modal += '                    <p>' + renderIconFeature(row,'atenciónenplantabaja') + 'Atención en Planta Baja</p>';
+              modal += '                    <p class="' + getHidden(row,'escaleradeslizante') + '">' + renderIconFeature(row,'escalerasconantideslizante') + 'Escaleras con antideslizante</p>';
+              modal += '                    <p class="' + getHidden(row,'escaleraconposamanos') + '">' + renderIconFeature(row,'escaleraconposamanos') + 'Escalera con posa manos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'rampa') + 'Rampa</p>';
+              modal += '                    <p class="' + getHidden(row,'ascensor') + '">' + renderIconFeature(row,'ascensor') + 'Ascensor</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -747,13 +516,13 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassA80 +' fa-fw '+iconColorA80 +'" aria-hidden="true"></i>Ancho > 80cm</p>';
-              modal += '                    <p><i class="fa '+ iconClassAU +' fa-fw '+ iconColorAU +'" aria-hidden="true"></i>Automática</p>';
-              modal += '                    <p><i class="fa '+ iconClassPCM +' fa-fw '+iconColorPCM +'" aria-hidden="true"></i>Puerta con manija</p>';
-              modal += '                    <p><i class="fa '+ iconClassPG +' fa-fw '+ iconColorPG +'" aria-hidden="true"></i>Puerta giratoria</p>';
-              modal += '                    <p><i class="fa '+ iconClassEA +' fa-fw '+ iconColorEA +'" aria-hidden="true"></i>Entrada alternativa</p>';
-              modal += '                    <p><i class="fa '+ iconClassAYP +' fa-fw '+iconColorAYP +'" aria-hidden="true"></i>Espacio anterior y posterior HORIZONTAL</p>';
-              modal += '                    <p><i class="fa '+ iconClassFLD +' fa-fw '+iconColorFLD +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
+              modal += '                    <p>' + renderIconFeature(row,'ancho80cm') + 'Ancho > 80cm</p>';
+              modal += '                    <p>' + renderIconFeature(row,'automática') + 'Automática</p>';
+              modal += '                    <p>' + renderIconFeature(row,'puertaconmanija') + 'Puerta con manija</p>';
+              modal += '                    <p>' + renderIconFeature(row,'puertagiratoria') + 'Puerta giratoria</p>';      
+              modal += '                    <p>' + renderIconFeature(row,'entradaalternativa') + 'Entrada alternativa</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'espacioanterioryposteriorhorizontal') + 'Espacio anterior y posterior HORIZONTAL</p>';
+              modal += '                    <p>' + renderIconFeature(row,'franjaologodecontraste') + 'Franja o Logo de contraste</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -764,7 +533,7 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassCCE +' fa-fw '+iconColorCCE +'" aria-hidden="true"></i>> 80cm con el mobiliario</p>';
+              modal += '                    <p>' + renderIconFeature(row,'cmconelmobiliario') + '> 80cm con el mobiliario</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -775,10 +544,10 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassDA +' fa-fw '+ iconColorDA +'" aria-hidden="true"></i>Dos alturas</p>';
-              modal += '                    <p><i class="fa '+ iconClassPB +' fa-fw '+ iconColorPB +'" aria-hidden="true"></i>Parte baja < 85cm</p>';
-              modal += '                    <p><i class="fa '+ iconClassESO +' fa-fw '+iconColorESO +'" aria-hidden="true"></i>Espacio sin obstaculos con > 60cm de fondo</p>';
-              modal += '                    <p><i class="fa '+ iconClassPD +' fa-fw '+ iconColorPD +'" aria-hidden="true"></i>Paneles divisores</p>';
+              modal += '                    <p>' + renderIconFeature(row,'dosalturas') + 'Dos alturas</p>';
+              modal += '                    <p>' + renderIconFeature(row,'partebaja85cm') + 'Parte baja < 85cm</p>';
+              modal += '                    <p>' + renderIconFeature(row,'espaciosinobstaculoscon60cmdefondo') + 'Espacio sin obstaculos con > 60cm de fondo</p>';
+              modal += '                    <p>' + renderIconFeature(row,'panelesdivisores') + 'Paneles divisores</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -789,11 +558,11 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassASI +' fa-fw '+iconColorASI +'" aria-hidden="true"></i>Asientos</p>';
-              modal += '                    <p><i class="fa '+ iconClassCDA +' fa-fw '+iconColorCDA +'" aria-hidden="true"></i>40-50 cm de altura</p>';
-              modal += '                    <p><i class="fa '+ iconClassRES +' fa-fw '+iconColorRES +'" aria-hidden="true"></i>Respaldos</p>';
-              modal += '                    <p><i class="fa '+ iconClassRB +' fa-fw '+ iconColorRB +'" aria-hidden="true"></i>Reposa Brazos</p>';
-              modal += '                    <p><i class="fa '+ iconClassBPP +' fa-fw '+iconColorBPP +'" aria-hidden="true"></i>Baños para personas con discapacidad</p>';
+              modal += '                    <p>' + renderIconFeature(row,'asientos') + 'Asientos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'cmdealtura') + '40-50 cm de altura</p>';
+              modal += '                    <p>' + renderIconFeature(row,'respaldos') + 'Respaldos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'reposabrazos') + 'Reposa Brazos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'bañosparapersonascondiscapacidad') + 'Baños para personas con discapacidad</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -804,8 +573,8 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassVIS +' fa-fw '+iconColorVIS +'" aria-hidden="true"></i>Visual</p>';
-              modal += '                    <p><i class="fa '+ iconClassACU +' fa-fw '+iconColorACU +'" aria-hidden="true"></i>Acústica</p>';
+              modal += '                    <p>' + renderIconFeature(row,'visual') + 'Visual</p>';
+              modal += '                    <p>' + renderIconFeature(row,'acústica') + 'Acústica</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -815,11 +584,11 @@ input[type="checkbox"]:checked + .box:before {
               modal += '                <h5 class="text-muted">Señalización Visual</h5>';
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
-              modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassFOL +' fa-fw '+iconColorFOL +'" aria-hidden="true"></i>Franja o Logo de contraste</p>';
-              modal += '                    <p><i class="fa '+ iconClassLCD +' fa-fw '+iconColorLCD +'" aria-hidden="true"></i>Linea central de lectura a 1,6m</p>';
-              modal += '                    <p><i class="fa '+ iconClassTEB +' fa-fw '+iconColorTEB +'" aria-hidden="true"></i>Textos en Braille</p>';
-              modal += '                    <p><i class="fa '+ iconClassSGF +' fa-fw '+iconColorSGF +'" aria-hidden="true"></i>Símbolos o Gráficos facilitadores</p>';
+              modal += '                <div>';             
+              modal += '                    <p>' + renderIconFeature(row,'franjaologodecontraste') + 'Franja o Logo de contraste</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'lineacentraldelecturaa16m') + 'Linea central de lectura a 1,6m</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'textosenbraille') + 'Textos en Braille</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'símbolosográficosfacilitadores') + 'Símbolos o Gráficos facilitadores</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
@@ -830,25 +599,25 @@ input[type="checkbox"]:checked + .box:before {
               modal += '            </div>';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassEET +' fa-fw '+iconColorEET +'" aria-hidden="true"></i>Entendible en todo el edificio</p>';
-              modal += '                    <p><i class="fa '+ iconClassSDA +' fa-fw '+iconColorSDA +'" aria-hidden="true"></i>Señal de Atención previa al mensaje</p>';
+              modal += '                    <p>' + renderIconFeature(row,'entendibleentodoeledificio') + 'Entendible en todo el edificio</p>';
+              modal += '                    <p>' + renderIconFeature(row,'señaldeatenciónpreviaalmensaje') + 'Señal de Atención previa al mensaje</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';
               modal += '        <hr class="hr-sm">';            
-              modal += '        <div class="row '+ hiddenTotem +'">';
+              modal += '        <div class="row '+ getHidden(row,'totem') + '">';
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <h5 class="text-muted">Sistemas Interactivos de Información (totem)</h5>';
               modal += '            </div12'
               modal += '            <div class="col-xs-12 col-md-12">';
               modal += '                <div>';
-              modal += '                    <p><i class="fa '+ iconClassSCC +' fa-fw '+iconColorSCC +'" aria-hidden="true"></i>Señalización con contraste</p>';
-              modal += '                    <p><i class="fa '+ iconClassII +' fa-fw '+ iconColorII +'" aria-hidden="true"></i>Instrucciones Iniciales</p>';
-              modal += '                    <p><i class="fa '+ iconClassIEB +' fa-fw '+iconColorIEB +'" aria-hidden="true"></i>Instrucciones en Braille</p>';
-              modal += '                    <p><i class="fa '+ iconClassIE +' fa-fw '+ iconColorIE +'" aria-hidden="true"></i>Instrucciones enumeradas</p>';
-              modal += '                    <p><i class="fa '+ iconClassPIA +' fa-fw '+iconColorPIA +'" aria-hidden="true"></i>Panel Interactivo a > 70cm y < 130cm de altura</p>';
-              modal += '                    <p><i class="fa '+ iconClassTC +' fa-fw '+ iconColorTC +'" aria-hidden="true"></i>Textos Contrastados</p>';
-              modal += '                    <p><i class="fa '+ iconClassSCI +' fa-fw '+ iconColorSCI +'" aria-hidden="true"></i>Sistema con instrucciones sonoras</p>';
+              modal += '                    <p>' + renderIconFeature(row,'señalizaciónconcontraste') + 'Señalización con contraste</p>';
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesiniciales') + 'Instrucciones Iniciales</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesenbraille') + 'Instrucciones en Braille</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesenumeradas') + 'Instrucciones enumeradas</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'panelinteractivoa70cmy130cmdealtura') + 'Panel Interactivo a > 70cm y < 130cm de altura</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'textoscontrastados') + 'Textos Contrastados</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'sistemaconinstruccionessonoras') + 'Sistema con instrucciones sonoras</p>';
               modal += '                </div>';
               modal += '            </div>';
               modal += '        </div>';                                                                                                
