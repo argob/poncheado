@@ -61,10 +61,10 @@ layout: capataz
 <p>Cantidad de ciudadanos que se registran por mes.</p>
 <div class="chart" id="chart-month"></div>
 
-<hr class="hr-lg">
+<!-- <hr class="hr-lg">
 <h2>Ciudadanos por día</h2>
 <p>Cantidad de ciudadanos que se registran y validan su cuenta por día.</p>
-<div class="chart" id="chart-day"></div>
+<div class="chart" id="chart-day"></div> -->
 
 <hr class="hr-lg">
 <div class="credits">
@@ -283,7 +283,7 @@ var reload = function(){
   jQuery.when.apply($, [
     raw.load('analytics'),
     raw.load('totalusersbymonth'),
-    raw.load('totalusersbyday')
+    // raw.load('totalusersbyday')
   ]).then(function(){
     render.data();
   });
@@ -375,23 +375,23 @@ var render = {
       chart.month.draw(data.month, options.combo);
 
 
-      chart.day = new google.visualization.LineChart(document.getElementById('chart-day'));
-      data.day = new google.visualization.DataTable();
-      data.day.addColumn('string', 'Día');
-      data.day.addColumn('number', 'Usuarios registrados');
-      data.day.addColumn('number', 'Emails validados');
+      // chart.day = new google.visualization.LineChart(document.getElementById('chart-day'));
+      // data.day = new google.visualization.DataTable();
+      // data.day.addColumn('string', 'Día');
+      // data.day.addColumn('number', 'Usuarios registrados');
+      // data.day.addColumn('number', 'Emails validados');
 
-      raw.totalusersbyday.users_by_day.forEach(function(day, index){
+      // raw.totalusersbyday.users_by_day.forEach(function(day, index){
 
-        var beforth = moment().add(index - raw.totalusersbyday.users_by_day.length, 'days').format('DD/MM');
+      //   var beforth = moment().add(index - raw.totalusersbyday.users_by_day.length, 'days').format('DD/MM');
 
-        pepito[0] = [beforth, day, raw.totalusersbyday.active_by_day[index] ];
-        data.day.addRows(pepito);
+      //   pepito[0] = [beforth, day, raw.totalusersbyday.active_by_day[index] ];
+      //   data.day.addRows(pepito);
 
-      });
+      // });
 
-      options.line.colors[1] = '#33b560';
-      chart.day.draw(data.day, options.line);
+      // options.line.colors[1] = '#33b560';
+      // chart.day.draw(data.day, options.line);
 
     });
 
