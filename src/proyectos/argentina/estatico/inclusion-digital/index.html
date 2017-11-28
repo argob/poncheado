@@ -59,14 +59,14 @@ layout: argentina
   
 </style>
 
-<div class="container">
+<!-- <div class="container">
 
   <ol class="breadcrumb">
     <li><a href="/">Inicio</a></li>
     <li class="active">Plan Nacional de Inclusión Digital</li>
   </ol>
   
-</div>
+</div> -->
 
 
 <section>
@@ -74,7 +74,7 @@ layout: argentina
  -->  <div class="container">  
 
     <div class="row">
-      <div class="hidden-xs col-sm-4 col-sm-offset-3">
+      <div class="hidden-xs col-sm-4">
 
     <!-- Mapa: -->  
     <h4 class="sr-only">Mapa Plan Nacional de Inclusión Digital</h4>
@@ -702,7 +702,7 @@ layout: argentina
               <div class="col-md-12">
                 <div class="h2 text-success" data-render="totalCapacitados"></div>
                 <p class="lead">Personas capacitadas</p>
-                <p class="text-muted">Plan Nacional de Inclusión Digital</p>
+                <p class="text-muted">Cliqueá en cada provincia para ver el detalle.</p>
               </div>
             </div>
 
@@ -726,16 +726,20 @@ layout: argentina
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
-                      <h4 class="nombre-obra modal-title">{titulo}</h4>
-                      <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                     </div>
                     <div class="modal-body">
-                      <p class="text-muted descripcion-obra m-t-1">{descripcion3}</p>
+                      <h4 class="modal-title m-t-0">{provincia}</h4>
+                      <div class="h2 text-success m-t-1 m-b-0">{personasCapacitadas}</div>
+                      <p class="lead m-b-0">Personas capacitadas</p>
+                      <div data-render="localidades" class="m-t-1"><p><strong>Localidades:</strong></p></div>
                     </div>
                   </div>
                 </div>
-              </div>`
+              </div>`,
+      localidad: `<p class="m-b-0">{nombre}</p>`       
     }
+
+    window.provincias = [];
 
     $.ajax({
       // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1muIEfdY_xGbPROvxe8Ru8tYr7H4kMXqvLLVDJ7GifxI/1',
@@ -743,140 +747,107 @@ layout: argentina
       data: 'json',
       success: function(response){
 
-        // console.log(response);
-
-        var rows = response.feed.entry;
-
-        var showTotal = $('[data-render=totalCapacitados]');
-
-        rows.forEach(function(row, key){
-
-            if (row.gsx$buenosaires.$t > 0) {
-              $('#buenos-aires').removeClass('st0').addClass('st1');
-              $("#buenos-aires").parent().attr("href", "#pcia-" + key)
-
-            }
-            if (row.gsx$caba.$t > 0) {
-              $('#c-a-b-a').removeClass('st0').addClass('st1');
-              $("#c-a-b-a").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$catamarca.$t > 0) {
-              $('#catamarca').removeClass('st0').addClass('st1');
-              $("#catamarca").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$córdoba.$t > 0) {
-              $('#cordoba').removeClass('st0').addClass('st1');
-              $("#cordoba").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$corrientes.$t > 0) {
-              $('#corrientes').removeClass('st0').addClass('st1');
-              $("#corrientes").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$chaco.$t > 0) {
-              $('#chaco').removeClass('st0').addClass('st1');
-              $("#chaco").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$chubut.$t > 0) {
-              $('#chubut').removeClass('st0').addClass('st1');
-              $("#chubut").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$entreríos.$t > 0) {
-              $('#entre-rios').removeClass('st0').addClass('st1');
-              $("#entre-rios").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$formosa.$t > 0) {
-              $('#formosa').removeClass('st0').addClass('st1');
-              $("#formosa").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$jujuy.$t > 0) {
-              $('#jujuy').removeClass('st0').addClass('st1');
-              $("#jujuy").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$lapampa.$t > 0) {
-              $('#lapampa').removeClass('st0').addClass('st1');
-              $("#lapampa").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$larioja.$t > 0) {
-              $('#la-rioja').removeClass('st0').addClass('st1');
-              $("#la-rioja").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$mendoza.$t > 0) {
-              $('#mendoza').removeClass('st0').addClass('st1');
-              $("#mendoza").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$misiones.$t > 0) {
-              $('#misiones').removeClass('st0').addClass('st1');
-              $("#misiones").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$neuquén.$t > 0) {
-              $('#neuquen').removeClass('st0').addClass('st1');
-              $("#neuquen").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$ríonegro.$t > 0) {
-              $('#rio-negro').removeClass('st0').addClass('st1');
-              $("#rio-negro").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$salta.$t > 0) {
-              $('#salta').removeClass('st0').addClass('st1');
-              $("#salta").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$sanjuan.$t > 0) {
-              $('#san-juan').removeClass('st0').addClass('st1');
-              $("#san-juan").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$sanluis.$t > 0) {
-              $('#san-luis').removeClass('st0').addClass('st1');
-              $("#san-luis").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$santacruz.$t > 0) {
-              $('#santa-cruz').removeClass('st0').addClass('st1');
-              $("#santa-cruz").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$santafe.$t > 0) {
-              $('#santa-fe').removeClass('st0').addClass('st1');
-              $("#santa-fe").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$santiagodelestero.$t > 0) {
-              $('#santiago-del-estero').removeClass('st0').addClass('st1');
-              $("#santiago-del-estero").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$tierradelfuego.$t > 0) {
-              $('#tierra-del-fuego').removeClass('st0').addClass('st1');
-              $("#tierra-del-fuego").parent().attr("href", "#pcia-" + key)
-            }
-            if (row.gsx$tucumán.$t > 0) {
-              $('#tucuman').removeClass('st0').addClass('st1');
-              $("#tucuman").parent().attr("href", "#pcia-" + key)
-            }
-
-
-        showTotal.empty();
-        showTotal.append(row.gsx$total.$t); 
-
-        })
-
-
-      },
-      error: function(){
-        // console.log('nope');
-      }
-
-
-
-    }); 
-
-    $.ajax({
-      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1muIEfdY_xGbPROvxe8Ru8tYr7H4kMXqvLLVDJ7GifxI/2',
-      url: 'https://spreadsheets.google.com/feeds/list/1muIEfdY_xGbPROvxe8Ru8tYr7H4kMXqvLLVDJ7GifxI/2/public/values?alt=json',
-      data: 'json',
-      success: function(response){
-
         console.log(response.feed.entry);
 
         var rows = response.feed.entry;
-        var localidades = '';
 
-        rows.forEach(function(row, key){
+        rows.forEach(function(row, index){
+
+          if( row.gsx$tipo.$t == "provincia"  ){
+
+            provincias.push({
+              index: index,
+              personasCapacitadas: row.gsx$personascapacitadas.$t,
+              nombre: row.gsx$nombre.$t,
+              localidades: []
+            });
+
+          } else if( row.gsx$tipo.$t == "localidad" ){
+
+            provincias[ provincias.length - 1 ].localidades.push({
+              index: index,
+              nombre: row.gsx$nombre.$t
+            });
+
+          } else if( row.gsx$tipo.$t == "TOTAL" ){
+              var showTotal = $('[data-render=totalCapacitados]');
+              showTotal.empty();
+              showTotal.append(row.gsx$personascapacitadas.$t); 
+          }
+
+              if (row.gsx$nombre.$t == "Buenos Aires" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#buenos-aires').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-0");
+              }
+              if (row.gsx$nombre.$t == "CABA" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#c-a-b-a').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-1");
+              }
+              if (row.gsx$nombre.$t == "Catamarca" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#catamarca').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-2");
+              }
+              if (row.gsx$nombre.$t == "Córdoba" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#cordoba').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-3");
+              }
+              if (row.gsx$nombre.$t == "Corrientes" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#corrientes').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-4");
+              }
+              if (row.gsx$nombre.$t == "Chaco" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#chaco').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-5");
+              }
+              if (row.gsx$nombre.$t == "Chubut" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#chubut').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-6");
+              }
+              if (row.gsx$nombre.$t == "Entre Ríos" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#entre-rios').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-7");
+              }
+              if (row.gsx$nombre.$t == "Formosa" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#formosa').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-8");
+              }
+              if (row.gsx$nombre.$t == "Jujuy" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#jujuy').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-9");
+              }
+              if (row.gsx$nombre.$t == "La Pampa" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#la-pampa').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-10");
+              }
+              if (row.gsx$nombre.$t == "La Rioja" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#la-rioja').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-11");
+              }
+              if (row.gsx$nombre.$t == "Mendoza" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#mendoza').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-12");
+              }
+              if (row.gsx$nombre.$t == "Misiones" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#misiones').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-13");
+              }
+              if (row.gsx$nombre.$t == "Neuquén" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#neuquen').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-14");
+              }
+              if (row.gsx$nombre.$t == "Río Negro" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#rio-negro').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-15");
+              }
+              if (row.gsx$nombre.$t == "Salta" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#salta').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-16");
+              }
+              if (row.gsx$nombre.$t == "San Juan" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#san-juan').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-17");
+              }
+              if (row.gsx$nombre.$t == "San Luis" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#san-luis').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-18");
+              }
+              if (row.gsx$nombre.$t == "Santa Cruz" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#santa-cruz').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-19");
+              }
+              if (row.gsx$nombre.$t == "Santa Fe" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#santa-fe').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-20");
+              }
+              if (row.gsx$nombre.$t == "Santiago del Estero" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#santiago-del-estero').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-21");
+              }
+              if (row.gsx$nombre.$t == "Tierra del Fuego" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#tierra-del-fuego').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-22");
+              }
+              if (row.gsx$nombre.$t == "Tucumán" && row.gsx$personascapacitadas.$t > 0 ) {
+                $('#tucuman').removeClass('st0').addClass('st1').parent().attr("href", "#pcia-23");
+              }
+
 
         })
 
@@ -886,24 +857,31 @@ layout: argentina
 
             $('[data-render=modales]').html('');
 
-           var html = "";
-
-
-            rows.forEach(function(row, key){
+            $.each(provincias, function(index, provincia){
 
                 var modal = templates.modal;
 
-                modal = modal.replace(/{index}/gi, key)
-                .replace(/{titulo}/gi, localidades);
+                modal = modal.replace(/{provincia}/gi, provincia.nombre)
+                .replace(/{personasCapacitadas}/gi, provincia.personasCapacitadas)
+                .replace(/{index}/gi, index);
 
-                $('[data-render=modales]').append( modal );      
+                $('[data-render=modales]').append( modal );   
 
+                $.each(provincia.localidades, function(index, localidad){
+
+                  var htmlLocalidad = templates.localidad;
+
+                  htmlLocalidad = htmlLocalidad.replace(/{nombre}/gi, localidad.nombre)
+                 .replace(/{index}/gi, index);
+
+                  $('[data-render=modales] > div:last').find('[data-render=localidades]').append( htmlLocalidad );
+
+                });         
 
             });
 
           }   
-
-        }  
+        }
 
         render.tarjetas();
 
@@ -912,7 +890,6 @@ layout: argentina
       error: function(){
         // console.log('nope');
       }
-
 
 
     }); 
