@@ -69,7 +69,7 @@ layout: mi-argentina
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/glosario/varicela" class="panel panel-default"><div class="panel-body">
-    <h3>Varicela</h3>  </div>
+    <h3> Varicela</h3>  </div>
 </a>    </div>
       <div class="col-xs-12 col-sm-3">
       <a href="/glosario/rubeola" class="panel panel-default"><div class="panel-body">
@@ -281,6 +281,7 @@ layout: mi-argentina
 	var render_devs = function(){
 		salud.container.html('');
 		jQuery.each(salud.list, function(key, element){
+      console.log(jQuery(element));
       jQuery(element).html(jQuery(element).html().replace('<h3>', '<h3 class="titulo">'))
 			salud.container.append(element);
 		});
