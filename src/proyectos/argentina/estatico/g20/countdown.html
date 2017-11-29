@@ -49,7 +49,26 @@
       <script src="/node_modules/respond.js/respond.min.js"></script>
   <![endif]-->  
 
+<style>
 
+/* Sticky Footer */
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 60px; /* Margin bottom by footer height */
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 190px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    z-index: -1;
+  }
+
+</style>
     
 <script src="/node_modules/jquery/dist/jquery.min.js"></script><script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script><script src="/node_modules/chosen-js/chosen.jquery.js"></script></head>
 
@@ -58,7 +77,7 @@
 
 
 
-<body>
+<body id="bodyCountdown" class="sticky-footer">
 
     <section id="countdownG20">
         <div class="container">
@@ -86,7 +105,6 @@
                           <div><div id="seconds">00</div><i>segundos<hr class="hrCountdown"> <span class="text-muted">seconds</span></i></div>
                         </div>
 
-                          <a href="https://www.argentina.gob.ar/" class="btn btn-primary btn-sm">Argentina.gob.ar</a>
                         </div>
                     </div>
                 </div>
@@ -97,6 +115,10 @@
 
 
 
+<footer class="footer">
+  <div class="footerMain">
+  </div>  
+</footer>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
