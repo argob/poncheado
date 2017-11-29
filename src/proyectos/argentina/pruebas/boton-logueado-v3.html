@@ -109,16 +109,6 @@
       color: white;
     }
 
-    .btn-inv-primary{
-      background-color: transparent;
-      color: #0695D6;
-    }
-
-    .btn-inv-primary:hover{
-      color: white;
-      background-color: #0695D6;
-    }
-
     .text-azul{
       color: #0072bc;
     }
@@ -155,11 +145,20 @@
   }
 
 }
+.btn-inv-primary{
+  background-color: transparent;
+  color: #007da8;
+}
+
+.btn-inv-primary:hover{
+  color: white;
+  background-color: #007da8;
+}
 
 
 .btn-azul-inv:hover{
   opacity: 0.8;
-  color: #0072bc!important;
+  color: #007da8!important;
 }
 
 .sugerencia a{
@@ -169,6 +168,23 @@
 .sugerencia a:hover{
   text-decoration: none!important;
 }
+
+.btn-primary {
+  background-color: #007da8;
+}
+a {
+    color: #007da8;
+}
+    .btn-inv-success{
+      background-color: transparent;
+      color: #27ae60;
+    }
+
+    .btn-inv-success:hover{
+      color: white;
+      background-color: #27ae60;
+    } 
+
 
 </style>
 
@@ -187,16 +203,28 @@
       <div>
         <div class="navbar-header">
           <a class="navbar-brand" href="/">
-            <img alt="Logo Argentina.gob.ar" src="img/argentinagob.svg" height="50">
-            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+            <img alt="Argentina.gob.ar - (Versión Beta)" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+            <h1 class="sr-only">Bienvenido a Argentina.gob.ar</h1>
           </a>
           <a class="btn btn-success btn-login visible-xs" href="https://mi.argentina.gob.ar"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
         </div>
         <ul class="nav navbar-nav navbar-right hidden-xs">
-          <li><a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a></li>
-          <li><div id="cd-login">      
-          <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-inv-primary hidden-xs"><i class="fa fa-user"></i> &nbsp; Hola, Juan</a>
-          </div></li>
+          <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label for="busqueda"><span class="sr-only">Buscar Trámite</span></label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
+              </span>
+            </div>
+          </li>
+          <li>
+            <div>      
+              <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-inv-primary hidden-xs"><i class="fa fa-user"></i> &nbsp; Hola, Juan</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -209,25 +237,23 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="/proyectos/argentina/img/argentinagob.svg">
-        <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+        <img class="image-responsive" alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg">
+        <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/" target="_blank" tabindex="2">Creative Commons Reconocimiento 2.5 Argentina License <span class="sr-only">Enlace a sitio externo</span></a></p>
         <a class="btn btn-primary m-t-1" href="/acerca">¿Querés hacernos una sugerencia?</a>
       </div>
       <div class="col-md-3 col-sm-6">
         <ul>
           <li><a href="/servicios">Trámites y servicios</a></li>
           <li><a href="/organismos">Organismos del Estado</a></li>
-          <li><a href="/pais">Nuestro país</a></li>
-          <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+          <li><a href="/ayuda">Ayuda</a></li>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <ul>
-          <li><a href="/ayuda">Ayuda</a></li>
-          <li><a href="/sugerencias">Hacer una sugerencia</a></li>
-          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/pais">Nuestro país</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/" target="_blank">Mapa del Estado <span class="sr-only">Enlace a sitio externo</span></a></li>
           <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-          <li><a href="/creditos">Créditos</a></li>
         </ul>
       </div>
     </div>
