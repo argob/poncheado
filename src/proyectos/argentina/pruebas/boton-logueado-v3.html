@@ -185,6 +185,23 @@ a {
       background-color: #27ae60;
     } 
 
+.dropdown-user .dropdown-menu {
+  left: auto;
+  right: 0;
+  top: 60px;
+}  
+
+.btn-user:hover, .btn-user:focus, .btn-user.focus {
+    color: #2fbaf9;
+}
+.btn-login:hover, .btn-login:focus, .btn-login.focus {
+    color: #fff;
+}
+.nav .open > a.btn-user, 
+.nav .open > a.btn-user:hover, 
+.nav .open > a.btn-user:focus {
+    background-color: transparent;
+}
 
 </style>
 
@@ -206,7 +223,19 @@ a {
             <img alt="Argentina.gob.ar - (Versión Beta)" src="/proyectos/argentina/img/argentinagob.svg" height="50">
             <h1 class="sr-only">Bienvenido a Argentina.gob.ar</h1>
           </a>
-          <a class="btn btn-success btn-login visible-xs" href="https://mi.argentina.gob.ar"><span class="fa fa-user fa-fw"></span></a>
+          <!-- <a class="btn btn-primary btn-login visible-xs" href="https://mi.argentina.gob.ar"><span class="fa fa-user fa-fw"></span></a> -->
+
+              <div class="dropdown dropdown-user">
+                <a id="cd-login" href="" class="btn btn-user btn-primary btn-login visible-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <span class="fa fa-user"></span>
+                </a>
+                <ul class="dropdown-menu submenu" role="menu">
+                  <li><a href="">Datos básicos</a></li>
+                  <li><a href="">Cerrar la sesión</a></li>
+                </ul>
+              </div>  
+
+
           <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
         </div>
         <ul class="nav navbar-nav navbar-right hidden-xs">
@@ -220,11 +249,24 @@ a {
               </span>
             </div>
           </li>
-          <li>
+<!--           <li>
             <div>      
               <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-inv-primary hidden-xs"><i class="fa fa-user"></i> &nbsp; Hola, Juan</a>
             </div>
           </li>
+ -->        
+            <li>
+              <div class="dropdown">
+                <a id="cd-login" href="" class="btn btn-user hidden-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user"></i> &nbsp; Hola, Juan <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu submenu" role="menu">
+                  <li><a href="">Datos básicos</a></li>
+                  <li><a href="">Cerrar la sesión</a></li>
+                </ul>
+              </div>  
+            </li>
+
         </ul>
       </div>
     </div>
