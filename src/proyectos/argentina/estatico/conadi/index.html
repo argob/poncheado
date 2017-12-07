@@ -13,8 +13,8 @@ layout: argentina
       <div class="row">
         <div class="col-md-7">    
           <div class="form-group">
-            <label>Buscá por provincia, localidad o descripcion </label>
-            <input class="form-control search" placeholder="Buscá por provincia, localidad o descripcion">
+            <label>Buscá por provincia, localidad o nombre </label>
+            <input class="form-control search" placeholder="Buscá por provincia, localidad o nombre">
           </div>
         </div>
         <div class="col-md-5">
@@ -85,16 +85,28 @@ $(document).ready(function () {
 
         $.each( dataDrive, function( key, item ) {
 
+        var direccion = '';
+
+        if(item.gsx$dirección.$t != '') {
+          direccion = '<p>Dirección: <a href="mailto:'+ item.gsx$dirección.$t + '">'+ item.gsx$dirección.$t + '</a></p>'
+        }        
+
+        var telefono = '';
+
+        if(item.gsx$teléfono.$t != '') {
+          telefono = '<p>Teléfono: <a href="mailto:'+ item.gsx$teléfono.$t + '">'+ item.gsx$teléfono.$t + '</a></p>'
+        }        
+
         var correo = '';
 
         if(item.gsx$correoelectrónico.$t != '') {
-          correo = '<p class="margin-0">Correo electrónico: <a href="mailto:'+ item.gsx$correoelectrónico.$t + '">'+ item.gsx$correoelectrónico.$t + '</a></p>'
+          correo = '<p>Correo electrónico: <a href="mailto:'+ item.gsx$correoelectrónico.$t + '">'+ item.gsx$correoelectrónico.$t + '</a></p>'
         }        
 
         var facebook = '';
 
         if(item.gsx$facebook.$t != '') {
-          facebook = '<p class="margin-0">Facebook: <a target="_blank" href="'+ item.gsx$facebook.$t + '">'+ item.gsx$facebook.$t + '</a></p>'
+          facebook = '<p>Facebook: <a target="_blank" href="'+ item.gsx$facebook.$t + '">'+ item.gsx$facebook.$t + '</a></p>'
         }        
 
 
@@ -102,14 +114,14 @@ $(document).ready(function () {
             html += '<tr>';
             html += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
             html += ' <td class="localidad">'+ item.gsx$localidad.$t + '</td>';
-            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + correo + ' ' + facebook + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + direccion + ' ' + telefono + ' ' + correo + ' ' + facebook + '</td>';
             html += '</tr>';
         }
         else if(pcias == "Todos"){
             html += '<tr>';
             html += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
             html += ' <td class="localidad">'+ item.gsx$localidad.$t + '</td>';
-            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + correo + ' ' + facebook + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + direccion + ' ' + telefono + ' ' + correo + ' ' + facebook + '</td>';
             html += '</tr>';
         }
 
@@ -164,7 +176,7 @@ $(document).ready(function () {
       "Salta",
       "San Juan",
       "San Luis",
-      "Santa Cruz",
+      "Santa Cruz",	
       "Santa Fe",
       "Santiago del Estero",
       "Tierra del Fuego",
@@ -176,7 +188,7 @@ $(document).ready(function () {
     ]; 
 
     selectValuesProvinciasItalia = [ 
-      ""
+      "Rete per l´Identitá"
     ];         
 
     $.each(selectValuesProvinciasArgentina, function(key, value) {   
