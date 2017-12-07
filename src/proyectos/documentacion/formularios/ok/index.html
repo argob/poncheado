@@ -14,19 +14,21 @@ layout: argentina
 
         <form class="m-y-2">
 
-          <div class="form-group">
-          <label class="m-b-05"><strong>Tipo y número de documento</strong></label>
-            <div class="input-group">
-              <div class="input-group-btn">  
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tipo</button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">DU</a></li>
-                  <li><a href="#">Pasaporte</a></li>
-                </ul>
-              </div>
-              <input type="text" placeholder="Número" class="form-control">
-            </div>
-          </div>
+			<div class="form-group row">
+	            <div class="col-xs-4">
+	                <label class="control-label">Tipo de Documento</label>
+	                <select class="form-control" name="dni_type">
+	                    <option value=""></option>
+	                    <option value="DNI">DNI</option>
+	                    <option value="LE">Libreta de Enrolamiento</option>
+	                    <option value="LC">Libreta Cívica</option>
+	                </select>
+	            </div>
+	            <div class="col-xs-8">
+	                <label class="control-label">Número de Documento</label>
+	                <input class="form-control" type="text" name="dni_number" value="">
+	            </div>
+	        </div>
 
           <div class="form-group">
             <label class="control-label">Nombre *</label>
@@ -55,11 +57,18 @@ layout: argentina
             </fieldset>
           </div>
 
-          <div class="form-group">
-            <label class="control-label">Fecha de nacimiento *</label>
-            <label><small>Coloca día, mes y año (dd/mm/aa)</small></label>
-            <input type="text" placeholder="dd/mm/aa" class="form-control">
-          </div>
+			<div class="form-group">
+	            <label class="control-label" for="input-5">Fecha de nacimiento * </label>
+	            <label><small>Coloca día, mes y año (dd/mm/aa)</small></label>
+				<div class="form-group">
+					<div class="input-group date">
+						<span class="input-group-addon">
+							<span class="fa fa-calendar"></span>
+						</span>
+						<input type="text" class="form-control" placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off" maxlength="10">
+					</div>						
+				</div>		            
+	        </div>          
 
           <div class="form-group">
             <label class="control-label">Correo electrónico</label>
@@ -215,3 +224,11 @@ layout: argentina
     </div>
   </div>
 </div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script type="text/javascript">
+	$('.date').datepicker({language: 'es'});	
+</script>
