@@ -1,0 +1,225 @@
+---
+layout: argentina
+---
+
+<div class="container">
+ <section>
+
+ <div class="row">
+   <div class="col-md-12">
+
+    <div id="tabla">
+
+      <div class="row">
+        <div class="col-md-7">    
+          <div class="form-group">
+            <label>Buscá por provincia, localidad o descripcion </label>
+            <input class="form-control search" placeholder="Buscá por provincia, localidad o descripcion">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="">Sedes</label>
+			<select id="sedes" class="form-control">
+			  <optgroup label="Argentina">
+			  </optgroup>
+			  <optgroup label="España">
+			  </optgroup>
+			  <optgroup label="Italia">
+			  </optgroup>
+			</select>            
+          </div>
+        </div>
+        
+      </div>
+
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th>Sedes </th>
+            <th>Localidad</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data"></tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>           
+
+
+    </div>  
+
+       
+   </div>
+ </div>
+
+
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1-rbwc1vHsgk2ZP7Qf5HUL2ifhaPK4XH1TXMmEbdPG0I/2/public/values?alt=json', function (data) {
+    // $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-rbwc1vHsgk2ZP7Qf5HUL2ifhaPK4XH1TXMmEbdPG0I/2', function (data) {
+        window.dataDrive = data.feed.entry;
+        mostrarInformacion("Todos");
+        console.log(data);
+    });
+
+    window.mostrarInformacion = function(pcias){
+        var showData = $('#show-data');
+
+        var html = '';
+
+        $.each( dataDrive, function( key, item ) {
+
+        var correo = '';
+
+        if(item.gsx$correoelectrónico.$t != '') {
+          correo = '<p class="margin-0">Correo electrónico: <a href="mailto:'+ item.gsx$correoelectrónico.$t + '">'+ item.gsx$correoelectrónico.$t + '</a></p>'
+        }        
+
+        var facebook = '';
+
+        if(item.gsx$facebook.$t != '') {
+          facebook = '<p class="margin-0">Facebook: <a target="_blank" href="'+ item.gsx$facebook.$t + '">'+ item.gsx$facebook.$t + '</a></p>'
+        }        
+
+
+        if( item.gsx$provincia.$t == pcias ){
+            html += '<tr>';
+            html += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
+            html += ' <td class="localidad">'+ item.gsx$localidad.$t + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + correo + ' ' + facebook + '</td>';
+            html += '</tr>';
+        }
+        else if(pcias == "Todos"){
+            html += '<tr>';
+            html += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
+            html += ' <td class="localidad">'+ item.gsx$localidad.$t + '</td>';
+            html += ' <td class="nombre"><h6>'+ item.gsx$nombre.$t + '<h6>' + correo + ' ' + facebook + '</td>';
+            html += '</tr>';
+        }
+
+
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'provincia', 'localidad', 'nombre' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+        var tablaList = new List('tabla', listOptions);  
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            tablaList.search(valueSearch);
+        });
+
+    }
+
+
+    selectValuesPaises = [ 
+      "Todos",
+      "Argentina",
+      "España",
+      "Italia"
+    ];
+
+    selectValuesProvinciasArgentina = [ 
+      "Todos",
+	  "CABA",
+      "Buenos Aires",
+      "Catamarca",
+      "Córdoba",
+      "Corrientes",
+      "Chaco",
+      "Chubut",
+      "Entre Ríos",
+      "Formosa",
+      "Jujuy",
+      "La Pampa",
+      "La Rioja",
+      "Mendoza",
+      "Misiones",
+      "Neuquén",
+      "Río Negro",
+      "Salta",
+      "San Juan",
+      "San Luis",
+      "Santa Cruz",
+      "Santa Fe",
+      "Santiago del Estero",
+      "Tierra del Fuego",
+      "Tucumán"
+    ];
+
+    selectValuesProvinciasEspaña = [ 
+      "Madrid"
+    ]; 
+
+    selectValuesProvinciasItalia = [ 
+      ""
+    ];         
+
+    $.each(selectValuesProvinciasArgentina, function(key, value) {   
+
+         $('#sedes optgroup[label="Argentina"]')
+             .append($("<option></option>")
+                        .attr("value",value)
+                        .data("provincia",value)
+                        .text(value)); 
+
+    }); 
+
+    $.each(selectValuesProvinciasEspaña, function(key, value) {   
+
+         $('#sedes optgroup[label="España"]')
+             .append($("<option></option>")
+                        .attr("value",value)
+                        .data("provincia",value)
+                        .text(value)); 
+
+    });     
+
+    $.each(selectValuesProvinciasItalia, function(key, value) {   
+
+         $('#sedes optgroup[label="Italia"]')
+             .append($("<option></option>")
+                        .attr("value",value)
+                        .data("provincia",value)
+                        .text(value)); 
+
+    });     
+
+    $("#sedes").on("change", function() {
+      var pcias = $( "#sedes option:selected" ).data('provincia');
+      mostrarInformacion(pcias);
+
+    });
+
+
+
+});
+})(jQuery);
+
+</script>
+
+
