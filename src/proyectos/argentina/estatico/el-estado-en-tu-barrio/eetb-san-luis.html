@@ -1,0 +1,359 @@
+---
+layout: argentina
+---
+  
+<section class="jumbotron" style="background-image: url('/sites/default/files/eetb-gral.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/elestadoentubarrio">El Estado en tu Barrio</a></li>
+            <li class="active">San Luis</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          
+          <p><img src="/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
+          <h1 class="sr-only">El estado en tu barrio - San Luis</h1>
+          <p>Te acercamos las soluciones que vos y tu familia necesitan. A través de los servicios de El Estado en tu Barrio vas a poder resolver tus trámites, cerca de tu casa, de una manera fácil, rápida y sin intermediarios. Estamos haciendo lo que hay que hacer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container lugares-mapa hidden">
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h2 class="text-center">El Estado en tu Barrio en San Luis</h2>
+        <div id="map" style="height: 400px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row row-flex" data-render="barrios">
+    </div>
+  </section>    
+</div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 lugares-mensaje text-center hidden">
+        <h2>Por el momento no estamos en San Luis</h2>
+      </div>
+      <div class="col-sm-12 text-center"> 
+        <p>¿Querés que te avisemos cuando estemos cerca de tu casa?</p>
+        <p><a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" target="_blank" class="btn btn-primary btn-success m-t-1">Registrate</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"> <hr> </div>
+
+<section>
+  <div class="container">
+    <div id="servicios">
+      <h2 class="text-center">Estos son los servicios y trámites que te acercamos</h2>
+      <div class="row">    
+        <div class="col-md-8 col-md-offset-2">
+          <form role="search">
+            <div class="input-group input-group-lg">
+              <input class="form-control search" type="text" placeholder="Buscá el trámite que necesitás">
+              <span class="input-group-btn">
+                <button id="search" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+          </form>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div class="list" data-render="servicios"></div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray">
+  <div class="container text-center">
+    <h3>Mirá de qué se trata el Estado en tu Barrio</h3>
+    <a target="_blank" href="https://www.youtube.com/playlist?list=PLry2W0bcBZ9wVhqAZJoYGBw2kKO4HL22A" class="btn btn-primary btn-lg">
+      <i class="fa fa-video-camera fa-fw fa-2x" style="vertical-align: sub;"></i> &nbsp; 
+      Ver los videos
+    </a>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/es.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
+
+<script> var idProvincia = 28; </script>
+
+<script>
+    jQuery('[data-render=mes]').text( moment().format('MMMM') );
+
+  var initMap = function(){
+
+    var templates = {
+      barrio: '<div class="col-xs-12 col-sm-6 col-md-4 m-y-1"><h4 class="m-t-2">{lugar}</h4><div data-estado="estado" class="alert alert-warning {alerta}"><div class="media"><div class="media-left media-middle"><i class="fa fa-warning fa-fw fa-2x"></i></div><div class="media-body"><p class="m-b-0"><small><span>{estado}</span></small></p></div></div></div><p id="fecha-{index}" class="{escondido}"><strong>Fecha:</strong> Desde el {inicio} hasta el {fin}.</p><p><strong>Horario:</strong> {hora}</p><p><strong>Dirección:</strong> {direccion}</p></div>',
+      servicios: '<h5 class="m-t-3">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
+    }
+
+    var listado = [];
+    var markers = [];
+    var categoriasServicios = [];
+    var listadoServicios = [];
+
+    var render = {
+      barrios: function( ){
+
+
+        jQuery('[data-render=barrios]').html('');
+
+        
+        if( listado.length == 0 ){
+          jQuery('.lugares-mensaje').removeClass('hidden');
+
+        }else{
+          jQuery('.lugares-mapa').removeClass('hidden');
+
+          // Setup map
+
+          var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: mapCenter,
+            scrollwheel: false
+          });
+
+          var latlngbounds = new google.maps.LatLngBounds();
+
+          jQuery.each(listado, function(index, item){
+
+            var html = templates.barrio;
+
+            var escondido;
+
+            html = html
+            .replace(/{index}/gi, item.index)
+            .replace(/{inicio}/gi, item.inicio)
+            .replace(/{fin}/gi, item.fin)
+            .replace(/{hora}/gi, item.hora)
+            .replace(/{direccion}/gi, item.direccion)
+            .replace(/{lugar}/gi, item.lugar)
+            .replace(/{escondido}/gi, item.fijo.replace("no","").replace("si","hidden"))
+            .replace(/{estado}/gi, item.estado);
+
+            var urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+
+            if(item.estado != '') {
+              html = html.replace(/{alerta}/gi, '');
+              urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker_disabled.png";
+            }else{
+              html = html.replace(/{alerta}/gi, 'hidden');
+            }
+
+            jQuery('[data-render=barrios]').append( html );
+
+
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              map: map,
+              position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
+              title: item.lugar,
+              icon: {
+                url: urlMarker,
+                size: new google.maps.Size(20, 20),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10)
+              }
+
+
+
+
+
+            });
+
+            latlngbounds.extend( new google.maps.LatLng( parseFloat(item.lat), parseFloat(item.lng) ) );
+
+            markers[index].addListener('click', function() {
+              jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( index ).addClass('bg-gray');
+                 jQuery('html,body').animate({
+                   scrollTop:  jQuery('[data-render=barrios] > div').eq( index ).offset().top
+                 }, '500', 'swing' );
+            });
+
+
+
+          });
+
+          map.setCenter(latlngbounds.getCenter());
+          map.setZoom( 16 );
+          
+
+          jQuery('body').on('click', '[data-render=barrios] > div', function(){
+            jQuery('[data-render=barrios] > div').removeClass('bg-gray').eq( jQuery(this).index() ).addClass('bg-gray');
+            map.setCenter( markers[jQuery(this).index()].getPosition() );
+            map.setZoom( 11 );
+          });
+
+        }
+
+      },
+      servicios: function( ){
+
+        jQuery('[data-render=servicios]').html('');
+
+        window.serviciosList = [];
+
+        jQuery.each(listadoServicios, function(index, items){
+
+          var html = templates.servicios;
+
+          html = html
+          .replace(/{categoria}/gi, categoriasServicios[index])
+          .replace(/{i}/gi, index);
+
+          jQuery.each(items, function(index, item){
+            html += '<li><span class="servicio">'+ item +'</span></li>';
+          });
+
+          jQuery('[data-render=servicios]').append( html + '</ul></div>' );
+
+          var listOptions = { 
+            valueNames: [ 'servicio' ],
+            fuzzySearch: {
+              searchClass: "search",
+              location: 0,
+              distance: 100,
+              threshold: 0.4,
+              multiSearch: true
+            }
+
+          };
+          serviciosList[index] = new List('servicios-'+ index, listOptions);
+
+        });
+      }      
+    }
+
+    jQuery.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'',
+      data: 'json',
+      success: function(response){
+
+        jQuery.each(response.feed.entry, function(index, row){
+
+
+          if( moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isValid() 
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isValid()
+              && moment(row.gsx$inicio.$t, 'DD-MM-YYYY').isBefore( moment().add(30, 'days') )
+              && moment(row.gsx$fin.$t, 'DD-MM-YYYY').isAfter( moment().add(-1, 'days') ) 
+              && row.gsx$latitud.$t != ''
+              && row.gsx$longitud.$t != '' 
+              || row.gsx$fijo.$t == "si"
+            ){
+
+
+            
+
+            listado.push({
+              index: index,
+              inicio: row.gsx$inicio.$t,
+              fin: row.gsx$fin.$t,
+              hora: row.gsx$hora.$t,
+              direccion: row.gsx$direccion.$t,
+              lugar: row.gsx$lugar.$t,
+              lat: row.gsx$latitud.$t,
+              lng: row.gsx$longitud.$t,
+              estado: row.gsx$motivosuspendido.$t,
+              fijo: row.gsx$fijo.$t
+            });
+
+
+
+          }
+
+        });
+
+        render.barrios();
+
+
+
+      }
+    });
+
+    jQuery.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
+      data: 'json',
+      success: function(response){
+
+        jQuery.each(response.feed.entry, function(index, row){
+          if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
+            categoriasServicios.push( row.gsx$categoria.$t )
+            listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
+          }else{
+            var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
+            listadoServicios[ categoria ].push( row.gsx$servicio.$t );
+          }
+        });
+        render.servicios();
+      }
+    });
+
+
+    jQuery('body').on('mouseover', '[data-render=barrios] > div', function(){
+      jQuery('[data-render=barrios] > div').css('cursor', 'pointer');
+    });
+
+    jQuery('#search').on('click', function(event){
+      buscar();
+      event.preventDefault();
+    });
+
+    jQuery('form[role=search]').on('submit', function(event){
+      buscar();
+      event.preventDefault();
+    });
+
+
+
+    var buscar = function(){
+      var busqueda = jQuery('.search').val()
+      jQuery.each(serviciosList, function(index, item){
+        serviciosList[index].fuzzySearch( busqueda );
+
+        if(serviciosList[index].matchingItems.length == 0){
+          jQuery('#servicios-'+ index ).prev().addClass('hidden');
+        }else{
+          jQuery('#servicios-'+ index ).prev().removeClass('hidden');
+        }
+      });
+
+      dataLayer.push({
+        'event': 'UAtracking',
+        'ua-category': 'Interacción',
+        'ua-action': 'INT_BUSCAR TRAMITES_EETB',
+        'ua-label': busqueda
+      });
+    }
+
+  };
+</script>
