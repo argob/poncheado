@@ -718,6 +718,23 @@ layout: argentina
 
 <script>
 
+  function addSeparatorsNF(nStr, inD, outD, sep)
+  {
+    nStr += '';
+    var dpos = nStr.indexOf(inD);
+    var nStrEnd = '';
+    if (dpos != -1) {
+      nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
+      nStr = nStr.substring(0, dpos);
+    }
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(nStr)) {
+      nStr = nStr.replace(rgx, '$1' + sep + '$2');
+    }
+    return nStr + nStrEnd;
+  }
+
+
   (function($){
 
     var templates = {
@@ -757,7 +774,7 @@ layout: argentina
 
             provincias.push({
               index: index,
-              personasCapacitadas: row.gsx$personascapacitadas.$t,
+              personasCapacitadas: addSeparatorsNF(row.gsx$personascapacitadas.$t,'.','.','.'),
               nombre: row.gsx$nombre.$t,
               localidades: []
             });
@@ -772,7 +789,7 @@ layout: argentina
           } else if( row.gsx$tipo.$t == "TOTAL" ){
               var showTotal = $('[data-render=totalCapacitados]');
               showTotal.empty();
-              showTotal.append(row.gsx$personascapacitadas.$t); 
+              showTotal.append(addSeparatorsNF(row.gsx$personascapacitadas.$t,'.','.','.')); 
           }
 
               if (row.gsx$nombre.$t == "Buenos Aires" && row.gsx$personascapacitadas.$t > 0 ) {
@@ -894,7 +911,6 @@ layout: argentina
 
     }); 
  
-
   })(jQuery);
 
 
