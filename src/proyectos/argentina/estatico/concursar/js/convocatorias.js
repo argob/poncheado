@@ -15,16 +15,14 @@ $(document).ready(function () {
         $.each( convocatorias, function( key, item ) {
             //console.log("testeo"+item.gsx$ean.$t);
             html += '<tr>';
+            html += ' <td class="denominacion">'+ item.gsx$denominacion.$t + '<br>' + item.gsx$cargo.$t + '<br>' + item.gsx$agrupamiento.$t + '<br>' + item.gsx$nivel.$t + '</td>';
             html += ' <td class="jurisdiccion">'+ item.gsx$jurisdiccion.$t + '</td>';
             html += ' <td class="organismo">'+ item.gsx$organismo.$t + '</td>';
             html += ' <td class="tipo">'+ item.gsx$tipo.$t + '</td>';
-            html += ' <td class="cargo">'+ item.gsx$cargo.$t + '</td>';
-            html += ' <td class="agrupamiento">'+ item.gsx$agrupamiento.$t + '</td>';
-            html += ' <td class="nivel">'+ item.gsx$nivel.$t + '</td>';
             html += ' <td class="reservadiscapacidad">'+ item.gsx$reservadiscapacidad.$t + '</td>';
             html += ' <td class="familia">'+ item.gsx$familia.$t + '</td>';
             html += ' <td class="zona">'+ item.gsx$zona.$t + '</td>';
-            html += ' <td class="denominacion">'+ item.gsx$denominacion.$t + '</td>';
+            
             html += '</tr>';
     
         });
