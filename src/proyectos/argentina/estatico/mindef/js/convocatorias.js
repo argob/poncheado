@@ -15,7 +15,7 @@ $(document).ready(function () {
         $.each( convocatorias, function( key, item ) {
             //console.log("testeo"+item.gsx$ean.$t);
             html += '<tr>';
-            html += ' <td class="denominacion"> <b>'+ item.gsx$denominacion.$t + '</b><br> Tipo de cargo: ' + item.gsx$cargo.$t + '<br> Agrupamiento: ' + item.gsx$agrupamiento.$t + '<br>Nivel: ' + item.gsx$nivel.$t + '</td>';
+            html += ' <td class="denominacion">'+ item.gsx$denominacion.$t + '<br>' + item.gsx$cargo.$t + '<br>' + item.gsx$agrupamiento.$t + '<br>' + item.gsx$nivel.$t + '</td>';
             html += ' <td class="jurisdiccion">'+ item.gsx$jurisdiccion.$t + '</td>';
             html += ' <td class="organismo">'+ item.gsx$organismo.$t + '</td>';
             html += ' <td class="tipo">'+ item.gsx$tipo.$t + '</td>';
