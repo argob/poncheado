@@ -1,0 +1,63 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+
+    <h3 class="text-center">Convocatorias en etapa de inscripción</h3>
+    <p>Acá podés encontrar todas las convocatorias que están en etapa de inscripción.</p>
+    <div id="convocatorias">
+      <div class="row">
+        <div class="col-md-12">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Filtrá convocatorias por jurisdicción, organismo o denominación...">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="denominacion">Denominación <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="jurisdiccion">Jurisdicción <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="organismo">Organismo <span class="caret"></span></a></th>
+            <th>Tipo de Convocatoria</th>
+            <th>Reserva de Puesto de Discapacidad</th>
+            <th>Familia de Puestos</th>
+            <th>Zona Geográfica</th>
+            
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/proyectos/argentina/estatico/concursar/js/veteranos.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  var options = {
+    valueNames: [ 'jurisdiccion', 'organismo', 'denominacion' ]
+  };
+
+  var convocatoriasList = new List('convocatorias', options);
+
+</script>
