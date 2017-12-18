@@ -1,27 +1,25 @@
 (function($) {
 $(document).ready(function () {
 
-    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1AikOjiZIH6J0Mr99YXUIxB9FNH0NH9WLLP_432ejEnI/1', function (data) {
-    //$.getJSON('data_bancos.txt', function (data) {
-        window.convocatorias = data.feed.entry;
-        showconvocatorias();
+    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/11dJivX0gKj6HxzOowPwu0KxFYFRfRma9eYAams0dVQ8/1', function (data) {
+        window.normas = data.feed.entry;
+        shownormas();
         console.log(data);
     });
 
-    window.showconvocatorias = function(){
+    window.shownormas = function(){
         var showData = $('#show-data');
 
         var html = '';
-        $.each( convocatorias, function( key, item ) {
-            //console.log("testeo"+item.gsx$ean.$t);
+        $.each( normas, function( key, item ) {
             html += '<tr>';
-            html += ' <td class="denominacion">'+ item.gsx$denominacion.$t + '<br>' + item.gsx$cargo.$t + '<br>' + item.gsx$agrupamiento.$t + '<br>' + item.gsx$nivel.$t + '</td>';
-            html += ' <td class="jurisdiccion">'+ item.gsx$jurisdiccion.$t + '</td>';
-            html += ' <td class="organismo">'+ item.gsx$organismo.$t + '</td>';
-            html += ' <td class="tipo">'+ item.gsx$tipo.$t + '</td>';
-            html += ' <td class="reservadiscapacidad">'+ item.gsx$reservadiscapacidad.$t + '</td>';
-            html += ' <td class="familia">'+ item.gsx$familia.$t + '</td>';
-            html += ' <td class="zona">'+ item.gsx$zona.$t + '</td>';
+            html += ' <td class="nro">'+ item.gsx$nom1.$t + item.gsx$nom2.$t + '</td>';
+            html += ' <td class="estado">'+ item.gsx$estado.$t + '</td>';
+            html += ' <td class="titulo">'+ item.gsx$titulo.$t + '</td>';
+            html += ' <td class="areatema">'+ item.gsx$areatema.$t + '</td>';
+            html += ' <td class="cna">'+ item.gsx$cna.$t + '</td>';
+            html += ' <td class="fecha">'+ item.gsx$mes.$t + '/' + item.gsx$anio.$t + '</td>';
+            html += ' <td class="accion">'+ item.gsx$link.$t + '</td>';
             
             html += '</tr>';
     
@@ -30,9 +28,8 @@ $(document).ready(function () {
         showData.empty();
         showData.append(html);
 
-        // var listOptions = {valueNames: [ 'jurisdiccion', 'organismo', 'tipo', 'cargo', 'agrupamiento', 'nivel', 'reservadiscapacidad', 'familia', 'zona', 'denominacion' ] };
-        var listOptions = {valueNames: [ 'jurisdiccion', 'organismo', 'denominacion' ] };
-        var convocatoriasList = new List('convocatorias', listOptions);
+        var listOptions = {valueNames: [ 'nro', 'titulo', 'estado' ] };
+        var normasList = new List('normas', listOptions);
     }
 
 

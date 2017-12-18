@@ -5,26 +5,24 @@ layout: argentina
 <div class="container">
   <section>
 
-    <h3 class="text-center">Convocatorias en etapa de inscripción</h3>
-    <p>Acá podés encontrar todas las convocatorias que están en etapa de inscripción.</p>
-    <div id="convocatorias">
+    <div id="normas">
       <div class="row">
         <div class="col-md-12">    
           <div class="form-group">
-            <input class="form-control search" placeholder="Filtrá convocatorias por jurisdicción, organismo o denominación...">
+            <input class="form-control search" placeholder="Buscar...">
           </div>
         </div>
       </div>
       <table class="table table-spaced">
         <thead>
           <tr>
-            <th><a class="sort" data-sort="denominacion">Denominación <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="jurisdiccion">Jurisdicción <span class="caret"></span></a></th>
-            <th><a class="sort" data-sort="organismo">Organismo <span class="caret"></span></a></th>
-            <th>Tipo de Convocatoria</th>
-            <th>Reserva de Puesto de Discapacidad</th>
-            <th>Familia de Puestos</th>
-            <th>Zona Geográfica</th>
+            <th><a class="sort" data-sort="nro">Nro. <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="estado">Estado <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="titulo">Título <span class="caret"></span></a></th>
+            <th>Área Temática</th>
+            <th>COA</th>
+            <th>Fecha de última versión</th>
+            <th>Acción</th>
             
           </tr>
         </thead>
@@ -51,13 +49,13 @@ layout: argentina
 
 
 <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/proyectos/argentina/estatico/concursar/js/normas.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/proyectos/argentina/estatico/mindef/js/normas.js" | prepend: site.baseurl }}"></script>
 
 <script>
   var options = {
-    valueNames: [ 'jurisdiccion', 'organismo', 'denominacion' ]
+    valueNames: [ 'nro', 'titulo', 'estado' ]
   };
 
-  var convocatoriasList = new List('convocatorias', options);
+  var normasList = new List('normas', options);
 
 </script>
