@@ -1,3 +1,14 @@
+
+var estado = [];
+var area = [];
+estado.push (null, "Vigente", "No vigente", "En revisión");
+area.push (null, "Instrumentos musicales", "Armas y explosivos", "Comunicaciones", "Equipamiento de campaña", "Genérico", "Máquinas y herramientas", "Mobiliario y equipamiento", "Racionamiento", "Sanidad", "Varios", "Vehículos", "Vestuario");
+
+
+
+
+console.log(estado);
+
 (function($) {
 $(document).ready(function () {
 
@@ -14,9 +25,9 @@ $(document).ready(function () {
         $.each( normas, function( key, item ) {
             html += '<tr>';
             html += ' <td class="nro">'+ item.gsx$nom1.$t + item.gsx$nom2.$t + '</td>';
-            html += ' <td class="estado">'+ item.gsx$estado.$t + '</td>';
+            html += ' <td class="estado">'+ estado[item.gsx$estado.$t] + '</td>';
             html += ' <td class="titulo">'+ item.gsx$titulo.$t + '</td>';
-            html += ' <td class="areatema">'+ item.gsx$areatema.$t + '</td>';
+            html += ' <td class="areatema">'+ area[item.gsx$areatema.$t] + '</td>';
             html += ' <td class="cna">'+ item.gsx$cna.$t + '</td>';
             html += ' <td class="fecha">'+ item.gsx$mes.$t + '/' + item.gsx$anio.$t + '</td>';
             html += ' <td class="accion">'+ item.gsx$link.$t + '</td>';
@@ -35,5 +46,4 @@ $(document).ready(function () {
 
 });
 })(jQuery);
-
 
