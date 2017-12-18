@@ -3,6 +3,11 @@ layout: argentina
 ---
 
 <style>
+
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 0;
+}
 .rc-label {
     display: block;
     float: left;
@@ -156,9 +161,15 @@ layout: argentina
           </div>
 
           <div class="form-group">
-            <label class="control-label">Código postal</label>
-            <input type="text" class="form-control">
-            <label><small><a href="#">Consultá tu código postal</a></small></label>
+            <label class="control-label" for="codigo-postal">
+                Código postal
+                <p> 
+                    <small class="help-block">
+                        Si no lo recordás, podés <a href="#">consultar tu codigo postal</a>
+                    </small>                
+                </p>
+            </label>
+            <input type="text" id="codigo-postal" name="codigo-postal" class="form-control">
           </div>
 
           <div class="form-group">
@@ -261,7 +272,8 @@ layout: argentina
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
 
 <script type="text/javascript">
-	$('.date').datepicker({language: 'es'});	
+	$('.date').datepicker({language: 'es'});
 </script>
