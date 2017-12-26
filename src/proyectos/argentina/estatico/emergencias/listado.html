@@ -28,6 +28,25 @@ layout: argentina
         height: 30px;
       }
 
+      .portaIconoLista{
+        width: 40px;
+      }
+
+      .portaIconoLista,
+      .portaInfoLista{
+        display: inline-block;
+      }
+
+      .portaIconoLista p{
+        text-align: center;
+      }
+
+      .portaRedes{
+        display: inline-block;
+        font-size: 25px;
+        margin-left: 10px;
+      }
+
     </style>
 
 <section class="jumbotron" style="background-image: url('img/jt_obras.jpg');">
@@ -37,7 +56,7 @@ layout: argentina
         <div class="col-md-12">
           <ol class="breadcrumb pull-left">
             <li><a href="/">Inicio</a></li>
-            <li class="active">Ministerio del Interior, Obras Públicas y Vivienda</li>
+            <li class="active">Ministerio de Agroindustria</li>
           </ol>                    
         </div>
       </div>
@@ -47,9 +66,12 @@ layout: argentina
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-          <h2>Obras del Ministerio del Interior, Obras Públicas y Vivienda</h2>
+          <h2>Obras del Ministerio de Agroindustria</h2>
           <p>Conocé las obras que mejoran la calidad de vida de todos los argentinos.</p>
         </div>
+        <div class="col-xs-12 text-center">
+          <a id="mapa" type="button" class="botones btn btn-primary" href="mapa.html">Mapa de Obras</a>
+    </div>
       </div>
     </div>
   </div>
@@ -255,15 +277,17 @@ layout: argentina
                   <div class="modal-content">
                     <div class="modal-header bg-primary">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
-                      <h4 class="nombre-obra modal-title">{titulo}</h4>
+                      <h4 class="h5 nombre-obra modal-title">{titulo}</h4>
                     </div>
-                    <div class="modal-body">  
+                    <div class="modal-body p-b-3">  
                       <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                       <div class="text-muted">
                         {provincia}
                         {localidad}
                         {beneficiarios}
                         {estado}
+                        {twitter}
+                        {facebook}
                       </div>
                     </div>
                   </div>
@@ -276,16 +300,18 @@ layout: argentina
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
                       <h4 class="nombre-obra modal-title">{titulo}</h4>
                     </div>
-                    <div class="modal-body"> 
+                    <div class="modal-body p-b-3"> 
                       <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                       <div class="text-muted">
                         {provincia}
                         {localidad}
                         {beneficiarios}
                         {estado}
+                        {twitter}
+                        {facebook}
                       </div>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body p-b-3">
                       <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="{video}" frameborder="0" allowfullscreen></iframe>
                       </div>
@@ -300,16 +326,18 @@ layout: argentina
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
                       <h4 class="nombre-obra modal-title">{titulo}</h4>
                     </div>
-                    <div class="modal-body">   
+                    <div class="modal-body p-b-3">   
                       <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
                       <div class="text-muted">
                         {provincia}
                         {localidad}
                         {beneficiarios}
                         {estado}
+                        {twitter}
+                        {facebook}
                       </div>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body p-b-3">
                       <div class="embed-responsive embed-responsive-16by9">
                         
                       <img src="{imagen}" alt="imagen de obra pública"/>
@@ -321,12 +349,13 @@ layout: argentina
     }
 
     window.obras = [];
-    /*window.locations = [];*/
+    window.locations = [];
     window.configobras = 'Todas';
     window.configprovincia = 'Todas';
 
     $.ajax({
       url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1',
+      // url: 'https://spreadsheets.google.com/feeds/list/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -352,14 +381,14 @@ layout: argentina
               facebook: row.gsx$facebook.$t
             });
 
-            /*locations.push({
+            locations.push({
               index: index,
               latitud: row.gsx$latitud.$t,
               longitud: row.gsx$longitud.$t,
               marker: row.gsx$marker.$t,
               markerd: row.gsx$markerd.$t,
               destacado: row.gsx$destacado.$t
-            });*/
+            });
 
 
 
@@ -399,25 +428,37 @@ layout: argentina
             if (obras.provincia == "" || obras.provincia == "-" ){
               var provincia = '';
             } else {
-              var provincia = '<div class="media m-t-1"><i class="fa icono-arg-barrio"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Provincia:</b>' + ' <span>' + obras.provincia + '</span></div>';
+              var provincia = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista"><p><b>Provincia:</b>' + ' <span>' + obras.provincia + '</span></p></div></div>';
             }
 
             if (obras.localidad == "" || obras.localidad == "-" ){
               var localidad = '';
             } else {
-              var localidad = '<div class="media m-t-1"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Departamento / Localidad:</b>' + ' <span>' + obras.localidad + '</span></div>';
+              var localidad = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista"><p><b>Departamento / Localidad:</b>' + ' <span>' + obras.localidad + '</span></p></div></div>';
             }
 
             if (obras.beneficiarios == "" || obras.beneficiarios == "-" ){
               var beneficiarios = '';
             } else {
-              var beneficiarios = '<div class="media m-t-1"><i class="fa icono-arg-genero"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Beneficiarios:</b>' + ' <span>' + obras.beneficiarios + '</span></div>';
+              var beneficiarios = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista"><p><b>Beneficiarios:</b>' + ' <span>' + obras.beneficiarios + '</span></p></div></div>';
             }
 
             if (obras.estado == "" || obras.estado == "-" ){
               var estado = '';
             } else {
-              var estado = '<div class="media m-t-1"><i class="fa fa-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Estado:</b>' + ' <span>' + obras.estado + '</span></div>';
+              var estado = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista"><p><b>Estado:</b>' + ' <span>' + obras.estado + '</span></p></div></div>';
+            }
+
+            if (obras.twitter == "" || obras.twitter == "-" ){
+              var twitter = '';
+            } else {
+              var twitter = '<div class="media m-t-1 portaRedes"><a href="' + obras.twitter + '" target="_blank"<i class="fa fa-twitter"></i></a></div>';
+            }
+
+            if (obras.facebook == "" || obras.facebook == "-" ){
+              var facebook = '';
+            } else {
+              var facebook = '<div class="media m-t-1 portaRedes"><a href="' + obras.facebook + '" target="_blank"<i class="fa fa-facebook"></i></a></div>';
             }
 
             
@@ -437,7 +478,9 @@ layout: argentina
             .replace(/{provincia}/gi, provincia)
             .replace(/{localidad}/gi, localidad)
             .replace(/{beneficiarios}/gi, beneficiarios)
-            .replace(/{estado}/gi, estado);
+            .replace(/{estado}/gi, estado)
+            .replace(/{twitter}/gi, twitter)
+            .replace(/{facebook}/gi, facebook);
 
             modal_v = modal_v.replace(/{index}/gi, index)
             .replace(/{titulo}/gi, obras.titulo)
@@ -447,7 +490,9 @@ layout: argentina
             .replace(/{provincia}/gi, provincia)
             .replace(/{localidad}/gi, localidad)
             .replace(/{beneficiarios}/gi, beneficiarios)
-            .replace(/{estado}/gi, estado);
+            .replace(/{estado}/gi, estado)
+            .replace(/{twitter}/gi, twitter)
+            .replace(/{facebook}/gi, facebook);
 
             modal_im = modal_im.replace(/{index}/gi, index)
             .replace(/{titulo}/gi, obras.titulo)
@@ -457,7 +502,9 @@ layout: argentina
             .replace(/{provincia}/gi, provincia)
             .replace(/{localidad}/gi, localidad)
             .replace(/{beneficiarios}/gi, beneficiarios)
-            .replace(/{estado}/gi, estado);
+            .replace(/{estado}/gi, estado)
+            .replace(/{twitter}/gi, twitter)
+            .replace(/{facebook}/gi, facebook);
 
 
 
