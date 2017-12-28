@@ -203,14 +203,18 @@ layout: argentina
     jQuery('[data-render=going]').text('$'+ renderNumber(going));
     jQuery('[data-render=saving]').text('$'+ renderNumber(saving));
 
-    // muestra los resultados en el primer calculo
-    jQuery('#results').removeClass('hidden');
-
     // Deshabilita agregar mas viajes cuando hay 6
     if(data.trips.length == 6){
       jQuery('#js-add-trip').addClass('disabled');
     }else{
       jQuery('#js-add-trip').removeClass('disabled');
+    }
+
+    // Muestro los resultados si hay por lo menos un viaje
+    if(data.trips.length == 0){
+      jQuery('#results').addClass('hidden');
+    }else{
+      jQuery('#results').removeClass('hidden');
     }
 
   }
