@@ -1,0 +1,278 @@
+---
+layout: argentina
+---
+
+<style>
+
+  #trip-list .fa-arrow-right {
+    vertical-align: middle;
+    line-height: 90px;
+  }
+
+  .row-flex > div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-self: flex-end;
+  }
+
+  #trip-list .panel {
+    position: relative;
+  }
+  .delete-trip {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+</style>
+
+<div class="container">
+  <section>
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="well p-x-3">
+          <h3>Calculá tu ahorro</h3>
+          <p>Agregá los transportes que tomas en transbordo y calculá tu ahorro mensual.</p>
+          
+          <hr>
+
+          <form action="#" class="m-b-2">
+
+            <p class="h5 m-b-2">Configurá tus viajes</p>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group m-b-1">
+                  <label>¿Viajas ida y vuelta?</label>
+                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="round-trip" value="yes" checked>Si</label>
+                    <label class="btn btn-default"><input class="form-radio" type="radio" name="round-trip" value="no">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group m-b-1">
+                  <label>¿Tenés tarifa social?</label>
+                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                    <label class="btn btn-default"><input class="form-radio" type="radio" name="tarifa-social" value="yes">Si</label>
+                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="tarifa-social" value="no" checked>No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group m-b-1">
+                  <label for="ride-times">Viajes por semana</label>
+                  <input type="number" class="form-control" id="ride-times" value="5">
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <p class="h5 m-b-0">Agregá tus viajes</p>
+            <p class="text-muted m-t-1 m-b-3">Poné el precio del boleto sin ningún descuento, nosotros hacemos el cálculo de tarifa social, trasbordos o descuento del subte.</p>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="ride-transport">Transporte</label>
+                  <select class="form-control" id="ride-transport">
+                    <option value="bus">Colectivo</option>
+                    <option value="train">Tren</option>
+                    <option value="subway">Subte</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="ride-price">Costo del viaje</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control" id="ride-price" placeholder="0.00">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="ride-price">&nbsp;</label><br>
+                <a id="js-add-trip" href="#" class="btn btn-success btn-block">Agregar viaje</a>
+              </div>
+            </div>
+          </form>
+
+          <div id="trip-list" class="row">
+          </div>
+
+          <div id="results" class="hidden">
+            <hr>
+
+            <p class="h5 m-b-2">Tus resultados</p>
+
+            <div class="row numbers row-flex p-t-0 p-b-1">
+              <div class="col-md-5">
+                <div class="h2 text-success" data-render="saving">-</div>
+                <p class="text-muted">Tu ahorro por mes</p>
+              </div>
+              <div class="col-md-4">
+                <div class="h3 text-gray" data-render="going">-</div>
+                <p class="text-muted">Viaje de ida</p>
+              </div>
+              <div class="col-md-3">
+                <div class="h3 text-gray" data-render="returning">-</div>
+                <p class="text-muted">Viaje de vuelta</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<script>
+
+  var templates = {
+    item: '<div class="col-md-2"><div class="panel"><a class="delete-trip" data-delete="{index}" href="#"><span class="fa fa-times-circle text-danger"></span></a><div class="panel-body p-x-0 text-center"><p class="h2 m-t-0"><span class="fa fa-{transport}"></span><br><small>${price}</small></p></div></div></div>',
+    arrow: '<div class="col-md-1 text-center"><span class="fa fa-arrow-right"></span></div>',
+  }
+
+  var data = {
+    roundtrip: 'yes',
+    tarifasocial: 'no',
+    weekly: 5,
+    trips: []
+  };
+
+  var multiplier = [1, 0.5, 0.25, 0.25, 0.25, 0.25];
+
+  var renderNumber = function(number){
+    return parseFloat(number).toFixed(2).replace('.', ',');
+  }
+
+  var calculateTrip = function(){
+
+    jQuery('#trip-list').html('');
+
+    var total = 0.00;
+    var going = 0.00;
+    var returning = 0.00;
+
+    data.roundtrip = jQuery('[name=round-trip]:checked').val();
+    data.tarifasocial = jQuery('[name=tarifa-social]:checked').val();
+
+    jQuery.each(data.trips, function(index, item){
+
+      var realprice = item.price;
+      if(item.transport == 'subway'){
+
+      }
+      if(data.tarifasocial == 'yes'){
+        realprice = realprice * 0.45;
+      }
+
+      total += parseFloat(item.price);
+      going += realprice * multiplier[index];
+      returning += realprice * multiplier[data.trips.length - index - 1];
+
+      var newtrip = templates.item;
+      newtrip = newtrip.replace('{transport}', item.transport).replace('{price}', renderNumber(item.price)).replace('{index}', index);
+
+      if(index > 0){
+        jQuery('#trip-list').append(templates.arrow);
+      }
+
+      jQuery('#trip-list').append(newtrip);
+
+    });
+
+    // Hace logicas diferentes si viaja ida y vielta o no
+    if(data.roundtrip == 'yes'){
+      var saving = (total - going + total - returning) * parseInt(jQuery('#ride-times').val()) * 4;
+      jQuery('[data-render=returning]').text('$'+ renderNumber(returning)).parent().removeClass('hidden');
+
+    }else{
+      var saving = (total - going) * parseInt(jQuery('#ride-times').val()) * 4;
+      jQuery('[data-render=returning]').parent().addClass('hidden');
+    }
+
+    jQuery('[data-render=going]').text('$'+ renderNumber(going));
+    jQuery('[data-render=saving]').text('$'+ renderNumber(saving));
+
+    // muestra los resultados en el primer calculo
+    jQuery('#results').removeClass('hidden');
+
+    // Deshabilita agregar mas viajes cuando hay 6
+    if(data.trips.length == 6){
+      jQuery('#js-add-trip').addClass('disabled');
+    }else{
+      jQuery('#js-add-trip').removeClass('disabled');
+    }
+
+  }
+
+  jQuery('body').on('click', '#js-add-trip:not(.disabled)', function(event){
+    event.preventDefault();
+
+    var transport = jQuery('#ride-transport').val();
+    var price = parseFloat(jQuery('#ride-price').val());
+
+    data.trips.push({
+      transport: transport,
+      price: price.toFixed(2)
+    });
+
+    calculateTrip();
+
+  });
+
+  jQuery('body').on('click', '#trip-list .delete-trip', function(event){
+    event.preventDefault();
+
+    data.trips.splice(jQuery(this).data('delete'), 1);
+    calculateTrip();
+  });
+
+  jQuery('body').on('change', '[name=round-trip]', function(event){
+    event.preventDefault();
+    calculateTrip();
+  });
+  
+  jQuery('body').on('change', '[name=tarifa-social]', function(event){
+    event.preventDefault();
+    calculateTrip();
+  });
+
+  jQuery('body').on('change keyup click', '#ride-times', function(event){
+    event.preventDefault();
+    calculateTrip();
+  });
+
+  jQuery('body').on('change', '#ride-transport', function(event){
+    event.preventDefault();
+
+    if(jQuery(this).val() == 'subway'){
+      jQuery('#ride-price').attr('disabled', true).val(7.5);
+    }else{
+      jQuery('#ride-price').removeAttr('disabled').val(0);
+    }
+  });
+
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
