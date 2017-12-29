@@ -65,9 +65,13 @@ layout: argentina
               <div class="col-md-4">
                 <div class="form-group m-b-1">
                   <label for="ride-times">Viajes por semana</label>
-                  <input type="number" class="form-control" id="ride-times" value="5">
+                  <input type="number" class="form-control" id="ride-times" value="5" min="1">
                 </div>
               </div>
+            </div>
+
+            <div id="js-times-alert" class="alert alert-danger m-b-3 hidden">
+              La cantidad de viajes por semana debe ser mayor que cero.
             </div>
 
             <hr>
@@ -91,7 +95,7 @@ layout: argentina
                   <label for="ride-price">Costo del viaje</label>
                   <div class="input-group">
                     <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="ride-price" placeholder="0.00">
+                    <input type="number" class="form-control" id="ride-price" placeholder="0.00" min="4">
                   </div>
                 </div>
               </div>
@@ -100,9 +104,22 @@ layout: argentina
                 <a id="js-add-trip" href="#" class="btn btn-success btn-block">Agregar viaje</a>
               </div>
             </div>
+
+            <div id="js-subway-alert" class="alert alert-warning m-b-3 hidden">
+              Si haces dos viajes consecutivos en Subte no aplica el descuento de RED SUBE porque podes hacer combinación en la red de subtes.
+            </div>
+
+            <div id="js-number-alert" class="alert alert-danger m-b-3 hidden">
+              El costo del viaje debe ser un número mayor o igual a $4.
+            </div>
+
           </form>
 
           <div id="trip-list" class="row">
+          </div>
+
+          <div id="js-time-alert" class="alert alert-info hidden">
+            Recordá que el descuento aplica a los viajes que hagas hasta 2 horas después que empezaste primero. Una vez pasado ese tiempo empieza el ciclo de nuevo.
           </div>
 
           <div id="results" class="hidden">
@@ -144,7 +161,7 @@ layout: argentina
   var data = {
     roundtrip: 'yes',
     tarifasocial: 'no',
-    weekly: 5,
+    times: 5,
     trips: []
   };
 
@@ -154,30 +171,81 @@ layout: argentina
     return parseFloat(number).toFixed(2).replace('.', ',');
   }
 
+  var checkButton = function(){
+
+    // Deshabilita agregar mas viajes cuando hay 6
+    if(data.trips.length == 6){
+      jQuery('#js-add-trip').addClass('disabled');
+    }else{
+      jQuery('#js-add-trip').removeClass('disabled');
+
+      // Deshabilita agregar mas viajes cuando hay dos subtes consecutivos
+      if(data.trips.length > 0 && data.trips[data.trips.length-1].transport == 'subway' && $('#ride-transport').val() == 'subway' ){
+        jQuery('#js-add-trip').addClass('disabled');
+        jQuery('#js-subway-alert').removeClass('hidden');
+      }else{
+        jQuery('#js-add-trip').removeClass('disabled');
+        jQuery('#js-subway-alert').addClass('hidden');
+      }
+
+      if(data.trips.length > 3){
+        jQuery('#js-time-alert').removeClass('hidden');
+      }else{
+        jQuery('#js-time-alert').addClass('hidden');
+
+      }
+
+    }
+  }
+
   var calculateTrip = function(){
 
+    // Borro el listado de viajes
     jQuery('#trip-list').html('');
 
+    // Defino las variables que voy a usar para los calculos
     var total = 0.00;
     var going = 0.00;
     var returning = 0.00;
+    var subwaytimes = 0;
 
+    // Leo la configuración
     data.roundtrip = jQuery('[name=round-trip]:checked').val();
     data.tarifasocial = jQuery('[name=tarifa-social]:checked').val();
+    data.times = jQuery('#ride-times').val();
 
+    if(data.times == "" || isNaN(data.times) || data.times < 0 ){
+      $('#js-times-alert').addClass('hidden');
+      jQuery('#ride-times').val(1);
+      data.times = 1;
+    }
+
+    // Itero por cada viaje
     jQuery.each(data.trips, function(index, item){
 
       var realprice = item.price;
-      if(item.transport == 'subway'){
 
-      }
+      // if(item.transport == 'subway'){
+      //   data.roundtrip == 'yes' ? subwaytimes += 2 : subwaytimes++;
+
+      //   if(subwaytimes > 20 subwaytimes =< 30){
+      //     realprice = 6;
+      //   }else if(subwaytimes > 30){
+      //     realprice = 5.25;
+      //   }
+      // }
+
       if(data.tarifasocial == 'yes'){
         realprice = realprice * 0.45;
       }
 
       total += parseFloat(item.price);
-      going += realprice * multiplier[index];
-      returning += realprice * multiplier[data.trips.length - index - 1];
+
+      var discountprice = realprice * multiplier[index];
+      realprice - discountprice < 8 ? going += discountprice : going += realprice - 8;
+
+      discountprice = realprice * multiplier[data.trips.length - index - 1];
+      realprice - discountprice < 8 ? returning += discountprice : returning += realprice - 8;
 
       var newtrip = templates.item;
       newtrip = newtrip.replace('{transport}', item.transport).replace('{price}', renderNumber(item.price)).replace('{index}', index);
@@ -192,23 +260,19 @@ layout: argentina
 
     // Hace logicas diferentes si viaja ida y vielta o no
     if(data.roundtrip == 'yes'){
-      var saving = (total - going + total - returning) * parseInt(jQuery('#ride-times').val()) * 4;
+      var saving = (total - going + total - returning) * parseInt(data.times) * 4;
       jQuery('[data-render=returning]').text('$'+ renderNumber(returning)).parent().removeClass('hidden');
 
     }else{
-      var saving = (total - going) * parseInt(jQuery('#ride-times').val()) * 4;
+      var saving = (total - going) * parseInt(data.times) * 4;
       jQuery('[data-render=returning]').parent().addClass('hidden');
     }
 
+    // Imprime los valores de ida y ahorro
     jQuery('[data-render=going]').text('$'+ renderNumber(going));
     jQuery('[data-render=saving]').text('$'+ renderNumber(saving));
 
-    // Deshabilita agregar mas viajes cuando hay 6
-    if(data.trips.length == 6){
-      jQuery('#js-add-trip').addClass('disabled');
-    }else{
-      jQuery('#js-add-trip').removeClass('disabled');
-    }
+    checkButton();
 
     // Muestro los resultados si hay por lo menos un viaje
     if(data.trips.length == 0){
@@ -225,10 +289,18 @@ layout: argentina
     var transport = jQuery('#ride-transport').val();
     var price = parseFloat(jQuery('#ride-price').val());
 
-    data.trips.push({
-      transport: transport,
-      price: price.toFixed(2)
-    });
+    console.log(price)
+    if( isNaN(price) || price < 4){
+      $('#js-number-alert').removeClass('hidden');
+
+    }else{
+      $('#js-number-alert').addClass('hidden');
+      data.trips.push({
+        transport: transport,
+        price: price
+      });
+    }
+
 
     calculateTrip();
 
@@ -253,7 +325,15 @@ layout: argentina
 
   jQuery('body').on('change keyup click', '#ride-times', function(event){
     event.preventDefault();
-    calculateTrip();
+
+    data.times = jQuery('#ride-times').val();
+
+    if(data.times == "" || isNaN(data.times) || data.times < 0 ){
+      $('#js-times-alert').removeClass('hidden');
+    }else{
+      $('#js-times-alert').addClass('hidden');
+      calculateTrip();
+    }
   });
 
   jQuery('body').on('change', '#ride-transport', function(event){
@@ -262,8 +342,10 @@ layout: argentina
     if(jQuery(this).val() == 'subway'){
       jQuery('#ride-price').attr('disabled', true).val(7.5);
     }else{
-      jQuery('#ride-price').removeAttr('disabled').val(0);
+      jQuery('#ride-price').removeAttr('disabled').val('');
     }
+
+    checkButton();
   });
 
 
