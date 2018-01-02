@@ -148,38 +148,6 @@ title: Mapa de Barrios Populares
                 <div style="margin-top: 10px;">
                   <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección" value="">
                 </div>
-                <div style="margin-top: 10px;">
-                  <label class="control-label">Buscar provincias</label>
-                  <div id="controls">
-                    <select id="provincia" class="form-control chosen-select" data-placeholder="Todas las Provincia">
-                        <option value="blank" selected>Todas las Provincias</option>
-                        <option value="CAB">Ciudad Autónoma de Buenos Aires</option>
-                        <option value="BSA">Buenos Aires</option>
-                        <option value="CAT">Catamarca</option>
-                        <option value="COR">Córdoba</option>
-                        <option value="CRR">Corrientes</option>
-                        <option value="CHA">Chaco</option>
-                        <option value="CHU">Chubut</option>
-                        <option value="ENT">Entre Ríos</option>
-                        <option value="FOR">Formosa</option>
-                        <option value="JUJ">Jujuy</option>
-                        <option value="PAM">La Pampa</option>
-                        <option value="RIO">La Rioja</option>
-                        <option value="MEN">Mendoza</option>
-                        <option value="MIS">Misiones</option>
-                        <option value="NEU">Neuquén</option>
-                        <option value="RNE">Río Negro</option>
-                        <option value="SAL">Salta</option>
-                        <option value="SJU">San Juan</option>
-                        <option value="SLU">San Luis</option>
-                        <option value="SCR">Santa Cruz</option>
-                        <option value="SFE">Santa Fe</option>
-                        <option value="SDE">Santiago del Estero</option>
-                        <option value="TDF">Tierra del Fuego</option>
-                        <option value="TUC">Tucumán</option>
-                    </select>
-                  </div>                
-                </div>
 
               </div>              
           </div>        
@@ -290,24 +258,6 @@ var provincias = {
 
     autocomplete.addListener('place_changed', onPlaceChanged);
 
-    // document.getElementById('provincia').addEventListener(
-    //     'change', setAutocompleteProvincia);
-
-    $('#provincia').on('change', function() {
-
-        setAutocompleteProvincia();
-      });    
-
-      function setAutocompleteProvincia() {
-        var provincia = document.getElementById('provincia').value;
-        if (provincia == 'blank') {
-          map.setCenter({lat: -41.2148693, lng: -66.3996161});
-          map.setZoom(4);
-        } else {
-          map.setCenter(provincias[provincia].center);
-          map.setZoom(10);
-        }
-      }
     
     // Setup map
     // var mapCenter = {lat: -41.2148693, lng: -66.3996161};
