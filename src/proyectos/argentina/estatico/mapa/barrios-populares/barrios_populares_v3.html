@@ -120,7 +120,7 @@ title: Mapa de Barrios Populares
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar el mapa</a></li> 
-            <li><a href="/barriospopulares">Acerca de Barrios Populares</a></li>
+            <li><a href="https://www.argentina.gob.ar/barriospopulares">Acerca de Barrios Populares</a></li>
           </ul>           
         </div>
       </div>
@@ -509,6 +509,7 @@ var provincias = {
     var detalles = [];
 
     $.getJSON('http://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/barrios-populares/barrios-populares.txt', function (data) {
+    // $.getJSON('barrios-populares.txt', function (data) {
         console.log(data.features)
 
         var rows = data.features;
@@ -517,7 +518,7 @@ var provincias = {
 
         rows.forEach(function(row, key){
             // console.log(row);
-            geojson += '{"type": "Feature", "id": '+key+', "properties": {"nombre": "'+ row.properties.nombre_bar.replace(/"/gi, '') +'", "localidad": "'+ row.properties.localidad +'", "partido": "'+ row.properties.departamen +'", "provincia": "'+ row.properties.provincia +'"}, "geometry": '+ JSON.stringify(row.geometry) + '},';
+            geojson += '{"type": "Feature", "id": '+key+', "properties": {"id": "'+ row.properties.id_renabap +'", "nombre": "'+ row.properties.nombre_bar.replace(/"/gi, '') +'", "localidad": "'+ row.properties.localidad +'", "partido": "'+ row.properties.departamen +'", "provincia": "'+ row.properties.provincia +'"}, "geometry": '+ JSON.stringify(row.geometry) + '},';
         });
     
 
@@ -541,11 +542,12 @@ var provincias = {
 
         // When the user clicks, open an infowindow
         map.data.addListener('click', function(event) {
+          var id = event.feature.getProperty("id");
           var nombre = event.feature.getProperty("nombre");
           var localidad = event.feature.getProperty("localidad");
           var partido = event.feature.getProperty("partido");
           var provincia = event.feature.getProperty("provincia");
-          infowindow.setContent("<div style='max-width:300px;'><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+          infowindow.setContent("<div style='max-width:300px;'><h4><small>Id: "+ id +"</small></h4><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
 
           var bounds = new google.maps.LatLngBounds();
           event.feature.getGeometry().forEachLatLng(function(LatLng){
@@ -569,11 +571,12 @@ var provincias = {
           feature.getGeometry().forEachLatLng(function(LatLng){
             bounds.extend(LatLng);
           });
+          id = feature.getProperty("id");
           nombre = feature.getProperty("nombre");
           localidad = feature.getProperty("localidad");
           partido = feature.getProperty("partido");
           provincia = feature.getProperty("provincia");
-          infowindow.setContent("<div style='max-width:300px;'><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+          infowindow.setContent("<div style='max-width:300px;'><h4><small>Id: "+ id +"</small></h4><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
           infowindow.setPosition(bounds.getCenter());
           infowindow.open(map);
           map.fitBounds(bounds);
