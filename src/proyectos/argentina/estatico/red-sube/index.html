@@ -41,50 +41,15 @@ layout: argentina
     <div class="row">
       <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <div id="simulator-container" class="well">
-          <h3>Calculá tu ahorro</h3>
-          <p>Agregá los transportes que tomas en transbordo y calculá tu ahorro mensual.</p>
+          <h3>Cálcula tu descuento</h3>
+          <p>Poné el precio de tu boleto y nosotros calculamos el descuento según tu tipo de viaje.</p>
           
           <hr>
 
           <form action="#" class="m-b-2">
 
-            <p class="h5 m-b-2">Configurá tus viajes</p>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label>¿Viajas ida y vuelta?</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
-                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="round-trip" value="yes" checked>Si</label>
-                    <label class="btn btn-default"><input class="form-radio" type="radio" name="round-trip" value="no">No</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label>¿Tenés tarifa social?</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
-                    <label class="btn btn-default"><input class="form-radio" type="radio" name="tarifa-social" value="yes">Si</label>
-                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="tarifa-social" value="no" checked>No</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label for="ride-times">Viajes por semana</label>
-                  <input type="number" class="form-control" id="ride-times" value="5" min="1">
-                </div>
-              </div>
-            </div>
-
-            <div id="js-times-alert" class="alert alert-danger m-b-3 hidden">
-              La cantidad de viajes por semana debe ser mayor que cero.
-            </div>
-
-            <hr>
-
-            <p class="h5 m-b-0">Agregá tus viajes</p>
-            <p class="text-muted m-t-1 m-b-3">Poné el precio del boleto sin ningún descuento, nosotros hacemos el cálculo de tarifa social, trasbordos o descuento del subte.</p>
+            <p class="h5">Carga tu viaje diario</p>
+            <!-- <p class="text-muted m-t-1 m-b-3">Poné el precio del boleto sin ningún descuento, nosotros hacemos el cálculo de tarifa social, trasbordos o descuento del subte.</p> -->
 
             <div class="row">
               <div class="col-xs-12 col-sm-4">
@@ -120,14 +85,49 @@ layout: argentina
               El costo del viaje debe ser un número mayor o igual a $4.
             </div>
 
+            <div id="trip-list" class="row p-t-1">
+            </div>
+
+            <div id="js-time-alert" class="alert alert-info hidden">
+              Recordá que el descuento aplica a los viajes que hagas hasta 2 horas después que empezaste primero. Una vez pasado ese tiempo empieza el ciclo de nuevo.
+            </div>
+
+            <hr>
+
+            <p class="h5 m-b-2">Cálcula tu descuento mensual</p>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <div class="form-group m-b-1">
+                  <label>¿Viajas ida y vuelta?</label>
+                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="round-trip" value="yes" checked>Si</label>
+                    <label class="btn btn-default"><input class="form-radio" type="radio" name="round-trip" value="no">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="form-group m-b-1">
+                  <label>¿Tenés tarifa social?</label>
+                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                    <label class="btn btn-default"><input class="form-radio" type="radio" name="tarifa-social" value="yes">Si</label>
+                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="tarifa-social" value="no" checked>No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="form-group m-b-1">
+                  <label for="ride-times">Viajes por semana</label>
+                  <input type="number" class="form-control" id="ride-times" value="5" min="1">
+                </div>
+              </div>
+            </div>
+
+            <div id="js-times-alert" class="alert alert-danger m-b-3 hidden">
+              La cantidad de viajes por semana debe ser mayor que cero.
+            </div>
+
           </form>
-
-          <div id="trip-list" class="row">
-          </div>
-
-          <div id="js-time-alert" class="alert alert-info hidden">
-            Recordá que el descuento aplica a los viajes que hagas hasta 2 horas después que empezaste primero. Una vez pasado ese tiempo empieza el ciclo de nuevo.
-          </div>
 
           <div id="results" class="hidden">
             <hr>
@@ -161,7 +161,7 @@ layout: argentina
               <li id="js-social" class="m-b-2">
                 <div class="media">
                   <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
-                  <div class="media-body media-middle">Tenés el descuento de Tarifa Social (un 55% menos).</div>
+                  <div class="media-body media-middle">Tenés el descuento de Tarifa Social.</div>
                 </div>
               </li>
               <li id="js-subway" class="m-b-2">
@@ -185,7 +185,7 @@ layout: argentina
 <script>
 
   var templates = {
-    item: '<div class="col-xs-4 col-sm-2"><div class="panel"><a class="delete-trip" data-delete="{index}" href="#"><span class="fa fa-times-circle text-danger"></span></a><div class="panel-body p-x-0 text-center"><p class="h2 m-t-0"><span class="fa fa-{transport}"></span><br><small>${price}</small></p></div></div></div>',
+    item: '<div class="col-xs-4 col-sm-2"><div class="panel m-b-1"><a class="delete-trip" data-delete="{index}" href="#"><span class="fa fa-times-circle text-danger"></span></a><div class="panel-body p-x-0 text-center"><p class="h2 m-t-0"><span class="fa fa-{transport}"></span><br><small>${price}</small></p></div></div></div>',
     arrow: '<div class="col-xs-2 col-sm-1 text-center"><span class="fa fa-arrow-right"></span></div>',
   }
 
