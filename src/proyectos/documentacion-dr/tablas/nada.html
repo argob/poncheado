@@ -1,0 +1,124 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('/sites/default/files/styles/jumbotron/public/occovi_landing_encabezado.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Ejemplos</a></li>
+            <li class="active"><span>Tabla con filtros y buscador</span></li>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">Ejemplo de tabla</h1>
+      <p class="lead">Ejemplo de tabla con filtro, buscador y paginador</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+<div class="container">
+ <section>
+
+    <div id="ejemplos">
+      <table class="table table-spaced table-align-middle">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
+            <th style="width: 300px;"><a class="sort" data-sort="descripcion">Descripción <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="filtro">Filtro <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna1">Columna 1 <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="columna2">Columna 2 <span class="caret"></span></a></th>
+            <th style="width: 180px;"><a class="sort" data-sort="columna2">Comentario <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="{{ "js/tableMobile.js" | prepend: site.baseurl }}"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+    $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/111OA4kwmHGFh0HZZnW6gvx4t1j47qLwh3r61edrH4OU/1', function (data) {
+        window.ejemplos = data.feed.entry;
+        showejemplos("todos");
+    });
+
+    window.showejemplos = function(filtro){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( ejemplos, function( key, item ) {
+
+
+            html += '<tr>';
+            html += ' <td class="nombre"> <h6>'+ item.gsx$nombre.$t + '</h6></td>';
+            html += ' <td class="descripcion">'+ item.gsx$descripcion.$t + '</td>';
+            html += ' <td class="filtro">'+ item.gsx$filtro.$t + '</td>';
+            html += ' <td class="columna1">'+ item.gsx$columna1.$t + '</td>';
+            html += ' <td class="columna2">'+ item.gsx$columna2.$t + '</td> ';
+            html += ' <td class="columna2">'+ item.gsx$comentario.$t + '</td> ';
+            html += '</tr>';
+
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var ejemplosList = new List('ejemplos', listOptions);  
+               
+
+    }
+
+  $(document).ready( function() {
+    $("table").tableMobile();
+  });
+    
+
+});
+})(jQuery);
+
+
+
+
+
+
+
+</script>
+
+
