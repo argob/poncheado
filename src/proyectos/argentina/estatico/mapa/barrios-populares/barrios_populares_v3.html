@@ -514,7 +514,17 @@ var provincias = {
 
         $("#tipo-barrio").on("change", function(event) {
 
-
+          google.maps.event.addListener(map, 'zoom_changed', function() {
+              zoomChangeBoundsListener = 
+                  google.maps.event.addListener(map, 'bounds_changed', function(event) {
+                      if (this.getZoom() > 11 && this.initialZoom == true) {
+                          this.setZoom(11);
+                          this.initialZoom = false;
+                      }
+                  google.maps.event.removeListener(zoomChangeBoundsListener);
+              });
+          });
+          map.initialZoom = true; 
 
           var feature = map.data.getFeatureById( $(this).val() )
           var bounds = new google.maps.LatLngBounds();
