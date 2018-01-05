@@ -138,12 +138,12 @@ title: Mapa de Barrios Populares
               <div class="form-group">
                 <label class="control-label">Buscar barrios</label>
                 <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por dirección o provincia</a>
-                <select id="tipo-barrio" class="form-control chosen-select" data-placeholder="Seleccionar barrio popular">
+                <select id="tipo-barrio" class="form-control chosen-select" placeholder="Seleccionar barrio popular">
                   <option value="blank"></option>
                 </select>
               </div>
               <div class="form-group hidden">
-                <label class="control-label">buscar por dirección o provincia</label>
+                <label class="control-label">Buscar por dirección o provincia</label>
                 <a class="switch pull-right" href="#" style="color: #fff;text-decoration: underline;">Buscar por barrios</a>
                 <div style="margin-top: 10px;">
                   <input id="address" type="textbox" class="form-control" placeholder="Buscar por dirección" value="">
@@ -458,8 +458,8 @@ var provincias = {
     var markers = [];
     var detalles = [];
 
-    $.getJSON('http://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/barrios-populares/barrios-populares.txt', function (data) {
-    // $.getJSON('barrios-populares.txt', function (data) {
+    // $.getJSON('http://poncheado.herokuapp.com/proyectos/argentina/estatico/mapa/barrios-populares/barrios-populares.txt', function (data) {
+    $.getJSON('barrios-populares.txt', function (data) {
         console.log(data.features)
 
         var rows = data.features;
@@ -511,6 +511,16 @@ var provincias = {
         map.data.forEach(function(barrio){ 
           jQuery('#tipo-barrio').append('<option value="'+ barrio.getId() +'">'+ barrio.getProperty("nombre").replace(/"/gi, '') +', '+ barrio.getProperty("localidad") +', '+ barrio.getProperty("partido") +', '+ barrio.getProperty("provincia") +'  </option>');
         });
+
+        var my_options = $("#tipo-barrio option");
+        my_options.sort(function(a,b) {
+            if (a.text > b.text) return 1;
+            else if (a.text < b.text) return -1;
+            else return 0
+        })
+        $("#tipo-barrio").empty().append(my_options);
+        $('#tipo-barrio option:first-child').before('<option value="" selected="selected">Seleccionar barrio popular</option>');
+
 
         $("#tipo-barrio").on("change", function(event) {
 
