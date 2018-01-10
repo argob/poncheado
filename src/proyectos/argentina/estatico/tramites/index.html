@@ -87,7 +87,7 @@ layout: argentina
 
 
 <!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
-<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 
 <script>
 
@@ -97,8 +97,15 @@ $(document).ready(function () {
 
   $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY/1', function (data) {
       window.tramites = data.feed.entry;
-      showTramites("todos");
-      console.log(data);
+
+      var tipoTramites = $( "#tipo-tramites option:selected" ).data('tipotramites');
+
+      showTramites('todos');
+
+        showTramites(tipoTramites);
+        console.log(tipoTramites);
+
+      // console.log(data);
   });
 
   window.showTramites = function(tipoTramites){
@@ -115,7 +122,7 @@ $(document).ready(function () {
           html += ' <td data-insensitive="true"> <h6 class="titulo">'+ item.gsx$nombre.$t + '</h6></td>';
           html += ' <td class="resumen">'+ item.gsx$resumen.$t + '</td>';
           html += ' <td class="categoria">'+ item.gsx$categorías.$t + '</td>';
-          html += ' <td><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
+          html += ' <td><a class="btn btn-primary btn-sm" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
           html += '</tr>';
 
          }
@@ -126,7 +133,7 @@ $(document).ready(function () {
           html += ' <td data-insensitive="true"> <h6 class="titulo">'+ item.gsx$nombre.$t + '</h6></td>';
           html += ' <td class="resumen">'+ item.gsx$resumen.$t + '</td>';
           html += ' <td class="categoria">'+ item.gsx$categorías.$t + '</td>';
-          html += ' <td><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
+          html += ' <td><a class="btn btn-primary btn-sm" href="'+ item.gsx$url.$t + '">Ver más</a></td>';
           html += '</tr>';            
 
          }
@@ -184,7 +191,6 @@ $(document).ready(function () {
         }
       });
 
-
       jQuery('.filtered-search').on("keyup",function(event){
         event.preventDefault();
         var valueSearch = jQuery(".filtered-search").val();
@@ -192,6 +198,8 @@ $(document).ready(function () {
       });
 
   }
+
+
 
   $("#tipo-tramites").on("change", function() {
     var tipoTramites = $( "#tipo-tramites option:selected" ).data('tipotramites');
