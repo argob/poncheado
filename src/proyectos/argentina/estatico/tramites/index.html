@@ -191,11 +191,14 @@ $(document).ready(function () {
         }
       });
 
+      var valueSearch = jQuery(".filtered-search").val();
+
       jQuery('.filtered-search').on("keyup",function(event){
         event.preventDefault();
-        var valueSearch = jQuery(".filtered-search").val();
         tramitesList.filter(getAccentInsensitiveFilter("titulo", valueSearch));
       });
+
+        tramitesList.filter(getAccentInsensitiveFilter("titulo", valueSearch));
 
   }
 
