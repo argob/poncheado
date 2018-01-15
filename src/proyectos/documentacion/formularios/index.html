@@ -2,6 +2,56 @@
 layout: docs
 ---
 
+<style>
+
+input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus,
+.form-control:focus
+ {
+    outline: 2px solid #66afe9;
+    outline-offset: 0;
+    box-shadow: none;
+}
+.rc-label {
+    display: block;
+    float: left;
+    clear: none;
+    position: relative;
+    background: #dee0e2;
+    border: 1px solid #dee0e2;
+    padding: 15px 15px 15px 35px!important;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.rc-label:hover {
+    border-color: #0b0c0c;
+}
+.rc-label input {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+    cursor: pointer;
+    margin-left: -12px!important;
+}
+
+.rc-horizontal .rc-label {
+      float: none;
+      margin-bottom: 10px;
+}
+
+@media (min-width: 641px) {
+
+  .rc-label {
+      float: left;
+  }
+}
+
+</style>
+
+
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
@@ -223,20 +273,20 @@ layout: docs
                   <legend>Seleccione una opción</legend>
                 </div>  
                 <div class="checkbox">
-                  <label for="opcion1">
-                    <input id="opcion1" type="checkbox" name="opcionescheckbox" value="opcion1" />
+                  <label for="opcionCheckbox1">
+                    <input id="opcionCheckbox1" type="checkbox" name="opcionescheckbox" value="opcion1" />
                     Opcion 1
                   </label>
                 </div>  
                 <div class="checkbox">
-                  <label for="opcion2">
-                    <input id="opcion2" type="checkbox" name="opcionescheckbox" value="opcion2" />
+                  <label for="opcionCheckbox2">
+                    <input id="opcionCheckbox2" type="checkbox" name="opcionescheckbox" value="opcion2" />
                     Opcion 2
                   </label>
                 </div>  
                 <div class="checkbox">
-                  <label for="opcion3">
-                    <input id="opcion3" type="checkbox" name="opcionescheckbox" value="opcion3" />
+                  <label for="opcionCheckbox3">
+                    <input id="opcionCheckbox3" type="checkbox" name="opcionescheckbox" value="opcion3" />
                     Opcion 3
                   </label>
                 </div>  
@@ -248,10 +298,10 @@ layout: docs
 
               </div>
             </div>   
+          </div>
+        </div>   
 
-        <h4></h4>
 
-        <p class="lead"></p>
 
         <div class="docs-example">
           <div class="docs-content">
@@ -271,30 +321,24 @@ layout: docs
                       <pre class="docs-code">
                         <code class="language-html"> 
 &lt;form&gt;
+  &lt;label class=&quot;control-label&quot;&gt;Seleccione una opci&oacute;n&lt;/label&gt;
   &lt;fieldset&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;legend&gt;Seleccione una opci&oacute;n&lt;/legend&gt;
-    &lt;/div&gt;  
     &lt;div class=&quot;radio&quot;&gt;
-      &lt;label <strong>for=&quot;opcion1&quot;</strong>&gt;
-        &lt;input <strong>id=&quot;opcion1&quot;</strong> type=&quot;radio&quot; name=&quot;opciones&quot; <strong>value=&quot;opcion1&quot;</strong> /&gt;
+      &lt;label for=&quot;opcion1&quot; class=&quot;rc-label&quot;&gt;
+        &lt;input id=&quot;opcion1&quot; type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;opcion1&quot; /&gt;
         Opcion 1
       &lt;/label&gt;
-    &lt;/div&gt;  
-    &lt;div class=&quot;radio&quot;&gt;
-      &lt;label <strong>for=&quot;opcion2&quot;</strong>&gt;
-        &lt;input <strong>id=&quot;opcion2&quot;</strong> type=&quot;radio&quot; name=&quot;opciones&quot; <strong>value=&quot;opcion2&quot;</strong> /&gt;
+      &lt;label for=&quot;opcion2&quot; class=&quot;rc-label m-l-1&quot;&gt;
+        &lt;input id=&quot;opcion2&quot; type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;opcion2&quot;&quot; /&gt;
         Opcion 2
       &lt;/label&gt;
-    &lt;/div&gt;  
-    &lt;div class=&quot;radio&quot;&gt;
-      &lt;label <strong>for=&quot;opcion3&quot;</strong>&gt;
-        &lt;input <strong>id=&quot;opcion3&quot;</strong> type=&quot;radio&quot; name=&quot;opciones&quot; <strong>value=&quot;opcion3&quot;</strong> /&gt;
+      &lt;label for=&quot;opcion3&quot; class=&quot;rc-label m-l-1&quot;&gt;
+        &lt;input id=&quot;opcion3&quot; type=&quot;radio&quot; name=&quot;sexo&quot; value=&quot;opcion3&quot;&quot; /&gt;
         Opcion 3
       &lt;/label&gt;
     &lt;/div&gt;  
-  &lt;/fieldset&gt;  
-&lt;/form&gt;           
+  &lt;/fieldset&gt;
+&lt;/form&gt;            
                         </code>
                       </pre>
 
@@ -304,29 +348,23 @@ layout: docs
                   <div class="panel-body">
 
             <form>
+              <label class="control-label">Seleccione una opción</label>
               <fieldset>
-                <div class="form-group">
-                  <legend>Seleccione una opción</legend>
-                </div>  
                 <div class="radio">
-                  <label for="opcion1">
-                    <input id="opcion1" type="radio" name="opciones" value="opcion1" />
+                  <label for="opcion1" class="rc-label">
+                    <input id="opcion1" type="radio" name="sexo" value="opcion1" />
                     Opcion 1
                   </label>
-                </div>  
-                <div class="radio">
-                  <label for="opcion2">
-                    <input id="opcion2" type="radio" name="opciones" value="opcion2" />
+                  <label for="opcion2" class="rc-label m-l-1">
+                    <input id="opcion2" type="radio" name="sexo" value="opcion2"" />
                     Opcion 2
                   </label>
-                </div>  
-                <div class="radio">
-                  <label for="opcion3">
-                    <input id="opcion3" type="radio" name="opciones" value="opcion3" />
+                  <label for="opcion3" class="rc-label m-l-1">
+                    <input id="opcion3" type="radio" name="sexo" value="opcion3"" />
                     Opcion 3
                   </label>
                 </div>  
-              </fieldset>  
+              </fieldset>
             </form>       
 
                                
@@ -335,9 +373,101 @@ layout: docs
               </div>
             </div>   
 
-        <h4></h4>
 
-        <p class="lead"></p>
+        <div class="docs-example">
+          <div class="docs-content">
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title">
+                    <strong>Radio buttons - horizontal</strong>
+                    <a class="pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseHorizontal" aria-expanded="true" aria-controls="collapseHorizontal">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseHorizontal" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHorizontal">
+                  <div class="panel-body">
+                      <pre class="docs-code">
+                        <code class="language-html"> 
+&lt;form&gt;
+  &lt;label class=&quot;control-label&quot;&gt;Seleccione una opci&oacute;n&lt;/label&gt;
+  &lt;fieldset&gt;
+    &lt;div class=&quot;radio rc-horizontal&quot;&gt;
+        &lt;label for=&quot;opcion-1&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-1&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-1&quot; /&gt;
+          Opcion 1
+        &lt;/label&gt;
+        &lt;label for=&quot;opcion-2&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-2&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-2&quot; /&gt;
+          Opcion 2
+        &lt;/label&gt;
+        &lt;label for=&quot;opcion-3&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-3&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-3&quot; /&gt;
+          Opcion 3
+        &lt;/label&gt;
+        &lt;label for=&quot;opcion-4&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-4&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-4&quot; /&gt;
+          Opcion 4
+        &lt;/label&gt;
+        &lt;label for=&quot;opcion-5&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-5&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-5&quot; /&gt;
+          Opcion 5
+        &lt;/label&gt;
+        &lt;label for=&quot;opcion-6&quot; class=&quot;rc-label&quot;&gt;
+          &lt;input id=&quot;opcion-6&quot; type=&quot;radio&quot; name=&quot;opciones&quot; value=&quot;opcion-6&quot; /&gt;
+          Opcion 6
+        &lt;/label&gt;
+    &lt;/div&gt;  
+  &lt;/fieldset&gt;
+&lt;/form&gt;         
+                        </code>
+                      </pre>
+
+                  </div>
+                </div>
+
+                  <div class="panel-body">
+
+            <form>
+              <label class="control-label">Seleccione una opción</label>
+              <fieldset>
+                <div class="radio rc-horizontal">
+                    <label for="opcion-1" class="rc-label">
+                      <input id="opcion-1" type="radio" name="opciones" value="opcion-1" />
+                      Opcion 1
+                    </label>
+                    <label for="opcion-2" class="rc-label">
+                      <input id="opcion-2" type="radio" name="opciones" value="opcion-2" />
+                      Opcion 2
+                    </label>
+                    <label for="opcion-3" class="rc-label">
+                      <input id="opcion-3" type="radio" name="opciones" value="opcion-3" />
+                      Opcion 3
+                    </label>
+                    <label for="opcion-4" class="rc-label">
+                      <input id="opcion-4" type="radio" name="opciones" value="opcion-4" />
+                      Opcion 4
+                    </label>
+                    <label for="opcion-5" class="rc-label">
+                      <input id="opcion-5" type="radio" name="opciones" value="opcion-5" />
+                      Opcion 5
+                    </label>
+                    <label for="opcion-6" class="rc-label">
+                      <input id="opcion-6" type="radio" name="opciones" value="opcion-6" />
+                      Opcion 6
+                    </label>
+                </div>  
+              </fieldset>
+            </form>       
+
+                               
+                  </div>
+
+              </div>
+            </div>   
+
 
         <div class="docs-example">
           <div class="docs-content">
@@ -506,6 +636,68 @@ layout: docs
               </div>
             </div>   
 
+        <div class="docs-example">
+          <div class="docs-content">
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <strong>Campo Fecha</strong>                    
+                    <a class="pull-right" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+
+                    <div class="m-b-2">
+                      <p>Observe que los valores de <strong>for</strong> y <strong>id</strong> son los mismos, por lo que la asociación de la etiqueta con el elemento del formulario es adecuada. </p>
+                    </div>
+
+                      <pre class="docs-code">
+                        <code class="language-html">
+  
+&lt;form&gt;
+  &lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;exampleInputDate&quot;&gt;Fecha&lt;/label&gt;
+    &lt;input type=&quot;date&quot; class=&quot;form-control&quot; id=&quot;exampleInputDate&quot; placeholder=&quot;Email&quot;&gt;
+  &lt;/div&gt;
+&lt;/form&gt; 
+
+                        </code>
+                      </pre>
+
+                  </div>
+                </div>
+
+                  <div class="panel-body">
+
+                        <form>
+                          <div class="form-group">
+                            <label for="exampleInputDate">Fecha</label>
+                            <input type="date" class="form-control" id="exampleInputDate" placeholder="Email">
+                          </div>
+                        </form>          
+
+                               
+                  </div>
+
+              </div>
+            </div>        
+
+ 
+                    
+
+
+
+          </div>
+
+
+
+
+      </div>   
 
 
         <div class="docs-example">
