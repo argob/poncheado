@@ -242,10 +242,10 @@ a {
           <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
           <li>
             <div class="input-group">
-              <label for="busqueda"><span class="sr-only">Buscar Trámite</span></label>
-              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <label for="buscar"><span class="sr-only">Buscar trámites, servicios o áreas ...</span></label>
+              <input id="buscar" type="text" class="form-control" aria-hidden=true placeholder="Buscar trámites, servicios o áreas ...">
               <span class="input-group-btn">
-                <button class="btn btn-primary" id="buscar" type="button"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
+                <button class="btn btn-primary" id="buscar-btn" type="button"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
               </span>
             </div>
           </li>
@@ -304,8 +304,8 @@ a {
 
 <script type="text/javascript">
 
-  var busqueda = document.getElementById('busqueda');
-  var buscar = document.getElementById('buscar');
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
   buscar.onclick = function () {
     var buscado = busqueda.value;
     location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
