@@ -8,8 +8,6 @@ layout: argentina
       <div class="col-md-8 col-md-offset-2 text-center">
         <h1><br>Página en mantenimiento</h1>
         <p class="lead margin-40">Descripcion de sitio en mantenimiento.</p>
-        <div data-render="mensaje"></div>
-        <div data-render="botones"></div>
         <p class="margin-60"><a href="/" class="btn btn-primary">Ir la página de inicio de Argentina.gob.ar</a></p>
       </div>
     </div>
@@ -21,8 +19,8 @@ layout: argentina
   $(function(){
 
     var templates = {
-      mensaje: `<p class="lead margin-40">{mensaje}</p>`,
-      boton: `<a href="{url}" class="btn btn-primary">{nombre}</a>&nbsp;&nbsp;`
+      mensaje: `<p class="margin-40">{mensaje}</p>`,
+      boton: `<a href="{url}" class="btn btn-primary m-r-1">{nombre}</a>`
     }
 
     window.paginas = [];
@@ -64,20 +62,14 @@ layout: argentina
     var render = {
       mensajes: function( ){
 
-        $('[data-render=mensaje]').html('');
-
         $.each(paginas, function(index, pagina){
 
           if(window.location.href.indexOf(pagina.nombre) > -1) {
-
-          	alert("your url contains the name sube");
 
             var html = templates.mensaje;
 
             html = html.replace(/{nombre}/gi, pagina.nombre)
             .replace(/{mensaje}/gi, pagina.mensaje);
-
-            $('[data-render=mensaje]').append( html );
 
             $.each(pagina.botones, function(index, boton){
 
@@ -86,9 +78,12 @@ layout: argentina
               htmlBoton = htmlBoton.replace(/{nombre}/gi, boton.nombre)
               .replace(/{url}/gi, boton.url);
 
-              $('[data-render=botones]').append( htmlBoton );
+              $(htmlBoton).insertAfter( '.lead' );
 
             });
+
+            $(html).insertBefore( '.lead' );
+
 		}
 
         });
