@@ -5,8 +5,14 @@ layout: mi-argentina
 {% include mi-argentina/usuario_prueba.html hijo="Trámites y consultas" %}
 
 <style type="text/css">
+
+    .panels-row > div .panel {
+      width: 100%;
+      border: 1px solid #ccc;
+    }
+
     .panel-border-primary {
-        border-top: 8px solid rgba(0, 124, 173, 0.7);
+        border-top: 8px solid rgba(0, 124, 173, 0.7)!important;
     }
 
     .text-primary{
@@ -14,7 +20,7 @@ layout: mi-argentina
     }
 
     .panel-border-arandano {
-    border-top: 8px solid rgba(189, 30, 97, 0.7);
+    border-top: 8px solid rgba(189, 30, 97, 0.7)!important;
     }
 
     .text-arandano{
@@ -22,7 +28,7 @@ layout: mi-argentina
     }
 
     .panel-border-lima {
-    border-top: 8px solid rgba(178, 191, 0, 0.7);
+    border-top: 8px solid rgba(178, 191, 0, 0.7)!important;
     }
 
     .text-lima{
@@ -44,66 +50,43 @@ layout: mi-argentina
       padding: 0;
     }
 
-    .panel-heading-imagen div{
+    .panel-heading-imagen{
       width: 100%;
       height: 200px;
       background-size: cover;
       background-position: center;
     }
 
-    .panel-heading-imagen h2{
-      padding: 5px 20px;
-    }
 
     .panel-nolink {
     box-shadow: none;
 }
 
-/*
+  @media (min-width: 991px){
 
-    @media (min-width: 991px){
-
-    .panelfoot{
-      height: 300px;
-    }
-
-    .panelfoot-grande{
-      height: 500px;
+    .col-md-6 .panel-body{
+      height: 210px;
     }
 
   }
 
-  @media (min-width: 561px) and (max-width: 990px){
+  @media (min-width: 768px) and (max-width: 990px){
 
-    .panelfoot{
-      height: 530px;
+    .col-md-6 .panel-body{
+      height: 250px;
     }
 
   }
-
-  @media (min-width: 381px) and (max-width: 560px){
-
-    .panelfoot{
-      height: 440px;
-    }
-
-  }
-
-
-  @media (max-width: 380px){
-
-    .panelfoot{
-      height: 370px;
-    }
-
-  }
-
-  */
 
   .panel-heading .media-left,
   .panel-heading .media-right{
     padding-top: 7px;
   }
+
+  .media-left, .media-right, .media-body{
+    display: table-cell!important;  
+  }
+  
 
   .panel h2, .panel .h2 {
     font-size: 1.3em;
@@ -162,7 +145,7 @@ layout: mi-argentina
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
 
                         <div class="panel panel-default panel-border-arandano panel-nolink">
 
@@ -201,7 +184,7 @@ layout: mi-argentina
                     </div>
 
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="panel panel-default panel-border-lima panel-nolink">
 
                             <div class="panel-heading">
@@ -217,6 +200,10 @@ layout: mi-argentina
                                         <a href="#"><i class="fa fa-ellipsis-v text-lima"></i></a>
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="panel-body">
 
                             </div>
 
@@ -273,13 +260,11 @@ layout: mi-argentina
                     <div class="col-md-6">
                         <div class="panel panel-default panel-nolink">
                           
-                          <div class="panel-heading panel-heading-imagen">
-                            <div style="background-image:url('img/placeholder_2.jpg');"></div>
-                            <h2>Vacunas</h2>
+                          <div class="panel-heading panel-heading-imagen" style="background-image:url('img/placeholder_2.jpg');">
                           </div>
                             
-
                             <div class="panel-body">
+                              <h2>Vacunas</h2>
                                 <h3>Vacuna anual <span class="text-danger">(aplicada 0 de 1)</span></h3>
                                 <p>Es recomendable que esta vacuna se aplique entre marzo y junio</p>
                             </div>
@@ -294,13 +279,12 @@ layout: mi-argentina
                     <div class="col-md-6">
                         <div class="panel panel-default panel-nolink">
 
-                          <div class="panel-heading panel-heading-imagen">
-                            <div style="background-image:url('img/placeholder_2.jpg');"></div>
-                            <h2>Mis cursos</h2>
+                          <div class="panel-heading panel-heading-imagen" style="background-image:url('img/placeholder_2.jpg');">
                           </div>
                             
                             <div class="panel-body">
-                                <p>Estos son los cursos que estas realizando actualmente.</p>
+                              <h2>Mis cursos</h2>
+                              <p>Estos son los cursos que estas realizando actualmente.</p>
                             </div>
 
                             <div class="panel-footer">
