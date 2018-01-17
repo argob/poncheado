@@ -1,0 +1,103 @@
+---
+layout: argentina
+---
+
+<div class="container">
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h1><br>Página en mantenimiento</h1>
+        <p class="lead margin-40">Descripcion de sitio en mantenimiento.</p>
+        <div data-render="mensaje"></div>
+        <div data-render="botones"></div>
+        <p class="margin-60"><a href="/" class="btn btn-primary">Ir la página de inicio de Argentina.gob.ar</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      mensaje: `<p class="lead margin-40">{mensaje}</p>`,
+      boton: `<a href="{url}" class="btn btn-primary">{nombre}</a>&nbsp;&nbsp;`
+    }
+
+    window.paginas = [];
+
+    $.ajax({
+	  url: 'https://spreadsheets.google.com/feeds/list/1qqOExbFX8YMMVOUZDbOZm2Kh9r8fieVvpqkbSMmybXI/1/public/values?alt=json',
+      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1qqOExbFX8YMMVOUZDbOZm2Kh9r8fieVvpqkbSMmybXI/1',
+      data: 'json',
+      success: function(response){
+        // console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+          if( row.gsx$tipo.$t == "pagina"  ){
+
+            paginas.push({
+              nombre: row.gsx$nombre.$t,
+              mensaje: row.gsx$mensaje.$t,
+              botones: []
+            });
+
+          } else if( row.gsx$tipo.$t == "boton" ){
+
+            paginas[ paginas.length - 1 ].botones.push({
+              nombre: row.gsx$nombre.$t,
+              url: row.gsx$url.$t
+            });
+
+          }
+
+        })
+
+        render.mensajes();
+
+      }
+    });
+
+
+    var render = {
+      mensajes: function( ){
+
+        $('[data-render=mensaje]').html('');
+
+        $.each(paginas, function(index, pagina){
+
+          if(window.location.href.indexOf(pagina.nombre) > -1) {
+
+          	alert("your url contains the name sube");
+
+            var html = templates.mensaje;
+
+            html = html.replace(/{nombre}/gi, pagina.nombre)
+            .replace(/{mensaje}/gi, pagina.mensaje);
+
+            $('[data-render=mensaje]').append( html );
+
+            $.each(pagina.botones, function(index, boton){
+
+              var htmlBoton = templates.boton;
+
+              htmlBoton = htmlBoton.replace(/{nombre}/gi, boton.nombre)
+              .replace(/{url}/gi, boton.url);
+
+              $('[data-render=botones]').append( htmlBoton );
+
+            });
+		}
+
+        });
+
+      }   
+    }
+
+  });
+
+     
+</script>
+
