@@ -11,7 +11,7 @@ layout: argentina
         <div class="col-md-8">    
           <div class="form-group">
             <label for="">Buscá Trámites y Servicios</label>
-            <input class="form-control filtered-search" placeholder="Buscá por nombre o resumen">
+            <input class="form-control filtered-search" placeholder="Buscá por nombre de trámite">
           </div>
         </div>
         <div class="col-md-4">
@@ -193,14 +193,11 @@ $(document).ready(function () {
         }
       });
 
-      var valueSearch = jQuery(".filtered-search").val();
-
       jQuery('.filtered-search').on("keyup",function(event){
         event.preventDefault();
+        var valueSearch = jQuery(".filtered-search").val();
         tramitesList.filter(getAccentInsensitiveFilter("titulo", valueSearch));
       });
-
-        tramitesList.filter(getAccentInsensitiveFilter("titulo", valueSearch));
 
   }
 
