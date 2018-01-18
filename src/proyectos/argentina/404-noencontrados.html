@@ -66,6 +66,13 @@ layout: argentina
               </div>
             </div>
           </div>
+
+
+          <hr>
+
+          <div data-render="tarjetas"></div>
+
+
         </div>
 
         <p class="text-center text-muted padding-40">
@@ -78,3 +85,87 @@ layout: argentina
     </div>
   </section>
 </div>
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      tarjeta: `<div class="col-sm-6 col-md-3">
+                    <div class="panel panel-default panel-disabled">
+                      <div class="panel-heading panel-heading-no-padding">
+                        <img class="img-responsive" src="http://static.noencontrado.org/img/{id}.jpg" alt="{nombre} {apellido}">
+                      </div>
+                      <div class="panel-body">
+                        <h3> {nombre} {apellido}<br> <small>{residencia}</small> </h3>
+                        <p> Desaparecida desde el <strong>{fecha_desaparicion}</strong>. Actualmente tiene <strong>{edad} años</strong> en la foto tenía {edad_foto} años.</p>
+                      </div>
+                    </div>
+                  </div>`
+    }
+
+    window.personas = [];
+
+    $.ajax({
+      url: 'http://api.noencontrado.org/v1/search.json',
+      data: 'json',
+      success: function(response){
+        console.log(response);
+
+        var dataPersonas = JSON.parse(response);
+
+        $.each(dataPersonas, function(index, row){
+
+            personas.push({
+              index: index,
+              id: row.id,
+              nombre: row.nombre,
+              apellido: row.apellido,
+              fecha_desaparicion: row.fecha_desaparicion,
+              fecha_foto: row.fecha_foto,
+              edad_foto: row.edad_foto,
+              fecha_nacimiento: row.fecha_nacimiento,
+              residencia: row.residencia,
+              edad: row.edad
+            });
+
+        })
+
+        render.tarjetas();
+
+      }
+    });
+
+
+    var render = {
+      tarjetas: function( ){
+
+        $('[data-render=tarjetas]').html('');
+
+        $.each(personas, function(index, persona){
+
+            var html = templates.tarjeta;
+
+            html = html.replace(/{id}/gi, persona.id)
+            .replace(/{index}/gi, index)
+            .replace(/{nombre}/gi, persona.nombre)
+            .replace(/{apellido}/gi, persona.apellido)
+            .replace(/{fecha_desaparicion}/gi, persona.fecha_desaparicion)
+            .replace(/{fecha_foto}/gi, persona.fecha_foto)
+            .replace(/{edad_foto}/gi, persona.edad_foto)
+            .replace(/{fecha_nacimiento}/gi, persona.fecha_nacimiento)
+            .replace(/{residencia}/gi, persona.residencia)
+            .replace(/{edad}/gi, persona.edad);
+
+            $('[data-render=tarjetas]').append( html );
+
+        });
+
+      }   
+    }
+
+  });
+
+     
+</script>
+
