@@ -1,0 +1,100 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario-2.html hijo="Basicos" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="basicos" %}
+
+      </aside>
+      <div class="col-md-8">
+
+       
+
+
+                <div class="panel panel-default panel-border-gray">
+                    <div class="panel-body">
+                        <h2>Agregá personas para hacer el seguimiento de vacunas</h2>
+
+                        <hr class="m-y-1">
+
+                        <form method="post">
+                            <div class="form-group">
+                                <label class="control-label">Nombre o apodo</label>
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Fecha de Nacimiento</label>
+                                <input class="form-control" type="date" name="birthdate" placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <a href="" class="btn btn-success">Guardar</a>
+                                <a href="#" class="btn btn-link m-l-1">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="panel panel-default panel-border-gray">
+                    <div class="panel-body">
+                        <h2>Agregá personas para hacer el seguimiento de vacunas</h2>
+
+                        <hr class="m-y-1">
+
+                         <div class="media">
+                            <div class="media-left p-x-1 hidden-xs">
+                                <i class="fa fa-user fa-2x text-muted m-t-1"></i>
+                            </div>
+                            <div class="media-body media-middle">
+                                <small>Persona agregada</small>
+                                <h3 class="m-t-0">Nacho</h3>
+                                <p>5 años</p>
+                                <p><a href="#">Modificar</a> <a href="#">Desvincular</a></p>
+
+                            </div>
+                        </div>
+
+                        <hr class="m-y-1">
+
+                        <h3>Agregá otras personas</h3>
+                        <p>Ingresá los datos de las personas que desees agregar. </p>
+
+                        <form method="post">
+                            <div class="form-group">
+                                <label class="control-label">Nombre o apodo</label>
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Fecha de Nacimiento</label>
+                                <input class="form-control" type="date" name="birthdate" placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <a href="" class="btn btn-success">Guardar</a>
+                                <a href="#" class="btn btn-link m-l-1">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+  $('[data-toggle="tooltip"]').tooltip(); 
+
+</script>
+
