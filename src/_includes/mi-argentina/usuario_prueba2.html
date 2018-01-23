@@ -4,19 +4,25 @@
       background-color: rgba(0, 124, 173, 0.7)!important;
     }
     
-    .jumbotron .jumbotron_bar .breadcrumb li a,
-    .jumbotron .jumbotron_bar .breadcrumb li span {
+    .jumbotron-miargentina .jumbotron_bar .breadcrumb li a,
+    .jumbotron-miargentina .jumbotron_bar .breadcrumb li span {
         font-size: 20px;
     }
     
-    .jumbotron h1,
-    .jumbotron .h1 {
+    .jumbotron-miargentina h1,
+    .jumbotron-miargentina .h1 {
+        margin-top: 22px;
         font-size: 25px;
         font-weight: 500;
         display: inline-block;
+        margin-left: -34px;
+    }
+
+    .jumbotron-miargentina h1 span{
+        font-size: 16px;
     }
     
-    .jumbotron p {
+    .jumbotron-miargentina p {
         font-weight: 400;
         font-size: 18px;
     }
@@ -27,7 +33,7 @@
       background-position: center;
     }
     
-    .jumbotron .btn-link {
+    .jumbotron-miargentina .btn-link {
         color: #007cad!important;
     }
     
@@ -47,29 +53,35 @@
         width: auto;
     }
 
+    .mi-perfil{
+      margin-top: 20px;
+    }
+
+
 </style>
 
-<section class="jumbotron">
+<section class="jumbotron jumbotron-miargentina">
   <div class="container">
     <div class="row">
 
         <div class="col-md-12 jumbotron-info">
-            <div class="jumbotron_bar jumbotron-bar-transparent">
+            <div class="jumbotron_bar jumbotron-bar-transparent p-y-0">
               <div class="container">
                 <div class="row">
-                    <div class="col-md-2 p-y-1">
+                    <div class="col-md-1 p-y-1 foto-user">
                         <div class="image-cropper">
                             <img src="img/placeholder.jpg">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <h1>María Paula Garibaldi <i class="fa fa-check-circle" aria-hidden="true"></i></h1>
+                    <div class="col-md-9">
+                        <h1>María Paula Garibaldi <i class="fa fa-check-circle" aria-hidden="true"></i> <span class="m-l-2">CUIL 27123456789</span></h1>
                     </div>
-                    <div class="col-md-4">
-                      </div>
-                    <div class="col-md-2">
-                        <p>CUIL 27123456789</p>
-                        <a class="btn btn-link btn-sm" href="#"><i class="fa fa-gear"></i> Mi perfil</a>
+                    <div class="col-md-2 text-right mi-perfil p-r-0 dropdown">
+                      <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-gear"></i> Mi perfil</button>
+                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#"><i class="fa fa-cog"></i> Mis datos personales</a></li>
+                        <li><a href="#"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                      </ul>
                     </div>
                 </div>
               </div>
