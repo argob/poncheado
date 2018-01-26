@@ -18,7 +18,7 @@ layout: argentina
       <li>
         <div class="dropdown dropdown-idioma">
           <a href="#" class="dropdown-toggle" id="idioma-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Elegir idioma
+            <i class="flag-icon flag-icon-es"></i>&nbsp; Español
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="idioma-menu">
@@ -107,7 +107,9 @@ layout: argentina
 
 <script>
   $(".dropdown-menu li a").click(function(){
-    $(this).parents(".dropdown-idioma").find('#idioma-menu').html($(this).text() + ' <span class="caret"></span>');
+    var flagIconName = $(this).find('i').attr('class')
+    $(this).parents(".dropdown-idioma").find('#idioma-menu').html(' <i class="'+ flagIconName + '"></i>'+ $(this).text() + ' <span class="caret"></span>');
     $(this).parents(".dropdown-idioma").find('#idioma-menu').val($(this).data('value'));
   });  
 </script>
+
