@@ -19,7 +19,7 @@ button:focus,
     float: left;
     clear: none;
     position: relative;
-    background: #dee0e2;
+    background: #ffffff;
     border: 1px solid #dee0e2;
     padding: 15px 15px 15px 35px!important;
     margin-bottom: 10px;
@@ -28,6 +28,7 @@ button:focus,
 }
 .rc-label:hover {
     border-color: #0b0c0c;
+    background: #dee0e2;
 }
 .rc-label input {
     position: absolute;
@@ -41,6 +42,12 @@ button:focus,
       float: none;
       margin-bottom: 10px;
 }
+
+.rc-label.active {
+    border-color: #0b0c0c;
+    background: #dee0e2;
+}
+
 
 @media (min-width: 641px) {
 
@@ -881,5 +888,9 @@ button:focus,
 <script type="text/javascript">
   $(document).ready(function() {
       $('.select2').select2();
+      $("input:radio").on("click", function() {
+        $(this).parent().addClass('active').siblings().removeClass('active'); 
+      });    
+
   });  
 </script>

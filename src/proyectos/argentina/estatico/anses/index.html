@@ -1,0 +1,145 @@
+---
+layout: argentina
+---
+
+<style>
+
+input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus,
+.form-control:focus
+ {
+    outline: 2px solid #66afe9;
+    outline-offset: 0;
+    box-shadow: none;
+}
+.rc-label {
+    display: block;
+    float: left;
+    clear: none;
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #dee0e2;
+    padding: 15px 15px 15px 35px!important;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.rc-label:hover {
+    border-color: #0b0c0c;
+    background: #dee0e2;
+}
+.rc-label input {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+    cursor: pointer;
+    margin-left: -12px!important;
+}
+.rc-label.active {
+    border-color: #0b0c0c;
+    background: #dee0e2;
+}
+
+@media (min-width: 641px) {
+
+	.rc-label {
+	    float: left;
+	}
+}
+
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <div class="col-md-6 col-md-offset-3 p-t-3">
+        
+        <h2 class="h3 m-y-0">Consulta de constancia de CUIL</h2>
+        <small>Permite ver y descargar tu Constancia de CUIL de ANSES</small>
+
+
+        <form class="m-y-2">
+
+			<div class="form-group row">
+	            <div class="col-xs-4">
+	                <label class="control-label">Tipo de Documento</label>
+	                <select class="form-control" name="dni_type">
+	                    <option value=""></option>
+	                    <option value="DNI">DNI</option>
+	                    <option value="LE">Libreta de Enrolamiento</option>
+	                    <option value="LC">Libreta Cívica</option>
+	                </select>
+	            </div>
+	            <div class="col-xs-8">
+	                <label class="control-label">Número de Documento</label>
+	                <input class="form-control" type="text" name="dni_number" value="">
+	            </div>
+	        </div>
+
+          <div class="form-group">
+            <label class="control-label">Nombre</label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Apellido</label>
+            <input type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Sexo</label><br>
+            <label><small>Completá este dato según lo que figura en tu documento</small></label>
+            <fieldset>
+              <div class="radio">
+                <label for="opcion1" class="rc-label">
+                  <input id="opcion1" type="radio" name="sexo" value="femenino" />
+                  Femenino
+                </label>
+                <label for="opcion2" class="rc-label m-l-1">
+                  <input id="opcion2" type="radio" name="sexo" value="masculino" />
+                  Masculino
+                </label>
+              </div>  
+            </fieldset>
+          </div>
+
+			<div class="form-group">
+	            <label class="control-label" for="input-5">Fecha de nacimiento * </label>
+				<div class="form-group">
+					<div class="input-group date">
+						<span class="input-group-addon">
+							<span class="fa fa-calendar"></span>
+						</span>
+						<input type="text" class="form-control" placeholder="dd/mm/aaaa" data-mask="00/00/0000" autocomplete="off" maxlength="10">
+					</div>						
+				</div>		            
+	        </div>          
+
+	    	<div class="m-b-2">
+        		<p><a href="index-2.html" class="btn btn-block btn-success btn-md">Consultar</a></p>
+	    	</div>	    
+	        
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
+
+<script type="text/javascript">
+	$('.date').datepicker({language: 'es'});
+    $("input:radio").on("click", function() {
+      $(this).parent().addClass('active').siblings().removeClass('active'); 
+    });    
+
+
+
+</script>
