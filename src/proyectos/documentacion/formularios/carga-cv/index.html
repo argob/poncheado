@@ -2,6 +2,61 @@
 layout: argentina
 ---
 
+<style>
+
+input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus,
+.form-control:focus
+ {
+    outline: 2px solid #66afe9;
+    outline-offset: 0;
+    box-shadow: none;
+}
+.rc-label {
+    display: block;
+    float: left;
+    clear: none;
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #dee0e2;
+    padding: 15px 15px 15px 35px!important;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.rc-label:hover {
+    border-color: #0b0c0c;
+    background: #dee0e2;
+}
+.rc-label input {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+    cursor: pointer;
+    margin-left: -12px!important;
+}
+
+.rc-horizontal .rc-label {
+      float: none;
+      margin-bottom: 10px;
+}
+
+.rc-label.active {
+    border-color: #0b0c0c;
+    background: #dee0e2;
+}
+
+
+@media (min-width: 641px) {
+
+  .rc-label {
+      float: left;
+  }
+}
+
+</style>
 
 <div class="container">
   <div class="row">
@@ -63,11 +118,11 @@ layout: argentina
             <label><small>Completá este dato según lo que figura en tu documento</small></label>
             <fieldset>
               <div class="radio">
-                <label for="opcion1">
+                <label for="opcion1" class="rc-label">
                   <input id="opcion1" type="radio" name="sexo" value="femenino" />
                   Femenino
                 </label>
-                <label for="opcion2" class="m-l-1">
+                <label for="opcion2" class="rc-label m-l-1">
                   <input id="opcion2" type="radio" name="sexo" value="masculino" />
                   Masculino
                 </label>
@@ -91,11 +146,11 @@ layout: argentina
 
             <fieldset>
               <div class="radio">
-                <label for="opcion1">
+                <label for="opcion1" class="rc-label">
                   <input id="opcion1" type="radio" name="sexo" value="femenino" />
                   Fijo
                 </label>
-                <label for="opcion2" class="m-l-1">
+                <label for="opcion2" class="rc-label m-l-1">
                   <input id="opcion2" type="radio" name="sexo" value="masculino" />
                   Movil
                 </label>
@@ -235,3 +290,12 @@ layout: argentina
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $("input:radio").on("click", function() {
+        $(this).parent().addClass('active').siblings().removeClass('active'); 
+      });    
+
+  });  
+</script>
