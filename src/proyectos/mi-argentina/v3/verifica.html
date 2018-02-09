@@ -1,0 +1,43 @@
+---
+layout: mi-argentina
+---
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <h2>Verificá tu cuenta de Mi Argentina</h2>
+      <p>Por favor <b>ingresá tu número de trámite.</b> Sólo tenés que ingresar los números de la fila superior como aparece indicado en la imagen.</p>
+
+      <img src="img/dni_detalle.jpg" alt="DNI argentina" style="max-width: 100%;">
+      
+      <div class="well p-x-3 p-y-2">
+        <form method="get" action="login_2.html">
+          <div class="form-group">
+            <label class="control-label lead" for="id_number">Número de trámite</label>
+            <input id="id_number" class="form-control input-lg" type="number" name="id_number"> 
+          </div>
+          <div class="form-group m-b-0">
+            <button type="submit" class="btn btn-success">Continuar &nbsp; <i class="fa fa-arrow-right"></i></button>
+          </div>
+          </form>
+        
+      </div>
+      <p><a href="#">Ingresar con otro CUIL</a></p>
+      <p><a href="#">Términos y condiciones</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(function(){
+    var next = false;
+    $('.well button').on('click', function(event){
+      if(!next){
+        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número que ingresaste no está registrado. Por favor intentá de nuevo o <a href="#">registrate</a>.</span>');
+        $('#id_number').parent().addClass('has-error');
+        next = true;
+        return false;
+      }
+    });
+  });
+</script>
