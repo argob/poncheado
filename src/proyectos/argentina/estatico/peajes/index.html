@@ -96,7 +96,7 @@ layout: argentina
       
       </div>
 
-      <table class="table table-spaced table-align-middle">
+      <table class="table table-spaced table-align-middle table-mobile">
         <thead>
           <tr>
             <th style="width: 150px;"><a class="sort" data-sort="acceso">Acceso o ruta <span class="caret"></span></a></th>
@@ -160,29 +160,29 @@ $(document).ready(function () {
             var franja = '<td class="franja">'+ item.gsx$franja.$t + '</td>'; 
 
             if (item.gsx$comentario.$t != "") {
-              franja = '<td class="franja" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body">'+ item.gsx$franja.$t + '</td>';
+              franja = '<td class="franja" data-placement="right" data-toggle="tooltip" title="'+ item.gsx$comentario.$t + '" data-container="body"><span class="td-label">Franja Horaria</span>'+ item.gsx$franja.$t + '</td>';
             }
 
            if( item.gsx$ejes.$t == vehiculo || item.gsx$acceso.$t == vehiculo ){
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
-            html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
+            html += ' <td class="acceso"><span class="td-label">Acceso o ruta</span> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
+            html += ' <td class="peaje"><span class="td-label">Peaje</span>'+ item.gsx$peaje.$t + '</td>';
+            html += ' <td class="ejes"><span class="td-label">Ejes de vehículo</span>'+ item.gsx$ejes.$t + '</td>';
+            html += ' <td class="pago"><span class="td-label">Modo de pago</span>'+ item.gsx$pago.$t + '</td>';
             html += franja;
-            html += ' <td class="tarifa">'+ item.gsx$tarifa.$t + '</td>';
+            html += ' <td class="tarifa"><span class="td-label">Tarifa</span>'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
           }
            else if  (vehiculo == "todos") {
 
             html += '<tr>';
-            html += ' <td class="acceso"> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
-            html += ' <td class="peaje">'+ item.gsx$peaje.$t + '</td>';
-            html += ' <td class="ejes">'+ item.gsx$ejes.$t + '</td>';
-            html += ' <td class="pago">'+ item.gsx$pago.$t + '</td>';
+            html += ' <td class="acceso"><span class="td-label">Acceso o ruta</span> <h6>'+ item.gsx$acceso.$t + '</h6></td>';
+            html += ' <td class="peaje"><span class="td-label">Peaje</span>'+ item.gsx$peaje.$t + '</td>';
+            html += ' <td class="ejes"><span class="td-label">Ejes de vehículo</span>'+ item.gsx$ejes.$t + '</td>';
+            html += ' <td class="pago"><span class="td-label">Modo de pago</span>'+ item.gsx$pago.$t + '</td>';
             html += franja;
-            html += ' <td class="tarifa"><strong class="text-muted">$ '+ item.gsx$tarifa.$t + '</strong></td>';
+            html += ' <td class="tarifa"><span class="td-label">Tarifa</span>'+ item.gsx$tarifa.$t + '</td>';
             html += '</tr>';
           }
 
