@@ -1,0 +1,99 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('/sites/default/files/');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/salud">Salud</a></li>
+            <li class="active">Incucai</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <h1>Suma tu volundad de donación de órganos</h1>
+          <p>Donar órganos es donar vida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+ 
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row numbers">
+              <div class="col-md-6">
+                <div class="h2 text-tomate" id="show-data-01"></div>
+                  <p>Personas necesitan un trasplante para salvar su vida <strong>en este momento</strong></p>
+              </div>
+              <div class="col-md-6">
+                <div class="h2 text-tomate" id="show-data-02"></div>
+                  <p>Cantidad de trasplantes de realizados <strong>en el año en curso (2018)</strong></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="credits text-center">
+                    <p><strong>Fuente:</strong> CRESI | Central de reportes y estadisticas</p>
+                </div>
+              </div>
+            </div>
+      </div> 
+    </div> 
+  </section>           
+  
+<script>
+
+jQuery(document).ready(function($){
+
+    $.ajax({
+      url: 'http://ws-rest.incucai.gov.ar/publicIncucaiApi/v1.0/webmaster/paisEstadisticaPorHora',
+      data: 'json',
+      success: function(response){
+        console.log(response);
+        window.datos = response;
+        showDatos();
+      }
+    });
+
+
+    window.showDatos = function(filtro){
+        var showData01 = $('#show-data-01');
+        var showData02 = $('#show-data-02');
+
+        var htmlshowData01 = '';
+        var htmlshowData02 = '';
+
+        console.log(datos.nro_le_organo)
+        console.log(datos.nro_trasplante)
+
+        htmlshowData01 += datos.nro_le_organo;
+        htmlshowData02 += datos.nro_trasplante;
+
+        showData01.empty();
+        showData01.append(htmlshowData01);
+
+        showData02.empty();
+        showData02.append(htmlshowData02);
+
+    }
+    
+
+});
+
+
+</script>
+
+
