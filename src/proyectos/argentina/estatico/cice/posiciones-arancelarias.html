@@ -1,0 +1,139 @@
+---
+layout: argentina
+---
+
+<section class="jumbotron" style="background-image: url('img/');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span> Central de Información de Comercio Exterior  </span></li>
+          </ol>          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body p-y-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="text-center"> Central de Información de Comercio Exterior</h2>
+          <div class="row m-y-3">
+    		<div class="col-md-6">
+	          <div class="form-group m-b-0">
+	            <label for="">Tipo de operación</label>
+	            <select id="tipo-operacion" class="form-control">
+	              <option value="Todas">Todas</option>
+	              <option value="Operacion1">Operación 1</option>
+	              <option value="Operacion2">Operación 2</option>
+	              <option value="Operacion3">Operación 3</option>
+	            </select>
+	          </div>
+	        </div>
+	        <div class="col-md-6">
+	          <div class="form-group m-b-0">
+	            <label for="buscar"><span>Búsqueda por posición arancelaria o palabra clave ...</span></label>
+				<div class="input-group">
+	              <input id="buscar" type="text" class="form-control" aria-hidden="true" placeholder="Búsqueda por posición arancelaria o palabra clave ...">
+	              <span class="input-group-btn">
+	                <button class="btn btn-primary" id="buscar-btn" type="button"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
+	              </span>
+	            </div>
+	          	<a href="">Seleccione por sección / capítulo</a>
+	          </div>
+	        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<table class="table table-bordered table-align-middle table-mobile m-t-2">
+	                <thead>
+	                  <tr> 
+	                  	<th>Posición arancelaria</th>
+	                    <th>Descripción</th>
+	                    <th>DE</th>
+	                    <th>RE</th>
+	                    <th>SIMI</th>
+	                  </tr>
+	                </thead>
+	                <tbody class="datos">
+		                <tr data-toggle="collapse" data-target="#collapseOne">
+		                    <td>
+		                      <span class="td-label">Posición arancelaria</span>
+		                      <a data-toggle="collapse" data-target="#collapseOne">
+								<i class="fa fa-plus text-success" aria-hidden="true"></i>
+							  </a> 1806.31
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Descripción</span>
+		                      --Rellenos
+		                    </td>
+		                  <td>
+		                  	<span class="td-label">DE</span>
+		                  </td> 
+		                  <td>
+		                  	<span class="td-label">RE</span>
+		                  </td> 
+		                  <td>
+		                  	<span class="td-label">SIMI</span>
+		                  </td>  
+		                </tr>
+		                <tr id="collapseOne" class="collapse in">
+		                    <td>
+		                      <span class="td-label">Posición arancelaria</span>
+		                        1806.31.10
+		                    </td>
+		                    <td>
+		                      <span class="td-label">Descripción</span>
+		                      Chocolate
+		                    </td>
+			                  <td>
+			                  	<span class="td-label">DE</span>
+			                  </td> 
+			                  <td>
+			                  	<span class="td-label">RE</span>
+			                  </td> 
+			                  <td>
+			                  	<span class="td-label">SIMI</span>
+			                  </td>
+		                </tr>
+	                </tbody>
+	              </table>
+
+			</div>	
+		</div>
+	</div>
+</section>
+
+
+
+<script>
+
+  //cambiando clase de icons en tablas
+  $(".table a").click(function(){
+    $(this).find('i').toggleClass('fa-plus fa-minus'); 
+    $(this).find('i').toggleClass('text-success text-danger'); 
+  });
+
+</script>
+
+<style>
+.table th a:hover,
+.table tr {
+    cursor: pointer;
+}
+</style>
+
