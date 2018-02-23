@@ -1,0 +1,417 @@
+---
+layout: argentina
+---
+
+
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">Tus resultados</h1>
+      <p class="lead">Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <div class="alert alert-warning m-t-2">
+            <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-warning fa-fw fa-2x"></i>
+              </div>
+              <div class="media-body">
+                <p class="m-b-0" style="text-shadow: none; line-height: 16px;"><small>Esto es una página de prueba. Estamos trabajando la versión final.</small></p>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">  
+
+        <div id="wizard-personal" class="hidden">
+          
+          <div id="wizard-personal-items" class="row panels-row m-b-2"></div>
+          <div id="wizard-personal-category-items" class="row panels-row m-y-2"></div>
+        </div>
+
+        <div id="wizard-interest" class="hidden">
+          
+          <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
+        </div>
+
+        <div id="wizard-message" class="m-y-3 hidden">
+          <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+          <p>Probá cambiando la configuración del formulario.</p>
+        </div>
+
+        <div class="m-y-3">
+          <a id="edit-form" class="btn btn-primary m-r-1" href="/misservicios">Cambiar respuestas</a>
+          <a id="wipe-form" class="btn btn-link" href="/misservicios">Volver a comenzar</a>
+        </div>
+
+            <script>
+
+        (function($) {       
+
+        var categories = [
+          {
+           name:"Legalizaciones",
+           iconCategory: 'fa-graduation-cap',
+           contents:[
+                {
+                  name: 'Secundario y/o Terciario - Antes de 2010 - Argentina',
+                  corto: 'Secundario y/o Terciario - Antes de 2010 - Argentina',
+                  description: 'Esto son los requisitos para: Secundario y/o Terciario - Antes de 2010 - Argentina',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'secundario',
+                        anterior2010: 'si',
+                        presentarArgentina: 'si'
+                      }
+                    ]
+                  }            
+                },
+                {
+                  name: 'Secundario y/o Terciario - Antes de 2010 - Exterior',
+                  corto: 'Secundario y/o Terciario - Antes de 2010 - Exterior',
+                  description: 'Esto son los requisitos para: Secundario y/o Terciario - Antes de 2010 - Exterior',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+                  descriptionUrlApostillar: 'Apostillar un documento',          
+                  descriptionApostillar: 'La Apostilla de La Haya valida documentos públicos emitidos en Argentina para presentarlos en otro país.',          
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'secundario',
+                        anterior2010: 'si',
+                        presentarArgentina: 'no'
+                      }
+                    ]
+                  }            
+                },        
+                {
+                  name: 'Secundario y/o Terciario - Despues de 2010 - Argentina',
+                  corto: 'Secundario y/o Terciario - Despues de 2010 - Argentina',
+                  description: 'Esto son los requisitos para: Secundario y/o Terciario - Despues de 2010 - Argentina.',
+                  url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+                  descriptionUrl: 'Legalizar el Certificado de Estudio Secundario y/o Terciario',
+                  descriptionAdic: 'Para presentar tu certificado educativo (no universitario) en otra provincia distinta a la de ubicación de la escuela.',
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'secundario',
+                        anterior2010: 'no',
+                        presentarArgentina: 'si'
+                      }
+                    ]
+                  }
+                },        
+                {
+                  name: 'Secundario y/o Terciario - Despues de 2010 - Exterior',
+                  corto: 'Secundario y/o Terciario - Despues de 2010 - Exterior',
+                  description: 'Esto son los requisitos para: Secundario y/o Terciario - Despues de 2010 - Exterior.',
+                  url: 'https://www.argentina.gob.ar/legalizar-el-certificado-de-estudio-secundario-yo-terciario',
+                  descriptionUrl: 'Legalizar el Certificado de Estudio Secundario y/o Terciario',
+                  descriptionAdic: 'Para presentar tu certificado educativo (no universitario) en otra provincia distinta a la de ubicación de la escuela.',
+                  urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+                  descriptionUrlApostillar: 'Apostillar un documento',
+                  descriptionApostillar: 'La Apostilla de La Haya valida documentos públicos emitidos en Argentina para presentarlos en otro país.',          
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'secundario',
+                        anterior2010: 'no',
+                        presentarArgentina: 'no'
+                      }
+                    ]
+                  }
+                },
+                {
+                  name: 'Universitario - Antes de 2012 - Argentina',
+                  corto: 'Universitario - Antes de 2012 - Argentina',
+                  description: 'Esto son los requisitos para: Universitario - Antes de 2012 - Argentina.',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'universitario',
+                        anterior2012: 'si',
+                        presentarArgentina: 'si'
+                      }
+                    ]
+                  }
+                },
+                {
+                  name: 'Universitario - Antes de 2012 - Exterior',
+                  corto: 'Universitario - Antes de 2012 - Exterior',
+                  description: 'Esto son los requisitos para: Universitario - Antes de 2012 - Exterior.',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+                  descriptionUrlApostillar: 'Apostillar un documento',
+                  descriptionApostillar: 'La Apostilla de La Haya valida documentos públicos emitidos en Argentina para presentarlos en otro país.',          
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'universitario',
+                        anterior2012: 'si',
+                        presentarArgentina: 'no'
+                      }
+                    ]
+                  }
+                },        
+                {
+                  name: 'Universitario - Despues de 2012 - Argentina',
+                  corto: 'Universitario - Despues de 2012 - Argentina',
+                  description: 'Esto son los requisitos para: Universitario - Despues de 2012 - Argentina.',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  urlConsultaTitulo: 'http://sicer.siu.edu.ar/consulta.php',
+                  descriptionUrlConsultaTitulo: 'Consulta de diplomas universitarios',
+                  descriptionConsultaTitulo: 'Para averiguar si tu título está legalizado.',
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'universitario',
+                        anterior2012: 'no',
+                        presentarArgentina: 'si'
+                      }
+                    ]
+                  }
+                },        
+                {
+                  name: 'Universitario - Despues de 2012 - Exterior',
+                  corto: 'Universitario - Despues de 2012 - Exterior',
+                  description: 'Esto son los requisitos para: Universitario - Despues de 2012 - Exterior.',
+                  url: 'https://www.argentina.gob.ar/legalizacion-de-documentos-publicos',
+                  descriptionUrl: 'Legalización de Documentos Públicos',
+                  descriptionAdic: 'Certificar las firmas de funcionarios públicos nacionales, provinciales y municipales; los cuales deben pertenecer al organismo que emite la documentación.',
+                  urlApostillar: 'https://www.argentina.gob.ar/apostillar-un-documento',
+                  descriptionUrlApostillar: 'Apostillar un documento',
+                  descriptionApostillar: 'La Apostilla de La Haya valida documentos públicos emitidos en Argentina para presentarlos en otro país.',          
+                  urlConsultaTitulo: 'http://sicer.siu.edu.ar/consulta.php',
+                  descriptionUrlConsultaTitulo: 'Consulta de diplomas universitarios',
+                  descriptionConsultaTitulo: 'Para averiguar si tu título está legalizado.',
+                  icon: 'fa-graduation-cap',
+                  conditions: {
+                    and: [
+                      {
+                        nivelTitulo: 'universitario',
+                        anterior2012: 'no',
+                        presentarArgentina: 'no'
+                      }
+                    ]
+                  }
+                }
+
+           ]
+         }
+
+        ];
+
+             
+              var templates = {
+                item: `<div class="col-xs-12 col-sm-6 col-md-12">
+                            <h3 class="hidden">{title}</h3>
+                            <p class="text-muted">{description}</p>
+                       </div>
+                       <div class="col-xs-12 col-md-12 m-t-2">
+                          <a class="panel panel-default" href="{url}">
+                            <div class="panel-body">
+                              <h3>{descriptionUrl}</h3>
+                              <p>{descriptionAdic}</p>
+                            </div>                          
+                          </a>
+                       </div>                          
+                       <div class="col-xs-12 col-md-12">
+                          {descriptionUrlConsultaTitulo}
+                       </div>                          
+                       <div class="col-xs-12 col-md-12">
+                          {descriptionUrlApostillar}
+                       </div>`,
+                category: '<div class="col-md-12"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} </h3></div>{items}'
+              };
+
+              var form_data;
+              var data = {};
+
+              // Leo si hay algo guardado
+
+              if(typeof(Storage) !== "undefined") {
+                if( localStorage.getItem("wizard-form2") != undefined ){
+
+                  form_data = JSON.parse( localStorage.getItem("wizard-form2"))
+
+                  jQuery.each(form_data, function(key, item){
+                    data[item.name] = item.value;
+                    console.log(item.value);
+                  });
+
+                  console.log(data);
+
+                  var item_blank = true;
+
+                  jQuery.each(categories, function(key, category){
+
+                    var showCategory = false;
+                    var htmlCategoryItems = "";
+
+                    jQuery.each(category.contents, function(key, content){
+                      
+
+
+                      var show = false;
+
+                      jQuery.each(content.conditions, function(condition, value){
+
+                        if(condition == 'and'){
+                          jQuery.each(value, function(index, ands){
+                            var showable = true;
+
+                              // console.log(showable);
+                            jQuery.each(ands, function(andCondition, andValue){
+                              if( data[andCondition] != andValue ){
+                                showable = false;
+                              }
+                              // console.log(showable);
+                            });
+
+                            if(showable){
+                              show = true;
+                            }
+                          });
+                        }
+                        else if( data[condition] == value ){
+                          show = true;
+                        }
+                      });
+
+
+                    if(show){
+
+                      showCategory = true;
+
+                      item_blank = false;
+
+                      var html = templates.item;
+
+                      var descriptionUrlApostillar = '<a class="panel panel-default" href="'+content.urlApostillar+'"><div class="panel-body"><h3>' + content.descriptionUrlApostillar + '</h3> <p>' + content.descriptionApostillar + '</p></div></a>';
+
+                      var descriptionUrlConsultaTitulo = '<a class="panel panel-default" href="'+content.urlConsultaTitulo+'"><div class="panel-body"><h3>' + content.descriptionUrlConsultaTitulo + '</h3><p>' + content.descriptionConsultaTitulo + '</p></div></a>';
+
+                      if (content.descriptionUrlApostillar == undefined || content.urlApostillar == undefined ) {
+                        descriptionUrlApostillar = ''
+                      }  
+                      if (content.descriptionUrlConsultaTitulo == undefined || content.urlConsultaTitulo == undefined ) {
+                        descriptionUrlConsultaTitulo = ''
+                      }  
+
+                      html = html.replace(/{url}/gi, content.url)
+                        .replace(/{icon}/gi, content.icon)
+                        .replace(/{title}/gi, content.name)
+                        .replace(/{descriptionUrl}/gi, content.descriptionUrl)
+                        .replace(/{descriptionUrlConsultaTitulo}/gi, descriptionUrlConsultaTitulo)
+                        .replace(/{descriptionUrlApostillar}/gi, descriptionUrlApostillar)
+                        .replace(/{description}/gi, content.description)
+                        .replace(/{descriptionAdic}/gi, content.descriptionAdic);
+
+                        jQuery('#wizard-personal').removeClass('hidden');
+                        // jQuery('#wizard-personal-items').append( html );
+                        htmlCategoryItems += html;
+
+
+                    }              
+
+
+                    });
+
+                    if(showCategory) {
+
+                        var htmlCategory = templates.category;
+
+                        htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
+                          .replace(/{iconCategory}/gi, category.iconCategory)
+                          .replace(/{items}/gi, htmlCategoryItems);
+
+                        // if(content.tipo == 'personal'){
+                          jQuery('#wizard-personal').removeClass('hidden');
+                          jQuery('#wizard-personal-category-items').append( htmlCategory );
+
+                    }
+
+                  });//termino de cargar categoria
+                  
+                  // console.log(item_blank);
+
+                  if(item_blank){
+                    jQuery('#wizard-message').removeClass('hidden');
+                  }
+                    
+                }else{
+                  // console.log('Todavía no guardaste nada');
+                  window.location.replace('/misservicios');
+                }
+
+              } else {
+                console.log('No tenés soporte :(');
+              }
+
+              jQuery('#edit-form').on('click', function(event){
+                event.preventDefault();
+                // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+                // window.location.href = '/misservicios';
+                window.location.href = '/quemebrinda';
+              });
+
+              jQuery('#wipe-form').on('click', function(event){
+                event.preventDefault();
+                localStorage.removeItem('wizard-form2');
+                // ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
+                // window.location.href = '/misservicios';
+                window.location.href = '/quemebrinda';
+              });
+
+        })(jQuery);
+
+            </script>
+        </div>
+    </div>
+  </div>
+</section>
+
+
