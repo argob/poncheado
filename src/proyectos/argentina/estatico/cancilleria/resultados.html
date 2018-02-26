@@ -76,128 +76,45 @@ layout: argentina
            name:"Emitidos dentro del territorio de la República Argentina",
                 {
                   name: 'Partidas de Estado Civil (Nacimiento, Matrimonio y Defunción)',
-                  description: 'Los registros Civiles Provinciales necesitarán previa legalización del Ministerio del Interior para poder ser apostillados. ',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'si',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }            
+                  description: 'Los registros Civiles Provinciales necesitarán previa legalización del Ministerio del Interior para poder ser apostillados. ',            
                 },
                 {
                   name: 'Certificado de Antecedentes Penales emitidos por el Registro Nacional de Reincidencia',
-                  description: '',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'si',
-                        presentarArgentina: 'no'
-                      }
-                    ]
-                  }            
+                  description: '',            
                 },        
                 {
                   name: 'Títulos y certificaciones universitarias',
                   description: 'Títulos, certificados analíticos y demás certificaciones emitidas por instituciones universitarias con anterioridad al 1º de Enero del 2012, deberán ser legalizadas por la Dirección de Información al Público dependiente Ministerio del Interior, siempre que cuenten con la previa intervención de la Dirección Nacional de Gestión Universitaria, dependiente del Ministerio de Educación. Títulos, certificados analíticos y demás certificaciones emitidas por instituciones universitarias con posterioridad al 1º de Enero del 2012 corresponderá al Ministerio de Educación para su correspondiente verificación y autenticidad, en cada documento en cuestión.',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'no',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }
                 },        
                 {
                   name: 'Certificados de nivel secundario y estudios de nivel superior',
                   description: 'Los Certificados emitidos con anterioridad al 1° de Enero de 2010 deberán ser legalizados por la autoridad educativa jurisdiccional y por la Dirección de Información al Público dependiente del Ministerio del Interior. Aquellos emitidos por el Sistema Federal de Títulos, a partir del 1° de enero de 2010 deberán presentarlos ante el área de títulos de la jurisdicción en la que se encuentre, a fin de verificar su autenticidad y validez confrontando las firmas de las autoridades con las que obran en el Registro Nacional de Firmas Educativas Jurisdiccionales (ReNaFEJu). ',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'no',
-                        presentarArgentina: 'no'
-                      }
-                    ]
-                  }
                 },
                 {
                   name: 'Documentación emitida por Autoridades Judiciales',
                   description: 'Este tipo de documentación deberá ser certificada previamente ante la Cámara de Apelaciones del fuero respectivo o Corte Suprema Provincial.',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'universitario',
-                        anterior2012: 'si',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }
                 },
                 {
                   name: 'Actuaciones notariales',
                   description: 'Este tipo de documentación deberá ser legalizada previamente ante el Colegio de Escribanos correspondiente a la confección del acto o intervención notarial.',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'universitario',
-                        anterior2012: 'si',
-                        presentarArgentina: 'no'
-                      }
-                    ]
-                  }
                 },        
                 {
                   name: 'Certificados o Constancias Médicas',
                   description: 'Los certificados extendidos por médicos con matrícula nacional (indicados en su sello aclaratorio por la iniciales M.N.), deberán ser legalizados ante el Ministerio de Salud de la Nación. Los certificados extendidos por médicos con matrícula provincial (indicados en su sello aclaratorio por la iniciales M.P.), deberán ser legalizados por el Ministerio de Salud o por Colegio de Médicos de la jurisdicción provincial correspondiente.',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'universitario',
-                        anterior2012: 'no',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }
+                },
+                {
+                  name: 'Habilitación de firma de Funcionario Consular extranjero acreditado en el país',
+                  description: '',
                 }
+
          },
          {
            name:"Certificados o actos consulares emitidos o intervenidos por la Red Consular argentina",
                 {
-                  name: 'Certificados o actos consulares emitidos o intervenidos por la Red Consular argentina',
-                  description: '',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'si',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }            
+                  name: 'Certificados consulares emitidos por las representaciones extranjeras acreditadas en la República Argentina.',
+                  description: '',            
                 }
-         },  
-         {
-           name:"Certificados consulares emitidos por las representaciones extranjeras acreditadas en la República Argentina",
-                {
-                  name: '',
-                  description: '',
-                  conditions: {
-                    and: [
-                      {
-                        nivelTitulo: 'secundario',
-                        anterior2010: 'si',
-                        presentarArgentina: 'si'
-                      }
-                    ]
-                  }            
-                }
-         },                
+         }               
 
         ];
 
@@ -254,30 +171,6 @@ layout: argentina
 
                       var show = false;
 
-                      jQuery.each(content.conditions, function(condition, value){
-
-                        if(condition == 'and'){
-                          jQuery.each(value, function(index, ands){
-                            var showable = true;
-
-                              // console.log(showable);
-                            jQuery.each(ands, function(andCondition, andValue){
-                              if( data[andCondition] != andValue ){
-                                showable = false;
-                              }
-                              // console.log(showable);
-                            });
-
-                            if(showable){
-                              show = true;
-                            }
-                          });
-                        }
-                        else if( data[condition] == value ){
-                          show = true;
-                        }
-                      });
-
 
                     if(show){
 
@@ -287,25 +180,9 @@ layout: argentina
 
                       var html = templates.item;
 
-                      var descriptionUrlApostillar = '<a class="panel panel-default" href="'+content.urlApostillar+'"><div class="panel-body"><h3>' + content.descriptionUrlApostillar + '</h3> <p>' + content.descriptionApostillar + '</p></div></a>';
-
-                      var descriptionUrlConsultaTitulo = '<a class="panel panel-default" href="'+content.urlConsultaTitulo+'"><div class="panel-body"><h3>' + content.descriptionUrlConsultaTitulo + '</h3><p>' + content.descriptionConsultaTitulo + '</p></div></a>';
-
-                      if (content.descriptionUrlApostillar == undefined || content.urlApostillar == undefined ) {
-                        descriptionUrlApostillar = ''
-                      }  
-                      if (content.descriptionUrlConsultaTitulo == undefined || content.urlConsultaTitulo == undefined ) {
-                        descriptionUrlConsultaTitulo = ''
-                      }  
-
                       html = html.replace(/{url}/gi, content.url)
-                        .replace(/{icon}/gi, content.icon)
                         .replace(/{title}/gi, content.name)
-                        .replace(/{descriptionUrl}/gi, content.descriptionUrl)
-                        .replace(/{descriptionUrlConsultaTitulo}/gi, descriptionUrlConsultaTitulo)
-                        .replace(/{descriptionUrlApostillar}/gi, descriptionUrlApostillar)
                         .replace(/{description}/gi, content.description)
-                        .replace(/{descriptionAdic}/gi, content.descriptionAdic);
 
                         jQuery('#wizard-personal').removeClass('hidden');
                         // jQuery('#wizard-personal-items').append( html );
@@ -322,7 +199,6 @@ layout: argentina
                         var htmlCategory = templates.category;
 
                         htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
-                          .replace(/{iconCategory}/gi, category.iconCategory)
                           .replace(/{items}/gi, htmlCategoryItems);
 
                         // if(content.tipo == 'personal'){
