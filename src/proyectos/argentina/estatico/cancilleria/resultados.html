@@ -7,6 +7,7 @@ layout: argentina
     <div class="row">
       <div class="col-md-8 col-md-offset-2">  
 
+        <h1 class="h2">Estos son los requisitos y aranceles de tu consulta</h1>
         <div id="wizard-personal" class="hidden">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -21,13 +22,14 @@ layout: argentina
           </div>
           
           <div class="row panels-row m-b-2">
-            <div class="col-md-12">
-               <h3 class="h4">Tus documentos son:</h3>
-            </div>
             <div class="col-xs-12 col-md-12 m-t-2">
               <div class="panel panel-default">
-                  <div class="panel-body" id="wizard-personal-items">
-                  </div>                          
+                  <div class="panel-body">
+                    <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Tus documentos son:</h2>
+                    <hr class="m-y-1">
+                    <ol class="p-l-1" id="wizard-personal-items">
+                    </ol>                          
+                  </div>
               </div>
             </div>
           </div>
@@ -50,8 +52,14 @@ layout: argentina
             </div>
           </div>
 
-          <h3 class="h4">Aranceles:</h3>
-          <div id="show-data-aranceles" class="m-t-2 well hidden"></div> 
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp; Aranceles:</h2>
+              <hr class="m-y-1">
+               <div id="show-data-aranceles" class="m-t-2 hidden"></div> 
+            </div>
+          </div>
+          
             
 
         </div>
@@ -64,8 +72,8 @@ layout: argentina
         </div>
 
         <div class="m-y-3">
-          <a id="edit-form" class="btn btn-primary m-r-1" href="/cancilleria">Cambiar respuestas</a>
-          <a id="wipe-form" class="btn btn-link" href="/cancilleria">Volver a comenzar</a>
+          <a id="edit-form" class="btn btn-primary m-r-1" href="/proyectos/argentina/estatico/cancilleria/index.html">Cambiar respuestas</a>
+          <a id="wipe-form" class="btn btn-link" href="/proyectos/argentina/estatico/cancilleria/index.html">Volver a comenzar</a>
         </div>
 
             <script>
@@ -129,14 +137,14 @@ layout: argentina
 
               
               var templates = {
-                item: `<div>
-                        <h3>{title}</h3>
-                        <div class="well" id="{index}">
+                item: `<li><div>
+                        <h3 class="m-b-1">{title}</h3>
+                        <div id="{index}">
                           <p class="text-muted"><strong>NOTA: </strong>{description}</p>
                         </div>
-                      </div>`,
-                descriptionAranceles: `<p>Según el/los documento/s a apostillar: <span data-render="tipo-documento"></span>" y el pais destino: <span data-render="pais"></span> el costo del tramite es de: </p>
-            <div class="h2 text-success">$ <span><span data-render="costo"></span></span></div>`, 
+                      </div></li>`,
+                descriptionAranceles: `<p>Según el/los documento/s a apostillar: <strong data-render="tipo-documento"></strong> y el pais destino: <strong data-render="pais"></strong> el costo del tramite es de: </p>
+            <div class="h1 text-success">$ <span><span data-render="costo"></span></span></div>`, 
                 tipoDocumento: `{tipoDocumento}`     
               };
 
@@ -228,7 +236,7 @@ layout: argentina
 
                 }else{
                   // console.log('Todavía no guardaste nada');
-                  window.location.replace('/cancilleria');
+                  window.location.replace('/proyectos/argentina/estatico/cancilleria/resultados.html');
                 }
 
               } else {
@@ -239,14 +247,14 @@ layout: argentina
                 event.preventDefault();
                 // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
                 // window.location.href = '/cancilleria';
-                window.location.href = '/quemebrinda';
+                window.location.href = '/proyectos/argentina/estatico/cancilleria/index.html';
               });
 
               jQuery('#wipe-form').on('click', function(event){
                 event.preventDefault();
                 localStorage.removeItem('wizard-form2');
                 // ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
-                window.location.href = '/quemebrinda';
+                window.location.href = '/proyectos/argentina/estatico/cancilleria/index.html';
               });
 
         })(jQuery);
