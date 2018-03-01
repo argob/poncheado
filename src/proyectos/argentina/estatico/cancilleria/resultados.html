@@ -2,69 +2,70 @@
 layout: argentina
 ---
 
-
-<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
-  <div class="jumbotron_bar">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ol class="breadcrumb pull-left">
-            <li><a href="/">Argentina</a></li>
-            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="jumbotron_body">
-    <div class="container text-center">
-      <h1 class="h2 m-b-0">Tus resultados</h1>
-      <p class="lead">Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-          <div class="alert alert-warning m-t-2">
-            <div class="media">
-              <div class="media-left media-middle">
-                <i class="fa fa-warning fa-fw fa-2x"></i>
-              </div>
-              <div class="media-body">
-                <p class="m-b-0" style="text-shadow: none; line-height: 16px;"><small>Esto es una página de prueba. Estamos trabajando la versión final.</small></p>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>  
-  </div>
-  <div class="overlay"></div>
-</section>
-
 <section>
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">  
 
         <div id="wizard-personal" class="hidden">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a apostillar</h2>
+              <hr class="m-y-1">
+               <ul class="m-t-2 content_format">
+                 <li>El documento a apostillar <strong>debe ser original</strong> y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.</li>
+                 <li>La presentación del/los documento/s solamente podrá ser realizada por personas <strong>mayores de 18 años</strong>, quienes deberán identificarse presentando su Documento Nacional de Identidad (DNI) vigente.</li>
+                 <li>Los <strong>ciudadanos extranjeros</strong> podrán identificarse presentando DNI para extranjeros o Documento de identificación correspondiente a su nacionalidad vigente.</li>
+               </ul>
+            </div>
+          </div>
           
-          <div id="wizard-personal-items" class="row panels-row m-b-2"></div>
-          <div id="wizard-personal-category-items" class="row panels-row m-y-2"></div>
+          <div class="row panels-row m-b-2">
+            <div class="col-md-12">
+               <h3 class="h4">Tus documentos son:</h3>
+            </div>
+            <div class="col-xs-12 col-md-12 m-t-2">
+              <div class="panel panel-default">
+                  <div class="panel-body" id="wizard-personal-items">
+                  </div>                          
+              </div>
+            </div>
+          </div>
+          <div id="wizard-personal-category-items" class="row panels-row m-y-2">
+            
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para retirar la documentación apostillada</h2>
+              <hr class="m-y-1">
+               <ul class="m-t-2 content_format">
+                 <li>La documentación apostillada sólo podrá ser retirada por personas <strong>mayores de 18 años</strong> de Lunes a Viernes de <strong>8.30 hs. a 13:30 hs</strong>.</li>
+                 <li>En el caso que la documentación sea retirada por un persona distinta a la que la trajo, se deberá presentar debida <strong>autorización original y copia del DNI</strong> de quien presentó la documentación originariamente. (Se recuerda solicitar la correspondiente autorización en el Sector).</li>
+               </ul>
+               <div class="well">
+                 <p>
+                   <strong>NOTA:</strong> Si la documentación en original a ser presentada en el exterior es exigida en idioma extranjero, luego de su legalización o Apostilla deberá contar con traducción efectuada por <strong>Traductor Público</strong> y certificada por el <strong>Colegio de Traductores Públicos</strong>. Cumplidos ambos requisitos, se recomienda legalizar la intervención del  Colegio de Traductores Públicos.</p>
+                 <p>Para el caso que sobre el documento tenga la intervención de un Escribano Público, una de las obligaciones del notario al momento de intervenir en un documento redactado en idioma extranjero, es dejar constancia que conoce el idioma.</p>
+             </div>
+            </div>
+          </div>
+
+          <h3 class="h4">Aranceles:</h3>
+          <div id="show-data-aranceles" class="m-t-2 well hidden"></div> 
+            
+
         </div>
 
-        <div id="wizard-interest" class="hidden">
-          
-          <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
-        </div>
+
 
         <div id="wizard-message" class="m-y-3 hidden">
-          <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+          <h3 class="text-muted h4 m-t-2">No encontramos información para vos</h3>
           <p>Probá cambiando la configuración del formulario.</p>
         </div>
 
         <div class="m-y-3">
-          <a id="edit-form" class="btn btn-primary m-r-1" href="/misservicios">Cambiar respuestas</a>
-          <a id="wipe-form" class="btn btn-link" href="/misservicios">Volver a comenzar</a>
+          <a id="edit-form" class="btn btn-primary m-r-1" href="/cancilleria">Cambiar respuestas</a>
+          <a id="wipe-form" class="btn btn-link" href="/cancilleria">Volver a comenzar</a>
         </div>
 
             <script>
@@ -77,75 +78,72 @@ layout: argentina
            contents:[
                 {
                   name: 'Partidas de Estado Civil (Nacimiento, Matrimonio y Defunción)',
+                  id: 'partidasEstadoCivil',
                   description: 'Los registros Civiles Provinciales necesitarán previa legalización del Ministerio del Interior para poder ser apostillados. ',            
                 },
                 {
                   name: 'Certificado de Antecedentes Penales emitidos por el Registro Nacional de Reincidencia',
-                  description: '',            
+                  id: 'certificadosAntecedentesPenales',            
+                  description: '',
                 },        
                 {
                   name: 'Títulos y certificaciones universitarias',
+                  id: 'certificacionesUniversitarias', 
                   description: 'Títulos, certificados analíticos y demás certificaciones emitidas por instituciones universitarias con anterioridad al 1º de Enero del 2012, deberán ser legalizadas por la Dirección de Información al Público dependiente Ministerio del Interior, siempre que cuenten con la previa intervención de la Dirección Nacional de Gestión Universitaria, dependiente del Ministerio de Educación. Títulos, certificados analíticos y demás certificaciones emitidas por instituciones universitarias con posterioridad al 1º de Enero del 2012 corresponderá al Ministerio de Educación para su correspondiente verificación y autenticidad, en cada documento en cuestión.',
                 },        
                 {
                   name: 'Certificados de nivel secundario y estudios de nivel superior',
+                  id: 'CertificadosSecundarioNivelSuperior', 
                   description: 'Los Certificados emitidos con anterioridad al 1° de Enero de 2010 deberán ser legalizados por la autoridad educativa jurisdiccional y por la Dirección de Información al Público dependiente del Ministerio del Interior. Aquellos emitidos por el Sistema Federal de Títulos, a partir del 1° de enero de 2010 deberán presentarlos ante el área de títulos de la jurisdicción en la que se encuentre, a fin de verificar su autenticidad y validez confrontando las firmas de las autoridades con las que obran en el Registro Nacional de Firmas Educativas Jurisdiccionales (ReNaFEJu). ',
                 },
                 {
                   name: 'Documentación emitida por Autoridades Judiciales',
+                  id: 'documentacionJudicial', 
                   description: 'Este tipo de documentación deberá ser certificada previamente ante la Cámara de Apelaciones del fuero respectivo o Corte Suprema Provincial.',
                 },
                 {
                   name: 'Actuaciones notariales',
+                  id: 'actuacionesNotariales', 
                   description: 'Este tipo de documentación deberá ser legalizada previamente ante el Colegio de Escribanos correspondiente a la confección del acto o intervención notarial.',
                 },        
                 {
                   name: 'Certificados o Constancias Médicas',
+                  id: 'certificadosMedicos', 
                   description: 'Los certificados extendidos por médicos con matrícula nacional (indicados en su sello aclaratorio por la iniciales M.N.), deberán ser legalizados ante el Ministerio de Salud de la Nación. Los certificados extendidos por médicos con matrícula provincial (indicados en su sello aclaratorio por la iniciales M.P.), deberán ser legalizados por el Ministerio de Salud o por Colegio de Médicos de la jurisdicción provincial correspondiente.',
                 },
                 {
                   name: 'Habilitación de firma de Funcionario Consular extranjero acreditado en el país',
+                  id: 'habilitacionFirmaConsularExt',
+                  description: '',
+                },
+                {
+                  name: 'Certificados consulares emitidos por las representaciones extranjeras acreditadas en la República Argentina.',
+                  id: 'certificadosRepresentacionesExtranjeras',            
                   description: '',
                 }
                ]
-         },
-         {
-           name:"Certificados o actos consulares emitidos o intervenidos por la Red Consular argentina",
-           contents:[
-                {
-                  name: 'Certificados consulares emitidos por las representaciones extranjeras acreditadas en la República Argentina.',
-                  description: '',            
-                }
-               ]                
-         }               
+         }
 
         ];
 
-             
+
+              
               var templates = {
-                item: `<div class="col-xs-12 col-sm-6 col-md-12">
-                            <h3 class="hidden">{title}</h3>
-                            <p class="text-muted">{description}</p>
-                       </div>
-                       <div class="col-xs-12 col-md-12 m-t-2">
-                          <a class="panel panel-default" href="{url}">
-                            <div class="panel-body">
-                              <h3>{descriptionUrl}</h3>
-                              <p>{descriptionAdic}</p>
-                            </div>                          
-                          </a>
-                       </div>                          
-                       <div class="col-xs-12 col-md-12">
-                          {descriptionUrlConsultaTitulo}
-                       </div>                          
-                       <div class="col-xs-12 col-md-12">
-                          {descriptionUrlApostillar}
-                       </div>`,
-                category: '<div class="col-md-12"><h3 class="m-t-3 m-b-2"><i class="fa {iconCategory} fa-fw text-success"></i> {category} </h3></div>{items}'
+                item: `<div>
+                        <h3>{title}</h3>
+                        <div class="well" id="{index}">
+                          <p class="text-muted"><strong>NOTA: </strong>{description}</p>
+                        </div>
+                      </div>`,
+                descriptionAranceles: `<p>Según el/los documento/s a apostillar: <span data-render="tipo-documento"></span>" y el pais destino: <span data-render="pais"></span> el costo del tramite es de: </p>
+            <div class="h2 text-success">$ <span><span data-render="costo"></span></span></div>`, 
+                tipoDocumento: `{tipoDocumento}`     
               };
 
               var form_data;
               var data = {};
+
+
 
               // Leo si hay algo guardado
 
@@ -154,73 +152,83 @@ layout: argentina
 
                   form_data = JSON.parse( localStorage.getItem("wizard-form2"))
 
+                  mostrarDescripcion();
+
                   jQuery.each(form_data, function(key, item){
+                    if (item.name == "pais") {
+                      $('#show-data-aranceles').find('[data-render=pais]').append( item.value );
+                      
+                      if ( item.value == "Otros Paises")
+                        $('#show-data-aranceles').find('[data-render=costo]').append( "30" );
+                      else
+                        $('#show-data-aranceles').find('[data-render=costo]').append( "90" );  
+                      
+                    }
+                    
+
                     data[item.name] = item.value;
-                    console.log(item.value);
-                  });
 
-                  console.log(data);
-
-                  var item_blank = true;
+                    var item_blank = false;
 
                   jQuery.each(categories, function(key, category){
 
-                    var showCategory = false;
                     var htmlCategoryItems = "";
 
                     jQuery.each(category.contents, function(key, content){
-                      
-
-
-                      var show = true;
-
+                      var show = false;
+                      if(item.value == content.id ) {
+                        show = true;
+                      }
 
                     if(show){
-
-                      showCategory = true;
 
                       item_blank = false;
 
                       var html = templates.item;
 
-                      html = html.replace(/{url}/gi, content.url)
-                        .replace(/{title}/gi, content.name)
+                      html = html.replace(/{title}/gi, content.name)
+                        .replace(/{index}/gi, content.id)
                         .replace(/{description}/gi, content.description)
-
                         jQuery('#wizard-personal').removeClass('hidden');
-                        // jQuery('#wizard-personal-items').append( html );
+                        jQuery('#wizard-personal-items').append( html );
                         htmlCategoryItems += html;
 
+                        var htmlTipoDocumento = templates.tipoDocumento;  
+                        var tipoDocumento = ''
 
-                    }              
+                        htmlTipoDocumento = htmlTipoDocumento + ", ";
+                        htmlTipoDocumento = htmlTipoDocumento.replace(/{tipoDocumento}/gi, content.name);       
+
+                        $('#show-data-aranceles').find('[data-render=tipo-documento]').append( htmlTipoDocumento );
+
+                        if(content.description == "") {
+                              $("#"+content.id).addClass('hidden');
+                          }                      
+                    }  
 
 
                     });
 
-                    if(showCategory) {
-
-                        var htmlCategory = templates.category;
-
-                        htmlCategory = htmlCategory.replace(/{category}/gi, category.name)
-                          .replace(/{items}/gi, htmlCategoryItems);
-
-                        // if(content.tipo == 'personal'){
-                          jQuery('#wizard-personal').removeClass('hidden');
-                          jQuery('#wizard-personal-category-items').append( htmlCategory );
-
-                    }
 
                   });//termino de cargar categoria
-                  
+
                   // console.log(item_blank);
 
                   if(item_blank){
                     jQuery('#wizard-message').removeClass('hidden');
                   }
-                    
+                  });
+
+
+                  function mostrarDescripcion () {
+                    var htmlDescription = templates.descriptionAranceles; 
+                    jQuery('#show-data-aranceles').removeClass('hidden').append( htmlDescription );
+                  }  
+
+
                 }else{
                   // console.log('Todavía no guardaste nada');
-                  window.location.replace('/misservicios');
+                  window.location.replace('/cancilleria');
                 }
 
               } else {
@@ -230,7 +238,7 @@ layout: argentina
               jQuery('#edit-form').on('click', function(event){
                 event.preventDefault();
                 // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
-                // window.location.href = '/misservicios';
+                // window.location.href = '/cancilleria';
                 window.location.href = '/quemebrinda';
               });
 
@@ -238,7 +246,6 @@ layout: argentina
                 event.preventDefault();
                 localStorage.removeItem('wizard-form2');
                 // ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
-                // window.location.href = '/misservicios';
                 window.location.href = '/quemebrinda';
               });
 
@@ -249,38 +256,3 @@ layout: argentina
     </div>
   </div>
 </section>
-
-
-<!--////////
-
-Requisitos para presentar documentos a apostillar
-
-lista numerada
-El documento a apostillar debe ser original y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.
-La presentación del/los documento/s solamente podrá ser realizada por personas mayores de 18 años, quienes deberán identificarse presentando su Documento Nacional de Identidad (DNI) vigente.
-Los ciudadanos extranjeros podrán identificarse presentando DNI para extranjeros o Documento de identificación correspondiente a su nacionalidad vigente.
-
-Nota dinamica
-ejemplo: 
-Certificados de nivel secundario y estudios de nivel superior
-Nota: Los Certificados emitidos con anterioridad al 1° de Enero de 2010 deberán ser legalizados por la autoridad educativa jurisdiccional y por la Dirección de Información al Público dependiente del Ministerio del Interior. 
-Aquellos emitidos por el Sistema Federal de Títulos, a partir del 1° de enero de 2010 deberán presentarlos ante el área de títulos de la jurisdicción en la que se encuentre, a fin de verificar su autenticidad y validez confrontando las firmas de las autoridades con las que obran en el Registro Nacional de Firmas Educativas Jurisdiccionales (ReNaFEJu). 
-
-Requisitos para retirar la documentación apostillada:
-
-lista no numerada
-La documentación apostillada sólo podrá ser retirada por personas mayores de 18 años de Lunes a Viernes de 8.30 hs. a 13:30 hs.
-En el caso que la documentación sea retirada por un persona distinta a la que la trajo, se deberá presentar debida autorización original y copia del DNI de quien presentó la documentación originariamente. (Se recuerda solicitar la correspondiente autorización en el Sector).
-
-Nota
-Si la documentación en original a ser presentada en el exterior es exigida en idioma extranjero, luego de su legalización o Apostilla deberá contar con traducción efectuada por Traductor Público y certificada por el Colegio de Traductores Públicos. Cumplidos ambos requisitos, se recomienda legalizar la intervención del  Colegio de Traductores Públicos.
-Para el caso que sobre el documento tenga la intervención de un Escribano Público, una de las obligaciones del notario al momento de intervenir en un documento redactado en idioma extranjero, es dejar constancia que conoce el idioma.
-
-
-Nota final en funcion al pais elegido
-Segun el documento a apostillar: "nombredocumento" y el pais destino: "nombrepais" el costo del tramite es de: 
-
-$ 90 paises convenio o $ 30 otros  o $ 120 (Habilitación de firma de Funcionario Consular extranjero acreditado en el país: $ 120
-)
-
-
