@@ -1,0 +1,652 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="Configurar notificaciones" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="notificaciones" %}
+
+      </aside>
+      <div class="col-md-8">
+
+        <h2 class="h3">Configurar notificaciones</h2>
+
+        <p>Activá las notificaciones para recibir novedades, vencimientos y actualizaciones de los servicios que te interesen.</p>
+
+        <p>Para hacerlo, primero seleccioná los servicios y después <a href="#canales">elegí el canal</a> donde querés recibirlas.</p>
+
+        <div class="panel panel-default panel-border-primary m-t-3">
+          <div class="panel-body">
+            <h2>Servicios</h2>
+            <p>Seleccioná los servicios que te interesan para activar las notificaciones.</p>
+
+<!--            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-bolt fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Cortes de servicio eléctrico</h3>
+                <p class="text-muted">Mensajes cuando hay cortes programados en tu domicilio.<br><em>Hacé una consulta con los datos de tu servicio eléctrico para activar este servicio</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+-->
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa icono-arg-auto-licencia fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Licencia Nacional de conducir</h3>
+                <p class="text-muted">Fecha de vencimiento, clase y datos de la emisión. <br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+<!--
+            <hr class="m-y-1">
+            
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Asignación Universal por Hijo</h3>
+                <p class="text-muted">Próxima fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Asignación Universal por embarazo</h3>
+                <p class="text-muted">Fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Jubilaciones y pensiones hasta $5634</h3>
+                <p class="text-muted">Próxima fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Jubilaciones y pensiones desde $5634</h3>
+                <p class="text-muted">Fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Pensión no contributiva</h3>
+                <p class="text-muted">Fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Prestación para trabajadores</h3>
+                <p class="text-muted">Próxima fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Prestación por desempleo</h3>
+                <p class="text-muted">Fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">ANSES - Prestación PROGRESAR</h3>
+                <p class="text-muted">Fecha y lugar de cobro.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+-->
+
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Feriados y días no laborables</h3>
+                <p class="text-muted">Fecha de los próximos feriados nacionales y días no laborables.
+                <br>
+                <a href="http://www.argentina.gob.ar/feriados" target="_blank">Ver todos los feriados</a></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-wheelchair fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Certificado Único de Discapacidad</h3>
+                <p class="text-muted">Fecha de vencimiento.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-wheelchair fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Beneficios ANSES</h3>
+                <p class="text-muted">Fecha y lugar de cobro de beneficios de ANSES.<br><em>Esta consulta usa tu CUIL 27336205226</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - Autónomos</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - Empleadores</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - Casas Particulares</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - Ganancias</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - IVA y Régimen Informativo de Compras y Ventas</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-calendar fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">AFIP - Monotributo</h3>
+                <p class="text-muted">Próxima fecha de vencimiento para pagos.<br><em>Esta consulta usa tu CUIL 20316045732</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            
+
+            
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-id-card-o fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">DNI</h3>
+                <p class="text-muted">Fecha de vencimiento y trámites pendientes.<br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100" checked>
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-id-card-o fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Pasaporte</h3>
+                <p class="text-muted">Fecha de vencimiento y trámites pendientes. <br><em>Esta consulta usa tu DNI 12345678 <a href="datos_opcionales">(Cambiar)</a></em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+             
+
+            <hr class="m-y-1">
+
+            <div class="media m-b-1">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-car fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Radicación de dominio Automotor</h3>
+                <p class="text-muted">Lugar de radicación de uno o varios vehículos. <br><em><a href="mis-vehiculos">Cargá la patente de un vehículo</a> para activar este servicio</em></p>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+           
+            <hr class="m-y-1">
+
+            
+
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="panel panel-default panel-border-warning" id="canales">
+          <div class="panel-body">
+            <h2>Canales de envío</h2>
+            <p>Elegí si querés recibir notificaciones por correo electrónico o mediante la aplicación móvil.</p>
+            <p><a href="#">Descargar aplicación</a></p>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-id-card-o fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body">
+                <h3 class="m-t-0">Mis trámites</h3>
+                <p class="text-muted">Recibís un mensaje cada vez que pase algo con un trámite que estés haciendo y cuando tengas un turno.</p>
+              </div>
+              <div class="media-right p-l-3">
+                <div class="form-group m-b-1">
+                  <label for="tramite-email"><small>Correo electrónico *</small></label>
+                  <input id="tramite-email" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100" checked disabled>
+                </div>
+
+                <div class="form-group m-b-1">
+                  <label for="tramite-notificacion"><small>Aplicación móvil</small></label>
+                  <input id="tramite-notificacion" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+                </div>
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-info-circle fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body">
+                <h3 class="m-t-0">Mis consultas</h3>
+                <p class="text-muted">Recibís un mensaje cada vez que pase algo con un servicio. También podés <a href="#">elegir cada servicio por separado</a>.</p>
+              </div>
+              <div class="media-right p-l-3">
+                <div class="form-group m-b-1">
+                  <label for="tramite-email"><small>Correo electrónico</small></label>
+                  <input id="tramite-email" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100" checked>
+                </div>
+
+                <div class="form-group m-b-1">
+                  <label for="tramite-notificacion"><small>Aplicación móvil</small></label>
+                  <input id="tramite-notificacion" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+                </div>
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-user fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body">
+                <h3 class="m-t-0">Mi cuenta de Mi Argentina</h3>
+                <p class="text-muted">En pocas ocasiones recibís mensajes que te ayudan a completar tu perfil para poder hacer más trámites y más fácil.</p>
+              </div>
+              <div class="media-right p-l-3">
+                <div class="form-group m-b-1">
+                  <label for="tramite-email"><small>Correo electrónico</small></label>
+                  <input id="tramite-email" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100" checked>
+                </div>
+
+                <div class="form-group m-b-1">
+                  <label for="tramite-notificacion"><small>Aplicación móvil</small></label>
+                  <input id="tramite-notificacion" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+                </div>
+              </div>
+            </div>
+
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-bullhorn fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body">
+                <h3 class="m-t-0">Novedades</h3>
+                <p class="text-muted">Recibís un mensaje cada vez que se publique una noticia de tu interés. Más abajo podés elegir qué novedades querés recibir.</p>
+              </div>
+              <div class="media-right p-l-3">
+                <div class="form-group m-b-1">
+                  <label for="tramite-email"><small>Correo electrónico</small></label>
+                  <input id="tramite-email" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100" checked>
+                </div>
+
+                <div class="form-group m-b-1">
+                  <label for="tramite-notificacion"><small>Aplicación móvil</small></label>
+                  <input id="tramite-notificacion" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+                </div>
+              </div>
+            </div>
+
+
+
+              </div>
+            </div>
+
+          
+
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+            <h2>Elegir novedades</h2>
+            <p>Elegí qué tipo de mensajes querés recibir y si querés que te lleguen por correo electrónico, mensaje de texto u otros.</p>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Salud</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Economía</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Trabajo</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Vivienda</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Seguridad</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Educación y deportes</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Cultura</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Industria y Producción</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Agricultura y ganadería</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Ciencia y tecnología</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">PyMES y Emprendimientos</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Medio Ambiente</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Obras e Infraestructura</h3>
+              </div>
+              <div class="media-right">
+                <input id="switch-state" type="checkbox" data-on-color="primary" data-off-text="Desactivado" data-on-text="Activado" data-label-width="10" data-handle-width="100">
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
