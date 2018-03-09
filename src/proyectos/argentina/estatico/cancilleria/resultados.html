@@ -170,10 +170,14 @@ layout: argentina
                 if( localStorage.getItem("wizard-form2") != undefined ){
 
                   form_data = JSON.parse( localStorage.getItem("wizard-form2"));
+
+                  var lenghtItems = form_data.length-1
+                  console.log(form_data[lenghtItems].value)
                   
                   mostrarDescripcion();
 
                   jQuery.each(form_data, function(key, item){
+
 
                     if (item.name == "pais") {
                       $('#show-data-aranceles').find('[data-render=pais]').append( item.value );
@@ -201,17 +205,16 @@ layout: argentina
                             var htmlItemDocumento = templates.itemDocumento;
 
                             var simboloMoneda = "$"
-
                             var costo = 90
 
-                            if ( item.value == "Otros Países"){
-                              var costo = 30;
-                            }                            
+                            if(form_data[lenghtItems].value == 'Otros Países') {
+                              costo = 30
+                            }
 
                             if(content.id == "certificadosRepresentacionesExtranjeras"){
-                              var costo = 120;
+                              costo = 120;
                             } else if ( content.id == "certificadosConsulares"){
-                              var costo = 'Gratuito';
+                              costo = 'Gratuito';
                               simboloMoneda = ''
                             } 
 
