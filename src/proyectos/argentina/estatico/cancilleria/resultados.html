@@ -11,10 +11,10 @@ layout: argentina
         <div id="wizard-personal" class="hidden">
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a apostillar:</h2>
+              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a legalizar:</h2>
               <hr class="m-y-1">
                <ul class="m-t-2 content_format">
-                 <li>El documento a apostillar <strong>debe ser original</strong> y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.</li>
+                 <li>El documento a legalizar <strong>debe ser original</strong> y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.</li>
                  <li>La presentación de los documentos solamente podrá ser realizada por personas <strong>mayores de 18 años</strong>, quienes deberán identificarse presentando su Documento Nacional de Identidad (DNI) vigente.</li>
                  <li>Los <strong>ciudadanos extranjeros</strong> podrán identificarse presentando DNI para extranjeros o documento de identificación correspondiente a su nacionalidad vigente.</li>
                </ul>
@@ -134,6 +134,11 @@ layout: argentina
                   name: 'Certificados consulares emitidos por las representaciones extranjeras acreditadas en la República Argentina.',
                   id: 'certificadosRepresentacionesExtranjeras',            
                   description: '',
+                },
+                {
+                  name: 'Certificados o actos consulares emitidos o intervenidos por la Red Consular Argentina.',
+                  id: 'certificadosConsulares',            
+                  description: '',
                 }
                ]
          }
@@ -149,7 +154,7 @@ layout: argentina
                           <p class="text-muted"><strong>Nota: </strong>{description}</p>
                         </div>
                       </div></li>`,
-                descriptionAranceles: `<p>Según los documentos a apostillar y el país destino <strong data-render="pais"></strong>, el costo del trámite es de: </p>
+                descriptionAranceles: `<p>Según los documentos a legalizar y el país destino <strong data-render="pais"></strong>, el costo del trámite es de: </p>
                   <strong data-render="tipo-documento"></strong>`, 
                 itemDocumento: `{itemDocumento}`     
               };
@@ -196,15 +201,20 @@ layout: argentina
 
                             var htmlItemDocumento = templates.itemDocumento;
 
-                            if(content.id == "habilitacionFirmaConsularExt"){
+                            var simboloMoneda = "$"
+
+                            if(content.id == "certificadosRepresentacionesExtranjeras"){
                               var costo = 120;
-                            } else if ( item.value == "Otros Paises"){
+                            } else if ( content.id == "certificadosConsulares"){
+                              var costo = 'Gratuito';
+                              simboloMoneda = ''
+                            } else if ( item.value == "Otros Países"){
                               var costo = 30;
                             } else {
                               var costo = 90;
                             }
 
-                            htmlItemDocumento = "<div class='m-y-2'><strong class='text-success h3 m-r-1'>$ <span data-render='costo'>"+ costo +"</span></strong>" + htmlItemDocumento + "</div>";
+                            htmlItemDocumento = "<div class='m-y-2'><strong class='text-success h3 m-r-1'>" + simboloMoneda + "<span data-render='costo'>"+ costo +"</span></strong>" + htmlItemDocumento + "</div>";
                             htmlItemDocumento = htmlItemDocumento.replace(/{itemDocumento}/gi, content.name);  
 
 
