@@ -11,7 +11,7 @@ layout: argentina
         <div id="wizard-personal" class="hidden">
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a legalizar:</h2>
+              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a Legalizar:</h2>
               <hr class="m-y-1">
                <ul class="m-t-2 content_format">
                  <li>El documento a legalizar <strong>debe ser original</strong> y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.</li>
@@ -179,7 +179,6 @@ layout: argentina
                       $('#show-data-aranceles').find('[data-render=pais]').append( item.value );
                     }
 
-
                     data[item.name] = item.value;
 
                   jQuery.each(categories, function(key, category){
@@ -188,7 +187,7 @@ layout: argentina
 
                     jQuery.each(category.contents, function(key, content){
 
-                      if(item.value == content.id ) {
+                      if(item.value == content.id) {
 
                           var html = templates.item;
 
@@ -203,16 +202,18 @@ layout: argentina
 
                             var simboloMoneda = "$"
 
+                            var costo = 90
+
+                            if ( item.value == "Otros Países"){
+                              var costo = 30;
+                            }                            
+
                             if(content.id == "certificadosRepresentacionesExtranjeras"){
                               var costo = 120;
                             } else if ( content.id == "certificadosConsulares"){
                               var costo = 'Gratuito';
                               simboloMoneda = ''
-                            } else if ( item.value == "Otros Países"){
-                              var costo = 30;
-                            } else {
-                              var costo = 90;
-                            }
+                            } 
 
                             htmlItemDocumento = "<div class='m-y-2'><strong class='text-success h3 m-r-1'>" + simboloMoneda + "<span data-render='costo'>"+ costo +"</span></strong>" + htmlItemDocumento + "</div>";
                             htmlItemDocumento = htmlItemDocumento.replace(/{itemDocumento}/gi, content.name);  
