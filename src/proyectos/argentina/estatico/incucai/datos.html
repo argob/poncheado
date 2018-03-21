@@ -35,14 +35,24 @@ layout: argentina
         <div class="col-md-8 col-md-offset-2">
             <div class="row numbers">
               <div class="col-md-6">
-                <div class="h2 text-tomate" id="show-data-01"></div>
-                  <p>Personas necesitan un trasplante para salvar su vida <strong>en este momento</strong></p>
+                <div class="h2 text-color" id="show-data-01"></div>
+                  <p><strong>Personas necesitan un trasplante</strong> para salvar su vida <strong>en este momento.</strong></p>
                   <a href="http://www.incucai.gov.ar/mod_estadisticas/pacientes_inscriptos_en_lista_de_espera.php" target="_blank">Ver Indice</a>
               </div>
               <div class="col-md-6">
-                <div class="h2 text-tomate" id="show-data-02"></div>
-                  <p>Cantidad de trasplantes de realizados <strong>en el año en curso (2018)</strong></p>
+                <div class="h2 text-color" id="show-data-02"></div>
+                  <p>Es la cantidad de <strong>trasplantes realizados</strong> durante este año (2018)</p>
                   <a href="http://www.incucai.gov.ar/mod_estadisticas/pacientes_trasplantados_comparativo_mensual.php" target="_blank">Ver Indice</a>
+              </div>
+              <div class="col-md-6 m-t-4 p-t-3">
+                <div class="h2 text-color" id="show-data-03"></div>
+                  <p><strong>Personas donaron sus órganos</strong> durante este año (2018)</p>
+                  <a href="" target="_blank">Ver Indice</a>
+              </div>
+              <div class="col-md-6 m-t-4 p-t-3">
+                <div class="h2 text-color" id="show-data-04"></div>
+                  <p>Es la cantidad de <strong>donantes por cada millón de habitantes</strong> de este año (2018)</p>
+                  <a href="" target="_blank">Ver Indice</a>
               </div>
             </div>
             <div class="row">
@@ -61,7 +71,7 @@ layout: argentina
 jQuery(document).ready(function($){
 
     $.ajax({
-      url: 'http://ws-rest.incucai.gov.ar/publicIncucaiApi/v1.0/webmaster/paisEstadisticaPorHora',
+      url: 'https://ws-rest.incucai.gov.ar/publicIncucaiApi/v1.0/webmaster/estadisticasHome',
       data: 'json',
       success: function(response){
         console.log(response);
@@ -74,15 +84,23 @@ jQuery(document).ready(function($){
     window.showDatos = function(filtro){
         var showData01 = $('#show-data-01');
         var showData02 = $('#show-data-02');
+        var showData03 = $('#show-data-03');
+        var showData04 = $('#show-data-04');
 
         var htmlshowData01 = '';
         var htmlshowData02 = '';
+        var htmlshowData03 = '';
+        var htmlshowData04 = '';
 
-        console.log(datos.nro_le_organo)
-        console.log(datos.nro_trasplante)
+        console.log(datos.data.lista_de_espera_organos)
+        console.log(datos.data.trasplantes_organos_anio_actual)
+        console.log(datos.data.donantes_reales_anio_actual)
+        console.log(datos.data.donantes_pmh_anio_actual)
 
-        htmlshowData01 += datos.nro_le_organo;
-        htmlshowData02 += datos.nro_trasplante;
+        htmlshowData01 += datos.data.lista_de_espera_organos;
+        htmlshowData02 += datos.data.trasplantes_organos_anio_actual;
+        htmlshowData03 += datos.data.donantes_reales_anio_actual;
+        htmlshowData04 += datos.data.donantes_pmh_anio_actual;
 
         showData01.empty();
         showData01.append(htmlshowData01);
@@ -90,12 +108,27 @@ jQuery(document).ready(function($){
         showData02.empty();
         showData02.append(htmlshowData02);
 
+        showData03.empty();
+        showData03.append(htmlshowData03);
+
+        showData04.empty();
+        showData04.append(htmlshowData04);
+
+
+
+
     }
-    
+
 
 });
 
 
 </script>
+
+<style type="text/css">
+  .text-color {
+    color: #B10052;
+  }
+</style>
 
 
