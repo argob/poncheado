@@ -36,148 +36,160 @@ layout: argentina
 
 </style>
 
-<div class="container">
-  <section>
-    <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        <div id="simulator-container" class="well">
-          <h3>Cálcula tu descuento</h3>
-          <p>Poné el precio de tu boleto y nosotros calculamos el descuento según tu tipo de viaje.</p>
-          
-          <hr>
 
-          <form action="#" class="m-b-2">
-
-            <p class="h5">Carga tu viaje diario</p>
-            <!-- <p class="text-muted m-t-1 m-b-3">Poné el precio del boleto sin ningún descuento, nosotros hacemos el cálculo de tarifa social, trasbordos o descuento del subte.</p> -->
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group">
-                  <label for="ride-transport">Transporte</label>
-                  <select class="form-control" id="ride-transport">
-                    <option value="bus">Colectivo</option>
-                    <option value="train">Tren</option>
-                    <option value="subway">Subte</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group">
-                  <label for="ride-price">Costo del viaje</label>
-                  <div class="input-group">
-                    <span class="input-group-addon">$</span>
-                    <input type="number" class="form-control" id="ride-price" placeholder="0.00" min="4">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <label for="ride-price" class="hidden-xs">&nbsp;</label><br class="hidden-xs">
-                <a id="js-add-trip" href="#" class="btn btn-success btn-block">Agregar viaje</a>
-              </div>
-            </div>
-
-            <div id="js-subway-alert" class="alert alert-warning m-b-3 hidden">
-              Si haces dos viajes consecutivos en Subte no aplica el descuento de RED SUBE porque podes hacer combinación en la red de subtes.
-            </div>
-
-            <div id="js-number-alert" class="alert alert-danger m-b-3 hidden">
-              El costo del viaje debe ser un número mayor o igual a $4.
-            </div>
-
-            <div id="trip-list" class="row p-t-1">
-            </div>
-
-            <div id="js-time-alert" class="alert alert-info hidden">
-              Recordá que el descuento aplica a los viajes que hagas hasta 2 horas después que empezaste primero. Una vez pasado ese tiempo empieza el ciclo de nuevo.
-            </div>
-
-            <hr>
-
-            <p class="h5 m-b-2">Cálcula tu descuento mensual</p>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label>¿Tenés tarifa social?</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
-                    <label class="btn btn-default"><input class="form-radio" type="radio" name="tarifa-social" value="yes">Si</label>
-                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="tarifa-social" value="no" checked>No</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label>¿Viajas ida y vuelta?</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons"> 
-                    <label class="btn btn-default active"><input class="form-radio" type="radio" name="round-trip" value="yes" checked>Si</label>
-                    <label class="btn btn-default"><input class="form-radio" type="radio" name="round-trip" value="no">No</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="form-group m-b-1">
-                  <label for="ride-times">Viajes por semana</label>
-                  <input type="number" class="form-control" id="ride-times" value="5" min="1">
-                </div>
-              </div>
-            </div>
-
-            <div id="js-times-alert" class="alert alert-danger m-b-3 hidden">
-              La cantidad de viajes por semana debe ser mayor que cero.
-            </div>
-
-          </form>
-
-          <div id="results" class="hidden">
-            <hr>
-
-            <p class="h5 m-b-2">Tus resultados</p>
-
-            <div class="row numbers row-flex p-t-0 p-b-1">
-              <div class="col-xs-12 col-sm-5">
-                <div class="h2 text-success" data-render="saving">-</div>
-                <p class="text-muted">Tu ahorro por mes</p>
-              </div>
-              <div class="col-xs-6 col-sm-4">
-                <div class="h3 text-gray" data-render="going">-</div>
-                <p class="text-muted">Viaje de ida</p>
-              </div>
-              <div class="col-xs-6 col-sm-3">
-                <div class="h3 text-gray" data-render="returning">-</div>
-                <p class="text-muted">Viaje de vuelta</p>
-              </div>
-            </div>
-
-            <br class="hidden-xs">
-
-            <ul class="list-unstyled m-t-0">
-              <li id="js-2" class="m-b-2">
-                <div class="media">
-                  <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
-                  <div class="media-body media-middle">Tenés un 50% de descuento en el 2do viaje<span id="js-3"> y un 75% en los siguientes</span>.</div>
-                </div>
-              </li>
-              <li id="js-social" class="m-b-2">
-                <div class="media">
-                  <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
-                  <div class="media-body media-middle">Tenés el descuento de Tarifa Social.</div>
-                </div>
-              </li>
-              <li id="js-subway" class="m-b-2">
-                <div class="media">
-                  <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
-                  <div class="media-body media-middle">Tenés descuento de la tarifa escalonada de subte.</div>
-                </div>
-              </li>
-            </ul>
-            
-          </div>
-
-        </div>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <h1 class="activities-sidbar">Calculá tu descuento de RED SUBE</h1>
+    <div class="section-actions social-share">
+      <p>Compartir en<br> redes sociales</p>
+      <div class="item-list">
+        <ul class="list-inline">
+          <li class="first"><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.argentina.gob.ar/redsube/simulador&amp;title=Simulador de RED SUBE"><span class="sr-only">Compartir en Facebook</span><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li><a href="https://twitter.com/share"><span class="sr-only">Compartir en Twitter</span><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li class="last"><a href="https://plus.google.com/share?url=https://www.argentina.gob.ar/redsube/simulador"><span class="sr-only">Compartir en Google Plus</span><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+        </ul>
       </div>
     </div>
-  </section>
+    <hr>
+
+    <p>Cargá el precio de tu boleto y en caso de que hagas 1 o más combinaciones en menos de 2 horas, calculamos el descuento que te corresponde. El descuento de la <strong>RED SUBE</strong> se suma con la <strong>Tarifa Social Federal</strong> y se complementa con la tarifa escalonada del subte. <a href="/tarifa-social-federal-sube" target="_blank">Averiguá si te corresponde la Tarifa Social</a>.</p>
+    <p>Si no conocés la nueva tarifa, <a href="/redsube/tarifas-de-transporte-publico-amba-febrero-2018" target="_blank">consultá los valores de AMBA</a>.</p>
+
+    <div id="simulator-container" class="well m-t-3">
+      <form action="#" class="m-b-0">
+
+        <p class="h5">Cargá tu viaje diario</p>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group">
+              <label for="ride-transport">Transporte</label>
+              <select class="form-control" id="ride-transport">
+                <option value="bus">Colectivo</option>
+                <option value="train">Tren</option>
+                <option value="subway">Subte</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group">
+              <label for="ride-price">Costo del boleto</label>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="number" class="form-control" id="ride-price" placeholder="0.00" min="0">
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label for="ride-price" class="hidden-xs">&nbsp;</label><br class="hidden-xs">
+            <a id="js-add-trip" href="#" class="btn btn-success btn-block">Agregar viaje</a>
+          </div>
+        </div>
+
+        <div id="js-subway-alert" class="alert alert-warning m-b-3 hidden">
+          Si hacés dos viajes consecutivos en subte no aplica el descuento de RED SUBE porque podés hacer combinación en la red de subtes.
+        </div>
+
+        <div id="js-number-alert" class="alert alert-danger m-b-3 hidden">
+          El costo del viaje debe ser un número mayor a cero.
+        </div>
+
+        <div id="trip-list" class="row">
+        </div>
+
+        <div id="js-time-alert" class="alert alert-info hidden">
+          Recordá que el descuento aplica a los viajes que hagas hasta 2 horas después que empezaste el primero. Una vez pasado ese tiempo, empieza el ciclo de nuevo.
+        </div>
+
+        <hr>
+
+        <p class="h5 m-b-2">Calculá tu descuento mensual</p>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group m-b-1">
+              <label>¿Tenés tarifa social?</label>
+              <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                <label class="btn btn-default"><input class="form-radio" type="radio" name="tarifa-social" value="yes">Si</label>
+                <label class="btn btn-default active"><input class="form-radio" type="radio" name="tarifa-social" value="no" checked="">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group m-b-1">
+              <label>¿Viajás ida y vuelta?</label>
+              <div class="btn-group btn-group-justified" data-toggle="buttons"> 
+                <label class="btn btn-default active"><input class="form-radio" type="radio" name="round-trip" value="yes" checked="">Si</label>
+                <label class="btn btn-default"><input class="form-radio" type="radio" name="round-trip" value="no">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group m-b-1">
+              <label for="ride-times">Viajes por semana</label>
+              <input type="number" class="form-control" id="ride-times" value="5" min="1">
+            </div>
+          </div>
+        </div>
+
+        <div id="js-times-alert" class="alert alert-danger m-b-3 hidden">
+          La cantidad de viajes por semana debe ser mayor a cero.
+        </div>
+
+        <br class="hidden-xs">
+
+        <ul class="list-unstyled m-y-0">
+          <li id="js-2" class="m-b-2 hidden">
+            <div class="media">
+              <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
+              <div class="media-body media-middle">Tenés un 50% de descuento en el 2<sup>do</sup> viaje<span id="js-3"> y un 75% en los siguientes</span>.</div>
+            </div>
+          </li>
+          <li id="js-social" class="m-b-2 hidden">
+            <div class="media">
+              <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
+              <div class="media-body media-middle">Tenés el descuento de Tarifa Social en colectivos y trenes.</div>
+            </div>
+          </li>
+          <li id="js-subway" class="m-b-2 hidden">
+            <div class="media">
+              <div class="media-left media-middle"><span class="fa fa-check text-success fa-2x"></span></div>
+              <div class="media-body media-middle">Tenés descuento de la tarifa escalonada de subte. No está calculado en este simulador.</div>
+            </div>
+          </li>
+        </ul>
+
+      </form>
+
+      <div id="results" class="hidden">
+        <hr>
+
+        <p class="h5 m-b-2">Tus resultados</p>
+
+        <div class="row numbers row-flex p-t-0 p-b-1">
+          <div class="col-xs-6 col-sm-4">
+            <div class="h3 text-gray" data-render="going">-</div>
+            <p class="text-muted">Viaje de ida</p>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <div class="h3 text-gray" data-render="returning">-</div>
+            <p class="text-muted">Viaje de vuelta</p>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="h2 text-success" data-render="saving">-</div>
+            <p class="text-muted">Tu descuento por mes</p>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+    <div class="b-t-2">
+      <a href="/redsube" class="btn btn-link">Volver a RED SUBE</a>
+    </div>
+
+  </div>
 </div>
 
 
@@ -185,7 +197,7 @@ layout: argentina
 <script>
 
   var templates = {
-    item: '<div class="col-xs-4 col-sm-2"><div class="panel m-b-1"><a class="delete-trip" data-delete="{index}" href="#"><span class="fa fa-times-circle text-danger"></span></a><div class="panel-body p-x-0 text-center"><p class="h2 m-t-0"><span class="fa fa-{transport}"></span><br><small>${price}</small></p></div></div></div>',
+    item: '<div class="col-xs-4 col-sm-2"><div class="panel m-y-1"><a class="delete-trip" data-delete="{index}" href="#"><span class="fa fa-times-circle text-danger"></span></a><div class="panel-body p-x-0 text-center"><p class="h2 m-t-0"><span class="fa fa-{transport}"></span><br><small>${price}</small></p></div></div></div>',
     arrow: '<div class="col-xs-2 col-sm-1 text-center"><span class="fa fa-arrow-right"></span></div>',
   }
 
@@ -213,7 +225,7 @@ layout: argentina
       jQuery('#js-add-trip').removeClass('disabled');
 
       // Deshabilita agregar mas viajes cuando hay dos subtes consecutivos
-      if(data.trips.length > 0 && data.trips[data.trips.length-1].transport == 'subway' && $('#ride-transport').val() == 'subway' ){
+      if(data.trips.length > 0 && data.trips[data.trips.length-1].transport == 'subway' && jQuery('#ride-transport').val() == 'subway' ){
         jQuery('#js-add-trip').addClass('disabled');
         jQuery('#js-subway-alert').removeClass('hidden');
       }else{
@@ -250,7 +262,7 @@ layout: argentina
 
     // Si salta la validación de cantidad de viajes y no es válido, lo defino como 1
     if(data.times == "" || isNaN(data.times) || data.times < 0 ){
-      $('#js-times-alert').addClass('hidden');
+      jQuery('#js-times-alert').addClass('hidden');
       jQuery('#ride-times').val(1);
       data.times = 1;
     }
@@ -265,10 +277,9 @@ layout: argentina
       // Si hay un subte, lo anoto
       if(item.transport == 'subway'){
         data.anysubway = true;
-      }
 
-      // Si hay tarifa social lo calculo
-      if(data.tarifasocial == 'yes'){
+      // Si no es subte y si hay tarifa social, lo calculo
+      }else if(data.tarifasocial == 'yes'){
         realprice = realprice * 0.45;
       }
 
@@ -347,11 +358,11 @@ layout: argentina
     var price = parseFloat(jQuery('#ride-price').val());
 
     // Valida
-    if( isNaN(price) || price < 4){
-      $('#js-number-alert').removeClass('hidden');
+    if( isNaN(price) || price < 0){
+      jQuery('#js-number-alert').removeClass('hidden');
 
     }else{
-      $('#js-number-alert').addClass('hidden');
+      jQuery('#js-number-alert').addClass('hidden');
       data.trips.push({
         transport: transport,
         price: price
@@ -390,9 +401,9 @@ layout: argentina
     data.times = jQuery('#ride-times').val();
 
     if(data.times == "" || isNaN(data.times) || data.times < 0 ){
-      $('#js-times-alert').removeClass('hidden');
+      jQuery('#js-times-alert').removeClass('hidden');
     }else{
-      $('#js-times-alert').addClass('hidden');
+      jQuery('#js-times-alert').addClass('hidden');
       calculateTrip();
     }
   });
@@ -411,14 +422,3 @@ layout: argentina
   });
   
 </script>
-
-
-
-
-
-
-
-
-
-
-
