@@ -1,0 +1,77 @@
+---
+layout: argentina
+---
+
+
+<div class="container" id="colectasMedula">
+    <div class="row">
+
+        <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+                <thead>
+                    <tr>
+                        <th>Provincia</th>
+                        <th>Fecha</th>
+                        <th>Horario</th>
+                        <th>Lugar</th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="show-data">
+                </tbody>
+            </table>
+
+            <nav class="text-center">
+                <ul class="pagination"></ul>
+            </nav>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+    (function($) {
+        $(document).ready(function() {
+
+            $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1KHT5boZfvJHzK2kRNw59cVlpP6Ti40igdZet8da9eZQ/1', function(data) {
+                window.colectasMedula = data.feed.entry;
+                showcolectasMedula();
+            });
+
+            window.showcolectasMedula = function() {
+                var showData = $('#show-data');
+
+                var html = '';
+
+                $.each(colectasMedula, function(key, item) {
+                    html += '<tr>';
+                    html += ' <td class="Provincia">' + item.gsx$provincia.$t + '</td>';
+                    html += ' <td class="Fecha">' + item.gsx$fecha.$t + '</td>';
+                    html += ' <td class="Horario">' + item.gsx$horario.$t + '</td>';
+                    html += ' <td class="Lugar"><b>' + item.gsx$lugar.$t + '</b><br>' + item.gsx$direccion.$t + '</td>';
+                    html += '</tr>';
+
+                });
+
+                showData.empty();
+                showData.append(html);
+
+                var listOptions = {
+                    valueNames: ['Provincia', 'Fecha', 'Horario', 'Lugar'],
+                    page: 20,
+                    plugins: [ListPagination({})]
+                };
+
+                var colectasMedulaList = new List('colectasMedula', listOptions);
+
+            }
+
+        });
+    })(jQuery);
+
+</script>
