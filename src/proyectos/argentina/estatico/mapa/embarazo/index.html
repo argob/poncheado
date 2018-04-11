@@ -184,9 +184,9 @@ title: Mapa de Ventanillas
       data.features.forEach(function(row, key){
 
         if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
+          markerImage = 'img/marker_green.png';
+        }else if( row.attributes.NOMBRE.indexOf('INF.') > 0 ){
           markerImage = 'img/marker_uva.png';
-        // }else if( row.gsx$correo.$t > 0 ){
-        //   markerImage = 'img/marker_uva.png';
         } else {
           markerImage = 'img/marker.png';
         }
