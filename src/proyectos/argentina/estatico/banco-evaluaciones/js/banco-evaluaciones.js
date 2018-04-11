@@ -28,6 +28,10 @@ $(document).ready(function () {
 
         var listOptions = {valueNames: [ 'evaluacion', 'organismo', 'tema', 'ano' ] };
         var evaluacionesList = new List('evaluaciones', listOptions);
+
+        evaluacionesList.sort("ano", {
+            order: "desc"
+        })        
     }
 
 
