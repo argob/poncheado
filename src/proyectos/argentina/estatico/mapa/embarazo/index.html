@@ -84,7 +84,7 @@ title: Mapa de Ventanillas
           </div>
           <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="/ayudaparamujeres">Acerca de este mapa</a></li> -->
-            <li><a href="javascript:setGeolocation();" class="visible-xs localize">Centrar el mapa</a></li>
+            <li><a href="javascript:setGeolocation();" class="localize">Centrar el mapa</a></li>
           </ul>           
         </div>
       </div>
@@ -130,7 +130,7 @@ title: Mapa de Ventanillas
 
     // Show markers loaded from spreadsheet
 
-    var data;
+    window.data = {};
     window.config = {
       from: null,
       to: null
@@ -141,15 +141,28 @@ title: Mapa de Ventanillas
     var currentCount = 0;
     var currentMaxPob = 0;
 
+    // https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json
+
     $.ajax({
-      url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/EstablecimientosSalud/MapServer/6/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=JURISDICCI%3D+%27MUNI%27&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+      url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/EstablecimientosSalud/MapServer/6/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
       data: 'text',
       success: function(response){
 
-        data = JSON.parse(response);
-        renderMarkers();
+        data.establecimientos = JSON.parse(response);
 
-        // console.log(data.features);
+        $.ajax({
+          url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+          data: 'text',
+          success: function(response){
+
+            data.rawmaternidades = JSON.parse(response);
+            renderMarkers();
+
+            },
+          error: function(){
+            console.log('nope');
+          }
+        });
 
       },
       error: function(){
@@ -181,12 +194,25 @@ title: Mapa de Ventanillas
         nac: []
       }
 
-      data.features.forEach(function(row, key){
+
+      data.maternidades = [];
+      data.rawmaternidades.features.forEach(function(row, key){
+
+        data.maternidades[row.attributes['sde.SDE.ServicioSalud.OBJECTID']] = row.attributes;
+
+      });
+
+
+      data.establecimientos.features.forEach(function(row, key){
+
+        var esMaternindad = false;
 
         if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
           markerImage = 'img/marker_green.png';
-        }else if( row.attributes.NOMBRE.indexOf('INF.') > 0 ){
+        }else if( data.maternidades[row.attributes.OBJECTID] != undefined ){
+          row.maternidad = data.maternidades[row.attributes.OBJECTID];
           markerImage = 'img/marker_uva.png';
+          esMaternindad = true;
         } else {
           markerImage = 'img/marker.png';
         }
@@ -211,9 +237,16 @@ title: Mapa de Ventanillas
 
         });
 
+        var contenido;
+
+        if(esMaternindad){
+          contenido = '<h5>'+ row.attributes.NOMBRE +'<br><small>'+ row.attributes.LOC +', '+ row.attributes.PARTIDO +'.</small></h5><p><strong>Cotegoría Obstetricia</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.CategObst'] +'<br><strong>Cotegoría Neonatología</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.CategNeo'] +'<br><strong>Partos en 2016</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.Partos2016'] +'<br><strong>Partos en 2017</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.Partos2017'] +'<br></p><p><strong>Dirección</strong>: '+ row.attributes.DIRECCION +'<br><strong>Código postal</strong>: '+ row.attributes.CP +'<br><strong>Teléfono</strong>: '+ row.attributes.TEL +'<br><strong>Correo Electrónico</strong>: '+ row.attributes.EMAIL +'<br><strong>Categoría</strong>: '+ row.attributes.CATEG_ESTA +'</p> <p><a href="javascript:directions(\'from\', \''+row.geometry.y+','+row.geometry.x+'\');">Desde acá</a> - <a href="javascript:directions(\'to\',\''+row.geometry.y+','+row.geometry.x+'\');">Hasta acá</a></p>';
+        }else{
+          contenido = '<h5>'+ row.attributes.NOMBRE +'<br><small>'+ row.attributes.LOC +', '+ row.attributes.PARTIDO +'.</small></h5><p><strong>Dirección</strong>: '+ row.attributes.DIRECCION +'<br><strong>Código postal</strong>: '+ row.attributes.CP +'<br><strong>Teléfono</strong>: '+ row.attributes.TEL +'<br><strong>Correo Electrónico</strong>: '+ row.attributes.EMAIL +'<br><strong>Categoría</strong>: '+ row.attributes.CATEG_ESTA +'</p> <p><a href="javascript:directions(\'from\', \''+row.geometry.y+','+row.geometry.x+'\');">Desde acá</a> - <a href="javascript:directions(\'to\',\''+row.geometry.y+','+row.geometry.x+'\');">Hasta acá</a></p>';
+        }
         
         detalles[index] = new google.maps.InfoWindow({
-          content: '<h5>'+ row.attributes.NOMBRE +'<br><small>'+ row.attributes.LOC +', '+ row.attributes.PARTIDO +'.</small></h5><p><strong>Dirección</strong>: '+ row.attributes.DIRECCION +'<br><strong>Código postal</strong>: '+ row.attributes.CP +'<br><strong>Teléfono</strong>: '+ row.attributes.TEL +'<br><strong>Correo Electrónico</strong>: '+ row.attributes.EMAIL +'<br><strong>Categoría</strong>: '+ row.attributes.CATEG_ESTA +'</p> <p><a href="javascript:directions(\'from\', \''+row.geometry.y+','+row.geometry.x+'\');">Desde acá</a> - <a href="javascript:directions(\'to\',\''+row.geometry.y+','+row.geometry.x+'\');">Hasta acá</a></p>',
+          content: contenido,
           maxWidth: 400
         })
 
@@ -265,11 +298,12 @@ title: Mapa de Ventanillas
         if (status === 'OK') {
           directionsDisplay.setDirections(response);
 
-          config.from = null;
-          config.to = null;
         } else {
-          window.alert('Directions request failed due to ' + status);
+          window.alert('Falló la búsqueda de transporte público porque: ' + status);
         }
+        
+        config.from = null;
+        config.to = null;
       });
     }
 
