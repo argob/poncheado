@@ -29,7 +29,7 @@ layout: argentina
 	
 	<div class="hidden">
 	   <div class="col-sm-4" id="destacado_clon">
-	      <a class="panel panel-default" href="" target="_blank">
+	      <a class="panel panel-default" href="">
 	         <div class="panel-body">
 	            <div class="media">
 	               <div class="media-body">
@@ -146,14 +146,15 @@ function buscar(){
 			fecha_evento = "Desde " + fecha_desde + " al " + fecha_hasta; 	
 		}
 		mes_evento = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY").format('MM');
-		hora_desde = element["gsx$horadesde"]["$t"];
-		hora_hasta = element["gsx$horahasta"]["$t"];
+		horario = element["gsx$horario"]["$t"];;
+		//hora_desde = element["gsx$horadesde"]["$t"];
+		//hora_hasta = element["gsx$horahasta"]["$t"];
 		
 
 
 		//Se filtra por mes
 		if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
-			$("#resultados tbody").append("<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td class='eventoTitulo'><h6><a class='eventoURL' href='"+sitio_url+"' target='_blank'>"+titulo+"</a></h6><p>"+descripcion+"</p><p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> de "+hora_desde+" hasta "+hora_hasta+" hs</small></p></td></tr>");
+			$("#resultados tbody").append("<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td class='eventoTitulo'><h6><a class='eventoURL' href='"+sitio_url+"'>"+titulo+"</a></h6><p>"+descripcion+"</p><p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> "+horario+"</small></p></td></tr>");
 		}
 
 
