@@ -77,19 +77,13 @@ layout: argentina
 		      </div>
 		    </div>
 
-		    <div class="col-md-7">    
+		    <div class="col-md-9">    
 		      <div class="form-group">
 		        <label>Buscá eventos</label>
 		        <input class="form-control" placeholder="" id="text_titulo">
 		      </div>
 		    </div>
 				
-			<div class="col-sm-2">
-			  <button class="btn btn-block btn-primary m-t-2" data-sort="name" id="buscarBtn">
-			    Buscar
-			  </button>
-			</div>
-
 			</div>
 
 		<table class="table" id="resultados">
@@ -195,15 +189,12 @@ function buscar(){
 	
 
 	//BOTÓN BUSQUEDA
-	$("#buscarBtn").click(function(){
+	$("#selectorMes").on("change",function(){
 		buscar();
 	})
 	
 	$("#text_titulo").keyup(function(e){
-    if(e.keyCode == 13)
-	    {
 	        buscar();
-	    }
 	});
 
 
