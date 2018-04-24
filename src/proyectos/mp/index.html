@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/circle.css">
+    <title>MP</title>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+  </head>
+  <body>
+   <section id="loader" class="loader"></section>
+   <section id="bloques" class="d-none">
+        <header class="bmd-layout-header py-3">
+          <div>
+            <div class="row">
+              <div class="col-sm"></div>
+              <div class="col-sm">
+                <h4 class="text-center text-white font-weight-bold my-3">SELECCIONÁ UN BLOQUE</h4>
+              </div>
+              <div class="col-sm"></div>
+            </div>
+          </div>
+        </header>
+        <div class="container-fluid">
+          <h3 class="my-3 font-weight-bold">Bloque activo</h3>
+          <section data-render="bloque-activo"></section>
+        </div>
+        <div class="container-fluid">
+          <h3 class="my-3 font-weight-bold">Bloques Pendientes</h3>
+          <section data-render="bloques"></section>
+        </div>
+        <div class="container-fluid d-none">
+          <h3 class="my-3 font-weight-bold">Bloques respondidos</h3>
+          <section data-render="bloques-ok"></section>
+        </div>
+   </section> 
+   <section id="bloque-items" class="d-none">
+        <header class="bmd-layout-header py-3">
+          <div>
+            <div class="row">
+              <div class="col-sm">
+                <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light p-2 ml-2 volver">VOLVER</button>
+              </div>
+              <div class="col-sm">
+                <h4 class="text-center text-white font-weight-bold my-3" data-render="bloque-name"></h4>
+              </div>
+              <div class="col-sm"></div>
+            </div>
+          </div>
+        </header>
+        <div class="container-fluid">
+          <h3 class="my-3 font-weight-bold">Diputados pendientes</h3>
+          <section data-render="bloque-items"></section>
+        </div>
+        <div class="container-fluid">
+          <h3 class="my-3 font-weight-bold">Diputados respondidos</h3>
+          <section data-render="bloque-items-ok"></section>
+        </div>
+   </section>
+   <section id="bloque-item-detalle" class="d-none">
+        <header class="bmd-layout-header py-3">
+          <div>
+            <div class="row">
+              <div class="col-sm">
+                <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light p-2 ml-2 volver">VOLVER</button>
+              </div>
+              <div class="col-sm">
+                <h4 class="text-center text-white font-weight-bold my-3" data-render="bloque-name"></h4>
+              </div>
+              <div class="col-sm">
+              </div>
+            </div>
+          </div>
+        </header>
+        <div>
+          <section data-render="bloque-item-detalle"></section>
+        </div>
+   </section>
+
+
+   
+
+<script>
+
+  $(function(){
+
+    var templates = {
+      bloques:`
+          <div class="card flex-md-row mb-4 box-shadow h-md-250 card-bloque" data-bloque={id}>
+            <div class="card-body">
+              <div class="media">
+                <div class="media-body">
+                  <h2 class="text-muted h4 mb-0">{partido}</h2>
+                  <p class="lead text-muted">{provincia}</p>
+                </div>
+                <div class="media-right">
+                  <p class="lead text-muted my-3 {visible}">
+                    <span class="border circle-content rounded-circle">
+                      <i class="material-icons md-48 text-primary">check</i>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>`,
+      diputados:`
+          <div class="card flex-md-row mb-4 box-shadow h-md-250 card-diputado" data-diputado={id} data-diputado-of-bloque="{bloqueId}">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-left">
+                  <img src="{foto}" class="media-object d-none d-md-block" style="width:88px">
+                </div>
+                <div class="media-body ml-4">
+                  <h2 class="h4 mb-0">{nombre}</h2>
+                  <h5 class="text-muted">{provincia}</h5>
+                  <h4><span class="badge badge-light text-muted">{keyword}</span></h4>
+                </div>
+                <div class="media-right">
+                  <p class="lead text-muted my-3 {visible}">
+                    <span class="border circle-content rounded-circle">
+                      <i class="material-icons md-48 text-primary">check</i>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>`,
+      header_preguntas:`
+        <div data-pregunta-of-diputado="{id}" class="d-none card-header-pregunta">
+          <div class="card flex-md-row box-shadow h-md-250 mb-2 bg-primary text-white">
+              <div class="card-body">
+                <div class="media">
+                  <div class="media-left">
+                    <img src="{foto}" class="card-img-left flex-auto d-none d-md-block">
+                  </div>
+                  <div class="media-body ml-4">
+                    <h2 class="h4 mb-0 mt-2">{nombre}</h2>
+                    <h5 class="text-light">{provincia}</h5>
+                  </div>
+                  <div class="media-right">
+                    <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light mt-2"><div class='media'><div class='media-left mr-2' style="padding-top: 3px"><i class="material-icons">check_circle</i></div> <div class='media-body'>TERMINAR</div></div></button>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div id="preguntas">
+            <ul class="list" data-render="bloque-item-detalle-container"></div></ul>
+            <div class="text-center"><div class="pagination"></div>
+          </div>
+        </div>`,
+      preguntas:`
+        <div class="container-fluid item">
+          <div class="d-none card-pregunta">
+            <div class="message-wrapper them">
+              <div class="circle-wrapper">
+                <img src="{foto}" class="rounded-circle img-responsive">
+              </div>
+              <div class="text-wrapper">
+                <h3>{keyword}</h3>
+                <p class="lead">{pregunta}</p>
+              </div>
+            </div>          
+            <div class="card flex-md-row mb-4 h-md-250">
+              <div class="card-body p-0">
+                {alerta}
+              </div>
+            </div>
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body">
+                {miRespuestaFinal}
+              </div>
+            </div>
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body">
+                {miObservacionFinal}
+              </div>
+            </div>
+          </div>
+        </div>`
+    }
+
+    var preguntas = [];
+    var bloqueActivo = null;
+    let onselected = false;
+
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/14j6f5CFP2_wYLo5B-I7VxIrCbP3gGHcNAwUGbYoNRLE/1/public/values?alt=json',
+      data: 'json',
+      success: function(response){
+        //console.log(response.feed.entry);
+
+        $.each(response.feed.entry, function(index, row){
+
+            preguntas.push({
+              index: index,
+              nombre: row.gsx$legislador.$t,
+              provincia: row.gsx$provincia.$t,
+              partido: row.gsx$partido.$t,
+              foto: row.gsx$foto.$t,
+              pregunta: row.gsx$pregunta.$t,
+              keyword: row.gsx$keyword.$t,
+              orden: row.gsx$ordenlegislador.$t,
+              numero: row.gsx$npregunta.$t,
+              respuestageneral: row.gsx$respuestageneral.$t,
+              respuestageneralstatu: row.gsx$respuestageneralstatu.$t,
+              respuestapolitica: row.gsx$respuestapolitica.$t,
+              respuestapoliticastatus: row.gsx$respuestapoliticastatus.$t,
+              respuestafinal: row.gsx$respuestafinal.$t,
+              respuestafinalmodifica: row.gsx$respuestafinalmodifica.$t,
+              respuestaseleccionada: row.gsx$respuestaseleccionada.$t,
+              observacion: row.gsx$observacion.$t,
+              observacionmodificada: row.gsx$observacionmodificada.$t,
+              observacionseleccioanda: row.gsx$observacionseleccioanda.$t,
+              okmoderador: row.gsx$okmoderador.$t,
+              nousar1: row.gsx$nousar1.$t,
+              nousar2: row.gsx$nousar2.$t,
+              nousar3: row.gsx$nousar3.$t,
+              publicado: row.gsx$publicado.$t,
+              timestamp: row.gsx$timestamp.$t
+            });
+        })
+
+        bloqueActivo = localStorage.getItem('bloque');
+        if (!bloqueActivo){
+          bloqueActivo = preguntas[0].partido;
+          localStorage.setItem('bloque', bloqueActivo);
+        }
+        render.Pages();
+        $('#bloques').toggleClass('d-none', 'visible');
+        $('#loader').toggleClass('loader', 'd-none');
+
+        function hideAllBlocks() {
+          $('.card-diputado').addClass('d-none');
+          $('.card-diputado').removeClass('visible');
+          $('#bloques').removeClass('visible');
+          $('#bloques').addClass('d-none');
+          $('#bloque-items').removeClass('visible');
+          $('#bloque-items').addClass('d-none');
+          $('#bloque-item-detalle').removeClass('visible');
+          $('#bloque-item-detalle').addClass('d-none');
+
+        }
+
+        function oc_card_bloque(this_bloque){
+          console.log("oc_");
+          setTimeout(()=>{
+            if (!onselected){
+              var bloque = $(this_bloque).data('bloque');
+              hideAllBlocks();
+
+              var select = '[data-diputado-of-bloque="' + bloque + '"]';
+              $(select).removeClass('d-none');
+              $(select).addClass('visible');
+
+              $('#bloque-items').removeClass('d-none');
+              $('#bloque-items').addClass('visible');
+
+              onselected = true;
+              setTimeout(()=>{
+                onselected = false;
+              },200);
+            }
+           },200);
+
+        }
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+          $('.card-bloque').on('touchend', function(){
+            oc_card_bloque(this)
+          });
+        } else {
+          $('.card-bloque').on('click', function(){
+            oc_card_bloque(this)
+          });
+
+        }
+
+        $('.card-diputado').on('click', function(){
+          var diputado = $(this).data('diputado');
+
+          $('.card-pregunta').addClass('d-none');
+          $('.card-pregunta').removeClass('visible');
+
+          var select = '[data-pregunta-of-diputado="' + diputado + '"]';
+          $(select).removeClass('d-none');
+          $(select).addClass('visible');
+          var select = '[data-pregunta-of-diputado="' + diputado + '"] .card-pregunta';
+          $(select).removeClass('d-none');
+          $(select).addClass('visible');
+
+          $('#bloque-items').removeClass('visible');
+          $('#bloque-items').addClass('d-none');
+          $('#bloque-item-detalle').removeClass('d-none');
+          $('#bloque-item-detalle').addClass('visible');
+        });
+
+        $('.card-header-pregunta button').on('click', function(){
+          var slug_diputado = $(this).parent().parent().parent().data('pregunta-of-diputado');
+
+          var terminates = localStorage.getItem('terminates');
+          if (terminates != null){
+            terminates = JSON.parse(terminates);
+            terminates.push(slug_diputado)
+          }
+          else{
+            terminates = [slug_diputado]
+          }
+          localStorage.setItem('terminates', JSON.stringify(terminates));
+
+        });
+
+
+      }
+    });
+
+
+    var render = {
+      Pages: function( ){
+        $('[data-render=bloque-activo]').html('');
+        $('[data-render=bloques]').html('');
+        $('[data-render=bloques-ok]').html('');
+        $('[data-render=bloque-items]').html('');
+        $('[data-render=bloque-item-detalle]').html('');
+
+        var bloques = [];
+        $.each(preguntas, function(index, pregunta){
+
+          if ( pregunta.nombre !== '' ) {
+
+            var findBloque = bloques.findIndex(function(b) {
+              return b.partido == pregunta.partido
+            });
+
+            // sino existe el bloque lo agrego
+            if (findBloque == -1){
+              var diputado = {
+                'nombre': pregunta.nombre,
+                'foto': pregunta.foto,
+                'keyword': pregunta.keyword,
+                'preguntas': [ pregunta ],
+                'terminate': false, // TODO checkearlo con el array terminates del localstorage.getItems "terminates" 
+                'orden': pregunta.orden,
+              }
+              var bloque = {
+                'partido': pregunta.partido,
+                'index': index,
+                'provincia': pregunta.provincia,
+                'diputados': [ diputado ],
+                'activo': bloqueActivo == pregunta.partido,
+                get_status: function(self){
+                  for (var i = 0; i < self.diputados.length; i++) {
+                    if (!self.diputados[i].terminate){
+                      return false
+                    }
+                  }
+                  return true
+                },
+              };
+              bloques.push(bloque)
+            }
+            else{
+              // si existe bloque, veo si existe el diputado
+              var findDiputado = bloques[findBloque].diputados.findIndex(function(d) {
+                return d.nombre == pregunta.nombre
+              });
+              // sino existe el disputado lo agrego
+              if (findDiputado == -1){
+                var diputado = {
+                  'nombre': pregunta.nombre,
+                  'foto': pregunta.foto,
+                  'keyword': pregunta.keyword,
+                  'preguntas': [ pregunta ],
+                  'terminate': false,
+                  'orden': pregunta.orden,
+                }
+                bloques[findBloque].diputados.push(diputado)
+              }
+              else{
+                // si existe el diputado
+                bloques[findBloque].diputados[findDiputado].preguntas.push(pregunta);
+              }
+            }
+
+          }
+
+        });
+
+        for (var i = 0; i < bloques.length; i++) {
+          // render partido
+          this.Bloque(bloques[i])
+          //render diputados
+          bloques[i].diputados = bloques[i].diputados.sort(function(obj1, obj2) {
+            return obj1.orden - obj2.orden;
+          });
+          
+          for (var j = 0; j < bloques[i].diputados.length; j++) {
+            this.Diputado(bloques[i], bloques[i].diputados[j])
+              //render header preguntas
+              this.HeaderPregunta(bloques[i], bloques[i].diputados[j])
+              //render preguntas
+              for (var k = 0; k < bloques[i].diputados[j].preguntas.length; k++) {
+                this.Pregunta(bloques[i], bloques[i].diputados[j], bloques[i].diputados[j].preguntas[k])
+              }
+          }
+          
+        }
+      },
+      Bloque: function(bloque){
+        var htmlBloques = templates.bloques;
+          var visible = ((bloque.get_status(bloque)) ? 'visible' : 'd-none');
+          htmlBloques = htmlBloques
+          .replace(/{partido}/gi, bloque.partido)
+          .replace(/{id}/gi, bloque.partido.replace(/ /g, "-"))
+          .replace(/{index}/gi, bloque.index)
+          .replace(/{provincia}/gi, bloque.provincia)
+          .replace(/{visible}/gi, visible);
+          if (bloque.get_status(bloque)){
+            $('[data-render=bloques-ok]').append( htmlBloques );
+          }
+          else if (bloqueActivo == bloque.partido){
+            $('[data-render=bloque-activo]').append( htmlBloques );
+            $('[data-render=bloque-name]').html( bloqueActivo );
+          }
+          else{
+            $('[data-render=bloques]').append( htmlBloques );
+          }
+      },
+      Diputado: function(bloque, diputado){
+        var htmlDiputados = templates.diputados;
+        var visible = ((diputado.terminate) ? 'visible' : 'd-none');
+
+        htmlDiputados = htmlDiputados
+        .replace(/{partido}/gi, bloque.partido)
+        .replace(/{id}/gi, diputado.nombre.replace(/ /g, "-"))
+        .replace(/{bloqueId}/gi, bloque.partido.replace(/ /g, "-"))
+        .replace(/{index}/gi, bloque.index)
+        .replace(/{nombre}/gi, diputado.nombre)
+        .replace(/{foto}/gi, diputado.foto)
+        .replace(/{keyword}/gi, diputado.keyword)
+        .replace(/{provincia}/gi, bloque.provincia)
+        .replace(/{visible}/gi, visible);
+
+        if (diputado.terminate){
+            $('[data-render=bloque-items-ok]').append( htmlDiputados );
+        }else{
+          $('[data-render=bloque-items]').append( htmlDiputados );
+        }
+      },
+      HeaderPregunta: function(bloque, diputado){
+
+        var htmlHeaderPreguntas = templates.header_preguntas;
+
+        htmlHeaderPreguntas = htmlHeaderPreguntas
+        .replace(/{nombre}/gi, diputado.nombre)
+        .replace(/{id}/gi, diputado.nombre.replace(/ /g, "-"))
+        .replace(/{provincia}/gi, bloque.provincia)
+        .replace(/{foto}/gi, diputado.foto);
+
+        $('[data-render=bloque-item-detalle]').append( htmlHeaderPreguntas );
+      },
+      Pregunta: function(bloque, diputado, pregunta){
+        var statusPublicado = pregunta.publicado.substring(0, 1); 
+        var miRespuestaFinal =           
+        miObservacionFinal = 
+        alerta = "";
+
+        if (pregunta.publicado !== "") {
+          if (pregunta.respuestafinalmodifica == ""){
+              miRespuestaFinal = '<div><h3 class="text-primary">Respuesta</h3>' + ' <p class="lead">' + pregunta.respuestafinal + '</p></div>';
+          }
+          else {
+            miRespuestaFinal = '<div><h3 class="text-primary">Respuesta</h3>' + ' <p class="lead">' + pregunta.respuestafinalmodifica + '</p></div>';
+          }
+
+
+          $('.show-observaciones').removeClass('hidden');
+
+          if (pregunta.observacionmodificada == ""){
+              miObservacionFinal = '<div><h3 class="text-primary">Observacion</h3>' + ' <p class="lead">' + pregunta.observacion + '</p></div>';
+          }
+          else {
+            miObservacionFinal = '<div><h3 class="text-primary">Observacion</h3>' + ' <p class="lead">' + pregunta.observacionmodificada + '</p></div>';
+          }              
+
+          if (statusPublicado == "2"){
+              var alerta = "<div class='alert alert-warning'><div class='media'><div class='media-left'><i class='material-icons'>insert_drive_file</i></div> <div class='media-body ml-2'><p class='lead mb-0'>Ver respuesta en papel</p></div></div></div>";
+          }
+          if (statusPublicado == "3"){
+              var alerta = "<div class='alert alert-danger'><div class='media'><div class='media-left'><i class='material-icons'>info_outline</i></div> <div class='media-body ml-2'> <p class='lead mb-0'>Se recomienda no contestar esta pregunta</p></div></div></div>";
+          }
+        }
+
+        var htmlPreguntas = templates.preguntas;
+
+        htmlPreguntas = htmlPreguntas
+        .replace(/{index}/gi, bloque.index)
+        .replace(/{partido}/gi, bloque.partido)
+        .replace(/{foto}/gi, diputado.foto)
+        .replace(/{pregunta}/gi, pregunta.pregunta)
+        .replace(/{keyword}/gi, pregunta.keyword)
+        .replace(/{numero}/gi, pregunta.numero)
+        .replace(/{respuestageneral}/gi, pregunta.respuestageneral)
+        .replace(/{respuestageneralstatu}/gi, pregunta.respuestageneralstatu)
+        .replace(/{respuestapolitica}/gi, pregunta.respuestapolitica)
+        .replace(/{respuestapoliticastatus}/gi, pregunta.respuestapoliticastatus)
+        .replace(/{miRespuestaFinal}/gi, miRespuestaFinal)
+        .replace(/{respuestaseleccionada}/gi, pregunta.respuestaseleccionada)
+        .replace(/{miObservacionFinal}/gi, miObservacionFinal)
+        .replace(/{observacionseleccioanda}/gi, pregunta.observacionseleccioanda)
+        .replace(/{okmoderador}/gi, pregunta.okmoderador)
+        .replace(/{nousar1}/gi, pregunta.nousar1)
+        .replace(/{nousar2}/gi, pregunta.nousar2)
+        .replace(/{nousar3}/gi, pregunta.nousar3)
+        .replace(/{publicado}/gi, pregunta.publicado)
+        .replace(/{timestamp}/gi, pregunta.timestamp)
+        .replace(/{alerta}/gi, alerta);
+
+
+        var select = '[data-pregunta-of-diputado="' + diputado.nombre.replace(/ /g, "-") + '"] [data-render=bloque-item-detalle-container]';
+        $(select).append( htmlPreguntas );
+      },
+    }
+
+    //list.JS
+    var options = {
+        valueNames: [ 'item' ],
+        page: 1,
+        pagination: true
+    };
+
+    var preguntasList = new List('preguntas', options);
+
+
+  });
+
+     
+</script>
+
+<script type="text/javascript">
+  (function($) {
+
+    $('#bloque-items .volver').on('click', function(){
+      $('.card-diputado').removeClass('visible');
+      $('.card-diputado').addClass('d-none');
+
+      $('#bloque-items').removeClass('visible');
+      $('#bloque-items').addClass('d-none');
+
+      $('#bloques').removeClass('d-none');
+      $('#bloques').addClass('visible');
+    });
+
+    $('#bloque-item-detalle .volver').on('click', function(){
+      $('.card-header-pregunta').removeClass('visible');
+      $('.card-header-pregunta').addClass('d-none');
+
+      $('.card-pregunta').removeClass('visible');
+      $('.card-pregunta').addClass('d-none');
+
+      $('#bloque-item-detalle').removeClass('visible');
+      $('#bloque-item-detalle').addClass('d-none');
+      
+      $('#bloque-items').removeClass('d-none');
+      $('#bloque-items').addClass('visible');
+    });
+
+  
+})(jQuery);
+</script>
+
+	</body>
+</html>
+
