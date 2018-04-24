@@ -14,92 +14,121 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/circle.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <title>MP</title>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+    
   </head>
   <body>
    <section id="loader" class="loader"></section>
    <section id="bloques" class="d-none">
         <header class="bmd-layout-header py-3">
-          <div>
             <div class="row">
-              <div class="col-sm"></div>
-              <div class="col-sm">
-                <h4 class="text-center text-white font-weight-bold my-3">SELECCIONÁ UN BLOQUE</h4>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">
+                <h2 class="text-center titulo">SELECCIONÁ UN BLOQUE</h2>
               </div>
-              <div class="col-sm"></div>
+              <div class="col-sm-3">
+                  <button type="button" class="btn btn-secondary active refreshBloque botonRefresh">
+                    <i class="material-icons">autorenew</i><span>ACTUALIZAR</span>
+                  </button>
+              </div>
             </div>
-          </div>
         </header>
         <div class="container-fluid">
-          <h3 class="my-3 font-weight-bold">Bloque activo</h3>
+          <h3>Bloque activo</h3>
           <section data-render="bloque-activo"></section>
         </div>
-        <div class="container-fluid">
-          <h3 class="my-3 font-weight-bold">Bloques Pendientes</h3>
+        <div class="container-fluid d-none">
+          <h3>Bloques Pendientes</h3>
           <section data-render="bloques"></section>
         </div>
-        <div class="container-fluid d-none">
-          <h3 class="my-3 font-weight-bold">Bloques respondidos</h3>
+        <div class="container-fluid">
+          <h3>Bloques respondidos</h3>
           <section data-render="bloques-ok"></section>
+        </div>
+        <div class="container-fluid">
+          <button type="button" class="btn btn-danger btn-secondary active borrarTodo">
+            BORRAR TODO
+          </button>
         </div>
    </section> 
    <section id="bloque-items" class="d-none">
         <header class="bmd-layout-header py-3">
-          <div>
             <div class="row">
-              <div class="col-sm">
-                <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light p-2 ml-2 volver">VOLVER</button>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-secondary active text-secondary volver">VOLVER</button>
               </div>
-              <div class="col-sm">
-                <h4 class="text-center text-white font-weight-bold my-3" data-render="bloque-name"></h4>
+              <div class="col-sm-6">
+                <h2 class="text-center titulo" data-render="bloque-name"></h2>
               </div>
-              <div class="col-sm"></div>
+              <div class="col-sm-3">
+                <div class="media-right">
+                  <button type="button" class="btn btn-secondary active refreshPartido botonRefresh">
+                    <i class="material-icons">autorenew</i><span>ACTUALIZAR</span>
+                  </button>
+                  </div>
+              </div>
             </div>
-          </div>
         </header>
         <div class="container-fluid">
-          <h3 class="my-3 font-weight-bold">Diputados pendientes</h3>
+          <h3>Diputados pendientes</h3>
           <section data-render="bloque-items"></section>
         </div>
         <div class="container-fluid">
-          <h3 class="my-3 font-weight-bold">Diputados respondidos</h3>
+          <h3>Diputados respondidos</h3>
           <section data-render="bloque-items-ok"></section>
         </div>
    </section>
    <section id="bloque-item-detalle" class="d-none">
         <header class="bmd-layout-header py-3">
-          <div>
             <div class="row">
-              <div class="col-sm">
-                <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light p-2 ml-2 volver">VOLVER</button>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-secondary active text-secondary volver">VOLVER</button>
               </div>
-              <div class="col-sm">
-                <h4 class="text-center text-white font-weight-bold my-3" data-render="bloque-name"></h4>
+              <div class="col-sm-6">
+                <h2 class="text-center titulo" data-render="bloque-name"></h2>
               </div>
-              <div class="col-sm">
-              </div>
+              <div class="col-sm-3"></div>
             </div>
-          </div>
         </header>
         <div>
           <section data-render="bloque-item-detalle"></section>
         </div>
    </section>
 
-
-   
+<script src="js/jquery.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/lockr.js"></script>
 
 <script>
 
+
   $(function(){
+
+    if(!Lockr.get('bloques')){
+      console.log("no existe Lockr entonces lo creo");
+      Lockr.set('bloques', bloques);
+    }
+
+    var marta = JSON.parse(localStorage.getItem('bloques'));
+
+
+    window.onload = function() {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        actualizarBloque();
+    }
+}
 
     var templates = {
       bloques:`
@@ -107,11 +136,11 @@
             <div class="card-body">
               <div class="media">
                 <div class="media-body">
-                  <h2 class="text-muted h4 mb-0">{partido}</h2>
-                  <p class="lead text-muted">{provincia}</p>
+                  <h4 class="titulobloque">{partido}</h4>
+                  
                 </div>
                 <div class="media-right">
-                  <p class="lead text-muted my-3 {visible}">
+                  <p class="lead circulocheck {visible}">
                     <span class="border circle-content rounded-circle">
                       <i class="material-icons md-48 text-primary">check</i>
                     </span>
@@ -122,18 +151,27 @@
           </div>`,
       diputados:`
           <div class="card flex-md-row mb-4 box-shadow h-md-250 card-diputado" data-diputado={id} data-diputado-of-bloque="{bloqueId}">
-            <div class="card-body">
+            <p class="d-none">{partido}</p>
+            <div class="card-body contenedordiputado">
               <div class="media">
                 <div class="media-left">
-                  <img src="{foto}" class="media-object d-none d-md-block" style="width:88px">
+                  <img src="{foto}" class="media-object d-md-block" style="width:88px">
                 </div>
                 <div class="media-body ml-4">
-                  <h2 class="h4 mb-0">{nombre}</h2>
+                  <h4 class="titulobloque">{nombre}</h4>
                   <h5 class="text-muted">{provincia}</h5>
                   <h4><span class="badge badge-light text-muted">{keyword}</span></h4>
                 </div>
                 <div class="media-right">
-                  <p class="lead text-muted my-3 {visible}">
+                  <p class="lead circulocantidades">
+                    <span class="border circle-content rounded-circle">
+                      <span class="preguntasrespondidas">{preguntasRespondidas}</span>
+                      <span>/</span>
+                      <span class="contenedorvacio preguntastotales">{preguntasTotales}</span>
+                    </span>
+                  </p>
+
+                  <p class="lead circulocheck {visible}">
                     <span class="border circle-content rounded-circle">
                       <i class="material-icons md-48 text-primary">check</i>
                     </span>
@@ -148,25 +186,27 @@
               <div class="card-body">
                 <div class="media">
                   <div class="media-left">
-                    <img src="{foto}" class="card-img-left flex-auto d-none d-md-block">
+                    <img src="{foto}" class="card-img-left flex-auto d-md-block">
                   </div>
                   <div class="media-body ml-4">
-                    <h2 class="h4 mb-0 mt-2">{nombre}</h2>
+                    <h4 class="nombrefuncionario">{nombre}</h4>
                     <h5 class="text-light">{provincia}</h5>
+                    <p class="d-none partidoTerminar">{partido}</p>
                   </div>
                   <div class="media-right">
-                    <button type="button" class="btn btn-secondary btn-lg active text-secondary bg-light mt-2"><div class='media'><div class='media-left mr-2' style="padding-top: 3px"><i class="material-icons">check_circle</i></div> <div class='media-body'>TERMINAR</div></div></button>
+                    <button type="button" class="btn btn-secondary active terminar">
+                      <i class="material-icons">check_circle</i><span>TERMINAR</span>
+                    </button>
                   </div>
                 </div>
               </div>
           </div>
-          <div id="preguntas">
-            <ul class="list" data-render="bloque-item-detalle-container"></div></ul>
-            <div class="text-center"><div class="pagination"></div>
+          <div id="preguntas" class="owl-carousel" data-render="bloque-item-detalle-container">
+
           </div>
         </div>`,
       preguntas:`
-        <div class="container-fluid item">
+        <div class="container-fluid">
           <div class="d-none card-pregunta">
             <div class="message-wrapper them">
               <div class="circle-wrapper">
@@ -174,7 +214,7 @@
               </div>
               <div class="text-wrapper">
                 <h3>{keyword}</h3>
-                <p class="lead">{pregunta}</p>
+                <p>{pregunta}</p>
               </div>
             </div>          
             <div class="card flex-md-row mb-4 h-md-250">
@@ -200,6 +240,8 @@
     var bloqueActivo = null;
     let onselected = false;
 
+
+function todo(){
     $.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/14j6f5CFP2_wYLo5B-I7VxIrCbP3gGHcNAwUGbYoNRLE/1/public/values?alt=json',
       data: 'json',
@@ -207,7 +249,7 @@
         //console.log(response.feed.entry);
 
         $.each(response.feed.entry, function(index, row){
-
+        //console.log(row);
             preguntas.push({
               index: index,
               nombre: row.gsx$legislador.$t,
@@ -229,18 +271,52 @@
               observacionmodificada: row.gsx$observacionmodificada.$t,
               observacionseleccioanda: row.gsx$observacionseleccioanda.$t,
               okmoderador: row.gsx$okmoderador.$t,
+              cantpreguntas: row.gsx$cantpreguntas.$t,
+              cantpreguntasrespondidas: row.gsx$cantpreguntasrespondidas.$t,
               nousar1: row.gsx$nousar1.$t,
               nousar2: row.gsx$nousar2.$t,
               nousar3: row.gsx$nousar3.$t,
               publicado: row.gsx$publicado.$t,
               timestamp: row.gsx$timestamp.$t
             });
-        })
+        });
+
+
+        setTimeout(function(){
+
+
+          $(".owl-carousel").owlCarousel(
+            $('.owl-carousel').owlCarousel({
+              nav:true,
+              items:1
+            })
+          ); 
+
+
+        $('.owl-carousel').on('changed.owl.carousel', function(e) {
+        
+
+          console.log('The current item is at index', e.item.index);
+          console.log('The total items are', e.item.count);
+          
+          $( ".owl-nav" ).find('p').remove();
+
+          $( ".owl-prev" ).after( "<p>" + (e.item.index + 1) + " de " + e.item.count + "</p>" );
+
+          
+
+
+        });
+
+
+
+        }, 1000);
+        
 
         bloqueActivo = localStorage.getItem('bloque');
         if (!bloqueActivo){
           bloqueActivo = preguntas[0].partido;
-          localStorage.setItem('bloque', bloqueActivo);
+          localStorage.setItem('bloqueActivo', bloqueActivo);
         }
         render.Pages();
         $('#bloques').toggleClass('d-none', 'visible');
@@ -294,7 +370,7 @@
 
         }
 
-        $('.card-diputado').on('click', function(){
+        $(document).on('click', '.card-diputado', function(){
           var diputado = $(this).data('diputado');
 
           $('.card-pregunta').addClass('d-none');
@@ -313,6 +389,11 @@
           $('#bloque-item-detalle').addClass('visible');
         });
 
+
+/*
+
+// lógica de diego del botón terminar
+
         $('.card-header-pregunta button').on('click', function(){
           var slug_diputado = $(this).parent().parent().parent().data('pregunta-of-diputado');
 
@@ -328,11 +409,11 @@
 
         });
 
+*/
 
       }
     });
-
-
+  
     var render = {
       Pages: function( ){
         $('[data-render=bloque-activo]').html('');
@@ -355,8 +436,11 @@
               var diputado = {
                 'nombre': pregunta.nombre,
                 'foto': pregunta.foto,
+                'provincia': pregunta.provincia,
                 'keyword': pregunta.keyword,
                 'preguntas': [ pregunta ],
+                'cantpreguntas': pregunta.cantpreguntas,
+                'cantpreguntasrespondidas': pregunta.cantpreguntasrespondidas,
                 'terminate': false, // TODO checkearlo con el array terminates del localstorage.getItems "terminates" 
                 'orden': pregunta.orden,
               }
@@ -387,10 +471,13 @@
                 var diputado = {
                   'nombre': pregunta.nombre,
                   'foto': pregunta.foto,
+                  'provincia': pregunta.provincia,
                   'keyword': pregunta.keyword,
                   'preguntas': [ pregunta ],
+                  'cantpreguntas': pregunta.cantpreguntas,
+                  'cantpreguntasrespondidas': pregunta.cantpreguntasrespondidas,
                   'terminate': false,
-                  'orden': pregunta.orden,
+                  'orden': pregunta.orden
                 }
                 bloques[findBloque].diputados.push(diputado)
               }
@@ -431,7 +518,7 @@
           .replace(/{partido}/gi, bloque.partido)
           .replace(/{id}/gi, bloque.partido.replace(/ /g, "-"))
           .replace(/{index}/gi, bloque.index)
-          .replace(/{provincia}/gi, bloque.provincia)
+          /*.replace(/{provincia}/gi, bloque.provincia)*/
           .replace(/{visible}/gi, visible);
           if (bloque.get_status(bloque)){
             $('[data-render=bloques-ok]').append( htmlBloques );
@@ -456,14 +543,35 @@
         .replace(/{nombre}/gi, diputado.nombre)
         .replace(/{foto}/gi, diputado.foto)
         .replace(/{keyword}/gi, diputado.keyword)
-        .replace(/{provincia}/gi, bloque.provincia)
+        .replace(/{provincia}/gi, diputado.provincia)
+        .replace(/{preguntasTotales}/gi, diputado.cantpreguntas)
+        .replace(/{preguntasRespondidas}/gi, diputado.cantpreguntasrespondidas)
         .replace(/{visible}/gi, visible);
 
-        if (diputado.terminate){
+
+/*
+        console.log("este el el diputado punto nombre");
+        console.log(diputado.nombre);
+
+        console.log("este el el bloque punto partido");
+        console.log(bloque.partido);
+
+        console.log(bloques[bloque.partido]["funcionarios"][diputado.nombre]["status"]);
+  
+  */      
+
+        
+        if (marta['data'][bloque.partido]["funcionarios"][diputado.nombre]["status"] == "respondido"){
             $('[data-render=bloque-items-ok]').append( htmlDiputados );
         }else{
+
           $('[data-render=bloque-items]').append( htmlDiputados );
         }
+
+
+
+
+
       },
       HeaderPregunta: function(bloque, diputado){
 
@@ -472,7 +580,8 @@
         htmlHeaderPreguntas = htmlHeaderPreguntas
         .replace(/{nombre}/gi, diputado.nombre)
         .replace(/{id}/gi, diputado.nombre.replace(/ /g, "-"))
-        .replace(/{provincia}/gi, bloque.provincia)
+        .replace(/{provincia}/gi, diputado.provincia)
+        .replace(/{partido}/gi, bloque.partido)
         .replace(/{foto}/gi, diputado.foto);
 
         $('[data-render=bloque-item-detalle]').append( htmlHeaderPreguntas );
@@ -502,10 +611,10 @@
           }              
 
           if (statusPublicado == "2"){
-              var alerta = "<div class='alert alert-warning'><div class='media'><div class='media-left'><i class='material-icons'>insert_drive_file</i></div> <div class='media-body ml-2'><p class='lead mb-0'>Ver respuesta en papel</p></div></div></div>";
+              var alerta = "<div class='alert alert-warning'><div class='media'><div class='media-left'><i class='material-icons'>insert_drive_file</i></div> <div class='media-body ml-2'><p class='lead mt-1'>Ver respuesta en papel</p></div></div></div>";
           }
           if (statusPublicado == "3"){
-              var alerta = "<div class='alert alert-danger'><div class='media'><div class='media-left'><i class='material-icons'>info_outline</i></div> <div class='media-body ml-2'> <p class='lead mb-0'>Se recomienda no contestar esta pregunta</p></div></div></div>";
+              var alerta = "<div class='alert alert-danger'><div class='media'><div class='media-left'><i class='material-icons'>info_outline</i></div> <div class='media-body ml-2'> <p class='lead mt-1'>Se recomienda no contestar esta pregunta</p></div></div></div>";
           }
         }
 
@@ -517,6 +626,7 @@
         .replace(/{foto}/gi, diputado.foto)
         .replace(/{pregunta}/gi, pregunta.pregunta)
         .replace(/{keyword}/gi, pregunta.keyword)
+        .replace(/{provincia}/gi, diputado.provincia)
         .replace(/{numero}/gi, pregunta.numero)
         .replace(/{respuestageneral}/gi, pregunta.respuestageneral)
         .replace(/{respuestageneralstatu}/gi, pregunta.respuestageneralstatu)
@@ -537,18 +647,239 @@
 
         var select = '[data-pregunta-of-diputado="' + diputado.nombre.replace(/ /g, "-") + '"] [data-render=bloque-item-detalle-container]';
         $(select).append( htmlPreguntas );
+
+
       },
     }
 
-    //list.JS
-    var options = {
-        valueNames: [ 'item' ],
-        page: 1,
-        pagination: true
-    };
+};
 
-    var preguntasList = new List('preguntas', options);
+    todo();
+    cambiarCirculo();
+    grisar();
 
+/*
+    setTimeout(function(){ 
+
+      var listadiputados = new Array();
+      var totaldepreguntas = new Array();
+
+      $('[data-render="bloque-item-detalle"]').children().each(function( index ) {
+
+
+        // hace un array con todos los nombres de diputados 
+        var coso = $(this).attr("data-pregunta-of-diputado");
+        coso = coso.replace(/-/g," ");
+        listadiputados.push(coso);
+
+
+
+        // hace un array con la cantidad total de preguntas
+
+        var otrocoso = $(this).find('.owl-stage').context.children[1].childElementCount;
+        
+//      var otrocoso = $(this).find('.owl-item').length;
+
+        console.log(otrocoso);
+
+        totaldepreguntas.push(otrocoso);    
+
+      });
+
+      console.log(totaldepreguntas);
+
+      var mimi = 0;
+
+       $('.contenedorvacio').each(function() {
+
+
+            $('.contenedorvacio:eq(0)').text(totaldepreguntas[mimi]);
+
+            $('.contenedorvacio:eq(0)').removeClass('contenedorvacio');
+
+            mimi ++;
+        });
+
+
+      //var preguntastotales = $('[data-diputado="' + nombreTerminarApasar + '"]')
+      // data-render="bloque-item-detalle"
+      //preguntasrespondidas
+
+    }, 2000);
+
+*/
+
+
+
+    setTimeout(function(){ 
+
+
+      $('.borrarTodo').click(function() {
+        if (confirm('Estás seguro que querés borrar todo?')) {
+          localStorage.clear();
+          location.reload();
+        }
+      });
+
+    }, 1000);
+    
+
+    setTimeout(function(){ 
+      $(".terminar").click(function(){
+      
+        
+        var bloqueTerminar = $(this).parents(".media").find(".partidoTerminar").html();
+
+        var nombreTerminar = $(this).parents(".media").find(".nombrefuncionario").html();
+
+
+        marta['data'][bloqueTerminar]["funcionarios"][nombreTerminar]["status"] = "respondido";
+
+        Lockr.set('bloques', marta['data']);
+
+        var estadoTerminar = bloques[bloqueTerminar]["funcionarios"][nombreTerminar]["status"];
+
+      var nombreTerminarApasar = nombreTerminar.replace(/ /g,"-");
+
+
+
+      var funcionarioRespondido = $('[data-diputado="' + nombreTerminarApasar + '"]').clone();
+
+      funcionarioRespondido.addClass('agregado');
+
+
+      $('[data-diputado="' + nombreTerminarApasar + '"]').remove();
+
+      $('[data-render="bloque-items-ok"]').append(funcionarioRespondido);
+
+
+      $('.card-header-pregunta').removeClass('visible');
+      $('.card-header-pregunta').addClass('d-none');
+
+      $('.card-pregunta').removeClass('visible');
+      $('.card-pregunta').addClass('d-none');
+
+      $('#bloque-item-detalle').removeClass('visible');
+      $('#bloque-item-detalle').addClass('d-none');
+      
+      $('#bloque-items').removeClass('d-none');
+      $('#bloque-items').addClass('visible');
+
+      cambiarCirculo();
+      grisar();
+    
+      });
+
+
+    }, 2000);
+
+
+ $('.refreshPartido').click(function(){
+
+      sessionStorage.setItem("reloading", "true");
+      location.reload();
+
+    });
+
+
+
+ $('.refreshBloque').click(function(){
+
+      location.reload();
+
+    });
+
+
+
+ function actualizarBloque() {
+
+    setTimeout(function(){
+
+      $('.loader').removeClass('visible');
+      $('.loader').addClass('d-none');
+
+      $('#bloques').removeClass('visible');
+      $('#bloques').addClass('d-none');
+
+      $('#bloque-item-detalle').removeClass('visible');
+      $('#bloque-item-detalle').addClass('d-none');
+      
+      $('#bloque-items').removeClass('d-none');
+      $('#bloque-items').addClass('visible');
+
+      $('.agregado').remove();
+
+    }, 1000);
+
+    cambiarCirculo();
+  }
+
+
+
+  function cambiarCirculo(){
+
+    setTimeout(function(){
+
+      // cambia el X/X por un check a los respondidos
+
+      $('[data-render="bloque-items-ok"] .circulocantidades').addClass('d-none');
+      $('[data-render="bloque-items-ok"] .circulocantidades').removeClass('visible');
+
+      $('[data-render="bloque-items-ok"] .circulocheck').addClass('visible');
+      $('[data-render="bloque-items-ok"] .circulocheck').removeClass('d-none');
+
+
+
+      // cambia el color del circulo en base a las contestadas
+
+      $('.circulocantidades').each(function() {
+
+        // console.log($(this).find('.preguntasrespondidas').html());
+
+
+        if(($(this).find('.preguntasrespondidas').html()) == ($(this).find('.preguntastotales').html())){
+         
+          $(this).find('span').addClass('circuloverde');
+
+        }else if(($(this).find('.preguntasrespondidas').html()) == 0){
+
+          $(this).find('span').addClass('circulorojo');
+
+        }else if((($(this).find('.preguntasrespondidas').html()) > 0) && (($(this).find('.preguntasrespondidas').html()) < ($(this).find('.preguntastotales').html()))){
+
+          $(this).find('span').addClass('circuloamarillo');
+
+        }
+
+
+      });
+
+
+
+
+
+    }, 1000);
+
+  }
+
+    function grisar(){
+
+      setTimeout(function(){
+
+      $('[data-render="bloque-items-ok"]').each(function(){
+
+        $(this).find('img').addClass('imagengris');
+
+      });
+
+
+        }, 1000);
+
+    }
+
+
+
+  
 
   });
 
@@ -581,8 +912,8 @@
       
       $('#bloque-items').removeClass('d-none');
       $('#bloque-items').addClass('visible');
-    });
 
+    });
   
 })(jQuery);
 </script>
