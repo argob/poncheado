@@ -72,7 +72,7 @@ title: Mapa de Ventanillas
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <div class="navbar-brand visible-xs-inline-block"> Mapa de salud PBA </div>
+          <div class="navbar-brand visible-xs-inline-block"> Mapa de embarazo PBA </div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
@@ -84,18 +84,18 @@ title: Mapa de Ventanillas
           </div>
           <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="/ayudaparamujeres">Acerca de este mapa</a></li> -->
-            <li><a href="javascript:setGeolocation();" class="localize">Centrar el mapa</a></li>
+            <li><a href="javascript:setGeolocation();" class="localize">Centrarme el mapa</a></li>
           </ul>           
         </div>
       </div>
     </div>
   </nav>
-  <section class="jumbotron">
+  <section class="jumbotron hidden">
     <div class="jumbotron_bar">
       <div class="container">
         <div class="row">
           <div class="col-md-9">
-            <h4>Mapa de salud PBA </h4>
+            <h4>Mapa de embarazo PBA </h4>
           </div>
         </div>
       </div>
@@ -104,8 +104,19 @@ title: Mapa de Ventanillas
   </section>
 </header>
 
-<div id="map-container" class="state-loading">
-  <div id="map"></div>
+<div class="row m-x-0" style="padding-top:72px;">
+  <div class="col-md-3" style="overflow: auto; height: calc(100vh - 72px); ">
+    <div id="marker-info" class="p-t-2">
+      <h5>Seleccioná un establecimiento del mapa para empezar.</h5>
+    </div>
+    <hr>
+    <div id="maternities-list" class=""></div>
+  </div>
+  <div class="col-md-9 p-x-0">
+    <div id="map-container" class="state-loading" style="height: calc(100vh - 72px);">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -141,6 +152,8 @@ title: Mapa de Ventanillas
     var currentCount = 0;
     var currentMaxPob = 0;
 
+    var contenido = [];
+
     // https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json
 
     $.ajax({
@@ -151,7 +164,7 @@ title: Mapa de Ventanillas
         data.establecimientos = JSON.parse(response);
 
         $.ajax({
-          url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+          url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/8/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
           data: 'text',
           success: function(response){
 
@@ -196,12 +209,15 @@ title: Mapa de Ventanillas
 
 
       data.maternidades = [];
+      data.maternindadesCercanas = [];
       data.rawmaternidades.features.forEach(function(row, key){
 
-        data.maternidades[row.attributes['sde.SDE.ServicioSalud.OBJECTID']] = row.attributes;
+        data.maternidades[row.attributes.Cod] = row.attributes;
+        data.maternindadesCercanas.push(row.attributes);
 
       });
 
+      
 
       data.establecimientos.features.forEach(function(row, key){
 
@@ -209,10 +225,14 @@ title: Mapa de Ventanillas
 
         if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
           markerImage = 'img/marker_green.png';
-        }else if( data.maternidades[row.attributes.OBJECTID] != undefined ){
-          row.maternidad = data.maternidades[row.attributes.OBJECTID];
+        }else if( data.maternidades[row.attributes.CODIGO] != undefined ){
+          row.maternidad = data.maternidades[row.attributes.CODIGO];
           markerImage = 'img/marker_uva.png';
           esMaternindad = true;
+
+          data.maternidades[row.attributes.CODIGO].x = row.geometry.x;
+          data.maternidades[row.attributes.CODIGO].y = row.geometry.y;
+
         } else {
           markerImage = 'img/marker.png';
         }
@@ -237,36 +257,16 @@ title: Mapa de Ventanillas
 
         });
 
-        var contenido;
-
         if(esMaternindad){
-          contenido = '<h5>'+ row.attributes.NOMBRE +'<br><small>'+ row.attributes.LOC +', '+ row.attributes.PARTIDO +'.</small></h5><p><strong>Cotegoría Obstetricia</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.CategObst'] +'<br><strong>Cotegoría Neonatología</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.CategNeo'] +'<br><strong>Partos en 2016</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.Partos2016'] +'<br><strong>Partos en 2017</strong>: '+ row.maternidad['sde.SDE.TBL_Maternidades.Partos2017'] +'<br></p><p><strong>Dirección</strong>: '+ row.attributes.DIRECCION +'<br><strong>Código postal</strong>: '+ row.attributes.CP +'<br><strong>Teléfono</strong>: '+ row.attributes.TEL +'<br><strong>Correo Electrónico</strong>: '+ row.attributes.EMAIL +'<br><strong>Categoría</strong>: '+ row.attributes.CATEG_ESTA +'</p> <p><a href="javascript:directions(\'from\', \''+row.geometry.y+','+row.geometry.x+'\');">Desde acá</a> - <a href="javascript:directions(\'to\',\''+row.geometry.y+','+row.geometry.x+'\');">Hasta acá</a></p>';
+          contenido[index] = `<h5>`+ row.attributes.NOMBRE +`<br><small>`+ row.attributes.LOC +`, `+ row.attributes.PARTIDO +`.</small></h5><p><strong>Cotegoría Obstetricia</strong>: `+ row.maternidad.CategObst +`<br><strong>Cotegoría Neonatología</strong>: `+ row.maternidad.CategNeo +`<br><strong>Partos en 2016</strong>: `+ row.maternidad.Partos2016 +`<br><strong>Partos en 2017</strong>: `+ row.maternidad.Partos2017 +`<br></p><p><strong>Dirección</strong>: `+ row.attributes.DIRECCION +`<br><strong>Código postal</strong>: `+ row.attributes.CP +`<br><strong>Teléfono</strong>: `+ row.attributes.TEL +`<br><strong>Correo Electrónico</strong>: `+ row.attributes.EMAIL +`<br><strong>Categoría</strong>: `+ row.attributes.CATEG_ESTA +`</p> <!--<p><a href="javascript:directions(\`from\`, \``+row.geometry.y+`,`+row.geometry.x+`\`);">Desde acá</a> - <a href="javascript:directions(\`to\`,\``+row.geometry.y+`,`+row.geometry.x+`\`);">Hasta acá</a></p>-->`;
         }else{
-          contenido = '<h5>'+ row.attributes.NOMBRE +'<br><small>'+ row.attributes.LOC +', '+ row.attributes.PARTIDO +'.</small></h5><p><strong>Dirección</strong>: '+ row.attributes.DIRECCION +'<br><strong>Código postal</strong>: '+ row.attributes.CP +'<br><strong>Teléfono</strong>: '+ row.attributes.TEL +'<br><strong>Correo Electrónico</strong>: '+ row.attributes.EMAIL +'<br><strong>Categoría</strong>: '+ row.attributes.CATEG_ESTA +'</p> <p><a href="javascript:directions(\'from\', \''+row.geometry.y+','+row.geometry.x+'\');">Desde acá</a> - <a href="javascript:directions(\'to\',\''+row.geometry.y+','+row.geometry.x+'\');">Hasta acá</a></p>';
+          contenido[index] = `<h5>`+ row.attributes.NOMBRE +`<br><small>`+ row.attributes.LOC +`.</small></h5><p><strong>Dirección</strong>: `+ row.attributes.DIRECCION +`<br><strong>Código postal</strong>: `+ row.attributes.CP +`<br><strong>Teléfono</strong>: `+ row.attributes.TEL +`<br><strong>Correo Electrónico</strong>: `+ row.attributes.EMAIL +`<br><strong>Categoría</strong>: `+ row.attributes.CATEG_ESTA +`</p> <!--<p><a href="javascript:directions(\`from\`, \``+row.geometry.y+`,`+row.geometry.x+`\`);">Desde acá</a> - <a href="javascript:directions(\`to\`,\``+row.geometry.y+`,`+row.geometry.x+`\`);">Hasta acá</a></p>-->`;
         }
-        
-        detalles[index] = new google.maps.InfoWindow({
-          content: contenido,
-          maxWidth: 400
-        })
 
         markers[index].addListener('click', function() {
-          closeWindows();
-          detalles[index].open(map, markers[index]);
+          showInfo(index);
         });
 
-
-        // circles[index] = new google.maps.Circle({
-        //   strokeColor: '#c8563c',
-        //   strokeOpacity: 0.5,
-        //   strokeWeight: 1,
-        //   fillColor: '#c8563c',
-        //   fillOpacity: 0.2,
-        //   map: map,
-        //   center: point,
-        //   radius: 30000,
-        //   clickable: false
-        // });
 
       });
 
@@ -278,6 +278,62 @@ title: Mapa de Ventanillas
       }
 
     }
+
+    // Helper clases
+
+    var showInfo = function(index){
+      $('#marker-info').html(contenido[index]);
+
+      var o = data.establecimientos.features[index].geometry;
+      var origin = new google.maps.LatLng(o.y, o.x);
+
+      config.from = o.y + ',' + o.x;
+
+      data.maternindadesCercanas.forEach(function(maternidad, key){
+
+        var point = new google.maps.LatLng(maternidad.y, maternidad.x);
+        data.maternindadesCercanas[key].distancia = google.maps.geometry.spherical.computeDistanceBetween(origin, point);
+
+      });
+
+      data.maternindadesCercanas.sort(function(a,b) {
+        return a.distancia - b.distancia;
+      });
+
+
+      $('#maternities-list').html('');
+
+      var listHtml = `<table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Maternidades</th>
+            <th>Distancia</th>
+          </tr>
+        </thead>
+      <tbody>`
+
+      data.maternindadesCercanas.forEach(function(maternidad, key){
+
+
+        if(maternidad.CategObst == 'menos de 500 partos'){
+          maternidad.CategObst = '500-';
+        } 
+
+        listHtml += `<tr style="cursor:pointer;" data-directions="`+ maternidad.y +','+ maternidad.x +`">
+          <td>`+ maternidad.Hospital +`<br><small>Obs: `+ maternidad.CategObst +` &nbsp; &nbsp; Neo: `+ maternidad.CategNeo +`</small></td>
+          <td>`+ (maternidad.distancia/1000).toFixed(1)  +` Km</td>
+        <tr>`;
+
+      });
+
+      listHtml += `</tbody></table>`;
+
+      $('#maternities-list').append(listHtml);
+    }
+
+    $('body').on('click', '#maternities-list tr', function(event, el){
+      directions('to', $(this).data('directions'));
+    })
 
     // Helper clases
 
@@ -302,8 +358,8 @@ title: Mapa de Ventanillas
           window.alert('Falló la búsqueda de transporte público porque: ' + status);
         }
         
-        config.from = null;
-        config.to = null;
+        // config.from = null;
+        // config.to = null;
       });
     }
 
@@ -365,6 +421,6 @@ title: Mapa de Ventanillas
   }
 
 </script>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
+<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script> -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD77orXyikaf_9Oy6AlIEeZExTTZI_7MVY&signed_in=true&region=AR&callback=initMap"></script>
 
