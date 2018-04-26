@@ -1,0 +1,164 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="https://www.argentina.gob.ar/incucai">INCUCAI</a></li>
+    <li class="active">Descargar constancia de CUIL</li>
+  </ol>
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Sumá tu voluntad de donar órganos</h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr class="m-y-1">
+        <h2 class="m-t-2 font-weight-bold">Completá tus datos</h2>
+        <p class="m-b-0">Todos podemos donar, todos podemos recibir. Construyamos juntos una comunidad donante.</p>
+
+
+        <!-- <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div> -->
+
+        <form action="/proyectos/argentina/areas/incucai/resultado.html" id="cuil">
+          <fieldset>
+            <div class="row">
+              <div class="col-md-5 form-group">
+                <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
+                <select id="tipoDocCUIL" name="tipodoc" class="form-control">
+                  <option value="0029" selected="">DNI</option>
+                  <option value="0025">Libreta de Enrolamiento</option>
+                  <option value="0026">Libreta Cívica</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="col-md-7 form-group">
+                <label class="control-label" for="numDocCUIL">Número de documento</label>
+                <input type="number" class="form-control" id="numDoc" tabindex="1" autofocus="" required="">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="row
+          ">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="apellido">Apellido</label>
+              <input type="name" class="form-control" id="apellido" tabindex="3" required="">
+            </div>
+          </div>
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="nombre">Nombre</label>
+              <input type="name" class="form-control" id="nombre" tabindex="2" required="">
+          </div>          
+          
+          <div class="col-md-12">
+            <div>
+              <label class="control-label" for="sexo">Sexo</label>
+            </div>
+            <div class="form-group">
+              <div class="radio-inline">
+                <label for="f">
+                  <input type="radio" name="sexo" id="f" value="F" tabindex="4" required="">
+                  Femenino
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label for="m">
+                  <input type="radio" name="sexo" id="m" value="M" tabindex="5" required="">
+                  Masculino
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="email">Correo electrónico</label>
+              <input type="name" class="form-control" id="email" tabindex="2" required="">
+          </div>
+          
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="email_confirmar">Confirmá tu Correo electrónico</label>
+              <input type="name" class="form-control" id="email_confirmar" tabindex="2" required="">
+          </div>                                    
+          
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="fechaNac col-sm-12">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="fechaNac" placeholder="dd/mm/aaaa" tabindex="6" required="">
+            </div>
+          </div>
+
+          <div class="col-md-5 form-group">
+            <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
+            <select id="tipoDocCUIL" name="tipodoc" class="form-control">
+                <option value="">--Seleccione--</option>
+                <option value="1">SOLTERO</option>
+                <option value="2">CASADO</option>
+                <option value="3">DIVORCIADO</option>
+                <option value="4">VIUDO</option>
+                <option value="5">VINCULO DE HECHO</option>
+                <option value="6">SEPARADO</option>
+            </select>
+          </div> 
+          
+
+
+          <h2>Datos de domicilio</h2>
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="">Calle</label>
+              <input type="name" class="form-control" id="calle" tabindex="2" required="">
+          </div>     
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="">Número</label>
+              <input type="name" class="form-control" id="numero" tabindex="2" required="">
+          </div>     
+           <div class="col-md-6 form-group">
+              <label class="control-label" for="">Piso</label>
+              <input type="name" class="form-control" id="piso" tabindex="2" required="">
+          </div>     
+          <div class="col-md-6 form-group">
+              <label class="control-label" for="">Departamento</label>
+              <input type="name" class="form-control" id="departamento" tabindex="2" required="">
+          </div>               
+          <div class="col-md-6 form-group">
+              <label class="control-label" for="">Teléfono</label>
+              <small>Incluya el código de área antes del nro, por ejemplo: 01112345678.
+
+</small>
+              <input type="name" class="form-control" id="telefono" tabindex="2" required="">
+          </div>  
+
+
+
+          
+
+
+
+    </fieldset>
+
+    <fieldset class="text-center">
+      <input type="submit" id="consButton" class="btn btn-success btn-lg btn-block" value="´Á TU CONSTANCIA DE CUIL" tabindex="8">
+
+    </fieldset>
+          </form>             
+      
+
+      <div class="col-md-12">
+        <hr> 
+        <p class="pull-right"> 
+            <img src="img/incucai_logo.png" width="150" class="img-responsive m-b-2" alt="Logo de INCUCAI">
+        </p> 
+      </div>
+
+    </article>
+  </section>
+
+
+</div>
