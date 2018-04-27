@@ -1,0 +1,228 @@
+---
+layout: argentina
+title: Mapa de donar sangre
+---
+
+<style>
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }  
+
+@media (max-width: 480px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
+}
+
+
+
+</style>
+
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden-xs" href="/">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <div class="navbar-brand visible-xs-inline-block"> Mapa de donar sangre </div>
+        </div>  
+        <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
+          <div class="visible-xs">
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
+            </a>
+            <hr class="margin-20">
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a></li>
+            <li><a href="/salud/donarsangre">Acerca de donar sangre</a></li>
+          </ul>           
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="jumbotron">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb pull-left">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/salud">Ministerio de Salud</a></li>
+                <li><a href="/salud/donarsangre">Donar sangre</a></li>
+                <li class="active">Dónde donar sangre</li>
+            </ol>        
+          </div>        
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+
+
+<div class="state-loading" id="map-container"><div id="map">&nbsp;</div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script><script>
+
+
+  var initMap = function() {
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: true,
+      streetViewControl: false
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1Q29gzzPVbtRSrlJNZfSGe6QC8mWe0-CGRp0klMKvzrM/1',
+      data: 'json',
+      success: function(response){
+
+        // console.log(response);
+
+        var rows = response.feed.entry;
+
+        rows.forEach(function(row, key){
+
+          // if(row.gsx$visible.$t == '1'){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
+              // map: map,
+              title: row.gsx$nombre.$t,
+              icon: {
+                url: '/sites/default/files/sangre_marker_map.png',
+                size: new google.maps.Size(20, 30),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10)
+              }
+
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h2 class="h5 text-danger">'+ row.gsx$nombre.$t +'</h5><p><strong> '+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Horario</strong>: '+ row.gsx$horario.$t +'<br><strong>Teléfono</strong>: '+ row.gsx$telefono.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t + '</p>',
+              maxWidth: 400
+            })
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+            });
+
+          // }
+        })
+
+        var markerCluster = new MarkerClusterer(map, markers, {
+          imagePath: '/sites/default/files/',
+          gridSize: 50,
+          minimumClusterSize: 800,
+          maxZoom: 19
+        });
+
+
+        $('#map-container').removeClass('state-loading');
+
+      },
+      error: function(){
+        // console.log('nope');
+      }
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(15);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            // console.log('geo nope')
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(15);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+  }
+
+</script><script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
