@@ -61,7 +61,7 @@ title: Mapa de Distribuidores y Fraccionadores de Garrafas de 10 Kg
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <div class="navbar-brand visible-xs-inline-block"> Mapa de Distribuidores y Fraccionadores de Garrafas de 10 Kg</div>
+          <div class="navbar-brand visible-xs-inline-block"> Mapa Garrafas</div>
         </div>  
         <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
           <div class="visible-xs">
@@ -78,7 +78,7 @@ title: Mapa de Distribuidores y Fraccionadores de Garrafas de 10 Kg
       </div>
     </div>
   </nav>
-  <section class="jumbotron">
+  <section class="jumbotron hidden-xs">
     <div class="jumbotron_bar">
       <div class="container">
         <div class="row">
@@ -149,9 +149,11 @@ title: Mapa de Distribuidores y Fraccionadores de Garrafas de 10 Kg
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-primary">'+ row.gsx$razonsocial.$t +'</h5><p><strong> '+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Lunes a Viernes</strong>: '+ row.gsx$lunesaviernes.$t +'<br><strong>Sábado</strong>: '+ row.gsx$sabado.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t + '</p>',
+              content: '<h2 class="h5 text-primary">'+ row.gsx$razonsocial.$t +'</h5><p><strong> '+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Lunes a Viernes</strong>: '+ row.gsx$lunesaviernes.$t +'<br><strong>Sábado</strong>: '+ row.gsx$sabado.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t + '</p><p><a href="' + row.gsx$link.$t + '">Ver provincia</a>',
               maxWidth: 400
             })
+
+
 
             markers[index].addListener('click', function() {
               closeWindows();
