@@ -1,6 +1,6 @@
 ---
 layout: argentina
-title: Mapa de donar sangre
+title: Mapa de Distribuidores y Fraccionadores de Garrafas de 10 Kg
 ---
 
 <style>
@@ -61,7 +61,7 @@ title: Mapa de donar sangre
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <div class="navbar-brand visible-xs-inline-block"> Mapa de donar sangre </div>
+          <div class="navbar-brand visible-xs-inline-block"> Mapa Garrafas</div>
         </div>  
         <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
           <div class="visible-xs">
@@ -71,23 +71,23 @@ title: Mapa de donar sangre
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a></li>
-            <li><a href="/salud/donarsangre">Acerca de donar sangre</a></li>
+            <li><a href="http://www.argentina.gob.ar/programahogar">Programa HOGAR</a></li>
+            <li><a href="http://www.argentina.gob.ar/conoce-las-distribuidoras-y-fraccionadoras-de-recarga-de-garrafas-de-tu-provincia-y-los-precios">Precios por provincia</a></li>
           </ul>           
         </div>
       </div>
     </div>
   </nav>
-  <section class="jumbotron">
+  <section class="jumbotron hidden-xs">
     <div class="jumbotron_bar">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <ol class="breadcrumb pull-left">
                 <li><a href="/">Inicio</a></li>
-                <li><a href="/salud">Ministerio de Salud</a></li>
-                <li><a href="/salud/donarsangre">Donar sangre</a></li>
-                <li class="active">Dónde donar sangre</li>
+                <li><a href="/energiaymineria">Ministerio de Energía y Minería</a></li>
+                <li><a href="/salud/programahogar">Programa HOGAR</a></li>
+                <li class="active">Distribuidores y Fraccionadores de Garrafas de 10 Kg</li>
             </ol>        
           </div>        
         </div>
@@ -96,6 +96,8 @@ title: Mapa de donar sangre
     <div class="overlay"></div>
   </section>
 </header>
+
+
 
 
 <div class="state-loading" id="map-container"><div id="map">&nbsp;</div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script><script>
@@ -119,7 +121,8 @@ title: Mapa de donar sangre
     var detalles = [];
 
     $.ajax({
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1Q29gzzPVbtRSrlJNZfSGe6QC8mWe0-CGRp0klMKvzrM/1',
+     url: 'https://spreadsheets.google.com/feeds/list/15seJ5ji-bBONXKAi9rEEdR8Xh4ug7fnofYUwYaCV1Tw/1/public/values?alt=json',
+    //  url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/15seJ5ji-bBONXKAi9rEEdR8Xh4ug7fnofYUwYaCV1Tw/1',
       data: 'json',
       success: function(response){
 
@@ -135,20 +138,22 @@ title: Mapa de donar sangre
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
               // map: map,
-              title: row.gsx$nombre.$t,
-              icon: {
-                url: '/sites/default/files/sangre_marker_map.png',
-                size: new google.maps.Size(20, 30),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(10, 10)
-              }
+              title: row.gsx$razonsocial.$t,
+			 icon: {
+			 url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+			 size: new google.maps.Size(20, 20),
+			 origin: new google.maps.Point(0, 0),
+			 anchor: new google.maps.Point(10, 10)
+			 }
 
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-danger">'+ row.gsx$nombre.$t +'</h5><p><strong> '+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Horario</strong>: '+ row.gsx$horario.$t +'<br><strong>Teléfono</strong>: '+ row.gsx$telefono.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t + '</p>',
+              content: '<h2 class="h5 text-primary">'+ row.gsx$razonsocial.$t +'</h5><p><strong> '+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t +'</strong><br><strong>Lunes a Viernes</strong>: '+ row.gsx$lunesaviernes.$t +'<br><strong>Sábado</strong>: '+ row.gsx$sabado.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t + '</p><p><a href="' + row.gsx$link.$t + '">Ver provincia</a>',
               maxWidth: 400
             })
+
+
 
             markers[index].addListener('click', function() {
               closeWindows();

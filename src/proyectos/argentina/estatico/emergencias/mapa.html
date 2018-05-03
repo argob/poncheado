@@ -224,9 +224,17 @@ title: Obras del Ministerio de Agroindustria de la Nación
 
         <div class="collapse navbar-collapse" id="map-ref-collapse">
           <div class="well credits ref"> 
-            <p clasS="m-t-1"><span class="circle bg-cielo"></span>Cloacas </p>
-            <p clasS="m-t-1"><span class="circle bg-info"></span>Agua potable  </p>
+            <p clasS="m-t-1"><span class="circle bg-lima"></span>Hábitat </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-cielo"></span>Renovación Urbana </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-cielo"></span>Cloacas </p>
+            <p clasS="m-t-1"><span class="circle bg-cielo"></span>Agua potable  </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-info"></span>Vivienda  </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-info"></span>Cultura  </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-info"></span>Educación  </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-info"></span>Salud  </p>
             <p clasS="m-t-1"><span class="circle bg-primary"></span>Obras para evitar inundaciones </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-cielo"></span>Espacio Público </p>
+            <p clasS="m-t-1 hide"><span class="circle bg-info"></span>Patrimonio  </p>
           </div>          
       </div>
         
@@ -418,8 +426,8 @@ title: Obras del Ministerio de Agroindustria de la Nación
 
 
     $.ajax({
-      // url: 'https://spreadsheets.google.com/feeds/list/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1/public/values?alt=json',
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1',
+      url: 'https://spreadsheets.google.com/feeds/list/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1/public/values?alt=json',
+      //url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1',
       data: 'json',
       success: function(response){
 
@@ -435,7 +443,7 @@ title: Obras del Ministerio de Agroindustria de la Nación
           var index = markers.length;
 
               if (row.gsx$destacado.$t == "X" || row.gsx$destacado.$t == "x"){
-                marcador = "https://www.argentina.gob.ar/sites/default/files/obras-mapa-" + row.gsx$marker.$t;
+                marcador = "https://www.argentina.gob.ar/sites/default/files/agro-" + row.gsx$marker.$t;
               }else{
                 marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$markerd.$t;
               }
