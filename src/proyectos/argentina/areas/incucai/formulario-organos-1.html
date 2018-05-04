@@ -7,7 +7,7 @@ layout: argentina
   <ol class="breadcrumb">
     <li><a href="/">Inicio</a></li>
     <li><a href="https://www.argentina.gob.ar/incucai">INCUCAI</a></li>
-    <li class="active">Descargar constancia de CUIL</li>
+    <li class="active">Sumá tu voluntad de donar órganos</li>
   </ol>
 
   <section>
@@ -20,14 +20,12 @@ layout: argentina
         </div>
         <hr class="m-y-1">
         <h2 class="m-t-2 font-weight-bold">Completá tus datos</h2>
-        <p class="m-b-2 m-t2">Todos podemos donar, todos podemos recibir. Construyamos juntos una comunidad donante.</p>
-
-
+        
         <!-- <div class="row">
           {% include argentina/redes-sociales.html param="col-md-7" %}
         </div> -->
 
-        <form action="/proyectos/argentina/areas/incucai/resultado.html" id="cuil">
+        <form action="/proyectos/argentina/areas/incucai/resultado.html" id="">
           <fieldset>
             <div class="row">
             <div class="col-md-12 form-group">
@@ -35,8 +33,8 @@ layout: argentina
             <hr class="m-b-0 m-t-0">
             </div>
               <div class="col-md-5 form-group">
-                <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
-                <select id="tipoDocCUIL" name="tipodoc" class="form-control">
+                <label class="control-label" for="tipoDoc">Tipo de Documento</label>
+                <select id="tipoDoc" name="tipodoc" class="form-control">
                   <option value="0029" selected="">DNI</option>
                   <option value="0025">Libreta de Enrolamiento</option>
                   <option value="0026">Libreta Cívica</option>
@@ -44,7 +42,7 @@ layout: argentina
                 </select>
               </div>
               <div class="col-md-7 form-group">
-                <label class="control-label" for="numDocCUIL">Número de documento</label>
+                <label class="control-label" for="">Número de documento</label>
                 <input type="number" class="form-control" id="numDoc" tabindex="1" autofocus="" required="">
               </div>
             </div>
@@ -62,6 +60,13 @@ layout: argentina
               <input type="name" class="form-control" id="nombre" tabindex="2" required="">
           </div>          
           
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="fechaNac col-sm-12">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="fechaNac" placeholder="dd/mm/aaaa" tabindex="6" required="">
+            </div>
+          </div> 
+
           <div class="col-md-12">
             <div>
               <label class="control-label" for="sexo">Sexo</label>
@@ -81,7 +86,27 @@ layout: argentina
               </div>
             </div>
           </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="fechaNac col-sm-12">Estado civil</label>
+               <select id="" name="tipodoc" class="form-control">
+                <option value="">--Seleccione--</option>
+                <option value="1">SOLTERO</option>
+                <option value="2">CASADO</option>
+                <option value="3">DIVORCIADO</option>
+                <option value="4">VIUDO</option>
+                <option value="5">VINCULO DE HECHO</option>
+                <option value="6">SEPARADO</option>
+            </select>
+            </div>
+          </div>          
           
+          <div class="col-md-12 form-group">
+            <h3 class="m-b-1">Datos de contacto</h3>
+            <hr class="m-b-0 m-t-0">
+            </div>
+
           <div class="col-md-12 form-group">
               <label class="control-label" for="email">Correo electrónico</label>
               <input type="name" class="form-control" id="email" tabindex="2" required="">
@@ -91,48 +116,36 @@ layout: argentina
               <label class="control-label" for="email_confirmar">Confirmá tu Correo electrónico</label>
               <input type="name" class="form-control" id="email_confirmar" tabindex="2" required="">
           </div>                                    
-          
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="fechaNac col-sm-12">Fecha de nacimiento</label>
-              <input type="date" class="form-control" id="fechaNac" placeholder="dd/mm/aaaa" tabindex="6" required="">
-            </div>
-          </div>          
 
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="fechaNac col-sm-12">Estado civil</label>
-               <select id="tipoDocCUIL" name="tipodoc" class="form-control">
-                <option value="">--Seleccione--</option>
-                <option value="1">SOLTERO</option>
-                <option value="2">CASADO</option>
-            </select>
-            </div>
+          
+          <div class="col-md-12 form-group">
+            <h3 class="m-b-1">Domicilio</h3>
+            <hr class="m-b-0 m-t-0">
           </div>
 
-          <div class="col-md-5 form-group">
-            <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
-            <select id="tipoDocCUIL" name="tipodoc" class="form-control">
-                <option value="">--Seleccione--</option>
-                <option value="1">SOLTERO</option>
-                <option value="2">CASADO</option>
-                <option value="3">DIVORCIADO</option>
-                <option value="4">VIUDO</option>
-                <option value="5">VINCULO DE HECHO</option>
-                <option value="6">SEPARADO</option>
-            </select>
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="">Provincia</label>
+              <select class="form-control" name="" id="">
+                <option value="">Selecciona una provincia</option>
+              </select>
+          </div>
+          <div class="col-md-12 form-group">
+              <label class="control-label" for="">Partido</label>
+              <select class="form-control" name="" id="">
+                <option value="">Selecciona un partido</option>
+              </select>
           </div> 
-          
-
           <div class="col-md-12 form-group">
-          <h3 class="m-b-1">Domicilio</h3>
-          <hr class="m-b-0 m-t-0">
-          </div>
-          <div class="col-md-12 form-group">
+              <label class="control-label" for="">Localidad</label>
+              <select class="form-control" name="" id="">
+                <option value="">Selecciona una localidad</option>
+              </select>
+          </div>                          
+          <div class="col-md-6 form-group">
               <label class="control-label" for="">Calle</label>
               <input type="name" class="form-control" id="calle" tabindex="2" required="">
           </div>     
-          <div class="col-md-12 form-group">
+          <div class="col-md-6 form-group">
               <label class="control-label" for="">Número</label>
               <input type="name" class="form-control" id="numero" tabindex="2" required="">
           </div>     
@@ -144,19 +157,43 @@ layout: argentina
               <label class="control-label" for="">Departamento</label>
               <input type="name" class="form-control" id="departamento" tabindex="2" required="">
           </div>               
-          <div class="col-md-6 form-group">
-              <label class="control-label" for="">Teléfono</label>
-              <small>Incluya el código de área antes del nro, por ejemplo: 01112345678.
-
-          </small>
-              <input type="name" class="form-control" id="telefono" tabindex="2" required="">
-          </div>  
-
-
 
 
           <div class="col-md-12 form-group">
-          <h3 class="m-b-1">Datos del familiar o amigo</h3>
+          <h3 class="m-b-1">Manifestación de voluntad expresa</h3>
+          <hr class="m-b-0 m-t-0">
+          </div>
+
+          <div class="col-md-12">
+            <div>
+              <label class="control-label" for="">Manifestación</label>
+            </div>
+           
+            <div class="form-group">
+             <div class="col-md-6">
+              <div class="radio-inline">
+                <label for="positivo" style="font-size: 20px">
+                  <input type="radio" name="positivo" id="positivo" value="" tabindex="4" required="">
+                  Quiero ser donante
+                </label>
+              </div>
+              <p>Manifestación afirmativa a la donación de órganos y tejidos</p>
+              </div>
+              <div class="col-md-6">
+              <div class="radio-inline">
+                <label for="negativo" style="font-size: 20px">
+                  <input type="radio" name="negativo" id="negativo" value="" tabindex="5" required="">
+                  No quiero ser donante
+                </label>
+              </div>
+              <p>Manifestación de oposición a la donación de órganos y tejidos</p>
+            </div>
+            </div>
+          </div>          
+
+
+          <div class="col-md-12 form-group">
+          <h3 class="m-b-1">Datos del familiar o amigo a quién comunico mi decisión (opcional)</h3>
           <hr class="m-b-0 m-t-0">
           </div>
           <div class="col-md-12 form-group">
@@ -167,11 +204,28 @@ layout: argentina
               <label class="control-label" for="">Vínculo</label>
               <input type="name" class="form-control" id="numero" tabindex="2" required="">
           </div>     
+          <div class="col-md-12 form-group m-b-0">
+          <label class="control-label" for="">Teléfono movil</label>
+          </div>
            <div class="col-md-6 form-group">
-              <label class="control-label" for="">Teléfono movil</label>
-              <input type="name" class="form-control" id="piso" tabindex="2" required="">
-          </div>     
-          <div class="col-md-6 form-group">
+             <div class="form-group">
+                <label class="sr-only" for=""></label>
+                <div class="input-group">
+                  <div class="input-group-addon">0</div>
+                  <input type="text" class="form-control" id="" placeholder="Ingresá el prefijo">
+                </div>
+              </div>              
+          </div> 
+           <div class="col-md-6 form-group">
+              <div class="form-group">
+                <label class="sr-only" for="">&nbsp;</label>
+                <div class="input-group">
+                  <div class="input-group-addon">15</div>
+                  <input type="text" class="form-control" id="" placeholder="Ingresá el número">
+                </div>
+              </div>              
+          </div>              
+          <div class="col-md-12 form-group">
               <label class="control-label" for="">Correo electrónico</label>
               <input type="name" class="form-control" id="departamento"  tabindex="2" required="">
           </div>               
@@ -186,12 +240,12 @@ layout: argentina
           </form>             
       
 
-      <div class="col-md-12">
+      
         <hr> 
         <p class="pull-right"> 
             <img src="img/incucai_logo.png" width="150" class="img-responsive m-b-2" alt="Logo de INCUCAI">
         </p> 
-      </div>
+      
 
     </article>
   </section>
