@@ -157,14 +157,17 @@ title: Mapa de Ventanillas
     // https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json
 
     $.ajax({
-      url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/EstablecimientosSalud/MapServer/6/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+      // url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/EstablecimientosSalud/MapServer/6/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+      url: 'https://simple-cors.herokuapp.com/?url=https%3A%2F%2Fsistemas.ms.gba.gov.ar%2FArcGIS%2Frest%2Fservices%2FServiciosPublicos%2FEstablecimientosSalud%2FMapServer%2F6%2Fquery%3Ftext%3D%26geometry%3D%26geometryType%3DesriGeometryPoint%26inSR%3D%26spatialRel%3DesriSpatialRelIntersects%26relationParam%3D%26objectIds%3D%26where%3D1%253D1%26time%3D%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%3D%26outSR%3D%26outFields%3D*%26f%3Djson',
+      
       data: 'text',
       success: function(response){
 
         data.establecimientos = JSON.parse(response);
 
         $.ajax({
-          url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/8/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+          // url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/8/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
+          url: 'https://simple-cors.herokuapp.com/?url=https%3A%2F%2Fsistemas.ms.gba.gov.ar%2FArcGIS%2Frest%2Fservices%2FServiciosPublicos%2FServicios_Maternidades%2FMapServer%2F8%2Fquery%3Ftext%3D%26geometry%3D%26geometryType%3DesriGeometryPoint%26inSR%3D%26spatialRel%3DesriSpatialRelIntersects%26relationParam%3D%26objectIds%3D%26where%3D1%253D1%26time%3D%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%3D%26outSR%3D%26outFields%3D*%26f%3Djson',
           data: 'text',
           success: function(response){
 
