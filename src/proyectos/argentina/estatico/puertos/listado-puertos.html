@@ -1,0 +1,124 @@
+---
+layout: argentina
+---
+
+<div class="container">
+        <div id="puertos">
+          <div class="row">
+
+          <div class="form-group col-md-12">
+          <label for="">Buscá puertos</label>
+            <input class="form-control search" placeholder="Buscar...">
+          </div>
+
+
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Puerto</th>
+                  <th>Autoridad</th>
+                  <th>Administración</th>
+                  <th>Domicilio</th>
+                  <th>Teléfono</th>
+                  <th>Mail</th>
+
+                </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+        </tbody>
+            </table>
+
+            <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>     
+      <div id="alerta" class="alert alert-warning col-md-6 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>  
+          </div>           
+        </div>
+
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+  jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1bunbJDdtqS9Uh84NV-8DSGL4YUyiCaumlFkBOMWEANE/1/public/values?alt=json',
+    function (data) {
+
+          window.puertos = data.feed.entry;
+          showpuertos();
+      });
+
+      window.showpuertos = function(){
+          var showData = $('#show-data');
+
+          var html = '';
+
+          $.each( puertos, function( key, item ) {
+              html += '<tr>';
+              html += ' <td class="Puerto">'+ item.gsx$puerto.$t + '</td>';
+              html += ' <td class="Autoridad">'+ item.gsx$autoridad.$t + '</td>';
+              html += ' <td class="Administración">'+ item.gsx$admin.$t + '</td>';
+              html += ' <td class="Dirección">'+ item.gsx$direccion.$t + '</td>';
+              html += ' <td class="Teléfono" width="150px">'+ item.gsx$tel.$t + '</td>';
+              html += ' <td class="Correo electrónico">'+ item.gsx$email.$t + '</td>';
+              html += '</tr>';
+      
+          });
+
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+          valueNames: [ 'Puerto', 'Autoridad', 'Administración', 'Dirección', 'Teléfono', 'Correo electrónico',  ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          };
+
+          var puertosList = new List('puertos', listOptions);  
+
+          jQuery('.search').on("keyup",function(){
+          var valueSearch = jQuery(".search").val();
+          puertosList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+
+        puertosList.on('updated', function(list) {
+
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        }) 
+
+
+      }
+
+
+
+
+
+  });
+  })(jQuery);
+  
+</script>
