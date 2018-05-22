@@ -121,9 +121,9 @@ layout: argentina
 
     var templates = {
       tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><span class="fecha hidden">{inicioProyecto}</span><span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted cumplimiento" data-render="cumplimiento">{avancePorcentajeInicial}</span><span class="text-muted"> cumplido</span></div></div></div></a></div>',
-      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
+      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento de la meta</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
-      indicador: '<tr> <td><p>{nombre}</p></td><td><p>{estado2016}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
+      indicador: '<tr> <td><p>{nombre}</p></td><td><p>{metaAnual}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
     }
 
     window.proyectos = [];
@@ -133,6 +133,7 @@ layout: argentina
     }
 
     $.ajax({
+      // url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1',
       data: 'json',
       success: function(response){
@@ -168,8 +169,7 @@ layout: argentina
               nombre: row.gsx$nombre.$t,
               fuente: row.gsx$fuente.$t,
               formulacion: row.gsx$formulacion.$t,
-              estado2016: row.gsx$estado2016.$t,
-              estado2017: row.gsx$estado2017.$t,
+              metaAnual: row.gsx$metaanual.$t,
               avance: row.gsx$avance.$t,
               porcentaje: row.gsx$porcentaje.$t
             });
@@ -237,7 +237,7 @@ layout: argentina
             .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
             .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
             .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-            .replace(/{metas}/gi, proyecto.indicadores[0].estado2016)
+            .replace(/{metas}/gi, proyecto.indicadores[0].metaAnual)
             .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
             .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje)
             .replace(/{duracionProyecto}/gi, duracion);
@@ -273,8 +273,7 @@ layout: argentina
               htmlIndicador = htmlIndicador.replace(/{nombre}/gi, indicador.nombre)
               .replace(/{fuente}/gi, indicador.fuente)
               .replace(/{formulacion}/gi, indicador.formulacion)
-              .replace(/{estado2016}/gi, indicador.estado2016)
-              .replace(/{estado2017}/gi, indicador.estado2017)
+              .replace(/{metaAnual}/gi, indicador.metaAnual)
               .replace(/{avance}/gi, indicador.avance)
               .replace(/{avancePorcentaje}/gi, indicador.porcentaje);
 
