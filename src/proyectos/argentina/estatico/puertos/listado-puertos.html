@@ -17,7 +17,6 @@ layout: argentina
               <thead>
                 <tr>
                   <th>Puerto</th>
-                  <th>Autoridad</th>
                   <th>Administración</th>
                   <th>Domicilio</th>
                   <th>Teléfono</th>
@@ -73,8 +72,7 @@ layout: argentina
 
           $.each( puertos, function( key, item ) {
               html += '<tr>';
-              html += ' <td class="Puerto">'+ item.gsx$puerto.$t + '</td>';
-              html += ' <td class="Autoridad">'+ item.gsx$autoridad.$t + '</td>';
+              html += ' <td class="Puerto"><b>'+ item.gsx$puerto.$t + '</b><br>' + item.gsx$autoridad.$t  + '</td>';
               html += ' <td class="Administración">'+ item.gsx$admin.$t + '</td>';
               html += ' <td class="Dirección">'+ item.gsx$direccion.$t + '</td>';
               html += ' <td class="Teléfono" width="150px">'+ item.gsx$tel.$t + '</td>';
