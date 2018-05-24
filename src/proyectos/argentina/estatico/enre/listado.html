@@ -1,0 +1,123 @@
+---
+layout: argentina
+---
+
+<section class="m-b-0 p-t-0 p-b-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb pull-left">
+                    <li><a href="/">Argentina</a></li>
+                    <li><a href="/">ENRE</a></li>
+                    <li class="active"><span>Listado de trámites</span></li>
+                </ol>
+            </div>
+        </div>
+</div>
+</section>        
+
+<section class="p-t-0 m-t-0">
+<div class="container">
+        <div id="puertos">
+          <div class="row">
+          
+          <div class="form-group col-md-12">
+          <h1>Listado de trámites</h1>
+          <p class="main">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere error vel mollitia, aliquam, ipsum obcaecati porro commodi incidunt consequatur, veniam maxime illum molestias! Facere officia pariatur tempore similique non et.</p>
+          <label for=""><h4>Buscá por título</h4></label>
+            <input class="form-control search" placeholder="Buscar...">
+          </div>
+
+
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Titulo</th>
+                </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+        </tbody>
+            </table>
+
+            <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>     
+      <div id="alerta" class="alert alert-warning col-md-6 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>  
+          </div>           
+        </div>
+
+        </div>
+      </div>
+    
+  </section>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+  jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1vxR1wukaTLSuh415Q2tSEdVvqgJvsZPaECaObbYQtbc/1/public/values?alt=json',
+    function (data) {
+          console.log(data);
+          window.puertos = data.feed.entry;
+          showpuertos();
+      });
+
+      window.showpuertos = function(){
+          var showData = $('#show-data');
+
+          var html = '';
+
+          $.each( puertos, function( key, item ) {
+              html += '<tr>';
+              html += ' <td class="titulo"><a target="_blank" href="'+ item.gsx$url.$t + '"><b>'+ item.gsx$titulo.$t + '</b></a></br><p class="m-t-1">'+ item.gsx$descripcion.$t + '</p></td>';
+              html += '</tr>';
+      
+          });
+
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+          valueNames: [ 'titulo'],
+          page: 10,
+          plugins: [ ListPagination({}) ]
+          };
+
+          var puertosList = new List('puertos', listOptions);  
+
+          jQuery('.search').on("keyup",function(){
+          var valueSearch = jQuery(".search").val();
+          puertosList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+
+        puertosList.on('updated', function(list) {
+
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        }) 
+      }
+  });
+  })(jQuery);
+  
+</script>
