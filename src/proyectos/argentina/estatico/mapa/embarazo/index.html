@@ -226,18 +226,43 @@ title: Mapa de Ventanillas
 
         var esMaternindad = false;
 
-        if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
-          markerImage = 'img/marker_green.png';
-        }else if( data.maternidades[row.attributes.CODIGO] != undefined ){
+        // if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
+        //   markerImage = 'img/marker_green.png';
+        // }else if( data.maternidades[row.attributes.CODIGO] != undefined ){
+        //   row.maternidad = data.maternidades[row.attributes.CODIGO];
+        //   markerImage = 'img/marker_uva.png';
+        //   esMaternindad = true;
+
+        //   data.maternidades[row.attributes.CODIGO].x = row.geometry.x;
+        //   data.maternidades[row.attributes.CODIGO].y = row.geometry.y;
+
+        // } else {
+        //   markerImage = 'img/marker.png';
+        // }
+
+        if( data.maternidades[row.attributes.CODIGO] != undefined ){
           row.maternidad = data.maternidades[row.attributes.CODIGO];
-          markerImage = 'img/marker_uva.png';
           esMaternindad = true;
 
           data.maternidades[row.attributes.CODIGO].x = row.geometry.x;
           data.maternidades[row.attributes.CODIGO].y = row.geometry.y;
 
+          if(data.maternidades[row.attributes.CODIGO].CategObst == 'IIIB'){
+            markerImage = 'img/marker_red.png';
+
+          }else if(data.maternidades[row.attributes.CODIGO].CategObst == 'IIIA'){
+            markerImage = 'img/marker_fucsia.png';
+
+          }else if(data.maternidades[row.attributes.CODIGO].CategObst == 'II'){
+            markerImage = 'img/marker_yellow.png';
+
+          }else{
+            markerImage = 'img/marker_green.png';
+          }
+
+
         } else {
-          markerImage = 'img/marker.png';
+          markerImage = 'img/marker_green.png';
         }
 
 
