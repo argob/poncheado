@@ -23,7 +23,7 @@ layout: argentina
             <div class="panel-body">
               <h2>Elegí el documento que querés legalizar:</h2>
                <div class="alert alert-info m-y-2">
-                   <p>Recordá que podés legalizar hasta <strong>cinco documentos por turno</strong>. </p>
+                   <p>Recordá que podés legalizar hasta <strong>cinco documentos por turno y por día</strong>. </p>
                </div>           
               <hr class="m-y-1">
 
@@ -52,11 +52,29 @@ layout: argentina
                     <label class="control-label">En qué país lo presentás</label>
                     <div class="form-group">
                       <label for="pais">Países</label>
+                      <p class="help-block m-b-1">Si tu país no aparece en el siguiente listado elegí la opción <strong>otros países</strong></p>
                       <select id="pais" name="pais" class="form-control" required>
                         <option value="">Elegí un país</option>
                       </select>
                     </div>
                   </div>
+                  <div class="form-group m-t-3">
+                  <fieldset>
+                      <label class="control-label">¿Tenes Cuil argentino?</label>
+                        <div class="radio">
+                        
+                          <label for="cuitArgentino" class="m-t-0">
+                            <input id="cuitArgentino" type="radio" name="cuitPais" value="si" required/>
+                            <span class="sr-only">Este Campo es Obligatorio</span> Sí 
+                          </label><br>
+                          <label for="cuitNoArgentino" class="m-t-1">
+                            <input id="cuitNoArgentino" type="radio" name="cuitPais" value="no" required/>
+                            No
+                          </label>
+                          
+                        </div> 
+                  </fieldset>
+                </div>
                 </div>
               </div>
             </div>
@@ -107,6 +125,11 @@ layout: argentina
                       required: true,
                       minlength: 1,
                       maxlength: 5
+                  },
+                  cuitPais: {
+                      required: true,
+                      minlength: 1,
+                      maxlength: 1
                   }
                }, 
               messages: {
@@ -160,97 +183,114 @@ layout: argentina
           } 
 
           selectValues = [ 
-            "Alemania",
-            "Antigua y Barbuda",
-            "Argentina",
-            "Armenia",
-            "Australia",
-            "Austria",
-            "Azerbaiyan",
-            "Bahamas",
-            "Barbados",
-            "Baréin",
-            "Bélgica",
-            "Bosnia y Herzegovina",
-            "Botsuana",
-            "Brasil",
-            "Brunéi",
-            "Bulgaria",
-            "Burundi",
-            "Cabo Verde",
-            "República Checa",
-            "Chile",
-            "Chipre",
-            "Colombia",
-            "Corea del Sur",
-            "Costa Rica",
-            "Croacia",
-            "Dinamarca",
-            "Dominica",
-            "Ecuador",
-            "El Salvador",
-            "Eslovaquia",
-            "Eslovenia",
-            "España",
-            "Estados Unidos",
-            "Estonia",
-            "Finlandia",
-            "Francia",
-            "Georgia",
-            "Gran Bretaña",
-            "Granada",
-            "Grecia",
-            "Guatemala",
-            "Holanda",
+            "Albania",
             "Honduras",
+            "Alemania",
             "Hungría",
-            "Indonesia",
+            "Andorra",
+            "India",
+            "Antigua y Barbuda",
             "Irlanda",
+            "Argentina",
             "Islandia",
+            "Armenia",
             "Israel",
+            "Australia",
             "Italia",
+            "Austria",
             "Japón",
-            "Kazajistán",
+            "Azerbaiyán",
+            "Kazajstán",
+            "Bahamas",
             "Kirguistán",
+            "Bahrein",
+            "Kosovo",
+            "Barbados",
             "Lesotho",
+            "Belarús",
             "Letonia",
+            "Bélgica",
             "Liberia",
+            "Belice",
             "Liechtenstein",
+            "Bolivia",
             "Lituania",
+            "Bosnia y Herzegovina",
             "Luxemburgo",
-            "Macedonia",
-            "Malaui",
+            "Botswana",
+            "Malawi",
+            "Brasil",
+            "Malta",
+            "Brunei Darussalam",
             "Marruecos",
+            "Bulgaria",
+            "Marshall, Islas",
+            "Burundi",
+            "Mauricio",
+            "Cabo Verde",
             "México",
+            "Chile",
             "Mónaco",
+            "Chipre",
+            "Mongolia",
+            "Colombia",
             "Montenegro",
+            "Cook, Islas",
             "Namibia",
+            "Corea, República de",
             "Nicaragua",
+            "Costa Rica",
+            "Niue",
+            "Croacia",
             "Noruega",
-            "Nueva Zelanda",
+            "Dinamarca",
+            "Nueva Zelandia",
+            "Dominica",
             "Omán",
+            "Ecuador",
+            "Países Bajos",
+            "El Salvador",
             "Panamá",
+            "Eslovaquia",
             "Paraguay",
+            "Eslovenia",
             "Perú",
+            "España",
             "Polonia",
+            "Estados Unidos de América",
             "Portugal",
+            "Estonia",
+            "Gran Bretaña e Irlanda",
+            "Ex Rep Yugoslava",
+            "República Checa",
+            "Fiji",
+            "República de Moldova",
+            "Finlandia",
             "República Dominicana",
+            "Francia",
             "Rumania",
-            "Rusia",
+            "Georgia",
+            "Rusia, Federación de",
+            "Granada",
+            "Saint Kitts y Nevis",
+            "Grecia",
             "Samoa",
-            "San Cristóbal y Nieves",
-            "San Vicente y las Granadinas",
+            "Guatemala",
+            "San Marino",
             "Santa Lucía",
             "Santo Tomé y Príncipe",
+            "San Vicente y las Granadinas",
             "Serbia",
             "Seychelles",
-            "Suazilandia",
             "Sudáfrica",
             "Suecia",
             "Suiza",
-            "Surinam",
+            "Suriname",
+            "Swazilandia",
             "Tayikistán",
-            "Trinidad y Tobago",
+            "Tonga",
+            "Trinidad y Tabago",
+            "Túnez",
             "Turquía",
             "Ucrania",
             "Uruguay",

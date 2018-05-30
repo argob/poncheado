@@ -11,7 +11,7 @@ layout: argentina
         <div id="wizard-personal" class="hidden">
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a Legalizar:</h2>
+              <h2><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp; Requisitos para presentar documentos a <span id="requisitosTitulo">apostillar</span>:</h2>
               <hr class="m-y-1">
                <ul class="m-t-2 content_format">
                  <li>El documento a legalizar <strong>debe ser original</strong> y encontrarse en buen estado de conservación, con sus datos claramente legibles y sin plastificar.</li>
@@ -52,6 +52,11 @@ layout: argentina
             </div>
           </div>
 
+          <div class="well m-y-4">
+            <h3 class="h5 m-t-0 m-b-1">Nota:</h3>
+            <p>"Si no podés trasladarte a la sede del Ministerio en Ciudad de Buenos Aires, ahora los <strong>Colegios de Escribanos</strong> del país pueden colocar la Apostille, habilitar documentos emitidos por cónsul argentino en el exterior y legalizar documentación con validez internacional, sin necesidad de la intervención del Ministerio de Relaciones Exteriores y Culto en la Ciudad Autónoma de Buenos Aires. Si querés realizar el trámite en el Colegio de Escribanos de tu provincia te sugerimos contacarlos para conocer fecha de implementación y requisitos de los trámites, en cada caso. En este sitio web: <a href="http://www.cfna.org.ar/colegios" target="_blank">http://www.cfna.org.ar/colegios<span class="sr-only">Enlace a otro sitio</span></a>, podés consultar los datos de cada Colegio." </p>
+          </div>          
+
           <div class="panel panel-default">
             <div class="panel-body">
               <h2><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp; Aranceles</h2>
@@ -72,8 +77,8 @@ layout: argentina
         </div>
 
         <div class="m-y-3">
-          <a class="btn btn-success" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/107">Turno para argentinos</a>
-          <a class="btn btn-success" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/99">Turno para extranjeros</a>
+          <a class="btn btn-success btn-turnoArg" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/107">Turno para argentinos</a>
+          <a class="btn btn-success btn-turnoNoArg" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/99">Turno para extranjeros</a>
         </div>
 
         <hr>
@@ -91,6 +96,7 @@ layout: argentina
           {
            name:"Emitidos dentro del territorio de la República Argentina",
            contents:[
+
                 {
                   name: 'Partidas de estado civil (nacimiento, matrimonio y defunción).',
                   id: 'partidasEstadoCivil',
@@ -178,14 +184,21 @@ layout: argentina
                   form_data = JSON.parse( localStorage.getItem("wizard-form2"));
 
                   var lenghtItems = form_data.length-1
-                  console.log(form_data[lenghtItems].value)
-                  
+                  console.log(form_data);
+
                   mostrarDescripcion();
 
                   jQuery.each(form_data, function(key, item){
 
+                    if(item.name == "cuitPais" && item.value == 'si') {
+                        $('.btn-turnoNoArg').hide();
+                    } else {
+                         $('.btn-turnoArg').hide();
+                    }
+
 
                     if (item.name == "pais") {
+
                       $('#show-data-aranceles').find('[data-render=pais]').append( item.value );
                     }
 
@@ -196,6 +209,16 @@ layout: argentina
                     var htmlCategoryItems = "";
 
                     jQuery.each(category.contents, function(key, content){
+
+                      //console.log(content);
+                        
+                      if(form_data[lenghtItems-1].value == 'Otros Países') {
+                          $('#requisitosTitulo').text("habilitar");
+                      } else {
+                          $('#requisitosTitulo').text("apostillar");
+                      }  
+
+
 
                       if(item.value == content.id) {
 
@@ -213,7 +236,7 @@ layout: argentina
                             var simboloMoneda = "$"
                             var costo = 90
 
-                            if(form_data[lenghtItems].value == 'Otros Países' && content.id == 'partidasEstadoCivil') {
+                            if(form_data[lenghtItems-1].value == 'Otros Países' && content.id == 'partidasEstadoCivil') {
                               costo = 30
                             }
 
@@ -234,18 +257,18 @@ layout: argentina
                               $("#"+content.id).addClass('hidden');
                             } 
 
+                        } 
 
-                        }  
 
 
                     });
 
                   });//termino de cargar categoria
+                     
 
-                  });
+                  }
+                );
                   
-
-
                   function mostrarDescripcion () {
                     var htmlDescription = templates.descriptionAranceles; 
                     jQuery('#show-data-aranceles').removeClass('hidden').append( htmlDescription );
