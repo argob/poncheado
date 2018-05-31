@@ -84,8 +84,8 @@ layout: argentina
         <hr>
 
         <div class="m-y-3">
-          <a id="edit-form" class="btn btn-link m-r-1" href="/legalizar-un-documento/requisitos?tca=yGol3mVr8DjsieilQcljqzO1-kqk-0QFpNdaf_GRuRo">Cambiar respuestas</a>
-          <a id="wipe-form" class="btn btn-link" href="/legalizar-un-documento/requisitos?tca=yGol3mVr8DjsieilQcljqzO1-kqk-0QFpNdaf_GRuRo">Volver a comenzar</a>
+          <a id="edit-form" class="btn btn-link m-r-1" href="/cancilleria/consulta-requisitos?tca=1m1zXVznehiifRotTRjm5eE-Jq1PaacEfsj1hnXmgeI">Cambiar respuestas</a>
+          <a id="wipe-form" class="btn btn-link" href="/cancilleria/consulta-requisitos?tca=1m1zXVznehiifRotTRjm5eE-Jq1PaacEfsj1hnXmgeI">Volver a comenzar</a>
         </div>
 
             <script>
@@ -191,9 +191,11 @@ layout: argentina
                   jQuery.each(form_data, function(key, item){
 
                     if(item.name == "cuitPais" && item.value == 'si') {
+                        $('.btn-turnoArg').show();
                         $('.btn-turnoNoArg').hide();
                     } else {
                          $('.btn-turnoArg').hide();
+                         $('.btn-turnoNoArg').show();
                     }
 
 
@@ -276,7 +278,7 @@ layout: argentina
 
                 }else{
                   // console.log('Todavía no guardaste nada');
-                  window.location.replace('/legalizar-un-documento/requisitos?tca=yGol3mVr8DjsieilQcljqzO1-kqk-0QFpNdaf_GRuRo');
+                  window.location.replace('/cancilleria/consulta-requisitos?tca=1m1zXVznehiifRotTRjm5eE-Jq1PaacEfsj1hnXmgeI');
                 }
 
               } else {
@@ -287,14 +289,14 @@ layout: argentina
                 event.preventDefault();
                 // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
                 // window.location.href = '/cancilleria';
-                window.location.href = '/legalizar-un-documento/requisitos?tca=yGol3mVr8DjsieilQcljqzO1-kqk-0QFpNdaf_GRuRo';
+                window.location.href = '/cancilleria/consulta-requisitos?tca=1m1zXVznehiifRotTRjm5eE-Jq1PaacEfsj1hnXmgeI';
               });
 
               jQuery('#wipe-form').on('click', function(event){
                 event.preventDefault();
                 localStorage.removeItem('wizard-form2');
                 // ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
-                window.location.href = '/legalizar-un-documento/requisitos?tca=yGol3mVr8DjsieilQcljqzO1-kqk-0QFpNdaf_GRuRo';
+                window.location.href = '/cancilleria/consulta-requisitos?tca=1m1zXVznehiifRotTRjm5eE-Jq1PaacEfsj1hnXmgeI';
               });
 
         })(jQuery);
