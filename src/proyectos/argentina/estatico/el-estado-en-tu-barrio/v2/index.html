@@ -252,67 +252,7 @@ layout: argentina
             <h2 class="text-center">Qué trámites podes hacer</h2>
           </div>
         </div>
-        <div class="row panels-row">
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">Registro Nacional de las Personas</h4>
-              <ul>
-                <li>DNI</li>
-                <li>DNI Extranjeros</li>
-                <li>Pasaporte</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">PAMI</h4>
-              <ul>
-                <li>Alta de afiliación</li>
-                <li>Cambió medico cabecera</li>
-                <li>Cambio centromédico</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">ANSES</h4>
-              <ul>
-                <li>Clave de seguridad social.</li>
-                <li>Asignación universal por embarazo.</li>
-                <li>Reclamos de Asignación Universal u Familiar por Hijo </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">AYSA</h4>
-              <ul>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">SUBE</h4>
-              <ul>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="well">
-              <h4 class="m-t-3 text-primary">TARIFA SOCIAL</h4>
-              <ul>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-                <li>Nombre trámite</li>
-              </ul>
-            </div>
-          </div> 
+        <div class="row panels-row list" data-render="servicios">
         </div> 
       </div>  
     </div>
@@ -320,63 +260,103 @@ layout: argentina
 </section>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
+<script> var idProvincia = 7; </script>
 
 <script type="text/javascript">
 
 (function($) {
 
-            $.validator.setDefaults({
-              success: "valid"
-            });
+    var templates = {
+      servicios: '<div class="col-md-4"><div class="well"><h4 class="m-t-1 text-primary">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
+    }
 
-            var wizard_form = $("#wizard-form-cud");
-            wizard_form.validate({
-              rules: {
-                  tipotramite: {
-                      required: true
-                  },
-                  mayor18: {
-                      required: true
-                  },
-                  coberturamedica: {
-                      required: true
-                  }, 
-                  discapacidad: {
-                      required: true,
-                      minlength: 1
-                  },
-                  provincia: {
-                      required: true
-                  },
-                  localidad: {
-                      required: true
-                  }
+    var categoriasServicios = [];
+    var listadoServicios = [];
 
-               },                           
-              errorPlacement: function(error, element) {
-                if (element.is(":radio") || $(element).is(":checkbox")){
-                  error.insertBefore(element.parent().parent());
-                }               
-                 else{
-                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
-                }
-              },
-              highlight: function(element, errorClass) {
-                if ($(element).is(":radio") || $(element).is(":checkbox")){
-                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
-                } else{
-                  $(element).parent().addClass("has-error has-feedback");
-                }
-              },
-              success: function(label) {
-                label.parent().parent().removeClass("has-error has-feedback");
-                label.remove();
-              },
-            });
- 
-            // -----------------------------------------------------------------
+    var render = {
+      servicios: function( ){
+
+        jQuery('[data-render=servicios]').html('');
+
+        window.serviciosList = [];
+
+        jQuery.each(listadoServicios, function(index, items){
+
+          var html = templates.servicios;
+
+          html = html
+          .replace(/{categoria}/gi, categoriasServicios[index])
+          .replace(/{i}/gi, index);
+
+          jQuery.each(items, function(index, item){
+            html += '<li><span class="servicio">'+ item +'</span></li>';
+          });
+
+          jQuery('[data-render=servicios]').append( html + '</ul></div></div></div>' );
+
+          var listOptions = { 
+            valueNames: [ 'servicio' ],
+            fuzzySearch: {
+              searchClass: "search",
+              location: 0,
+              distance: 100,
+              threshold: 0.4,
+              multiSearch: true
+            }
+
+          };
+          serviciosList[index] = new List('servicios-'+ index, listOptions);
+
+        });
+      }      
+    }
+
+    jQuery.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
+      data: 'json',
+      success: function(response){
+
+        jQuery.each(response.feed.entry, function(index, row){
+          if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
+            categoriasServicios.push( row.gsx$categoria.$t )
+            listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
+          }else{
+            var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
+            listadoServicios[ categoria ].push( row.gsx$servicio.$t );
+          }
+        });
+        render.servicios();
+      }
+    });
+
+    jQuery('#search').on('click', function(event){
+      buscar();
+      event.preventDefault();
+    });
+
+    jQuery('form[role=search]').on('submit', function(event){
+      buscar();
+      event.preventDefault();
+    });
+
+
+
+    var buscar = function(){
+      var busqueda = jQuery('.search').val()
+      jQuery.each(serviciosList, function(index, item){
+        serviciosList[index].fuzzySearch( busqueda );
+
+        if(serviciosList[index].matchingItems.length == 0){
+          jQuery('#servicios-'+ index ).prev().addClass('hidden');
+        }else{
+          jQuery('#servicios-'+ index ).prev().removeClass('hidden');
+        }
+      });
+
+    }
+
 
 
             var dataProv = [
@@ -477,11 +457,6 @@ layout: argentina
                                 localidad: []
                             }                                                                                                                                        
                         ]            
-
-
-
-
-
 // pusheo localidades a partir de spreadsheet
 
 
