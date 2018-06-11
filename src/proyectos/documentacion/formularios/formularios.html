@@ -12,6 +12,14 @@ layout: argentina
   <section>
     <article class="row">
       <div class="col-md-8 col-md-offset-2">
+
+        <h1>Titulo de página</h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr>
+
+
         <h2 class="m-t-2">Ejemplo de solicitud de datos</h2>
         <form action="" id="">
           <fieldset>
@@ -93,7 +101,12 @@ layout: argentina
 				<div class="col-md-12">
 		          <div class="form-group">
 		            <label for="">País de nacimiento</label>
-		            <select id="pais" class="form-control"></select>
+		            <select id="pais" class="form-control chosen-select">
+		                <option value="">Seleccioná un País</option>
+		                <option value="">País 1</option>
+		                <option value="">País 2</option>
+		                <option value="">País 3</option>
+		            </select>
 		          </div>
 		        </div>
             </div>
@@ -131,7 +144,12 @@ layout: argentina
 			  <div class="col-md-12">
 		          <div class="form-group">
 		            <label for="">País de nacimiento</label>
-		            <select id="pais" class="form-control"></select>
+		            <select id="pais" class="form-control chosen-select">
+		                <option value="">Seleccioná un País</option>
+		                <option value="">País 1</option>
+		                <option value="">País 2</option>
+		                <option value="">País 3</option>
+		            </select>
 		          </div>
 		      </div>
 		    </div>  
@@ -143,18 +161,29 @@ layout: argentina
               </div>
 			  <div class="col-md-12 form-group">
 	            <label for="">País</label>
-	            <select id="pais" class="form-control"></select>
+	            <select id="pais" class="form-control chosen-select">
+	                <option value="">Seleccioná un País</option>
+	                <option value="">País 1</option>
+	                <option value="">País 2</option>
+	                <option value="">País 3</option>
+	            </select>
 		      </div>
 			 <div class="col-md-12 form-group">
 	              <label for="">Partido o departamente</label>
-	              <select class="form-control" name="" id="">
+	              <select class="form-control chosen-select" name="" id="">
 	                <option value="">Seleccioná un partido</option>
+	                <option value="">Partido 1</option>
+	                <option value="">Partido 2</option>
+	                <option value="">Partido 3</option>
 	              </select>
 	          </div>
 	          <div class="col-md-12 form-group">
 	              <label for="">Localidad</label>
-	              <select class="form-control" name="" id="">
+	              <select class="form-control chosen-select" name="" id="">
 	                <option value="">Seleccioná una localidad</option>
+	                <option value="">Localidad 1</option>
+	                <option value="">Localidad 2</option>
+	                <option value="">Localidad 3</option>
 	              </select>
 	          </div>                          
 	          <div class="col-md-12 form-group">
@@ -182,10 +211,6 @@ layout: argentina
 	              <input type="name" class="form-control" id="otrosDatos" tabindex="2" required="">
 	          </div>  
 
-			  <div class="col-md-12 form-group">
-				    <a href="" class="btn btn-link m-r-1">CANCELAR</a>
-					<a href="" class="btn btn-primary">Guardar</a>			   
-			  </div>
 			</div>
     	  </fieldset>
         </form> 			  	                       
@@ -203,7 +228,7 @@ layout: argentina
 	          </div>
 	          <div class="col-md-12 form-group">
 	              <label for="comentarioBreve">Dato o comentario breve</label>
-			      <textarea class="form-control" id="comentarioBreve" rows="2"></textarea>
+			      <input class="form-control" id="comentarioBreve" type="text"></input>
 	          </div>
 	          <div class="col-md-12 form-group">
 	              <label for="comentarioLargos">Comentario largos</label>
