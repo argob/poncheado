@@ -9,6 +9,21 @@ layout: argentina
     <li class="active">Formularios</li>
   </ol>
 
+  <div>
+    <div class="radio-inline">
+	    <label for="f">
+	      <input type="radio" name="sexo" id="f" value="F" tabindex="4" required="" class="sinError">
+	      Sin mensajes de error
+	    </label>
+	</div>
+	<div class="radio-inline">
+	    <label for="m">
+	      <input type="radio" name="sexo" id="m" value="M" tabindex="5" required="" class="conError">
+	      Con mensajes de error
+	    </label>
+	</div>
+  </div>
+
   <section>
     <article class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -38,9 +53,10 @@ layout: argentina
 	            <div class="col-md-12 form-group">
 	           		<h3 class="m-b-1">Datos personales</h3>
 	            </div>
-	            <div class="col-md-12 form-group">
+	            <div class="col-md-12 form-group has-error has-feedback">
 	                <label for="">CUIL</label>
 	                <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
+	                <p 	>Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
 	                <input type="number" class="form-control" id="cuil" tabindex="1" autofocus="" required="">
 	            </div>
 	          <div class="col-md-12 form-group">
@@ -254,7 +270,7 @@ layout: argentina
 	                <input type="number" class="form-control" id="cuil" tabindex="1" autofocus="" required="">
 	            </div>
 	          <div class="col-md-12 form-group">
-	              <label for="nombre">Nombre</label>
+	              <label for="nombre">Patente de vehículo</label>
 	              <p class="help-block">Ej: AAA123 o AA123BB</p>
 	              <input type="number" class="form-control" id="nombre" tabindex="2" required="">
 	          </div>
@@ -273,6 +289,11 @@ layout: argentina
 	          <div class="col-md-12 form-group">
 	              <label for="buscar">Buscar</label>
 	              <input type="search" class="form-control" id="buscar" tabindex="2" required="">
+	              <button class="btn btn-primary"> Buscar </button>
+	          </div>
+	          <div class="col-md-12 form-group">
+	              <label for="filtro">Filtrar</label>
+	              <input type="name" class="form-control" id="filtro" tabindex="2" required="">
 	          </div>
 	          <div class="col-md-12 form-group">
 	              <label for="comentarioBreve">Dato o comentario breve</label>
@@ -394,5 +415,78 @@ layout: argentina
     	width: '100%',
     	disable_search: true
     });
+	$('input.sinError:radio').change(function(){
+	    if($(this).is(":checked")) {
+	        $('div.menuitem').addClass("menuitemshow");
+	    } else {
+	        $('div.menuitem').removeClass("menuitemshow");
+	    }
+	});
+
   });
 </script>
+<style type="text/css">
+
+.help-block {
+	font-size: 85%;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}	
+</style>
