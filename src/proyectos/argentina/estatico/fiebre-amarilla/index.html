@@ -135,6 +135,14 @@ title: Centros de vacunación contra la fiebre amarilla
         rows.forEach(function(row, key){
 
           // if(row.gsx$visible.$t == '1'){
+            var telefono = "";
+            var email = "";
+            if(row.gsx$tel.$t != ""){
+              telefono = row.gsx$tel.$t + "</br>";
+            }
+            if(row.gsx$email.$t != ""){
+              email = row.gsx$email.$t + "</br>"; 
+            }
 
             var index = markers.length;
             markers[index] = new google.maps.Marker({
@@ -151,7 +159,7 @@ title: Centros de vacunación contra la fiebre amarilla
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-primary">'+ row.gsx$nombre.$t +'</h2><p>Establecimiento ' + row.gsx$origenfinanciamiento.$t + '<br>'+ row.gsx$domicilio.$t +'<br>'+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t + '<br><a href="' + row.gsx$sitio.$t + '"> ' + row.gsx$sitio.$t + '</a></p>',
+              content: '<h2 class="h5 text-primary">'+ row.gsx$nombre.$t +'</h2><p>Establecimiento ' + row.gsx$origenfinanciamiento.$t + '<br>'+ row.gsx$domicilio.$t +'<br>'+ row.gsx$localidad.$t + ', ' + row.gsx$provincia.$t + '<br><a href="' + row.gsx$sitio.$t + '"> ' + row.gsx$sitio.$t + '</a>'+telefono+' '+email+'</p>' ,
               maxWidth: 400
             })
 

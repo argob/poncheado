@@ -1,0 +1,118 @@
+---
+layout: argentina
+---
+
+<div class="container">
+        <div id="contactosOrg">
+          <div class="row">
+
+          <div class="form-group col-md-12">
+          
+            <input class="form-control search" placeholder="Buscar...">
+          </div>
+
+
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Denominación</th>
+                  <th>Latitud</th>
+                  <th>Longitud</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+        </tbody>
+            </table>
+
+            <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>     
+      <div id="alerta" class="alert alert-warning col-md-6 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>  
+          </div>           
+        </div>
+
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+  jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1-7KXJI39-kuh3ESQuctqQNnVKamRl1hy67zAQ3Abif4/1/public/values?alt=json',
+    function (data) {
+
+          window.contactosOrg = data.feed.entry;
+          showcontactosOrg();
+      });
+
+      window.showcontactosOrg = function(){
+          var showData = $('#show-data');
+
+          var html = '';
+
+          $.each( contactosOrg, function( key, item ) {
+              html += '<tr>';
+              html += ' <td class="Denominacion">'+ item.gsx$denominacion.$t + '</td>';
+              html += ' <td class="Latitud">'+ item.gsx$latitud.$t + '</td>';
+              html += ' <td class="Longitud">'+ item.gsx$longitud.$t + '</td>';
+              html += ' <td class="Descripcion">'+ item.gsx$descripcion.$t + '</td>';
+              html += '</tr>';
+      
+          });
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+          valueNames: [ 'Denominacion', 'Latitud', 'Longitud', 'Descripcion' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          };
+
+          var contactosOrgList = new List('contactosOrg', listOptions);  
+
+          jQuery('.search').on("keyup",function(){
+          var valueSearch = jQuery(".search").val();
+          contactosOrgList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+
+        contactosOrgList.on('updated', function(list) {
+
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        }) 
+
+
+      }
+
+
+
+
+
+  });
+  })(jQuery);
+  
+</script>
