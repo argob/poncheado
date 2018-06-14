@@ -24,15 +24,10 @@ button:focus,
     clear: none;
     position: relative;
     background: #ffffff;
-    border: 1px solid #dee0e2;
     padding: 15px 15px 15px 35px!important;
     margin-bottom: 10px;
     cursor: pointer;
     margin-bottom: 10px;
-}
-.rc-label:hover {
-    border-color: #0b0c0c;
-    background: #dee0e2;
 }
 .rc-label input {
     position: absolute;
@@ -48,7 +43,6 @@ button:focus,
 }
 
 .rc-label.active {
-    border-color: #0b0c0c;
     background: #dee0e2;
 }
 
@@ -74,19 +68,21 @@ button:focus,
     <li class="active">Formularios</li>
   </ol>
 
-  <div class="pull-right">
-  	<fieldset>
-	    <div class="radio">
-	      <label for="se" class="rc-label">
-	        <input type="radio" name="error" id="se" value="SE" tabindex="4" required="" class="sinError" checked>
-	        Sin mensajes de error
-	      </label>
-	      <label for="ce" class="rc-label m-l-1">
-	        <input type="radio" name="error" id="ce" value="CE" tabindex="5" required="" class="conError">
-	        Con mensajes de error
-	      </label>
-	    </div>  
-	</fieldset>
+  <div class="row">
+  	<div class="col-md-offset-7 col-md-5">
+	  	<fieldset>
+		    <div class="radio">
+		      <label for="se" class="rc-label m-b-1 m-r-1">
+		        <input type="radio" name="error" id="se" value="SE" tabindex="4" required="" class="sinError" checked>
+		        Sin mensajes de error
+		      </label>
+		      <label for="ce" class="rc-label m-b-1">
+		        <input type="radio" name="error" id="ce" value="CE" tabindex="5" required="" class="conError">
+		        Con mensajes de error
+		      </label>
+		    </div>  
+		</fieldset>
+  	</div>
   </div>
 
   <section>
@@ -112,7 +108,7 @@ button:focus,
 		</div>
 
         <h2 class="m-t-2">Título de paso del formulario</h2>
-        <form action="" id="">
+        <form action="" id="form">
           <fieldset>
             <div class="row">
 	            <div class="col-md-12 form-group">
@@ -122,7 +118,7 @@ button:focus,
 	                <label for="">CUIL</label>
 	                <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
 	                <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
-	                <input type="number" class="form-control" id="cuil" tabindex="1" autofocus="" required="" min="1">
+	                <input type="number" class="form-control" id="cuil-a" tabindex="1" autofocus="" required="" min="1">
 	            </div>
 	          <div class="col-md-12 form-group item-form">
 	              <label for="nombre">Nombre</label>
@@ -182,16 +178,12 @@ button:focus,
                   <option value="0029" selected="">DNI</option>
                   <option value="0025">Libreta de Enrolamiento</option>
                   <option value="0026">Libreta Cívica</option>
+                  <option value="0024">Pasaporte argentino</option>
                 </select>
               </div>
               <div class="col-md-7 form-group item-form">
                 <label for="">Número de documento</label>
                 <p class="help-block error hidden">Ingresá tu número de documento</p>
-                <input type="number" min="1" class="form-control" id="numDoc" tabindex="1" autofocus="" required="">
-              </div>
-              <div class="col-md-12 form-group item-form">
-                <label for="">Pasaporte argentino</label>
-                <p class="help-block error hidden">Ingresá tu pasaporte</p>
                 <input type="number" min="1" class="form-control" id="numDoc" tabindex="1" autofocus="" required="">
               </div>
 	    	  <div class="col-md-12 form-group item-form">
@@ -257,17 +249,17 @@ button:focus,
 	          		<p class="help-block"><a href="https://www.argentina.gob.ar/codigos-de-area" target="_blank">Buscá códigos de área</a></p>
 	          </div>
 		 	  <div class="col-md-5 form-group item-form">
-	                <label for="codigoArea">Código de area</label>
+	                <label for="codigo-Area">Código de area</label>
 	                <p class="help-block error hidden">Ingresá el código de área de tu teléfono fijo</p>
 	                <div class="input-group">
 					  <span class="input-group-addon" id="basic-addon1">0</span>
-					  <input id="codigoArea" class="form-control" value="" type="number" min="1" placeholder="">
+					  <input id="codigo-Area" class="form-control" value="" type="number" min="1" placeholder="">
 					</div>
 	          </div>
 			  <div class="col-md-7 form-group item-form">
-		            <label for="numeroTelefono">Número de teléfono</label>
+		            <label for="numeroTelefono-alt">Número de teléfono</label>
 		            <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
-  				    <input id="numeroTelefono" class="form-control" value="" type="number" min="1" placeholder="">
+  				    <input id="numeroTelefono-alt" class="form-control" value="" type="number" min="1" placeholder="">
 		      </div>
 		    </div>  
     	  </fieldset>
@@ -277,9 +269,9 @@ button:focus,
            		 <h3 class="m-b-1">Domicilio</h3>
               </div>
 			  <div class="col-md-12 form-group item-form">
-	            <label for="">País</label>
+	            <label for="pais-a">País</label>
 	            <p class="help-block error hidden">Ingresá un país</p>
-	            <select id="pais" class="form-control chosen-select">
+	            <select id="pais-a" class="form-control chosen-select">
 	                <option value=""></option>
 	                <option value="">País 1</option>
 	                <option value="">País 2</option>
@@ -289,7 +281,7 @@ button:focus,
 		      <div class="col-md-12 form-group item-form">
 	              <label for="">Provincia</label>
 	              <p class="help-block error hidden">Ingresá una provincia</p>
-	              <select class="form-control chosen-select" name="" id="">
+	              <select class="form-control chosen-select" name="" id="provincia">
 	                <option value="" selected></option>
 	                <option value="">Provincia 1</option>
 	                <option value="">Provincia 2</option>
@@ -299,7 +291,7 @@ button:focus,
 			 <div class="col-md-12 form-group item-form">
 	              <label for="">Partido o departamento</label>
 	              <p class="help-block error hidden">Ingresá un partido o departamento</p>
-	              <select class="form-control chosen-select" name="" id="">
+	              <select class="form-control chosen-select" name="" id="partido">
 	                <option value="" selected></option>
 	                <option value="">Partido 1</option>
 	                <option value="">Partido 2</option>
@@ -309,7 +301,7 @@ button:focus,
 	          <div class="col-md-12 form-group item-form">
 	              <label for="">Localidad</label>
 	              <p class="help-block error hidden">Ingresá una localidad</p>
-	              <select class="form-control chosen-select" name="" id="">
+	              <select class="form-control chosen-select" name="" id="localidad">
 	                <option value="" selected></option>
 	                <option value="">Localidad 1</option>
 	                <option value="">Localidad 2</option>
@@ -330,7 +322,7 @@ button:focus,
 		            <label for="cp">Código postal </label>
 					<p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
 					<p class="help-block error hidden">Ingresá un código postal</p>		            
-		            <input id="cp" class="form-control" type="number" min="1" placeholder=""> 		            
+		            <input id="cp" class="form-control" type="text" placeholder=""> 		            
 		      </div>	            
 	          <div class="col-md-5 form-group item-form">
 	              <label for="">Piso</label>
@@ -361,10 +353,10 @@ button:focus,
 	                <input type="number" min="1" class="form-control" id="cuil" tabindex="1" autofocus="" required="">
 	            </div>
 	          <div class="col-md-12 form-group item-form">
-	              <label for="nombre">Patente de vehículo</label>
+	              <label for="patente">Patente de vehículo</label>
 	              <p class="help-block">Ej: AAA123 o AA123BB</p>
 	              <p class="help-block error hidden">Ingresá una patente</p>
-	              <input type="number" min="1" class="form-control" id="nombre" tabindex="2" required="">
+	              <input type="number" min="1" class="form-control" id="patente" tabindex="2" required="">
 	          </div>
     	  	</div>
     	  </fieldset>
@@ -372,7 +364,7 @@ button:focus,
 
 
 
-        <form action="" id="">
+        <form action="" id="form2">
           <fieldset>
             <div class="row">
 	          <div class="col-md-12 form-group">
@@ -462,9 +454,9 @@ button:focus,
 	                </select>
           		</div>
           		<div class="col-md-12 form-group item-form">
-	                <label for="variasOpciones">Dato con más de 21 opciones  </label>
+	                <label for="variasOpciones-a">Dato con más de 21 opciones  </label>
 	                <p class="help-block error hidden">Ingresá el dato</p>
-	                <select id="variasOpciones" name="variasOpciones" class="form-control chosen-select">
+	                <select id="variasOpciones-a" name="variasOpciones-a" class="form-control chosen-select">
 	                  <option value="0" selected=""></option>
 	                  <option value="1">Opción 1</option>
 	                  <option value="2">Opción 2</option>
@@ -553,6 +545,14 @@ button:focus,
 	        $('.item-form').removeClass('has-error has-feedback');
 	    }
 	});
+
+	$('select').on('change', function() {
+		if(this.value == '0024') {
+			$('#numDoc').attr('type', 'text');
+		} else {
+			$('#numDoc').attr('type', 'number');
+		}
+	})	
 
   });
 </script>
