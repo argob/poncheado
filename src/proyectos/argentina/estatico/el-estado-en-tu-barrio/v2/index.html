@@ -262,8 +262,6 @@ layout: argentina
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
-<script> var idProvincia = 7; </script>
-
 <script type="text/javascript">
 
 (function($) {
@@ -272,6 +270,10 @@ layout: argentina
       servicios: '<div class="col-md-4"><div class="well"><h4 class="m-t-1 text-primary">{categoria}</h5><div id="servicios-{i}"><ul class="list">',
     }
 
+    window.config = {
+      _provincia: 'Buenos Aires',
+      _localidad: 'La Mantanza'
+    }
     var categoriasServicios = [];
     var listadoServicios = [];
 
@@ -314,17 +316,21 @@ layout: argentina
     }
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1qcJfX8vTPh5wUahsXpZOziFdXPdgSsCtZ6NDGcOQQXg/2/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1-ib-jnKsVJS96bx1C_keVe4YzxnbrM30DlCKLT-XG4M/1/public/values?alt=json',
       data: 'json',
       success: function(response){
 
         jQuery.each(response.feed.entry, function(index, row){
-          if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
-            categoriasServicios.push( row.gsx$categoria.$t )
-            listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
-          }else{
-            var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
-            listadoServicios[ categoria ].push( row.gsx$servicio.$t );
+
+          if ( (config._provincia == 'Buenos Aires' && config._provincia == row.gsx$provincia.$t) ) {
+
+            if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
+              categoriasServicios.push( row.gsx$categoria.$t )
+              listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
+            }else{
+              var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
+              listadoServicios[ categoria ].push( row.gsx$servicio.$t );
+            }
           }
         });
         render.servicios();
