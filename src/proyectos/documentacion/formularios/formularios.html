@@ -1,0 +1,558 @@
+---
+layout: argentina
+---
+
+<style type="text/css">
+
+.help-block {
+	font-size: 85%;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus, 
+button:focus,
+.form-control:focus
+ {
+    outline: 2px solid #66afe9;
+    outline-offset: 0;
+    box-shadow: none;
+}
+.rc-label {
+    display: block;
+    float: left;
+    clear: none;
+    position: relative;
+    background: #ffffff;
+    padding: 15px 15px 15px 35px!important;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.rc-label input {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+    cursor: pointer;
+    margin-left: -12px!important;
+}
+
+.rc-horizontal .rc-label {
+      float: none;
+      margin-bottom: 10px;
+}
+
+.rc-label.active {
+    background: #dee0e2;
+}
+
+.radio-inline, .checkbox-inline {
+    padding-left: 0;
+}
+
+
+@media (min-width: 641px) {
+
+  .rc-label {
+      float: left;
+  }
+}
+
+
+</style>
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li class="active">Formularios</li>
+  </ol>
+
+  <div class="row">
+  	<div class="col-md-offset-7 col-md-5">
+	  	<fieldset>
+		    <div class="radio">
+		      <label for="se" class="rc-label m-b-1 m-r-1">
+		        <input type="radio" name="error" id="se" value="SE" tabindex="4" required="" class="sinError" checked>
+		        Sin mensajes de error
+		      </label>
+		      <label for="ce" class="rc-label m-b-1">
+		        <input type="radio" name="error" id="ce" value="CE" tabindex="5" required="" class="conError">
+		        Con mensajes de error
+		      </label>
+		    </div>  
+		</fieldset>
+  	</div>
+  </div>
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Titulo de formulario</h1>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.</p>
+
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr>
+
+		<div class="wizard m-b-3">
+		    <p class="text-muted">Paso 1 de 4</p>
+		    <div class="progress">
+		      <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+		        <span class="sr-only">Paso 1 de 4</span>
+		      </div>
+		    </div>
+		</div>
+
+        <h2 class="m-t-2">Título de paso del formulario</h2>
+        <form action="" id="form">
+          <fieldset>
+            <div class="row">
+	            <div class="col-md-12 form-group">
+	           		<h3 class="m-b-1">Datos personales</h3>
+	            </div>
+	            <div class="col-md-12 form-group item-form">
+	                <label for="">CUIL</label>
+	                <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
+	                <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+	                <input type="number" class="form-control" id="cuil-a" tabindex="1" autofocus="" required="" min="1">
+	            </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="nombre">Nombre</label>
+	              <p class="help-block error hidden">Ingresá tu nombre</p>
+	              <input type="name" class="form-control" id="nombre" tabindex="2" required="">
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="apellido">Apellido</label>
+	              <p class="help-block error hidden">Ingresá tu apellido</p>
+	              <input type="name" class="form-control" id="apellido" tabindex="3" required="">
+	          </div>
+	          <div class="col-md-12">
+	            <div class="form-group item-form">
+	              <label for="sexo">Sexo</label>
+	              <p class="help-block">Como aparece en tu documento</p>
+	              <p class="help-block error hidden">Ingresá tu sexo</p>
+	            </div>
+	            <div class="form-group item-form">
+		            <fieldset>
+		              <div class="radio">
+		                <label for="f" class="rc-label">
+		                  <input type="radio" name="sexo" id="f" value="F" tabindex="4" required="">
+		                  Femenino
+		                </label>
+		                <label for="m" class="rc-label m-l-1">
+		                  <input type="radio" name="sexo" id="m" value="M" tabindex="5" required="">
+		                  Masculino
+		                </label>
+		              </div>
+		            </fieldset>
+	            </div>
+	          </div>	
+			  <div class="col-md-12">
+	            <div class="form-group item-form">
+	              <label for="fechaNac col-sm-12">Fecha de nacimiento</label>
+	              <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
+	              <input type="date" class="form-control" id="fechaNac" placeholder="dd/mm/aaaa" tabindex="6" required="">
+	            </div>
+	          </div> 
+	        </div>
+		  </fieldset>
+		  <fieldset>
+		  	<div class="row">
+	          <div class="col-md-12 form-group">
+           		 <h3 class="m-b-1">Otros datos personales</h3>
+              </div>
+			  <div class="col-md-12 form-group item-form">
+	              <label>Contraseña</label>
+	              <p class="help-block">Usá al menos 8 caracteres</p>
+	              <p class="help-block error hidden">Ingresá tu contraseña</p>
+	              <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+	          </div>
+              <div class="col-md-5 form-group item-form">
+                <label for="tipoDoc">Tipo de Documento</label>
+                <p class="help-block error hidden">Elegí un tipo de documento</p>
+                <select id="tipoDoc" name="tipodoc" class="form-control">
+                  <option value="0029" selected="">DNI</option>
+                  <option value="0025">Libreta de Enrolamiento</option>
+                  <option value="0026">Libreta Cívica</option>
+                  <option value="0024">Pasaporte argentino</option>
+                </select>
+              </div>
+              <div class="col-md-7 form-group item-form">
+                <label for="">Número de documento</label>
+                <p class="help-block error hidden">Ingresá tu número de documento</p>
+                <input type="number" min="1" class="form-control" id="numDoc" tabindex="1" autofocus="" required="">
+              </div>
+	    	  <div class="col-md-12 form-group item-form">
+	                <label for="estadoCivil">Estado civil</label>
+	                <p class="help-block error hidden">Ingresá tu estado civil</p>
+	                <select id="estadoCivil" name="estadoCivil" class="form-control">
+	                  	<option value="" selected=""></option>
+						<option value="">Soltero/a </option>
+						<option value="">Casado/a </option>
+						<option value="">Divorciado/a </option>
+						<option value="">Viudo/a </option>
+						<option value="">Vínculo de hecho </option>
+						<option value="">Separado/a </option>
+	                </select>
+          		</div>
+				<div class="col-md-12">
+		          <div class="form-group item-form">
+		            <label for="">País de nacimiento</label>
+		            <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+		            <select id="pais" class="form-control chosen-select">
+		                <option value=""></option>
+		                <option value="">País 1</option>
+		                <option value="">País 2</option>
+		                <option value="">País 3</option>
+		            </select>
+		          </div>
+		        </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="row">
+	          <div class="col-md-12 form-group">
+           		 <h3 class="m-b-1">Datos de contacto</h3>
+           		 <p class="help-block">Ingresá al menos un dato de contacto</p>
+              </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="email">Correo electrónico</label>
+	              <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+	              <input type="name" class="form-control" id="email" tabindex="2" required="">
+	          </div>
+	          <div class="col-md-12 form-group m-b-0">
+	          		<label for="">Teléfono móvil</label>
+	          		<p class="help-block"><a href="https://www.argentina.gob.ar/codigos-de-area" target="_blank">Buscá códigos de área</a></p>
+	          </div>
+		 	  <div class="col-md-5 form-group item-form">
+	                <label for="codigoArea">Código de area</label>
+	          		<p class="help-block error hidden">Ingresá un código de área de tu teléfono móvil</p>
+	                <div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">0</span>
+					  <input id="codigoArea" class="form-control" value="" type="number" min="1" placeholder="">
+					</div>
+	          </div>
+			  <div class="col-md-7 form-group item-form">
+		            <label for="numeroTelefono">Número de teléfono</label>
+		            <p class="help-block error hidden">Ingresá tu número de teléfono móvil</p>
+	                <div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">15</span>
+					  <input id="numeroTelefono" class="form-control" value="" type="number" min="1" placeholder="">
+					</div>
+		      </div>
+	          <div class="col-md-12 form-group m-b-0">
+	          		<label for="">Teléfono fijo</label>
+	          		<p class="help-block"><a href="https://www.argentina.gob.ar/codigos-de-area" target="_blank">Buscá códigos de área</a></p>
+	          </div>
+		 	  <div class="col-md-5 form-group item-form">
+	                <label for="codigo-Area">Código de area</label>
+	                <p class="help-block error hidden">Ingresá el código de área de tu teléfono fijo</p>
+	                <div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">0</span>
+					  <input id="codigo-Area" class="form-control" value="" type="number" min="1" placeholder="">
+					</div>
+	          </div>
+			  <div class="col-md-7 form-group item-form">
+		            <label for="numeroTelefono-alt">Número de teléfono</label>
+		            <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
+  				    <input id="numeroTelefono-alt" class="form-control" value="" type="number" min="1" placeholder="">
+		      </div>
+		    </div>  
+    	  </fieldset>
+	      <fieldset>	
+			<div class="row">
+			  <div class="col-md-12 form-group">
+           		 <h3 class="m-b-1">Domicilio</h3>
+              </div>
+			  <div class="col-md-12 form-group item-form">
+	            <label for="pais-a">País</label>
+	            <p class="help-block error hidden">Ingresá un país</p>
+	            <select id="pais-a" class="form-control chosen-select">
+	                <option value=""></option>
+	                <option value="">País 1</option>
+	                <option value="">País 2</option>
+	                <option value="">País 3</option>
+	            </select>
+		      </div>
+		      <div class="col-md-12 form-group item-form">
+	              <label for="">Provincia</label>
+	              <p class="help-block error hidden">Ingresá una provincia</p>
+	              <select class="form-control chosen-select" name="" id="provincia">
+	                <option value="" selected></option>
+	                <option value="">Provincia 1</option>
+	                <option value="">Provincia 2</option>
+	                <option value="">Provincia 3</option>
+	              </select>
+	          </div>
+			 <div class="col-md-12 form-group item-form">
+	              <label for="">Partido o departamento</label>
+	              <p class="help-block error hidden">Ingresá un partido o departamento</p>
+	              <select class="form-control chosen-select" name="" id="partido">
+	                <option value="" selected></option>
+	                <option value="">Partido 1</option>
+	                <option value="">Partido 2</option>
+	                <option value="">Partido 3</option>
+	              </select>
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="">Localidad</label>
+	              <p class="help-block error hidden">Ingresá una localidad</p>
+	              <select class="form-control chosen-select" name="" id="localidad">
+	                <option value="" selected></option>
+	                <option value="">Localidad 1</option>
+	                <option value="">Localidad 2</option>
+	                <option value="">Localidad 3</option>
+	              </select>
+	          </div>                          
+	          <div class="col-md-8 form-group item-form">
+	              <label for="">Calle</label>
+	              <p class="help-block error hidden">Ingresá una calle</p>
+	              <input type="name" class="form-control" id="calle" tabindex="2" required="">
+	          </div>     
+	          <div class="col-md-4 form-group item-form">
+	              <label for="">Número de calle</label>
+	              <p class="help-block error hidden">Ingresá un número de calle</p>
+	              <input type="text" class="form-control" id="numero" tabindex="2" required="">
+	          </div>  
+			  <div class="col-md-12 form-group item-form">
+		            <label for="cp">Código postal </label>
+					<p class="help-block"><a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consultá tu código postal</a></p>
+					<p class="help-block error hidden">Ingresá un código postal</p>		            
+		            <input id="cp" class="form-control" type="text" placeholder=""> 		            
+		      </div>	            
+	          <div class="col-md-5 form-group item-form">
+	              <label for="">Piso</label>
+	              <p class="help-block error hidden">Ingresá un piso</p>
+	              <input type="number" min="1" class="form-control" id="piso" tabindex="2" required="">
+	          </div>     
+	          <div class="col-md-7 form-group item-form">
+	              <label for="">Departamento</label>
+	              <p class="help-block error hidden">Ingresá un departamento</p>
+	              <input type="name" class="form-control" id="departamento" tabindex="2" required="">
+	          </div>
+	          <div class="col-md-12 form-group">
+	              <label for="">Otros datos de domicilio</label>
+	              <p class="help-block">Ej: Parcela, manzana, lote, bloque, pasillo, barrio u otros</p>
+	              <input type="name" class="form-control" id="otrosDatos" tabindex="2" required="">
+	          </div>  
+
+			</div>
+    	  </fieldset>
+    	  <fieldset>
+    	  	<div class="row">
+	            <div class="col-md-12 form-group">
+	           		<h3 class="m-b-1">Otros datos específicos</h3>
+	            </div>
+	            <div class="col-md-12 form-group item-form">
+	                <label for="">CUIT</label>
+	                <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
+	                <input type="number" min="1" class="form-control" id="cuil" tabindex="1" autofocus="" required="">
+	            </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="patente">Patente de vehículo</label>
+	              <p class="help-block">Ej: AAA123 o AA123BB</p>
+	              <p class="help-block error hidden">Ingresá una patente</p>
+	              <input type="number" min="1" class="form-control" id="patente" tabindex="2" required="">
+	          </div>
+    	  	</div>
+    	  </fieldset>
+        </form> 
+
+
+
+        <form action="" id="form2">
+          <fieldset>
+            <div class="row">
+	          <div class="col-md-12 form-group">
+	           		<h3 class="m-b-1">Campos genéricos</h3>
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="buscar">Buscar</label>
+	              <p class="help-block error hidden">Ingresá una palabra para buscar</p>
+	              <div class="input-group">
+		              <input type="search" class="form-control" id="buscar" tabindex="2" required="">
+		              <span class="input-group-btn">
+		              	<button class="btn btn-primary"> Buscar </button>
+		              </span>
+	              </div>
+	          </div>
+	          <div class="col-md-12 form-group">
+	              <label for="filtro">Filtrar</label>
+	              <input type="name" class="form-control" id="filtro" tabindex="2" required="">
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="comentarioBreve">Dato o comentario breve</label>
+	              <p class="help-block error hidden">Ingresá el dato o comentario breve</p>
+			      <input class="form-control" id="comentarioBreve" type="text"></input>
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	              <label for="comentarioLargos">Comentario largos</label>
+	              <p class="help-block error hidden">Ingresá el comentario largo</p>
+			      <textarea class="form-control" id="comentarioLargos" rows="5"></textarea>
+	          </div>
+	          <div class="col-md-12 form-group item-form">
+	            <div>
+	              <label for="opciones"> Dato con 2 opciones  </label>
+	              <p class="help-block error hidden">Ingresá el dato</p>
+	            </div>
+	            <div class="form-group item-form">
+	              <fieldset>
+		              <div class="radio">
+		                <label for="opcion1" class="rc-label">
+		                  <input type="radio" name="opciones" id="opcion1" value="opcion1" tabindex="4" required="">
+		                  Opción 1
+		                </label>
+		                <label for="opcion2" class="rc-label m-l-1">
+		                  <input type="radio" name="opciones" id="opcion2" value="opcion2" tabindex="5" required="">
+		                  Opción 2
+		                </label>
+		              </div>
+	              </fieldset>
+	            </div>
+	          </div>
+	          <div class="col-md-12 item-form">
+				<label for="opciones-alt"> Dato con 3 a 7 opciones  </label>
+				<p class="help-block error hidden">Ingresá el dato</p>
+				<div class="form-group item-form">
+				  <fieldset>
+				    <div class="radio rc-horizontal">
+				        <label for="opcion1-alt" class="rc-label">
+		                  <input type="radio" name="opciones-alt" id="opcion1-alt" value="opcion1-alt" tabindex="4" required="">
+		                  Opción 1
+		                </label>
+		                <label for="opcion2-alt" class="rc-label">
+		                  <input type="radio" name="opciones-alt" id="opcion2-alt" value="opcion2-alt" tabindex="5" required="">
+		                  Opción 2
+		                </label>
+		                <label for="opcion3-alt" class="rc-label">
+		                  <input type="radio" name="opciones-alt" id="opcion3-alt" value="opcion3-alt" tabindex="5" required="">
+		                  Opción 3
+		                </label>
+				    </div>  
+				  </fieldset>
+				</div>
+	           </div>
+				<div class="col-md-12 form-group item-form">
+	                <label for="variasOpciones">Dato con 8 a 20 opciones  </label>
+	                <p class="help-block error hidden">Ingresá el dato</p>
+	                <select id="variasOpciones" name="variasOpciones" class="form-control">
+	                  <option value="" selected=""></option>
+	                  <option value="">Opción 1</option>
+	                  <option value="">Opción 2</option>
+	                  <option value="">Opción 3</option>
+	                  <option value="">Opción 4</option>
+	                  <option value="">Opción 5</option>
+	                  <option value="">Opción 6</option>
+	                  <option value="">Opción 7</option>
+	                  <option value="">Opción 8</option>
+	                  <option value="">Opción 9</option>
+	                  <option value="">Opción 10</option>
+	                </select>
+          		</div>
+          		<div class="col-md-12 form-group item-form">
+	                <label for="variasOpciones-a">Dato con más de 21 opciones  </label>
+	                <p class="help-block error hidden">Ingresá el dato</p>
+	                <select id="variasOpciones-a" name="variasOpciones-a" class="form-control chosen-select">
+	                  <option value="0" selected=""></option>
+	                  <option value="1">Opción 1</option>
+	                  <option value="2">Opción 2</option>
+	                  <option value="3">Opción 3</option>
+	                  <option value="4">Opción 4</option>
+					  <option value="5">Opción 5</option>
+	                  <option value="6">Opción 6</option>
+	                  <option value="7">Opción 7</option>
+	                  <option value="8">Opción 8</option>
+	                  <option value="">Opción 9</option>
+	                  <option value="">Opción 10</option>
+	                  <option value="1">Opción 11</option>
+	                  <option value="2">Opción 12</option>
+	                  <option value="3">Opción 13</option>
+	                  <option value="4">Opción 14</option>
+					  <option value="5">Opción 15</option>
+	                  <option value="6">Opción 16</option>
+	                  <option value="7">Opción 17</option>
+	                  <option value="8">Opción 18</option>
+	                  <option value="">Opción 19</option>
+	                  <option value="">Opción 20</option>
+	                  <option value="">Opción 21</option>
+	                  <option value="">Opción 22</option>
+	                </select>
+          		</div>
+	          <div class="col-md-12">
+	            <div class="form-group item-form">
+	              <label for="opciones-alt"> Dato con múltiples opciones  </label>
+	              <p class="help-block error hidden">Ingresá el dato</p>
+	            </div>
+	            <div class="form-group item-form">
+	                <fieldset>
+						<div class="checkbox">
+						  <label class="rc-label">
+						  	<input type="checkbox" value="">Option 1
+						  </label>
+						  <label class="rc-label m-l-1">
+						  	<input type="checkbox" value="">Option 2
+						  </label>
+						  <label class="rc-label m-l-1">
+						  	<input type="checkbox" value="">Option 3
+						  </label>
+						</div>
+				    </fieldset>
+	              </div>
+	            </div> 
+	            <div class="form-group col-md-12 item-form">
+	              <label for="fecha">Fecha</label>
+	              <p class="help-block error hidden">Ingresá la fecha</p>
+	              <input type="date" class="form-control" id="fecha" placeholder="" tabindex="6" required="">
+	            </div> 
+	            <div class="form-group col-md-12 item-form">
+	              <label for="mes">Mes</label>
+	              <p class="help-block error hidden">Ingresá el mes</p>
+	              <input type="month" class="form-control" id="mes" placeholder="" tabindex="6" required="">
+	            </div>
+	            <div class="form-group col-md-12 item-form">
+	              <label for="hora">Hora</label>
+	              <p class="help-block error hidden">Ingresá la hora</p>
+	              <input type="time" class="form-control" id="hora" placeholder="" tabindex="6" required="">
+	            </div>
+	          </div>
+		  </fieldset>
+       </form>
+    </article>
+  </section>
+
+
+</div>
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen({
+    	width: '100%',
+    	disable_search: true
+    });
+	$('input.conError:radio').change(function(){
+	    if($(this).is(":checked")) {
+	        $('.error').removeClass("hidden");
+	        $('.item-form').addClass('has-error has-feedback');
+	    }
+	});
+	$('input.sinError:radio').change(function(){
+	    if($(this).is(":checked")) {
+	        $('.error').addClass("hidden");
+	        $('.item-form').removeClass('has-error has-feedback');
+	    }
+	});
+
+	$('select').on('change', function() {
+		if(this.value == '0024') {
+			$('#numDoc').attr('type', 'text');
+		} else {
+			$('#numDoc').attr('type', 'number');
+		}
+	})	
+
+  });
+</script>

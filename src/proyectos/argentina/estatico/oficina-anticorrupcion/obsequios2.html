@@ -1,0 +1,151 @@
+---
+layout: argentina
+---
+
+    
+        <div id="listadoObsequios">
+          <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Organismo o entidad</label>
+            <select id="tipo-organismo" class="form-control">
+              <option data-tipoorganismo="todos" value="todos">Todos</option>
+              <option data-tipoorganismo="ANAC" value="ANAC">ANAC</option>
+              <option data-tipoorganismo="AABE" value="AABE">AABE</option>
+              <option data-tipoorganismo="Ministerio de Agroindustria" value="Ministerio de Agroindustria">Ministerio de Agroindustria</option>
+              <option data-tipoorganismo="Vialidad Nacional" value="Vialidad Nacional">Vialidad Nacional</option>
+              <option data-tipoorganismo="INAES" value="INAES">INAES</option>
+              <option data-tipoorganismo="Correo Oficial de la República Argentina S.A." value="Correo Oficial de la República Argentina S.A.">Correo Oficial de la República Argentina S.A.</option>
+              <option data-tipoorganismo="S.E Casa de Moneda " value="S.E Casa de Moneda ">S.E Casa de Moneda </option>
+              <option data-tipoorganismo="ENARGAS" value="ENARGAS">ENARGAS</option>
+              <option data-tipoorganismo="Ministerio de Energía y Minería" value="Ministerio de Energía y Minería">Ministerio de Energía y Minería</option>
+              <option data-tipoorganismo="BICE" value="BICE">BICE</option>
+              <option data-tipoorganismo="ENARSA" value="ENARSA">ENARSA</option>
+              <option data-tipoorganismo="Ministerio de Relaciones Exteriores y Culto" value="Ministerio de Relaciones Exteriores y Culto">Ministerio de Relaciones Exteriores y Culto</option>
+              <option data-tipoorganismo="SOFSE" value="SOFSE">SOFSE</option>
+              <option data-tipoorganismo="Ministerio de Modernización" value="Ministerio de Modernización">Ministerio de Modernización</option>
+              <option data-tipoorganismo="INTERCARGO" value="INTERCARGO">INTERCARGO</option>
+            </select>
+          </div>
+        </div>  
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Año</label>
+            <select id="tipo-anio" class="form-control">
+              <option data-anio="todos" value="todos">Todos</option>
+              <option data-anio="2016" value="2016">2016</option>
+              <option data-anio="2017" value="2017">2017</option>
+              <option data-anio="2018" value="2018">2018</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Vínculo</label>
+            <select id="tipo-vinculo" class="form-control">
+              <option data-tipovinculo="todos" value="todos">Todos</option>
+              <option data-tipovinculo="Parentesco (inc. a del artículo 1 del Decreto N° 202/17)" value="Parentesco (inc. a del artículo 1 del Decreto N° 202/17)">Parentesco (inc. a del artículo 1 del Decreto N° 202/17)</option>
+              <option data-tipovinculo="Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)" value="Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)">Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)</option>
+              <option data-tipovinculo="Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)" value="Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)">Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)</option>
+              
+            </select>
+          </div>
+        </div>
+
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">Organismo <br>o Entidad</th>
+                    <th>Año</th>
+                    <th style="width: 300px;">Caratula del<br> expediente</th>
+                    <th style="width: 300px;">Vínculo</th>
+                    <th>Tipo de proceso</th>
+
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data"></tbody>
+              </table>
+
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>           
+          </div>
+
+        </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+    var filtro = "todos";
+    var filtro2 = "todos";
+    var filtro3 = "todos";
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1RhF6zLAwo64wF4Jro_TcxrrLv3CeOnqxBAtMMZx3ycI/1/public/values?alt=json',
+    function (data) {
+
+          window.listadoObsequios = data.feed.entry;
+          filtrarContenido(filtro, filtro2, filtro3);
+      });
+
+          function filtrarContenido(filtro, filtro2, filtro3){
+          var showData = $('#show-data');
+         
+          var html = '';
+
+          $.each( listadoObsequios, function( key, item ) {
+
+           if( (item.gsx$organismooentidad.$t == filtro || filtro == "todos") && (item.gsx$anio.$t == filtro2 || filtro2 == "todos") && (item.gsx$vinculo.$t == filtro3 || filtro3 == "todos" )){
+
+            html += '<tr>';
+            html += ' <td class="organismooentidad">'+ item.gsx$organismooentidad.$t + '</td>';
+            html += ' <td class="anio">'+ item.gsx$anio.$t + '</td>';
+            html += ' <td class="caratula"> <a href="'+ item.gsx$consultarexpediente.$t +'">'+ item.gsx$caratula.$t +'</a></td>';
+            html += ' <td class="vinculo">'+ item.gsx$vinculo.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Persona Declarante: </strong></p>'+ item.gsx$personadeclarante.$t +'</td>';
+            html += ' <td class="tipodeproceso">'+ item.gsx$tipodeproceso.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Informa la adopción de un mecanismo extra de transparencia: </strong></p>'+ item.gsx$transparencia.$t +'</td>';
+            html += '</tr>';
+           }
+
+          });
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+            valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
+            page: 20,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+          var ejemplosList = new List('listadoObsequios', listOptions);  
+
+
+        }
+
+
+   
+    $("#tipo-organismo, #tipo-anio, #tipo-vinculo").on("change", function() {
+       filtro = $( "#tipo-organismo option:selected" ).data('tipoorganismo');
+       filtro2 = $( "#tipo-anio option:selected" ).data('anio');
+       filtro3 = $( "#tipo-vinculo option:selected" ).data('tipovinculo');
+       filtrarContenido(filtro, filtro2, filtro3);
+    });
+
+  });
+  })(jQuery);
+  
+</script>
