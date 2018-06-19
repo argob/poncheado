@@ -47,30 +47,30 @@ layout: argentina
                 <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
                 <select class="form-control" name="provincia" id="provincia" required>
                     <option value="">Elegí tu provincia</option>
-                    <option value="CIUDAD AUTONOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
-                    <option value="BUENOS AIRES">Buenos Aires</option>
-                    <option value="CATAMARCA">Catamarca</option>
-                    <option value="CÓRDOBA">Córdoba</option>
-                    <option value="CORRIENTES">Corrientes</option>
-                    <option value="CHACO">Chaco</option>
-                    <option value="CHUBUT">Chubut</option>
-                    <option value="ENTRE RIOS">Entre Ríos</option>
-                    <option value="FORMOSA">Formosa</option>
-                    <option value="JUJUY">Jujuy</option>
-                    <option value="LA PAMPA">La Pampa</option>
-                    <option value="LA RIOJA">La Rioja</option>
-                    <option value="MENDOZA">Mendoza</option>
-                    <option value="MISIONES">Misiones</option>
-                    <option value="NEUQUEN">Neuquén</option>
-                    <option value="RIO NEGRO">Río Negro</option>
-                    <option value="SALTA">Salta</option>
-                    <option value="SAN JUAN">San Juan</option>
-                    <option value="SAN LUIS">San Luis</option>
-                    <option value="SANTA CRUZ">Santa Cruz</option>
-                    <option value="SANTA FE">Santa Fe</option>
-                    <option value="SANTIAGO DEL ESTERO">Santiago del Estero</option>
-                    <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
-                    <option value="TUCUMAN">Tucumán</option>
+                    <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="Buenos Aires">Buenos Aires</option>
+                    <option value="Catamarca">Catamarca</option>
+                    <option value="Córdoba">Córdoba</option>
+                    <option value="Corrientes">Corrientes</option>
+                    <option value="Chaco">Chaco</option>
+                    <option value="Chubut">Chubut</option>
+                    <option value="Entre Ríos">Entre Ríos</option>
+                    <option value="Formosa">Formosa</option>
+                    <option value="Jujuy">Jujuy</option>
+                    <option value="La Pampa">La Pampa</option>
+                    <option value="La Rioja">La Rioja</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="Misiones">Misiones</option>
+                    <option value="Neuquén">Neuquén</option>
+                    <option value="Río Negro">Río Negro</option>
+                    <option value="Salta">Salta</option>
+                    <option value="San Juan">San Juan</option>
+                    <option value="San Luis">San Luis</option>
+                    <option value="Santa Cruz">Santa Cruz</option>
+                    <option value="Santa Fe">Santa Fe</option>
+                    <option value="Santiago del Estero">Santiago del Estero</option>
+                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                    <option value="Tucumán">Tucumán</option>
                 </select>
             </div>
 
@@ -85,14 +85,14 @@ layout: argentina
         </div>
         <div class="col-md-3">
             <label for="" class="hidden-xs">&nbsp;</label><br class="hidden-xs">
-            <a id="" href="#" class="btn btn-primary btn-block">BUSCAR PUNTOS</a>
+            <button id="buscar-lugares" class="btn btn-primary btn-block">BUSCAR PUNTOS</button>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <h3>La Mantanza - Buenos Aires</h3>
+        <h3 id="titleLugar" class="hidden"><span id="titleLocalidad"></span> - <span id="titleProvincia"></span></h3>
         <hr>
       </div>
     </div>
@@ -168,7 +168,8 @@ layout: argentina
 
     var templates = {
       lugares: `<div class="col-xs-12 col-sm-6 col-md-4">
-                  <a href="punto-de-atencion.html" class="panel panel-default">
+                  <a 
+                    href="punto-de-atencion.html?provincia={provincia}&localidad={lugar}&inicio={inicio}&fin={fin}&hora={hora}&direccion={direccion}" class="panel panel-default">
                       <div class="panel-body">
                           {motivosuspendido}
                           <h3>{lugar}</h3>
@@ -218,8 +219,6 @@ layout: argentina
 
         $('[data-render=lugares]').html('');
         $.each(lugares, function(index, lugar){
-
-          console.log(config._provincia);
 
           if ( !(config._provincia != 'Ninguna' && config._provincia != lugar.provincia ) && !(config._localidad != 'Ninguna' && config._localidad != lugar.lugar ) ) {
 
@@ -792,9 +791,33 @@ function localidadFn( jQuery ) {
     console.log(prov);
     config._provincia = prov;
     config._localidad = loc;
+    if (config._provincia !== null || config._localidad !== null ) {
+      $('#titleLugar').removeClass('hidden');
+      $('#titleLocalidad').text(config._localidad);
+      $('#titleProvincia').text(config._provincia); 
+      $('#localidad').removeAttr('disabled');
+      $("#provincia").val(config._provincia).trigger('change');
+      $("#localidad").val(config._localidad).trigger('change');
+      $("#buscar-lugares").prop('disabled', false);
+    }
     render.lugares();
 
   };
+
+  $("#buscar-lugares").click(function(){
+    config._provincia = $( "#provincia option:selected" ).val();
+    config._localidad = $( "#localidad option:selected" ).val();
+    $('#titleLugar').removeClass('hidden');
+    $('#titleLocalidad').text(config._localidad);
+    $('#titleProvincia').text(config._provincia);
+    render.lugares();
+  });
+
+  $("#localidad").on("change", function() {
+      $("#buscar-lugares").prop('disabled', false);
+  });
+
+  $("#buscar-lugares").prop('disabled', true);
 
 })(jQuery);
 
