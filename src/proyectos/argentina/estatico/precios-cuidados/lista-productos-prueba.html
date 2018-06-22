@@ -38,8 +38,9 @@ layout: argentina
 
         text-transform: uppercase; 
       }
-      
-      
+      .th-min{
+        min-width: 250px;
+      }
 
       .logo{
         max-width: 380px!important;
@@ -49,36 +50,12 @@ layout: argentina
           color: #333333;
           background-color: #F9F9F9 !important;
       }
-
-      #ean .popover{
-        top: 39px;
-        left: -118px!important;
-        display: block;
-        width: 250px!important;
-      }
-
-      #ean{
-        position: relative!important
-      }
-
-      #ean .popover .arrow{
-          left: 0!important;
-          right: 0!important;
-          margin: 0 auto!important;
-      }
       
-      @media screen and (max-width: 767px){
-       
-        .descripcion, .proveedor, .ean{
-          white-space: unset!important;
-        }
-        
-      }
     </style>
 
  
    
-    <div class="container" id="#listaPreciosCuidados">
+    <div class="container">
         <div>
           <h3 class="text-center m-y-3">Buscá un producto</h3>
         </div>
@@ -120,13 +97,12 @@ layout: argentina
               <thead>
                 <tr>
                   <th >Descripción</th>
-                  <th>Proveedor</th>
-                  <th>EAN 
-                    <a id="ean" href="#listaPreciosCuidados">
+                  <th class="th-min">Proveedor</th>
+                  <th class="th-min">EAN 
+                    <button id="popThis">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        
-                    </a>
-                    <div id="eanContent"></div>
+                        <span id="greendiv"></span>
+                    </button>
                   </th>
                   <th >Precio</th>
                 </tr>
@@ -341,23 +317,18 @@ $(document).ready(function () {
        filtrarContenido(zona, categoria);
     });
 
-     
-    
-      
-   $("#ean").on("click", function(){
-       $('#eanContent').popover('toggle');
+    $(function () {
+   $("#popThis").on("click", function(){
+       $('#greendiv').popover('toggle');
    });
 
-   $('#eanContent').popover({
-       title: "European Article Number:",
-       html: 'true',
-       content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
+   $('#greendiv').popover({
+       title: "Title",
+       content: "This is the body of Popover",
        placement:"bottom",
-       trigger: 'manual',
-        container: '#ean',
-       viewport:"#ean" 
-
+       trigger: 'manual'
    });
+});
 
       
 
