@@ -46,17 +46,38 @@ layout: argentina
         max-width: 380px!important;
       }
 
-       .ean-btn, .ean-btn:hover, .ean-btn:visited, .ean-btn:focus, .ean-btn:active {
-          border: 0px!important;
-          color: #333333;
-          background-color: #F9F9F9 !important;
+      
+
+      #ean .popover{
+        top: 39px;
+        left: -118px!important;
+        display: block;
+        width: 250px!important;
+      }
+
+      #ean{
+        position: relative!important
+      }
+
+      #ean .popover .arrow{
+          left: 0!important;
+          right: 0!important;
+          margin: 0 auto!important;
+      }
+      
+      @media screen and (max-width: 767px){
+       
+        .descripcion, .proveedor, .ean{
+          white-space: unset!important;
+        }
+        
       }
       
     
     </style>
 
   
-        <div class="container">
+        <div class="container" id="#listaLamparasLed">
           
 
           <div id="listadoProducto">
@@ -95,27 +116,14 @@ layout: argentina
                     <tr>
                       <th >Descripción</th>
                       <th>Proveedor</th>
-                      <th class="th-min">EAN 
-                    <button
-                      class="ean-btn message" 
-                      type="button"
-                      rel="popover" 
-                      data-container="body" 
-                      data-toggle="popover" 
-                      data-html="true" 
-                      data-placement="bottom" 
-                      data-content="<div>
-                                      <strong>European Article Number:</strong> 
-                                      <p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p>
-                                    </div>
-                                    <div class='m-x-2'>
-                                      <img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'>
-                                    </div>"
-                      >
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </button>
-                  </th>
-                      <th style="width: 120px;">Precio</th>
+                      <th>EAN 
+                        <a id="ean" href="#listaLamparasLed">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                              
+                        </a>
+                        <div id="eanContent"></div>
+                      </th>
+                      <th>Precio</th>
                       
                     </tr>
                   </thead> 
@@ -296,14 +304,27 @@ $(document).ready(function () {
       });
 
 
-     $(function () {
-      $('[data-toggle="popover"]').popover({
-        content: function () {
-            return $(this).next('.popper-content').html();
-        }
-      })
+    
+   
+
+     $("#ean").on("click", function(){
+       $('#eanContent').popover('toggle');
+   });
+
+   $('#eanContent').popover({
+       title: "European Article Number:",
+       html: 'true',
+       content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
+       placement:"bottom",
+       trigger: 'manual',
+        container: '#ean',
+       viewport:"#ean" 
+
+   });
+
       
-    })
+
+
 
   });
   })(jQuery);
