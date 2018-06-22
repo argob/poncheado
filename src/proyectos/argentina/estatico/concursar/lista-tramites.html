@@ -1,0 +1,104 @@
+---
+layout: argentina
+---
+
+    
+        <div id="listadoObsequios">
+          <div class="row">
+
+      
+
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">Organismo <br>o Entidad</th>
+                    <th>Año</th>
+                    <th style="width: 300px;">Caratula del<br> expediente</th>
+                    <th style="width: 300px;">Vínculo</th>
+                    <th>Tipo de proceso</th>
+
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data"></tbody>
+              </table>
+
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>           
+          </div>
+
+        </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+    var filtro = "todos";
+    var filtro2 = "todos";
+    var filtro3 = "todos";
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1RhF6zLAwo64wF4Jro_TcxrrLv3CeOnqxBAtMMZx3ycI/1/public/values?alt=json',
+    function (data) {
+
+          window.listadoObsequios = data.feed.entry;
+          filtrarContenido(filtro, filtro2, filtro3);
+      });
+
+          function filtrarContenido(filtro, filtro2, filtro3){
+          var showData = $('#show-data');
+         
+          var html = '';
+
+          $.each( listadoObsequios, function( key, item ) {
+
+           if( (item.gsx$organismooentidad.$t == filtro || filtro == "todos") && (item.gsx$anio.$t == filtro2 || filtro2 == "todos") && (item.gsx$vinculo.$t == filtro3 || filtro3 == "todos" )){
+
+            html += '<tr>';
+            html += ' <td class="organismooentidad">'+ item.gsx$organismooentidad.$t + '</td>';
+            html += ' <td class="anio">'+ item.gsx$anio.$t + '</td>';
+            html += ' <td class="caratula"> <a href="'+ item.gsx$consultarexpediente.$t +'">'+ item.gsx$caratula.$t +'</a></td>';
+            html += ' <td class="vinculo">'+ item.gsx$vinculo.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Persona Declarante: </strong></p>'+ item.gsx$personadeclarante.$t +'</td>';
+            html += ' <td class="tipodeproceso">'+ item.gsx$tipodeproceso.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Informa la adopción de un mecanismo extra de transparencia: </strong></p>'+ item.gsx$transparencia.$t +'</td>';
+            html += '</tr>';
+           }
+
+          });
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+            valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
+            page: 20,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+          var ejemplosList = new List('listadoObsequios', listOptions);  
+
+
+        }
+
+
+   
+    $("#tipo-organismo, #tipo-anio, #tipo-vinculo").on("change", function() {
+       filtro = $( "#tipo-organismo option:selected" ).data('tipoorganismo');
+       filtro2 = $( "#tipo-anio option:selected" ).data('anio');
+       filtro3 = $( "#tipo-vinculo option:selected" ).data('tipovinculo');
+       filtrarContenido(filtro, filtro2, filtro3);
+    });
+
+  });
+  })(jQuery);
+  
+</script>
