@@ -7,7 +7,6 @@ layout: argentina
           <div class="row">
 
           <div class="form-group col-md-12">
-          <label for="">Buscá juntas</label>
             <input class="form-control search" placeholder="Buscar...">
           </div>
 
@@ -72,10 +71,17 @@ layout: argentina
           var html = '';
 
           $.each( contactosOrg, function( key, item ) {
+
+              var linkBtn = ''
+
+              if (item.gsx$nombre.$t == "Junta Evaluadora Colonia Montes de Oca Padre Criado Alonso S/N"){
+                linkBtn = '<div><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank"> Pedir Turno</a></div>';
+              } 
+
               html += '<tr>';
               html += ' <td class="Provincia">'+ item.gsx$provincia.$t + '</td>';
               html += ' <td class="Localidad">'+ item.gsx$localidad.$t + '</td>';
-              html += ' <td class="Nombre">' + item.gsx$nombre.$t + '</td>';
+              html += ' <td class="Nombre">' + item.gsx$nombre.$t + '' + linkBtn +'</td>';
               html += ' <td class="Direccion">'+ item.gsx$direccion.$t + '</td>';
               html += ' <td class="Telefono">'+ item.gsx$telefono.$t + '</td>';
               html += ' <td class="Correo"><a href="mailto:'+ item.gsx$mail.$t + '">'+ item.gsx$mail.$t + '</a></td>';

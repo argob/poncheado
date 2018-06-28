@@ -18,8 +18,6 @@ layout: argentina
 
           <h1 class="m-y-2">Dónde ir y qué llevar para tramitar el CUD</h1>
           
-          <p class="lead text-muted m-b-2" style="font-size: 16px;">Según los datos ingresados esta es la lista de toda la documentación que tenés que llevar y la dirección a dónde tenes que presentarla para que te asignen un turno con la Junta Evaluadora que certifica la discapacidad.</p>
-
 
     <div id="wizard-cud" class="hidden">
       <div id="wizard-cud-items"></div>
@@ -75,7 +73,7 @@ layout: argentina
                 <p>Probá cambiando la configuración del formulario.</p>
               </div>
           -->
-
+              <p>pedir turno</p>
 
 
               <div class="m-y-2">
@@ -152,6 +150,7 @@ layout: argentina
         lugar: `<li><div class="form-group m-t-2">
                   <label class="control-label">Junta</label>
                   <p>{junta}</p>
+                  {pedirTurno}
                 </div>        
                 <div class="form-group m-t-2">
                   <label class="control-label">Dirección</label>
@@ -778,11 +777,18 @@ layout: argentina
 
                  if(showLugares){
 
+                    var pedirTurno = '';
+
+                    if((data.localidad == "Torres")) {
+                      pedirTurno = '<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank">Pedir Turno</a></p>'
+                    }                   
+
                     var html = templates.lugar;
 
                     html = html.replace(/{junta}/gi, item.gsx$junta.$t)
                     .replace(/{direccion}/gi, item.gsx$domicilio.$t)
                     //.replace(/{localidad}/gi, item.gsx$localidad.$t)
+                    .replace(/{pedirTurno}/gi, pedirTurno)
                     .replace(/{telefono}/gi, item.gsx$telefono.$t);
 
                       jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
