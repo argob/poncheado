@@ -1,6 +1,15 @@
 ---
 layout: argentina
 ---
+    <style>
+      
+      @media screen and (max-width: 767px){
+        td{
+          white-space: unset!important;
+        }
+      }
+    </style>
+
 
       <div class="container">
         <div id="listadoTramites">
@@ -10,7 +19,7 @@ layout: argentina
             </div>
 
             
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label for=""><strong>Categoría</strong></label>
                   <select id="categoria" class="form-control">
@@ -20,7 +29,7 @@ layout: argentina
                 </div>
               </div>
 
-              <div class="col-md-6">    
+              <div class="col-md-8">    
                 <div class="form-group">
                   <label for=""> <strong> Buscá por descripción </strong></label>
                   <input class="form-control search" placeholder="">
@@ -33,10 +42,10 @@ layout: argentina
                 <table class="table table-spaced table-hover">
                   <thead>
                     <tr>
-                      <th style="width: 140px;">Trámite</th>
-                      <th style="width: 300px;">Resumen</th>
-                      <th style="width: 300px;">Categoría</th>
-                      <th>URL</th>
+                      <th>Trámite</th>
+                      <th width="480">Resumen</th>
+                      <th>Categoría</th>
+                      <th width="100">URL</th>
 
                     </tr>
                   </thead> 
@@ -84,13 +93,13 @@ layout: argentina
            if((filtroCategorias == item.gsx$categoria.$t) || (filtroCategorias == "todos")){
 
             html += '<tr>';
-            html += ' <td class="tramite">'+ item.gsx$tramite.$t + '</td>';
+            html += ' <td class="tramite"><strong>'+ item.gsx$tramite.$t + '</strong></td>';
            
             html += ' <td class="resumen"> '+ item.gsx$resumen.$t +'</td>';
 
             html += ' <td class="categoria">'+ item.gsx$categoria.$t + '</td>';
 
-            html += ' <td class="url">'+ item.gsx$url.$t +'</td>';
+            html += ' <td class="url"><a class="btn btn-primary btn-sm" href="'+ item.gsx$url.$t + '"> VER MÁS</a></td>';
             html += '</tr>';
            }
 
