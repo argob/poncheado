@@ -5,8 +5,12 @@ layout: mi-argentina
 {% include mi-argentina/usuario.html hijo="Turnos" %}
 
 <style>
-    .displayFormateEnRed{
+    .displayPaneles{
         display: table-cell!important;
+    }
+    .displayPaneles h2, .displayPaneles p{
+        margin-top: 4px!important;
+        margin-bottom: 6px!important;
     }
     .margin-observaciones{
         margin: 0px;
@@ -18,6 +22,9 @@ layout: mi-argentina
     @media (max-width: 768px){
         .margin-observaciones{
             margin: 15px 0px 0px 0px;
+        }
+        .margin-observaciones p:first-child{
+            margin-bottom: 0px;
         }
     }
 </style>
@@ -34,19 +41,25 @@ layout: mi-argentina
                 <h1 class="h4">Hacemos futuro</h1>
                 <p class="m-b-2">Consultá la fecha y el estado del cobro de tu plan y accedé a las herramientas del programa.</p>
 
-                <div class="panel panel-default panel-border-primary">
-                    <div class="panel-body">
-                        <h2>Último cobro</h2>
+                
+                
+            <div class="row panels-row-miargentina">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-border-gray">
+                    
+                        <div class="panel-heading">
+                            <h2>Último cobro</h2>
+                        </div>
 
-                        <hr class="m-y-1 m-x-0 p-x-0">
+                        <div class="panel-body">
                         <div class="row">
 
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-4 col-xs-12">
                                 <h3><strong class="m-t-0 m-b-1">Período 01/18</strong></h3>
                                 <p><i class="fa fa-check-circle text-success"></i> <b>Pagado</b></p>
                             </div>
 
-                            <div class="col-sm-6 col-xs-12 margin-observaciones">
+                            <div class="col-sm-8 col-xs-12 margin-observaciones">
                                <p>Observaciones:</p>
                                 <p><b>Pagado</b></p>
                             </div>
@@ -55,12 +68,12 @@ layout: mi-argentina
                         <hr class="m-t-1">
 
                         <div class="row">
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-4 col-xs-12">
                                 <h3><strong class="m-t-0 m-b-1">Período 02/18</strong></h3>
                                 <p><i class="fa fa-times-circle text-danger"></i> <b>Suspendido</b></p>
                             </div>
-                            <div class="col-sm-6 col-xs-12 margin-observaciones">
-                                <p class="m-b-1">Observaciones:</p>
+                            <div class="col-sm-8 col-xs-12 margin-observaciones">
+                                <p>Observaciones:</p>
                                 <p class="m-r-1 m-t-0"><b>INCOMPATIBLE / EMPLEO FORMAL + Nacional - PROGRAMAS NACIONALES DE EMPLEO.</b></p>
                             </div>
                         </div>
@@ -74,83 +87,96 @@ layout: mi-argentina
                             <a class="btn btn-success btn-md" href="tel=08002223294">0800-222-3294  </a>
                         </div>
                     </div>
-                </div>
-
-                <div class="panel panel-default panel-border-primary">
-                    <div class="panel-body">
-                        <h2>Último cobro</h2>
-
-                        <hr class="m-y-1 m-x-0 p-x-0">
-                        <div class="row">
-
-                            <div class="col-xs-12">
-                                <h3><strong class="m-t-0 m-b-1">Período 01/18</strong></h3>
-                                <p class="m-t-1"><i class="fa fa-warning text-muted fa-3x vmiddle"></i> <b> El servicio no está disponible en este momento.</b></p>
-                            </div>
-
-                            
-                         </div>
-                     </div>
-                </div>
-
-                <div class="panel panel-default panel-border-gray">
-                    <div class="panel-body">
-                        <h2>Cobros Anteriores</h2>
-
-                        <hr class="m-y-1 m-x-0 p-x-0">
-                        <div class="row">
-
-                            <div class="col-sm-6 col-xs-12">
-                                <h3><strong class="m-t-0 m-b-1">Período 02/18</strong></h3>
-                                <p><i class="fa fa-check-circle text-success"></i> <b>Pagado</b></p>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12">
-                               <p>Observaciones:</p>
-                                <p><b>Pagado</b></p>
-                            </div>
-                         </div>
                     </div>
                 </div>
+            </div>
+
+               
+
+            <div class="row panels-row-miargentina">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-border-gray">
+                        <div class="panel-heading">
+                            <h2>Último cobro</h2>
+                        </div>
+                        
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <i class="fa fa-warning text-muted fa-3x vmiddle" aria-hidden="true"></i>
+                                </div>
+                                <div class="media-body displayPaneles">
+                                    <strong>El servicio no está disponible en este momento.</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row panels-row-miargentina">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-border-gray">
+                        <div class="panel-heading">
+                            <h2>Cobros Anteriores</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-xs-12">
+                                    <h3><strong class="m-t-0 m-b-1">Período 02/18</strong></h3>
+                                    <p><i class="fa fa-check-circle text-success"></i> <b>Pagado</b></p>
+                                </div>
+
+                                <div class="col-sm-8 col-xs-12 margin-observaciones">
+                                    <p>Observaciones:</p>
+                                    <p><b>Pagado</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
            
        
-                <div class="alert alert-info">
-
-
+                <div class="alert alert-info p-b-1 p-t-0">
                     <div class="media">
                          <div class="media-left">
-                          <i class="fa fa-book fa-2x text-primary" aria-hidden="true"></i>
+                          <i class="fa fa-book fa-2x text-primary m-t-1" aria-hidden="true"></i>
                         </div>
-                        <div class="media-body displayFormateEnRed">
-                            <h4 class="text-primary">
-                                <a href="#">Formate en red</a>
-                            </h4>
-                            <p class="margin-0">Buscá tus opciones de formación para cumplir con los requisitos del programa.</p>
+                        <div class="media-body displayPaneles">
+                            <h2 class="text-primary"><small>
+                                <a href="#">Formate en red</a></small>
+                            </h2>
+                            <p>Buscá tus opciones de formación para cumplir con los requisitos del programa.</p>
                         </div>
                     </div>
                 </div>
             
-                <div class="panel panel-default panel-border-gray">
-                    <div class="panel-body">
-                        <h2>Te puede interesar</h2>
-                        <hr class="m-y-1">
+            <div class="row panels-row-miargentina">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-border-gray">
+                        <div class="panel-heading">
+                    
+                            <h2>Te puede interesar</h2>
+                        </div>
+                        <div class="panel-body">
+                            <a href="http://hacemosfuturo.gob.ar/empleo/" target="_blank"><h3 class="m-t-1">Portal de empleo</h3></a>
+                            <p class="p-t-0 m-t-0">Mirá las ofertas de empleo que tenemos para vos.</p>
+                            
+                            <a href="https://www.argentina.gob.ar/desarrollosocial/hacemosfuturo" target="_blank"><h3 class="m-t-1">Hacemos Futuro</h3></a>
+                            <p class="p-t-0 m-t-0">Conocé más sobre el programa y mejorá tus condiciones de empleabilidad.</p>
 
-                        <a href="http://hacemosfuturo.gob.ar/empleo/" target="_blank"><h3 class="m-t-1">Portal de empleo</h3></a>
-                        <p class="p-t-0 m-t-0">Mirá las ofertas de empleo que tenemos para vos.</p>
-                        
-                        <a href="https://www.argentina.gob.ar/desarrollosocial/hacemosfuturo" target="_blank"><h3 class="m-t-1">Hacemos Futuro</h3></a>
-                        <p class="p-t-0 m-t-0">Conocé más sobre el programa y mejorá tus condiciones de empleabilidad.</p>
+                            <a href="http://servicioswww.anses.gob.ar/TurnosWeb/SOLICITANTE.ASPX?Grupo=16" target="_blank"><h3 class="m-t-1">Turnos de ANSES</h3></a>
+                            <p class="p-t-0 m-t-0">Pedí turno en ANSES para actualizar tus datos y certificar requisitos.</p>
 
-                        <a href="http://servicioswww.anses.gob.ar/TurnosWeb/SOLICITANTE.ASPX?Grupo=16" target="_blank"><h3 class="m-t-1">Turnos de ANSES</h3></a>
-                        <p class="p-t-0 m-t-0">Pedí turno en ANSES para actualizar tus datos y certificar requisitos.</p>
-
-                        <a href="http://www.formateenred.gob.ar/fote/" target="_blank"><h3 class="m-t-1">F.O.T.E</h3></a>
-                        <p class="p-t-0 m-t-0">Descargá el Formulario de Terminalidad Educativa y certificá tus estudios.</p>
+                            <a href="http://www.formateenred.gob.ar/fote/" target="_blank"><h3 class="m-t-1">F.O.T.E</h3></a>
+                            <p class="p-t-0 m-t-0">Descargá el Formulario de Terminalidad Educativa y certificá tus estudios.</p>
+                        </div>
                     </div>
                 </div>
-                </div>
-            
-                <div class="col-md-offset-4 col-md-8">
+            </div>
+                
+            <div class="col-md-offset-4 col-md-8">
+                <hr class="m-t-1">
                 <p class="lead">Organismos relacionados</p>
                 <div>
                     <p class="p-t-0 m-t-0">
