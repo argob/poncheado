@@ -1,63 +1,94 @@
 ---
 layout: argentina
 ---
+<!-- Google Analytics -->
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+    <!-- End Google Analytics -->
 
+<style>
+  .content_format a:hover{
+    cursor:pointer;
+    background-color: ;
+  }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <ol class="breadcrumb pull-left">
                 <li><a href="/">Argentina</a></li>
-                <li><a href="/">El Estado en tu Barrio </a></li>
-                <li class="active"><span>Nombre del punto de atención</span></li>
+                <li><a href="/eetb">El Estado en tu Barrio </a></li>
+                <li class="active"><span class="breadcrumbPunto">Punto</span></li>
             </ol>
         </div>
     </div>
 </div>
 
-<section class="p-t-0">
+<section class="p-t-0 m-b-0 p-b-0">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-              <div id="titleLugar" class="hidden">
-                <h3 id="titleLocalidad" class="h5 text-primary m-t-3"></h3> 
-                <h2 id="titleProvincia" class="m-t-0"></h2>
+              <div id="titleLugar">
+                <h3 id="provincia" class="h5 text-primary m-t-3"></h3> 
+                <h2 id="nombrePunto" class="m-t-0"></h2>
               </div>
               <hr>  
             </div>
             <div class="col-md-8">
-                <h4 class="label label-danger hidden" id="estado">
+              <h4 class="label label-danger hidden" id="motivosuspendido">
                     <div class="media-left hidden-xs">
                         <i class="fa fa-exclamation-triangle fa-fw fa-2x m-t-05" aria-hidden="true"></i>
                     </div>
                     <div class="media-body text-left">
-                        <h5 id="motivosuspendido"></h5>
+                        <h5></h5>
                     </div>
                 </h4>
+
                 <h3 class="h4 m-y-2">¿Qué trámites puedo realizar en este punto ?</h3>
                 <div class="form-group">
                       <label class="control-label h5">Buscar trámite</label>
                       <div class="row">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" value="" placeholder="Escribe el nombre del trámite">
+                            <input id="buscadorTramite" type="text" class="form-control" value="" placeholder="Escribe el nombre del trámite">
                         </div>
                       </div>
                 </div>
                 <h4 class="h5">Seleccioná un trámite para ver los requisitos:</h4>
-                <div class="list" data-render="servicios"></div>
+
+
+<!-- CATEGORIA MODELO -->
+<div id="categoria-clon" style="display:none">
+      <div class="panel panel-default">
+      <div class="panel-heading" style="min-height: auto; border-bottom: 1px solid #ccc;">
+        <h4><b class="text-muted nombreCategoria">ANSES</b></h4>
+      </div>
+      <div class="panel-body">
+        <ul class="list content_format">
+          
+        </ul>
+      </div>
+    </div>
+</div>
+<!-- CATEGORIA MODELO -->
+
+
+                <div class="list" id="tramites">
+                </div>
 
             </div>
 
             <div class="col-md-4">
                 <div>
                     <h4>Información del punto</h4>
-                    <div id="mapa"></div>
+                    <div id="mapa">
+                      <iframe src="" width="100%" height="300" frameborder="0" style="border:0"></iframe>
+                    </div>
                 </div>
                 <div class="media">
                   <div class="media-left media-middle">
                       <span class="fa fa-map-marker text-primary m-b-0" aria-hidden="true"></span>
                   </div>
                   <div class="media-body media-middle">
-                    <p class="m-b-0"><b id="direccion"></b></p>
+                    <p class="m-b-0"><span id="direccion"></span></p>
                   </div>
                 </div>
                 <div class="media">
@@ -65,7 +96,7 @@ layout: argentina
                       <span class="fa fa-clock-o text-primary m-b-0" aria-hidden="true"></span>
                   </div>
                   <div class="media-body media-middle">
-                    <p class="m-b-0"><b id="hora"></b><b>hs</b></p>
+                    <p class="m-b-0"><span id="horario"></span></p>
                   </div>
                 </div>
                 <div class="media">
@@ -73,7 +104,7 @@ layout: argentina
                       <span class="fa fa-calendar text-primary m-b-0" aria-hidden="true"></span>
                   </div>
                   <div class="media-body media-middle">
-                    <p class="m-b-0"><b>Disponible del <span id="inicio"></span> al <span id="fin"></span></b></p>
+                    <p class="m-b-0"><span>Disponible del <span id="fecha_desde"></span> al <span id="fecha_hasta"></span></span></p>
                   </div>
                 </div>
             </div>
@@ -81,13 +112,19 @@ layout: argentina
     </div>
 </section>
 
-<section>
+<section class="m-t-0 p-t-0">
   <div class="container">
-    <hr>
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio</h3>
-      </div>
+  <div class="row">
+        <div class="col-md-12">
+          <h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuando estemos cerca de tu casa?</h2>
+        </div>
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <p><a class="btn btn-primary btn-md" target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio">REGISTRATE</a></p>
+          <p><a class="btn btn-md btn-default" target="_blank" href="eetb/preguntas-frecuentes.html">PREGUNTAS FRECUENTAS</a></p>
+        </div>        
+        <div class="col-md-12">
+          <h2 class="m-b-2 m-y-4 text-center">Mirá las fotos de El Estado en tu Barrio</h2>
+        </div>      
       <div class="col-md-4">
           <img src="https://www.argentina.gob.ar/sites/default/files/eetb_catamarca_1.jpg" class="img-responsive img-rounded m-b-1">
       </div>      
@@ -102,153 +139,148 @@ layout: argentina
 </section>
 
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modalTramite">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">titulo trámite</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 
 <script type="text/javascript">
 
-(function($) {
-
-    var templates = {
-      servicios: `<div class="panel panel-default">
-                    <div class="panel-heading" style="min-height: auto; border-bottom: 1px solid #ccc;">
-                      <h4><b class="text-muted">{categoria}</b></h4>
-                    </div>
-                  <div class="panel-body" id="servicios-{i}">
-                    <ul class="list content_format">`,
-    }
-
-    window.config = {
-      _provincia: 'Ninguna',
-      _localidad: 'Ninguna'
-    }
-
-    var categoriasServicios = [];
-    var listadoServicios = [];
-
-    var render = {      
-      servicios: function( ){
-
-        jQuery('[data-render=servicios]').html('');
-
-        window.serviciosList = [];
-
-        jQuery.each(listadoServicios, function(index, items){
-
-          var html = templates.servicios;
-
-          html = html
-          .replace(/{categoria}/gi, categoriasServicios[index])
-          .replace(/{i}/gi, index);
-
-          jQuery.each(items, function(index, item){
-            html += '<li><span class="servicio">'+ item +'</span></li>';
-          });
-
-          jQuery('[data-render=servicios]').append( html + '</ul></div></div>' );
-
-          var listOptions = { 
-            valueNames: [ 'servicio' ],
-            fuzzySearch: {
-              searchClass: "search",
-              location: 0,
-              distance: 100,
-              threshold: 0.4,
-              multiSearch: true
-            }
-
-          };
-          serviciosList[index] = new List('servicios-'+ index, listOptions);
-
-        });
-      }      
-    }
-
-    jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1bdkeYatDDA0o4y-6LvNLmiliKto29hhEOfzY7vI2J_w/1/public/values?alt=json',
-      data: 'json',
-      success: function(response){
-        jQuery.each(response.feed.entry, function(index, row){
-
-          if ( !(config._provincia != 'Ninguna' && config._provincia != row.gsx$provincia.$t ) ) {
-
-            if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
-              categoriasServicios.push( row.gsx$categoria.$t )
-              listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
-            }else{
-              var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
-              listadoServicios[ categoria ].push( row.gsx$servicio.$t );
-            }
-          }
-        });
-        render.servicios();
-      }
-    });   
-
-    jQuery('#search').on('click', function(event){
-      buscar();
-      event.preventDefault();
-    });
-
-    jQuery('form[role=search]').on('submit', function(event){
-      buscar();
-      event.preventDefault();
-    });
-
-
-
-    var buscar = function(){
-      var busqueda = jQuery('.search').val()
-      jQuery.each(serviciosList, function(index, item){
-        serviciosList[index].fuzzySearch( busqueda );
-
-        if(serviciosList[index].matchingItems.length == 0){
-          jQuery('#servicios-'+ index ).prev().addClass('hidden');
-        }else{
-          jQuery('#servicios-'+ index ).prev().removeClass('hidden');
-        }
-      });
-
-    }
-
-
-  window.onload = function() {
+window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var prov = url.searchParams.get("provincia");
-    var loc = url.searchParams.get("localidad");
-    config._provincia = prov;
-    config._localidad = loc;
-    var inicio = url.searchParams.get("inicio");
-    var fin = url.searchParams.get("fin");
-    var estado = url.searchParams.get("estado");
-    var hora = url.searchParams.get("hora");
-    var direccion = url.searchParams.get("direccion");
-    var latitud = url.searchParams.get("latitud");
-    var longitud = url.searchParams.get("longitud");
-    if (config._provincia !== null || config._localidad !== null ) {
-      $('#titleLugar').removeClass('hidden');
-      $('#titleLocalidad').text(config._localidad);
-      $('#titleProvincia').text(config._provincia);
-      $('#inicio').text(inicio);
-      $('#fin').text(fin);
-      $('#estado').text(estado);
-      $('#hora').text(hora);
-      $('#direccion').text(direccion);
-      $('#latitud').text(latitud);
-      $('#longitud').text(longitud);
-    }
+    var puntoId = url.searchParams.get("punto");
 
-    var srcMapa = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.648076853708!2d-58.411391284770694!3d-34.58777028046373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca825323288d%3A0xa602f726bbfe97b4!2sAv.+Cnel.+D%C3%ADaz+2079%2C+C1425DQG+CABA!5e0!3m2!1ses!2sar!4v1494874630015" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>';
+  
+//DATOS DEL PUNTO
+$.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
+  listaPuntos = data.feed.entry;
 
-    $('#mapa').append( srcMapa );
-
-    render.servicios();
-
-  };
+  $.each(listaPuntos, function(index, val) {
+    
+     if(val.gsx$nombre.$t == puntoId){
+        $("#nombrePunto").html(val.gsx$nombre.$t);
+        $("#provincia").html(val.gsx$provincia.$t);
+        $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
+        $("#horario").html(val.gsx$horario.$t);
+        $("#fecha_desde").html(val.gsx$fechadesde.$t);
+        $("#fecha_hasta").html(val.gsx$fechahasta.$t);
+        $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$direccion.$t + " " + val.gsx$localidad.$t + "&output=embed")
+        
+        if(val.gsx$suspendido.$t != ""){
+          $("#motivosuspendido h5").html(val.gsx$suspendido.$t);
+          $("#motivosuspendido").removeClass("hidden").addClass("show");
+        }
+     }
+  });
+})
 
 
-})(jQuery);
 
+
+//LISTA DE TRÁMITES DEL PUNTO
+$.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
+  listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
+
+
+
+  $.each(listaCategorias, function(punto, val) {
+      $("#categoria-clon .content_format").html("");
+        $("#categoria-clon .nombreCategoria").html(punto);
+
+          $.each(val, function(indice, tramite) {
+            if(tramite.gsx$punto.$t == puntoId || tramite.gsx$puntoid.$t == 0){
+               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">'+tramite.gsx$tramite.$t+'</a></li>')
+              }
+          });
+        
+        if($("#categoria-clon .content_format li").length > 0){
+          tramite = $("#categoria-clon .panel").clone();
+          $("#tramites").append(tramite);  
+        }
+  });
+
+//FUNCION CONTAIN INSENSITVE
+$.extend($.expr[':'], { 
+  'containsi': function(elem, i, match, array)
+  {
+    return (elem.textContent || elem.innerText || '').toLowerCase()
+        .indexOf((match[3] || "").toLowerCase()) >= 0;
+  }
+});
+
+$("#buscadorTramite").on("keyup", function(event) {
+   var palabra = $(this).val();
+   $(".content_format li").addClass("hidden").removeClass("filtrado");
+   $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
+
+   $("#tramites .panel").each(function(i){
+      cantidad = $(this).find("li.filtrado").length;
+      if(cantidad == 0){
+        $(this).hide();
+      }
+      else{
+        $(this).show();
+      }
+   })
+
+});
+
+
+
+})
+
+$(document).on("click",".mostrarTramite",function(){
+    var tramiteId = $(this).attr("data-tramite");
+  
+    //Traer detalle del trámite
+    $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
+
+    var nombre = "";
+    var descripcion = "";
+      
+    $.each(data.feed.entry, function(index, tramite) {
+      if(tramite.gsx$id.$t == tramiteId){
+        nombre = tramite.gsx$nombre.$t;
+        descripcion = tramite.gsx$descripcion.$t;
+      }
+    });
+
+//MÉTRICAS
+ga('create', 'UA-71585203-1', 'auto');
+ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
+
+
+    $(".modal-title").html(nombre);
+
+    var converter = new showdown.Converter(),
+    descripcion_formatted = converter.makeHtml(descripcion);
+
+    $(".modal-body").html(descripcion_formatted);
+
+    $('#modalTramite').modal("show");
+})
+})
+
+
+
+}
 </script>
