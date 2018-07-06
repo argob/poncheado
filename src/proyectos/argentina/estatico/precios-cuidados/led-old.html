@@ -77,7 +77,7 @@ layout: argentina
     </style>
 
   
-      <div class="container" id="#listaLamparasLed">
+        <div class="container" id="#listaLamparasLed">
           
 
           <div id="listadoProducto">
@@ -88,8 +88,7 @@ layout: argentina
               <div class="form-group">
                 <label for=""> <strong>Zona</strong></label>
                 <select id="zonaId" class="form-control">
-                  <option data-zona="seleccionar" value="seleccionar" selected>Seleccionar</option>
-                  <option data-zona="amba" value="amba">AMBA (Capital Federal y Gran Buenos Aires)</option>
+                  <option data-zona="amba" value="amba" selected>AMBA</option>
                   <option data-zona="pba" value="pba">Buenos Aires</option>
                   <option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
                   <option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
@@ -145,13 +144,28 @@ layout: argentina
 
         <div class="row panels-row">
 
+
+          <div class="col-xs-12 col-sm-offset-2 col-sm-4 ">
+            <a class="panel panel-default" href="/precios-cuidados">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Precios cuidados</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
           <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default" href="/precios-cuidados/lista-de-supermercados-adheridos-2018">
+            <a class="panel panel-default" href="https://argentina.gob.ar./pasatealed/">
               <div class="panel-body">
                 <div class="media">
                   
                   <div class="media-body">
-                    <h3>Supermercados adheridos</h3>
+                    <h3>Pasate a LED</h3>
                     
                   </div>
                 </div>
@@ -160,42 +174,9 @@ layout: argentina
           </div>
 
 
-          <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default" href="/precios-cuidados/productos-faltantes">
-              <div class="panel-body">
-                <div class="media">
-                  
-                  <div class="media-body media-middle">
-                    <h3>Productos faltantes</h3>
-                    
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
 
-
-          <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default" href="/opciones-para-ahorrar">
-              <div class="panel-body">
-                <div class="media">
-                  
-                  <div class="media-body media-middle">
-                    <h3>Opciones para ahorrar</h3>
-                    
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          
         </div>
 
-
-       <!-- <div>
-          <h3 class="text-center m-b-1  m-t-2">Si no encontrás un producto</h3>
-        </div>
 
         <div class="row">
           <div class="col-xs-12 col-sm-offset-3 col-sm-6 m-b-2">
@@ -207,34 +188,13 @@ layout: argentina
                   </div>
                   <div class="media-body">
                     <h3>0800-666-1518</h3>
-                    <p class="text-muted">Comunicate telefónicamente para informarnos</p>
+                    <p class="text-muted">Comunicate para informar la falta de un producto.</p>
                   </div>
                 </div>
               </div>
             </a>
           </div>
-        </div>-->
-
-
-        <section>
-          <div class="container">
-            <div class="row">
-              <div>
-                <div class="panel-separator"></div>
-                  <div class="panel-pane pane-area-contacto">
-                    <div class="pane-content">
-                      <h5 class="text-center">
-                        Comunicate para informar la falta de un producto
-                      </h5>
-                      <p class="margin-40 text-center">
-                        <strong>Teléfono:</strong> <a href="tel:08006661518">0800-666-1518</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        </div>
       </div>
           
     
@@ -247,11 +207,11 @@ layout: argentina
 
 <script type="text/javascript">
 
-
+(function($) {
 $(document).ready(function () {
 
     
-    var zona = "seleccionar";
+    var zona = "amba"
     var precio='';
     var listadoProducto = "";
    
@@ -268,12 +228,12 @@ $(document).ready(function () {
         );
 
           function filtrarContenido(zona){
-            
+
           var lista = '';
 
-          if(zona != 'seleccionar'){
-            $.each(listadoProducto, function( key, item ) {
 
+          
+          $.each(listadoProducto, function( key, item ) {
 
             if(zona == "amba"){
               precio = item.gsx$amba.$t;
@@ -304,40 +264,34 @@ $(document).ready(function () {
               lista += ' <td class"precio"> <p class="text-success"> <strong>'+ precio +'</strong></p></td>';
               lista += '</tr>';
             }
-          }
 
+          }
         );
 
-        $('#show-data').empty();
-        $('#show-data').append(lista);
+       $('#show-data').empty();
+          $('#show-data').append(lista);
 
 
 
-          
+
           var listOptions = {
             valueNames: ['descripcion','proveedor','ean'],
             page: 10,
-            plugins: [ ListPagination({}) ],
+            plugins: [ ListPagination({}) ]
             
-            pagination:true
            };
 
-            var listaNueva = new List('listadoProducto', listOptions); 
+             var listaNueva = new List('listadoProducto', listOptions); 
 
-       $('.search').on("keyup", function(){
+         
+
+
+          
+
+           $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
-
-          $('.pagination li').show();
-       }else{
-        $('#show-data').empty();
-
-        $('.pagination li').hide();
-        
-       }
-
-      
 
 
         }
@@ -347,7 +301,6 @@ $(document).ready(function () {
        zona = $("#zonaId option:selected" ).data('zona');
        
        filtrarContenido(zona);
-       console.log(zona);
       });
 
 
@@ -374,7 +327,7 @@ $(document).ready(function () {
 
 
   });
-  (jQuery);
+  })(jQuery);
 
  
   

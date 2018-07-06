@@ -38,24 +38,43 @@ layout: argentina
 
         text-transform: uppercase; 
       }
-      .th-min{
-        min-width: 250px;
-      }
+      
+      
 
       .logo{
         max-width: 380px!important;
       }
-      .ean-btn, .ean-btn:hover, .ean-btn:visited, .ean-btn:focus, .ean-btn:active {
-          border: 0px!important;
-          color: #333333;
-          background-color: #F9F9F9 !important;
+    
+
+      #ean .popover{
+        top: 39px;
+        left: -118px!important;
+        display: block;
+        width: 250px!important;
+      }
+
+      #ean{
+        position: relative!important
+      }
+
+      #ean .popover .arrow{
+          left: 0!important;
+          right: 0!important;
+          margin: 0 auto!important;
       }
       
+      @media screen and (max-width: 767px){
+       
+        .descripcion, .proveedor, .ean{
+          white-space: unset!important;
+        }
+        
+      }
     </style>
 
  
    
-    <div class="container">
+    <div class="container" id="#listaPreciosCuidados">
         <div>
           <h3 class="text-center m-y-3">Buscá un producto</h3>
         </div>
@@ -97,12 +116,13 @@ layout: argentina
               <thead>
                 <tr>
                   <th >Descripción</th>
-                  <th class="th-min">Proveedor</th>
-                  <th class="th-min">EAN 
-                    <button id="popThis">
+                  <th>Proveedor</th>
+                  <th>EAN 
+                    <a id="ean" href="#listaPreciosCuidados">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span id="greendiv"></span>
-                    </button>
+                        
+                    </a>
+                    <div id="eanContent"></div>
                   </th>
                   <th >Precio</th>
                 </tr>
@@ -269,12 +289,7 @@ $(document).ready(function () {
 
              var listaNueva = new List('listadoProductos', listOptions); 
 
-         
-
-
-          
-
-           $('.search').on("keyup", function(){
+          $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
@@ -317,18 +332,23 @@ $(document).ready(function () {
        filtrarContenido(zona, categoria);
     });
 
-    $(function () {
-   $("#popThis").on("click", function(){
-       $('#greendiv').popover('toggle');
+     
+    
+      
+   $("#ean").on("click", function(){
+       $('#eanContent').popover('toggle');
    });
 
-   $('#greendiv').popover({
-       title: "Title",
-       content: "This is the body of Popover",
+   $('#eanContent').popover({
+       title: "European Article Number:",
+       html: 'true',
+       content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
        placement:"bottom",
-       trigger: 'manual'
+       trigger: 'manual',
+        container: '#ean',
+       viewport:"#ean" 
+
    });
-});
 
       
 
