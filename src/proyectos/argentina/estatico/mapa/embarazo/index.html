@@ -16,6 +16,9 @@ title: Mapa de Ventanillas
     width: 100%;
     z-index: 10;
   }
+  .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
   .jumbotron {
     min-height: 0;
     background: none;
@@ -23,9 +26,30 @@ title: Mapa de Ventanillas
   .jumbotron .jumbotron_bar .container * {
     margin: 0;
   }
-  #map-container {
-    height:100vh;
+
+  .app-container {
+    padding-top: 64px;
   }
+  .sidebar-content {
+    overflow: auto; 
+    height: calc(50vh - 32px);
+  }
+  .map-content {
+    height: calc(50vh - 32px);
+  }
+
+  @media (min-width: 768px) {
+    .app-container {
+      padding-top:72px;
+    }
+    .sidebar-content {
+      height: calc(100vh - 72px);
+    }
+    .map-content {
+      height: calc(100vh - 72px);
+    }
+  }
+
   #map {
     height:100%;
   }
@@ -35,25 +59,7 @@ title: Mapa de Ventanillas
   .main-footer {
     display: none;
   }
-  #mobile-footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    padding: 0px 53px 14px 15px;
-  }
-  #mobile-footer .row {
-    margin-right: -7.5px;
-    margin-left: -7.5px;
-  }
-  #mobile-footer .row > div {
-    padding-right: 7.5px;
-    padding-left: 7.5px;
-  }
-  #mobile-footer a {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-  }
+
 </style>
 
 <header id="map-header">
@@ -72,11 +78,11 @@ title: Mapa de Ventanillas
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <div class="navbar-brand visible-xs-inline-block"> Mapa de embarazo PBA </div>
+          <div class="navbar-brand visible-xs-inline-block">Mapa de embarazo</div>
         </div>
         <div class="collapse navbar-collapse" id="map-navbar-collapse">
           <div class="visible-xs">
-            <p class="text-muted margin-20">Lugares donde te acompañamos en situaciones de maltrato o violencia.</p>
+            <p class="text-muted margin-20">Centros de salud con maternidades mapeados por complejidad.</p>
             <a href="/">
               <img alt="Argentina.gob.ar" class="img-responsive" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
             </a>
@@ -90,32 +96,20 @@ title: Mapa de Ventanillas
       </div>
     </div>
   </nav>
-  <section class="jumbotron hidden">
-    <div class="jumbotron_bar">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-9">
-            <h4>Mapa de embarazo PBA </h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="overlay"></div>
-  </section>
 </header>
 
-<div class="row m-x-0" style="padding-top:72px;">
-  <div class="col-md-3" style="overflow: auto; height: calc(100vh - 72px); ">
+<div class="row m-x-0 app-container">
+  <div class="col-xs-12 col-sm-6 col-sm-push-6 col-md-8 col-md-push-4 col-lg-9 col-lg-push-3 p-x-0">
+    <div id="map-container" class="map-content state-loading">
+      <div id="map"></div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-md-4 col-md-pull-8 col-lg-3 col-lg-pull-9 sidebar-content">
     <div id="marker-info" class="p-t-2">
       <h5>Seleccioná un establecimiento del mapa para empezar.</h5>
     </div>
     <hr>
     <div id="maternities-list" class=""></div>
-  </div>
-  <div class="col-md-9 p-x-0">
-    <div id="map-container" class="state-loading" style="height: calc(100vh - 72px);">
-      <div id="map"></div>
-    </div>
   </div>
 </div>
 
@@ -156,7 +150,7 @@ title: Mapa de Ventanillas
 
     // https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json
 
-    $.ajax({
+    jQuery.ajax({
       // url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/EstablecimientosSalud/MapServer/6/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
       url: 'https://simple-cors.herokuapp.com/?url=https%3A%2F%2Fsistemas.ms.gba.gov.ar%2FArcGIS%2Frest%2Fservices%2FServiciosPublicos%2FEstablecimientosSalud%2FMapServer%2F6%2Fquery%3Ftext%3D%26geometry%3D%26geometryType%3DesriGeometryPoint%26inSR%3D%26spatialRel%3DesriSpatialRelIntersects%26relationParam%3D%26objectIds%3D%26where%3D1%253D1%26time%3D%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%3D%26outSR%3D%26outFields%3D*%26f%3Djson',
       
@@ -165,7 +159,7 @@ title: Mapa de Ventanillas
 
         data.establecimientos = JSON.parse(response);
 
-        $.ajax({
+        jQuery.ajax({
           // url: 'https://sistemas.ms.gba.gov.ar/ArcGIS/rest/services/ServiciosPublicos/Servicios_Maternidades/MapServer/8/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json',
           url: 'https://simple-cors.herokuapp.com/?url=https%3A%2F%2Fsistemas.ms.gba.gov.ar%2FArcGIS%2Frest%2Fservices%2FServiciosPublicos%2FServicios_Maternidades%2FMapServer%2F8%2Fquery%3Ftext%3D%26geometry%3D%26geometryType%3DesriGeometryPoint%26inSR%3D%26spatialRel%3DesriSpatialRelIntersects%26relationParam%3D%26objectIds%3D%26where%3D1%253D1%26time%3D%26returnCountOnly%3Dfalse%26returnIdsOnly%3Dfalse%26returnGeometry%3Dtrue%26maxAllowableOffset%3D%26outSR%3D%26outFields%3D*%26f%3Djson',
           data: 'text',
@@ -189,15 +183,13 @@ title: Mapa de Ventanillas
 
     var renderMarkers = function(callback){
 
-      $('#map-container').addClass('state-loading');
+      jQuery('#map-container').addClass('state-loading');
 
       if( markers.length > 0){
         markers.forEach(function(marker, index){
           markers[index].setMap(null);
-          // circles[index].setMap(null);
         });
         markers.length = 0
-        // circles.length = 0
       }
 
       currentCount = 0;
@@ -226,20 +218,6 @@ title: Mapa de Ventanillas
 
         var esMaternindad = false;
 
-        // if( row.attributes.CATEG_ESTA == 'C.A.P.S' ){
-        //   markerImage = 'img/marker_green.png';
-        // }else if( data.maternidades[row.attributes.CODIGO] != undefined ){
-        //   row.maternidad = data.maternidades[row.attributes.CODIGO];
-        //   markerImage = 'img/marker_uva.png';
-        //   esMaternindad = true;
-
-        //   data.maternidades[row.attributes.CODIGO].x = row.geometry.x;
-        //   data.maternidades[row.attributes.CODIGO].y = row.geometry.y;
-
-        // } else {
-        //   markerImage = 'img/marker.png';
-        // }
-
         if( data.maternidades[row.attributes.CODIGO] != undefined ){
           row.maternidad = data.maternidades[row.attributes.CODIGO];
           esMaternindad = true;
@@ -248,21 +226,21 @@ title: Mapa de Ventanillas
           data.maternidades[row.attributes.CODIGO].y = row.geometry.y;
 
           if(data.maternidades[row.attributes.CODIGO].CategObst == 'IIIB'){
-            markerImage = 'img/marker_red.png';
+            markerImage = 'https://www.argentina.gob.ar/sites/default/files/marker_red.png';
 
           }else if(data.maternidades[row.attributes.CODIGO].CategObst == 'IIIA'){
-            markerImage = 'img/marker_fucsia.png';
+            markerImage = 'https://www.argentina.gob.ar/sites/default/files/marker_fucsia.png';
 
           }else if(data.maternidades[row.attributes.CODIGO].CategObst == 'II'){
-            markerImage = 'img/marker_yellow.png';
+            markerImage = 'https://www.argentina.gob.ar/sites/default/files/marker_yellow.png';
 
           }else{
-            markerImage = 'img/marker_green.png';
+            markerImage = 'https://www.argentina.gob.ar/sites/default/files/marker_green.png';
           }
 
 
         } else {
-          markerImage = 'img/marker_green.png';
+          markerImage = 'https://www.argentina.gob.ar/sites/default/files/marker_green.png';
         }
 
 
@@ -298,7 +276,7 @@ title: Mapa de Ventanillas
 
       });
 
-      $('#map-container').removeClass('state-loading');
+      jQuery('#map-container').removeClass('state-loading');
 
 
       if(typeof callback !== 'undefined'){
@@ -310,7 +288,7 @@ title: Mapa de Ventanillas
     // Helper clases
 
     var showInfo = function(index){
-      $('#marker-info').html(contenido[index]);
+      jQuery('#marker-info').html(contenido[index]);
 
       var o = data.establecimientos.features[index].geometry;
       var origin = new google.maps.LatLng(o.y, o.x);
@@ -329,7 +307,7 @@ title: Mapa de Ventanillas
       });
 
 
-      $('#maternities-list').html('');
+      jQuery('#maternities-list').html('');
 
       var listHtml = `<table class="table table-hover">
         <thead>
@@ -356,11 +334,11 @@ title: Mapa de Ventanillas
 
       listHtml += `</tbody></table>`;
 
-      $('#maternities-list').append(listHtml);
+      jQuery('#maternities-list').append(listHtml);
     }
 
-    $('body').on('click', '#maternities-list tr', function(event, el){
-      directions('to', $(this).data('directions'));
+    jQuery('body').on('click', '#maternities-list tr', function(event, el){
+      directions('to', jQuery(this).data('directions'));
     })
 
     // Helper clases
@@ -410,7 +388,7 @@ title: Mapa de Ventanillas
 
 
       if (navigator.geolocation) {
-        $('.localize').addClass('state-loading disabled');
+        jQuery('.localize').addClass('state-loading disabled');
 
         if(window.pos == undefined){
 
@@ -423,23 +401,23 @@ title: Mapa de Ventanillas
             map.setZoom(15);
             map.setCenter(pos);
 
-            $('.localize').removeClass('state-loading disabled');
-            $('.navbar-collapse').removeClass('in');
+            jQuery('.localize').removeClass('state-loading disabled');
+            jQuery('.navbar-collapse').removeClass('in');
 
           }, function() {
             // console.log('geo nope')
-            $('.localize').removeClass('state-loading disabled');
+            jQuery('.localize').removeClass('state-loading disabled');
           });
           
         }else{
-          $('.localize').removeClass('state-loading disabled');
+          jQuery('.localize').removeClass('state-loading disabled');
           map.setZoom(15);
           map.setCenter(window.pos);
-          $('.navbar-collapse').removeClass('in');
+          jQuery('.navbar-collapse').removeClass('in');
         }
 
       } else {
-        $('.localize').addClass('disabled');
+        jQuery('.localize').addClass('disabled');
         // Browser doesn't support Geolocation
         // handleLocationError(false, infoWindow, map.getCenter());
       }
@@ -449,6 +427,5 @@ title: Mapa de Ventanillas
   }
 
 </script>
-<!-- <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script> -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD77orXyikaf_9Oy6AlIEeZExTTZI_7MVY&signed_in=true&region=AR&callback=initMap"></script>
 
