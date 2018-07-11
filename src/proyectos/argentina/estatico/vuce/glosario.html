@@ -1,0 +1,270 @@
+---
+layout: argentina
+---
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+      p{
+        font-weight: 400;
+      }
+      .categoria-lf{
+        text-transform: lowercase;
+        font-size: 15px;
+      }
+      .categoria-lf::first-letter{
+
+        text-transform: uppercase; 
+      }
+      .th-min{
+        min-width: 250px;
+      }
+
+      .logo{
+        max-width: 380px!important;
+      }
+      
+    </style>
+
+
+   
+    <div class="container">
+      
+      <div id="listadoSuper">
+        <div class="row m-t-3">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for=""> <strong>Supermercado</strong></label>
+              <select id="superHtml" class="form-control">
+                <option id="selectorSuper" data-super="todos" value="todos">Cargando...</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-9">    
+            <div class="form-group">
+              <label for=""><strong>Buscá por descripción</strong></label>
+              <input class="form-control search" placeholder="">
+            </div>
+          </div>
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th >Productos</th>
+                 <!-- <th>Proveedor</th>
+                  <th >EAN</th>
+                  <th style="width: 120px;">Precio</th>-->
+                  </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+                  
+              </tbody>
+            </table>
+            <nav class="text-center">
+              <ul class="pagination"></ul>
+            </nav>  
+          </div>           
+        </div>
+      </div>
+     
+
+        <div class="row panels-row">
+          
+           <div class="col-xs-12 col-sm-offset-2 col-sm-4 ">
+            <a class="panel panel-default" href="/precios-cuidados">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Precios cuidados</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="https://argentina.gob.ar/precios-cuidados/lista-de-supermercados-adheridos-2018">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body">
+                    <h3>Supermercados adheridos</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+         
+
+
+        </div>
+
+        
+         <section>
+          <div class="container">
+            <div class="row">
+              <div>
+                <div class="panel-separator"></div>
+                  <div class="panel-pane pane-area-contacto">
+                    <div class="pane-content">
+                      <h5 class="text-center">
+                        Comunicate para informar la falta de un producto
+                      </h5>
+                      <p class="margin-40 text-center">
+                        <strong>Teléfono:</strong> <a href="tel:08006661518">0800-666-1518</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+      </div>
+           
+    
+        
+
+      
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+
+    
+    var supermercado = "todos"
+    var listadoSuper = "";
+   
+
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1CTUNQ2-iBJKOFVeremZB8WKi-gUdQtJnROWuNSSz8II/1/public/values?alt=json',
+          
+
+          function (data) {
+            listadoSuper = data['feed']['entry'];
+            filtrarContenido(supermercado);
+
+          }
+
+        );
+
+          function filtrarContenido(supermercado){
+
+          var lista = '';
+
+          
+          $.each(listadoSuper, function( key, item ) {
+
+            if( item.gsx$semanadesde.$t != ''){
+
+            
+           
+            if(item.gsx$supermercado.$t == supermercado || supermercado == "todos"){
+                lista += '<tr>';
+                
+                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+                
+
+                lista += ' <td class="supermercado"> <p>'+ item.gsx$producto.$t + '</p>';
+              /*  lista += ' <td class="proveedor"> <p>'+ item.gsx$proveedor.$t + '</p></td>';
+                lista += ' <td class="ean"> <p>'+ item.gsx$ean.$t +'</p></td>';
+                lista += ' <td class"precio"> <p class="text-success"> <strong>'+ item.gsx$precio.$t +'</strong></p></td>';*/
+                lista += '</tr>';
+              }
+
+               }  
+            }
+          );
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+            var listOptions = {
+            valueNames: ['supermercado','proveedor','ean'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+             var listaNueva = new List('listadoSuper', listOptions); 
+
+         $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+      $("#superHtml").on("change", function() {
+       supermercado = $("#superHtml option:selected" ).data('super');
+       
+        
+       filtrarContenido(supermercado);
+      });
+
+
+    };
+
+
+
+
+
+
+
+
+      jQuery.getJSON(
+        'https://spreadsheets.google.com/feeds/list/1CTUNQ2-iBJKOFVeremZB8WKi-gUdQtJnROWuNSSz8II/2/public/values?alt=json',
+        function (data) {
+
+          $("#selectorSuper").html("Todos");
+        var grupoSuper= data['feed']['entry'];
+
+      
+          $.each(grupoSuper , function(index, el) {
+
+            var superElegido= el['gsx$supermercado']['$t'];
+            console.log(el);
+            $('#superHtml').append('<option data-super="'+ superElegido +'" value="'+ superElegido +'">'+ superElegido +'</option>')
+          });
+        });
+
+
+
+   
+    
+
+
+  });
+  })(jQuery);
+
+ 
+  
+</script>
+
