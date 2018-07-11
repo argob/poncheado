@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Informe al Congreso</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/sites/default/files/css/css_LJKBU1OXxsdR2wnorpBYP0zxWlMucvPakrDWiK2l1KE.css">
+  </head>
+
+  <body>
+    <main role="main">
+
+      <div class="container">
+        <section>
+          <div class="row">
+            <div class="steps steps-horizontal col-md-12 text-center">
+                <div class="col-xs-4 col-sm-3 col-md-4 step">
+                    <div>
+                        <div class="circle bg-cielo">1</div>
+                        <div class="line">&nbsp;</div>
+                    </div>
+                    <div>
+                        <div class="description p-b-1">
+                            <h4 class="h5 m-t-0">Elegí un trámite</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-4 step">
+                    <div>
+                        <div class="circle bg-cielo">2</div>
+                        <div class="line">&nbsp;</div>
+                    </div>
+                    <div>
+                        <div class="description p-b-1">
+                            <h4 class="h5 m-t-0">Elegí un turno</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-4 step">
+                    <div>
+                        <div class="circle bg-cielo">3</div>
+                        <div class="line">&nbsp;</div>
+                    </div>
+                    <div>
+                        <div class="description p-b-1">
+                            <h4 class="h5 m-t-0">Completá tus datos</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+
+        <section id="vue">
+          <h2 class="text-center m-b-2 h1">Buscá el trámite</h2>
+          <div id="proyectos">
+            <div class="row">
+              <div class="col-md-6">    
+                <div class="form-group">
+                  <label>Buscá por nombre del trámite</label>
+                  <input class="form-control search">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="">Filtrar por organismo</label>
+                  <select id="tipo-proyectos" class="form-control">
+                    <option data-tipoproyectos="todos" value="todos">Todos</option>
+                    <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
+                    <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
+                    <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
+                    <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div class="col-md-3">
+                <div class="form-group">
+                  <label for="">Ordenar por</label>
+                  <select id="ordenar-proyectos" class="form-control">
+                    <option class="sort" data-sort="fecha" value="nuevos">Más nuevos</option>
+                    <option class="sort" data-sort="duracion" value="duracion">Mayor duración</option>
+                    <option class="sort" data-sort="cumplimiento" value="cumplimiento">Mayor cumplimiento</option>
+                  </select>
+                </div>
+              </div> -->
+            </div>
+
+            <div class="list row panels-row m-y-3">
+              <div is="services" v-for="service in services" v-bind:service="service"></div>
+            </div>
+          </div>
+        </section> 
+
+      </div>
+    </main>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+      window.data = {
+        filter: {
+          search: false,
+          org: false
+        },
+        services: []
+      }
+
+
+      Vue.component('services',{
+        props: ['service'],  
+        template:`<div class="col-xs-12 col-sm-6 col-md-4">
+          <a class="panel panel-default" v-bind:href="'https://turnos.argentina.gob.ar/turnos/seleccionTurno/' + service.id">
+            <div class="panel-body">
+              <h3>{{ service.nombre }}</h3>
+              <p class="text-muted ">{{service.organismo}}</p>
+            </div>
+          </a>
+        </div>`
+      });
+
+      var Vm = new Vue({
+        el: '#vue',
+        data: data
+      });
+
+      jQuery(function(){
+        jQuery.ajax({
+          url: 'https://turnos-api.argentina.gob.ar/api/v1.0/tramites?offset=0&limit=100',
+          data: 'json',
+          success: function(response){
+
+            Vue.set(data, 'services', response.result)
+          }
+        });
+      });
+       
+    </script>
+
+
+  </body>
+</html>
+
+

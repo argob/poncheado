@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/chosen-js/chosen.jquery.js"></script>
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label for="buscar"><span class="sr-only">Buscar trámites, servicios o áreas ...</span></label>
+              <input id="buscar" type="text" class="form-control" aria-hidden=true placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image:url(img/home/argentina_2.jpg);">
+  <div class="jumbotron_body jumbotron_body-lg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center">¿Qué estás buscando?</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <form role="search">
+            <div class="input-group input-group-lg">
+              <input class="form-control" type="text" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <a id="appAlert" class="alert alert-info visible-xs" href="/app">
+          <div class="media">
+            <div class="media-left media-middle">
+              <i class="fa fa-mobile fa-fw fa-3x"></i>
+            </div>
+            <div class="media-body media-middle">
+              <h5 class="m-y-0">Descargá la aplicación.</h5>
+              <p id="appAlertText" class="m-y-0">Disponible para Android y iOS.</p>
+            </div>
+          </div>
+        </a>  
+      </div>
+    </div> 
+
+    <script>
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        document.getElementById('appAlert').href = "https://play.google.com/store/apps/details?id=ar.gob.argentinagobar";
+        document.getElementById('appAlertText').innerHTML = "Disponible para Android.";
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        document.getElementById('appAlert').href = "https://itunes.apple.com/us/app/argentina.gob.ar/id1107620792?l=es&mt=8";
+        document.getElementById('appAlertText').innerHTML = "Disponible para iOS.";
+      }
+    </script>
+
+    <h2 class="h3 m-b-2">Servicios más consultados</h2>
+
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <a class="panel panel-default" href="tramites/dni.html">
+         <div class="panel-heading" style="background-image:url(tramites/img/dni1.jpg);"></div>
+          <div class="panel-body">
+            <h3>Tramitar el DNI</h3>
+            <p class="text-muted">El Documento Nacional de Identidad (DNI) es el documento principal de identificación con que contamos los argentinos (en el país o en el exterior) y los extranjeros con domicilio en nuestro territorio.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" href="tramites/pasaporte.html">
+         <div class="panel-heading" style="background-image:url(tramites/img/tarjeta_pasaporte.jpg);"></div>
+          <div class="panel-body">
+            <h3>Tramitar el pasaporte</h3>
+            <p class="text-muted">Si vas a viajar al extranjero, es obligatorio tener el pasaporte al día, salvo que vayas a los países limítrofes donde solo te exigen el DNI.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a class="panel panel-default" href="tramites/monotributo.html">
+          <div class="panel-heading" style="background-image:url(tramites/img/monotributo.jpg);"></div>
+          <div class="panel-body">
+            <h3>Monotributistas</h3>
+            <p class="text-muted">El monotributo es el régimen que podés elegir como pequeño contribuyente para cumplir de forma simplificada tus obligaciones con la AFIP.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a class="panel panel-default" href="tramites/seguimiento-tramite-dni.html">
+          <div class="panel-body">
+            <h3></span>Seguimiento de trámite para DNI</h3>
+            <p class="text-muted">Si ya iniciaste el trámite para renovar, reemplazar o actualizar tu DNI, podés hacer el seguimiento en línea.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a class="panel panel-default" href="tramites/certificacion-negativa-anses.html">
+          <div class="panel-body">
+            <h3></span>Obtener Certificación Negativa de ANSES</h3>
+            <p class="text-muted">Generar comprobante que acredita que no registrás prestaciones por desempleo, jubilación, pensión, planes, programas o beneficios. </p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a class="panel panel-default" href="tramites/turnos-anses.html">
+          <div class="panel-body">
+            <h3></span>Turnos para ANSES</h3>
+            <p class="text-muted">Este trámite te permite sacar, consultar o cancelar turnos para solicitar la jubilación o la pensión, una asignación familiar, el subsidio por desempleo, la ayuda escolar anual o cualquier otro servicio de ANSES.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3">
+        <a class="panel panel-disabled" href="tramites/calendario-pagos-anses.html">
+          <div class="panel-body">
+            <h3></span>Consultar calendario de pago de ANSES</h3>
+            <p class="text-muted">Para jubilado o pensionado, beneficiario del programa PROGRESAR, de una pensión no contributiva, de una AUH, una asignación por embarazo, de un subsidio por desempleo o cualquier otro beneficio de ANSES.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <hr class="hr-lg"></hr>
+
+    <h2 class="h3 m-b-2">Categorías de servicios</h2>
+
+    <div class="row row-flex">
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Documentación ciudadana</h5> </a>
+          <p class="text-muted">DNI, Pasaporte, Certificados, Partidas de Nacimiento</p>      
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Beneficios Sociales</h5> </a>
+          <p class="text-muted">Jubilaciones, Pensiones, Asignaciones Universales</p>             
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"> <h5>Finanzas e Impuestos</h5></a>
+          <p class="text-muted">Monotributo, Declaración Jurada, CUIT</p>
+       </div>        
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"> <h5>Trabajo</h5> </a>
+          <p class="text-muted">Seguros, Asesoramientos Laboral, Cursos de Formación</p>      
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"> <h5>Industria y Negocios</h5> </a>
+          <p class="text-muted">Animales/Vegetales,Certificados para productos</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Defensa, Justicia y DDHH</h5></a> 
+          <p class="text-muted">Derechos Humanos, Reclamos, Denuncias</p>      
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Salud y Salubridad</h5></a> 
+        <p class="text-muted">Obras sociales, Habilitaciones, Hospitales</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"> <h5>Ciencia, Tecnología e Innovación</h5> </a> 
+         <p class="text-muted">Patentes, Capacitaciones especializadas, Licencias</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Turismo y Migraciones</h5></a>
+         <p class="text-muted">Visitas guiadas, Agencias de Viajes, Permisos de ingreso, Residencias</p>       
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"> <h5>Cultura, Educación y Deporte</h5></a>
+         <p class="text-muted">Centros culturales, Teatro, Becas para deportistas, Títuloss</p>     
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Comercio y Relaciones Exteriores</h5></a>
+          <p class="text-muted">Importación/Exportación, Productos, Sociedades Comerciales</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Comunicaciones</h5> </a> 
+         <p class="text-muted">Telecomunicaciones, Radiodifusión,Servicio Postal</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Ambiente y Agro</h5></a>
+        <p class="text-muted">Ejemplares vivos, Residuos Peligrosos, Recursos Genético</p>   
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 m-b-2">
+        <a class="" href="tramites/seguimiento-tramite-dni.html"><h5>Transporte</h5></a> 
+        <p class="text-muted">Automotores/motos/buques, Autorizaciones, Traslados</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="hidden">
+  <div class="container">
+    <div class="row panels-row  margin-60">
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a class="panel panel-default panel-icon panel-secondary" href="tramites/monotributo.html">
+          <div class="panel-heading" style="background-image:url(tramites/img/monotributo.jpg);"></div>
+          <div class="panel-body">
+            <h3><span class="visible-xs-inline text-secondary"><i class="fa fa-user"></i> &nbsp;</span>Monotributistas</h3>
+            <p class="text-muted">El monotributo es el régimen que podés elegir como pequeño contribuyente para cumplir de forma simplificada tus obligaciones con la AFIP.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a class="panel panel-default panel-icon panel-secondary" href="tramites/dni.html">
+         <div class="panel-heading" style="background-image:url(tramites/img/dni1.jpg);"></div>
+          <div class="panel-body">
+            <h3><span class="visible-xs-inline text-secondary"><i class="fa fa-user"></i> &nbsp;</span>Tramitar el DNI</h3>
+            <p class="text-muted">El Documento Nacional de Identidad (DNI) es el documento principal de identificación con que contamos los argentinos (en el país o en el exterior) y los extranjeros con domicilio en nuestro territorio.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a class="panel panel-default panel-icon panel-secondary" href="tramites/pasaporte.html">
+         <div class="panel-heading" style="background-image:url(tramites/img/pasaporte.jpg);"></div>
+          <div class="panel-body">
+            <h3><span class="visible-xs-inline text-secondary"><i class="fa fa-user"></i> &nbsp;</span>Tramitar el pasaporte</h3>
+            <p class="text-muted">Si vas a viajar al extranjero, es obligatorio tener el pasaporte al día, salvo que vayas a los países limítrofes donde solo te exigen el DNI.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-md-8 col-md-offset-2  margin-60">
+        <hr>
+      </div>
+    </div>  
+    <div class="row panels-row">
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a href="#" class="panel panel-default">
+          <div class="panel-heading" style="background-image:url(img/home/servicios.jpg);"></div>
+          <div class="panel-body">
+            <h3 class="h2">Servicios</h3>
+            <p class="text-muted">Todos los trámites del Estado para resolver tus necesidades fácilmente.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a href="#" class="panel panel-default">
+          <div class="panel-heading" style="background-image:url(img/home/areas2.jpg);"></div>
+          <div class="panel-body">
+            <h3 class="h2">Áreas de Gobierno</h3>
+            <p class="text-muted">Todas las áreas de gobierno, sus formas de contacto y sitios web.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-md-4 col-sm-6">
+        <a href="#" class="panel panel-default">
+          <div class="panel-heading" style="background-image:url(img/home/casarosada.jpg);"></div>
+          <div class="panel-body">
+            <h3 class="h2">Casa Rosada</h3>
+            <p class="text-muted">Actividades y novedades del Poder Ejecutivo nacional.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    </main>
+    <footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="/proyectos/argentina/img/argentinagob.svg">
+        <p class="text-muted small">Los contenidos de Argentina.gob.ar están licenciados bajo <a href="https://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+        <a class="btn btn-primary m-t-1" href="/acerca">¿Querés hacernos una sugerencia?</a>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/servicios">Trámites y servicios</a></li>
+          <li><a href="/organismos">Organismos del Estado</a></li>
+          <li><a href="/pais">Nuestro país</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/ayuda">Ayuda</a></li>
+          <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+          <li><a href="/creditos">Créditos</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+    
+  </body>
+</html>
