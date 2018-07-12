@@ -13,49 +13,44 @@
   </head>
 
   <body>
-    <main role="main">
 
-      <div class="container">
-        <section>
-          <div class="row">
-            <div class="steps steps-horizontal col-md-12 text-center">
-                <div class="col-xs-4 col-sm-3 col-md-4 step">
-                    <div>
-                        <div class="circle bg-cielo">1</div>
-                        <div class="line">&nbsp;</div>
-                    </div>
-                    <div>
-                        <div class="description p-b-1">
-                            <h4 class="h5 m-t-0">Elegí un trámite</h4>
-                        </div>
+    <div class="container">
+      <div class="row">
+        <div class="steps steps-horizontal col-md-12 text-center">
+            <div class="col-xs-4 col-sm-3 col-md-4 step">
+                <div>
+                    <div class="circle bg-cielo">1</div>
+                    <div class="line">&nbsp;</div>
+                </div>
+                <div>
+                    <div class="description p-b-1">
+                        <h4 class="h5 m-t-0">Elegí un trámite</h4>
                     </div>
                 </div>
-                <div class="col-xs-4 col-sm-3 col-md-4 step">
-                    <div>
-                        <div class="circle bg-cielo">2</div>
-                        <div class="line">&nbsp;</div>
-                    </div>
-                    <div>
-                        <div class="description p-b-1">
-                            <h4 class="h5 m-t-0">Elegí un turno</h4>
-                        </div>
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-4 step">
+                <div>
+                    <div class="circle bg-cielo">2</div>
+                    <div class="line">&nbsp;</div>
+                </div>
+                <div>
+                    <div class="description p-b-1">
+                        <h4 class="h5 m-t-0">Elegí un turno</h4>
                     </div>
                 </div>
-                <div class="col-xs-4 col-sm-3 col-md-4 step">
-                    <div>
-                        <div class="circle bg-cielo">3</div>
-                        <div class="line">&nbsp;</div>
-                    </div>
-                    <div>
-                        <div class="description p-b-1">
-                            <h4 class="h5 m-t-0">Completá tus datos</h4>
-                        </div>
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-4 step">
+                <div>
+                    <div class="circle bg-cielo">3</div>
+                    <div class="line">&nbsp;</div>
+                </div>
+                <div>
+                    <div class="description p-b-1">
+                        <h4 class="h5 m-t-0">Completá tus datos</h4>
                     </div>
                 </div>
             </div>
         </div>
-        </section>
-
 
         <section id="vue">
           <h2 class="text-center m-b-2 h1">Buscá el trámite</h2>
@@ -70,12 +65,8 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="">Filtrar por organismo</label>
-                  <select id="tipo-proyectos" class="form-control">
-                    <option data-tipoproyectos="todos" value="todos">Todos</option>
-                    <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
-                    <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
-                    <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
-                    <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
+                  <select id="tipo-proyectos" class="form-control" v-model="filter.agency">
+                    <option v-for="(agency, index) in agencies" v-bind:value="index">{{ agency }}</option>
                   </select>
                 </div>
               </div>
@@ -95,10 +86,9 @@
               <div is="services" v-for="service in services" v-bind:service="service"></div>
             </div>
           </div>
-        </section> 
-
+        </section>
       </div>
-    </main>
+    </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -109,9 +99,10 @@
       window.data = {
         filter: {
           search: false,
-          org: false
+          agency: false
         },
-        services: []
+        services: [],
+        agencies: []
       }
 
 
@@ -121,7 +112,7 @@
           <a class="panel panel-default" v-bind:href="'https://turnos.argentina.gob.ar/turnos/seleccionTurno/' + service.id">
             <div class="panel-body">
               <h3>{{ service.nombre }}</h3>
-              <p class="text-muted ">{{service.organismo}}</p>
+              <p class="text-muted ">{{ service.organismo }}</p>
             </div>
           </a>
         </div>`
@@ -139,6 +130,12 @@
           success: function(response){
 
             Vue.set(data, 'services', response.result)
+
+            jQuery.each(response.result, function(index, service){
+              if(data.agencies.indexOf(service.organismo) == -1){
+                data.agencies.push(service.organismo);
+              }
+            })
           }
         });
       });
