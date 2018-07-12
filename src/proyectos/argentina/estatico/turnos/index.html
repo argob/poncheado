@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Informe al Congreso</title>
+    <title>Turnos</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
   <body>
     <div class="container">
 
-      <div class="steps steps-horizontal text-center row p-b-4">
+      <div class="steps steps-horizontal text-center row">
           <div class="col-xs-4 col-sm-3 col-md-4 step">
               <div>
                   <div class="circle bg-cielo">1</div>
@@ -34,7 +34,7 @@
               </div>
               <div>
                   <div class="description p-b-1">
-                      <h4 class="h5 m-t-0">Elegí un turno</h4>
+                      <h4 class="h5 m-t-0">Elegí el día y <br class="visible-lg">completá tus datos</h4>
                   </div>
               </div>
           </div>
@@ -45,7 +45,7 @@
               </div>
               <div>
                   <div class="description p-b-1">
-                      <h4 class="h5 m-t-0">Completá tus datos</h4>
+                      <h4 class="h5 m-t-0">Hacé el seguimiento con <br class="visible-lg"><a href="https://mi.argentina.gob.ar/turnos" target="_blank">Mi Argentina</a></h4>
                   </div>
               </div>
           </div>
@@ -72,9 +72,19 @@
             </div>
           </div>
 
-          <div class="list row panels-row m-t-3">
-            <div is="services" v-for="service in filteredServices" v-bind:service="service"></div>
-          </div>
+          <table class="table table-spaced">
+            <thead>
+              <tr>
+                <th>Trámite</th>
+                <th>Organismo</th>
+                <!-- <th></th> -->
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr is="services" v-for="service in filteredServices" v-bind:service="service"></tr>
+            </tbody>
+          </table>
 
           <template v-if="pagination.length > 1">
             <nav class="text-center" aria-label="Page navigation">
@@ -111,14 +121,15 @@
 
         Vue.component('services',{
           props: ['service'],  
-          template:`<div class="col-xs-12 col-sm-6 col-md-4">
-            <a class="panel panel-default" v-bind:href="'https://turnos.argentina.gob.ar/turnos/seleccionTurno/' + service.id">
-              <div class="panel-body">
-                <h3>{{ service.nombre }}</h3>
-                <p class="text-muted ">{{ service.organismo }}</p>
-              </div>
-            </a>
-          </div>`
+          template:`
+          <tr>
+            <td><strong>{{ service.nombre }}</strong></td>
+            <td>{{ service.organismo }}</td>
+            <!--<td>{{ service.excepcional ? 'Extranjeros' : 'Argentinos' }}</td>-->
+            <td>
+              <a class="btn btn-sm btn-success" v-bind:href="'https://turnos.argentina.gob.ar/turnos/seleccionTurno/' + service.id" style="width: 140px;"> Sacar turno </a>
+            </td>
+          </tr>`
         });
 
         var Vm = new Vue({
@@ -166,6 +177,14 @@
             url: 'https://turnos-api.argentina.gob.ar/api/v1.0/tramites?offset=0&limit=100',
             data: 'json',
             success: function(response){
+
+              response.result.sort(function (a, b) {
+                if (a.organismo >= b.organismo) {
+                  return 1;
+                }else{
+                  return -1;
+                }
+              });
 
               Vue.set(data, 'services', response.result)
 
