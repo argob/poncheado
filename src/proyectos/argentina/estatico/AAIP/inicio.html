@@ -1,0 +1,274 @@
+---
+layout: argentina
+---
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+      p{
+        font-weight: 400;
+      }
+      .categoria-lf{
+        text-transform: lowercase;
+        font-size: 15px;
+      }
+      .categoria-lf::first-letter{
+
+        text-transform: uppercase; 
+      }
+      .th-min{
+        min-width: 250px;
+      }
+
+      .logo{
+        max-width: 380px!important;
+      }
+
+      .mt{
+        margin-top: 10px!important;
+      }
+
+      .wLimit{
+        max-width: 130px;
+      }
+
+      .wLimit2{
+        max-width: 200px;
+      }
+      .input100{
+        width: 100%!important;
+      }
+      
+      
+    </style>
+
+
+   
+    <div class="container">
+      <div>
+        <h4>Buscar por</h4>
+      </div>
+    <div class="listadoSuper">
+      <div class="row m-t-3">
+        <div class="col-xs-12 col-md-4 p-r-0 m-t-1">
+          <div class="radio wLimit col-xs-5 p-l-0">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                CUIT/CUIL
+            </label>
+          </div>
+          <div class="radio mt col-xs-7">
+            <label>
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                Nombre o Razón social
+            </label>
+          </div>
+        </div>
+        <div class="col-md-8 m-t-1">
+          <div class="mt">
+            <label for="">Búsqueda</label>
+          </div>
+          <form class="form-inline">
+            <div class="form-group  col-xs-10 p-l-0">
+              <input class="form-control input100" placeholder="">
+            </div>
+            <a class="btn btn-primary"  role="button" href="">BUSCAR</a>
+          </form>
+        </div>
+        <div class="table-responsive col-md-12">
+          <table class="table table-spaced table-hover">
+            <thead>
+              <tr>
+                <th>CUIT / CUIL</th>
+                <th>Nombre o Razon social</th>
+                <th>Número de referencia</th>
+                <th></th>
+              </tr>
+            </thead> 
+          <tbody class="list" id="show-data">
+            
+          </tbody>
+        </table>
+      </div>           
+    </div>
+    </div>
+
+    <div class="row">
+      <h3 class="text-center p-y-2">
+        Enlaces relacionados
+      </h3>
+    </div>
+    <div class="row panels-row">
+      <div class="col-xs-12 col-sm-offset-2 col-sm-4 ">
+        <a class="panel panel-default" href="/precios-cuidados">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-body media-middle">
+                <h3>Link 1</h3>
+                    
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="https://argentina.gob.ar/precios-cuidados/lista-de-supermercados-adheridos-2018">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body">
+                    <h3>Link 2</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+           
+    
+        
+
+      
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+
+    
+    var supermercado = "todos"
+    var listadoSuper = "";
+   
+
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1CTUNQ2-iBJKOFVeremZB8WKi-gUdQtJnROWuNSSz8II/1/public/values?alt=json',
+          
+
+          function (data) {
+            listadoSuper = data['feed']['entry'];
+            filtrarContenido(supermercado);
+
+          }
+
+        );
+
+          function filtrarContenido(supermercado){
+
+          var lista = '';
+
+          
+          $.each(listadoSuper, function( key, item ) {
+
+            if( item.gsx$semanadesde.$t != ''){
+
+            
+           
+            if(item.gsx$supermercado.$t == supermercado || supermercado == "todos"){
+                lista += '<tr>';
+                
+                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+                
+
+                lista += ' <td class="supermercado"> <p>'+ item.gsx$producto.$t + '</p>';
+                lista += ' <td class="supermercado"> <p>'+ item.gsx$producto.$t + '</p>';
+                lista += ' <td class="supermercado"> <p>'+ item.gsx$producto.$t + '</p>';
+                lista += ' <td class="supermercado"> <a class="btn btn-primary"  role="button href="' + item.gsx$producto.$t+ "> VER </a>";
+              /*  lista += ' <td class="proveedor"> <p>'+ item.gsx$proveedor.$t + '</p></td>';
+                lista += ' <td class="ean"> <p>'+ item.gsx$ean.$t +'</p></td>';
+                lista += ' <td class"precio"> <p class="text-success"> <strong>'+ item.gsx$precio.$t +'</strong></p></td>';*/
+                lista += '</tr>';
+              }
+
+               }  
+            }
+          );
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+            var listOptions = {
+            valueNames: ['supermercado','proveedor','ean'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+             var listaNueva = new List('listadoSuper', listOptions); 
+
+         $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+      $("#superHtml").on("change", function() {
+       supermercado = $("#superHtml option:selected" ).data('super');
+       
+        
+       filtrarContenido(supermercado);
+      });
+
+
+    };
+
+
+
+
+
+
+
+
+      jQuery.getJSON(
+        'https://spreadsheets.google.com/feeds/list/1CTUNQ2-iBJKOFVeremZB8WKi-gUdQtJnROWuNSSz8II/2/public/values?alt=json',
+        function (data) {
+
+          $("#selectorSuper").html("Todos");
+        var grupoSuper= data['feed']['entry'];
+
+      
+          $.each(grupoSuper , function(index, el) {
+
+            var superElegido= el['gsx$supermercado']['$t'];
+            console.log(el);
+            $('#superHtml').append('<option data-super="'+ superElegido +'" value="'+ superElegido +'">'+ superElegido +'</option>')
+          });
+        });
+
+
+
+   
+    
+
+
+  });
+  })(jQuery);
+
+ 
+  
+</script>
+
