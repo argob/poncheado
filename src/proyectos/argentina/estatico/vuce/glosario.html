@@ -45,6 +45,11 @@ layout: argentina
       .logo{
         max-width: 380px!important;
       }
+
+      .pagination li {
+      display:inline-block;
+      padding:5px;
+    }
       
     </style>
 
@@ -89,7 +94,15 @@ layout: argentina
               </tbody>
             </table>
             <nav class="text-center">
-              <ul class="pagination"></ul>
+              <div>
+                <a class="prev">...</a>
+              </div>
+              <ul class="pagination" id="pag">
+                
+              </ul>
+              <div>
+               <a class="next">...</a>
+              </div>
             </nav>  
           </div>           
         </div>
@@ -103,7 +116,7 @@ layout: argentina
       
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
 <script type="text/javascript">
 
@@ -155,11 +168,25 @@ $(document).ready(function () {
             var listOptions = {
             valueNames: ['termino','descripcion'],
             page: 10,
-            plugins: [ ListPagination({}) ]
+            pagination: true
             
            };
+          
+          var listaNueva = new List('listadoTerminos', listOptions); 
 
-             var listaNueva = new List('listadoTerminos', listOptions); 
+             var i = 1;
+            $('.next').on('click', function(){
+                i++;
+                listaNueva.show(i, 3); 
+            })
+
+            $('.prev').on('click', function(){
+                i--;
+                listaNueva.show(i, 3); 
+            })
+
+
+
 
          $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
@@ -173,8 +200,9 @@ $(document).ready(function () {
             termino = $("#selectTermino option:selected" ).data('termino');
        
         
-       filtrarContenido(termino);
-      });
+            filtrarContenido(termino);
+          
+          });
 
 
        
