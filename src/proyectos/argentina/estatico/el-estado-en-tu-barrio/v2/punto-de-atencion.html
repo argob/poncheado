@@ -57,11 +57,11 @@ layout: argentina
 
 <!-- CATEGORIA MODELO -->
 <div id="categoria-clon" style="display:none">
-      <div class="panel panel-default">
-      <div class="panel-heading" style="min-height: auto; border-bottom: 1px solid #ccc;">
-        <h4><b class="text-muted nombreCategoria">ANSES</b></h4>
-      </div>
+      <div class="panel">
+      
       <div class="panel-body">
+      
+        <h3 class="m-b-1"><b class="nombreCategoria">ANSES</b></h3>
         <ul class="list content_format">
           
         </ul>
@@ -119,8 +119,8 @@ layout: argentina
           <h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuando estemos cerca de tu casa?</h2>
         </div>
         <div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center">
-          <p><a class="btn btn-primary btn-lg btn-block" target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio">REGISTRATE</a></p>
-          <p><a class="btn btn-md btn-default btn-block" target="_blank" href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></p>
+          <p><a class="btn btn-primary btn-md btn-block" target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio">REGISTRATE</a></p>
+          <p><a class="btn btn-md btn-link btn-block" target="_blank" href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></p>
         </div>        
         <div class="col-md-12">
           <h2 class="m-b-2 m-y-4 text-center">Mirá las fotos de El Estado en tu Barrio</h2>
@@ -164,50 +164,55 @@ layout: argentina
 
 <script type="text/javascript">
 
-window.onload = function() {
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var puntoId = url.searchParams.get("punto");
+var url_string = window.location.href;
+var url = new URL(url_string);
+var puntoId = url.searchParams.get("punto");
+var provincia = "";
 
   
 //DATOS DEL PUNTO
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
   listaPuntos = data.feed.entry;
 
-  $.each(listaPuntos, function(index, val) {
+     $.each(listaPuntos, function(index, val) {
     
      if(val.gsx$nombre.$t == puntoId){
+        provincia = val.gsx$provincia.$t;
+         
         $("#nombrePunto").html(val.gsx$nombre.$t);
-        $("#provincia").html(val.gsx$provincia.$t);
+        $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
         $("#fecha_desde").html(val.gsx$fechadesde.$t);
         $("#fecha_hasta").html(val.gsx$fechahasta.$t);
-        $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$direccion.$t + " " + val.gsx$localidad.$t + "&output=embed")
+        $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
         
-        if(val.gsx$suspendido.$t != ""){
-          $("#motivosuspendido h5").html(val.gsx$suspendido.$t);
-          $("#motivosuspendido").removeClass("hidden").addClass("show");
-        }
-     }
-  });
-})
+            if(val.gsx$suspendido.$t != ""){
+              $("#motivosuspendido h5").html(val.gsx$suspendido.$t);
+              $("#motivosuspendido").removeClass("hidden").addClass("show");
+            }
+          }
+      });
+
+
+
+
 
 
 
 
 //LISTA DE TRÁMITES DEL PUNTO
+
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
-
-
 
   $.each(listaCategorias, function(punto, val) {
       $("#categoria-clon .content_format").html("");
         $("#categoria-clon .nombreCategoria").html(punto);
 
+             
           $.each(val, function(indice, tramite) {
-            if(tramite.gsx$punto.$t == puntoId || tramite.gsx$puntoid.$t == 0){
+            if(tramite.gsx$punto.$t == puntoId || tramite.gsx$puntoid.$t == 0 || tramite.gsx$provincia.$t == provincia){
                $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">'+tramite.gsx$tramite.$t+'</a></li>')
               }
           });
@@ -218,36 +223,38 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         }
   });
  
-//FUNCION CONTAIN INSENSITVE
-$.extend($.expr[':'], { 
-  'containsi': function(elem, i, match, array)
-  {
-    return (elem.textContent || elem.innerText || '').toLowerCase()
-        .indexOf((match[3] || "").toLowerCase()) >= 0;
-  }
-});
+  //FUNCION CONTAIN INSENSITVE
+  $.extend($.expr[':'], { 
+    'containsi': function(elem, i, match, array)
+    {
+      return (elem.textContent || elem.innerText || '').toLowerCase()
+          .indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
  
-$("#buscadorTramite").on("keyup", function(event) {
-   var palabra = $(this).val();
-   $(".content_format li").addClass("hidden").removeClass("filtrado");
-   $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
+  //FILTRAR TRÁMITES
+  $("#buscadorTramite").on("keyup", function(event) {
+     var palabra = $(this).val();
+     $(".content_format li").addClass("hidden").removeClass("filtrado");
+     $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
 
-   $("#tramites .panel").each(function(i){
-      cantidad = $(this).find("li.filtrado").length;
-      if(cantidad == 0){
-        $(this).hide(); 
-      }
-      else{
-        $(this).show();
-      }
-   })
-
-});
-
-
-
+     $("#tramites .panel").each(function(i){
+        cantidad = $(this).find("li.filtrado").length;
+        if(cantidad == 0){
+          $(this).hide(); 
+        }
+        else{
+          $(this).show();
+        }
+     })
+  });
 })
 
+
+//Fin del primer get
+})
+
+//TRAER REQUISITOS DEL TRÁMITE
 $(document).on("click",".mostrarTramite",function(){
     var tramiteId = $(this).attr("data-tramite");
   
@@ -264,23 +271,21 @@ $(document).on("click",".mostrarTramite",function(){
       }
     });
 
-//MÉTRICAS
-ga('create', 'UA-71585203-1', 'auto');
-ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
+  //MÉTRICAS
+  ga('create', 'UA-71585203-1', 'auto');
+  ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
 
 
-    $(".modal-title").html(nombre);
+      $(".modal-title").html(nombre);
 
-    var converter = new showdown.Converter(),
-    descripcion_formatted = converter.makeHtml(descripcion);
+      var converter = new showdown.Converter(),
+      descripcion_formatted = converter.makeHtml(descripcion);
 
-    $(".modal-body").html(descripcion_formatted);
+      $(".modal-body").html(descripcion_formatted);
 
-    $('#modalTramite').modal("show");
+      $('#modalTramite').modal("show");
+  })
 })
-})
 
 
-
-}
 </script>
