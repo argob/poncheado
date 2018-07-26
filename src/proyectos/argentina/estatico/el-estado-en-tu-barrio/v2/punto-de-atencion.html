@@ -43,7 +43,7 @@ layout: argentina
                     </div>
                 </h4>
 
-                <h3 class="h4 m-y-2">¿Qué trámites puedo realizar en este punto ?</h3>
+                <h3 class="h4 m-b-2">¿Qué trámites puedo realizar en este punto ?</h3>
                 <div class="form-group">
                       <label class="control-label h5">Buscar trámite</label>
                       <div class="row">
@@ -72,6 +72,7 @@ layout: argentina
 
 
                 <div class="list" id="tramites">
+                <p class="preloader">  <i class="fa fa-spinner fa-pulse"></i> Cargando información...</p>
                 </div>
 
             </div>
@@ -112,18 +113,52 @@ layout: argentina
     </div>
 </section>
 
+
+
 <section class="m-t-0 p-t-0">
   <div class="container">
+
+  <hr>
+
+<div class="row">
+   <div class="col-md-6">
+      <div class="panel-pane pane-texto">
+               <div class="alert alert-info">
+                  <div class="media">
+                     <div class="media-left"> <i class="fa fa-desktop fa-fw fa-4x"></i></div>
+                     <div class="media-body">
+                        <h5></h5>
+                        <h4><a target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio/">Registrate</a></h4>
+                        <p class="margin-0"></p>
+                        <p>Te avisaremos cuando estemos cerca de tu casa.</p>
+                        <p></p>
+                     </div>
+                  </div>
+               </div>
+      </div>
+   </div>
+   <div class="col-md-6">
+      <div class="panel-pane pane-texto">
+               <div class="alert alert-warning">
+                  <div class="media">
+                     <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
+                     <div class="media-body">
+                        <h5></h5>
+                        <h4><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></h4>
+                        <p class="margin-0"></p>
+                        <p>Entra acá sí tenés alguna duda.</p>
+                        <p></p>
+                     </div>
+                  </div>
+               </div>
+          </div>
+   </div>
+</div> 
+
+
   <div class="row">
         <div class="col-md-12">
-          <h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuando estemos cerca de tu casa?</h2>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center">
-          <p><a class="btn btn-primary btn-md btn-block" target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio">REGISTRATE</a></p>
-          <p><a class="btn btn-md btn-link btn-block" target="_blank" href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></p>
-        </div>        
-        <div class="col-md-12">
-          <h2 class="m-b-2 m-y-4 text-center">Mirá las fotos de El Estado en tu Barrio</h2>
+          <h2 class="m-b-2 m-y-3 text-center">Mirá las fotos de El Estado en tu Barrio</h2>
         </div>      
       <div class="col-md-4">
           <img src="https://www.argentina.gob.ar/sites/default/files/eetb_catamarca_1.jpg" class="img-responsive img-rounded m-b-1">
@@ -197,13 +232,12 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 
 
 
-
-
-
-
 //LISTA DE TRÁMITES DEL PUNTO
 
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
+
+  $(".preloader").remove();
+
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
 
   $.each(listaCategorias, function(punto, val) {
