@@ -144,23 +144,16 @@ layout: argentina
         </div>
 
         <div class="row">
-          <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default">
-              <div class="panel-body">
-                <div class="media">
-                  
-                  <div class="media-body media-middle">
-                   <a href="" id="pdf" style="display: none;"><h3>PDF</h3></a>
-                    
-                  </div>
-                </div>
-              </div>
-            </a>
+          <div class="col-sm-offset-4 col-sm-4 m-b-2">
+            <a href="" id="pdf" style="display: none;" class="btn btn-primary btn-lg text-center center-block">
+            Descargá el formulario</a>
           </div>
         </div>
 
+        <hr>
+
       <div class="row">
-        <div class="col-sm-offset-4 col-sm-4 m-b-3">
+        <div class="col-sm-offset-4 col-sm-4 m-b-3 m-t-2">
           
             <div class="alert alert-warning">
               <div class="media">
@@ -298,7 +291,7 @@ $(document).ready(function () {
     function (data) {
 
           listadoProductos = data['feed']['entry'];
-          console.log(listadoProductos);
+         
           filtrarContenido(zona,categoria);
           
 
@@ -376,15 +369,7 @@ $(document).ready(function () {
 
         }
 
-
-
-        
-
-       
-
-
-
-         jQuery.getJSON(
+ jQuery.getJSON(
     'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/2/public/values?alt=json',
     function (data) {
       var grupoCategorias= data['feed']['entry'] 
@@ -408,7 +393,7 @@ $(document).ready(function () {
        zona = $("#zona option:selected" ).data('zona');
        categoria = $(document).find("#categoria option:selected").data('categoria');
         console.log(zona);
-       filtrarContenido(zona, categoria);
+       
 
        jQuery.getJSON(
     'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/3/public/values?alt=json',
@@ -434,7 +419,7 @@ $(document).ready(function () {
           
         });
          
-
+        filtrarContenido(zona, categoria);
       });
 
     });

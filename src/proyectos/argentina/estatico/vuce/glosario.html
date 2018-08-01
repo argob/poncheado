@@ -50,6 +50,10 @@ layout: argentina
       display:inline-block;
       padding:5px;
     }
+
+    li.disabled{
+      display: none;
+    }
       
     </style>
 
@@ -94,17 +98,15 @@ layout: argentina
               </tbody>
             </table>
             <nav class="text-center">
-              <div>
-                <a class="prev">...</a>
-              </div>
+              
               <ul class="pagination" id="pag">
                 
               </ul>
-              <div>
-               <a class="next">...</a>
-              </div>
+           
             </nav>  
-          </div>           
+          </div> 
+
+
         </div>
       </div>
      
@@ -113,11 +115,8 @@ layout: argentina
     
         
 
-      
-
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-
+<script src="list.js"></script>
+<script src="pagination.js"></script>
 <script type="text/javascript">
 
 (function($) {
@@ -168,23 +167,19 @@ $(document).ready(function () {
             var listOptions = {
             valueNames: ['termino','descripcion'],
             page: 10,
-            pagination: true
+            pagination: [{
+            name: "pagination",
+            paginationClass: "pagination",
+            next: true,
+            prev: true
+
             
-           };
+          }]
+        };
           
           var listaNueva = new List('listadoTerminos', listOptions); 
 
-             var i = 1;
-            $('.next').on('click', function(){
-                i++;
-                listaNueva.show(i, 3); 
-            })
-
-            $('.prev').on('click', function(){
-                i--;
-                listaNueva.show(i, 3); 
-            })
-
+          
 
 
 
