@@ -78,13 +78,23 @@ layout: mi-argentina
                       <h3 class="m-t-1"><b>Verificá tu DNI para imprimir tu credencial</b></h3>
                       <p class="m-b-2">Validá los datos de tu DNI ingresando el Nro de Trámite que figura en tu ejemplar.</p>
                       <small class="col-xs-12 p-x-0">Ingresá el número de trámite de tu DNI</small>
-                      <a href="#" id="dni"><small class="col-xs-12 p-x-0" aria-hidden="true">¿Dónde encuentro mi número de trámite?</small></a>
-                      <div id="dniContent">
-                        
-                      
+
+
+                      <a href="javascript:;" id="dni"  data-target-selector="#dniContent">
+                        <small class="col-xs-12 p-x-0" aria-hidden="true">¿Dónde encuentro mi número de trámite?</small>
+                      </a>
+
+
+
+                      <div id="dniContent" class="hidden">
+                       
                       </div>
+
+
                     </div>
-                    <div class="col-xs-12 col-md-8 p-x-0">
+
+
+                    <div class="col-xs-12 col-md-8 p-x-0 has-error">
                       <input class="form-control" type="number" name="id-tramite" maxlength="12" autocomplete="off" required="">
                       <span class="help-block">Falta ingresar este dato.</span>
                       <span class="help-block">Error en los datos ingresados, intentá de nuevo.</span>
@@ -184,20 +194,32 @@ layout: mi-argentina
     $('#dniContent').popover('toggle');
    });
 
-   $('#dniContent').popover({
+$('#dniContent').popover({
       
        html: 'true',
-       content: "<div><p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p></div><div class='m-x-1'><img src='img/dni_id.png' alt='' class='img-responsive'></div>",
-       placement:"top",
-       trigger: 'manual',
-      container: '#dni2',
-       viewport:"#dni2" 
+
+      content: "<div class='col-xs-12 p-x-0'><span class='close'>&times;</span></div><div><p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p></div><div class='m-x-1'><img src='img/dni_id.png' alt='' class='img-responsive'></div>",
+  placement:"top",
+  trigger: 'manual',
+  container: '#dni2',
+  viewport:"#dniContent",
 
    });
+    
 
-      
+ $('#dniContent').on('show.bs.popover', function(){
+   $(this).find('.arrow').attr('style', 'left:50%')
 
-});
+ })
+
+  $(document).on('click','.close',function(){
+       $('#dniContent').popover('hide');
+  });
+
+
+
+   
+  });
 (jQuery);
   
 
