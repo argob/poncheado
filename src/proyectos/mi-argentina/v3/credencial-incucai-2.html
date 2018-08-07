@@ -85,8 +85,8 @@ layout: mi-argentina
                         </div>
 
                         <div class="col-xs-10 col-sm-6">
-                          <img src="img/dni_id.png" alt="id-tramite" class="col-xs-12 p-x-0 m-t-1">
-                          <small>(*) En algunos DNI el nro. de trámite se ve al dorso</small>
+                          <img src="img/dni_id.png" alt="id-tramite" class="col-xs-12 p-x-0 m-t-1 max-w-img">
+                          <small class="col-xs-12 p-x-0 p-t-1">(*) En algunos DNI el nro. de trámite se ve al dorso</small>
                         </div>
                         <div class="p-t-1 col-xs-12">
                           <a class="btn btn-success btn-md p-x-1" href="">GUARDAR Y DESCARGAR</a>
@@ -180,42 +180,5 @@ layout: mi-argentina
   </div>
 </section>
 
-<script type="text/javascript">
-
-  $(document).ready(function(){
-    $("#dni").on("click", function(){
-    $('#dniContent').popover('toggle');
-   });
-
-$('#dniContent').popover({
-      
-       html: 'true',
-
-      content: "<div class='col-xs-12 p-x-0'><span class='close'>&times;</span></div><div><p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p></div><div class='m-x-1'><img src='img/dni_id.png' alt='imagen-dni' class='img-responsive'></div>",
-  placement:"top",
-  trigger: 'manual',
-  container: '#dni2',
-  viewport:"#dniContent",
-
-   });
-    
-
- $('#dniContent').on('show.bs.popover', function(){
-   $(this).find('.arrow').attr('style', 'left:50%')
-
- })
-
-  $(document).on('click','.close',function(){
-       $('#dniContent').popover('hide');
-  });
-
-
-
-   
-  });
-(jQuery);
-  
-
-</script>
 
 
