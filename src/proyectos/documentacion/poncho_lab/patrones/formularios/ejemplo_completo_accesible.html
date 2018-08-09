@@ -3,7 +3,7 @@
 <!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="ES"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,197 +43,150 @@
   <!--[if lt IE 9]>
       <script src="http://poncheado.herokuapp.com/node_modules/html5shiv/html5shiv.js"></script>
       <script src="http://poncheado.herokuapp.com/node_modules/respond.js/respond.min.js"></script>
-      <![endif]-->  
-
-    </head>
-
-    <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
-    <script type="text/javascript">
-
-      var busqueda = document.getElementById('buscar');
-      var buscar = document.getElementById('buscar-btn');
-      buscar.onclick = function () {
-        var buscado = busqueda.value;
-        location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
-      };
-
-    </script>
-    <body>
+    <![endif]-->  
 
 
+    <style>
+    .has-error .chosen-container a{
+      border-color:#BB4945!important;
+    }
+
+ </style>
 
 
-     <main role="main">
-      <style type="text/css">
-        .navbar{
-          box-shadow:none!important;
-        }
-        .help-block {
-          font-size: 85%;
-        }
+ 
+
+ <script src="http://poncheado.herokuapp.com/node_modules/jquery/dist/jquery.min.js"></script>
+ <script src="http://poncheado.herokuapp.com/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+ <script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+ <script>
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+
+</script>
 
 
-        .rc-label {
-          display: block;
-          float: left;
-          clear: none;
-          position: relative;
-          padding: 15px 15px 15px 35px!important;
-          margin-bottom: 10px;
-          cursor: pointer;
-          margin-bottom: 10px;
-
-        }
-
-        .rc-label input {
-          position: absolute;
-          top: 15px;
-          left: 24px;
-          cursor: pointer;
-          margin-left: -12px!important;
-        }
-
-        .rc-horizontal .rc-label {
-          float: none;
-          margin-bottom: 10px;
-        }
-
-        .radio-inline, .checkbox-inline {
-          padding-left: 0;
-        }
-
-        .has-error .chosen-container a{
-          border-color:#BB4945!important;
-        }
-
-        label{
-          font-weight: 500
-        }
-
-        @media (min-width: 641px) {
-
-          .rc-label {
-           float: left;
-         }
-       }
+</head>
+<body>
 
 
-     </style>
-
-     <div class="container">
+ <main class="container">
 
        <div class="pull-right">
         <fieldset>
          <div class="radio">
           <label for="se" class="rc-label">
-           <input type="radio" name="error" id="se" value="SE" tabindex="" required="" class="sinError" checked>
+           <input type="radio" name="error" id="se" value="SE" class="sinError" checked>
            Sin mensajes de error
          </label>
          <label for="ce" class="rc-label m-l-1">
-           <input type="radio" name="error" id="ce" value="CE" tabindex="" required="" class="conError">
+           <input type="radio" name="error" id="ce" value="CE" class="conError">
            Con mensajes de error
          </label>
        </div>  
      </fieldset>
    </div>
 
-   <section>
-    <article class="row">
-     <div class="col-md-8 col-md-offset-2">
+  <section class="row">
 
-      <h1>Titulo de formulario</h1>
+   <div class="col-md-8 col-md-offset-2">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.</p>
+    <h1>Titulo de formulario</h1>
 
-      <div class="row">
-       <div class="section-actions col-md-7 social-share">
-        <p>Compartir en <br> redes sociales</p>
-        <ul class="list-inline">
-         <li><a href="#"><i class="fa fa-facebook"></i><span aria-label="Compartir en Facebook"></span></a></li>
-         <li><a href="#"><i class="fa fa-twitter "></i><span aria-label="Compartir en Twitter"></span></a></li>
-         <li><a href="#"><i class="fa fa-google-plus"></i><span aria-label="Compartir en Google+"></span></a></li>
-       </ul>
-     </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo.</p>
 
+    <div class="row">
+     <div class="section-actions col-md-7 social-share">
+      <p>Compartir en <br> redes sociales</p>
+      <ul class="list-inline">
+       <li><a href="#"><i class="fa fa-facebook"></i><span aria-label="Compartir en Facebook"></span></a></li>
+       <li><a href="#"><i class="fa fa-twitter "></i><span aria-label="Compartir en Twitter"></span></a></li>
+       <li><a href="#"><i class="fa fa-google-plus"></i><span aria-label="Compartir en Google+"></span></a></li>
+     </ul>
    </div>
-   <hr>
 
-   <div class="wizard m-b-3">
-     <p class="text-muted">Paso 2 de 4</p>
-     <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-       <span class="sr-only">Paso 1 de 4</span>
-     </div>
+ </div>
+ <hr>
+
+ <div class="wizard m-b-3">
+   <p class="text-muted">Paso 2 de 4</p>
+   <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+     <span class="sr-only">Paso 1 de 4</span>
    </div>
  </div>
+</div>
 
- <h2 class="m-t-2">Título de paso del formulario</h2>
- 
+<h2 class="m-t-2">Título de paso del formulario</h2>
 
-  <!-- DATOS PERSONALES -->
-  <fieldset>
-      <legend><h3>Datos personales</h3></legend>
+<!-- EJEMPLO DE ERRORES PARA LECTOR DE VOZ -->
+<div id="errores" class="sr-only" aria-live="polite"></div>
 
+<!-- DATOS PERSONALES -->
+<fieldset>
+  <legend><h3>Datos personales</h3></legend>
 
-
+  <label for="cuil">CUIL</label>
+  <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
   <div class="row">
     <div class="col-md-4 form-group item-form">
-      <label for="cuil">CUIL</label>
-      <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
-      <input type="number" class="form-control" id="cuil" tabindex="" autofocus="" required="" min="1">
+      <input type="number" class="form-control" id="cuil" required min="1">
       <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
     </div>
   </div>
 
+
   <div class="row">
     <div class="col-md-8 form-group item-form">
       <label for="nombre">Nombres</label>
-      <input type="name" class="form-control" id="nombre" tabindex="" required="">
+      <input type="text" name="name" class="form-control" id="nombre" required>
       <p class="help-block error hidden">Ingresá tu nombre</p>
     </div>
   </div>
 
   <div class="row">
    <div class="col-md-8 form-group item-form">
-      <label for="apellido">Apellidos</label>
-      <input type="name" class="form-control" id="apellido" tabindex="" required="">
-      <p class="help-block error hidden">Ingresá tu apellido</p>
-    </div>
+    <label for="apellido">Apellidos</label>
+    <input type="text" name="lastname" class="form-control" id="apellido" required>
+    <p class="help-block error hidden">Ingresá tu apellido</p>
   </div>
-
-  <div class="row">
-<div class="form-group col-md-4 item-form">
-  <label for="birthday">Fecha de nacimiento</label>
-  <input type="date" class="form-control" id="birthday" placeholder="" tabindex="" required="">
-  <p class="help-block error hidden">Ingresá la fecha</p>
 </div>
+
+<div class="row">
+  <div class="form-group col-md-4 item-form">
+    <label for="birthday">Fecha de nacimiento</label>
+    <input type="date" class="form-control" id="birthday" required>
+    <p class="help-block error hidden">Ingresá la fecha</p>
   </div>
+</div>
 
 
 <div class="row">
 
-<fieldset class="m-l-1">
+  <fieldset class="m-l-1">
     <legend>
-       <label for="">Sexo</label>
-       <p class="sr-only">Como aparece en tu documento</p>
-    </legend>
-    <p class="help-block">Como aparece en tu documento</p>
-    <div class="form-group item-form">
-        <div class="radio">
-         <label for="f" class="rc-label">
-          <input type="radio" name="sexo" id="f" value="F" tabindex="" required="">
-          Femenino
-        </label>
-        <label for="m" class="rc-label m-l-1">
-          <input type="radio" name="sexo" id="m" value="M" tabindex="" required="">
-          Masculino
-        </label>
-      </div>
-      <div class="clearfix"></div>
-      <p class="help-block error hidden">Ingresá tu sexo</p>
-    </div>
+     <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
+   </legend>
+   <p class="help-block">Como aparece en tu documento</p>
+   <div class="form-group item-form">
+    <div class="radio">
+     <label for="f" class="rc-label">
+      <input type="radio" name="sexo" id="f" value="F" required>
+      Femenino
+    </label>
+    <label for="m" class="rc-label m-l-1">
+      <input type="radio" name="sexo" id="m" value="M" required>
+      Masculino
+    </label>
+  </div>
+  <div class="clearfix"></div>
+  <p class="help-block error hidden">Ingresá tu sexo</p>
+</div>
 
 </fieldset>
 
@@ -246,26 +199,27 @@
 
 <!-- OTROS DATOS PERSONALES -->
 <fieldset>
-    <legend><h3>Otros datos personales</h3></legend>
-  
+  <legend><h3>Otros datos personales</h3></legend>
+
+
+  <div class="row">
+   <div class="col-md-8">
+    <div class="form-group item-form">
+      <label>Contraseña</label>
+      <p class="help-block" id="help-password">Usá al menos 8 caracteres</p>
+      <input id="password" name="password" type="password" class="form-control" maxlength="15" aria-describedby="help-password">
+      <p class="help-block error hidden">Usá al menos 8 caracteres</p>
+      <p class="help-block error hidden">Ingresá tu contraseña</p>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
  <div class="col-md-8">
-  <label>Contraseña</label>
-  <p class="help-block">Usá al menos 8 caracteres</p>
-
+  <label for="password_confirmacion">Contraseña</label>
   <div class="form-group item-form">
-   <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
-   <p class="help-block">Usá al menos 8 caracteres</p>
-   <p class="help-block error hidden">Ingresá tu contraseña</p>
- </div>
-</div>
-</div>
-
-<div class="row">
- <div class="col-md-8">
-  <label>Contraseña</label>
-  <div class="form-group item-form">
-   <input id="password" name="password" type="password" class="form-control" maxlength="15" placeholder="" role="textbox" aria-disabled="false" aria-readonly="false">
+   <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15">
    <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
  </div>
 </div>
@@ -290,7 +244,7 @@
 <div class="col-md-8">
   <div class="form-group item-form">
    <label for="numDoc">Número de documento</label>
-   <input type="number" min="1" class="form-control" id="numDoc" tabindex="" autofocus="" required="">
+   <input type="number" min="1" class="form-control" id="numDoc" required>
    <p class="help-block error hidden">Ingresá tu número de documento</p>
  </div>
 </div>
@@ -300,7 +254,7 @@
  <div class="col-md-8 form-group item-form">
   <label for="estadoCivil">Estado civil</label>
   <select id="estadoCivil" name="estadoCivil" class="form-control">
-   <option value="" selected=""></option>
+   <option value="" selected="">Seleccioná un estado civil</option>
    <option value="">Soltero/a</option>
    <option value="">Casado/a</option>
    <option value="">Divorciado/a</option>
@@ -315,9 +269,9 @@
 <div class="row">
  <div class="col-md-8">
   <div class="form-group item-form">
-   <label for="">País de nacimiento</label>
-   <select id="pais" class="form-control chosen-select">
-    <option value=""></option>
+   <label for="country_birthday">País de nacimiento</label>
+   <select id="country_birthday" class="form-control chosen-select">
+    <option value="" selected="">Seleccioná un país</option>
     <option value="">País 1</option>
     <option value="">País 2</option>
     <option value="">País 3</option>
@@ -331,63 +285,63 @@
 
 <!-- DATOS DE CONTACTO -->
 <fieldset>
-      <legend><h3>Datos de contacto</h3>
-        <p class="help-block">Ingresá al menos un dato de contacto</p>
-      </legend>
+  <legend><h3>Datos de contacto <span class="sr-only">Ingresá al menos un dato de contacto</span></h3>
+  </legend>
   
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
+      <p class="help-block">Ingresá al menos un dato de contacto</p>
       <label for="email">Correo electrónico</label>
-      <input type="name" class="form-control" id="email" tabindex="" required="">
+      <input type="text" name="email" class="form-control" id="email" required>
       <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
     </div>
   </div>
 
-<fieldset>
-      <legend>
-        <label>Teléfono móvil</label>
-        <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
-      </legend>
-  <div class="row"> 
+
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <label for="cellphone_number">Teléfono móvil</label>
+      <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
+    </div>
     <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
       <div class="input-group">
         <span class="input-group-addon">0</span>
-        <input aria-label="código de area" class="form-control" id="cellphone_area_code" required="required" type="text"> 
+        <input aria-label="código de area" class="form-control" id="cellphone_area_code" required="required" type="text" aria-labelledby="help_telefono_movil"> 
       </div>
       <p class="help-block error hidden">Ingresá el código de área</p>
     </div> 
 
     <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
       <div class="input-group">
-      
+
         <span class="input-group-addon">15</span>
         <input aria-label="número de teléfono"  class="form-control" id="cellphone_number" required="required" type="text"> 
       </div>
       <p class="help-block error hidden">Ingresá tu número de teléfono movil</p>
     </div>                        
   </div>  
-</fieldset>                
 
 
-
-<fieldset>
-      <legend>
-        <label>Teléfono fijo</label>
-        <p class="help-block">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
-      </legend>
   <div class="row"> 
+
+    <div class="col-sm-12">
+      <label for="cellphone_number">Teléfono fijo</label>
+      <p class="help-block" id="help_telefono_fijo">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" target="_blank">código de area</a> de tu localidad</p>
+    </div>
     <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
       <div class="input-group">
-      
+
         <span class="input-group-addon">0</span>
-        <input aria-label="Código de area" class="form-control" id="phone_area_code" required="required" type="text"> 
+        <input aria-label="Código de area" class="form-control" id="phone_area_code" required="required" type="text" aria-labelledby="help_telefono_fijo"> 
       </div>
       <p class="help-block error hidden">Ingresá el código de área</p>
     </div> 
 
     <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
       <div class="input-group">
-      
+
         <span class="input-group-addon">15</span>
         <input aria-label="número de teléfono" class="form-control" id="phone_number" required="required" type="text"> 
       </div>
@@ -396,17 +350,15 @@
   </div>  
 </fieldset>
 
-</fieldset>
-
 <!-- DOMICILIO -->
 <fieldset>  
-      <legend>Domicilio</legend>
+  <legend>Domicilio</legend>
   
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="">País de residencia</label>
+      <label for="country">País de residencia</label>
       <select id="country" class="form-control chosen-select">
-        <option value=""></option>
+        <option value="">Seleccioná un pais</option>
         <option value="AFG">Afganistán</option>                        
         <option value="ALB">Albania</option>                        
         <option value="DEU">Alemania</option>                        
@@ -658,9 +610,9 @@
 
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="">Provincia</label>
-      <select class="form-control chosen-select" name="" id="address_state">
-        <option value="" selected></option>
+      <label for="address_state">Provincia</label>
+      <select class="form-control chosen-select" id="address_state" name="address_state">
+        <option value="" selected>Seleccioná una provincia</option>
         <option value="">Provincia 1</option>
         <option value="">Provincia 2</option>
         <option value="">Provincia 3</option>
@@ -671,9 +623,9 @@
 
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="">Departamento</label>
-      <select class="form-control chosen-select" name="" id="">
-        <option value="" selected></option>
+      <label for="department">Departamento</label>
+      <select class="form-control chosen-select" name="department" id="department">
+        <option value="" selected>Seleccioná un departamento</option>
         <option value="">Departamento 1</option>
         <option value="">Departamento 2</option>
         <option value="">Departamento 3</option>
@@ -684,9 +636,9 @@
 
   <div class="row">
     <div class="col-md-8 form-group item-form">
-      <label for="">Localidad</label>
-      <select class="form-control chosen-select" name="" id="">
-        <option value="" selected></option>
+      <label for="localidad">Localidad</label>
+      <select class="form-control chosen-select" name="localidad" id="localidad">
+        <option value="" selected>Seleccioná una localidad</option>
         <option value="">Localidad 1</option>
         <option value="">Localidad 2</option>
         <option value="">Localidad 3</option>
@@ -698,7 +650,7 @@
   <div class="row">
     <div class="col-md-4 form-group item-form">
       <label for="address_postalcode">Código postal</label>
-      <input type="name" class="form-control" id="address_postalcode" tabindex="" required="">
+      <input type="text" name="address_postalcode" class="form-control" id="address_postalcode" required>
       <p class="help-block error hidden">Ingresá un código postal</p>
     </div>
   </div>     
@@ -706,26 +658,26 @@
   <div class="row">
     <div class="col-md-8 form-group item-form">
       <label for="address_street">Calle</label>
-      <input type="name" class="form-control" id="address_street" tabindex="" required="">
+      <input type="text" name="address_street" class="form-control" id="address_street" required>
       <p class="help-block error hidden">Ingresá una calle</p>
     </div>  
 
     <div class="col-md-4 form-group item-form">
       <label for="address_street_number">Número de calle</label>
-      <input type="text" class="form-control" id="address_street_number" tabindex="" required="">
+      <input type="text" class="form-control" id="address_street_number" required>
       <p class="help-block error hidden">Ingresá un número de calle</p>
     </div> 
   </div>
   <div class="row">
     <div class="col-md-4 form-group item-form">
       <label for="address_floor_number">Piso</label>
-      <input type="name" class="form-control" id="address_floor_number" tabindex="" required="">
+      <input type="text" name="address_floor_number" class="form-control" id="address_floor_number" required>
       <p class="help-block error hidden">Ingresá un piso</p>
     </div>  
 
     <div class="col-md-4 form-group item-form">
       <label for="address_apartment_number">Departamento</label>
-      <input type="text" class="form-control" id="address_apartment_number" tabindex="" required="">
+      <input type="text" class="form-control" id="address_apartment_number" required>
       <p class="help-block error hidden">Ingresá un un departamento</p>
     </div> 
   </div>  
@@ -734,76 +686,77 @@
 
 <!-- OTROS DATOS ESPECÍFICOS -->
 <fieldset>
-    <legend><h3>Otros datos específicos</h3></legend>
+  <legend><h3>Otros datos específicos</h3></legend>
   
+  <div class="row">
+   <div class="col-md-4 form-group item-form">
+    <label for="cuit">CUIT</label>
+    <input type="number" min="1" class="form-control" id="cuit" required>
+    <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
+  </div>
+</div>
+
+
+
+
+
 <div class="row">
- <div class="col-md-4 form-group item-form">
-  <label for="cuit">CUIT</label>
-  <input type="number" min="1" class="form-control" id="cuit" tabindex="" required="">
-  <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
+ <div class="col-md-4">
+  <div class="form-group item-form">
+    <label for="vehicule_plaque">Patente de vehículo</label>
+    <p class="help-block" id="help_vehicule_plaque">Ejemplo: AAA123 o AA123BB</p>
+    <input type="number" min="1" class="form-control" id="vehicule_plaque" required aria-describedby="help_vehicule_plaque">
+    <p class="help-block error hidden">Ingresá una patente</p>
+  </div>
 </div>
 </div>
+
+
+</fieldset>
+
 
 <fieldset>
-<legend>
-  <label for="vehicule_plaque">Patente de vehículo</label>
-  <p class="help-block">Ej: AAA123 o AA123BB</p>
-</legend>
+  <legend>
+    <h3 class="m-b-1">Campos genéricos</h3>
+  </legend>
+
   <div class="row">
-   <div class="col-md-4">
-    <div class="form-group item-form">
-     <input type="number" min="1" class="form-control" id="vehicule_plaque" tabindex="" required="">
-     <p class="help-block error hidden">Ingresá una patente</p>
-   </div>
-  </div>
-  </div>
-</fieldset>
-
-</fieldset>
-
-
- <fieldset>
-    <legend>
-      <h3 class="m-b-1">Campos genéricos</h3>
-    </legend>
+   <div class="col-md-12 form-group item-form">
+    <label for="buscar">Buscar</label>
 
     <div class="row">
-     <div class="col-md-12 form-group item-form">
-      <label for="buscar">Buscar</label>
-
-      <div class="row">
-       <div class="col-md-8">
-        <input type="search" class="form-control" id="buscar" tabindex="" required="">
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary btn-block"> Buscar </button>
-      </div>
+     <div class="col-md-8">
+      <input type="search" class="form-control" id="buscar" required>
     </div>
-
-    <p class="help-block error hidden">Ingresá una palabra para buscar</p>
+    <div class="col-md-4">
+      <button class="btn btn-primary btn-block"> Buscar </button>
     </div>
-    </div>
+  </div>
 
-  <div class="row">
-   <div class="col-md-12 form-group">
-    <label for="filtro">Filtrar</label>
-    <input type="name" class="form-control" id="filtro" tabindex="" required="">
-  </div>
-  </div>
-  <div class="row">
-   <div class="col-md-8 form-group item-form">
-    <label for="comentarioBreve">Dato o comentario breve</label>
-    <input class="form-control" id="comentarioBreve" type="text">
-    <p class="help-block error hidden">Ingresá el dato o comentario breve</p>
-  </div>
-  </div>
-  <div class="row">
-   <div class="col-md-8 form-group item-form">
-    <label for="comentarioLargos">Comentario largos</label>
-    <textarea class="form-control" id="comentarioLargos" rows="5"></textarea>
-    <p class="help-block error hidden">Ingresá el comentario largo</p>
-  </div>
-  </div>
+  <p class="help-block error hidden">Ingresá una palabra para buscar</p>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-12 form-group">
+  <label for="filtro">Filtrar</label>
+  <input type="text" name="filtro" class="form-control" id="filtro" required>
+</div>
+</div>
+<div class="row">
+ <div class="col-md-8 form-group item-form">
+  <label for="comentarioBreve">Dato o comentario breve</label>
+  <input class="form-control" id="comentarioBreve" type="text">
+  <p class="help-block error hidden">Ingresá el dato o comentario breve</p>
+</div>
+</div>
+<div class="row">
+ <div class="col-md-8 form-group item-form">
+  <label for="comentarioLargos">Comentario largos</label>
+  <textarea class="form-control" id="comentarioLargos" rows="5"></textarea>
+  <p class="help-block error hidden">Ingresá el comentario largo</p>
+</div>
+</div>
 
 
 
@@ -814,46 +767,53 @@
   <div class="row">
     <div class="col-md-8 item-form">
 
-    <div class="form-group item-form">
-      <div class="radio">
-       <label for="opcion1" class="rc-label">
-        <input type="radio" name="opciones" id="opcion1" value="opcion1" tabindex="" required="">
-        Opción 1
-      </label>
-      <label for="opcion2" class="rc-label m-l-1">
-        <input type="radio" name="opciones" id="opcion2" value="opcion2" tabindex="" required="">
-        Opción 2
-      </label>
-    </div>
+      <div class="form-group item-form">
+        <div class="radio">
+         <label for="opcion1">
+          <input type="radio" name="opciones" id="opcion1" value="opcion1" required>
+          Opción 1
+        </label>
+         </div>
+          <div class="radio">
+        <label for="opcion2">
+          <input type="radio" name="opciones" id="opcion2" value="opcion2" required>
+          Opción 2
+        </label>
+      </div>
+     
 
-    <p class="help-block error hidden">Ingresá el dato</p>
-    </div>
+      <p class="help-block error hidden">Ingresá el dato</p>
     </div>
   </div>
+</div>
 </fieldset>
 
-   <fieldset>
-<div class="row">
+<fieldset>
+  <div class="row">
 
- <div class="col-md-8 item-form">
-  <label for="opcion1-alt">Dato con 3 a 7 opciones</label>
-  <div class="form-group item-form">
-    <div class="radio rc-horizontal">
-     <label for="opcion1-alt" class="rc-label">
-      <input type="radio" name="opciones-alt" id="opcion1-alt" value="opcion1-alt" tabindex="" required="">
-      Opción 1
-    </label>
-    <label for="opcion2-alt" class="rc-label">
-      <input type="radio" name="opciones-alt" id="opcion2-alt" value="opcion2-alt" tabindex="" required="">
-      Opción 2
-    </label>
-    <label for="opcion3-alt" class="rc-label">
-      <input type="radio" name="opciones-alt" id="opcion3-alt" value="opcion3-alt" tabindex="" required="">
-      Opción 3
-    </label>
-  </div>  
-<p class="help-block error hidden">Ingresá el dato</p>
+   <div class="col-md-8 item-form">
+    <label for="opcion1-alt">Dato con 3 a 7 opciones</label>
+    <div class="form-group item-form">
+      <div class="radio">
+       <label for="opcion1-alt">
+        <input type="radio" name="opciones-alt" id="opcion1-alt" value="opcion1-alt" required>
+        Opción 1
+      </label>
 </div>
+ <div class="radio">
+      <label for="opcion2-alt">
+        <input type="radio" name="opciones-alt" id="opcion2-alt" value="opcion2-alt" required>
+        Opción 2
+      </label>
+</div>
+ <div class="radio">
+      <label for="opcion3-alt">
+        <input type="radio" name="opciones-alt" id="opcion3-alt" value="opcion3-alt" required>
+        Opción 3
+      </label>
+    </div>  
+    <p class="help-block error hidden">Ingresá el dato</p>
+  </div>
 
 </div>
 </div>
@@ -861,9 +821,9 @@
 
 <div class="row">
  <div class="col-md-8 form-group item-form">
-  <label for="variasOpciones">Dato con 8 a 20 opciones</label>
-  <select id="variasOpciones" name="variasOpciones" class="form-control">
-   <option value="" selected=""></option>
+  <label for="dato_8_20">Dato con 8 a 20 opciones</label>
+  <select id="dato_8_20" name="dato_8_20" class="form-control">
+   <option value="" selected="">Seleccioná un dato</option>
    <option value="">Opción 1</option>
    <option value="">Opción 2</option>
    <option value="">Opción 3</option>
@@ -881,31 +841,32 @@
 <div class="row">
 
  <div class="col-md-8 form-group item-form">
-  <label for="variasOpciones">Dato con más de 21 opciones</label>
-  <select id="variasOpciones" name="variasOpciones" class="form-control chosen-select">
-   <option value="0" selected=""></option>
-   <option value="1">Opción 1</option>
-   <option value="2">Opción 2</option>
-   <option value="3">Opción 3</option>
-   <option value="4">Opción 4</option>
-   <option value="5">Opción 5</option>
-   <option value="6">Opción 6</option>
-   <option value="7">Opción 7</option>
-   <option value="8">Opción 8</option>
-   <option value="">Opción 9</option>
-   <option value="">Opción 10</option>
-   <option value="1">Opción 11</option>
-   <option value="2">Opción 12</option>
-   <option value="3">Opción 13</option>
-   <option value="4">Opción 14</option>
-   <option value="5">Opción 15</option>
-   <option value="6">Opción 16</option>
-   <option value="7">Opción 17</option>
-   <option value="8">Opción 18</option>
-   <option value="">Opción 19</option>
-   <option value="">Opción 20</option>
-   <option value="">Opción 21</option>
-   <option value="">Opción 22</option>
+  <label for="dato_21">Dato con más de 21 opciones</label>
+  <select id="dato_21" name="dato_21" class="form-control chosen-select">
+   <option value="0" selected="">Seleccioná un dato</option>
+   <option value="1">Opcion 1</option>
+   <option value="2">Opcion 2</option>
+   <option value="3">Opcion 3</option>
+   <option value="4">Opcion 4</option>
+   <option value="5">Opcion 5</option>
+   <option value="6">Opcion 6</option>
+   <option value="7">Opcion 7</option>
+   <option value="8">Opcion 8</option>
+   <option value="9">Opcion 9</option>
+   <option value="10">Opcion 10</option>
+   <option value="11">Opcion 11</option>
+   <option value="12">Opcion 12</option>
+   <option value="13">Opcion 13</option>
+   <option value="14">Opcion 14</option>
+   <option value="15">Opcion 15</option>
+   <option value="16">Opcion 16</option>
+   <option value="17">Opcion 17</option>
+   <option value="18">Opcion 18</option>
+   <option value="19">Opcion 19</option>
+   <option value="20">Opcion 20</option>
+   <option value="21">Opcion 21</option>
+   <option value="22">Opcion 22</option>
+
  </select>
  <p class="help-block error hidden">Ingresá el dato</p>
 </div>
@@ -914,45 +875,65 @@
 
 
  <div class="col-md-12">
-  <label for="opciones-multiples"> Dato con múltiples opciones  </label>
-  <div class="form-group item-form">
-   <fieldset>
-    <div class="checkbox">
-     <label class="rc-label">
-      <input id="opciones-multiples" type="checkbox" value="">Option 1
-    </label>
-    <label class="rc-label m-l-1">
-      <input id="opciones-multiples" type="checkbox" value="">Option 2
-    </label>
-    <label class="rc-label m-l-1">
-      <input id="opciones-multiples" type="checkbox" value="">Option 3
-    </label>
-  </div>
+    <fieldset>
+      <legend>
+        <label>Dato con múltiples opciones</label>
+      </legend>
+      <div class="form-group item-form">
+          <div class="checkbox">
+           <label for="Option_1">
+            <input id="Option_1" name="Option_1" type="checkbox" value="">Option 1
+          </label>
+        </div>
+<div class="checkbox">
+          <label for="Option_2">
+            <input id="Option_2" name="Option_2" type="checkbox" value="">Option 2
+          </label>
+          </div>
+          <div class="checkbox">
+          <label for="Option_3">
+            <input id="Option_3" name="Option_3" type="checkbox" value="">Option 3
+          </label>
+        </div>
+      <p class="help-block error hidden">Ingresá el dato</p>
+    </div>
   </fieldset>
-  <p class="help-block error hidden">Ingresá el dato</p>
-  </div>
-
 </div> 
+
 </div>
 <div class="row">
 
  <div class="form-group col-md-4 item-form">
   <label for="fecha">Fecha</label>
-  <input type="date" class="form-control" id="fecha" placeholder="" tabindex="" required="">
+  <input type="date" class="form-control" id="fecha" required>
   <p class="help-block error hidden">Ingresá la fecha</p>
 </div>
 </div>
 <div class="row"> 
  <div class="form-group col-md-4 item-form">
-  <label for="mes">Mes</label>
-  <input type="month" class="form-control" id="mes" placeholder="" tabindex="" required="">
+  <label for="month">Mes</label>
+  <select name="month" id="month">
+    <option value="">Seleccioná un mes</option>
+    <option value="1">Enero</option>
+    <option value="2">Febrero</option>
+    <option value="3">Marzo</option>
+    <option value="4">Abril</option>
+    <option value="5">Mayo</option>
+    <option value="6">Junio</option>
+    <option value="7">Julio</option>
+    <option value="8">Agosto</option>
+    <option value="9">Septiembre</option>
+    <option value="10">Octubre</option>
+    <option value="11">Noviembre</option>
+    <option value="12">Diciembre</option>
+  </select>
   <p class="help-block error hidden">Ingresá el mes</p>
 </div>
 </div>
 <div class="row">
  <div class="form-group col-md-4 item-form">
   <label for="hora">Hora</label>
-  <input type="time" class="form-control" id="hora" placeholder="" tabindex="" required="">
+  <input type="time" class="form-control" id="hora" required>
   <p class="help-block error hidden">Ingresá la hora</p>
 </div>
 </div>
@@ -975,14 +956,13 @@
 </div>
 </div>
 
-</article>
+
+</div>
 </section>
 
 
-</div>
-
-
 </main>
+
 <script>
   $(function(){
     $(".chosen-select").chosen({
@@ -993,6 +973,7 @@
       if($(this).is(":checked")) {
         $('.error').removeClass("hidden");
         $('.item-form').addClass('has-error has-feedback');
+        mostrarErrores();
       }
     });
     $('input.sinError:radio').change(function(){
@@ -1003,6 +984,24 @@
     });
 
   });
+
+// A MODO EJEMPLO SE LIMITÓ LA CANTIDAD DE ERRORES A 3
+  function mostrarErrores(){
+      $("#errores").html("");
+      $("#errores").html("<h4>Se han producido los siguientes errores (En este ejemplo se muestran solo 3)</h4><ol></ol>");
+      var cantidadErrores = 0;
+      $(".has-error").each(function(){
+        if(cantidadErrores<3){
+          var mensajeError = $(this).find(".help-block.error").html();
+          $("#errores ol").append("<li>"+mensajeError+"</li>");
+          cantidadErrores++;
+       }
+      });
+    }
+
+    $('button').click(function(event) {
+      mostrarErrores();
+    });
 </script>
 
 </body>
