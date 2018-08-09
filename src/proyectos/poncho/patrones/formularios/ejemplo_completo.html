@@ -121,7 +121,7 @@
   <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" target="_blank">Consultá tu CUIL</a></p>
   <div class="row">
     <div class="col-md-4 form-group item-form">
-      <input type="number" class="form-control" id="cuil" required>
+      <input type="number" class="form-control" id="cuil" required aria-required="true">
       <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
     </div>
   </div>
@@ -130,7 +130,7 @@
   <div class="row">
     <div class="col-md-8 form-group item-form">
       <label for="nombre">Nombres</label>
-      <input type="text" name="name" class="form-control" id="nombre" required>
+      <input type="text" name="name" class="form-control" id="nombre" required aria-required="true">
       <p class="help-block error hidden">Ingresá tu nombre</p>
     </div>
   </div>
@@ -138,7 +138,7 @@
   <div class="row">
    <div class="col-md-8 form-group item-form">
     <label for="apellido">Apellidos</label>
-    <input type="text" name="lastname" class="form-control" id="apellido" required>
+    <input type="text" name="lastname" class="form-control" id="apellido" required aria-required="true">
     <p class="help-block error hidden">Ingresá tu apellido</p>
   </div>
 </div>
@@ -146,36 +146,33 @@
 <div class="row">
   <div class="form-group col-md-4 item-form">
     <label for="birthday">Fecha de nacimiento</label>
-    <input type="date" class="form-control" id="birthday" required>
+    <input type="date" class="form-control" id="birthday" required aria-required="true">
     <p class="help-block error hidden">Ingresá la fecha</p>
   </div>
 </div>
 
 
 <div class="row">
-
-  <fieldset class="m-l-1">
+<div class="col-sm-12">
+  <fieldset>
     <legend>
      <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
    </legend>
    <p class="help-block">Como aparece en tu documento</p>
    <div class="form-group item-form">
-    <div class="radio">
-     <label for="f" class="rc-label">
-      <input type="radio" name="sexo" id="f" value="F" required>
+     <label for="f" class="radio-inline">
+      <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
       Femenino
     </label>
-    <label for="m" class="rc-label m-l-1">
-      <input type="radio" name="sexo" id="m" value="M" required>
+     <label for="m" class="radio-inline">
+      <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
       Masculino
     </label>
-  </div>
-  <div class="clearfix"></div>
-  <p class="help-block error hidden">Ingresá tu sexo</p>
+    <p class="help-block error hidden">Ingresá tu sexo</p>
 </div>
 
 </fieldset>
-
+</div>
 </div>
 
 
@@ -230,7 +227,7 @@
 <div class="col-md-8">
   <div class="form-group item-form">
    <label for="numDoc">Número de documento</label>
-   <input type="number" min="1" class="form-control" id="numDoc" required>
+   <input type="number" min="1" class="form-control" id="numDoc" required aria-required="true">
    <p class="help-block error hidden">Ingresá tu número de documento</p>
  </div>
 </div>
@@ -271,14 +268,13 @@
 
 <!-- DATOS DE CONTACTO -->
 <fieldset>
-  <legend><h3>Datos de contacto <span class="sr-only">Ingresá al menos un dato de contacto</span></h3>
-  </legend>
+  <legend><h3>Datos de contacto</h3></legend>
   
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
       <p class="help-block">Ingresá al menos un dato de contacto</p>
       <label for="email">Correo electrónico</label>
-      <input type="text" name="email" class="form-control" id="email" required>
+      <input type="text" name="email" class="form-control" id="email" required aria-required="true">
       <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
     </div>
   </div>
@@ -294,7 +290,7 @@
             <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
-                <input aria-label="Código de area de teléfono móvil" class="form-control" id="cellphone_area_code" required="required" type="text"> 
+                <input aria-label="Código de area de teléfono móvil" class="form-control" id="cellphone_area_code" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá el código de área</p>
             </div> 
@@ -303,7 +299,7 @@
               <div class="input-group">
 
                 <span class="input-group-addon">15</span>
-                <input aria-label="número de teléfono móvil" class="form-control" id="cellphone_number" required="required" type="text"> 
+                <input aria-label="número de teléfono móvil" class="form-control" id="cellphone_number" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá tu número de teléfono móvil</p>
             </div>
@@ -325,7 +321,7 @@
             <div class="form-group col-xs-6 col-sm-6 col-md-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
-                <input aria-label="Código de area de teléfono fijo" class="form-control" id="phone_area_code" required="required" type="text"> 
+                <input aria-label="Código de area de teléfono fijo" class="form-control" id="phone_area_code" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá el código de área</p>
             </div> 
@@ -334,7 +330,7 @@
               <div class="input-group">
 
                 <span class="input-group-addon">15</span>
-                <input aria-label="número de teléfono fijo" class="form-control" id="phone_number" required="required" type="text"> 
+                <input aria-label="número de teléfono fijo" class="form-control" id="phone_number" required aria-required="true" type="text"> 
               </div>
               <p class="help-block error hidden">Ingresá tu número de teléfono fijo</p>
             </div>
@@ -647,7 +643,7 @@
   <div class="row">
     <div class="col-md-4 form-group item-form">
       <label for="address_postalcode">Código postal</label>
-      <input type="text" name="address_postalcode" class="form-control" id="address_postalcode" required>
+      <input type="text" name="address_postalcode" class="form-control" id="address_postalcode" required aria-required="true">
       <p class="help-block error hidden">Ingresá un código postal</p>
     </div>
   </div>     
@@ -655,26 +651,26 @@
   <div class="row">
     <div class="col-md-8 form-group item-form">
       <label for="address_street">Calle</label>
-      <input type="text" name="address_street" class="form-control" id="address_street" required>
+      <input type="text" name="address_street" class="form-control" id="address_street" required aria-required="true">
       <p class="help-block error hidden">Ingresá una calle</p>
     </div>  
 
     <div class="col-md-4 form-group item-form">
       <label for="address_street_number">Número de calle</label>
-      <input type="text" class="form-control" id="address_street_number" required>
+      <input type="text" class="form-control" id="address_street_number" required aria-required="true">
       <p class="help-block error hidden">Ingresá un número de calle</p>
     </div> 
   </div>
   <div class="row">
     <div class="col-md-4 form-group item-form">
       <label for="address_floor_number">Piso</label>
-      <input type="text" name="address_floor_number" class="form-control" id="address_floor_number" required>
+      <input type="text" name="address_floor_number" class="form-control" id="address_floor_number" required aria-required="true">
       <p class="help-block error hidden">Ingresá un piso</p>
     </div>  
 
     <div class="col-md-4 form-group item-form">
       <label for="address_apartment_number">Departamento</label>
-      <input type="text" class="form-control" id="address_apartment_number" required>
+      <input type="text" class="form-control" id="address_apartment_number" required aria-required="true">
       <p class="help-block error hidden">Ingresá un un departamento</p>
     </div> 
   </div>  
@@ -688,7 +684,7 @@
   <div class="row">
    <div class="col-md-4 form-group item-form">
     <label for="cuit">CUIT</label>
-    <input type="number" min="1" class="form-control" id="cuit" required>
+    <input type="number" min="1" class="form-control" id="cuit" required aria-required="true">
     <p class="help-block error hidden">Ingresá un CUIT <br> El CUIT tiene un formato inválido</p>
   </div>
 </div>
@@ -702,7 +698,7 @@
   <div class="form-group item-form">
     <label for="vehicule_plaque">Patente de vehículo</label>
     <p class="help-block" id="help_vehicule_plaque">Ejemplo: AAA123 o AA123BB</p>
-    <input type="number" min="1" class="form-control" id="vehicule_plaque" required aria-describedby="help_vehicule_plaque">
+    <input type="number" min="1" class="form-control" id="vehicule_plaque" required aria-required="true" aria-describedby="help_vehicule_plaque">
     <p class="help-block error hidden">Ingresá una patente</p>
   </div>
 </div>
@@ -723,7 +719,7 @@
 
     <div class="row">
      <div class="col-md-8">
-      <input type="search" class="form-control" id="buscar" required>
+      <input type="search" class="form-control" id="buscar" required aria-required="true">
     </div>
     <div class="col-md-4">
       <button class="btn btn-primary btn-block"> Buscar </button>
@@ -737,7 +733,7 @@
 <div class="row">
  <div class="col-md-12 form-group">
   <label for="filtro">Filtrar</label>
-  <input type="text" name="filtro" class="form-control" id="filtro" required>
+  <input type="text" name="filtro" class="form-control" id="filtro" required aria-required="true">
 </div>
 </div>
 <div class="row">
@@ -767,11 +763,11 @@
 
       <div class="form-group item-form">
         <label for="opcion1" class="radio-inline">
-          <input type="radio" name="opciones" id="opcion1" value="opcion1" required>
+          <input type="radio" name="opciones" id="opcion1" value="opcion1" required aria-required="true">
           Opción 1
         </label>
         <label for="opcion2" class="radio-inline">
-          <input type="radio" name="opciones" id="opcion2" value="opcion2" required>
+          <input type="radio" name="opciones" id="opcion2" value="opcion2" required aria-required="true">
           Opción 1
         </label>        
         <p class="help-block error hidden">Ingresá el dato</p>
@@ -789,19 +785,19 @@
     <div class="form-group item-form">
       <div class="radio">
        <label for="opcion1-alt">
-        <input type="radio" name="opciones-alt" id="opcion1-alt" value="opcion1-alt" required>
+        <input type="radio" name="opciones-alt" id="opcion1-alt" value="opcion1-alt" required aria-required="true">
         Opción 1
       </label>
     </div>
     <div class="radio">
       <label for="opcion2-alt">
-        <input type="radio" name="opciones-alt" id="opcion2-alt" value="opcion2-alt" required>
+        <input type="radio" name="opciones-alt" id="opcion2-alt" value="opcion2-alt" required aria-required="true">
         Opción 2
       </label>
     </div>
     <div class="radio">
       <label for="opcion3-alt">
-        <input type="radio" name="opciones-alt" id="opcion3-alt" value="opcion3-alt" required>
+        <input type="radio" name="opciones-alt" id="opcion3-alt" value="opcion3-alt" required aria-required="true">
         Opción 3
       </label>
     </div>  
@@ -897,7 +893,7 @@
 <div class="row">
  <div class="form-group col-md-4 item-form">
   <label for="fecha">Fecha</label>
-  <input type="date" class="form-control" id="fecha" required>
+  <input type="date" class="form-control" id="fecha" required aria-required="true">
   <p class="help-block error hidden">Ingresá la fecha</p>
 </div>
 </div>
