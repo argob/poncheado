@@ -309,100 +309,8 @@ layout: argentina
           var data;
 
           // Leo si hay algo guardado
+       
 
-          if(typeof(Storage) !== "undefined") {
-            if( localStorage.getItem("wizard-form-cud") != undefined ){
-
-              data = JSON.parse( localStorage.getItem("wizard-form-cud"))
-
-              $.each(data, function(key, item){
-                if(item.name == 'provincia' || item.name == 'localidad' ){
-                  $('[name='+ item.name +']').val(item.value);
-                }else {
-                  $('[name='+ item.name +'][value='+ item.value +']').prop('checked', true);
-                } 
-              })
-
-            }
-
-            $.validator.setDefaults({
-              // debug: true,
-              success: "valid"
-            });
-
-            // Cuando mando el formulario guardo lo que se modificó
-
-            var wizard_form = $("#wizard-form-cud");
-            wizard_form.validate({
-              rules: {
-                  tipotramite: {
-                      required: true
-                  },
-                  mayor18: {
-                      required: true
-                  },
-                  coberturamedica: {
-                      required: true
-                  }, 
-                  discapacidad: {
-                      required: true,
-                      minlength: 1
-                  },
-                  provincia: {
-                      required: true
-                  },
-                  localidad: {
-                      required: true
-                  }
-
-               },                           
-              errorPlacement: function(error, element) {
-                if (element.is(":radio") || $(element).is(":checkbox")){
-                  error.insertBefore(element.parent().parent());
-                }               
-                 else{
-                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
-                }
-              },
-              highlight: function(element, errorClass) {
-                if ($(element).is(":radio") || $(element).is(":checkbox")){
-                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
-                } else{
-                  $(element).parent().addClass("has-error has-feedback");
-                }
-              },
-              success: function(label) {
-                label.parent().parent().removeClass("has-error has-feedback");
-                label.remove();
-              },
-            });
-
-            
-
-            $('#wizard-form-cud').on('submit', function(event){
-              event.preventDefault();
-
-              if (wizard_form.valid() ) {
-
-                data = $(this).serializeArray();
-
-                localStorage.setItem("wizard-form-cud", JSON.stringify(data));
-
-                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
-
-                if( localStorage.getItem("wizard-form-cud") == undefined ){
-                  // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
-                }else{
-                  // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
-                }
-
-                window.location.href = '/cud/requisitos';
-              }
-            });
-
-          } else {
-            console.log('No tenés soporte :(');
-          } 
 
 
 
@@ -813,7 +721,7 @@ function localidadFn( jQuery ) {
 
             $('select[name="provincia"]').on('change', function() {
                 var localidadFieldset = $('select[name="localidad"]');
-                console.log(this.value === '')
+                
                 if (this.value === '') {
                     localidadFieldset.attr('disabled', true);
                 } else {
@@ -842,6 +750,115 @@ function localidadFn( jQuery ) {
                     }
 
             }
+
+
+          if(typeof(Storage) !== "undefined") {
+            if(localStorage.getItem("wizard-form-cud") != undefined ){
+
+              data = JSON.parse( localStorage.getItem("wizard-form-cud"))
+              /*en el caso de que */
+
+              $.each(data, function(key, item){
+
+                if(item.name == 'provincia'){ /*recorres todo el arreglo, cuando llegas a pronvincia, sigue el condicional*/
+                   
+                  $('#provincia').val(item.value); /*acá agarro el id pronvincia y le digo que su value sea el value del item de localStorage*/
+                  
+                  var indexProvincia = $('#provincia').find(":selected").index(); /*encontrá el seleccionado y decime su index*/
+
+                  load_localidades(indexProvincia);
+                
+                }
+
+                if(item.name == 'localidad'){
+                    $(document).find('#localidad').val(item.value);
+                    console.log(item.value + $(document).find('#localidad').val());
+                    $('#localidad').removeAttr('disabled');
+                  }
+                console.log(item);
+
+              })
+
+            }
+
+            $.validator.setDefaults({
+              // debug: true,
+              success: "valid"
+            });
+
+            // Cuando mando el formulario guardo lo que se modificó
+
+            var wizard_form = $("#wizard-form-cud");
+            wizard_form.validate({
+              rules: {
+                  tipotramite: {
+                      required: true
+                  },
+                  mayor18: {
+                      required: true
+                  },
+                  coberturamedica: {
+                      required: true
+                  }, 
+                  discapacidad: {
+                      required: true,
+                      minlength: 1
+                  },
+                  provincia: {
+                      required: true
+                  },
+                  localidad: {
+                      required: true
+                  }
+
+               },                           
+              errorPlacement: function(error, element) {
+                if (element.is(":radio") || $(element).is(":checkbox")){
+                  error.insertBefore(element.parent().parent());
+                }               
+                 else{
+                  error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                }
+              },
+              highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")){
+                  $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else{
+                  $(element).parent().addClass("has-error has-feedback");
+                }
+              },
+              success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.remove();
+              },
+            });
+
+            
+
+            $('#wizard-form-cud').on('submit', function(event){
+              event.preventDefault();
+
+              if (wizard_form.valid() ) {
+
+                data = $(this).serializeArray();
+
+                localStorage.setItem("wizard-form-cud", JSON.stringify(data));
+
+                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                if( localStorage.getItem("wizard-form-cud") == undefined ){
+                  // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
+                }else{
+                  // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
+                }
+
+                window.location.href = '/cud/requisitos';
+              }
+            });
+
+          } else {
+            console.log('No tenés soporte :(');
+          } 
 
 
 })(jQuery);
