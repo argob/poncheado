@@ -1,7 +1,4 @@
----
-layout: argentina
----
-  
+
 <section class="jumbotron" style="background-image: url('/sites/default/files/caba_eetb_0.jpg');">
   <div class="jumbotron_bar">
     <div class="container">
@@ -23,7 +20,7 @@ layout: argentina
         <div class="col-md-7">
           
           <p><img src="/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
-          <h1 class="sr-only">El estado en tu barrio - Constitución</h1>
+          <h1 class="sr-only">El estado en tu barrio - Constitucióno</h1>
           <p>Te acercamos las soluciones que vos y tu familia necesitan. A través de los servicios de El Estado en tu Barrio vas a poder resolver tus trámites, cerca de tu casa, de una manera fácil, rápida y sin intermediarios. Estamos haciendo lo que hay que hacer.</p>
         </div>
       </div>
@@ -161,11 +158,11 @@ layout: argentina
             .replace(/{escondido}/gi, item.fijo.replace("no","").replace("si","hidden"))
             .replace(/{estado}/gi, item.estado);
 
-            var urlMarker = "/sites/default/files/marker.png";
+            var urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker.png";
 
             if(item.estado != '') {
               html = html.replace(/{alerta}/gi, '');
-              urlMarker = "/sites/default/files/marker_disabled.png";
+              urlMarker = "https://www.argentina.gob.ar/sites/default/files/marker_disabled.png";
             }else{
               html = html.replace(/{alerta}/gi, 'hidden');
             }
@@ -256,7 +253,7 @@ layout: argentina
     }
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1dhfOIhdVq8qCcH0vLN9BTaxseXrDI3J1MnBJtKftoRU/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 
@@ -302,7 +299,7 @@ layout: argentina
     });
 
     jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'/public/values?alt=json',
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
       data: 'json',
       success: function(response){
 
