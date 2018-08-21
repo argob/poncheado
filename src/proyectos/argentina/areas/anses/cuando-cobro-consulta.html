@@ -2,6 +2,12 @@
 layout: argentina
 ---
 
+<style>
+  .radio-inline{
+    height: 0px;
+  }
+</style>
+
 <div class="container">
 
   <ol class="breadcrumb">
@@ -28,17 +34,37 @@ layout: argentina
         <form action="/proyectos/argentina/areas/anses/resultado.html" id="cuil">
           <fieldset>
             <div class="row">
-              <div class="col-md-5 form-group">
-                <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
-                <select id="tipoDocCUIL" name="tipodoc" class="form-control">
-                  <option value="cuil" selected="">CUIL</option>
-                  <option value="beneficio">Beneficio</option>
-                </select>
-              </div>
-              <div class="col-md-7 form-group">
-                <label class="control-label" for="numero">Número</label>
-                <input type="number" class="form-control" id="numero" tabindex="1" autofocus="" required="">
-              </div>
+
+<div class="col-md-4">
+
+<fieldset>
+    <label>Elegí una opción</label>
+
+      <div class="form-group item-form">
+        <label for="opcion1" class="radio-inline">
+          <input type="radio" name="opciones" id="opcion1" value="opcion1" required="" aria-required="true">
+         CUIL
+        </label>
+        <label for="opcion2" class="radio-inline">
+          <input type="radio" name="opciones" id="opcion2" value="opcion2" required="" aria-required="true">
+          Beneficio
+        </label>        
+        <p class="help-block error hidden">Ingresá el dato</p>
+      </div>
+
+</fieldset>
+
+    </div>            
+
+<div class="col-md-8">
+  <div class="form-group item-form">
+   <label for="numDoc">Número</label>
+   <input type="number" min="1" class="form-control" id="numDoc" required="" aria-required="true">
+   <p class="help-block error hidden">Ingresá tu número de documento</p>
+ </div>
+</div>
+
+
             </div>
           </fieldset>
           
