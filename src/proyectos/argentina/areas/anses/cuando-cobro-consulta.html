@@ -1,0 +1,64 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="https://www.argentina.gob.ar/anses">ANSES</a></li>
+    <li class="active">Fechas y lugar de cobro</li>
+  </ol>
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Fecha y lugar de cobro</h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr class="m-y-1">
+        <h2 class="m-t-2 font-weight-bold">Completá tus datos</h2>
+        <p class="help-block">Seleccioná CUIL o Beneficio para realizar la consulta.</p>
+        <!-- <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div> -->
+
+        <form action="/proyectos/argentina/areas/anses/resultado.html" id="cuil">
+          <fieldset>
+            <div class="row">
+              <div class="col-md-5 form-group">
+                <label class="control-label" for="tipoDocCUIL">Tipo de Documento</label>
+                <select id="tipoDocCUIL" name="tipodoc" class="form-control">
+                  <option value="cuil" selected="">CUIL</option>
+                  <option value="beneficio">Beneficio</option>
+                </select>
+              </div>
+              <div class="col-md-7 form-group">
+                <label class="control-label" for="numero">Número</label>
+                <input type="number" class="form-control" id="numero" tabindex="1" autofocus="" required="">
+              </div>
+            </div>
+          </fieldset>
+          
+
+    <fieldset class="text-center">
+      <input type="submit" id="consButton" class="btn btn-success btn-lg btn-block" value="ver fecha y lugar de cobro" tabindex="8">
+
+    </fieldset>
+          </form>             
+      
+
+      <div class="col-md-12">
+        <hr> 
+        <p class="pull-right"> 
+            <img src="https://www.argentina.gob.ar/sites/default/files/anses_logo.png" width="150" class="img-responsive m-b-2" alt="logo de Anses">
+        </p> 
+      </div>
+
+    </article>
+  </section>
+
+
+</div>
