@@ -72,7 +72,7 @@ layout: argentina
       }
     </style>
 
-
+<div class="container">
       
       <div id="listadoAgencias" class="m-t-3 p-t-2">
         <div class="row">
@@ -87,7 +87,7 @@ layout: argentina
             </div>
             <div class="col-md-8">    
               <div class="form-group">
-                <label for=""> <strong>Buscá agencia</strong></label>
+                <label for=""> <strong>Buscá agencia, Ciudad, Nº de legajo, Nombre o Razón social</strong></label>
                 <input class="form-control search" placeholder="">
               </div>
             </div>
@@ -113,6 +113,7 @@ layout: argentina
           </div>
         </div>
       </div>
+    </div>
 
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
@@ -153,10 +154,10 @@ $(document).ready(function () {
           if(provincia == "todos" || provincia == item.gsx$provincia.$t){
                 lista += '<tr>';
                 /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-                lista += ' <td class="agencia razon-social cuit "><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>tipo: </b>' + item.gsx$tipo.$t +'</p><p><b>legajo: </b>'+  item.gsx$legajo.$t + '</p></td>';
+                lista += ' <td class="agencia razon-social cuit "><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p><p><b>Legajo: </b>'+  item.gsx$legajo.$t + '</p></td>';
                 lista += ' <td class="domicilio ciudad cpostal"> <p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><b>Ciudad: </b>'+ item.gsx$ciudad.$t +', '+ item.gsx$provincia.$t + '</p> <p> <b>Código postal: </b>' + item.gsx$cpostal.$t +'</p></td>';
 
-                lista += ' <td class="telefono"> <p><b>Telefono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b>'+ item.gsx$mail.$t + '</p></td>';
+                lista += ' <td class="telefono"> <p><b>Telefono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$mail.$t +'">'+ item.gsx$mail.$t + '</a></p></td>';
                 
                 lista += '</tr>';
             }
@@ -175,7 +176,7 @@ $(document).ready(function () {
 
 
           var listOptions = {
-            valueNames: ['agencia', 'razon-social', 'cuit', 'domicilio', 'ciudad', 'cpostal', 'telefono' ],
+            valueNames: ['agencia', 'razon-social', 'cuit', 'legajo', 'ciudad', 'telefono' ],
             page: 6,
             plugins: [ ListPagination({}) ]
             
