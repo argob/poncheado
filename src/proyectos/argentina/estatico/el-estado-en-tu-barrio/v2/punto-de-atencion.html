@@ -236,6 +236,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
 
+
   $(".preloader").remove();
 
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
@@ -246,8 +247,9 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 
              
           $.each(val, function(indice, tramite) {
+
             if(tramite.gsx$punto.$t == puntoId || tramite.gsx$puntoid.$t == 0 || tramite.gsx$provincia.$t == provincia){
-               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">'+tramite.gsx$tramite.$t+'</a></li>')
+               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">'+tramite.gsx$tramite.$t+'('+tramite.gsx$notatramite.$t+')</a></li>')
               }
           });
         
