@@ -43,7 +43,7 @@ layout: argentina
                     </div>
                 </h4>
 
-                <h3 class="h4 m-b-2">¿Qué trámites puedo realizar en este punto ?</h3>
+                <h3 class="h4 m-b-2">¿Qué trámites puedo realizar en este punto?</h3>
                 <div class="form-group">
                       <label class="control-label h5">Buscar trámite</label>
                       <div class="row">
@@ -247,9 +247,13 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 
              
           $.each(val, function(indice, tramite) {
+          notaTramite = "";
+          if(tramite.gsx$notatramite.$t != ""){
+            notaTramite = ' (' + tramite.gsx$notatramite.$t + ')';  
+          }
 
             if(tramite.gsx$punto.$t == puntoId || tramite.gsx$puntoid.$t == 0 || tramite.gsx$provincia.$t == provincia){
-               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">'+tramite.gsx$tramite.$t+'('+tramite.gsx$notatramite.$t+')</a></li>')
+               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramite.$t + notaTramite + '</a></li>');
               }
           });
         
