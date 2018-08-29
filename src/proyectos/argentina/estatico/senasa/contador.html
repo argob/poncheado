@@ -1,0 +1,133 @@
+---
+layout: argentina
+---
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+      p{
+        font-weight: 400;
+      }
+      .categoria-lf{
+        text-transform: lowercase;
+        font-size: 15px;
+      }
+      .categoria-lf::first-letter{
+
+        text-transform: uppercase; 
+      }
+      
+      
+
+      .logo{
+        max-width: 380px!important;
+      }
+    
+
+      #ean .popover{
+        top: 39px;
+        left: -118px!important;
+        display: block;
+        width: 250px!important;
+      }
+
+      #ean{
+        position: relative!important
+      }
+
+      #ean .popover .arrow{
+          left: 0!important;
+          right: 0!important;
+          margin: 0 auto!important;
+      }
+      
+      @media screen and (max-width: 767px){
+       
+        .descripcion, .proveedor, .ean{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+ 
+   
+  <div class="container">
+    <div id="show-data">
+      <div class="panel-pane pane-texto">
+      <div class="pane-content">
+        <div class="well">
+          <div class="row numbers p-y-0 p-x-2">
+            <div class="col-md-3">
+              <div class="icon-item">
+                <div class="h2 text-color" >
+                  
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  </div>
+      
+ 
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+<script type="text/javascript">
+(function($) {
+$(document).ready(function () {
+    
+    function guadalupe(){
+       jQuery.getJSON(
+    'http://vgs.senasa.gov.ar/marcadores/recarga.php',
+    function (data) {
+      var datos = '';
+                datos += '<h2>' + data[10].av + '</h2><br><p>' + data[10].i + '</p>';
+                $('#show-data').html(datos);
+            })
+    }
+
+    guadalupe();
+    setInterval(function(){ 
+    guadalupe();}, 30000);
+    
+    });
+       
+
+    })(jQuery);
+ 
+  
+</script>
+
+

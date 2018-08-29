@@ -2,71 +2,15 @@
 layout: argentina
 ---
     <style>
-      #map {
-        height: 600px;
-        width: 100%;
-      }
-
-      .item{
-        height: 310px;
-      }
-
-      .pie{
-        position: absolute;
-        bottom: 55px;
-        width: 90%;
-      }
-
-      .izq{
-        height: 30px;
-        padding-top: 6px;
-      }
-
-      .izq span{
-        font-size: 13px;
-        vertical-align: middle;
-        height: 30px;
-      }
-      p{
-        font-weight: 400;
-      }
-      .categoria-lf{
-        text-transform: lowercase;
-        font-size: 15px;
-      }
-      .categoria-lf::first-letter{
-
-        text-transform: uppercase; 
-      }
       
-      
-
-      .logo{
-        max-width: 380px!important;
-      }
-    
-
-      #ean .popover{
-        top: 39px;
-        left: -118px!important;
-        display: block;
-        width: 250px!important;
-      }
-
-      #ean{
-        position: relative!important
-      }
-
-      #ean .popover .arrow{
-          left: 0!important;
-          right: 0!important;
-          margin: 0 auto!important;
-      }
       
       @media screen and (max-width: 767px){
        
-        .descripcion, .proveedor, .ean{
+        td{
           white-space: unset!important;
+        }
+        h5{
+          font-size: 16px;
         }
         
       }
@@ -77,7 +21,7 @@ layout: argentina
       <div id="listadoAgencias" class="m-t-3 p-t-2">
         <div class="row">
           <div>
-            <div class="col-md-4">
+            <div class="col-md-4 m-t-2">
               <div class="form-group">
                 <label for=""><strong>Provincia</strong></label>
                 <select id="provincia" class="form-control">
@@ -85,10 +29,16 @@ layout: argentina
                 </select>
               </div>
             </div>
-            <div class="col-md-8">    
+            <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Buscá agencia, Ciudad, Nº de legajo, Nombre o Razón social</strong></label>
+                <label for=""> <strong>Buscá por agencia, Ciudad,  Nombre o Razón social</strong></label>
                 <input class="form-control search" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-4 m-t-2">    
+              <div class="form-group">
+                <label for=""> <strong>Buscá por Nº de legajo</strong></label>
+                <input class="form-control searchLegajo" placeholder="">
               </div>
             </div>
             <div class="table-responsive col-md-12">
@@ -133,15 +83,10 @@ $(document).ready(function () {
     function (data) {
 
           listadoAgencias = data['feed']['entry'];
+          
           filtrarContenido(provincia);
 
-          
-         
-
       });
-
-
-        
 
 
           function filtrarContenido(provincia){
@@ -151,10 +96,10 @@ $(document).ready(function () {
           
 
           $.each(listadoAgencias, function( key, item ) {
-          if(provincia == "todos" || provincia == item.gsx$provincia.$t){
+          if((provincia == "todos") || (provincia == item.gsx$provincia.$t)){
                 lista += '<tr>';
                 /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-                lista += ' <td class="agencia razon-social cuit "><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p><p><b>Legajo: </b>'+  item.gsx$legajo.$t + '</p></td>';
+                lista += ' <td class="agencia razon-social cuit legajo"><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p><p><b>Legajo: </b>'+  item.gsx$legajo.$t + '</p></td>';
                 lista += ' <td class="domicilio ciudad cpostal"> <p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><b>Ciudad: </b>'+ item.gsx$ciudad.$t +', '+ item.gsx$provincia.$t + '</p> <p> <b>Código postal: </b>' + item.gsx$cpostal.$t +'</p></td>';
 
                 lista += ' <td class="telefono"> <p><b>Telefono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$mail.$t +'">'+ item.gsx$mail.$t + '</a></p></td>';
@@ -176,18 +121,34 @@ $(document).ready(function () {
 
 
           var listOptions = {
-            valueNames: ['agencia', 'razon-social', 'cuit', 'legajo', 'ciudad', 'telefono' ],
+            valueNames: ['agencia', 'razon-social', 'cuit',  'ciudad', 'telefono' ],
             page: 10,
             plugins: [ ListPagination({}) ]
             
            };
 
-             var listaNueva = new List('listadoAgencias', listOptions); 
+           var listOptionsLegajo = {
+            valueNames: ['legajo'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+
+
+             var listaNueva = new List('listadoAgencias', listOptions, listOptionsLegajo); 
+
+            
 
              
 
           $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+          $('.searchLegajo').on("keyup", function(){
+            var valorBuscado = $(".searchLegajo").val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
 
