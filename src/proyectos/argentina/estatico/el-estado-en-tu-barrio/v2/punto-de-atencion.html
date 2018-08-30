@@ -222,7 +222,7 @@ if(lab == ""){
                       <span class="fa fa-calendar text-primary m-b-0" aria-hidden="true"></span>
                   </div>
                   <div class="media-body media-middle">
-                    <p class="m-b-0"><span>Disponible del <span id="fecha_desde"></span> al <span id="fecha_hasta"></span></span></p>
+                    <p class="m-b-0" id="fechaPunto"></p>
                   </div>
                 </div>
             </div>
@@ -328,15 +328,27 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
   listaPuntos = data.feed.entry;
 
      $.each(listaPuntos, function(index, val) {
+        console.log(val.gsx$nombre.$t);
     
      if(val.gsx$nombre.$t == puntoId){
         provincia = val.gsx$provincia.$t;
         excepcion = val.gsx$excepcion.$t;
-         
         $("#nombrePunto").html(val.gsx$nombre.$t);
         $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
+
+        var fechaPunto;
+        if(val.gsx$fechahasta.$t == ""){
+          fechaPunto = '<span>Disponible desde el <span>'+val.gsx$fechadesde.$t+'</span></span>';
+        }
+        else{
+          fechaPunto = '<span>Disponible del <span>'+val.gsx$fechadesde.$t+'</span> al <span>'+val.gsx$fechahasta.$t+'</span></span>';
+        }
+
+        $("#fechaPunto").html(fechaPunto);
+
+
         $("#fecha_desde").html(val.gsx$fechadesde.$t);
         $("#fecha_hasta").html(val.gsx$fechahasta.$t);
         $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
@@ -348,7 +360,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
           }
       });
 
-console.log("es excepcion?" + excepcion);
+
 
 //LISTA DE TRÁMITES DEL PUNTO
 
