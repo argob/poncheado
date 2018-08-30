@@ -320,6 +320,7 @@ var url_string = window.location.href;
 var url = new URL(url_string);
 var puntoId = url.searchParams.get("punto");
 var provincia = "";
+var excepcion = "";
 
   
 //DATOS DEL PUNTO
@@ -330,6 +331,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
     
      if(val.gsx$nombre.$t == puntoId){
         provincia = val.gsx$provincia.$t;
+        excepcion = val.gsx$excepcion.$t;
          
         $("#nombrePunto").html(val.gsx$nombre.$t);
         $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
@@ -346,8 +348,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
           }
       });
 
-
-
+console.log("es excepcion?" + excepcion);
 
 //LISTA DE TRÁMITES DEL PUNTO
 
@@ -368,10 +369,21 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
           if(tramite.gsx$notatramite.$t != ""){
             notaTramite = ' (' + tramite.gsx$notatramite.$t + ')';  
           }
-
+          
+          if(excepcion != "si"){
             if((tramite.gsx$punto.$t == puntoId  || tramite.gsx$puntoid.$t == 0) && (tramite.gsx$provincia.$t == provincia)){
                $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
               }
+          }
+          else{
+            if(tramite.gsx$punto.$t == puntoId && tramite.gsx$provincia.$t == provincia){
+              console.log("entro aca!" + tramite.gsx$tramiteid.$t);
+               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
+              }
+
+          }
+
+
           });
         
         if($("#categoria-clon .content_format li").length > 0){
