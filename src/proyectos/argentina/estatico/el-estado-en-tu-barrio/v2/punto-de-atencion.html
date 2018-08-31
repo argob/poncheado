@@ -309,6 +309,35 @@ if(lab == ""){
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+    </main>
+    <footer class="main-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/servicios">Trámites y servicios</a></li>
+          <li><a href="/organismos">Organismos del Estado</a></li>
+          <li><a href="/pais">Nuestro país</a></li>
+          <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="/ayuda">Ayuda</a></li>
+          <li><a href="/sugerencias">Hacer una sugerencia</a></li>
+          <li><a href="/acerca">Acerca de este sitio</a></li>
+          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+          <li><a href="/creditos">Créditos</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -365,37 +394,36 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 //LISTA DE TRÁMITES DEL PUNTO
 
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
-
-
   $(".preloader").remove();
 
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
 
   $.each(listaCategorias, function(punto, val) {
-      $("#categoria-clon .content_format").html("");
+        $("#categoria-clon .content_format").html("");
         $("#categoria-clon .nombreCategoria").html(punto);
 
              
-          $.each(val, function(indice, tramite) {
+        $.each(val, function(indice, tramite) {
           notaTramite = "";
           if(tramite.gsx$notatramite.$t != ""){
             notaTramite = ' (' + tramite.gsx$notatramite.$t + ')';  
-          }
-          
-          if(excepcion != "si"){
-            if((tramite.gsx$punto.$t == puntoId  || tramite.gsx$puntoid.$t == 0) && (tramite.gsx$provincia.$t == provincia)){
-               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
-              }
-          }
-          else{
-            if(tramite.gsx$punto.$t == puntoId && tramite.gsx$provincia.$t == provincia){
-              console.log("entro aca!" + tramite.gsx$tramiteid.$t);
-               $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
-              }
+        }
 
-          }
+            //Es un punto normal
+            if(excepcion != "si"){
+              if((tramite.gsx$punto.$t == puntoId  || tramite.gsx$puntoid.$t == 0) && (tramite.gsx$provincia.$t == provincia)){
+                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
+                }
+            }
 
+            //Es un punto excepcional, por ejemplo Retiro o Constitución
+            else{
+              if(tramite.gsx$punto.$t == puntoId && tramite.gsx$provincia.$t == provincia){
+                console.log("entro aca!" + tramite.gsx$tramiteid.$t);
+                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
+                }
 
+            }
           });
         
         if($("#categoria-clon .content_format li").length > 0){
@@ -429,11 +457,9 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         }
      })
   });
-})
 
-
-//Fin del primer get
 })
+})//Fin del primer get
 
 //TRAER REQUISITOS DEL TRÁMITE
 $(document).on("click",".mostrarTramite",function(){
@@ -456,13 +482,17 @@ $(document).on("click",".mostrarTramite",function(){
   ga('create', 'UA-71585203-1', 'auto');
   ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
 
-
       $(".modal-title").html(nombre);
 
       var converter = new showdown.Converter(),
       descripcion_formatted = converter.makeHtml(descripcion);
 
-      $(".modal-body").html(descripcion_formatted);
+      if(descripcion_formatted != ""){
+        $(".modal-body").html(descripcion_formatted);
+      }
+      else{
+        $(".modal-body").html('<div class="alert alert-info">Aún no hay información para mostrár.</div>');
+      }
 
       $('#modalTramite').modal("show");
   })
@@ -471,34 +501,7 @@ $(document).on("click",".mostrarTramite",function(){
 
 </script>
 
-    </main>
-    <footer class="main-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="/proyectos/argentina/img/argentinagob.svg" height="50">
-        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/servicios">Trámites y servicios</a></li>
-          <li><a href="/organismos">Organismos del Estado</a></li>
-          <li><a href="/pais">Nuestro país</a></li>
-          <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/ayuda">Ayuda</a></li>
-          <li><a href="/sugerencias">Hacer una sugerencia</a></li>
-          <li><a href="/acerca">Acerca de este sitio</a></li>
-          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-          <li><a href="/creditos">Créditos</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+
 
     
   </body>
