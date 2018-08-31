@@ -45,4 +45,15 @@
     location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
   };
   
+
+
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  console.log(lab);
+  
+  if(lab == ""){
+    $("head").append('<link href="../../../poncho/css/poncho_lab.css" rel="stylesheet">');
+  }
 </script>
