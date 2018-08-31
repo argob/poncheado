@@ -120,30 +120,7 @@ a.panel span {
             <div class="form-group">
                 <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
                 <select class="form-control" name="provincia" id="provincia" required>
-                    <option data-id="1" value="Ciudad Autónoma de Buenos Aires" selected>Ciudad Autónoma de Buenos Aires</option>
-                    <option data-id="2" value="Buenos Aires">Buenos Aires</option>
-                    <option data-id="3" value="Catamarca">Catamarca</option>
-                    <option data-id="4" value="Córdoba">Córdoba</option>
-                    <option data-id="5" value="Corrientes">Corrientes</option>
-                    <option data-id="6" value="Chaco">Chaco</option>
-                    <option data-id="7" value="Chubut">Chubut</option>
-                    <option data-id="8" value="Entre Ríos">Entre Ríos</option>
-                    <option data-id="9" value="Formosa">Formosa</option>
-                    <option data-id="10" value="Jujuy">Jujuy</option>
-                    <option data-id="11" value="La Pampa">La Pampa</option>
-                    <option data-id="12" value="La Rioja">La Rioja</option>
-                    <option data-id="13" value="Mendoza">Mendoza</option>
-                    <option data-id="14" value="Misiones">Misiones</option>
-                    <option data-id="15" value="Neuquén">Neuquén</option>
-                    <option data-id="16" value="Río Negro">Río Negro</option>
-                    <option data-id="17" value="Salta">Salta</option>
-                    <option data-id="18" value="San Juan">San Juan</option>
-                    <option data-id="19" value="San Luis">San Luis</option>
-                    <option data-id="20" value="Santa Cruz">Santa Cruz</option>
-                    <option data-id="21" value="Santa Fe">Santa Fe</option>
-                    <option data-id="22" value="Santiago del Estero">Santiago del Estero</option>
-                    <option data-id="23" value="Tierra del Fuego">Tierra del Fuego</option>
-                    <option data-id="24" value="Tucumán">Tucumán</option>
+                    <option data-id="0" value="" selected>Seleccioná una provincia</option>
                 </select>
             </div>
 
@@ -175,7 +152,7 @@ a.panel span {
                               <span class="fa fa-calendar" aria-hidden="true"></span>
                           </div>
                           <div class="media-body media-middle">
-                            <p><small>del <span class="fecha_desde">01/01/2018</span> al <span class="fecha_hasta">01/01/2019</span></small></p>
+                            <p><small>Desde <span class="fecha_desde">01/01/2018</span> hasta <span class="fecha_hasta">01/01/2019</span></small></p>
                           </div>
                         </div>
                         <div class="media">
@@ -203,7 +180,7 @@ a.panel span {
       
       <!-- PUNTO - MODELO Inicio-->
       <div class="row panels-row m-y-1 list" id="puntos"></div>
-          <div class="alert alert-warning" style="display:none" id="aviso">En este momento no hay puntos de El Estado en tu Barrio disponibles para la provincia o búsqueda que elegiste. Por favor elegí otra provincia o borrá la búsqueda para encontrar otros lugares.</div>
+          <div class="alert alert-warning" id="aviso">Todavía no estamos cerca de tu barrio, <a target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio/">registrate</a> para que te avisemos cuando haya un punto.</div>
       </div>
       <!-- PUNTO - MODELO Fin-->
 
@@ -332,14 +309,12 @@ window.onload = function() {
 
     $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
       listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
+
       filtrarPuntos(listaPuntos,provincia);
     })
 
-
-
-
-
 //FILTRAR PUNTOS FUNCION
+var provinciasCargadas = false;
 function filtrarPuntos(listaPuntos,provincia){
   //RESET
   $("#puntos").html("");
@@ -347,12 +322,20 @@ function filtrarPuntos(listaPuntos,provincia){
   
   //RECORRER PROVINCIAS
   $.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
-  
+  if(provinciasCargadas == false && nombreProvincia != ""){
+    $("#provincia").append('<option data-id="1" value="' + nombreProvincia +'">'+ nombreProvincia + '</option>');
+  }
+
   if(nombreProvincia == provincia){
     //RECORRER CADA PUNTO
     $.each(puntosProvincia, function(index, val) {
       if(val.gsx$nombre.$t != "Todos" && val.gsx$publicado.$t == "si"){
         $("#punto-clon .nombre").html(val.gsx$nombre.$t);
+        if(val.gsx$fechadesde.$t == ""){
+          $("#punto-clon .fecha_desde").parents(".media").hide();
+        }
+
+        $("#punto-clon .fecha_desde").parents(".media").show();
         $("#punto-clon .fecha_desde").html(val.gsx$fechadesde.$t);
         $("#punto-clon .fecha_hasta").html(val.gsx$fechahasta.$t);
         $("#punto-clon .horario").html(val.gsx$horario.$t);
@@ -374,28 +357,31 @@ function filtrarPuntos(listaPuntos,provincia){
         cantidadPuntos++;
       }
     });
+
   } 
 });
-    if(cantidadPuntos == 0){
-      $("#aviso").show();
-    }
-    else{
-      $("#aviso").hide(); 
-    }
+provinciasCargadas = true;
+
 
 //FILTRO
 var options = {
   valueNames: [ 'nombre']
 };
+
 var userList = new List('puntosListado', options);
-
-
 }
 
 
 $(document).on("change","select",function(){
   var provinciaSeleccionada = $("#provincia option:selected").val();
-  filtrarPuntos(listaPuntos,provinciaSeleccionada)
+  filtrarPuntos(listaPuntos,provinciaSeleccionada);
+
+    if(provinciaSeleccionada == ""){
+    $("#aviso").show();
+  }
+  else{
+    $("#aviso").hide(); 
+  }
 })
 
 

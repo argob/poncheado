@@ -367,15 +367,17 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
 
-        var fechaPunto;
-        if(val.gsx$fechahasta.$t == ""){
-          fechaPunto = '<span>Disponible desde el <span>'+val.gsx$fechadesde.$t+'</span></span>';
+        var fechaPunto = "";
+
+        if(val.gsx$fechahasta.$t != ""){
+          fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
+            $("#fechaPunto").parents(".media").show();
+            $("#fechaPunto").html(fechaPunto);
         }
         else{
-          fechaPunto = '<span>Disponible del <span>'+val.gsx$fechadesde.$t+'</span> al <span>'+val.gsx$fechahasta.$t+'</span></span>';
+            $("#fechaPunto").parents(".media").hide();
         }
 
-        $("#fechaPunto").html(fechaPunto);
 
 
         $("#fecha_desde").html(val.gsx$fechadesde.$t);
