@@ -178,7 +178,7 @@ if(lab == ""){
       
       <div class="panel-body">
       
-        <h3 class="m-b-1"><b class="nombreCategoria">ANSES</b></h3>
+        <h3 class="m-b-1"><b class="nombreCategoria"></b><span class="notaPunto"></span></h3>
         <ul class="list content_format">
           
         </ul>
@@ -357,7 +357,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
   listaPuntos = data.feed.entry;
 
      $.each(listaPuntos, function(index, val) {
-        console.log(val.gsx$nombre.$t);
+        
     
      if(val.gsx$nombre.$t == puntoId){
         provincia = val.gsx$provincia.$t;
@@ -406,23 +406,25 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 
              
         $.each(val, function(indice, tramite) {
-          notaTramite = "";
+          notaPunto = "";
           if(tramite.gsx$notatramite.$t != ""){
-            notaTramite = ' (' + tramite.gsx$notatramite.$t + ')';  
+            notaPunto = ' (' + tramite.gsx$notatramite.$t + ')';  
         }
 
-            //Es un punto normal
+           //Es un punto normal
             if(excepcion != "si"){
               if((tramite.gsx$punto.$t == puntoId  || tramite.gsx$puntoid.$t == 0) && (tramite.gsx$provincia.$t == provincia)){
-                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
+                 $("#categoria-clon .notaPunto").html(notaPunto);
+                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + '</a></li>');
                 }
             }
 
             //Es un punto excepcional, por ejemplo Retiro o Constitución
             else{
               if(tramite.gsx$punto.$t == puntoId && tramite.gsx$provincia.$t == provincia){
-                console.log("entro aca!" + tramite.gsx$tramiteid.$t);
-                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + notaTramite + '</a></li>');
+                
+                 $("#categoria-clon .notaPunto").html(notaPunto);
+                 $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + '</a></li>');
                 }
 
             }
@@ -446,6 +448,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
   //FILTRAR TRÁMITES
   $("#buscadorTramite").on("keyup", function(event) {
      var palabra = $(this).val();
+     console.log(palabra);
      $(".content_format li").addClass("hidden").removeClass("filtrado");
      $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
 
