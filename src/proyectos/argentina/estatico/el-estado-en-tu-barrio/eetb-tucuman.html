@@ -146,8 +146,7 @@ layout: argentina
 
         jQuery('[data-render=barrios]').html('');
 
-        console.log( listado );
-
+        
         if( listado.length == 0 ){
           jQuery('.lugares-mensaje').removeClass('hidden');
 
@@ -281,7 +280,7 @@ layout: argentina
             ){
 
 
-            console.log();
+         
 
             listado.push({
               inicio: row.gsx$inicio.$t,
@@ -303,10 +302,11 @@ layout: argentina
     });
 
     jQuery.ajax({
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'',
+      url: 'https://spreadsheets.google.com/feeds/list/1-5MzclZq_0oIYxZqVy70P-KJZZ7yaWuL9ioTjBVX_yI/'+ idProvincia +'/public/values?alt=json',
       data: 'json',
-      success: function(response){
 
+      success: function(response){
+        
         jQuery.each(response.feed.entry, function(index, row){
           if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
             categoriasServicios.push( row.gsx$categoria.$t )
@@ -316,6 +316,8 @@ layout: argentina
             listadoServicios[ categoria ].push( row.gsx$servicio.$t );
           }
         });
+
+
         render.servicios();
       }
     });
@@ -356,6 +358,6 @@ layout: argentina
         'ua-label': busqueda
       });
     }
-
+    
   };
 </script>
