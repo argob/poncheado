@@ -1,0 +1,225 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html padre="Salud" hijo="Salud" %}
+
+
+<style>
+  
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }  
+
+@media (max-width: 480px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
+}
+
+
+</style>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="salud" %}
+
+      </aside>
+      <div class="col-md-8">
+
+        <h1 class="h4">Centro de salud</h1>
+        <p class="m-b-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum fugit sapiente placeat, consequuntur doloribus voluptate suscipit similique ipsam illo aliquid esse voluptates, labore tempora molestias, at sunt obcaecati, nam nobis.</p>
+        
+
+        <div class="panel panel-default panel-border-primary p-b-2">
+          <div class="panel-body">
+          <div class="media">
+            <div class="media-body media-middle">
+              <h2>Centro de salud</h2>
+              <p>Conocé los hospitales y otros centros de salud públicos y privados de todo el país.</p>
+            </div>
+          </div>
+
+           <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="">Mapa</a></li>
+            <li role="presentation"><a href="">Listado</a></li>
+            <li role="presentation"><a href="">Favoritos</a></li>
+          </ul>
+
+          <div class="state-loading m-t-2" id="map-container"><div id="map">&nbsp;</div></div>
+
+
+           </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script><script>
+
+
+  var initMap = function() {
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: true,
+      streetViewControl: false
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+     url: 'mapa_centro_salud.json',
+    //  url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1S-9FUGj-jUdlHUwoMhaGNaGYNIrKaNs6q9Wmue7T6qY/1',
+      data: 'json',
+      success: function(response){
+
+
+        var rows = response.establecimientos;
+
+        rows.forEach(function(row, key){
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: row.lat, lng: row.lon},
+              // map: map,
+              
+       icon: {
+       url: 'https://www.argentina.gob.ar/sites/default/files/marker_salud_'+ row.financiamiento.toLowerCase()+'.png',
+       size: new google.maps.Size(20, 20),
+       origin: new google.maps.Point(0, 0),
+       anchor: new google.maps.Point(10, 10)
+       }
+
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<div class="col-sm-9"><h5 class="text-primary">'+ row.financiamiento +'</h5><h3>'+ row.nombre + '</h3><h4>'+ row.provincia + ' / ' + row.localidad + '</h4><p>' + row.domicilio + '</p></div><div class="col-sm-3 text-center"><i class="fa fa-star-o fa-2x m-t-2 m-t-2 p-l-2 p-r-2"></i><p class="text-primary m-t-2">1 km</p></div>',
+              maxWidth: 400
+            })
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+            });
+
+          // }
+        })
+
+        var markerCluster = new MarkerClusterer(map, markers, {
+          imagePath: '/sites/default/files/',
+          gridSize: 50,
+          minimumClusterSize: 800,
+          maxZoom: 19
+        });
+
+
+        $('#map-container').removeClass('state-loading');
+
+      },
+      error: function(){
+        // console.log('nope');
+      }
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(15);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            // console.log('geo nope')
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(15);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+  }
+
+</script><script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
