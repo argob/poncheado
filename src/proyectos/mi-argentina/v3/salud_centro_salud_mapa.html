@@ -76,7 +76,142 @@ layout: mi-argentina
 <script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
 
 <script>
-$("[type='checkbox']").bootstrapSwitch();
+
+var provincia_usuario = "Misiones";
+
+var provincias = [
+      {  
+         "provincia":"Córdoba",
+         "lat":-32.142933,
+         "lon":-63.801753
+      },
+      {  
+         "provincia":"Chaco",
+         "lat":-26.386431,
+         "lon":-60.765831
+      },
+      {  
+         "provincia":"Chubut",
+         "lat":-43.788623,
+         "lon":-68.526759
+      },
+      {  
+         "provincia":"Buenos Aires",
+         "lat":-36.676942,
+         "lon":-60.558832
+      },
+      {  
+         "provincia":"Catamarca",
+         "lat":-27.335833,
+         "lon":-66.947682
+      },
+      {  
+         "provincia":"Entre Ríos",
+         "lat":-32.058874,
+         "lon":-59.201448
+      },
+      {  
+         "provincia":"Formosa",
+         "lat":-24.894973,
+         "lon":-59.932441
+      },
+      {  
+         "provincia":"La Pampa",
+         "lat":-37.131554,
+         "lon":-65.446655
+      },
+      {  
+         "provincia":"Río Negro",
+         "lat":-40.405796,
+         "lon":-67.22933
+      },
+      {  
+         "provincia":"San Juan",
+         "lat":-30.865368,
+         "lon":-68.889491
+      },
+      {  
+         "provincia":"Santa Cruz",
+         "lat":-48.815485,
+         "lon":-69.955762
+      },
+      {  
+         "provincia":"Santa Fe",
+         "lat":-30.706927,
+         "lon":-60.949837
+      },
+      {  
+         "provincia":"Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+         "lat":-82.521518,
+         "lon":-50.742749
+      },
+      {  
+         "provincia":"Jujuy",
+         "lat":-23.320078,
+         "lon":-65.764252
+      },
+      {  
+         "provincia":"Misiones",
+         "lat":-26.875397,
+         "lon":-54.651697
+      },
+      {  
+         "provincia":"Ciudad Autónoma de Buenos Aires",
+         "lat":-34.614493,
+         "lon":-58.445856
+      },
+      {  
+         "provincia":"Corrientes",
+         "lat":-28.774305,
+         "lon":-57.801219
+      },
+      {  
+         "provincia":"La Rioja",
+         "lat":-29.685776,
+         "lon":-67.181736
+      },
+      {  
+         "provincia":"Salta",
+         "lat":-24.299134,
+         "lon":-64.814463
+      },
+      {  
+         "provincia":"Santiago del Estero",
+         "lat":-27.782412,
+         "lon":-63.252387
+      },
+      {  
+         "provincia":"Mendoza",
+         "lat":-34.629887,
+         "lon":-68.583123
+      },
+      {  
+         "provincia":"Neuquén",
+         "lat":-38.641758,
+         "lon":-70.118571
+      },
+      {  
+         "provincia":"San Luis",
+         "lat":-33.757726,
+         "lon":-66.02813
+      },
+      {  
+         "provincia":"Tucumán",
+         "lat":-26.9478,
+         "lon":-65.364758
+      }
+   ];
+
+var latitud_usuario;
+var longitud_usuario;
+provincias.forEach(function(row, key){
+  if(row.provincia == provincia_usuario){
+    latitud_usuario = row.lat;
+    longitud_usuario = row.lon;
+  }
+})
+
+
 
 //Marcar favorito
 $(document).on("click",".favorito",function(){
@@ -94,9 +229,10 @@ $(document).on("click",".favorito",function(){
 
     // Setup map
 
-    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+
+    var mapCenter = {lat: latitud_usuario, lng: longitud_usuario};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: 7,
       center: mapCenter,
       scrollwheel: true,
       streetViewControl: false
@@ -126,12 +262,12 @@ $(document).on("click",".favorito",function(){
               position: {lat: row.lat, lng: row.lon},
               // map: map,
               
-       icon: {
-       url: 'https://www.argentina.gob.ar/sites/default/files/marker_salud_'+ marker +'.png?id=2',
-       size: new google.maps.Size(30, 30),
-       origin: new google.maps.Point(0, 0),
-       anchor: new google.maps.Point(10, 10)
-       }
+             icon: {
+               url: 'https://www.argentina.gob.ar/sites/default/files/marker_salud_'+ marker +'.png?id=2',
+               size: new google.maps.Size(30, 30),
+               origin: new google.maps.Point(0, 0),
+               anchor: new google.maps.Point(10, 10)
+             }
 
             });
 
