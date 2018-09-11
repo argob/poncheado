@@ -4,6 +4,12 @@ layout: mi-argentina
 
 {% include mi-argentina/usuario.html padre="Salud" hijo="Salud" %}
 
+<style>
+    .favorito:hover{
+    cursor:pointer;
+  }
+</style>
+
 <section>
   <div class="container">
     <div class="row">
@@ -44,7 +50,7 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
             </div>          
@@ -62,7 +68,7 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
             </div> 
@@ -80,10 +86,12 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
             </div> 
+             
+            <hr> 
 
             <div class="media"> 
               <div class="media-left"> 
@@ -96,10 +104,12 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
-            </div>         
+            </div>   
+
+            <hr>      
 
             <div class="media"> 
               <div class="media-left"> 
@@ -112,10 +122,12 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
-            </div>         
+            </div>   
+
+            <hr>      
 
             <div class="media"> 
               <div class="media-left"> 
@@ -128,7 +140,7 @@ layout: mi-argentina
               <div>Antártida Argentina N 1275</div>
               </div> 
               <div class="media-right text-center"> 
-                <a href=""><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
+                <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
                 <div class="text-primary">2 km</div>
               </div> 
             </div>   
@@ -167,4 +179,14 @@ layout: mi-argentina
 
 <script>
   $("[type='checkbox']").bootstrapSwitch();
+
+  //Centro favorito
+$(document).on("click",".favorito",function(){
+  if($(this).find("i").hasClass("fa-star-o")){
+    $(this).find("i").removeClass("fa-star-o").addClass("fa-star text-warning");
+  }
+  else{
+    $(this).find("i").addClass("fa-star-o").removeClass("fa-star text-warning");
+  }
+})
 </script>

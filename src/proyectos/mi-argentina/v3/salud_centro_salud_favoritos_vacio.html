@@ -3,7 +3,11 @@ layout: mi-argentina
 ---
 
 {% include mi-argentina/usuario.html padre="Salud" hijo="Salud" %}
-
+<style>
+    .favorito:hover{
+    cursor:pointer;
+  }
+</style>
 <section>
   <div class="container">
     <div class="row">
@@ -71,4 +75,13 @@ layout: mi-argentina
 
 <script>
   $("[type='checkbox']").bootstrapSwitch();
+  //Centro favorito
+$(document).on("click",".favorito",function(){
+  if($(this).find("i").hasClass("fa-star-o")){
+    $(this).find("i").removeClass("fa-star-o").addClass("fa-star text-warning");
+  }
+  else{
+    $(this).find("i").addClass("fa-star-o").removeClass("fa-star text-warning");
+  }
+})
 </script>
