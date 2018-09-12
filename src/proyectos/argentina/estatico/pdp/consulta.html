@@ -1,0 +1,308 @@
+---
+layout: argentina
+---
+
+<style>
+  .contenedorQr{
+    font-size: 9px;
+    color:#FFF;
+    padding: 23px 23px 10px 23px
+  }
+
+  .contenedorQr a{font-size: 11px}
+</style>
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="https://www.argentina.gob.ar/aaip">Agencia de Acceso a la Información Pública</a></li>
+    <li class="active">Certificado del Registro Nacional de Base de Datos</li>
+  </ol>
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Certificado del Registro Nacional de Base de Datos</h1>
+        <p>Es esta página podés descargar el certificado de inscripción al Registro Nacional de Base de Datos con código QR, para imprimir y exhibir toda la información del responsable.</p>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr class="m-y-1">
+        <h2 class="m-t-2 font-weight-bold">Completá tus datos</h2>
+        <p>Ingresá el código de responsable que recibiste al momento de alta en el Registro Nacional de Bases de Datos</p>
+        <!-- <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div> -->
+
+        <form action="">
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+
+                <!--   ========== GENERAR QR ============= !-->    
+                <!--   ========== GENERAR QR ============= !-->    
+                
+                <div class="row">
+                  <div class="col-md-4 aaip-qr-container-text">
+
+                    <div class="form-group">
+                      <label for="txt_responsable_id">Código de responsable</label>
+                      <input class="form-control" type="number" name="txt_responsable_id" id="txt_responsable_id" maxlength="100" min="0" required />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txt_responsable_cuit">CUIT</label>
+                      <input class="form-control" type="number" name="txt_responsable_cuit" id="txt_responsable_cuit" maxlength="13" max="9999999999999" min="0" required />
+                    </div>
+
+                    <button title="GENERAR CODIGO"  alt="GENERAR CODIGO" class="btn btn-success btn-long " id="btn-generar-qr">Generar código</button> 
+                  </div>
+                  
+
+                  <div class="col-md-3 align-middle">
+                    <div class="aaip-qr-container">
+                      <div class="aaip-qr"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-5"></div>
+
+                </div>  
+
+
+                <!--   ========== DESCARGAR QR ============= !-->    
+                <!--   ========== DESCARGAR QR ============= !-->    
+
+                <div class="row row-descargar" id="resultado">
+
+                  <hr>
+
+                  <div class="col-md-12">
+                    <h4>Descargar certificado</h4>
+                    <p>Descargá el certificado del Registro Nacional de Bases de Datos con código QR para imprimir.</p>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#" title="descargar certificado"  alt="descargar certificado" target="_blank" class="btn btn-primary btn-block " id="btn-descargar-qr">Descargar</a> 
+                  </div>
+
+                </div> 
+
+
+                <!--   ========== DESCARGAR QR ============= !-->    
+                <!--   ========== DESCARGAR QR ============= !-->    
+
+
+                <hr>
+
+
+
+                <!--   ========== COMPARTIR ISOLOGO ============= !-->    
+                <!--   ========== COMPARTIR ISOLOGO ============= !-->    
+
+                <div class="row row-compartir">
+                  <div class="col-md-12">
+                    <h4>Compartir isologo</h4>
+                    <p class="m-t-2">Compartí el isologo del Registro Nacional de Bases de Datos en su web</p>
+                  </div>
+
+                  <div class="col-md-8">
+                    <img src="https://www.argentina.gob.ar/sites/default/files/logo_pdp.png" alt="" width="300px">
+                  </div>
+
+                  <div class="col-md-12 m-t-2">
+
+                    <div id="txt_codigo_html" class="highlight">
+                      <pre></pre>
+                    </div>                  
+                  </div>
+
+                  <div class="col-md-4 m-t-1">
+                    <a href="#" title="copiar código html"  alt="copiar código html"  class="btn btn-primary btn-block " id="btn-copiar-isologo">Copiar código</a> 
+                  </div>
+
+                </div> 
+
+
+                <!--   ========== COMPARTIR ISOLOGO ============= !-->    
+                <!--   ========== COMPARTIR ISOLOGO ============= !--> 
+
+
+                <!--   ========== COMPARTIR QR ============= !-->    
+                <!--   ========== COMPARTIR QR ============= !--> 
+
+                <div class="row row-compartir">
+                  <div class="col-md-12">
+                  <h4>QR</h4>
+                    <p class="m-t-2">Versión HTML de tu código QR</p>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="contenedorQr bg-primary">
+                      <p class="text-center">
+                        <img src="https://www.argentina.gob.ar/sites/default/files/aaip_apaisadobco.png" alt="" width="100%">
+                      </p>
+                      <div id="isologo">
+                        <img src="http://img.over-blog-kiwi.com/1/04/40/49/20170921/ob_a3ad33_httpsyoutube4wv95zvu1-2.jpg" width="100%" alt="">
+                      </div>
+                      <p class="text-center m-t-2"><a target="_blank" href="http://www.argentina.gob.ar/aaip">http://www.argentina.gob.ar/aaip</a></p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 m-t-2">
+
+                    <div id="txt_codigo_qr" class="highlight">
+                      <pre></pre>
+                    </div>                  
+                  </div>
+
+                  <div class="col-md-4 m-t-1">
+                    <a href="#" title="copiar código qr"  alt="copiar código qr"  class="btn btn-primary btn-block " id="btn-copiar-qr">Copiar código</a> 
+                  </div>
+
+                </div>
+
+                <!--   ========== COMPARTIR QR ============= !-->    
+                <!--   ========== COMPARTIR QR ============= !--> 
+
+
+
+
+              </div>
+            </div>
+          </fieldset>
+
+
+        </form>             
+
+      </article>
+    </section>
+  </div>
+
+  <script>
+    var aaip_qr = {
+
+
+    /************************************************************** 
+     *
+     * FUNCIONALIDAD:  Arma el LINK para descargar el QR
+     *                                   
+     * PARAMETROS:
+     *
+     *     @param int responsable_id    EL ID del responsable
+     *
+     * RESPUESTA:
+     *     @return  string
+     *
+     * @last-update  05-09-2018
+     *************************************************************** */
+
+
+     descargar: function (responsable_id , cuit){
+
+      var texto = 'https://descarga.aaip.gob.ar/api/render?url=http://qr-codigo-qr-1/index.html?' + 'cuit='+ cuit + '$' +'codigo=' + responsable_id + '&pdf.format=A4&pdf.landscape=true';
+
+      return(texto);
+
+    },
+
+
+    /************************************************************** 
+     *
+     * FUNCIONALIDAD:  Muestra el codigo HTML con el isologo 
+     *                                   
+     * PARAMETROS:
+     *
+     *     @param int responsable_id    EL ID del responsable
+     *     @param int cuit              EL CUIT del responsable
+     *
+     * RESPUESTA:
+     *     @return  string
+     *
+     * @last-update  05-09-2018
+     *************************************************************** */
+
+
+     codigo_html: function ( responsable_id , cuit ){
+       var texto ='<a href="https://www.argentina.gob.ar/aaip/datospersonales/reclama/'+ cuit +'-'+ responsable_id +'"><img src="https://qr.aaip.gob.ar/logo.png" alt="AAIP RNBD" style="width:42px;height:42px;border:0;"> </a>';
+        return(texto);     
+      },
+
+
+
+    /************************************************************** 
+     *
+     * FUNCIONALIDAD:  Genera desde google Charts el QR
+     *                                   
+     * PARAMETROS:
+     *
+     *     @param int responsable_id    EL ID del responsable
+     *     @param int cuit              EL CUIT del responsable
+     *
+     * RESPUESTA:
+     *     @return  string
+     *
+     * @last-update  05-09-2018
+     *************************************************************** */
+
+
+     qr_generar: function(responsable_id,cuit) {
+
+      var url = "https://chart.googleapis.com/chart?chs=131x127&cht=qr&chl=https://www.argentina.gob.ar/aaip/datospersonales/reclama/"+ cuit +"-"+ responsable_id  +"&choe=UTF-8";
+      return(url);
+    },
+
+
+    copyToClipboard: function (element) {
+
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+
+
+    }
+
+  }
+
+
+// ======================================
+// ======================================
+
+$(document).ready(function() {
+
+  $(".row-compartir").hide();    
+  $(".row-descargar").hide();    
+
+
+    // AL cambiar el ID del responsable -> Regenero links y contenidos
+
+    $("#btn-generar-qr").click(function() {
+
+      $(".row-compartir").show();    
+      $(".row-descargar").show();    
+
+
+             // Link de descarga QR
+             $("#btn-descargar-qr").attr("href", aaip_qr.descargar(  $("#txt_responsable_id").val(), $("#txt_responsable_cuit").val() ) );
+
+            // Codigo HTML
+            $("#txt_codigo_html pre").text( aaip_qr.codigo_html(  $("#txt_responsable_id").val(), $("#txt_responsable_cuit").val() ) );
+
+            // QR
+            $(".aaip-qr").css( "background-image", "url(" + aaip_qr.qr_generar(  $("#txt_responsable_id").val() , $("#txt_responsable_cuit").val() ) +")" );
+
+    });https://redmine.argentina.gob.ar/my/page
+
+    $("#btn-copiar-qr").click(function(){
+      aaip_qr.copyToClipboard("#txt_codigo_html pre");
+    })
+
+  });
+
+// ======================================
+// ======================================
+
+</script>
