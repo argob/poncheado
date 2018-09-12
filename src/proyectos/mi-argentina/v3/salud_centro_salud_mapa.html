@@ -59,7 +59,10 @@ layout: mi-argentina
             <li role="presentation"><a href="">Listado</a></li>
             <li role="presentation"><a href="">Favoritos</a></li>
           </ul>
-
+          
+          <!-- Mensaje agregado/quitado de favorito - accesibilidad -->
+          <div aria-live="polite" id="mensajeAccesible" class="sr-only"></div>
+          
           <div class="state-loading m-t-2" id="map-container"><div id="map">&nbsp;</div></div>
 
 
@@ -215,11 +218,17 @@ provincias.forEach(function(row, key){
 
 //Marcar favorito
 $(document).on("click",".favorito",function(){
+  $("#mensajeAccesible").html("");
+  var nombreCentro = $(this).parents(".media").find(".media-body h4").html();
+
   if($(this).find("i").hasClass("fa-star-o")){
     $(this).find("i").removeClass("fa-star-o").addClass("fa-star text-warning");
+
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue agregado a favoritos");
   }
   else{
     $(this).find("i").addClass("fa-star-o").removeClass("fa-star text-warning");
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue quitado de favoritos");
   }
 })
 
@@ -272,7 +281,7 @@ $(document).on("click",".favorito",function(){
             });
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<div class="media"> <div class="media-body"><h5 class="text-primary">'+ row.financiamiento +'</h5><h3>'+ row.nombre + '</h3><h4>'+ row.provincia + ' / ' + row.localidad + '</h4><p>' + row.domicilio + '</p></div> <div class="media-right text-center"><a class="favorito"><i class="fa fa-star-o fa-2x m-t-2 m-t-2 p-l-2 p-r-2"></i></a><p class="text-primary m-t-2">1 km</p></div></div>',
+              content: '<div class="media"> <div class="media-body"><h5 class="text-primary">'+ row.financiamiento +'</h5><h3>'+ row.nombre + '</h3><h4>'+ row.provincia + ' / ' + row.localidad + '</h4><p>' + row.domicilio + '</p></div> <div class="media-right text-center"><a aria-label="agregar a favoritos" class="favorito"><i class="fa fa-star-o fa-2x m-t-2 m-t-2 p-l-2 p-r-2"></i></a><p class="text-primary m-t-2">1 km</p></div></div>',
               maxWidth: 400
             })
 

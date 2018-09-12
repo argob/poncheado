@@ -34,9 +34,13 @@ layout: mi-argentina
                 <li role="presentation"><a href="">Listado</a></li>
                 <li role="presentation" class="active"><a href="">Favoritos</a></li>
               </ul>
+            
+            <!-- Mensaje agregado/quitado de favorito - accesibilidad -->
+            <div aria-live="polite" id="mensajeAccesible" class="sr-only"></div>
 
+            <div id="listadoCentros">
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-primary fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -47,14 +51,13 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
             </div>          
 
             <hr>
 
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-arandano fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -65,14 +68,13 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
             </div> 
 
             <hr>
 
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-primary fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -83,14 +85,13 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
             </div> 
              
             <hr> 
 
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-primary fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -101,14 +102,13 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
             </div>   
 
             <hr>      
 
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-primary fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -119,14 +119,13 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
             </div>   
 
             <hr>      
 
             <div class="media"> 
-              <div class="media-left"> 
+              <div class="media-left hidden-xs"> 
                 <i class="fa fa-plus-circle text-primary fa-3x p-l-2 p-r-2"></i>
               </div> 
               <div class="media-body"> 
@@ -137,8 +136,8 @@ layout: mi-argentina
               </div> 
               <div class="media-right text-center"> 
                 <a class="favorito"><i class="fa fa-star text-warning fa-2x m-t-2  m-t-2 p-l-2 p-r-2"></i></a>
-                <div class="text-primary">2 km</div>
               </div> 
+            </div>
             </div>   
 
             <hr>
@@ -170,19 +169,20 @@ layout: mi-argentina
 </section>
 
 
-<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
-<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
-
 <script>
-  $("[type='checkbox']").bootstrapSwitch();
-
-  //Centro favorito
+//Marcar favorito
 $(document).on("click",".favorito",function(){
+  $("#mensajeAccesible").html("");
+  var nombreCentro = $(this).parents(".media").find(".media-body h4").html();
+
   if($(this).find("i").hasClass("fa-star-o")){
     $(this).find("i").removeClass("fa-star-o").addClass("fa-star text-warning");
+
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue agregado a favoritos");
   }
   else{
     $(this).find("i").addClass("fa-star-o").removeClass("fa-star text-warning");
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue quitado de favoritos");
   }
 })
 </script>

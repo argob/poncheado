@@ -47,18 +47,20 @@ layout: mi-argentina
 </section>
 
 
-<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
-<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
-
 <script>
-  $("[type='checkbox']").bootstrapSwitch();
-  //Centro favorito
+//Marcar favorito
 $(document).on("click",".favorito",function(){
+  $("#mensajeAccesible").html("");
+  var nombreCentro = $(this).parents(".media").find(".media-body h4").html();
+
   if($(this).find("i").hasClass("fa-star-o")){
     $(this).find("i").removeClass("fa-star-o").addClass("fa-star text-warning");
+
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue agregado a favoritos");
   }
   else{
     $(this).find("i").addClass("fa-star-o").removeClass("fa-star text-warning");
+    $("#mensajeAccesible").html("El centro " + nombreCentro + " fue quitado de favoritos");
   }
 })
 </script>
