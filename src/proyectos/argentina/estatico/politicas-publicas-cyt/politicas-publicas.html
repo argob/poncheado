@@ -1,0 +1,120 @@
+---
+layout: argentina
+---
+    <style>
+      
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+      
+      
+      <div id="listado">
+        <div class="row">
+          <div>
+
+            <div class="col-md-12">    
+              <div class="form-group">
+                <label for=""> <strong>Buscá por título, organismo o año</strong></label>
+                <input class="form-control search" placeholder="">
+              </div>
+            </div>
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th class="col-xs-4"><p><strong>Título de la política</strong></p></th>
+                    <th class=""><p><strong>Organismo</strong></p></th>
+                    <th class=""><p><strong>Año</strong></p></th>
+                    <th style="width:130px;"><p><strong>Ficha técnica</strong></p></th>
+                    
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>  
+
+
+          </div>
+        </div>
+      </div>
+  
+   
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    
+    var listado = "";
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1kMEqKNPGkMFSSJEZsgmQVIhlRLb2lGrBregIVD-vngk/1/public/values?alt=json',
+    function (data) {
+
+          listado = data['feed']['entry'];
+          
+          filtrarContenido();
+         
+
+      });
+          function filtrarContenido(){
+
+          var lista = '';
+              $.each(listado, function(key,item){
+                lista += '<tr>';
+                lista += ' <td class="titulo"><p><strong>'+ item.gsx$titulodelapolitica.$t + '</strong></p></td>';
+                lista += ' <td class="organismo"> <p>'+ item.gsx$organismo.$t +'</p></td>';
+                lista += ' <td class="anio"><p>' + item.gsx$anio.$t + '</p></td>';
+                
+                lista += ' <td class="text-center"><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$fichatecnica.$t +'">Descargar</a></td>';;
+                lista += '</tr>';
+
+                })
+           
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+     
+
+
+          var listOptions = {
+            valueNames: ['titulo', 'organismo', 'anio'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+           var listaNueva = new List('listado', listOptions); 
+
+          $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+          
+
+
+        }
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

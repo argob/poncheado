@@ -12,7 +12,7 @@ layout: argentina
         
       }
     </style>
-    <div class="container">
+    
       
       <div id="listadoRecursos" class="m-t-3 p-t-2">
         <div class="row">
@@ -61,7 +61,7 @@ layout: argentina
         </div>
       </div>
   
-    </div>
+   
 
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
@@ -72,13 +72,13 @@ layout: argentina
 
 (function($) {
 $(document).ready(function () {
-    
+    var recurso = "todos";
     var listadoRecursos = "";
     var grupoDeRecursos = "";
-    var recurso = "todos";
+    
 
     jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/18u0SJij5oj0GPXgErHhE-FFQNkoOx_B1HC7l2XWKqQw/1/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1KmbjmGqAoC9FMBlHPvx0hMMAqA2QcOvk4B0iJg0HRX8/1/public/values?alt=json',
     function (data) {
 
           listadoRecursos = data['feed']['entry'];
@@ -88,17 +88,11 @@ $(document).ready(function () {
 
       });
 
-          
-          
-
-          function filtrarContenido(recurso){
-
+        function filtrarContenido(recurso){
+          console.log(recurso);
           var lista = '';
-
-
-
           $.each(listadoRecursos, function( key, item ) {
-          if(recurso == "todos" || recurso == item.gsx$tipoderecurso.$t){
+          if(recurso == item.gsx$tipoderecurso.$t || recurso == "todos"){
                 lista += '<tr>';
                 /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
                 lista += ' <td class="tema"><p><strong>'+ item.gsx$tema.$t + '</strong></p></td>';
@@ -107,17 +101,11 @@ $(document).ready(function () {
                 
                 lista += ' <td style="width:110px;" class="text-center"><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t +'">Ver</a></td>';;
 
-                
-                
                 lista += '</tr>';
             }
 
 
           });
-
-          
-
-
 
           $('#show-data').empty();
           $('#show-data').append(lista);
@@ -125,7 +113,7 @@ $(document).ready(function () {
      
 
 
-          var listOptions = {
+        var listOptions = {
             valueNames: ['tema'],
             page: 10,
             plugins: [ ListPagination({}) ]
@@ -152,23 +140,26 @@ $(document).ready(function () {
         }
 
 
+
       jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/18u0SJij5oj0GPXgErHhE-FFQNkoOx_B1HC7l2XWKqQw/2/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1KmbjmGqAoC9FMBlHPvx0hMMAqA2QcOvk4B0iJg0HRX8/2/public/values?alt=json',
     function (data) {
+
+          var recurso = "todos";
 
           grupoDeRecursos = data['feed']['entry'];
           
           $.each(grupoDeRecursos, function( key, i ) {
           recurso = i['gsx$tipoderecurso']['$t'];
-        
+
           $('#recurso').append('<option data-recurso="'+ recurso +'" value="'+ recurso +'">'+ recurso +'</option>')
 
           });
-        
+
 
       });
 
-   
+    
     $("#recurso").on("change", function() {
        
        recurso = $(document).find("#recurso option:selected").data('recurso');
