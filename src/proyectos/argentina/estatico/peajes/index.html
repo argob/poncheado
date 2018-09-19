@@ -27,7 +27,6 @@ layout: argentina
 </section>
 
 
-<div class="container">
  <section>
 
     <div id="tarifas">
@@ -93,7 +92,7 @@ layout: argentina
 
     </div>
   </section>
-</div>
+
 
 
 
@@ -117,7 +116,7 @@ var acceso = "todos";
 
 
 //Ejes
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/3/public/values?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/3/public/values?alt=json', function (data) {
         ejes = data.feed.entry;
         //console.log(ejes);
 
@@ -129,7 +128,7 @@ var acceso = "todos";
 
 //Accesos
 
-   $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/2/public/values?alt=json', function (data) {
+   $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/2/public/values?alt=json', function (data) {
         accesos = data.feed.entry;
 
         $.each(accesos,function(key,item){
@@ -138,7 +137,7 @@ var acceso = "todos";
         })
     });
 
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1GoszSdMmVnS1TrJzEvpFtpYTGzCoO6wfUid4GRAeMh4/1/public/values?alt=json', function (data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/1/public/values?alt=json', function (data) {
         window.tarifas = data.feed.entry;
         showtarifas(acceso, eje);
     });

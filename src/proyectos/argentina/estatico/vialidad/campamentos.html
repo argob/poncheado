@@ -1,0 +1,197 @@
+---
+layout: argentina
+---
+    <style>
+      
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+ 
+   
+    <div id="listadoCampamento" class="m-t-3 p-t-2">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for=""><strong>Distrito</strong></label>
+                <select id="provincias" class="form-control">
+                  <option data-provincia="todos" value="todos">Todos</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for=""> <strong>Buscá por campamento</strong></label>
+                <input class="form-control search" placeholder="">
+              </div>
+            </div>
+            </div>
+            
+         
+           
+            <div class="table-responsive col-md-12 p-x-0">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th class="col-xs-2">Distrito</th>
+                    <th class="col-xs-6">Datos del distrito</th>
+                    <th class="col-xs-4">Campamento</th>
+                    
+                    
+
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>  
+
+
+          </div>
+        </div>
+      </div>
+    
+ 
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    var provincia = "todos";
+    var listadoCampamento = "";
+    
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1KnpB1r-kBSSoQLK5EKOUvuDStWSivLPn52My9S-Bayg/1/public/values?alt=json',
+    function (data) {
+
+          listadoCampamento = data['feed']['entry'];
+          filtrarContenido(provincia);
+          
+      });
+
+          function filtrarContenido(provinciaFiltrada){
+
+          var lista = '';
+          var telefono;
+          var email;
+          var direccion;
+          $.each(listadoCampamento, function( key, item ) {
+            direccion = '';
+            telefono = '';
+            email = '';
+            
+          if(provinciaFiltrada == "todos" || provinciaFiltrada == item.gsx$distrito.$t){
+              if(item.gsx$dircampamento.$t != ''){
+                direccion = '<br /><b>Dirección: </b>'+  item.gsx$dircampamento.$t; 
+              }
+              if(item.gsx$telefonocampamento.$t != ''){
+                telefono = '<br /><b>Teléfono: </b>' +  item.gsx$telefonocampamento.$t; 
+              }
+
+              if(item.gsx$mailcampamento.$t != ''){
+                email = '<br /><b>Email: </b>'+  item.gsx$mailcampamento.$t; 
+              }
+
+               
+                
+
+                lista += '<tr>';
+                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+                lista += ' <td><p><strong>' + item.gsx$distrito.$t + '</strong></p></td>';
+                lista += ' <td><p><b>Dirección: </b>'+item.gsx$direcciondistrito.$t + '<br /><b>Teléfono: </b>' + item.gsx$teldistrito.$t + '<br /><small>' + item.gsx$jefedistrito.$t +'</small></p></td>';
+                lista += ' <td class="campamento"><p><strong>'+ item.gsx$campamento.$t + '</strong><small>' + direccion + telefono + email + '</small></p></td>';
+                
+                
+                lista += '</tr>';
+            }
+
+
+          });
+
+
+
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+        
+
+
+          var listOptions = {
+            valueNames: ['campamento'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+             var listaNueva = new List('listadoCampamento', listOptions); 
+
+             console.log(listaNueva);
+
+          $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+
+        }
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1KnpB1r-kBSSoQLK5EKOUvuDStWSivLPn52My9S-Bayg/2/public/values?alt=json',
+    function (data) {
+
+          grupoDeProvincias = data['feed']['entry'];
+
+          $.each(grupoDeProvincias, function(index, el) {
+             var provinciaCampo= el['gsx$distrito']['$t'];
+            $('#provincias').append('<option data-provincia="'+ provinciaCampo +'" value="'+ provinciaCampo +'">'+ provinciaCampo +'</option>')
+          });
+
+            
+        });
+        
+         
+
+
+           
+
+
+   
+    $("#provincias").on("change", function() {
+       
+       provincia = $(document).find("#provincias option:selected").data('provincia');
+
+        console.log(provincia);
+        
+        filtrarContenido(provincia);
+         
+         });
+        
+
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

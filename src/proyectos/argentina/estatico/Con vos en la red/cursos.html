@@ -69,23 +69,24 @@ layout: argentina
 $(document).ready(function () {
     
     var listadoCursos = "";
-    var destinatarios = "todos"
+    var destinatarios = "todos";
 
     jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/1x0mAOxnEqujW0WVk_HvuTyBzF2wTDFiPy7JMwO4Aj9I/1/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1tnBSe27dheOQk66MFMwyDETPIVIA0iMq_GEuczv6DUo/1/public/values?alt=json',
     function (data) {
 
           listadoCursos = data['feed']['entry'];
+          
           cargarContenido(destinatarios);
+
   
-          console.log(destinatarios)
       });
 
     function cargarContenido(destinatarios){
 
           var lista = '';
-
-          
+            
+            
            $.each(listadoCursos, function( key, item ) {
           if(destinatarios == "todos" || destinatarios == item.gsx$destinatarios.$t){
                 lista += '<tr>';
@@ -108,7 +109,7 @@ $(document).ready(function () {
           });
 
 
-
+           console.log(destinatarios);
 
           $('#show-data').empty();
           $('#show-data').append(lista);
@@ -126,10 +127,10 @@ $(document).ready(function () {
 
 
              var listaNueva = new List('listadoCursos', listOptions); 
-           
+            
 
            $('.search').on("keyup", function(){
-            var valorBuscado = $(".search").val();
+            var valorBuscado = $('.search').val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
 
@@ -138,11 +139,11 @@ $(document).ready(function () {
 
 
       jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/1x0mAOxnEqujW0WVk_HvuTyBzF2wTDFiPy7JMwO4Aj9I/2/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1tnBSe27dheOQk66MFMwyDETPIVIA0iMq_GEuczv6DUo/2/public/values?alt=json',
     function (data) {
-
+         
           grupoDeDestinatarios = data['feed']['entry'];
-          console.log(data);
+          
           $.each(grupoDeDestinatarios, function( key, i ) {
           destinatarios = i['gsx$destinatarios']['$t'];
           
