@@ -8,6 +8,9 @@ layout: argentina
     .h3{
       font-size: 30px;
     }
+    .h2{
+      font-size: 3.2em;
+    }
    @media only screen and (max-width: 768px){
       .contador{
         margin-bottom: 60px!important;
@@ -46,7 +49,7 @@ $(document).ready(function () {
     
     function traeObjeto(){
        jQuery.getJSON(
-    'https://vgs.senasa.gov.ar/marcadores/recarga.php',
+    'https://vgs.senasa.gob.ar/marcadores/recarga.php',
 
     function (data) {
        console.log(data)
@@ -60,7 +63,7 @@ $(document).ready(function () {
          var numeroDePaquete = paquete[x];
 
        
-                datos += '<div class="col-md-4 col-sm-6 m-t-2 m-b-3 contador"><h4 class="text-color text-center m-b-1">' + data[numeroDePaquete].i + '</h4><h2 class="text-center">' + numeral(data[numeroDePaquete].av).format('0.00a') + '</h2><p  class="text-center">Promedio diario: </p><h3 class="text-center h3">' + numeral(data[numeroDePaquete].prom).format('0.00a') +'</h3></div>';
+                datos += '<div class="col-md-4 col-sm-6 m-t-2 m-b-3 contador"><h4 class="text-color text-center m-b-1">' + data[numeroDePaquete].i + '</h4><h2 class="text-center h2">' + numeral(data[numeroDePaquete].av).format('0.00a') + '</h2><p  class="text-center">Promedio diario: </p><h3 class="text-center h3">' + numeral(data[numeroDePaquete].prom).format('0.00a') +'</h3></div>';
                
             }
 

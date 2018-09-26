@@ -1,6 +1,6 @@
 ---
 layout: argentina
-title: Centros de entrega de preservativos
+title: Mapa de centros de HIV
 ---
 
 <style>
@@ -38,9 +38,11 @@ title: Centros de entrega de preservativos
 
 @media (max-width: 480px) {
   .navbar .container .navbar-header .navbar-brand {
-    width: auto;
+    width: 190px;
   }
 }
+
+
 
 </style>
 
@@ -59,8 +61,7 @@ title: Centros de entrega de preservativos
             <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
             <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
           </a>
-          <div class="navbar-brand visible-xs-inline-block"> Centros de entrega de preservativos</div>
-
+          <div class="navbar-brand visible-xs-inline-block"> Mapa de centros de HIV </div>
         </div>  
         <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
           <div class="visible-xs">
@@ -70,20 +71,23 @@ title: Centros de entrega de preservativos
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://www.argentina.gob.ar/salud/vih-sida/preservativo">Acerca del preservativo</a></li>
-            <li><a href="https://www.argentina.gob.ar/salud/vih-sida/donde">Dónde hacerte el test de vih</a></li>
-          </ul>
+            <li><a href="https://www.argentina.gob.ar/mapapreservativos">Dónde obtener preservativos</a></li>
+            <li><a href="/salud/vih-sida">Acerca del VIH</a></li>
+          </ul>           
         </div>
       </div>
     </div>
   </nav>
-    <section class="jumbotron">
+  <section class="jumbotron">
     <div class="jumbotron_bar">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 hidden-xs">
-            <h4 style="margin-top: 10px;">Dónde obtener preservativos</h4>
-            <span>Mapa del relevamiento del Registro Nacional de Barrios Populares</span>          
+          <div class="col-md-12">
+            <ol class="breadcrumb pull-left">
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/salud/vih-sida">VIH - Sida: prevención, diagnóstico y tratamiento</a></li>
+              <li class="active">Dónde hacerte el test de VIH</li>
+            </ol>         
           </div>        
         </div>
       </div>
@@ -93,10 +97,13 @@ title: Centros de entrega de preservativos
 </header>
 
 
+<div id="map-container" class="state-loading">
+  <div id="map"></div>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<div class="state-loading" id="map-container"><div id="map">&nbsp;</div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script><script>
-
+<script>
 
   var initMap = function() {
 
@@ -110,14 +117,33 @@ title: Centros de entrega de preservativos
       streetViewControl: false
     });
 
+    var geocoder = new google.maps.Geocoder();    
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(17);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    } 
+
+
     // Show markers loaded from spreadsheet
 
     var markers = [];
     var detalles = [];
 
     $.ajax({
-     url: 'https://spreadsheets.google.com/feeds/list/1S-9FUGj-jUdlHUwoMhaGNaGYNIrKaNs6q9Wmue7T6qY/1/public/values?alt=json',
-    //  url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1S-9FUGj-jUdlHUwoMhaGNaGYNIrKaNs6q9Wmue7T6qY/1',
+      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/17bCKiDu0A9VkvNmO8owMRtt-6U2_SAKLrUaODtHqeHI/1',
+      url: 'https://spreadsheets.google.com/feeds/list/17bCKiDu0A9VkvNmO8owMRtt-6U2_SAKLrUaODtHqeHI/1/public/values?alt=json',
       data: 'json',
       success: function(response){
 
@@ -125,41 +151,55 @@ title: Centros de entrega de preservativos
 
         var rows = response.feed.entry;
 
+        var marcador;
+
         rows.forEach(function(row, key){
 
-          // if(row.gsx$visible.$t == '1'){
-
             var index = markers.length;
+
+            var telefonoTarjeta = ''; 
+
+            if (row.gsx$telefonodelcentro.$t !== '') {
+              telefonoTarjeta = '<div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$telefonodelcentro.$t + '</strong> </small> </p></div></div>';
+
+            }            
+
+            marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
-              // map: map,
+              
               title: row.gsx$nombre.$t,
               map: map,
-			 icon: {
-			 url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
-			 size: new google.maps.Size(20, 20),
-			 origin: new google.maps.Point(0, 0),
-			 anchor: new google.maps.Point(10, 10)
-			 }
+              icon: {
+                url: marcador,
+                size: new google.maps.Size(24, 24),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(12, 12)
+              }
 
             });
 
+
+
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h5 class="text-primary">'+ row.gsx$nombre.$t +'</h5><p>'+ row.gsx$direccion.$t + '<br>'+ row.gsx$localidad.$t + ', ' + row.gsx$municipio.$t + ', ' + row.gsx$provincia.$t +'</p><p>' + row.gsx$info.$t + '</p>',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$nombre.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$localidad.$t +' '+ row.gsx$municipio.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map-marker fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$dirección.$t +' </strong> </small> </p></div></div>'+ telefonoTarjeta +'',
               maxWidth: 400
-            })
-
-
+            });
 
             markers[index].addListener('click', function() {
               closeWindows();
               detalles[index].open(map, markers[index]);
-            });
 
-          // }
+            });
+            
+
         })
 
-        
+
+       
+
+
 
         $('#map-container').removeClass('state-loading');
 
@@ -192,7 +232,7 @@ title: Centros de entrega de preservativos
               lng: position.coords.longitude
             };
 
-            map.setZoom(15);
+            map.setZoom(10);
             map.setCenter(pos);
 
             $('.localize').removeClass('state-loading disabled');
@@ -219,5 +259,8 @@ title: Centros de entrega de preservativos
 
     setGeolocation();
   }
+</script>
 
-</script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&libraries=places&callback=initMap"></script>
+
