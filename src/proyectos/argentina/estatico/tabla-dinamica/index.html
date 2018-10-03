@@ -75,14 +75,12 @@ $(document).ready(function() {
         function(data) {
             listado = data['feed']['entry'];
 
-
-
             //TITULOS
             $.each(Object.keys(listado[0]), function(index, key) {
                 if (key.substr(0, 4) == 'gsx$') {
-                    filteredTitle.push(formatTitle(key));
+                    filteredTitle.push(listado[0][key]["$t"]);
                     filteredTitleGsx.push(key);
-                    titulos += '<th>' + formatTitle(key) + '</th>';
+                    titulos += '<th>' + listado[0][key]["$t"] + '</th>';
                 }
             })
 
@@ -118,10 +116,10 @@ $(document).ready(function() {
 
     )
 
-    function formatTitle(keyFiltered) {
+    /*function formatTitle(keyFiltered) {
         var titleLowerCase = keyFiltered.substr(4, keyFiltered.length - 4);
         return titleLowerCase[0].toUpperCase() + titleLowerCase.slice(1);
-    }
+    }*/
 
     function initDataTable() {
         var tabla = $("#dataTable").DataTable({
