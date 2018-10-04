@@ -54,23 +54,20 @@ $(document).ready(function() {
     })
 
     ponchoTable(idSpread);
-    
-
 
 
     function ponchoTable(idSpread){
+      var listado = [];
+      var filteredTitle = [];
+      var filteredTitleGsx = [];
+      var titulos = '';
+      var lista = '';      
+
       if ( $.fn.DataTable.isDataTable('#dataTable') ) {
         $('#dataTable').DataTable().destroy();
       }
-      
 
-      
-    var listado = [];
-    var filteredTitle = [];
-    var filteredTitleGsx = [];
-    var titulos = '';
-    var lista = '';      
-    jQuery.getJSON('https://spreadsheets.google.com/feeds/list/'+idSpread+'/1/public/values?alt=json',
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/'+idSpread+'/1/public/values?alt=json',
 
         function(data) {
             listado = data['feed']['entry'];
@@ -90,21 +87,31 @@ $(document).ready(function() {
 
 
             //CONTENIDO FILAS
-            
             $.each(listado, function(row, value) {
+                
+                if(row > 0){
                 lista += '<tr>';
-                $.each(filteredTitleGsx, function(index, title) {
-                    if (title.substr(0, 4) == 'gsx$') {
-                        filas = listado[row][filteredTitleGsx[index]].$t;
+                  $.each(filteredTitleGsx, function(index, title) {
+                      if (title.substr(0, 4) == 'gsx$') {
+                          filas = "";
+                          filas = listado[row][filteredTitleGsx[index]].$t;
+                          
+                          //Detectar si es bono
+                          if(title.includes("btn-") && filas != ""){
+                            nameBtn = title.substr(8, title.length-8).replace("-"," ");
+                            filas = '<a class="btn btn-primary btn-sm" target="_blank" href="'+filas+'">'+nameBtn+'</a>'
+                          }
 
-                        var converter = new showdown.Converter(),
-                        filas = converter.makeHtml(filas);
+                          var converter = new showdown.Converter(),
+                          filas = converter.makeHtml(filas);
 
-                        lista += '<td>' + filas + '</td>';
+                          lista += '<td>' + filas + '</td>';
 
-                    }
-                })
+                      }
+                  })
                 lista += '</tr>';
+                }
+
             })
 
             //Agregar contenido al body de la Tabla
@@ -113,7 +120,6 @@ $(document).ready(function() {
 
             initDataTable();
         }
-
     )
 
     /*function formatTitle(keyFiltered) {
@@ -124,7 +130,9 @@ $(document).ready(function() {
     function initDataTable() {
         var tabla = $("#dataTable").DataTable({
             "lengthChange": false,
+            "autoWidth" : false,
             "info": false,
+            "responsive" : true,
              "language": {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -157,23 +165,28 @@ $(document).ready(function() {
             }
         });
 
-
         //BUSCADOR
         $("#dataTable_filter").parent().parent().remove();
         $('#dataTableSearch').on('keyup', function() {
             tabla.search(this.value).draw();
         });
 
+
+        //EXPAND ALL
+        tabla.rows().every(function(){
+            // If row has details collapsed
+             if(!this.child.isShown()){
+            // Expand row details
+            tabla.settings()[0].responsive._detailsDisplay(this, false);
+          }
+        });
+
+
+
+
     }
   }
-
-
-
-
 });
-
-
-
 </script>
 
 
