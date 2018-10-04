@@ -237,6 +237,11 @@
 			
         </script>
 		<style>
+		 body {
+                background-color: #0695d6;
+                min-height: 250px;
+                height: 100%;
+            }
 			#div_trenes {
 				/*background-image: url('iframe_index.jpg');*/
                 background-color: #0695d6;
@@ -285,11 +290,7 @@
                 width: 75%;
             }
             
-            body {
-                background-color: #0695d6;
-                min-height: 250px;
-                height: 100%;
-            }
+           
            .iframe-css{
 				height: 250px!important;
 				width: 100%;

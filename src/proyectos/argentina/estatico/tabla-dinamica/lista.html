@@ -1,0 +1,162 @@
+---
+layout: argentina
+---
+    <style>
+      
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        h5{
+          font-size: 16px;
+        }
+        
+      }
+    </style>
+
+<div class="container">
+  <div class="tabla">
+    <div class="row">
+      <div class="table-responsive col-md-12">
+        <table class="table table-spaced table-hover" id="contenidoTabla">
+          <thead>
+            <tr></tr>
+            
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="datatables.min.js"></script>
+
+<script type="text/javascript">
+
+   $(document).ready(function(){
+
+         var listado = [];
+         var filteredTitle = [];
+         var noFilteredTitles = []; 
+         
+
+
+         var titulos = '';
+         var lista = '';
+
+         jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1SXNEVIK3tQWouR4iDwjDSEwUXPZAM0U7pkU5WeO4DLM/1/public/values?alt=json',
+
+             function(data){
+               listado = data['feed']['entry'];
+               function getTitle(){
+                 /*con Objetct.key obtengo solo los key del listado y los guardo en noFilteredTitles*/
+                 var noFilteredTitles = Object.keys(listado[0])
+
+                 /*este each guarda los titulos*/
+                 $.each(noFilteredTitles, function(index, key){
+
+                   if(key.substr(0, 4) == 'gsx$' ){
+                    
+                     filteredTitle.push(formatTitle(key));
+                     noFilteredTitles.push(key);
+
+
+                     titulos += '<th>'+ formatTitle(key) +'</th>'
+                   }
+
+                    $('#contenidoTabla thead tr').empty();
+                    $('#contenidoTabla thead tr').append(titulos);
+
+                 })
+                 console.log(noFilteredTitles);
+                 //este each guarda las filas
+                 $.each(listado, function(row, value){
+                    lista += '<tr>';
+                    $.each(noFilteredTitles, function(index, title){
+
+                      if(title.substr(0, 4) == 'gsx$'){
+                        filteredTitle.push(title);
+
+                          filas = listado[row][noFilteredTitles[index]].$t;
+                          
+                          lista += '<td>'+ filas +'</td>';
+                          
+                      }
+                          
+
+                          $('#contenidoTabla tbody').empty();
+                          $('#contenidoTabla tbody').append(lista);
+
+                          
+                        })
+                    lista += '</tr>';
+                  })
+
+               }
+               
+               getTitle();
+               generarTabla();
+             }
+
+           )
+          
+          function formatTitle(keyFiltered){
+            var titleLowerCase = keyFiltered.substr(4 , keyFiltered.length - 4);
+            return titleLowerCase[0].toUpperCase() + titleLowerCase.slice(1);
+          }
+          
+          function generarTabla(){
+          var tabla = $("#contenidoTabla").DataTable({
+          "language" : 
+              {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                     "paginate": {
+                                "first":    'Ir a la primera página',
+                                "previous": 'Ir a la página anterior',
+                                "next":     'Ir a la página siguiente',
+                                "last":     'Ir a la última página'
+                          }
+                  }
+              }     
+          });
+
+        }
+
+       }
+     );
+
+
+
+
+
+
+
+</script>
+
+
+
+

@@ -1,7 +1,7 @@
 ---
 layout: argentina
 ---
-<style>
+  <style>
       
       small{
         color: #333333!important;
@@ -49,6 +49,7 @@ layout: argentina
                     <th class="col-xs-3"><p class="text-center"><strong>Fecha</strong></p></th>
                     <th class="col-xs-6"><p><strong>Evento</strong></p></th>
                     <th class="col-xs-3"><p><strong>Contacto</strong></p></th>
+                    <th></th>
                     
                   </tr>
                 </thead> 
@@ -105,8 +106,9 @@ $(document).ready(function () {
     function filtrarContenido(mes, provincia){
 
           var lista = '';
+          var boton = '';
           $.each(listadoVacaciones, function( key, item ) {
-           
+           boton = '';
            var fecha = item.gsx$fecha.$t;
            var evento = item.gsx$titulo.$t;
 
@@ -121,6 +123,12 @@ $(document).ready(function () {
                 lista += ' <td> <h5>'+ item.gsx$titulo.$t +'</h5><p>' + item.gsx$descripcion.$t +'</p><p class="text-muted"><i class="fa fa-clock-o"></i> '+ item.gsx$hora.$t +'</p><p class="text-muted"><i class="fa fa-map-marker"></i> '+ item.gsx$lugar.$t +'</p></td>';
 
                 lista += ' <td><small><a href="mailto:'+item.gsx$mail.$t+'">' + item.gsx$mail.$t +'</a><br> <a href="tel:'+ item.gsx$telefono.$t+'">'+ item.gsx$telefono.$t +'</a><br><a href="tel:'+ item.gsx$telefono2.$t+'">'+ item.gsx$telefono2.$t +'</a></small></td>';
+
+
+                if(item.gsx$url.$t != ''){
+                  boton = '<a href="'+ item.gsx$url.$t +'" class="btn btn-sm btn-primary">Inscribite</a>';
+                }
+                lista += '<td>'+ boton +'</td>';
                 
                 lista += '</tr>';
             }
