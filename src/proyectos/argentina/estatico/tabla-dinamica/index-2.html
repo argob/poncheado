@@ -3,6 +3,7 @@ layout: argentina
 ---
 
 <style>
+
     @media only screen and (max-width: 768px) {
        table, 
        thead, 
@@ -24,28 +25,31 @@ layout: argentina
         td{
             border: none;
             border-bottom: 1px solid #eee; 
-            position: relative;
-            padding-left: 50%!important; 
+            display: block;
+            
             white-space: normal;
             text-align:left;
             word-break: break-all!important;
         }
-        .table > tbody > tr > td{
-            padding-left: 50%!important;  
-        }
+       
         td:before { 
+             content: attr(data-title); display: block;
         /* Now like a table header */
-        position: absolute;
+        
+         display: block;
         /* Top/left values mimic padding */
         top: 6px;
         left: 6px;
-        width: 45%; 
+        width: 100%!important; 
         padding-right: 10px; 
         white-space: nowrap;
         text-align:left;
         font-weight: bold;
+
         }
-        td:before { content: attr(data-title); }
+        
+        .margin-btn{
+          margin-top: 10px;
         }
         
     }
@@ -76,7 +80,7 @@ layout: argentina
         </div>
 
         <div class="col-md-12 m-b-4">
-            <table class="table tabla-condensed" id="dataTable">
+            <table class="table tabla-condensed table-striped" id="dataTable">
                 <thead>
                     <tr></tr>
                 </thead>
@@ -114,7 +118,7 @@ $(document).ready(function() {
       var titulos = '';
       var th = [];
       var lista = '';      
-
+      var centeredContent ='';
       if ( $.fn.DataTable.isDataTable('#dataTable') ) {
         $('#dataTable').DataTable().destroy();
       }
@@ -156,8 +160,10 @@ $(document).ready(function() {
                           //Detectar si es bono
                           if(title.includes("btn-") && filas != "" ){
                             nameBtn = title.substr(8, title.length-8).replace("-"," ");
-                            filas = '<a class="btn btn-primary btn-sm" target="_blank" href="'+filas+'">'+nameBtn+'</a>'
+                            filas = '<a class="btn btn-primary btn-sm margin-btn" target="_blank" href="'+filas+'">'+nameBtn+'</a>'
+                            
                           }
+
 
                           if(filas == ''){
                             tdEmpty = 'hidden-xs';
@@ -166,7 +172,7 @@ $(document).ready(function() {
                           var converter = new showdown.Converter(),
                           filas = converter.makeHtml(filas);
 
-                          lista += '<td class="'+ tdEmpty +'" data-title="'+ th[index] +'">' + filas + '</td>';
+                          lista += '<td class="'+ tdEmpty + '" data-title="'+ th[index] +'">' + filas + '</td>';
 
                       }
 
@@ -192,12 +198,16 @@ $(document).ready(function() {
 
     function initDataTable() {
         var tabla = $("#dataTable").DataTable({
+          
+
             "lengthChange": false,
             "autoWidth" : false,
             "info": false,
-            
 
 
+            "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                   "<'row'<'col-sm-12'tr>>" +
+                   "<'row'<'col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8'p>>",
 
              "language": {
                 "sProcessing": "Procesando...",
@@ -212,11 +222,12 @@ $(document).ready(function() {
                 "sUrl": "",
                 "sInfoThousands": ",",
                 "sLoadingRecords": "Cargando...",
+
                 "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
                 },
                 "oAria": {
                     "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
@@ -228,6 +239,7 @@ $(document).ready(function() {
                         "last": 'Ir a la última página'
                     }
                 }
+                 
             }
         });
 
