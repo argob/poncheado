@@ -58,68 +58,20 @@ layout: argentina
   <hr>
 
   <section>
-    <h2 class="text-center m-b-2 h1">Nuestros proyectos</h2>
-    <div id="proyectos">
-      <div class="row">
-        <div class="col-md-6">    
-          <div class="form-group">
-            <label>Buscá proyectos</label>
-            <input class="form-control search" placeholder="Buscá proyectos por nombre o descripción">
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="">Filtrar por lineamiento</label>
-            <select id="tipo-proyectos" class="form-control">
-              <option data-tipoproyectos="todos" value="todos">Todos</option>
-              <option data-tipoproyectos="gobierno" value="gobierno">Gobierno Innovador y Abierto</option>
-              <option data-tipoproyectos="empleo" value="empleo">Empleo público de calidad</option>
-              <option data-tipoproyectos="estado" value="estado">Estado digital y eficiente</option>
-              <option data-tipoproyectos="municipio" value="municipio">Municipios innovadores</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="">Ordenar por</label>
-            <select id="ordenar-proyectos" class="form-control">
-              <option class="sort" data-sort="fecha" value="nuevos">Más nuevos</option>
-              <option class="sort" data-sort="duracion" value="duracion">Mayor duración</option>
-              <option class="sort" data-sort="cumplimiento" value="cumplimiento">Mayor cumplimiento</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="">Filtrar por alcance</label>
-            <div id="alcance" class="btn-group btn-group-justified margin-60">
-                <a data-filtro="funcionario" class="btn btn-default">Funcionarios Públicos</a>
-                <a data-filtro="civil" class="btn btn-default">Sociedad Civil</a>
-                <a data-filtro="apn" class="btn btn-default">Administración Pública</a>
-                <a data-filtro="gobiernos" class="btn btn-default">Gobiernos Subnacionales</a>
-            </div>                
-          </div>
-        </div>
-      </div>
-      <div class="list row panels-row m-y-3" data-render="tarjetas">
-      </div>
-    </div>
+    
 
-    <div data-render="modales"></div> 
+  </section> 
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es.js"></script>
 
-<script>
+
+<h2 class="text-center m-b-2 h1">Nuestros proyectos</h2><div id="proyectos"><div class="row"><div class="col-md-6"><div class="form-group"><label>Buscá proyectos</label> <input class="form-control search" placeholder="Buscá proyectos por nombre o descripción" /></div></div><div class="col-md-3"><div class="form-group"><label for="">Filtrar por lineamiento</label> <select class="form-control" id="tipo-proyectos"><option data-tipoproyectos="todos" value="todos">Todos</option><option data-tipoproyectos="gobierno" value="gobierno">Gobierno Abierto</option><option data-tipoproyectos="empleo" value="empleo">Nuevo Empleo Público</option><option data-tipoproyectos="estado" value="estado">Gobierno Digital</option><option data-tipoproyectos="municipio" value="municipio">Inclusión Digital</option><option data-tipoproyectos="conectividad" value="conectividad">Conectividad</option></select></div></div><div class="col-md-3"><div class="form-group"><label for="">Ordenar por</label> <select class="form-control" id="ordenar-proyectos"><option class="sort" data-sort="fecha" value="nuevos">Más nuevos</option><option class="sort" data-sort="duracion" value="duracion">Mayor duración</option><option class="sort" data-sort="cumplimiento" value="cumplimiento">Mayor cumplimiento</option></select></div></div></div><div class="row"><div class="col-md-12"><div class="form-group"><label for="">Filtrar por público objetivo</label><div class="btn-group btn-group-justified margin-60" id="alcance"><a class="btn btn-default" data-filtro="ciudadano">Ciudadanos</a> <a class="btn btn-default" data-filtro="civil">Organizaciones de la Sociedad Civil</a> <a class="btn btn-default" data-filtro="apn">Administración Pública</a> <a class="btn btn-default" data-filtro="gobiernos">Gobiernos Subnacionales</a></div></div></div></div><div class="list row panels-row m-y-3" data-render="tarjetas">&nbsp;</div></div><div data-render="modales">&nbsp;</div><script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"> </script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"> </script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es.js"> </script><script>
 
   jQuery(function(){
 
     var templates = {
       tarjeta: '<div class="col-xs-12 col-sm-6 col-md-4"><span class="fecha hidden">{inicioProyecto}</span><span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted cumplimiento" data-render="cumplimiento">{avancePorcentajeInicial}</span><span class="text-muted"></span></div></div></div></a></div>',
-      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p> <span>{innovacion}</span> <span>{participacion}</span> <span>{apertura}</span> <span>{eficiencia}</span> </p> <h5 class="m-t-2">Objetivo</h5> <p>{objetivo}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento de la meta</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Alcance</h5> <p><span>{funcionario}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocer más del proyecto</a> </p> </div> </div> </div> </div>',
+      modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p>{etiquetas}</p> <h5 class="m-t-2">Descripción</h5> <p>{descripcion}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento de la meta</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Público objetivo</h5> <p><span>{ciudadano}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p> </div> </div> </div> </div>',
       hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
       indicador: '<tr> <td><p>{nombre}</p></td><td><p>{metaAnual}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
     }
@@ -133,75 +85,75 @@ layout: argentina
     jQuery.ajax({
       url: 'https://spreadsheets.google.com/feeds/list/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1/public/values?alt=json',
       // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1kbUbjLgw4Mx-hkKxt_64ncNj6vDynXdpr_i1MonnDFs/1',
-      data: 'json',
-      success: function(response){
-        // console.log(response.feed.entry);
+ data: 'json',
+ success: function(response){
+ // console.log(response.feed.entry);
 
-        jQuery.each(response.feed.entry, function(index, row){
+ jQuery.each(response.feed.entry, function(index, row){
 
-          if( row.gsx$tipo.$t == "proyecto"  ){
+  if( row.gsx$tipo.$t == "proyecto" ){
 
-            proyectos.push({
-              index: index,
-              lineamiento: row.gsx$lineamiento.$t,
-              nombre: row.gsx$nombre.$t,
-              objetivo: row.gsx$objetivo.$t,
-              impacto: row.gsx$impacto.$t,
-              funcionario: row.gsx$funcionario.$t,
-              civil: row.gsx$civil.$t,
-              apn: row.gsx$apn.$t,
-              gobiernos: row.gsx$gobiernos.$t,
-              innovacion: row.gsx$innovacion.$t,
-              participacion: row.gsx$participacion.$t,
-              eficiencia: row.gsx$eficiencia.$t,
-              apertura: row.gsx$apertura.$t,
-              area: row.gsx$area.$t,
-              link: row.gsx$link.$t,
-              indicadores: [],
-              hitos: []
-            });
-
-          } else if( row.gsx$tipo.$t == "indicador" ){
-
-            proyectos[ proyectos.length - 1 ].indicadores.push({
-              nombre: row.gsx$nombre.$t,
-              fuente: row.gsx$fuente.$t,
-              formulacion: row.gsx$formulacion.$t,
-              metaAnual: row.gsx$metaanual.$t,
-              avance: row.gsx$avance.$t,
-              porcentaje: row.gsx$porcentaje.$t
-            });
-
-          } else if( row.gsx$tipo.$t == "hito" ){
-
-            proyectos[ proyectos.length - 1 ].hitos.push({
-              nombre: row.gsx$nombre.$t,
-              inicio: row.gsx$inicio.$t,
-              fin: row.gsx$fin.$t,
-              estado: row.gsx$estado.$t
-            });
-
-          }
-
-        })
-
-        render.tarjetas();
-
-        var listOptions = { valueNames: [ 'nombre-proyecto', 'descripcion-proyecto', 'fecha', 'duracion', 'cumplimiento' ] };
-        var proyectosList = new List('proyectos', listOptions);
-
-        jQuery("#ordenar-proyectos").on("change", function() {
-          if( jQuery('#ordenar-proyectos option:selected').val() == 'cumplimiento' ) {
-              proyectosList.sort('cumplimiento', { order: "desc" });
-          } else if ( jQuery('#ordenar-proyectos option:selected').val() == 'duracion' ) {
-              proyectosList.sort('duracion', { order: "desc" });
-          } else if (jQuery('#ordenar-proyectos option:selected').val() == 'nuevos' ) {
-              proyectosList.sort('fecha', { order: "desc" });
-          }
-        });
-
-      }
+    proyectos.push({
+      index: index,
+      lineamiento: row.gsx$lineamiento.$t,
+      nombre: row.gsx$nombre.$t,
+      descripcion: row.gsx$descripcion.$t,
+      impacto: row.gsx$impacto.$t,
+      ciudadano: row.gsx$ciudadano.$t,
+      civil: row.gsx$civil.$t,
+      apn: row.gsx$apn.$t,
+      gobiernos: row.gsx$gobiernos.$t,
+      innovacion: row.gsx$innovacion.$t,
+      participacion: row.gsx$participacion.$t,
+      eficiencia: row.gsx$eficiencia.$t,
+      apertura: row.gsx$apertura.$t,
+      area: row.gsx$area.$t,
+      link: row.gsx$link.$t,
+      indicadores: [],
+      hitos: []
     });
+
+  } else if( row.gsx$tipo.$t == "indicador" ){
+
+    proyectos[ proyectos.length - 1 ].indicadores.push({
+      nombre: row.gsx$nombre.$t,
+      fuente: row.gsx$fuente.$t,
+      formulacion: row.gsx$formulacion.$t,
+      metaAnual: row.gsx$metaanual.$t,
+      avance: row.gsx$avance.$t,
+      porcentaje: row.gsx$porcentaje.$t
+    });
+
+  } else if( row.gsx$tipo.$t == "hito" ){
+
+    proyectos[ proyectos.length - 1 ].hitos.push({
+      nombre: row.gsx$nombre.$t,
+      inicio: row.gsx$inicio.$t,
+      fin: row.gsx$fin.$t,
+      estado: row.gsx$estado.$t
+    });
+
+  }
+
+ })
+
+ render.tarjetas();
+
+ var listOptions = { valueNames: [ 'nombre-proyecto', 'descripcion-proyecto', 'fecha', 'duracion', 'cumplimiento' ] };
+ var proyectosList = new List('proyectos', listOptions);
+
+ jQuery("#ordenar-proyectos").on("change", function() {
+  if( jQuery('#ordenar-proyectos option:selected').val() == 'cumplimiento' ) {
+    proyectosList.sort('cumplimiento', { order: "desc" });
+  } else if ( jQuery('#ordenar-proyectos option:selected').val() == 'duracion' ) {
+    proyectosList.sort('duracion', { order: "desc" });
+  } else if (jQuery('#ordenar-proyectos option:selected').val() == 'nuevos' ) {
+    proyectosList.sort('fecha', { order: "desc" });
+  }
+ });
+
+}
+});
 
 
     var render = {
@@ -223,130 +175,119 @@ layout: argentina
             var inicioFecha = moment(proyecto.hitos[0].inicio, "DD-MM-YYYY");
             var finFecha = moment(proyecto.hitos[proyecto.hitos.length - 1].fin, "DD-MM-YYYY");
             var duracion = finFecha.diff(inicioFecha, 'days'); 
-            // console.log(duracion);
+ // console.log(duracion);
 
-            // console.log("posicion 1",proyecto.indicadores[0].avance_2);
+ // console.log("posicion 1",proyecto.indicadores[0].avance_2);
 
-            
+ 
 
-            html = html.replace(/{nombre}/gi, proyecto.nombre)
-            .replace(/{index}/gi, index)
-            .replace(/{lineamiento}/gi, proyecto.lineamiento)
-            .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-            .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
-            .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
-            .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
-            .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-            .replace(/{metas}/gi, proyecto.indicadores[0].metaAnual)
-            .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
-            .replace(/{duracionProyecto}/gi, duracion);
-            //.replace(/{estado}/gi, 'Iniciado');
+ html = html.replace(/{nombre}/gi, proyecto.nombre)
+ .replace(/{index}/gi, index)
+ .replace(/{lineamiento}/gi, proyecto.lineamiento)
+ .replace(/{descripcion}/gi, proyecto.descripcion.substring(0, 100) + '...')
+ .replace(/{ciudadano}/gi, proyecto.ciudadano.replace("no","").replace("si","Ciudadanos, "))
+ .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Organizaciones de la Sociedad Civil, "))
+ .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
+ .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
+ .replace(/{metas}/gi, proyecto.indicadores[0].metaAnual)
+ .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
+ .replace(/{duracionProyecto}/gi, duracion);
+ //.replace(/{estado}/gi, 'Iniciado');
 
-            if( ! /[a-zA-Z]/.test(proyecto.indicadores[0].porcentaje) ){
-              html = html.replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje + ' cumplido')
-            }
+ if( ! /[a-zA-Z]/.test(proyecto.indicadores[0].porcentaje) ){
+  html = html.replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje + ' cumplido')
+ }
 
-            modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
-            .replace(/{index}/gi, index)
-            .replace(/{innovacion}/gi, proyecto.innovacion.replace("no","").replace("si","innovacion | "))
-            .replace(/{participacion}/gi, proyecto.participacion.replace("no","").replace("si","participacion | "))
-            .replace(/{apertura}/gi, proyecto.apertura.replace("no","").replace("si","apertura | "))
-            .replace(/{eficiencia}/gi, proyecto.eficiencia.replace("no","").replace("si","eficiencia | "))
-            .replace(/{objetivo}/gi, proyecto.objetivo)
-            .replace(/{estado}/gi, proyecto.estado)
-            .replace(/{funcionario}/gi, proyecto.funcionario.replace("no","").replace("si","Funcionarios Públicos, "))
-            .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Sociedad Civil, "))
-            .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
-            .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
-            .replace(/{link}/gi, proyecto.link)
-            .replace(/{area}/gi, proyecto.area)
-            .replace(/{impacto}/gi, proyecto.impacto)
-            .replace(/{descripcion}/gi, proyecto.objetivo.substring(0, 100) + '...')
-            .replace(/{inicioProyecto}/gi, proyecto.hitos[0].inicio)
-            .replace(/{finProyecto}/gi, proyecto.hitos[proyecto.hitos.length - 1].fin)
-            .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje);
+ var etiquetas = proyecto.innovacion.replace("no","").replace("si","innovacion | ") + proyecto.participacion.replace("no","").replace("si","participacion | ") + proyecto.apertura.replace("no","").replace("si","apertura | ") + proyecto.eficiencia.replace("no","").replace("si","eficiencia | ");
+ etiquetas = etiquetas.slice(0, -2);
 
-            jQuery('[data-render=tarjetas]').append( html );
-            jQuery('[data-render=modales]').append( modal );   
+ modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
+ .replace(/{index}/gi, index)
+ .replace(/{etiquetas}/gi, etiquetas)
+ .replace(/{descripcion}/gi, proyecto.descripcion)
+ .replace(/{estado}/gi, proyecto.estado)
+ .replace(/{ciudadano}/gi, proyecto.ciudadano.replace("no","").replace("si","Ciudadanos, "))
+ .replace(/{civil}/gi, proyecto.civil.replace("no","").replace("si","Organizaciones de la Sociedad Civil, "))
+ .replace(/{apn}/gi, proyecto.apn.replace("no","").replace("si","Administración Pública, "))
+ .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no","").replace("si","Gobiernos Subnacionales, "))
+ .replace(/{link}/gi, proyecto.link)
+ .replace(/{area}/gi, proyecto.area)
+ .replace(/{impacto}/gi, proyecto.impacto)
+ .replace(/{descripcion}/gi, proyecto.descripcion.substring(0, 100) + '...')
+ .replace(/{inicioProyecto}/gi, proyecto.hitos[0].inicio)
+ .replace(/{finProyecto}/gi, proyecto.hitos[proyecto.hitos.length - 1].fin)
+ .replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje);
 
-            jQuery.each(proyecto.indicadores, function(index, indicador){
+ jQuery('[data-render=tarjetas]').append( html );
+ jQuery('[data-render=modales]').append( modal ); 
 
-              var htmlIndicador = templates.indicador;
+ jQuery.each(proyecto.indicadores, function(index, indicador){
 
-              htmlIndicador = htmlIndicador.replace(/{nombre}/gi, indicador.nombre)
-              .replace(/{fuente}/gi, indicador.fuente)
-              .replace(/{formulacion}/gi, indicador.formulacion)
-              .replace(/{metaAnual}/gi, indicador.metaAnual)
-              .replace(/{avance}/gi, indicador.avance)
-              .replace(/{avancePorcentaje}/gi, indicador.porcentaje);
+  var htmlIndicador = templates.indicador;
 
-              jQuery('[data-render=modales] > div:last').find('[data-render=indicadores]').append( htmlIndicador );
+  htmlIndicador = htmlIndicador.replace(/{nombre}/gi, indicador.nombre)
+  .replace(/{fuente}/gi, indicador.fuente)
+  .replace(/{formulacion}/gi, indicador.formulacion)
+  .replace(/{metaAnual}/gi, indicador.metaAnual)
+  .replace(/{avance}/gi, indicador.avance)
+  .replace(/{avancePorcentaje}/gi, indicador.porcentaje);
 
-            });
+  jQuery('[data-render=modales] > div:last').find('[data-render=indicadores]').append( htmlIndicador );
 
-            jQuery.each(proyecto.hitos, function(index, hito){
+ });
 
-              var htmlHito = templates.hito;
+ jQuery.each(proyecto.hitos, function(index, hito){
 
-              if (hito.estado == "finalizado"){
-                var estado = '<span class="text-success"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Finalizado</span>';
-              } 
-              else if (hito.estado == "en_avance") {
-                var estado = '<span class="text-gray"><i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i> En avance</span>';
-              } 
-              else if (hito.estado == "sin_inicio") {
-                var estado = '<span class="text-muted"><i class="fa fa-calendar-minus-o fa-fw" aria-hidden="true"></i> Sin inicio</span>';
-              }
-              else if (hito.estado == "demorado") {
-                var estado = '<span class="text-danger"><i class="fa fa-ban fa-fw" aria-hidden="true"></i> Demorado</span>';
-              }
+  var htmlHito = templates.hito;
 
-              htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
-              .replace(/{inicio}/gi, hito.inicio)
-              .replace(/{fin}/gi, hito.fin)
-              .replace(/{estado}/gi, estado);
+  if (hito.estado == "finalizado"){
+    var estado = '<span class="text-success"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Finalizado</span>';
+  } 
+  else if (hito.estado == "en_avance") {
+    var estado = '<span class="text-gray"><i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i> En avance</span>';
+  } 
+  else if (hito.estado == "sin_inicio") {
+    var estado = '<span class="text-muted"><i class="fa fa-calendar-minus-o fa-fw" aria-hidden="true"></i> Sin inicio</span>';
+  }
+  else if (hito.estado == "demorado") {
+    var estado = '<span class="text-danger"><i class="fa fa-ban fa-fw" aria-hidden="true"></i> Demorado</span>';
+  }
 
-              jQuery('[data-render=modales] > div:last').find('[data-render=hitos]').append( htmlHito );
+  htmlHito = htmlHito.replace(/{nombre}/gi, hito.nombre)
+  .replace(/{inicio}/gi, hito.inicio)
+  .replace(/{fin}/gi, hito.fin)
+  .replace(/{estado}/gi, estado);
 
-            });         
+  jQuery('[data-render=modales] > div:last').find('[data-render=hitos]').append( htmlHito );
 
-          }
+ }); 
 
-        });
+}
 
-      }   
-    }
+});
 
-    jQuery("#tipo-proyectos").on("change", function() {
-      config.tipo = jQuery( "#tipo-proyectos option:selected" ).data('tipoproyectos');
-      render.tarjetas();
-    });
+} 
+}
 
-    jQuery("#alcance [data-filtro]").bind("click", function() {
-      if( jQuery(this).hasClass('active') ){
-        jQuery(this).removeClass('active');
-        config.alcance = '';
-      }else{
-        jQuery(this).addClass('active').siblings().removeClass('active');
-        config.alcance = jQuery(this).attr('data-filtro');
-      }
+jQuery("#tipo-proyectos").on("change", function() {
+  config.tipo = jQuery( "#tipo-proyectos option:selected" ).data('tipoproyectos');
+  render.tarjetas();
+});
 
-      render.tarjetas();
-    });
+jQuery("#alcance [data-filtro]").bind("click", function() {
+  if( jQuery(this).hasClass('active') ){
+    jQuery(this).removeClass('active');
+    config.alcance = '';
+  }else{
+    jQuery(this).addClass('active').siblings().removeClass('active');
+    config.alcance = jQuery(this).attr('data-filtro');
+  }
+
+  render.tarjetas();
+});
 
 
-  });
+});
 
-     
+
 </script>
-
-
-    
-  </section> 
-</div>
-
-
-<!-- <script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script> -->
-
