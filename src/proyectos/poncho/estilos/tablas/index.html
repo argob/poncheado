@@ -4,13 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Tabla accesible - test 01102018</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/datatables.min.css">
+	<link rel="stylesheet" href="datatables.min.css">
 </head>
 <body>
 <div class="container">
 <h1>Tablas accesibles</h1>
 <p>Test de tabla accesible, como Diana, que es accesible.</p>
-	<table class="table table-hover table-striped" summary="Se muestra un listado de personas con nombre, apellido y puesto jerárquico">
+
+
+<div class="row">
+<div class="col-sm-12">
+	<input type="text" class="form-control" id="dataTableSearch">
+</div>
+<!-- <select name="" id="" class="form-control">
+	<option value="">Selecciona algo</option>
+	<option value="Juana">Juana</option>
+	<option value="Peter">Peter</option>
+</select> -->
+
+<div class="col-sm-12">
+
+	<table class="table table-hover table-striped" summary="Se muestra un listado de personas con nombre, apellido y puesto jerárquico" id="dataTable">
 	<caption>Tabla con listado de personas accesibles</caption>
 	<thead>
 		<tr>
@@ -24,6 +38,11 @@
 				<th>Juana</th>
 				<td>Viale</td>
 				<td>Delivery</td>
+			</tr>
+			<tr>
+				<th>Juana</th>
+				<td>Thompson 2</td>
+				<td>Delivery 3</td>
 			</tr>
 			<tr>
 				<th>Lucia</th>
@@ -41,12 +60,16 @@
 				<td>Director</td>
 			</tr>
 			<tr>
-				<td>Guadalupe</td>
+				<th>Guadalupe</th>
 				<td>Vargas Thompson</td>
-				<td>Catadora de especies</td>
+				<td>Catadora de especias</td>
 			</tr>
 		</tbody>
 	</table>
+
+	</div>
+
+	</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
@@ -54,7 +77,10 @@
 
 <script>
 	$(function(){
-		$("table").DataTable({
+		var tabla = $("#dataTable").DataTable({
+			"lengthChange" : false,
+			"filter" : true,
+			"searching": false,
 			"language" : 
 					{
 					"sProcessing":     "Procesando...",
@@ -76,12 +102,34 @@
 						"sPrevious": "Anterior"
 					},
 					"oAria": {
-						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					}
-}			
-
+								"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+								"sSortDescending": ": Activar para ordenar la columna de manera descendente",
+								 "paginate": {
+						                "first":    'Ir a la primera página',
+						                "previous": 'Ir a la página anterior',
+						                "next":     'Ir a la página siguiente',
+						                "last":     'Ir a la última página'
+					            }
+							}
+					}			
+    	});
+		//BUSCADOR
+		
+		$('#dataTableSearch').on('keyup', function() {
+    		tabla.search(this.value).draw();
 		});
+
+		//FILTRO
+		$("select").on("change",function(){
+			var keyword = $(this).val();
+			if(keyword != ""){
+				tabla.column(0).search(keyword).draw();
+			}
+			else{
+				tabla.column(0).search().draw();
+			}
+		})
+
 	})
 </script>
 </body>

@@ -102,8 +102,16 @@ $(document).ready(function () {
                 lista += '<td><p>' + item.gsx$caracteristicasespecialesrequeridas.$t + '</p></td>';
 
                 lista += '<td><p>' + item.gsx$areasdeoperacion.$t + '</p></td>';
+                
+                if(item.gsx$boton.$t != ""){
+                  link = '<a class="btn btn-sm btn-primary" target=_blank href="'+ item.gsx$boton.$t +'">Ofrecer</a>';
+                }
+                else{
+                  link = "";
+                }
 
-                lista += '<td class="text-center" style="width: 150px;"><a class="btn btn-sm btn-primary" target=_blank href="'+ item.gsx$boton.$t +'">Ofrecer</a></td>';
+
+                lista += '<td class="text-center" style="width: 150px;">'+link+'</td>';
 
               
                 lista += '</tr>';
