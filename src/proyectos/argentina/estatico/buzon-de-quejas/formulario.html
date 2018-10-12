@@ -80,8 +80,8 @@ layout: argentina
 
 <div class="row" id="institucion_representacion" style="display:none">
 <div class="col-md-8 form-group item-form">
-<label for="organismo_nombre">Institución representada</label>
-    <select class="form-control" id="organismo_nombre" name="organismo_nombre">
+<label for="instituto_nombre">Institución representada</label>
+    <select class="form-control" id="instituto_nombre" name="instituto_nombre">
       <option value="" selected="">Seleccioná un institución</option>
       <option value="Nombre institución 1">Nombre institución 1</option>
       <option value="Nombre institución 2">Nombre institución 2</option>
@@ -92,7 +92,7 @@ layout: argentina
 </div>
 </div>
 
-<div class="row" id="organismo_nuevo_contenedor" style="display:none">
+<div class="row" id="instituto_nuevo_contenedor" style="display:none">
     <div class="col-md-8 form-group item-form">
     <label for="organismo_nuevo">Nombre de la institución</label>
         <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
@@ -315,28 +315,29 @@ layout: argentina
 
     <script>
       $(function(){
-        $(document).on("change","#organismo_nombre",function(){
+
+        $(document).on("change","#instituto_nombre",function(){
           var seleccion = $(this).val();
           if(seleccion == "Otro"){
-           $("#organismo_nuevo_contenedor").show();
-           $("#organismo_nuevo").focus();
+           $("#instituto_nuevo_contenedor").show();
+           $("#instituto_nombre").focus();
           }
           else{
-            $("#organismo_nuevo_contenedor").hide();
+            $("#instituto_nuevo_contenedor").hide();
           }
         })
 
         $(document).on("change","input[name=representa]",function(){
           var valor = $(this).val();
+          $("#organismo_nuevo").val("");
           
           if(valor == "si"){
-            $("#institucion_representacion").show();
+            $("#institucion_representacion").show();  
           }
           
           if(valor == "no"){
-            $("#institucion_representacion,#organismo_nuevo_contenedor").hide();
-            $("#organismo_nombre option:first").attr('selected','selected');
-            $("#organismo_nuevo").val("");
+            $("#institucion_representacion,#instituto_nuevo_contenedor").hide();
+            $("#instituto_nombre").val($("#instituto_nombre option:first").val());
           }
         })
 
