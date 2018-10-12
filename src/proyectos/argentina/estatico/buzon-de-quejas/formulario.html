@@ -34,36 +34,75 @@ layout: argentina
 
 <!-- DATOS PERSONALES -->
 <fieldset>
-  <legend><h3>Datos del organismo</h3></legend>
-
-    <div class="row">
+  <legend><h3>¿Sobre qué organismo querés expresar tu opinión?</h3></legend>
+<div class="row">
     <div class="col-md-8 form-group item-form">
-    <label for="organismo_nombre">Organización o entidad representada</label>
+    <label for="organismo_nombre">Organismo</label>
         <select class="form-control" id="organismo_nombre" name="organismo_nombre">
           <option value="" selected="">Seleccioná un organismo</option>
-          <option value="Nombre organismo 1">Nombre organismo 1</option>
-          <option value="Nombre organismo 2">Nombre organismo 2</option>
-          <option value="Nombre organismo 3">Nombre organismo 3</option>
-          <option value="Otro">Otro</option>
+          <option value="Nombre organismo 1">Superintedencia de Servicios de Salud</option>
         </select>        
-        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+        <p class="help-block error hidden"></p>
     </div>
-  </div>
-
-<div class="row" id="organismo_nuevo_contenedor" style="display:none">
-    <div class="col-md-8 form-group item-form">
-    <label for="organismo_nuevo">Nombre del organismo o entidad representada</label>
-        <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
-        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
     </div>
-  </div>
-
 </fieldset>
-
 
 <!-- DATOS PERSONALES -->
 <fieldset>
   <legend><h3>Datos personales</h3></legend>
+
+<div class="row">
+<div class="col-sm-12">
+  <fieldset>
+    <legend>
+     <label>¿Estás representando a una institución?</label>
+   </legend>
+   
+   <div class="form-group item-form">
+
+     <label for="representa_no" class="radio-inline">
+      <input type="radio" name="representa" id="representa_no" value="no" required="" aria-required="true" checked>
+      No
+    </label>
+
+     <label for="representa_si" class="radio-inline">
+      <input type="radio" name="representa" id="representa_si" value="si" required="" aria-required="true">
+      Si
+    </label>
+
+    <p class="help-block error hidden">Tenés que seleccionar una opción</p>
+</div>
+
+</fieldset>
+</div>
+</div>
+
+
+<div class="row" id="institucion_representacion" style="display:none">
+<div class="col-md-8 form-group item-form">
+<label for="organismo_nombre">Institución representada</label>
+    <select class="form-control" id="organismo_nombre" name="organismo_nombre">
+      <option value="" selected="">Seleccioná un institución</option>
+      <option value="Nombre institución 1">Nombre institución 1</option>
+      <option value="Nombre institución 2">Nombre institución 2</option>
+      <option value="Nombre institución 3">Nombre institución 3</option>
+      <option value="Otro">Otro</option>
+    </select>        
+    <p class="help-block error hidden"></p>
+</div>
+</div>
+
+<div class="row" id="organismo_nuevo_contenedor" style="display:none">
+    <div class="col-md-8 form-group item-form">
+    <label for="organismo_nuevo">Nombre de la institución</label>
+        <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
+        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+    </div>
+</div>
+
+<hr>
+
+
 
     <div class="row">
     <div class="col-md-4 form-group item-form">
@@ -121,7 +160,6 @@ layout: argentina
 </fieldset>
 </div>
 </div>
-
 
 
 </fieldset>
@@ -281,10 +319,27 @@ layout: argentina
           var seleccion = $(this).val();
           if(seleccion == "Otro"){
            $("#organismo_nuevo_contenedor").show();
+           $("#organismo_nuevo").focus();
           }
           else{
             $("#organismo_nuevo_contenedor").hide();
           }
         })
+
+        $(document).on("change","input[name=representa]",function(){
+          var valor = $(this).val();
+          
+          if(valor == "si"){
+            $("#institucion_representacion").show();
+          }
+          
+          if(valor == "no"){
+            $("#institucion_representacion,#organismo_nuevo_contenedor").hide();
+            $("#organismo_nombre option:first").attr('selected','selected');
+            $("#organismo_nuevo").val("");
+          }
+        })
+
+
       })
     </script>
