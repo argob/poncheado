@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Banco de Pruebas</title>
+  <title>El estado en tu barrio</title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -134,7 +134,7 @@ if(lab == ""){
             <ol class="breadcrumb pull-left">
                 <li><a href="/">Argentina</a></li>
                 <li><a href="index.html">El Estado en tu Barrio </a></li>
-                <li class="active"><span class="breadcrumbPunto">Punto</span></li>
+                <li class="active"><span id="breadcrumbPunto">Punto</span></li>
             </ol>
         </div>
     </div>
@@ -261,7 +261,7 @@ if(lab == ""){
                      <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
                      <div class="media-body">
                         <h5></h5>
-                        <h4><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></h4>
+                        <h4><a href="https://back.argentina.gob.ar/eetb/preguntas-frecuentes">Preguntas frecuentes</a></h4>
                         <p class="margin-0"></p>
                         <p>Entra acá sí tenés alguna duda.</p>
                         <p></p>
@@ -362,7 +362,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
      if(val.gsx$nombre.$t == puntoId){
         provincia = val.gsx$provincia.$t;
         excepcion = val.gsx$excepcion.$t;
-        $("#nombrePunto").html(val.gsx$nombre.$t);
+        $("#nombrePunto,#breadcrumbPunto").html(val.gsx$nombre.$t);
         $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);

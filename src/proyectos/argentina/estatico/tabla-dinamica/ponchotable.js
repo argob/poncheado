@@ -1,3 +1,5 @@
+(function($){     
+
     function ponchoTable(idSpread,hojaNumero,tituloTabla){
       var listado = [];
       var filteredTitle = [];
@@ -137,9 +139,6 @@
             }
         });
 
-  
-
-        
 
         //BUSCADOR
         $("#ponchoTable_filter").parent().parent().remove();
@@ -148,17 +147,14 @@
         });
 
 
-        //EXPAND ALL
-        tabla.rows().every(function(){
-            // If row has details collapsed
-             if(!this.child.isShown()){
-            // Expand row details
-            tabla.settings()[0].responsive._detailsDisplay(this, false);
-          }
-        });
 
 
 
 
     }
   }
+
+
+ponchoTable(idSpread,hojaNumero,tituloTabla);
+
+}(jQuery));

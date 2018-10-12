@@ -99,7 +99,7 @@ a.panel span {
                   <div class="media">
                      <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
                      <div class="media-body">
-                        <h4><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></h4>
+                        <h4><a href="https://back.argentina.gob.ar/eetb/preguntas-frecuentes">Preguntas frecuentes</a></h4>
                         <p>Entra acá sí tenés alguna duda.</p>
                      </div>
                   </div>
@@ -291,19 +291,20 @@ a.panel span {
 window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var prov = $("#provincia option[value="+url.searchParams.get("provincia")+"]").val();
+    var provincia = url.searchParams.get("provincia");
     
-    $("#provincia option[value="+url.searchParams.get("provincia")+"]").attr("selected","selected");
+
+
     
     //LISTA DE PUNTOS
     var puntos;
     var listaPuntos;
-    var provincia = $("#provincia option:selected").val();
 
     $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
       listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
-
-      filtrarPuntos(listaPuntos,provincia);
+        
+        filtrarPuntos(listaPuntos,provincia);
+      
     })
 
 //FILTRAR PUNTOS FUNCION
@@ -324,11 +325,12 @@ function filtrarPuntos(listaPuntos,provincia){
     $.each(puntosProvincia, function(index, val) {
       if(val.gsx$nombre.$t != "Todos" && val.gsx$publicado.$t == "si"){
         $("#punto-clon .nombre").html(val.gsx$nombre.$t);
+        
+        $("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
         if(val.gsx$fechadesde.$t == ""){
-          $("#punto-clon .fecha_desde").parents(".media").hide();
+          $("#punto-clon .fecha_desde").parents(".media").addClass("hidden");
         }
 
-        $("#punto-clon .fecha_desde").parents(".media").show();
         $("#punto-clon .fecha_desde").html(val.gsx$fechadesde.$t);
         $("#punto-clon .fecha_hasta").html(val.gsx$fechahasta.$t);
         $("#punto-clon .horario").html(val.gsx$horario.$t);
@@ -352,8 +354,13 @@ function filtrarPuntos(listaPuntos,provincia){
     });
 
   } 
+
+    $("#provincia option[value="+url.searchParams.get("provincia")+"]").attr("selected","selected");
+    
+
 });
 provinciasCargadas = true;
+
 
 
 //FILTRO
