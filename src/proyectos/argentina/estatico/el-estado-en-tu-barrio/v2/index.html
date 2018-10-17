@@ -125,7 +125,8 @@ a.panel span {
             <div class="form-group">
                 <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
                 <select class="form-control" name="provincia" id="provincia" required>
-                    <option data-id="0" value="" selected>Seleccioná una provincia</option>
+                    <option selected class="preloader">Cargando...</option>
+                    <option data-id="0" value="">Seleccioná una provincia</option>
                 </select>
             </div>
 
@@ -367,6 +368,7 @@ function filtrarPuntos(listaPuntos,provincia){
     
 
 });
+  $("#provincia .preloader").remove();
 provinciasCargadas = true;
 
 
