@@ -16,7 +16,8 @@ layout: argentina
       <div class="col-md-8 col-md-offset-2">
 
         <h1>Sugerencias, quejas y agradecimientos</h1>
-        <p>En este buzón podrás expresar tu opinión sobre los servicios brindados por la Superintendencia de Servicios de Salud y colaborar en la mejora continua de los mismos.</p>
+        <p>En este buzón podrás expresar tu opinión sobre los servicios brindados por un organismo.</p>
+        <div class="alert alert-info">Se han autocompletado datos en base a MiID de Mi Argentina. Si algun dato es incorrecto por favor <a href="#">actualizalo acá</a>.</div>        
         <div class="row">
           <div class="section-actions col-md-7 social-share">
   <p>Compartir en <br> redes sociales</p>
@@ -96,19 +97,16 @@ layout: argentina
     <div class="col-md-8 form-group item-form">
     <label for="organismo_nuevo">Nombre de la institución</label>
         <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
-        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+        <p class="help-block error hidden">Ingresá el nombre de la institución que representas</p>
     </div>
 </div>
 
 <hr>
 
-
-
     <div class="row">
     <div class="col-md-4 form-group item-form">
     <label for="cuil">CUIL</label>
-        <input type="number" class="form-control" id="cuil" required="" aria-required="true">
-        <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+        <input disabled type="text" class="form-control" id="cuil" required="" aria-required="true" value="27-34322158-1">
     </div>
   </div>
 
@@ -116,24 +114,21 @@ layout: argentina
   <div class="row">
     <div class="col-md-8 form-group item-form">
       <label for="nombre">Nombres</label>
-      <input type="text" name="name" class="form-control" id="nombre" required="" aria-required="true">
-      <p class="help-block error hidden">Ingresá tu nombre</p>
+      <input disabled type="text" name="name" class="form-control" id="nombre" required="" aria-required="true" value="Anali Fátima">
     </div>
   </div>
 
   <div class="row">
    <div class="col-md-8 form-group item-form">
     <label for="apellido">Apellidos</label>
-    <input type="text" name="lastname" class="form-control" id="apellido" required="" aria-required="true">
-    <p class="help-block error hidden">Ingresá tu apellido</p>
+    <input disabled type="text" name="lastname" class="form-control" id="apellido" required="" aria-required="true" value="Andradas">
   </div>
 </div>
 
 <div class="row">
   <div class="form-group col-md-4 item-form">
     <label for="birthday">Fecha de nacimiento</label>
-    <input type="date" class="form-control" id="birthday" required="" aria-required="true">
-    <p class="help-block error hidden">Ingresá la fecha</p>
+    <input disabled type="text" class="form-control" id="birthday" required="" aria-required="true" value="01-05-1999">
   </div>
 </div>
 
@@ -147,14 +142,13 @@ layout: argentina
    <p class="help-block">Como aparece en tu documento</p>
    <div class="form-group item-form">
      <label for="f" class="radio-inline">
-      <input type="radio" name="sexo" id="f" value="F" required="" aria-required="true">
+      <input checked disabled type="radio" name="sexo" id="f" value="F" required="" aria-required="true">
       Femenino
     </label>
      <label for="m" class="radio-inline">
-      <input type="radio" name="sexo" id="m" value="M" required="" aria-required="true">
+      <input disabled type="radio" name="sexo" id="m" value="M" required="" aria-required="true">
       Masculino
     </label>
-    <p class="help-block error hidden">Ingresá tu sexo</p>
 </div>
 
 </fieldset>
@@ -171,10 +165,9 @@ layout: argentina
   
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
-      <p class="help-block">Debés ingresar un correo electrónico y al menos un teléfono.</p>
       <label for="email">Dirección de correo electrónico</label>
-      <input type="email" name="email" class="form-control" id="email" required="" aria-required="true">
-      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+      <input type="email" name="email" class="form-control" id="email" required="" aria-required="true" value="jcanalifatima2@hotmail.com">
+      <p class="help-block error hidden">Ingresá un correo electrónico con formato válido</p>
     </div>
   </div>
 
@@ -182,7 +175,7 @@ layout: argentina
   <div class="col-sm-12">
     <fieldset>
       <legend>Teléfono móvil</legend>
-        <div class="row">
+      <div class="row">
               <div class="col-sm-12">
                 <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
               </div>
@@ -201,7 +194,8 @@ layout: argentina
               </div>
               <p class="help-block error hidden">Ingresá tu número de teléfono móvil</p>
             </div>
-         </div>      
+         </div>
+              
     </fieldset>
   </div>
 </div>
@@ -240,14 +234,23 @@ layout: argentina
 <!-- DATOS DEL MENSAJE  -->
 <fieldset>
   <legend><h3>Información de tu sugerencia, queja o agradecimiento</h3></legend>
-  
+
   <div class="row"> 
     <div class="col-md-4 form-group item-form">
-      <label for="mensaje_fecha">Fecha</label>
+      <label for="mensaje_fecha">¿Cúando sucedió?</label>
       <input type="date" class="form-control" id="mensaje_fecha" required="" aria-required="true">
       <p class="help-block error hidden">La fecha ingresada es inválida</p>
     </div>
   </div>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <h4>¿Dónde sucedió?</h4>    
+    </div>
+  </div>
+
+
 
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
@@ -277,6 +280,12 @@ layout: argentina
 
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
+    <h4>¿Qué sucedió?</h4>
+    </div>
+  </div>
+
+  <div class="row"> 
+    <div class="col-md-8 form-group item-form">
       <label for="mensaje_descripcion">Descripción</label>
       <textarea class="form-control" id="mensaje_descripcion" rows="5"></textarea>
       <p class="help-block error hidden">El campo es obligatorio</p>
@@ -285,7 +294,7 @@ layout: argentina
 
   <div class="row"> 
     <div class="col-md-8 form-group item-form">
-      <label for="mensaje_numero_expediente">Número de expediente</label>
+      <label for="mensaje_numero_expediente">Número de expediente relacionado (opcional)</label>
       <input type="text" name="mensaje_numero_expediente" class="form-control" id="mensaje_numero_expediente" required="" aria-required="true">
     </div>
   </div>        
