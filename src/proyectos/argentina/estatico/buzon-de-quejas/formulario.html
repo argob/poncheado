@@ -15,7 +15,7 @@ layout: argentina
     <article class="row">
       <div class="col-md-8 col-md-offset-2">
         <h1>Sugerencias, quejas y agradecimientos</h1>
-        <p>En este buzón podrás expresar tu opinión sobre los servicios brindados por un organismo.</p>
+        <p>Expresá tu opinión sobre los servicios brindados por el organismo.</p>
    
 
 
@@ -26,7 +26,7 @@ layout: argentina
       </div>
       <div class="media-body">
           <div><strong>Hola Analí Fátima</strong></div>
-          <p>Se han autocompletado datos personales en base a tu perfil de <strong>Mi Argentina</strong>.</p>
+          <p>Se han autocompletado los datos personales en base a tu perfil de <strong>Mi Argentina</strong>.</p>
           <p>También podés:<br>
           <a href="">Cambiar tus datos personales</a><br>
           <a href="">Ingresar con otro usuario de Mi Argentina</a></p>
@@ -140,7 +140,7 @@ layout: argentina
 <div class="col-sm-12">
   <fieldset>
     <legend>
-     <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
+     <label>Sexo <span class="sr-only">Como aparece en tu documento.</span></label>
    </legend>
    <p class="help-block">Como aparece en tu documento</p>
    <div class="form-group item-form">
@@ -182,15 +182,12 @@ layout: argentina
 <fieldset>
       <legend>
         <h3>Teléfonos</h3>
-        <p class="help-block">Ingresá al menos un teléfono</p>
+        <p class="help-block" >Ingresá al menos un teléfono. Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá al menos un teléfono. Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
       </legend>
 
     <fieldset>
       <legend>Teléfono móvil</legend>
       <div class="row">
-              <div class="col-sm-12">
-                <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
-              </div>
             <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
@@ -220,9 +217,6 @@ layout: argentina
     <fieldset>
       <legend>Teléfono fijo</legend>
         <div class="row">
-              <div class="col-sm-12">
-                <p class="help-block" id="help_telefono_fijo">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
-              </div>
              <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
@@ -248,11 +242,29 @@ layout: argentina
 
 <!-- DATOS DEL MENSAJE  -->
 <fieldset>
-  <legend><h2>Información de tu sugerencia, queja o agradecimiento</h2></legend>
+  <legend><h2>Escribí tu sugerencia, queja o agradecimiento</h2></legend>
+
+<div class="row"> 
+    <div class="col-md-8 form-group item-form">
+      <h3>¿Qué sucedió?</h3>
+      <label for="mensaje_descripcion">Descripción</label>
+      <textarea class="form-control" id="mensaje_descripcion" rows="5"></textarea>
+      <p class="help-block error hidden">El campo es obligatorio</p>
+    </div>
+  </div>
+
+<div class="row"> 
+    <div class="col-md-8 form-group item-form">
+      <label for="mensaje_numero_expediente">¿Refiere a un expediente tramitado? Ingresá el Nro. (opcional)</label>
+      <input type="text" name="mensaje_numero_expediente" class="form-control" id="mensaje_numero_expediente" required="" aria-required="true">
+    </div>
+  </div>
+
+
 
   <div class="row"> 
         <div class="col-md-12">
-          <h3>¿Dónde sucedió?</h3>
+          <h3>¿Cúando sucedió?</h3>
         </div>
     <div class="col-md-4 form-group item-form">
       <label for="mensaje_fecha">Fecha</label>
@@ -302,22 +314,7 @@ layout: argentina
     </div>
   </div>
 
-
-  <div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <h3>¿Qué sucedió?</h3>
-      <label for="mensaje_descripcion">Descripción</label>
-      <textarea class="form-control" id="mensaje_descripcion" rows="5"></textarea>
-      <p class="help-block error hidden">El campo es obligatorio</p>
-    </div>
-  </div>
-
-  <div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <label for="mensaje_numero_expediente">Número de expediente relacionado (opcional)</label>
-      <input type="text" name="mensaje_numero_expediente" class="form-control" id="mensaje_numero_expediente" required="" aria-required="true">
-    </div>
-  </div>        
+          
 
   <div class="row">
    <div class="col-sm-12">
@@ -344,6 +341,7 @@ layout: argentina
 
     <script>
       $(function(){
+
 
 
         $(document).on("change","input[name=representa]",function(){
