@@ -101,28 +101,12 @@ layout: argentina
 
 <div class="row" id="institucion_representacion" style="display:none">
 <div class="col-md-8 form-group item-form">
-<label for="instituto_nombre">Institución representada</label>
-    <select class="form-control" id="instituto_nombre" name="instituto_nombre">
-      <option value="" selected="">Seleccioná un institución</option>
-      <option value="Nombre institución 1">Nombre institución 1</option>
-      <option value="Nombre institución 2">Nombre institución 2</option>
-      <option value="Nombre institución 3">Nombre institución 3</option>
-      <option value="Otro">Otro</option>
-    </select>        
-    <p class="help-block error hidden"></p>
+    <label for="instituto_nombre">Institución representada</label>
+    <input type="text" class="form-control" id="instituto_nombre">       
+    <p class="help-block error hidden">Debés escribir el nombre de la institución a la cual representas.</p>
 </div>
 </div>
-
-<div class="row" id="instituto_nuevo_contenedor" style="display:none">
-    <div class="col-md-8 form-group item-form">
-    <label for="organismo_nuevo">Nombre de la institución</label>
-        <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
-        <p class="help-block error hidden">Ingresá el nombre de la institución que representas</p>
-    </div>
-</div>
-
-
-    <div class="row">
+  <div class="row">
     <div class="col-md-4 form-group item-form">
     <label for="cuil">CUIL</label>
         <input disabled type="text" class="form-control" id="cuil" required="" aria-required="true" value="27-34322158-1">
@@ -361,28 +345,17 @@ layout: argentina
     <script>
       $(function(){
 
-        $(document).on("change","#instituto_nombre",function(){
-          var seleccion = $(this).val();
-          if(seleccion == "Otro"){
-           $("#instituto_nuevo_contenedor").show();
-           $("#instituto_nombre").focus();
-          }
-          else{
-            $("#instituto_nuevo_contenedor").hide();
-          }
-        })
 
         $(document).on("change","input[name=representa]",function(){
           var valor = $(this).val();
-          $("#organismo_nuevo").val("");
+          $("#institucion_representacion input").val("");
           
           if(valor == "si"){
             $("#institucion_representacion").show();  
           }
           
           if(valor == "no"){
-            $("#institucion_representacion,#instituto_nuevo_contenedor").hide();
-            $("#instituto_nombre").val($("#instituto_nombre option:first").val());
+            $("#institucion_representacion").hide();
           }
         })
 
