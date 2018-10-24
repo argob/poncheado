@@ -15,18 +15,18 @@ layout: argentina
     <article class="row">
       <div class="col-md-8 col-md-offset-2">
         <h1>Sugerencias, quejas y agradecimientos</h1>
-        <p>En este buzón podrás expresar tu opinión sobre los servicios brindados por un organismo.</p>
+        <p>Expresá tu opinión sobre los servicios brindados por el organismo.</p>
    
 
 
  <div class="alert alert-info">
   <div class="media">
-      <div class="media-left">
-          <i class="icono-arg-mi-argentina fa-3x"></i>
+      <div class="media-left p-t-1">
+          <i class="icono-arg-mi-argentina fa-2x p-t-2"></i>
       </div>
       <div class="media-body">
-          <div><strong>Hola Analí Fátima</strong></div>
-          <p>Se han autocompletado datos personales en base a tu perfil de <strong>Mi Argentina</strong>.</p>
+          <div><h4 class="m-t-2">Hola Analí Fátima</h4></div>
+          <p>Se han autocompletado los datos personales en base a tu perfil de <strong>Mi Argentina</strong>.</p>
           <p>También podés:<br>
           <a href="">Cambiar tus datos personales</a><br>
           <a href="">Ingresar con otro usuario de Mi Argentina</a></p>
@@ -101,28 +101,12 @@ layout: argentina
 
 <div class="row" id="institucion_representacion" style="display:none">
 <div class="col-md-8 form-group item-form">
-<label for="instituto_nombre">Institución representada</label>
-    <select class="form-control" id="instituto_nombre" name="instituto_nombre">
-      <option value="" selected="">Seleccioná un institución</option>
-      <option value="Nombre institución 1">Nombre institución 1</option>
-      <option value="Nombre institución 2">Nombre institución 2</option>
-      <option value="Nombre institución 3">Nombre institución 3</option>
-      <option value="Otro">Otro</option>
-    </select>        
-    <p class="help-block error hidden"></p>
+    <label for="instituto_nombre">Institución representada</label>
+    <input type="text" class="form-control" id="instituto_nombre">       
+    <p class="help-block error hidden">Debés escribir el nombre de la institución a la cual representas.</p>
 </div>
 </div>
-
-<div class="row" id="instituto_nuevo_contenedor" style="display:none">
-    <div class="col-md-8 form-group item-form">
-    <label for="organismo_nuevo">Nombre de la institución</label>
-        <input type="text" class="form-control" id="organismo_nuevo" required="" aria-required="true">                
-        <p class="help-block error hidden">Ingresá el nombre de la institución que representas</p>
-    </div>
-</div>
-
-
-    <div class="row">
+  <div class="row">
     <div class="col-md-4 form-group item-form">
     <label for="cuil">CUIL</label>
         <input disabled type="text" class="form-control" id="cuil" required="" aria-required="true" value="27-34322158-1">
@@ -156,7 +140,7 @@ layout: argentina
 <div class="col-sm-12">
   <fieldset>
     <legend>
-     <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
+     <label>Sexo <span class="sr-only">Como aparece en tu documento.</span></label>
    </legend>
    <p class="help-block">Como aparece en tu documento</p>
    <div class="form-group item-form">
@@ -198,15 +182,12 @@ layout: argentina
 <fieldset>
       <legend>
         <h3>Teléfonos</h3>
-        <p class="help-block">Ingresá al menos un teléfono</p>
+        <p class="help-block" >Ingresá al menos un teléfono. Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá al menos un teléfono. Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
       </legend>
 
     <fieldset>
       <legend>Teléfono móvil</legend>
       <div class="row">
-              <div class="col-sm-12">
-                <p class="help-block" id="help_telefono_movil">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
-              </div>
             <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
@@ -236,9 +217,6 @@ layout: argentina
     <fieldset>
       <legend>Teléfono fijo</legend>
         <div class="row">
-              <div class="col-sm-12">
-                <p class="help-block" id="help_telefono_fijo">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
-              </div>
              <div class="form-group col-xs-12 col-sm-4 item-form">
               <div class="input-group">
                 <span class="input-group-addon">0</span>
@@ -264,21 +242,25 @@ layout: argentina
 
 <!-- DATOS DEL MENSAJE  -->
 <fieldset>
-  <legend><h2>Información de tu sugerencia, queja o agradecimiento</h2></legend>
+  <legend><h2>Escribí tu sugerencia, queja o agradecimiento</h2></legend>
 
-  <div class="row"> 
-        <div class="col-md-12">
-          <h3>¿Dónde sucedió?</h3>
-        </div>
-    <div class="col-md-4 form-group item-form">
-      <label for="mensaje_fecha">Fecha</label>
-      <input type="date" class="form-control" id="mensaje_fecha" required="" aria-required="true">
-      <p class="help-block error hidden">La fecha ingresada es inválida</p>
+<div class="row"> 
+    <div class="col-md-8 form-group item-form">
+      <h3>¿Qué sucedió?</h3>
+      <label for="mensaje_descripcion">Descripción</label>
+      <textarea class="form-control" id="mensaje_descripcion" rows="5"></textarea>
+      <p class="help-block error hidden">El campo es obligatorio</p>
     </div>
   </div>
 
+<div class="row"> 
+    <div class="col-md-8 form-group item-form">
+      <label for="mensaje_numero_expediente">¿Ingresá el expediente/reclamo relacionado? (opcional)</label>
+      <input type="text" name="mensaje_numero_expediente" class="form-control" id="mensaje_numero_expediente" required="" aria-required="true">
+    </div>
+  </div>
 
-  <div class="row"> 
+<div class="row"> 
     <div class="col-md-8 form-group item-form">
     <h3>¿Dónde sucedió?</h3>    
       <label for="mensaje_provincia">Provincia</label>
@@ -292,48 +274,17 @@ layout: argentina
     </div>
   </div>
 
-<div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <label for="mensaje_localidad">Partido / departamento</label>
-      <select class="form-control" name="mensaje_localidad" id="mensaje_localidad">
-        <option value="" selected="">Seleccioná un partido</option>
-        <option value="">Partido 1</option>
-        <option value="">Partido 2</option>
-        <option value="">Partido 3</option>
-      </select>
-      <p class="help-block error hidden">El campo es obligatorio</p>
+  <div class="row"> 
+        <div class="col-md-12">
+          <h3>¿Cúando sucedió?</h3>
+        </div>
+    <div class="col-md-4 form-group item-form">
+      <label for="mensaje_fecha">Fecha</label>
+      <input type="date" class="form-control" id="mensaje_fecha" required="" aria-required="true">
+      <p class="help-block error hidden">La fecha ingresada es inválida</p>
     </div>
   </div>
 
-  <div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <label for="mensaje_localidad">Localidad</label>
-      <select class="form-control" name="mensaje_localidad" id="mensaje_localidad">
-        <option value="" selected="">Seleccioná una localidad</option>
-        <option value="">Localidad 1</option>
-        <option value="">Localidad 2</option>
-        <option value="">Localidad 3</option>
-      </select>
-      <p class="help-block error hidden">El campo es obligatorio</p>
-    </div>
-  </div>
-
-
-  <div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <h3>¿Qué sucedió?</h3>
-      <label for="mensaje_descripcion">Descripción</label>
-      <textarea class="form-control" id="mensaje_descripcion" rows="5"></textarea>
-      <p class="help-block error hidden">El campo es obligatorio</p>
-    </div>
-  </div>
-
-  <div class="row"> 
-    <div class="col-md-8 form-group item-form">
-      <label for="mensaje_numero_expediente">Número de expediente relacionado (opcional)</label>
-      <input type="text" name="mensaje_numero_expediente" class="form-control" id="mensaje_numero_expediente" required="" aria-required="true">
-    </div>
-  </div>        
 
   <div class="row">
    <div class="col-sm-12">
@@ -360,28 +311,22 @@ layout: argentina
 
     <script>
       $(function(){
-        $(document).on("change","#instituto_nombre",function(){
-          var seleccion = $(this).val();
-          if(seleccion == "Otro"){
-           $("#instituto_nuevo_contenedor").show();
-           $("#instituto_nombre").focus();
-          }
-          else{
-            $("#instituto_nuevo_contenedor").hide();
-          }
-        })
+
+
+
         $(document).on("change","input[name=representa]",function(){
           var valor = $(this).val();
-          $("#organismo_nuevo").val("");
+          $("#institucion_representacion input").val("");
           
           if(valor == "si"){
             $("#institucion_representacion").show();  
           }
           
           if(valor == "no"){
-            $("#institucion_representacion,#instituto_nuevo_contenedor").hide();
-            $("#instituto_nombre").val($("#instituto_nombre option:first").val());
+            $("#institucion_representacion").hide();
           }
         })
+
+
       })
     </script>
