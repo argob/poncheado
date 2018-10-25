@@ -363,16 +363,26 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
         var fechaPunto = "";
-        if(val.gsx$fechahasta.$t != ""){
+        
+        //Es de un solo día
+        if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
+          fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
+            $("#fechaPunto").parents(".media").show();
+            $("#fechaPunto").html(fechaPunto);
+        }
+
+        //Tiene fecha inicio y fin
+        if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
             $("#fechaPunto").parents(".media").show();
             $("#fechaPunto").html(fechaPunto);
         }
-        else{
+
+        //Es puntofijo
+        if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
             $("#fechaPunto").parents(".media").hide();
         }
-        $("#fecha_desde").html(val.gsx$fechadesde.$t);
-        $("#fecha_hasta").html(val.gsx$fechahasta.$t);
+
         $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
         
             if(val.gsx$suspendido.$t != ""){

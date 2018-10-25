@@ -54,7 +54,7 @@ a.panel span {
       <div class="row">
         <div class="col-md-7">
           <h1><img alt="El Estado en tu Barrio" src="http://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"><span class="sr-only">El Estado en tu Barrio</span> </h1>
-          <p>Más de 4 millones de vecinos ya resolvieron sus trámites en EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
+          <p>Más de 5 millones de vecinos ya resolvieron sus trámites en EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ a.panel span {
 
 
 
-    <h2 class="m-t-4 text-center">¿Dónde nos podes encontrar?</h2>
+    <h2 class="m-t-4 text-center">¿Dónde nos podés encontrar?</h2>
     <p class="lead text-center m-b-4">Cada semana nos acercamos a más de 24 localidades.</p>
 
 <div id="puntosListado">
@@ -150,7 +150,7 @@ a.panel span {
                               <span class="fa fa-calendar" aria-hidden="true"></span>
                           </div>
                           <div class="media-body media-middle">
-                            <p><small>Desde <span class="fecha_desde">01/01/2018</span> hasta <span class="fecha_hasta">01/01/2019</span></small></p>
+                            <p><small id="fechaPunto"></small></p>
                           </div>
                         </div>
                         <div class="media">
@@ -318,15 +318,32 @@ function filtrarPuntos(listaPuntos,provincia){
   if(nombreProvincia == provincia){
     //RECORRER CADA PUNTO
     $.each(puntosProvincia, function(index, val) {
+      var fechaPunto = "";
+
       if(val.gsx$nombre.$t != "Todos" && val.gsx$publicado.$t == "si"){
         $("#punto-clon .nombre").html(val.gsx$nombre.$t);
         
         $("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
-        if(val.gsx$fechadesde.$t == ""){
-          $("#punto-clon .fecha_desde").parents(".media").addClass("hidden");
+
+        //Es de un solo día
+        if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
+          fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
+            $("#fechaPunto").parents(".media").show();
+            $("#fechaPunto").html(fechaPunto);
         }
-        $("#punto-clon .fecha_desde").html(val.gsx$fechadesde.$t);
-        $("#punto-clon .fecha_hasta").html(val.gsx$fechahasta.$t);
+
+        //Tiene fecha inicio y fin
+        if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
+          fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
+            $("#fechaPunto").parents(".media").show();
+            $("#fechaPunto").html(fechaPunto);
+        }
+
+        //Es puntofijo
+        if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
+            $("#fechaPunto").parents(".media").hide();
+        }
+
         $("#punto-clon .horario").html(val.gsx$horario.$t);
         $("#punto-clon .direccion").html(val.gsx$direccion.$t);
         //$("#punto-clon a").attr("href","eetb/punto?&punto="+val.gsx$nombre.$t);
