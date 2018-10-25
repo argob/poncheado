@@ -107,7 +107,6 @@ if(lab == ""){
 
 
 <script type="text/javascript">
-
   var busqueda = document.getElementById('buscar');
   var buscar = document.getElementById('buscar-btn');
   buscar.onclick = function () {
@@ -344,18 +343,15 @@ if(lab == ""){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 
 <script type="text/javascript">
-
 var url_string = window.location.href;
 var url = new URL(url_string);
 var puntoId = url.searchParams.get("punto");
 var provincia = "";
 var excepcion = "";
-
   
 //DATOS DEL PUNTO
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
   listaPuntos = data.feed.entry;
-
      $.each(listaPuntos, function(index, val) {
         
     
@@ -366,9 +362,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
-
         var fechaPunto = "";
-
         if(val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
             $("#fechaPunto").parents(".media").show();
@@ -377,9 +371,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         else{
             $("#fechaPunto").parents(".media").hide();
         }
-
-
-
         $("#fecha_desde").html(val.gsx$fechadesde.$t);
         $("#fecha_hasta").html(val.gsx$fechahasta.$t);
         $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
@@ -390,27 +381,19 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
             }
           }
       });
-
-
-
 //LISTA DE TRÁMITES DEL PUNTO
-
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
   $(".preloader").remove();
-
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
-
   $.each(listaCategorias, function(punto, val) {
         $("#categoria-clon .content_format").html("");
         $("#categoria-clon .nombreCategoria").html(punto);
-
              
         $.each(val, function(indice, tramite) {
           notaPunto = "";
           if(tramite.gsx$notatramite.$t != ""){
             notaPunto = ' (' + tramite.gsx$notatramite.$t + ')';  
         }
-
            //Es un punto normal
             if(excepcion != "si"){
               if((tramite.gsx$punto.$t == puntoId  || tramite.gsx$puntoid.$t == 0) && (tramite.gsx$provincia.$t == provincia)){
@@ -418,7 +401,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
                  $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + '</a></li>');
                 }
             }
-
             //Es un punto excepcional, por ejemplo Retiro o Constitución
             else{
               if(tramite.gsx$punto.$t == puntoId && tramite.gsx$provincia.$t == provincia){
@@ -426,7 +408,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
                  $("#categoria-clon .notaPunto").html(notaPunto);
                  $("#categoria-clon .content_format").append('<li><a class="mostrarTramite" data-tramite="'+tramite.gsx$tramiteid.$t+'">' + tramite.gsx$tramitenombre.$t + '</a></li>');
                 }
-
             }
           });
         
@@ -451,7 +432,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
      console.log(palabra);
      $(".content_format li").addClass("hidden").removeClass("filtrado");
      $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
-
      $("#tramites .panel").each(function(i){
         cantidad = $(this).find("li.filtrado").length;
         if(cantidad == 0){
@@ -462,17 +442,14 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         }
      })
   });
-
 })
 })//Fin del primer get
-
 //TRAER REQUISITOS DEL TRÁMITE
 $(document).on("click",".mostrarTramite",function(){
     var tramiteId = $(this).attr("data-tramite");
   
     //Traer detalle del trámite
     $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
-
     var nombre = "";
     var descripcion = "";
       
@@ -482,28 +459,21 @@ $(document).on("click",".mostrarTramite",function(){
         descripcion = tramite.gsx$descripcion.$t;
       }
     });
-
   //MÉTRICAS
   ga('create', 'UA-71585203-1', 'auto');
   ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
-
       $(".modal-title").html(nombre);
-
       var converter = new showdown.Converter(),
       descripcion_formatted = converter.makeHtml(descripcion);
-
       if(descripcion_formatted != ""){
         $(".modal-body").html(descripcion_formatted);
       }
       else{
         $(".modal-body").html('<div class="alert alert-info">Éste trámite no requiere requisitos.</div>');
       }
-
       $('#modalTramite').modal("show");
   })
 })
-
-
 </script>
 
 
