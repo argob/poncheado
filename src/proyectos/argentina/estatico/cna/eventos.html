@@ -1,0 +1,160 @@
+---
+layout: argentina
+---
+  <style>
+      
+      small{
+        color: #333333!important;
+      }
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+   <div class="container">
+      <div id="listado" class="m-t-3 p-t-2">
+        <div class="row">
+          <div class="col-md-12">    
+            <div class="form-group">
+              <label for=""> <strong>Buscá por Eventos</strong></label>
+              <input class="form-control search" id="eventos" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th><p class="text-center"><strong>Fecha</strong></p></th>
+                  <th><p><strong>Evento</strong></p></th>
+                  <th style="width: 150px;"></th>
+                </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+              </tbody>
+            </table>
+            <div class="col-xs-12">
+              <div class="alert alert-info alerta col-md-offset-3 col-md-6" style="display: none;">
+                No se han encontrado eventos para esa fecha
+              </div>
+            </div>
+            <nav class="text-center">
+              <ul class="pagination"></ul>
+            </nav>  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+   
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+
+    var listado= "";
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1tXgoO9WERrO_Y9FmpvprKQxsxGy4MQl33edS0_4jbQE/1/public/values?alt=json',
+    function (data) {
+
+          listado = data['feed']['entry'];
+          
+          filtrarContenido();
+         
+
+      });
+
+    function filtrarContenido(){
+      var lista = '';
+      $.each(listado, function( key, item ) {
+          var lugar = '';
+
+          var boton = '';
+
+          var contacto = '';
+
+          if(item.gsx$lugar.$t != ''){
+                  lugar = '<p class="text-muted"><i class="fa fa-map-marker"></i> '+ item.gsx$lugar.$t +'</p>';
+                  
+                }
+
+                if(item.gsx$info.$t != ''){
+                  boton = '<a href="'+ item.gsx$info.$t +'" class="btn btn-sm btn-primary m-t-3"> MÁS INFO</a>';
+                  
+                }
+
+                 if(item.gsx$contacto.$t != ''){
+                  contacto = '<p class="text-muted">'+ item.gsx$contacto.$t +'</p>';
+                  
+                }
+           
+                lista += '<tr>';
+                
+                lista += ' <td><p class="text-center"><i class="fa fa-2x text-muted fa-calendar-o m-t-2"></i><div class="m-t-2"><p class="text-center text-muted">'+ item.gsx$fecha.$t +'</p></div></p></td>';
+
+                lista += ' <td class="evento"> <h5>'+ item.gsx$evento.$t +'</h5><p>' + item.gsx$descripcion.$t +'</p><p class="text-muted"><i class="fa fa-clock-o"></i> '+ item.gsx$inscripcion.$t +'</p>' + lugar + contacto +'</td>';
+
+                lista += ' <td class="center-block text-center">'+ boton +'</td>';
+
+                
+                
+                lista += '</tr>';
+            
+
+
+          });
+
+          
+
+
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+          
+          if(lista.length == 0){
+            $('.alerta').show();
+          }else{
+            $('.alerta').hide();
+          }
+
+          var listOptions = {
+            valueNames: ['evento'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+          
+
+
+             var listaNueva = new List('listado', listOptions); 
+
+            
+
+             
+
+          $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+        }
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

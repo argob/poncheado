@@ -1,0 +1,176 @@
+---
+layout: argentina
+title: Aeropuertos
+---
+
+<style>
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }  
+
+@media (max-width: 480px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
+}
+
+</style>
+
+
+
+
+
+<div class="state-loading" id="map-container"><div id="map">&nbsp;</div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script><script>
+
+
+  var initMap = function() {
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: true,
+      streetViewControl: false
+    });
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+
+    $.ajax({
+     url: 'https://spreadsheets.google.com/feeds/list/1Gie9jZXk_eX-pXZIcI_d2Zsgoi1_YAvbcqdX06zZTWo/1/public/values?alt=json',
+    //  url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1S-9FUGj-jUdlHUwoMhaGNaGYNIrKaNs6q9Wmue7T6qY/1',
+      data: 'json',
+      success: function(response){
+
+        // console.log(response);
+
+        var rows = response.feed.entry;
+
+        rows.forEach(function(row, key){
+
+          // if(row.gsx$visible.$t == '1'){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
+              // map: map,
+              title: row.gsx$aeropuerto.$t,
+              map: map,
+			 icon: {
+			 url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+			 size: new google.maps.Size(20, 20),
+			 origin: new google.maps.Point(0, 0),
+			 anchor: new google.maps.Point(10, 10)
+			 }
+
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h5 class="text-primary">'+ row.gsx$aeropuerto.$t +'</h5><p><b class="text-muted">Ubicación: </b>'+ row.gsx$direccion.$t + ', ' + row.gsx$provincia.$t + '</p><p><b class="text-muted">Concesionado: </b>'+ row.gsx$concesionado.$t +'</p><p><b class="text-muted">Explotador : </b>'+ row.gsx$explotador.$t +'</p><p><b class="text-muted">Pistas: </b>'+ row.gsx$pistas.$t +'</p><p><b class="text-muted">Código de indetificación: </b>'+ row.gsx$codigodeidentificacion.$t +'</p>',
+              maxWidth: 500
+            })
+
+
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+            });
+
+          // }
+        })
+
+        
+
+        $('#map-container').removeClass('state-loading');
+
+      },
+      error: function(){
+        // console.log('nope');
+      }
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(10);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            // console.log('geo nope')
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(10);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+  }
+
+</script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>

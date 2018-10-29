@@ -19,15 +19,21 @@ layout: argentina
         <div class="row">
           <div class="col-xs-12">
             <div class="row">
-             
-
-            <div class="col-xs-12">
+              <div class="col-sm-6 col-xs-12">
               <div class="form-group">
-                <label for=""> <strong>Buscá por provincia, ruta o tramo</strong></label>
+                <label for=""> <strong>Buscá por distrito, ruta o tramo</strong></label>
                 <input class="form-control search" placeholder="">
               </div>
             </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label for=""><strong>Distrito</strong></label>
+                <select id="provincia" class="form-control">
+                  <option data-provincia="todas" value="todas">Todos</option>
+                </select>
+              </div>
             </div>
+          </div>
             
          
            
@@ -35,7 +41,7 @@ layout: argentina
               <table class="table table-spaced table-hover">
                 <thead>
                   <tr>
-                    <th>Provincia</th>
+                    <th>Distrito</th>
                     <th>Ruta</th>
                     <th>Detalle</th>
                     
@@ -69,59 +75,75 @@ layout: argentina
 $(document).ready(function () {
     
     var listadoVialidad = "";
-    
     var lista = "";
+    var grupoProvincias = "";
+    var provinceOption = "";
+    var provinceSelect = 'todas';
+
 
     jQuery.getJSON(
     'https://spreadsheets.google.com/feeds/list/17AqjqeNvM4nG6cOUsUFKFaKXMiNmztYfzHIxeM9FcXk/1/public/values?alt=json',
     function (data) {
 
           listadoVialidad = data['feed']['entry'];
-          filtrarContenido();
+          filtrarContenido(provinceSelect);
+          
           
       });
 
-          function filtrarContenido(){
+    function filtrarContenido(provinceParameter){
+      lista = '';
+      $.each(listadoVialidad, function( key, item ) {
 
-         
-          $.each(listadoVialidad, function( key, item ) {
-            lista += '<tr>';
-            /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-            lista += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
-            lista += ' <td class="ruta tramo"><p><strong>Ruta: </strong>'+item.gsx$ruta.$t + '<br /><strong>Tramo: </strong>' + item.gsx$tramo.$t + '<br /><strong>Calzada: </strong>' + item.gsx$calzada.$t +'</p></td>';
-            lista += ' <td><p><strong>Actualizacion: </strong> '+ item.gsx$actualizacion.$t +'<br><small><strong>Detalle: </strong>'+ item.gsx$detalle.$t + '</strong><br><strong>Observaciones: </strong>' + item.gsx$observaciones.$t + '</small></p></td>';
-            lista += '</tr>';
-          });
-
-          $('#show-data').empty();
-          $('#show-data').append(lista);
-
-        
-
-
-          var listOptions = {
-            valueNames: ['provincia', 'ruta', 'tramo'],
-            page: 10,
-            plugins: [ ListPagination({}) ]
-            
-           };
-
-             var listaNueva = new List('listadoVialidad', listOptions); 
-
-             console.log(listaNueva);
-
-          $('.search').on("keyup", function(){
-            var valorBuscado = $(".search").val();
-            listaNueva.search(valorBuscado);//propio de List.js
-           });
-
-
+        if((provinceParameter == 'todas') || (provinceParameter == item.gsx$provincia.$t)){
+          console.log(provinceParameter + item.gsx$provincia.$t);
+          lista += '<tr>';
+          
+          lista += ' <td class="provincia">'+ item.gsx$provincia.$t + '</td>';
+          lista += ' <td class="ruta tramo"><p><strong>Ruta: </strong>'+item.gsx$ruta.$t + '<br /><strong>Tramo: </strong>' + item.gsx$tramo.$t + '<br /><strong>Calzada: </strong>' + item.gsx$calzada.$t +'</p></td>';
+          lista += ' <td><p><strong>Actualizacion: </strong> '+ item.gsx$actualizacion.$t +'<br><small><strong>Detalle: </strong>'+ item.gsx$detalle.$t + '</strong><br><strong>Observaciones: </strong>' + item.gsx$observaciones.$t + '</small></p></td>';
+          lista += '</tr>';
         }
+      });
+
+    $('#show-data').empty();
+    $('#show-data').append(lista);
+
+    var listOptions = {
+      valueNames: ['provincia', 'ruta', 'tramo'],
+      page: 10,
+      plugins: [ ListPagination({}) ]
+      
+     };
+
+   var listaNueva = new List('listadoVialidad', listOptions); 
 
 
+    $('.search').on("keyup", function(){
+      var valorBuscado = $(".search").val();
+      listaNueva.search(valorBuscado);//propio de List.js
+     });
+    }
 
 
-});
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/17AqjqeNvM4nG6cOUsUFKFaKXMiNmztYfzHIxeM9FcXk/2/public/values?alt=json',
+    function (data) {
+      grupoProvincias = data['feed']['entry'];
+
+      $.each(grupoProvincias, function(p, prov){
+          provinceOption  = prov['gsx$provincia']['$t'];
+          $('#provincia').append('<option data-provincia="' + provinceOption  + '" value="' + provinceOption  + '">' + provinceOption  + '</option>');
+        });
+      });
+
+    $("#provincia").on("change", function() {
+      provinceSelect = $(document).find("#provincia option:selected").data('provincia');
+      filtrarContenido(provinceSelect);
+
+
+    });
+  });
 })(jQuery);
  
   
