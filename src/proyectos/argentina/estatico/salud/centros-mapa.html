@@ -107,10 +107,11 @@ title: Centros de salud
 </div>
 
 <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&sensor=true">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&sensor=true">
     </script>
 
     <script type="text/javascript">
+(function($){    
       $(document).ready(function() {
         
         //INICIALIZA EL MAPA
@@ -126,7 +127,7 @@ title: Centros de salud
 
         
         //CONSULTA A JSON
-        $.getJSON("mapa_centro_salud.json", function(centros) {
+        $.getJSON("https://www.argentina.gob.ar/sites/default/files/mapa_centro_salud.json", function(centros) {
           centros = centros.establecimientos;
           var markers = [];
           var detalles = [];
@@ -205,6 +206,8 @@ title: Centros de salud
 
         });
       });
+
+}(jQuery));      
     </script>
 
     <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
