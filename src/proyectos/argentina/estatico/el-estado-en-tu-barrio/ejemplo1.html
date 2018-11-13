@@ -1,0 +1,74 @@
+<div class="col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 col-lg-4 col-lg-offset-4 ">
+
+  <p>Buscador multiple listas usando <strong>List.js</strong> y el plugin <strong>Fuzzy Search</strong>.</p>
+  <hr>
+  <div class="form-group">
+        <input type="text" class="fuzzy-search form-control" placeholder="Busca aquí">
+  </div>
+  
+<div id="lista0" class="contenedor well">
+  <h2>Nombres</h2>
+  <ul class="list">
+    <li><p class="nombre">Pedro</p></li>
+    <li><p class="nombre">Pica</p></li>
+    <li><p class="nombre">Piedra</p></li>
+    <li><p class="nombre">La Cuca</p></li>
+  </ul>
+  </div>
+  
+<div id="lista1" class="contenedor well">
+  <h2>Mascotas</h2>
+  <ul class="list">
+    <li><p class="nombre">Cuca</p></li>
+    <li><p class="nombre">Racha</p></li>
+    <li><p class="nombre">Voladora</p></li>
+  </ul>
+  </div>
+  
+<div id="lista2" class="contenedor well">
+  <h2>Ciudades</h2>
+  <ul class="list">
+    <li><p class="nombre">Ciudad carton</p></li>
+    <li><p class="nombre">Modern Village</p></li>
+    <li><p class="nombre">Ciudad Ratón</p></li>
+    <li><p class="nombre">Rockanrolla</p></li>
+  </ul>
+  </div>  
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.fuzzysearch.js/0.1.0/list.fuzzysearch.min.js"></script>
+<script>
+  var indice = 0;
+  var busqueda;
+  var optionsList = {
+      valueNames: [ 'nombre' ]
+  };
+
+  //Inicializa todos las instancias de List.js
+  $(".list").each(function(){
+    window["lista" + indice] = new List('lista'+indice, optionsList);
+    indice++;
+  })
+
+  //Buscador
+  $(":input").bind("keyup change", function(e) {
+    busqueda = $(this).val();
+    
+    //Recorre todas las listas para filtrar el contenido
+    $(".list").each(function(i,val){
+      window["lista" + i].search(busqueda); 
+      console.log(i);
+      
+
+      //Si la cantidad de items en una lista es cero, se oculta
+      if($(this).find("li").length == 0){
+         $(this).parents(".contenedor").hide();
+       }
+       else{
+         $(this).parents(".contenedor").show();
+       }
+
+     })
+  })
+</script>
