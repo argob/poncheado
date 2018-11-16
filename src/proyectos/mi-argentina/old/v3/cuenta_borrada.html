@@ -1,0 +1,58 @@
+---
+layout: mi-argentina
+---
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+    <div class="alert alert-warning">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-exclamation-circle fa-fw fa-4x"></i>
+          </div>
+          <div class="media-body p-y-1">
+            <p>Borraste tu cuenta de Mi Argentina. Podés volver a registrarte cuando quieras.</p>
+          </div>
+        </div>
+      </div>
+      <h1 class="h2">Ingresá a Mi Argentina</h1>
+      
+      <div class="well p-x-3 p-y-2">
+        <form method="get" action="login_2.html">
+          <div class="form-group">
+            <label class="control-label lead" for="id_number">Entrá con tu CUIL o pasaporte</label>
+            <input id="id_number" class="form-control input-lg" type="text" name="id_number"> 
+          </div>
+          <div class="form-group m-b-0">
+            <button type="submit" class="btn btn-success">Continuar &nbsp; <i class="fa fa-arrow-right"></i></button>
+          </div>
+          </form>
+          <hr>
+          <label class="control-label lead" for="id_number">También podés entrar con</label>
+          <div class="m-b-0">
+            <a href="#" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</a>
+            <a href="#" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a>
+          </div>
+        
+      </div>
+      <p><a href="#">Quiero registrarme</a></p>
+      <p><a href="#">No recuerdo mi contraseña</a></p>
+      <p><a href="#">Términos y condiciones</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(function(){
+    var next = false;
+    $('.well button').on('click', function(event){
+      if(!next){
+        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número de CUIL o pasaporte no es válido, por favor intentá de nuevo.</span>');
+        $('#id_number').parent().addClass('has-error');
+        next = true;
+        return false;
+      }
+    });
+  });
+</script>

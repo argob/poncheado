@@ -1,0 +1,111 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="dispositivos" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="dispositivos" %}
+
+      </aside>
+      <div class="col-md-8">
+
+        <h1 class="h4">Mis dispositivos</h1>
+        <p class="m-b-2">Revisá desde qué dispositivos ingresaste a tu cuenta de Mi Argentina. Para asociarlos, descargate la <a href="#" target="_blank"><span class="sr-only">Abrir vínculo en una ventana nueva </span>aplicación móvil</a> e ingresá con tu usuario de Mi Argentina.</p>
+
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+            <h2>Dispositivos asociados</h2>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-android fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Samsung Galaxy S5</h3>
+                <p class="text-muted">Inicio de sesión: 07/03/2017</p>
+                <p class="text-muted">Última actividad: 11/04/2017</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-apple fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                 <h3 class="m-t-0">iPhone 6</h3>
+                <p class="text-muted">Inicio de sesión: 27/01/2017</p>
+                <p class="text-muted">Última actividad: 20/03/2017</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+            <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-android fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">Nexus 6P</h3>
+                <p class="text-muted">Inicio de sesión: 20/12/2016</p>
+                <p class="text-muted">Última actividad: 14/02/2017</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+             <hr class="m-y-1">
+
+            <div class="media">
+              <div class="media-left p-x-1 hidden-xs">
+                <i class="fa fa-windows fa-fw fa-2x text-muted m-t-1"></i>
+              </div>
+              <div class="media-body media-middle">
+                <h3 class="m-t-0">HTC Surround</h3>
+                <p class="text-muted">Inicio de sesión: 17/11/2015</p>
+                <p class="text-muted">Última actividad: 20/07/2016</p>
+              </div>
+              <div class="media-right media-top">
+                 <a class="btn btn-danger btn-sm" href="#">Desvincular</a>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#continue').click(function() {
+            $(this).remove();
+            $('form').fadeIn();
+        });
+    });
+</script>

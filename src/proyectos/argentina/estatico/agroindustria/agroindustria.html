@@ -1,0 +1,555 @@
+---
+layout: argentina
+---
+<style type="text/css">
+#map {
+ height: 600px;
+ width: 100%;
+ }
+
+ .item{
+ height: 310px;
+ }
+
+ .pie{
+ position: absolute;
+ bottom: 55px;
+ width: 90%;
+ }
+
+ .izq{
+ height: 30px;
+ padding-top: 6px;
+ }
+
+ .izq span{
+ font-size: 13px;
+ vertical-align: middle;
+ height: 30px;
+ }
+
+ .portaIconoLista{
+ width: 40px;
+ }
+
+ .portaIconoLista,
+ .portaInfoLista{
+ display: inline-block;
+ }
+
+ .portaIconoLista p{
+ text-align: center;
+ }
+
+ .portaRedes{
+ display: inline-block;
+ font-size: 25px;
+ margin-left: 10px;
+ }
+
+ a::after{
+ display: none!important;
+ }</style>
+<section class="jumbotron" style="background-image: url('/sites/default/files/jt_obras_agro.jpg');">
+	<div class="jumbotron_bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li>
+							<a href="/">Inicio</a>
+						</li>
+						<li>
+							<a href="/produccion">Ministerio de Producción y Trabajo</a>
+						</li>
+						<li class="active">Agroindustria</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="jumbotron_body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+					<h2>Obras de Agroindustria</h2>
+					<p>Conocé las obras que mejoran la calidad de vida de todos los argentinos.</p>
+				</div>
+				<div class="col-xs-12 text-center">
+					<a class="botones btn btn-primary" href="/agroindustria/mapadeobras" id="mapa" type="button">Mapa de Obras</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay">&nbsp;</div>
+</section>
+<div class="container">
+	<section id="buscadorObras">
+		<div id="obras">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Buscá por obra</label>
+						<input class="form-control search" placeholder="Buscá obras por nombre o descripcion" />
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">Provincia</label>
+						<select class="form-control" id="tipo-provincia">
+							<option value="Todas">Todas</option>
+							<option value="Buenos Aires">Buenos Aires</option>
+							<option value="Capital Federal">Capital Federal</option>
+							<option value="Catamarca">Catamarca</option>
+							<option value="Chaco">Chaco</option>
+							<option value="Chubut">Chubut</option>
+							<option value="Córdoba">Córdoba</option>
+							<option value="Corrientes">Corrientes</option>
+							<option value="Entre Ríos">Entre Ríos</option>
+							<option value="Jujuy">Jujuy</option>
+							<option value="Formosa">Formosa</option>
+							<option value="La Pampa">La Pampa</option>
+							<option value="La Rioja">La Rioja</option>
+							<option value="Mendoza">Mendoza</option>
+							<option value="Neuquén">Neuquén</option>
+							<option value="Misiones">Misiones</option>
+							<option value="Río Negro">Río Negro</option>
+							<option value="Salta">Salta</option>
+							<option value="San Juan">San Juan</option>
+							<option value="San Luis">San Luis</option>
+							<option value="Santa Cruz">Santa Cruz</option>
+							<option value="Santa Fe">Santa Fe</option>
+							<option value="Santiago del Estero">Santiago del Estero</option>
+							<option value="Tucumán">Tucumán</option>
+							<option value="Tierra del Fuego">Tierra del Fuego</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">Tipo de Obra</label>
+						<select class="form-control" id="tipo-obra">
+							<option value="Todas">Todas</option>
+							<option value="Hábitat">Hábitat</option>
+							<option value="Renovación Urbana">Renovación Urbana</option>
+							<option value="Cloacas">Cloacas</option>
+							<option value="Agua potable">Agua potable</option>
+							<option value="Vivienda">Vivienda</option>
+							<option value="Cultura">Cultura</option>
+							<option value="Educación">Educación</option>
+							<option value="Salud">Salud</option>
+							<option value="Obras para controlar inundaciones">Obras para controlar inundaciones</option>
+							<option value="Espacio Público">Espacio Público</option>
+							<option value="Patrimonio">Patrimonio</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">&nbsp;</div>
+			<div>
+				<div class="list row panels-row m-y-3 state-loading" data-render="tarjetas">&nbsp;</div>
+				<div class="row" id="alerta-msj">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="alert alert-warning">
+							<div class="media">
+								<div class="media-left media-middle">&nbsp;</div>
+								<div class="media-body">
+									<p>Se están cargando todas las obras de Agroindustria. Este proceso puede tardar aproximadamente un minuto.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<nav class="text-center">
+					<ul class="pagination"></ul>
+				</nav>
+			</div>
+		</div>
+	</section>
+</div>
+<div data-render="modales">&nbsp;</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-warning col-md-4 no-result hide" id="alerta">
+				<div class="media">
+					<div class="media-left media-middle">&nbsp;</div>
+					<div class="media-body">
+						<p>No hay resultados para mostrar</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<hr />
+				<div class="section-actions is_area social-share">
+					<p>Compartir en
+						<br />redes sociales
+					</p>
+					<ul class="list-inline">
+						<li>&nbsp;</li>
+						<li>&nbsp;</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div><!--
+<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/min/moment.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/node_modules/moment/locale/es.js" | prepend: site.baseurl }}"></script>
+--><script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script><script>
+
+
+
+ (function($){
+
+$(document).ready(function () {
+ var templates = {
+ tarjeta: `<div class="col-xs-12 col-sm-6 col-md-4 item">
+ <a href="#obras-{index}" data-toggle="modal" class="panel panel-default">
+ <div class="panel-body">
+ <div class="media">
+ <div class="media-left media-middle">
+ <span class="fa {icono} fa-2x fa-fw" aria-hidden="true"></span>
+ </div>
+ <div class="media-body media-middle">
+ <div class="text-muted">
+ <h4>{tipodeobra}</h4>
+ </div>
+ </div>
+ <h3 class="nombre-obra m-t-1">{titulo}</h3>
+ <p class="text-muted descripcion-obra">{descripcion}</p>
+ </div>
+ </div>
+ </a>
+</div>`,
+
+ tarjeta_destacado: `<div class="col-xs-12 col-sm-6 col-md-4 item">
+ <a href="#obras-{index}" data-toggle="modal" class="panel panel-default">
+ <div class="panel-body">
+ <div class="media">
+ <div class="media-left media-middle">
+ <span class="fa {icono} fa-2x fa-fw" aria-hidden="true"></span>
+ </div>
+ <div class="media-body media-middle">
+ <div class="text-muted">
+ <h4>{tipodeobra}</h4>
+ </div>
+ </div>
+ <h3 class="nombre-obra m-t-1">{titulo}</h3>
+ <p class="text-muted descripcion-obra">{descripcion}</p>
+ <div class="pie">
+ <div class="izq">
+ <p>
+ <span class="label label-success">Obra destacada</span>
+ </p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </a>
+</div>`,
+ modal_n: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+ <div class="modal-dialog modal-lg">
+ <div class="modal-content">
+ <div class="modal-header bg-primary">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+ <h4 class="h5 nombre-obra modal-title">{titulo}</h4>
+ </div>
+ <div class="modal-body p-b-3"> 
+ <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
+ <div class="text-muted">
+ {provincia}
+ {localidad}
+ {beneficiarios}
+ {estado}
+ {twitter}
+ {facebook}
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>`,
+ modal_v: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+ <div class="modal-dialog modal-lg">
+ <div class="modal-content">
+ <div class="modal-header bg-primary">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+ <h4 class="nombre-obra modal-title">{titulo}</h4>
+ </div>
+ <div class="modal-body p-b-3"> 
+ <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
+ <div class="text-muted">
+ {provincia}
+ {localidad}
+ {beneficiarios}
+ {estado}
+ {twitter}
+ {facebook}
+ </div>
+ </div>
+ <div class="modal-body p-b-3">
+ <div class="embed-responsive embed-responsive-16by9">
+ <iframe class="embed-responsive-item" src="{video}" frameborder="0" allowfullscreen></iframe>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>`,
+ modal_im: `<div id="obras-{index}" class="modal fade" tabindex="-1" role="dialog"> 
+ <div class="modal-dialog modal-lg">
+ <div class="modal-content">
+ <div class="modal-header bg-primary">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span> </button> 
+ <h4 class="nombre-obra modal-title">{titulo}</h4>
+ </div>
+ <div class="modal-body p-b-3"> 
+ <p class="text-muted descripcion-obra m-t-1">{descripcion}</p>
+ <div class="text-muted">
+ {provincia}
+ {localidad}
+ {beneficiarios}
+ {estado}
+ {twitter}
+ {facebook}
+ </div>
+ </div>
+ <div class="modal-body p-b-3">
+ <div class="embed-responsive embed-responsive-16by9">
+ 
+ <img src="{imagen}" alt="imagen de obra pública"/>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>`,
+ }
+
+ window.obras = [];
+ window.locations = [];
+ window.configobras = 'Todas';
+ window.configprovincia = 'Todas';
+
+ $.ajax({
+ // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1',
+url: 'https://spreadsheets.google.com/feeds/list/1nwQukozKcVj4DXMNJf-V2RH-m8GaI6LG98CS3Wwq6Hg/1/public/values?alt=json',
+ data: 'json',
+ success: function(response){
+
+ /*console.log(response.feed.entry);*/
+
+ $.each(response.feed.entry, function(index, row){
+
+ 
+ obras.push({
+ index: index,
+ tipodeobra: row.gsx$tipodeobra.$t,
+ titulo: row.gsx$titulo.$t,
+ //icono: row.gsx$icono.$t,
+ descripcion: row.gsx$descripcion.$t,
+ video: row.gsx$video.$t,
+ imagen: row.gsx$imagen.$t,
+ provincia: row.gsx$provincia.$t,
+ localidad: row.gsx$localidad.$t,
+ beneficiarios: row.gsx$beneficiarios.$t,
+ destacado: row.gsx$destacado.$t,
+ estado: row.gsx$estado.$t,
+ twitter: row.gsx$twitter.$t,
+ facebook: row.gsx$facebook.$t
+ });
+
+ locations.push({
+ index: index,
+ latitud: row.gsx$latitud.$t,
+ longitud: row.gsx$longitud.$t,
+ marker: row.gsx$marker.$t,
+ markerd: row.gsx$markerd.$t,
+ destacado: row.gsx$destacado.$t
+ });
+
+
+
+ })
+
+ render.tarjetas();
+ $('div[data-render="tarjetas"]').removeClass('state-loading');
+ $('#alerta-msj').hide();
+
+
+
+ }
+ });
+
+
+ var render = {
+ 	tarjetas: function( ){
+
+		$('[data-render=tarjetas]').html('');
+		$('[data-render=modales]').html('');
+
+		 var html_tarjetas = "";
+
+
+ 		$.each(obras, function(index, obras){
+ 			if((configobras == 'Todas' || obras.tipodeobra.indexOf(configobras) > -1) && (configprovincia == 'Todas' || obras.provincia.indexOf(configprovincia) > -1 )){
+ 				if(obras.destacado){
+			 		html_tarjetas = templates.tarjeta_destacado;
+			 	}else{
+					html_tarjetas = templates.tarjeta;
+				}
+
+				if (obras.provincia == "" || obras.provincia == "-" ){
+ 					var provincia = '';
+ 				} else {
+ 					var provincia = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista"><p><b>Provincia:</b>' + ' <span>' + obras.provincia + '</span></p></div></div>';
+ 				}
+
+				if (obras.localidad == "" || obras.localidad == "-" ){
+ 					var localidad = '';
+ 				} else {
+ 					var localidad = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista"><p><b>Departamento / Localidad:</b>' + ' <span>' + obras.localidad + '</span></p></div></div>';
+ 				}
+
+ 				if (obras.beneficiarios == "" || obras.beneficiarios == "-" ){
+ 					var beneficiarios = '';
+ 				} else {
+					var beneficiarios = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista"><p><b>Beneficiarios:</b>' + ' <span>' + obras.beneficiarios + '</span></p></div></div>';
+ 				}
+
+ 				if (obras.estado == "" || obras.estado == "-" ){
+					var estado = '';
+				} else {
+					var estado = '<div class="media m-t-1"><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista"><p><b>Estado:</b>' + ' <span>' + obras.estado + '</span></p></div></div>';
+				}
+
+				if (obras.twitter == "" || obras.twitter == "-" ){
+					var twitter = '';
+				} else {
+					var twitter = '<div class="media m-t-1 portaRedes"><a href="' + obras.twitter + '" target="_blank"<i class="fa fa-twitter"></i></a></div>';
+				}
+
+				if (obras.facebook == "" || obras.facebook == "-" ){
+					var facebook = '';
+				} else {
+					var facebook = '<div class="media m-t-1 portaRedes"><a href="' + obras.facebook + '" target="_blank"<i class="fa fa-facebook"></i></a></div>';
+				}
+
+ 
+				 var modal_n = templates.modal_n;
+				 var modal_v = templates.modal_v;
+				 var modal_im = templates.modal_im;
+
+				 html_tarjetas = html_tarjetas.replace(/{titulo}/gi, obras.titulo)
+				 .replace(/{index}/gi, index)
+				 .replace(/{tipodeobra}/gi, obras.tipodeobra)
+				 .replace(/{descripcion}/gi, obras.descripcion.substring(0, 100) + '...')
+				 .replace(/{icono}/gi, obras.icono),
+
+				 modal_n = modal_n.replace(/{index}/gi, index)
+				 .replace(/{titulo}/gi, obras.titulo)
+				 .replace(/{descripcion}/gi, obras.descripcion)
+				 .replace(/{provincia}/gi, provincia)
+				 .replace(/{localidad}/gi, localidad)
+				 .replace(/{beneficiarios}/gi, beneficiarios)
+				 .replace(/{estado}/gi, estado)
+				 .replace(/{twitter}/gi, twitter)
+				 .replace(/{facebook}/gi, facebook);
+
+				 modal_v = modal_v.replace(/{index}/gi, index)
+				 .replace(/{titulo}/gi, obras.titulo)
+				 .replace(/{descripcion}/gi, obras.descripcion)
+				 .replace(/{video}/gi, obras.video)
+				 .replace(/{imagen}/gi, obras.imagen)
+				 .replace(/{provincia}/gi, provincia)
+				 .replace(/{localidad}/gi, localidad)
+				 .replace(/{beneficiarios}/gi, beneficiarios)
+				 .replace(/{estado}/gi, estado)
+				 .replace(/{twitter}/gi, twitter)
+				 .replace(/{facebook}/gi, facebook);
+
+				 modal_im = modal_im.replace(/{index}/gi, index)
+				 .replace(/{titulo}/gi, obras.titulo)
+				 .replace(/{descripcion}/gi, obras.descripcion)
+				 .replace(/{video}/gi, obras.video)
+				 .replace(/{imagen}/gi, obras.imagen)
+				 .replace(/{provincia}/gi, provincia)
+				 .replace(/{localidad}/gi, localidad)
+				 .replace(/{beneficiarios}/gi, beneficiarios)
+				 .replace(/{estado}/gi, estado)
+				 .replace(/{twitter}/gi, twitter)
+				 .replace(/{facebook}/gi, facebook);
+
+ 				$('[data-render=tarjetas]').append( html_tarjetas );
+ 				$('[data-toggle="modal"]').click( function() {
+					var id = $(this).attr('href').substr(1);
+					if('obras-' + index == id){
+						$('[data-render=modales]').html('');
+						if(obras.video){
+					 		$('[data-render=modales]').append( modal_v ); 
+						}else if(obras.imagen){
+					 		$('[data-render=modales]').append( modal_im ); 
+						}else{
+					 		$('[data-render=modales]').append( modal_n ); 
+						}
+					} 
+ 				})
+ 			}
+
+		 	if (html_tarjetas == "") {
+		 		$('.no-result').show();
+		 		$('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+		 	}else {
+		 		$('.no-result').hide();
+		 		$('.list').show();
+		 	}
+		});
+
+		 var listOptions = { 
+			 valueNames: [ 'nombre-obra', 'descripcion-obra' ], 
+			 page: 18,
+			 plugins: [ ListPagination({}) ]
+		 };
+
+ 		var obrasList = new List('obras', listOptions);
+
+ 		$('.no-result').hide();
+
+ 		obrasList.on('updated', function(list) {
+ 			if (list.matchingItems.length > 0) {
+				$('.no-result').hide();
+				$('.list').show();
+ 			} else {
+		 		$('.no-result').show();
+		 		$('.list').hide();//se esconde para sacar marginado cuando no hay resultados
+ 			}
+ 		}) 
+
+	} 
+
+ }
+
+ $("#tipo-provincia").on("change", function() {
+ configprovincia = $( "#tipo-provincia option:selected" ).val();
+ render.tarjetas();
+ });
+
+ $("#tipo-obra").on("change", function() {
+ configobras = $( "#tipo-obra option:selected" ).val();
+ render.tarjetas();
+ });
+
+
+})
+ })(jQuery);
+
+
+ 
+</script><!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&callback=initMap" 
+ async defer></script> --><script type="text/javascript">
+</script>

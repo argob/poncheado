@@ -313,6 +313,8 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script>
 
 	var desarrollos = {
@@ -348,14 +350,19 @@
 				desarrollos.container.append(element);
 			}
 		});
+		
 	}
 
-	desarrollos.$el.html('').append('<div class="row panels-row"></div>');
+
+
+
+	desarrollos.$el.html('').append('<div class="row panels-row list"></div><nav class="text-center"><ul class="pagination"></ul></nav>');
 	desarrollos.container = desarrollos.$el.find('.row');
 
 	render_devs(0);
 
 	desarrollos.$el.before('<div class="row"> <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"> <div class="form-group"> <label class="form-label">Filtrar por provincia</label> <select class="form-control" id="desarrollos-filtro-provincia"> </select> </div> </div> </div>');
+	
 
 	desarrollos.sorted_provinces.sort()
 	desarrollos.sorted_provinces.unshift('Todas las provincias');
@@ -366,6 +373,16 @@
 			index: desarrollos.provinces.indexOf(province) + 1
 		})
 	});
+		
+	var listOptions = {
+            
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+        var listaNueva = new List('listado-desarrollos', listOptions); 
+
+
 
 	jQuery.each(desarrollos.provinces_list, function(key, province){
 		jQuery('#desarrollos-filtro-provincia').append( '<option value="'+ province.index +'">'+ province.name +'</option>' );
@@ -374,4 +391,5 @@
 	jQuery('#desarrollos-filtro-provincia').on('change', function(){
 		render_devs( this.value )
 	})
+
 </script>

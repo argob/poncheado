@@ -1,0 +1,92 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="Opcionales" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        
+        {% include mi-argentina/menu.html active="opcionales" %}
+
+      </aside>
+      <div class="col-md-8">
+
+
+        <div class="panel panel-default panel-border-gray">
+          <div class="panel-body">
+            <h2>Agregá tu Certificado Único de Discapacidad <small><a href="https://www.argentina.gob.ar/solicitar-el-certificado-unico-de-discapacidad-cud">(más información)</a></small></h2>
+
+            <hr class="m-y-1">
+
+            <form method="post">
+            <input type="hidden" name="" value="">
+                <input type="hidden" name="next" value="">
+                <div class="form-group row m-b-0">
+                    <div class="col-xs-12 m-t-1">
+
+
+                    <div class="form-group">
+                  <label class="control-label">Número de certificado</label>
+                  <input class="form-control" type="number" name="cud" data-mask="0000" autocomplete="off">
+                </div>
+
+                
+                
+
+                
+                <div class="form-group m-b-0">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button href="#" class="btn btn-link m-l-1">Cancelar</button>
+                </div>
+
+                </div>
+
+                </div>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+<!-- no tiene cdn chosen jquery, se linkeo a: -->
+<link href="https://id.argentina.gob.ar/static/css/chosen/chosen.css" rel="stylesheet" />
+<script src="https://id.argentina.gob.ar/static/js/chosen.jquery.js"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+
+<script>
+  $(function(){
+    $(".chosen-select").chosen();
+  });
+
+
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+
+</script>
+
+<style>
+ .chosen-container {
+      width: 100%!important;
+ }
+.chosen-container.chosen-container-single .chosen-single {
+    height: 54px;
+}
+
+ </style>
+
