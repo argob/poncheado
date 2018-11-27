@@ -38,12 +38,18 @@ select[disabled] .form-control {
                      <div class="panel-body">
                         <h2>Datos de la persona para la cual se solicita el certificado</h2>
                         <hr class="m-t-1 m-b-2 m-b-2" />
+
+
+                        <div id="errores" aria-live="polite" class="alert alert-danger" style="display: none">
+                        </div>
+
+
                         <div class="form-group">
                            <fieldset>
                               <legend class="control-label">Tipo de trámite</legend>
                               <div class="radio">
                                  <label class="m-t-0" for="primeravezcud">
-                                    <input id="primeravezcud" name="tipotramite" required="" type="radio" value="Solicitud-de-Certificado-por-primera-vez" />
+                                    <input id="primeravezcud" name="tipotramite" type="radio" value="Solicitud-de-Certificado-por-primera-vez" />
                                     <span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez 
                                  </label>
                                  <br />
@@ -82,12 +88,12 @@ select[disabled] .form-control {
                               <legend class="control-label">&iquest;Tiene 18 años o más?</legend>
                               <div class="radio">
                                  <label class="m-t-0" for="mayor18">
-                                    <input data-toogle-collapse="#collapse-tutoria" id="mayor18" name="mayor18" required="" type="radio" value="si" />
+                                    <input data-toogle-collapse="#collapse-tutoria" id="mayor18" name="mayor18" type="radio" value="si" />
                                     <span class="sr-only">Este Campo es Obligatorio</span> Sí 
                                  </label>
                                  <br />
                                  <label class="m-t-1" for="menor18">
-                                    <input data-toogle-collapse="#collapse-guardador" id="menor18" name="mayor18" required="" type="radio" value="no" /> No 
+                                    <input data-toogle-collapse="#collapse-guardador" id="menor18" name="mayor18" type="radio" value="no" /> No 
                                  </label>
                               </div>
                            </fieldset>
@@ -135,7 +141,7 @@ select[disabled] .form-control {
                               <legend class="control-label">Cobertura médica</legend>
                               <div class="radio">
                                  <label class="m-t-0" for="obrasocial">
-                                    <input id="obrasocial" name="coberturamedica" required="" type="radio" value="Obrasocial" />
+                                    <input id="obrasocial" name="coberturamedica" type="radio" value="Obrasocial" />
                                     <span class="sr-only">Este Campo es Obligatorio</span> Obra social 
                                  </label>
                                  <br />
@@ -154,7 +160,7 @@ select[disabled] .form-control {
                               <legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
                               <div class="checkbox">
                                  <label class="m-b-1" for="discapacidadintelectualymental">
-                                    <input id="discapacidadintelectualymental" name="discapacidad" required="" type="checkbox" value="discapacidadintelectualymental" />
+                                    <input id="discapacidadintelectualymental" name="discapacidad" type="checkbox" value="discapacidadintelectualymental" />
                                     <span class="sr-only">Este Campo es Obligatorio</span> Intelectual y Mental 
                                  </label>
                                  <br />
@@ -190,49 +196,63 @@ select[disabled] .form-control {
                         </div>
                      </div>
                   </div>
-                  <div class="panel panel-default">
-                     <div class="panel-body">
-                        <h3 class="h6">Lugar de Residencia</h3>
-                        <p class="text-muted m-b-3">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
-                        <div class="form-group">
-                           <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
-                           <select class="form-control" id="provincia" name="provincia" required="">
-                              <option value="">Elegí tu provincia</option>
-                              <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-                              <option value="Buenos Aires">Buenos Aires</option>
-                              <option value="Catamarca">Catamarca</option>
-                              <option value="Córdoba">Córdoba</option>
-                              <option value="Corrientes">Corrientes</option>
-                              <option value="Chaco">Chaco</option>
-                              <option value="Chubut">Chubut</option>
-                              <option value="Entre Ríos">Entre Ríos</option>
-                              <option value="Formosa">Formosa</option>
-                              <option value="Jujuy">Jujuy</option>
-                              <option value="La Pampa">La Pampa</option>
-                              <option value="La Rioja">La Rioja</option>
-                              <option value="Mendoza">Mendoza</option>
-                              <option value="Misiones">Misiones</option>
-                              <option value="Neuquén">Neuquén</option>
-                              <option value="Río Negro">Río Negro</option>
-                              <option value="Salta">Salta</option>
-                              <option value="San Juan">San Juan</option>
-                              <option value="San Luis">San Luis</option>
-                              <option value="Santa Cruz">Santa Cruz</option>
-                              <option value="Santa Fe">Santa Fe</option>
-                              <option value="Santiago del Estero">Santiago del Estero</option>
-                              <option value="Tierra del Fuego">Tierra del Fuego</option>
-                              <option value="Tucumán">Tucumán</option>
-                           </select>
-                        </div>
-                        <div class="form-group">
-                           <label class="control-label" for="localidad">Localidad</label>
-                           <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
-                           <select class="form-control" disabled="disabled" id="localidad" name="localidad" required="">
-                              <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
-                           </select>
+
+                  <fieldset>
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <legend>
+                              <h2>Lugar de Residencia</h2>
+                              <p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
+                           </legend>
+                           <hr>
+
+                           <fieldset>
+                              <div class="form-group">
+                                 <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
+                                 <select class="form-control" id="provincia" name="provincia">
+                                    <option value="">Elegí tu provincia</option>
+                                    <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+                                    <option value="Buenos Aires">Buenos Aires</option>
+                                    <option value="Catamarca">Catamarca</option>
+                                    <option value="Córdoba">Córdoba</option>
+                                    <option value="Corrientes">Corrientes</option>
+                                    <option value="Chaco">Chaco</option>
+                                    <option value="Chubut">Chubut</option>
+                                    <option value="Entre Ríos">Entre Ríos</option>
+                                    <option value="Formosa">Formosa</option>
+                                    <option value="Jujuy">Jujuy</option>
+                                    <option value="La Pampa">La Pampa</option>
+                                    <option value="La Rioja">La Rioja</option>
+                                    <option value="Mendoza">Mendoza</option>
+                                    <option value="Misiones">Misiones</option>
+                                    <option value="Neuquén">Neuquén</option>
+                                    <option value="Río Negro">Río Negro</option>
+                                    <option value="Salta">Salta</option>
+                                    <option value="San Juan">San Juan</option>
+                                    <option value="San Luis">San Luis</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Santa Fe">Santa Fe</option>
+                                    <option value="Santiago del Estero">Santiago del Estero</option>
+                                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                    <option value="Tucumán">Tucumán</option>
+                                 </select>
+                              </div>
+                           </fieldset>
+
+                           <fieldset>
+                              <div class="form-group">
+                                 <label class="control-label" for="localidad">Localidad</label>
+                                 <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
+                                 <select class="form-control" disabled="disabled" id="localidad" name="localidad" required>
+                                    <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
+                                 </select>
+                              </div>
+                           </fieldset>
+
+
                         </div>
                      </div>
-                  </div>
+                  </fieldset>
                   <!--<a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>-->
                   <input class="btn btn-success btn-md" id="continuar" type="submit" value="Continuar" />
                   <script>
@@ -311,13 +331,14 @@ select[disabled] .form-control {
                 localidad: {
                     required: true
                 }
-
             },
             errorPlacement: function(error, element) {
                 if (element.is(":radio") || $(element).is(":checkbox")) {
                     error.insertBefore(element.parent().parent());
                 } else {
-                    error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                    //error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                    error.insertBefore(element);
+
                 }
             },
             highlight: function(element, errorClass) {
@@ -329,6 +350,7 @@ select[disabled] .form-control {
             },
             success: function(label) {
                 label.parent().parent().removeClass("has-error has-feedback");
+                label.parents(".form-group").removeClass("has-error has-feedback");
                 label.remove();
             },
         });
@@ -336,6 +358,25 @@ select[disabled] .form-control {
 
 
         $('#wizard-form-cud').on('submit', function(event) {
+
+
+            //ERRORES ACCESIBLES         
+            $("#errores").html("");
+            $("#errores").html("<h5>Los siguientes campos son obligatorios:</h5><ol></ol>");
+            $(".error").each(function(){
+               textoError = $(this).closest("fieldset").find(".control-label").html();
+               
+               $("#errores ol").append("<li>"+textoError+"</li>");
+            })
+
+            if($(".error").length >0){
+               console.log($(".error").length);
+               $("#errores").show().focus();
+            }
+            
+
+
+
             event.preventDefault();
 
             if (wizard_form.valid()) {
@@ -357,7 +398,7 @@ select[disabled] .form-control {
         });
 
     } else {
-        console.log('No tenés soporte :(');
+        //console.log('No tenés soporte :(');
     }
 
 
@@ -717,7 +758,6 @@ select[disabled] .form-control {
         if (data != "") {
             $.each(data, function(index, val) {
                 if (val["name"] == "localidad") {
-                    console.log("valor a setear " + val["value"]);
                     $('select[name="localidad"]').val(val["value"]);
                 }
             });
@@ -737,7 +777,7 @@ select[disabled] .form-control {
 
     $('select[name="provincia"]').on('change', function() {
         var localidadFieldset = $('select[name="localidad"]');
-        console.log(this.value === '')
+        //console.log(this.value === '')
         if (this.value === '') {
             localidadFieldset.attr('disabled', true);
         } else {
