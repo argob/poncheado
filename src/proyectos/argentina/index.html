@@ -96,52 +96,7 @@ layout: argentina
    <div class="panel-separator"></div>
    <div class="panel-pane pane-atajos">
       <div class="pane-content">
-         <div class="row panels-row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-               <a href="/donar-organos" class="panel panel-default">
-                  <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/incucai-organos.jpg?itok=vGRnIeih);" class="panel-heading"></div>
-                  <div class="panel-body">
-                     <h4>Sumá tu voluntad de donar órganos</h4>
-                     <div class="text-muted">
-                        <p>Todos podemos donar, todos podemos recibir. Construyamos juntos una comunidad donante.</p>
-                     </div>
-                  </div>
-               </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-               <a href="/turnos-1" class="panel panel-default">
-                  <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/jumbotron_turnos_destacado_home_turnos.jpg?itok=xIZwjooE);" class="panel-heading"></div>
-                  <div class="panel-body">
-                     <h4>Sacá tu turno</h4>
-                     <div class="text-muted">
-                        <p>Si tenés que hacer un trámite, podés sacar turno en línea y ganar tiempo.</p>
-                     </div>
-                  </div>
-               </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-               <a href="/redsube" class="panel panel-default">
-                  <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/red-sube_0.jpg?itok=Hgy2WLrl);" class="panel-heading"></div>
-                  <div class="panel-body">
-                     <h4>RED SUBE</h4>
-                     <div class="text-muted">
-                        <p>Para que los que viajan más paguen menos.</p>
-                     </div>
-                  </div>
-               </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-               <a href="/mi_argentina" class="panel panel-default">
-                  <div style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/mi-argentina.jpg?itok=2irqiktI);" class="panel-heading"></div>
-                  <div class="panel-body">
-                     <h4>Mi Argentina</h4>
-                     <div class="text-muted">
-                        <p>Descargá tu constancia de CUIL con un solo clic y otros servicios personalizados.</p>
-                     </div>
-                  </div>
-               </a>
-            </div>
-         </div>
+         <div class="row panels-row" id="destacados"></div>
       </div>
    </div>
    <div class="panel-separator"></div>
@@ -513,3 +468,29 @@ layout: argentina
   </div>
 </section>
 
+
+
+<script>
+$(function(){
+
+  $.ajax({
+  url: 'https://spreadsheets.google.com/feeds/list/1p2d9vryjV_k4iFtDTMTMHvn3BS8ACUc_uoL30OpHAxM/1/public/values?alt=json',
+  data: 'json',
+    success: function(response){
+      var destacados = response.feed.entry;
+      console.log(destacados);
+
+      for(i=0;i<4;i++){
+        titulo = destacados[i].gsx$titulo.$t;
+        descripcion = destacados[i].gsx$descripcion.$t;
+        url_sitio = destacados[i].gsx$urlsitio.$t;
+        url_imagen = destacados[i].gsx$urlimagen.$t;
+
+        $("#destacados").append('<div class="col-xs-12 col-sm-6 col-md-3"> <a href="'+url_sitio+'" class="panel panel-default"> <div style="background-image:url('+url_imagen+');" class="panel-heading"></div><div class="panel-body"> <h4>'+titulo+'</h4> <div class="text-muted"> <p>'+descripcion+'</p></div></div></a> </div>');
+      }
+    }
+  })
+
+
+})  
+</script>
