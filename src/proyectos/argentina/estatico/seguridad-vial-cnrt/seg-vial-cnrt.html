@@ -69,7 +69,7 @@ layout: argentina
               <div class="form-group">
                 <label for=""><strong>Provincia</strong></label>
                 <select id="provincias" class="form-control">
-                  <option data-provincia="" value="">Seleccione una provincia</option>
+                 
                 </select>
               </div>
             </div> 
@@ -647,7 +647,7 @@ layout: argentina
               <div class="row numbers" id ="show-numbers">
                 
               </div>
-              <table class="table table-spaced table-hover">
+              <table class="table table-spaced table-hover"  id="show-data">
                 <thead>
                   <tr>
                     <th class="col-lg-2">Mes</th>
@@ -656,7 +656,7 @@ layout: argentina
                     
                   </tr>
                 </thead> 
-                <tbody class="list" id="show-data">
+                <tbody class="list">
                 </tbody>
               </table>
               <nav class="text-center">
@@ -674,6 +674,7 @@ layout: argentina
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
 <script type="text/javascript">
 
@@ -682,12 +683,12 @@ $(document).ready(function () {
     var provinciaSelect = "";
     var spreadSheetDatos = "";
     var grupoDeProvincias = "";
-    var provinciaHoja = ''; 
+    var provinciaHoja = 25; 
 
     var operativosrealizados = '';
     var vehiculosControlados = '';
     var mes = '';
-
+    filtrarContenido(provinciaSelect, provinciaHoja);
     function filtrarContenido(provincia, hoja){
      
       
@@ -703,31 +704,32 @@ $(document).ready(function () {
 
       $.each(spreadSheetDatos, function( key, item ) {
         
-        
-        console.log(item);
         operativosrealizados = item.gsx$operativosrealizados.$t;
         vehiculosControlados = item.gsx$totalvehiculos.$t;
         mes = item.gsx$mes.$t
+       console.log(item.gsx$operativosrealizados.$t)
         if(provincia == item.gsx$provincia.$t){
               lista += '<tr>';
               lista += ' <td><p>' + mes + '</p></td>';
               lista += ' <td><p class="text-center">' + operativosrealizados + '</p></td>';
               lista += ' <td><p class="text-center">'+ vehiculosControlados + '</p></td>';
               lista += '</tr>';
+        }else if(provincia == ''){
+          lista += '';
         }
         
       });
+        
 
 
-      
-      if(provincia == ''){
-        $('#show-numbers').empty(); 
-      }else{
-         actualNumbers += '<div class="col-md-6"><h3 class="text-success">' + operativosrealizados + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
+       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' +  numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
 
-         actualNumbers += '<div class="col-md-6"><h3 class="text-success">' + vehiculosControlados + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
+
+       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
           
-      }
+     
+
+
 
       $('#show-numbers').empty();
       $('#show-numbers').append(actualNumbers);
@@ -754,7 +756,7 @@ $(document).ready(function () {
            });
 
            });
-        }
+        };
 
         
 
@@ -795,8 +797,8 @@ jQuery.getJSON(
         $("[data-provinciaMapa='" + provinciaSelect + "']").removeClass("red");
        }
         
-        
-       filtrarContenido(provinciaSelect, provinciaHoja);
+        filtrarContenido(provinciaSelect, provinciaHoja);
+       
          
       });
         

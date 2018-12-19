@@ -1,8 +1,12 @@
 ---
 layout: argentina
 ---
-    <style>
-      
+<style>
+  
+  th, td:first-child{
+    border-bottom: 0px!important;
+  }
+
       
       @media screen and (max-width: 767px){
        
@@ -25,19 +29,19 @@ layout: argentina
               <div class="form-group">
                 <label for=""><strong>Provincia</strong></label>
                 <select id="provincia" class="form-control">
-                  <option data-provincia="todos" value="todos">Todos</option>
+                  <option data-provincia="todas" value="todos">Todas</option>
                 </select>
               </div>
             </div>
             <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Agencia, ciudad, nombre o razón social </strong></label>
+                <label for=""> <strong>Agencia, ciudad o razón social </strong></label>
                 <input class="form-control search" id="agencia" placeholder="">
               </div>
             </div>
             <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Nº de legajo</strong></label>
+                <label for=""><strong>Nº de legajo</strong></label>
                 <input class="form-control search" id="legajo" placeholder="">
               </div>
             </div>
@@ -45,10 +49,10 @@ layout: argentina
               <table class="table table-spaced table-hover">
                 <thead>
                   <tr>
-                    <th class="col-xs-4"></th>
                     <th></th>
                     <th></th>
                     <th></th>
+                    
                     
                   </tr>
                 </thead> 
@@ -72,76 +76,94 @@ layout: argentina
 
 
 <script type="text/javascript">
+
 (function($) {
 $(document).ready(function () {
-    var provincia = "todos";
-    var listadoAgencias = "";
-    var grupoDeAgencias = "";
+    var provincia = "todas";
+    var listadoAgencias;
+    var grupoDeAgencias;
+    var lista;
+
     jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/1wJ4rrbvBFd1sgX-Ibo12QUC2QR-wG0et6bfshNWcx3U/1/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1g-0a1Z5ffnNsRARQBXhakpFRu6wqV8ZLVWZVd_yWc4w/1/public/values?alt=json',
     function (data) {
-          listadoAgencias = data['feed']['entry'];
-          
-          filtrarContenido(provincia);
+      listadoAgencias = data['feed']['entry'];
+
+      filtrarContenido(provincia);  
+
       });
-          function filtrarContenido(provincia){
-          var lista = '';
-          
-          $.each(listadoAgencias, function( key, item ) {
-          if((provincia == "todos") || (provincia == item.gsx$provincia.$t)){
-                lista += '<tr>';
-                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-                lista += ' <td class="agencia cuidad nombre razon-social"><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p></td>';
-                lista += ` <td> <p><b>Sucursal:</b> `+ item.gsx$sucursal.$t + '</p><p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><b>Ciudad: </b>'+ item.gsx$ciudad.$t +', '+ item.gsx$provincia.$t + '</p> <p> <b>Código postal: </b>' + item.gsx$cpostal.$t +'</p>'+ `<p class="legajo"><b>Legajo: </b>${item.gsx$legajo.$t}</p><p><b>Idoneo:</b> ${item.gsx$idoneo.$t}</p><p><b>Matrícula:</b> ${item.gsx$matricula.$t}</p></td>`;
-                lista += ' <td class="telefono"> <p><b>Teléfono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$mail.$t +'">'+ item.gsx$mail.$t + '</a></p></td>';
-                
-                lista += '</tr>';
-            }
-          });
-          
-          $('#show-data').empty();
-          $('#show-data').append(lista);
-     
-          var listOptions = {
-            valueNames: ['agencia', 'razon-social', 'cuit',  'ciudad', 'telefono', 'legajo'],
+
+    function filtrarContenido(provincia){
+      lista = '';
+      $.each(listadoAgencias, function( key, item ) {
+       
+       if((provincia == "todas") || (provincia == item.gsx$provincia.$t)){
+         lista += `<tr>`;
+         lista += `<td class="legajo"><p><b>Legajo: </b></p><p class="legajo">${item.gsx$legajo.$t}</p></td>`;
+         lista += `<td  class="agencia"><h5>${item.gsx$agencia.$t}</h5><p><b>Razón Social:</b><span class="razonsocial"> ${item.gsx$razonsocial.$t}</span> </p><p><b>CUIT: </b>${item.gsx$cuit.$t}</p><p><b>Disposición: </b>${item.gsx$disposicion.$t}</p><p class="direccion"><b>Direccion:</b>${item.gsx$domicilio.$t}  ${item.gsx$ciudad.$t}  ${item.gsx$provincia.$t}</p><p><b>Teléfono: </b>${item.gsx$telefono.$t}</p><p><b>Destinos: </b>${item.gsx$destino.$t}</p></td>`;
+        
+
+         
+          lista += '</tr>';
+        }
+      });
+       
+      $('#show-data').empty();
+      $('#show-data').append(lista);
+
+      var listOptions = {
+            valueNames: ['agencia','legajo', 'razonsocial', 'direccion', 'destinos'],
             page: 10,
             plugins: [ ListPagination({}) ]
             
            };
+
             var listaNueva = new List('listadoAgencias', listOptions); 
-            console.log('listadoAgencias')
-             
-          $('.search').on("keyup", function(){
-            var searchClass = $(this).val();
-            var searchId = $(this).attr('id');
+
+            $('.search').on("keyup", function(){
+              var searchClass = $(this).val();
+              var searchId = $(this).attr('id');
+              
             
             listaNueva.search(searchClass,[searchId]);//propio de List.js
+            
            });
         }
+
+
       jQuery.getJSON(
-    'https://spreadsheets.google.com/feeds/list/1wJ4rrbvBFd1sgX-Ibo12QUC2QR-wG0et6bfshNWcx3U/2/public/values?alt=json',
+    'https://spreadsheets.google.com/feeds/list/1g-0a1Z5ffnNsRARQBXhakpFRu6wqV8ZLVWZVd_yWc4w/2/public/values?alt=json',
     function (data) {
+
           grupoDeAgencias = data['feed']['entry'];
           
           $.each(grupoDeAgencias, function( key, i ) {
-          provincia = i['gsx$provincia']['$t'];
-          $('#provincia').append('<option data-provincia="'+ provincia +'" value="'+ provincia +'">'+ provincia +'</option>')
+          var provinciaArray = i['gsx$provincias']['$t'];
+          $('#provincia').append('<option data-provincia="'+ provinciaArray +'" value="'+ provinciaArray +'">'+ provinciaArray +'</option>')
+
           });
         
+
       });
+
      
   
-   
+
     $("#provincia").on("change", function() {
        
        provincia = $(document).find("#provincia option:selected").data('provincia');
+      
       filtrarContenido(provincia);
     });
+
  
  
       
+
 });
 })(jQuery);
  
   
 </script>
+
+

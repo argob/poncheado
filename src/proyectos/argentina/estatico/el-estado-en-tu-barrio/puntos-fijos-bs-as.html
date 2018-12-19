@@ -139,11 +139,20 @@ layout: argentina
 				var listPoints = '';
 				
 				$.each(dataPoints, function(index,eachPoints){
-					listPoints += '<div class="col-xs-12 col-sm-6 m-y-1">';
-					listPoints += '<h4 class="m-t-2">'+ eachPoints.gsx$lugar.$t + '</h4>';
-					listPoints += '<p><b>Dirección: </b>'+ eachPoints.gsx$direccion.$t + '</p>';
-					listPoints += '<p><b>Días y horarios:</b> De '+ eachPoints.gsx$dias.$t +' de '+ eachPoints.gsx$horarios.$t +'</p>';
-					listPoints += '</div>'
+
+					if(eachPoints.gsx$motivosuspencion.$t == ''){
+						listPoints += '<div class="col-xs-6 col-sm-4 m-y-1">';
+						listPoints += '<h4 class="m-t-2">'+ eachPoints.gsx$lugar.$t + '</h4>';
+						listPoints += '<p><b>Dirección: </b>'+ eachPoints.gsx$direccion.$t + '</p>';
+						listPoints += '<p><b>Días y horarios:</b> De '+ eachPoints.gsx$dias.$t +' de '+ eachPoints.gsx$horarios.$t +'</p>';
+						listPoints += '</div>'
+					}else{
+						listPoints += '<div class="col-xs-6 col-sm-4 m-y-1">';
+						listPoints += '<h4 class="m-t-2">'+ eachPoints.gsx$lugar.$t + '</h4>';
+						listPoints += `<div class="alert alert-warning"><div class="media"><div class="media-left"><i class="fa fa-warning"></i></div><div class="media-body">${eachPoints.gsx$motivosuspencion.$t}</div></div></div>`;
+						listPoints += '</div>';
+				}
+					
 				})
 				$('#barrios').empty();
 				$('#barrios').append(listPoints);
