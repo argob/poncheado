@@ -674,6 +674,7 @@ layout: argentina
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
 <script type="text/javascript">
 
@@ -718,11 +719,13 @@ $(document).ready(function () {
         }
         
       });
+        
 
 
-       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:30px;">' + operativosrealizados + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
+       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' +  numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
 
-       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:30px;">' + vehiculosControlados + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
+
+       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
           
      
 

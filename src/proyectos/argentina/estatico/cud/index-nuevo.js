@@ -741,6 +741,10 @@
  pedirTurno = '<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank">Pedir Turno</a></p>'
  } 
 
+ if((data.localidad == "Pilar")) {
+ pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/333" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/305">Turno Junta</a></p>'
+ } 
+
 
 if((data.localidad == "Tres de Febrero")) {
  pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/267" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/270">Turno Junta</a></p>'

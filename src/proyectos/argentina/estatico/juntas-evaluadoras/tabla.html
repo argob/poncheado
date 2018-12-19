@@ -1,0 +1,130 @@
+--- 
+layout: argentina 
+---
+
+<div class="container">
+	<div id="contactosOrg">
+		<div class="row">
+			<div class="form-group">
+				<input class="form-control search" placeholder="Buscar..." />
+			</div>
+			<div class="table-responsive">
+				<table class="table table-spaced table-hover">
+					<thead>
+						<tr>
+							<th>Provincia</th>
+							<th>Localidad</th>
+							<th>Nombre Junta Evaluadora</th>
+							<th>Dirección</th>
+							<th>Teléfono</th>
+							<th>Correo electrónico</th>
+						</tr>
+					</thead>
+					<tbody class="list" id="show-data"></tbody>
+				</table>
+				<nav class="text-center">
+					<ul class="pagination"></ul>
+				</nav>
+				<div class="alert alert-warning col-md-6 no-result" id="alerta">
+					<div class="media">
+						<div class="media-left media-middle">&nbsp;</div>
+						<div class="media-body">
+							<p>No hay resultados para mostrar</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<p>
+	<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+	<script type="text/javascript">
+ (function($) {
+ $(document).ready(function () {
+
+ jQuery.getJSON(
+ 'https://spreadsheets.google.com/feeds/list/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1/public/values?alt=json',
+ function (data) {
+
+ window.contactosOrg = data.feed.entry;
+ showcontactosOrg();
+ });
+
+ window.showcontactosOrg = function(){
+ var showData = $('#show-data');
+
+ var html = '';
+
+ $.each( contactosOrg, function( key, item ) {
+
+ var linkBtn = ''
+
+ if (item.gsx$nombre.$t == "Junta Evaluadora Colonia Montes de Oca Padre Criado Alonso S/N"){
+ linkBtn = '<div><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank"> Pedir Turno</a></div>';
+ } 
+
+ 
+ if (item.gsx$nombre.$t == "Junta Evaluadora-Subsecretaría de Desarrollo Humano."){
+ linkBtn = '<div class="btn-toolbar"><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/267" target="_blank"> Turno asesoramiento</a><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/270" target="_blank"> Turno junta</a></div>';
+ } 
+
+  if (item.gsx$nombre.$t == "Junta Evaluadora – Centro de Rehabilitación Municipal Pilares de Esperanza"){
+ linkBtn = '<div class="btn-toolbar"><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/333" target="_blank"> Turno asesoramiento</a><a class="btn btn-sm btn-success m-t-1" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/305" target="_blank"> Turno junta</a></div>';
+ } 
+ 
+console.log(item.gsx$nombre.$t)
+
+ 
+ html += '<tr>';
+ html += ' <td class="Provincia">'+ item.gsx$provincia.$t + '</td>';
+ html += ' <td class="Localidad">'+ item.gsx$localidad.$t + '</td>';
+ html += ' <td class="Nombre col-md-4">' + item.gsx$nombre.$t + '' + linkBtn +'</td>';
+ html += ' <td class="Direccion">'+ item.gsx$direccion.$t + '</td>';
+ html += ' <td class="Telefono">'+ item.gsx$telefono.$t + '</td>';
+ html += ' <td class="Correo"><a href="mailto:'+ item.gsx$mail.$t + '">'+ item.gsx$mail.$t + '</a></td>';
+ html += '</tr>';
+ 
+ });
+
+ showData.empty();
+ showData.append(html);
+
+ var listOptions = {
+ valueNames: [ 'Provincia', 'Localidad', 'Nombre', 'Direccion', 'Telefono', 'Correo' ],
+ page: 20,
+ plugins: [ ListPagination({}) ]
+ };
+
+ var contactosOrgList = new List('contactosOrg', listOptions); 
+
+ jQuery('.search').on("keyup",function(){
+ var valueSearch = jQuery(".search").val();
+ contactosOrgList.search(valueSearch);
+ });
+
+ $('.no-result').hide()
+
+ contactosOrgList.on('updated', function(list) {
+
+ if (list.matchingItems.length > 0) {
+ $('.no-result').hide()
+ } else {
+ $('.no-result').show()
+ }
+ }) 
+
+
+ }
+
+
+
+
+
+ });
+ })(jQuery);
+ 
+
+	</script>
+</p>
