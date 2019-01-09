@@ -1,4 +1,8 @@
-<h1 class="m-y-2">Dónde ir y qué llevar para tramitar el CUD</h1>
+---
+layout: argentina
+---
+
+	<h1 class="m-y-2">Dónde ir y qué llevar para tramitar el CUD</h1>
 <div class="hidden" id="wizard-cud">
 	<div id="wizard-cud-items">&nbsp;</div>
 </div>
@@ -10,7 +14,7 @@
 		<ul class="hidden" id="show-data-description-lugar"></ul>
 		<p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
 		<p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certificado.</p>
-		<a href="https://www.argentina.gob.ar/sites/default/files/planilla_beneficiario_2018.pdf" class="btn btn-lg btn-primary hidden m-t-2" id="btn-planilla">Descargá la planilla</a>
+		
 	</div>
 </div>
 <div class="panel panel-default">
@@ -63,6 +67,7 @@
 		<a href="/cud/marco-legal">Leyes y normativas que reglamentan el CUD </a>
 	</p>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 <script type="text/javascript">
 //
@@ -72,14 +77,14 @@
 (function () {
  'use strict';
 
- var targetblank = function () {
- return [
- {
- type: 'output',
- regex: '<a(.*?)>',
- replace: function (match, content) {
- return content.indexOf('mailto:') !== -1 ? '<a' + content + '>' : '<a target="_blank"' + content + '>';
- }
+ 	var targetblank = function () {
+ 		return [
+ 	{
+ 	type: 'output',
+ 	regex: '<a(.*?)>',
+ 	replace: function (match, content) {
+ 	return content.indexOf('mailto:') !== -1 ? '<a' + content + '>' : '<a target="_blank"' + content + '>';
+ 	}
  }
  ];
  };
@@ -128,9 +133,10 @@
 
  form_data = JSON.parse( localStorage.getItem("wizard-form-cud"))
 
- console.log(form_data);
+
 
  jQuery.each(form_data, function(key, item){
+
  if(item.name == 'discapacidad') {
  data[item.value] = 'si';
  }
@@ -142,10 +148,13 @@
 
  $.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
  window.dataDrive = dataDiscapacidad.feed.entry;
+
+
  mostrarDescripcion();
  // console.log(dataDiscapacidad);
 
  $.each( dataDrive, function( key, item ) {
+ 	
 
  var show = false;
 
@@ -154,12 +163,41 @@
  && 
  ( item.gsx$menor18años.$t == "X")
  && 
- ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "") 
+ ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "cdata-" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "") 
  ) 
  {
  show = true;
  }
+if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ (data.mayor18 == 'no')
+ &&
+ ( item.gsx$menor18años.$t == "X") 
+ 
+ && 
+ ( item.gsx$curatela.$t == "X") && (item.gsx$tutor.$t == "X") 
+ )
+ {
+ console.log(' No tiene tutor')
+ show = true;
+ }
 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ (data.mayor18 == 'no')
+ &&
+ ( item.gsx$menor18años.$t == "X") 
+ 
+ && 
+ ( item.gsx$curatela.$t == "C") && (item.gsx$tutor.$t == "T") 
+ )
+ {
+ 	console.log('tiene tutor')
+ show = true;
+ }
  if(
  ( item.gsx$mayorde18años.$t == "") 
  && 
@@ -197,11 +235,13 @@
  && 
  ( item.gsx$obrasocial.$t == "X") 
  && 
- data.coberturamedica == 'Obrasocial' 
+ (data.coberturamedica == 'Obrasocial')
  )
  {
  show = true;
  }
+
+ 
 
  if(
  ( item.gsx$mayorde18años.$t == "X") 
@@ -210,7 +250,7 @@
  && 
  ( item.gsx$coberturaprepaga.$t == "X") 
  && 
- data.coberturamedica == 'Medicinapre-paga' 
+ (data.coberturamedica == 'Medicinapre-paga') 
  )
  {
  show = true;
@@ -222,10 +262,34 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$obrasocial.$t == "X") 
- && data.mayor18 == 'si' && data.coberturamedica == 'Obrasocial' 
+ && (data.mayor18 == 'si' && data.coberturamedica == 'Obrasocial') 
  )
  {
  show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$pami.$t == "X") 
+&& (data.coberturamedica == 'Pami')
+ )
+ {
+  show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$incluirsalud.$t == "X") 
+&& (data.coberturamedica == 'Programa-Incluir-Salud')
+ )
+ {
+  show = true;
  } 
 
  if(
@@ -234,7 +298,7 @@
  (item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$obrasocial.$t == "X") 
- && data.mayor18 == 'no' && data.coberturamedica == 'Obrasocial' 
+ && (data.mayor18 == 'no' && data.coberturamedica == 'Obrasocial' )
  )
  {
  show = true;
@@ -247,7 +311,7 @@
  && 
  ( item.gsx$intelectualymental.$t == "X") 
  && 
- data.discapacidadintelectualymental == 'si' 
+ (data.discapacidadintelectualymental == 'si') 
  )
  {
  show = true;
@@ -259,9 +323,9 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$intelectualymental.$t == "X") 
- && data.discapacidadintelectualymental == 'si'
- && data.tipotramite !== 'Baja-por-fallecimiento'
- && data.mayor18 == 'no' 
+ && (data.discapacidadintelectualymental == 'si')
+ && (data.tipotramite !== 'Baja-por-fallecimiento')
+ && (data.mayor18 == 'no')
  )
  {
  show = true;
@@ -273,14 +337,16 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$intelectualymental.$t == "X") 
- && data.discapacidadintelectualymental == 'si'
- && data.tipotramite == 'Baja-por-fallecimiento'
- && item.gsx$excluiren.$t !== "BxF"
- && data.mayor18 == 'no' 
+ && (data.discapacidadintelectualymental == 'si')
+ && (data.tipotramite == 'Baja-por-fallecimiento')
+ && (item.gsx$excluiren.$t !== "BxF")
+ && (data.mayor18 == 'no')
  )
  {
  show = true;
  }
+
+
 
 
  if(
@@ -289,8 +355,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$intelectualymental.$t == "X") 
- && data.discapacidadintelectualymental == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadintelectualymental == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -303,7 +369,7 @@
  && 
  ( item.gsx$visual.$t == "X") 
  && 
- data.discapacidadvisual == 'si' 
+ (data.discapacidadvisual == 'si') 
  )
  {
  show = true;
@@ -315,8 +381,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$visual.$t == "X") 
- && data.discapacidadvisual == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadvisual == 'si') 
+ && (data.mayor18 == 'no')
  )
  {
  show = true;
@@ -328,8 +394,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$visual.$t == "X") 
- && data.discapacidadvisual == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadvisual == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -342,7 +408,7 @@
  && 
  ( item.gsx$motor.$t == "X") 
  && 
- data.discapacidadmotor == 'si' 
+ (data.discapacidadmotor == 'si') 
  )
  {
  show = true;
@@ -354,8 +420,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$motor.$t == "X") 
- && data.discapacidadmotor == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadmotor == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -367,8 +433,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$motor.$t == "X") 
- && data.discapacidadmotor == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadmotor == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -381,7 +447,7 @@
  && 
  ( item.gsx$auditivo.$t == "X") 
  && 
- data.discapacidadauditivo == 'si' 
+ (data.discapacidadauditivo == 'si') 
  )
  {
  show = true;
@@ -393,8 +459,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$auditivo.$t == "X") 
- && data.discapacidadauditivo == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadauditivo == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -406,8 +472,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$auditivo.$t == "X") 
- && data.discapacidadauditivo == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadauditivo == 'si' )
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -420,7 +486,7 @@
  && 
  ( item.gsx$respiratorio.$t == "X") 
  && 
- data.discapacidadrespiratorio == 'si' 
+ (data.discapacidadrespiratorio == 'si')
  )
  {
  show = true;
@@ -432,8 +498,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$respiratorio.$t == "X") 
- && data.discapacidadrespiratorio == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadrespiratorio == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -445,8 +511,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$respiratorio.$t == "X") 
- && data.discapacidadrespiratorio == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadrespiratorio == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -459,7 +525,7 @@
  && 
  ( item.gsx$cardiovascular.$t == "X") 
  && 
- data.discapacidadcardiovascular == 'si' 
+ (data.discapacidadcardiovascular == 'si') 
  )
  {
  show = true;
@@ -471,8 +537,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$cardiovascular.$t == "X") 
- && data.discapacidadcardiovascular == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadcardiovascular == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -484,8 +550,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$cardiovascular.$t == "X") 
- && data.discapacidadcardiovascular == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadcardiovascular == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -498,7 +564,7 @@
  && 
  ( item.gsx$renalurológico.$t == "X") 
  && 
- data.discapacidadrenalurologico == 'si' 
+ (data.discapacidadrenalurologico == 'si') 
  )
  {
  show = true;
@@ -510,8 +576,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$renalurológico.$t == "X") 
- && data.discapacidadrenalurologico == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidadrenalurologico == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -523,8 +589,8 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$renalurológico.$t == "X") 
- && data.discapacidadrenalurologico == 'si' 
- && data.mayor18 == 'si' 
+ && (data.discapacidadrenalurologico == 'si') 
+ && (data.mayor18 == 'si') 
  )
  {
  show = true;
@@ -537,7 +603,7 @@
  && 
  ( item.gsx$digestivohepático.$t == "X") 
  && 
- data.discapacidaddigestivohepatico == 'si' 
+ (data.discapacidaddigestivohepatico == 'si') 
  )
  {
  show = true;
@@ -549,8 +615,8 @@
  ( item.gsx$menor18años.$t == "X") 
  && 
  ( item.gsx$digestivohepático.$t == "X") 
- && data.discapacidaddigestivohepatico == 'si' 
- && data.mayor18 == 'no' 
+ && (data.discapacidaddigestivohepatico == 'si') 
+ && (data.mayor18 == 'no') 
  )
  {
  show = true;
@@ -562,7 +628,7 @@
  ( item.gsx$menor18años.$t == "") 
  && 
  ( item.gsx$digestivohepático.$t == "X") 
- && data.discapacidaddigestivohepatico == 'si' 
+ && (data.discapacidaddigestivohepatico == 'si') 
  && data.mayor18 == 'si' 
  )
  {
@@ -787,7 +853,7 @@ if((data.localidad == "Tres de Febrero")) {
 
  }); 
 
- console.log(item_blank);
+
 
  // if(item_blank){
  // jQuery('#wizard-message').removeClass('hidden');
@@ -799,7 +865,7 @@ if((data.localidad == "Tres de Febrero")) {
  }
 
  } else {
- console.log('No tenés soporte :(');
+
  }
 
  jQuery('#edit-form').on('click', function(event){

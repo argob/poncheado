@@ -1,0 +1,131 @@
+
+<div class="container">
+  <form action="" onsubmit="event.preventDefault()"> 
+    <fieldset>
+      <legend>
+        <h3>Datos personales</h3>
+      </legend>
+      <div class="row">
+        <div class="col-md-4 form-group item-form">
+          <label for="cuil">CUIL</label>
+          <p class="help-block">
+            <a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultá tu CUIL</a>
+          </p>
+          <input type="number" class="form-control" id="cuil" required="" aria-required="true">
+          <p class="help-block error hidden">Ingresá tu CUIL <br> El CUIL tiene un formato no válido
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 form-group item-form">
+          <label for="nombre">Nombres</label>
+          <input type="text" name="name" class="form-control" id="firstname" required="" aria-required="true">
+          <p class="help-block error hidden">Ingresá tu nombre</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 form-group item-form">
+          <label for="apellido">Apellidos</label>
+          <input type="text" name="lastname" class="form-control" id="lastname" required="" aria-required="true">
+          <p class="help-block error hidden">Ingresá tu apellido</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4 item-form">
+          <label for="birthday">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="birthday" required="" aria-required="true">
+          <p class="help-block error hidden">Ingresá la fecha</p>
+        </div>
+      </div>
+     <!-- <div class="row">
+        <div class="col-sm-12">
+          <fieldset>
+            <legend>
+              <label>Sexo 
+                <span class="sr-only">Como aparece en tu documento</span>
+              </label>
+            </legend>
+            <p class="help-block">Como aparece en tu documento</p>
+            <div class="form-group item-form">
+              <label for="f" class="radio-inline">
+                <input type="radio" name="sexo" id="f" value="F" required="" aria-required="true">Femenino
+              </label>
+              <label for="m" class="radio-inline">
+                <input type="radio" name="sexo" id="m" value="M" required="" aria-required="true">Masculino
+              </label>
+              <p class="help-block error hidden">Ingresá tu sexo</p>
+            </div>
+          </fieldset>
+        </div>
+      </div>-->
+    </fieldset>
+    <div class="row">
+      <div class="col-sm-12">
+    
+        <a href ="planilla.html" class="btn btn-success m-l-1" onclick="setLocalStorage()">Enviar</a>
+      </div>
+    </div>
+  </form>
+  
+</div>
+
+<script>
+  class User {
+    constructor(cuil,fname, lname, birth){
+      this.cuil = cuil
+      this.fname = fname
+      this.lname = lname
+      this.birth = birth
+    }
+  }
+  var cuil = '';
+  var firstName = '';
+  var lastName = '';
+  var birthday = '';
+  var users = []
+  var newUsers = []
+  
+  window.onload = function(){
+    if(!localStorage.getItem('usuario')){
+      localStorage.setItem('usuario', JSON.stringify([]));
+     }
+   getData();
+  }
+
+  function setLocalStorage(){
+
+    localStorage.setItem('usuario', JSON.stringify(setData()));
+
+  }
+
+
+   
+  function getData(){
+    document.getElementById('cuil').onblur = function(){
+      cuil = this.value
+    };
+  
+    document.getElementById('firstname').onblur = function(){
+      firstName = this.value
+    };
+
+    document.getElementById('lastname').onblur = function(){
+      lastName = this.value
+    };
+    document.getElementById('birthday').onblur = function(){
+      birthday = this.value
+    };
+
+ 
+ }
+
+ function setData(){
+  users = JSON.parse(localStorage.getItem('usuario'))
+  var user = new User(cuil, firstName, lastName, birthday)
+  users.push(user)
+  return users
+ }
+
+  
+</script>
+

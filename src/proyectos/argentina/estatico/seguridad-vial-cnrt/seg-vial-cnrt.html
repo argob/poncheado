@@ -701,31 +701,44 @@ $(document).ready(function () {
 
       var lista = '';
       var actualNumbers = '';
+      var isSelected;
 
       $.each(spreadSheetDatos, function( key, item ) {
         
         operativosrealizados = item.gsx$operativosrealizados.$t;
         vehiculosControlados = item.gsx$totalvehiculos.$t;
         mes = item.gsx$mes.$t
-       console.log(item.gsx$operativosrealizados.$t)
+      
         if(provincia == item.gsx$provincia.$t){
               lista += '<tr>';
               lista += ' <td><p>' + mes + '</p></td>';
               lista += ' <td><p class="text-center">' + operativosrealizados + '</p></td>';
               lista += ' <td><p class="text-center">'+ vehiculosControlados + '</p></td>';
               lista += '</tr>';
+              isSelected = true
         }else if(provincia == ''){
           lista += '';
+          isSelected = false
         }
         
       });
         
 
 
-       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' +  numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
+      if(isSelected){
+        console.log(provincia)
+        actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados en ' + mes + '</p></div>';
 
 
-       actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
+        actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
+      }else if(!isSelected || provincia == 'Total'){
+        
+        actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados</p></div>';
+
+
+        actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados</p></div>';
+      }
+       
           
      
 

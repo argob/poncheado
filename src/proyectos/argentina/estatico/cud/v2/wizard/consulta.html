@@ -82,17 +82,17 @@ select[disabled] .form-control {
                               </div>
                            </fieldset>
                         </div>
-                        <div class="form-group" id="edad">
+                        <div class="form-group">
                            <fieldset>
-                              <legend class="control-label">&iquest;Tiene 16 años o más?</legend>
+                              <legend class="control-label">&iquest;Tiene 18 años o más?</legend>
                               <div class="radio">
-                                 <label class="m-t-0" for="mayor16">
-                                    <input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" />
+                                 <label class="m-t-0" for="mayor18">
+                                    <input data-toogle-collapse="#collapse-tutoria" id="mayor18" name="mayor18" type="radio" value="si" />
                                     <span class="sr-only">Este Campo es Obligatorio</span> Sí 
                                  </label>
                                  <br />
-                                 <label class="m-t-1" for="menor16">
-                                    <input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No 
+                                 <label class="m-t-1" for="menor18">
+                                    <input data-toogle-collapse="#collapse-guardador" id="menor18" name="mayor18" type="radio" value="no" /> No 
                                  </label>
                               </div>
                            </fieldset>
@@ -135,7 +135,7 @@ select[disabled] .form-control {
                               </fieldset>
                            </div>
                         </div>
-                        <div class="form-group" id="coberturamedica">
+                        <div class="form-group">
                            <fieldset>
                               <legend class="control-label">Cobertura médica</legend>
                               <div class="radio">
@@ -155,14 +155,14 @@ select[disabled] .form-control {
                                  <label class="m-t-1" for="pami">
                                     <input id="pami" name="coberturamedica" type="radio" value="Pami" /> PAMI 
                                  </label>
-                                 <br />
+                                 <!--<br />
                                  <label class="m-t-1" for="programaincluirsalud">
                                     <input id="programaincluirsalud" name="coberturamedica" type="radio" value="Programa-Incluir-Salud" /> Programa Incluir Salud 
-                                 </label>
+                                 </label>-->
                               </div>
                            </fieldset>
                         </div>
-                        <div class="form-group" id="origenProblemaSalud">
+                        <div class="form-group">
                            <fieldset>
                               <legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
                               <div class="checkbox">
@@ -305,34 +305,9 @@ select[disabled] .form-control {
                 } else {
                     $('[name=' + item.name + '][value=' + item.value + ']').prop('checked', true);
                 }
-
-
-
-             })
-
-            
+            })
 
         }
-        function checkItems(){
-         if((document.getElementById('bajafallecimientocud').checked) || (document.getElementById('bajavoluntariacud').checked)){
-            $('#edad, #coberturamedica, #origenProblemaSalud').addClass('hidden')
-            }else{
-              $('#edad, #coberturamedica, #origenProblemaSalud').removeClass('hidden')
-
-            }
-
-         if(document.getElementById('cambioidentidadadopcioncud').checked){
-            $('#origenProblemaSalud').addClass('hidden')
-         }else{
-            $('#origenProblemaSalud').removeClass('hidden')
-         }
-        }
-        
-        checkItems();
-
-         $('input[name="tipotramite"]').on('change', function() {
-            checkItems();
-         })
 
         $.validator.setDefaults({
             // debug: true,
@@ -342,8 +317,6 @@ select[disabled] .form-control {
         // Cuando mando el formulario guardo lo que se modificó
 
         var wizard_form = $("#wizard-form-cud");
-
-
         wizard_form.validate({
             rules: {
                 tipotramite: {
