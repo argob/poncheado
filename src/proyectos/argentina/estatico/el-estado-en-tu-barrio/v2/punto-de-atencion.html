@@ -359,7 +359,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         provincia = val.gsx$provincia.$t;
         excepcion = val.gsx$excepcion.$t;
         $("#nombrePunto,#breadcrumbPunto").html(val.gsx$nombre.$t);
-        $("#provincia").html(val.gsx$provincia.$t + " - " + val.gsx$localidad.$t);
+        $("#provincia").html(val.gsx$provincia.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
         var fechaPunto = "";
@@ -391,6 +391,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
             }
           }
       });
+
 //LISTA DE TRÁMITES DEL PUNTO
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
   $(".preloader").remove();
