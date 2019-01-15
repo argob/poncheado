@@ -1,3 +1,7 @@
+---
+layout: argentina
+---
+
 <h1 class="m-y-2">Dónde ir y qué llevar para tramitar el CUD</h1>
 <div class="hidden" id="wizard-cud">
 	<div id="wizard-cud-items">&nbsp;</div>
@@ -59,6 +63,7 @@
 		<a href="/cud/marco-legal">Leyes y normativas que reglamentan el CUD </a>
 	</p>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 <script type="text/javascript">
 //
@@ -86,66 +91,86 @@ if (typeof module !== 'undefined') {
 module.exports = targetblank;
 }
 }());
-</script><script>
+
+			</script>
+			<script>
 (function($) {
 var templates={description: '<p>Según el trámite a realizar ({tipoTramite}) el origen del problema de salud por el cual se solicita el certificado (<span data-render="tipo-discapacidad"></span>) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
-descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
-descriptionLugarSingular: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
-lugar: `<li><div class="form-group m-t-2">
-<label class="control-label">Junta</label>
-<p>{junta}</p>
+descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
 {pedirTurno}
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Dirección</label>
-<p>{direccion}</p>
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Teléfono</label>
-<p>{telefono}</p>
-</div>
-<hr /></li>`,
+
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Teléfono</label>
+						<p>{telefono}</p>
+					</div>
+					<hr />
+				</li>`,
 tipoDiscapacidad: `{tipoDiscapacidad}`
 };
 
 var templates2 = {
 	description: '<p>Según el trámite a realizar ({tipoTramite}):</p>',
-	descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
-descriptionLugarSingular: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
-lugar: `<li><div class="form-group m-t-2">
-<label class="control-label">Junta</label>
-<p>{junta}</p>
+	descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
 {pedirTurno}
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Dirección</label>
-<p>{direccion}</p>
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Teléfono</label>
-<p>{telefono}</p>
-</div>
-<hr /></li>`
+
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Teléfono</label>
+						<p>{telefono}</p>
+					</div>
+					<hr />
+				</li>`
 };
 
 
 var templates3 = {description: '<p>Según el trámite a realizar ({tipoTramite}) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
-descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
-descriptionLugarSingular: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
-lugar: `<li><div class="form-group m-t-2">
-<label class="control-label">Junta</label>
-<p>{junta}</p>
+descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
 {pedirTurno}
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Dirección</label>
-<p>{direccion}</p>
-</div>
-<div class="form-group m-t-2">
-<label class="control-label">Teléfono</label>
-<p>{telefono}</p>
-</div>
-<hr /></li>`,
+
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Teléfono</label>
+						<p>{telefono}</p>
+					</div>
+					<hr />
+				</li>`,
 tipoDiscapacidad: `{tipoDiscapacidad}`
 };
 var form_data;
@@ -675,7 +700,7 @@ if(data.tipotramite != "Cambio-de-identidad-de-genero" && data.tipotramite != "C
 
 
 if(data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
-var htmlPrimeraVez = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) <br>';
+var htmlPrimeraVez = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia)<br>';
 $('#show-primera-vez').removeClass('hidden').append( htmlPrimeraVez );
 $('#btn-planilla').removeClass('hidden');
 }
@@ -761,6 +786,10 @@ pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" 
 if((data.localidad == "Tres de Febrero")) {
 pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/267" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/270">Turno Junta</a></p>'
 }
+
+if((data.localidad == "Lincoln")) {
+pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/343">Turno Junta</a></p>'
+}
 var html = templates.lugar;
 html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
 .replace(/{direccion}/gi, item.gsx$direccion.$t)
@@ -796,8 +825,9 @@ event.preventDefault();
 window.location.href = '/cud/consulta-requisitos';
 });
 })(jQuery);
-</script>
-<style type="text/css">
+
+				</script>
+				<style type="text/css">
 .panel li a {
 text-decoration: underline;
 }
