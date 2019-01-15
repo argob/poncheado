@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>El estado en tu barrio</title>
+  <title></title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -362,6 +362,7 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         $("#provincia").html(val.gsx$provincia.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
         $("#horario").html(val.gsx$horario.$t);
+        $("title").html(val.gsx$localidad.$t);
         var fechaPunto = "";
         
         //Es de un solo día
