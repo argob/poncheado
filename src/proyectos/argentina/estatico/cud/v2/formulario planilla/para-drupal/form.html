@@ -428,8 +428,6 @@ layout: argentina
       </div>
          
       </div>
-      
-          
         
    
     </form>
@@ -469,6 +467,13 @@ layout: argentina
       this.depto = depto
     }
   }
+
+   window.onload = function(){
+    if(!localStorage.getItem('usuario')){
+      localStorage.setItem('usuario', JSON.stringify([]));
+     }
+    
+  }
   
   var gender = '';
   var kindDocument = '';
@@ -480,12 +485,7 @@ layout: argentina
   var users = []
  
   
-  window.onload = function(){
-    if(!localStorage.getItem('usuario')){
-      localStorage.setItem('usuario', JSON.stringify([]));
-     }
-    
-  }
+ 
 
   function setLocalStorage(gender1 , gender2 , gender3 , gender4 , kindDocument1, kindDocument2 , kindDocument3 , kindDocument4 , kindDocument5 , tipoNacionalidad1 , tipoNacionalidad2, residence1, residence2, residence3, residence4, _19279_1, _19279_2, simbolo1, simbolo2, asignacion1, asignacion2 ){
     
@@ -540,7 +540,7 @@ layout: argentina
 
  function setData(){
 
-  var user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('birthday').value,  gender, kindDocument, document.getElementById('numDoc').value, document.getElementById('expedido').value, document.getElementById('cuil').value, document.getElementById('nacionalidad').value, tipoNacionalidad, residence, document.getElementById('domicilio').value, document.getElementById('provincia').value, document.getElementById('address_postalcode').value,document.getElementById('localidad').value,document.getElementById('departamento').value, document.getElementById('codeareatel').value, document.getElementById('tel').value, document.getElementById('email').value, document.getElementById('estadoCivil').value, _19279 , document.getElementById('date').value, simbolo, asignacion, document.getElementById('vencimiento').value)
+  var user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value,  document.getElementById('birthday').value.split("-").reverse().join("-"),  gender, kindDocument, document.getElementById('numDoc').value, document.getElementById('expedido').value, document.getElementById('cuil').value, document.getElementById('nacionalidad').value, tipoNacionalidad, residence, document.getElementById('domicilio').value, document.getElementById('provincia').value, document.getElementById('address_postalcode').value,document.getElementById('localidad').value,document.getElementById('departamento').value, document.getElementById('codeareatel').value, document.getElementById('tel').value, document.getElementById('email').value, document.getElementById('estadoCivil').value, _19279 , document.getElementById('date').value.split("-").reverse().join("-"), simbolo, asignacion, document.getElementById('vencimiento').value.split("-").reverse().join("-"))
   users.push(user)
   return users
  }

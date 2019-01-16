@@ -246,6 +246,13 @@ layout: argentina
           </div>
         </div>
         <div class="row">
+          <div class="form-group col-md-4 item-form">
+            <label for="desginationdate">Fecha de designación</label>
+            <input type="date" class="form-control" id="desginationdate" required="" aria-required="true">
+            <p class="help-block error hidden">Ingresá la fecha de designación</p>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-8 form-group item-form">
             <label for="juzgado">Juzgado</label>
             <input type="text" name="Juzgado" class="form-control" id="juzgado" required="" aria-required="true" value="">
@@ -283,27 +290,31 @@ layout: argentina
         <div class="row">
         <fieldset>
           <legend>
-            <div class="col-xs-12 col-md-7">
+            <div class="col-xs-12">
               <p>Puede ver como va a quedar impresa la planilla presionando el botón de PREVISUALIZAR PLANILLA. Luego deberá completar la parte de abajo de la hoja escribiendo sobre la planilla impresa.</p>
             </div>
           </legend>
-          <div class="col-xs-12 col-md-5">
+          <div class="col-xs-12 col-md-6">
+            <a href ="https://www.argentina.gob.ar/prueba-solicitud-cud?tca=M5xEg6VJ1Xej5BT-l6Qi1isVyE7V7giKNvdHztyizNk" class="btn btn-success col-md-12">Atrás</a>
+          </div>
+          <div class="col-xs-12 col-md-6">
             <a href ="https://www.argentina.gob.ar/planilla-completa?tca=TqJHR5lXhVWMU9vOoks3blNlJ2gfyT8GikLfthHHmT4" class="btn btn-success col-md-12" onclick="setLocalStorage('judicial', 'extrajudicial', 'curador', 'madre','padre','tutor','dni','lc','enrolamiento','pasaporte','cedula','provisoria','definitiva')">Previsualizar planilla</a>
           </div>
         </fieldset>
         </div>
       
     </form>
+
   </div> 
 
   
-  
+ 
   
 
 
 <script>
   class User {
-    constructor(rol, parent,firstname_notevaluate,lastname_notevaluate, doc_notevaluate, numDoc_notevaluate, expedido_notevaluate, nacionality_notevaluate, adress_notevaluate, province_notevaluate, locality_notevaluate,address_postalcode_notevaluate, codeareatel_notevaluate, tel_notevaluate, designation_notevaluate, juzgado_notevaluate, secretary_notevaluate, dptoJud_notevaluate, fiscaly_notevaluate, defensory_notevaluate){
+    constructor(rol, parent,firstname_notevaluate,lastname_notevaluate, doc_notevaluate, numDoc_notevaluate, expedido_notevaluate, nacionality_notevaluate, adress_notevaluate, province_notevaluate, locality_notevaluate,address_postalcode_notevaluate, codeareatel_notevaluate, tel_notevaluate, designation_notevaluate, designation_date, juzgado_notevaluate, secretary_notevaluate, dptoJud_notevaluate, fiscaly_notevaluate, defensory_notevaluate){
       
     this.rol = rol
     this.parent = parent
@@ -320,6 +331,7 @@ layout: argentina
     this.codeareatel_notevaluate = codeareatel_notevaluate
     this.tel_notevaluate = tel_notevaluate
     this.designation_notevaluate = designation_notevaluate
+    this.designation_date = designation_date
     this.juzgado_notevaluate = juzgado_notevaluate
     this.secretary_notevaluate = secretary_notevaluate
     this.dptoJud_notevaluate = dptoJud_notevaluate
@@ -380,26 +392,27 @@ layout: argentina
 
 
   var user = new User(rolChoise, 
-    parentChoise, 
-    document.getElementById('firstname').value, 
-    document.getElementById('lastname').value, 
-    kindDocument, 
-    document.getElementById('numDoc').value, 
-    document.getElementById('expedido').value, 
-    document.getElementById('nacionalidad').value, 
-    document.getElementById('domicilio').value, 
-    document.getElementById('provincia').value,
-    document.getElementById('localidad').value,
-     document.getElementById('address_postalcode').value, 
-     document.getElementById('codeareatel').value, 
-     document.getElementById('tel').value, 
-     designation, 
-     document.getElementById('juzgado').value,
-     document.getElementById('secretaria').value, 
-     
-     document.getElementById('dptoJudicial').value, 
-     document.getElementById('fiscalia').value, 
-     document.getElementById('defensoria').value)
+      parentChoise, 
+      document.getElementById('firstname').value, 
+      document.getElementById('lastname').value, 
+      kindDocument, 
+      document.getElementById('numDoc').value, 
+      document.getElementById('expedido').value, 
+      document.getElementById('nacionalidad').value, 
+      document.getElementById('domicilio').value, 
+      document.getElementById('provincia').value,
+      document.getElementById('localidad').value,
+      document.getElementById('address_postalcode').value, 
+      document.getElementById('codeareatel').value, 
+      document.getElementById('tel').value, 
+      designation, 
+      document.getElementById('desginationdate').value.split("-").reverse().join("-"),
+      document.getElementById('juzgado').value,
+      document.getElementById('secretaria').value, 
+
+      document.getElementById('dptoJudicial').value, 
+      document.getElementById('fiscalia').value, 
+      document.getElementById('defensoria').value)
   users.push(user)
   return users
  }
