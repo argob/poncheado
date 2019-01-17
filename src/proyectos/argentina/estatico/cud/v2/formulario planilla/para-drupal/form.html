@@ -342,7 +342,10 @@ layout: argentina
         <div class="row">
           <div class="col-md-8 form-group item-form">
           <fieldset>
-            <label>Posee símbolo internacional de acceso automotor</label>
+            <legend>
+              <label>Posee símbolo internacional de acceso automotor</label>  
+            </legend>
+            
             <div class="form-group item-form">
               <label for="sisimboloautomotor" class="radio-inline">
                 <input type="radio" name="simboloautomotor" id="sisimboloautomotor" value="Si" required="" aria-required="true">
@@ -393,15 +396,16 @@ layout: argentina
       </div>
 
       <div class="row">
-
-        <div class="col-xs-12 col-md-8">
-          <p>En el caso de que el solicitante sea la misma persona a evaluar puede presione el botón de el botón PREVISUALIZAR PLANILLA y luego imprimirla.Luego deberá completar la parte de abajo de la hoja escribiendo sobre la planilla impresa.  </p>
-        </div>
-
-        <div class="col-xs-12 col-md-8">
-          <a href ="https://www.argentina.gob.ar/planilla-simple?tca=fycQL2ROS4Zk2f7irAvFRDFYIqqi5KXDEJwtqDn5aRs" class="btn btn-success" onclick="setLocalStorage('f', 'm', 't', 'o', 'dni', 'lc', 'enrolamiento', 'pasaporte', 'cedula', 'nativo', 'naturalizado', 'transitoria', 'permanente', 'temporaria', 'precaria', 'si19279', 'no19279', 'sisimboloautomotor', 'nosimboloautomotor', 'siasignacion', 'noasignacion')">Previsualizar planilla</a>
-        </div>
-
+        <fieldset>
+          <legend>
+            <div class="col-xs-12 col-md-8">
+              <p>En el caso de que el solicitante sea la misma persona a evaluar puede presione el botón de el botón PREVISUALIZAR PLANILLA y luego imprimirla.Luego deberá completar la parte de abajo de la hoja escribiendo sobre la planilla impresa.  </p>
+            </div>
+          </legend>
+          <div class="col-xs-12 col-md-8">
+            <a href ="https://www.argentina.gob.ar/planilla-simple?tca=fycQL2ROS4Zk2f7irAvFRDFYIqqi5KXDEJwtqDn5aRs" class="btn btn-success" onclick="setLocalStorage('f', 'm', 't', 'o', 'dni', 'lc', 'enrolamiento', 'pasaporte', 'cedula', 'nativo', 'naturalizado', 'transitoria', 'permanente', 'temporaria', 'precaria', 'si19279', 'no19279', 'sisimboloautomotor', 'nosimboloautomotor', 'siasignacion', 'noasignacion')">Previsualizar planilla</a>
+          </div>
+        </fieldset>
       </div>
       
       <div class="row">
@@ -411,17 +415,19 @@ layout: argentina
       </div>
 
       <div class="row">
-        <div class="col-xs-12 col-md-8">
-          <p>En el caso de que el solicitante no sea la persona a evaluar presione GUARDAR Y CONTINUAR para completar los datos de su Madre/Padre/Tutor/a/Guarda/Curador/a o Apoyo</p>
-        </div>
-        <div class="col-xs-12 col-md-8">
+        <fieldset>
+          <legend>
+            <div class="col-xs-12 col-md-8">
+              <p>En el caso de que el solicitante no sea la persona a evaluar presione GUARDAR Y CONTINUAR para completar los datos de su Madre/Padre/Tutor/a/Guarda/Curador/a o Apoyo</p>
+            </div>
+          </legend>
+          <div class="col-xs-12 col-md-8">
           <a href ="https://www.argentina.gob.ar/form-cud-acompanante?tca=YNdLKZkGt1c2UDtezczySf8GUzLfy9Te8KnvqxdmJVs"  class="btn btn-success" onclick="setLocalStorage('f', 'm', 't', 'o', 'dni', 'lc', 'enrolamiento', 'pasaporte', 'cedula', 'nativo', 'naturalizado', 'transitoria', 'permanente', 'temporaria', 'precaria', 'si19279', 'no19279', 'sisimboloautomotor', 'nosimboloautomotor', 'siasignacion', 'noasignacion')">Guardar datos y continuar</a>
         </div> 
+        </fieldset>
       </div>
          
       </div>
-      
-          
         
    
     </form>
@@ -461,6 +467,13 @@ layout: argentina
       this.depto = depto
     }
   }
+
+   window.onload = function(){
+    if(!localStorage.getItem('usuario')){
+      localStorage.setItem('usuario', JSON.stringify([]));
+     }
+    
+  }
   
   var gender = '';
   var kindDocument = '';
@@ -472,12 +485,7 @@ layout: argentina
   var users = []
  
   
-  window.onload = function(){
-    if(!localStorage.getItem('usuario')){
-      localStorage.setItem('usuario', JSON.stringify([]));
-     }
-    
-  }
+ 
 
   function setLocalStorage(gender1 , gender2 , gender3 , gender4 , kindDocument1, kindDocument2 , kindDocument3 , kindDocument4 , kindDocument5 , tipoNacionalidad1 , tipoNacionalidad2, residence1, residence2, residence3, residence4, _19279_1, _19279_2, simbolo1, simbolo2, asignacion1, asignacion2 ){
     
@@ -532,7 +540,7 @@ layout: argentina
 
  function setData(){
 
-  var user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('birthday').value,  gender, kindDocument, document.getElementById('numDoc').value, document.getElementById('expedido').value, document.getElementById('cuil').value, document.getElementById('nacionalidad').value, tipoNacionalidad, residence, document.getElementById('domicilio').value, document.getElementById('provincia').value, document.getElementById('address_postalcode').value,document.getElementById('localidad').value,document.getElementById('departamento').value, document.getElementById('codeareatel').value, document.getElementById('tel').value, document.getElementById('email').value, document.getElementById('estadoCivil').value, _19279 , document.getElementById('date').value, simbolo, asignacion, document.getElementById('vencimiento').value)
+  var user = new User(document.getElementById('firstname').value, document.getElementById('lastname').value,  document.getElementById('birthday').value.split("-").reverse().join("-"),  gender, kindDocument, document.getElementById('numDoc').value, document.getElementById('expedido').value, document.getElementById('cuil').value, document.getElementById('nacionalidad').value, tipoNacionalidad, residence, document.getElementById('domicilio').value, document.getElementById('provincia').value, document.getElementById('address_postalcode').value,document.getElementById('localidad').value,document.getElementById('departamento').value, document.getElementById('codeareatel').value, document.getElementById('tel').value, document.getElementById('email').value, document.getElementById('estadoCivil').value, _19279 , document.getElementById('date').value.split("-").reverse().join("-"), simbolo, asignacion, document.getElementById('vencimiento').value.split("-").reverse().join("-"))
   users.push(user)
   return users
  }
