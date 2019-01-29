@@ -801,19 +801,13 @@ showLugares = true;
 }
 if(showLugares){
 var pedirTurno = '';
-if((data.localidad == "Torres")) {
-pedirTurno = '<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank">Pedir Turno</a></p>'
-}
-if((data.localidad == "Pilar")) {
-pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/333" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/305">Turno Junta</a></p>'
-}
-if((data.localidad == "Tres de Febrero")) {
-pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/267" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/270">Turno Junta</a></p>'
+if((item.gsx$boton.$t != "")) {
+pedirTurno = `<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="${item.gsx$boton.$t}" target="_blank">Pedir Turno</a></p>`
+}else{
+	pedirTurno = '';
 }
 
-if((data.localidad == "Lincoln")) {
-pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/343">Turno Junta</a></p>'
-}
+
 var html = templates.lugar;
 html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
 .replace(/{direccion}/gi, item.gsx$direccion.$t)
