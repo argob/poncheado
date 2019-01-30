@@ -1,7 +1,8 @@
 
-
 /*****Tipografía (a partir de versión 4)******/
-
+html{
+  height: initial;
+}
 body{
   font-size: 16px;
   line-height: 1.45;
@@ -718,9 +719,9 @@ a.btn-collapse i.collapseGira{
 
 
 #dashboard-sidebar{
-    display: flex!important;
     height: 100vh;
     width: 100%;
+    min-width: 260px;
     min-height: 100%;
     background-color: white;
     display: block;
@@ -799,21 +800,16 @@ a.btn-collapse i.collapseGira{
   min-width: 80px;
   margin: auto;
 }
-@media(max-width: 1199px){
-  .main-panels, .second-panels{
-    padding-right: 30px;
-  }
-}
-@media (min-width: 768px){
- .sidebar{
-    max-width: 450px;
-    height: 100vh;
+.sidebar{
     min-height: 100%;
-    position: sticky;
   }
-
+  .dashboard{
+  display: flex;
 }
-@media (max-width: 768px){
+
+
+
+@media (max-width: 767px){
   .brand-icon{
     width:200px;
   }
@@ -822,9 +818,12 @@ a.btn-collapse i.collapseGira{
   }
   .sidebar{
     padding: 0px;
+    width: 100%;
   }
   #dashboard-sidebar{
     background-color: #f2f3f4;
+    width: 85%;
+    margin: auto;
   }
   #dashboard-sidebar ul{
     padding: 0px 15px;
@@ -832,16 +831,18 @@ a.btn-collapse i.collapseGira{
   .nav-dashboard > li > a:hover{
     background-color: initial!important;
   }
-
+  #dashboard-sidebar .panel-sidebar{
+    height: 157px;
+  }
 
  
 }
-@media (max-width: 438px){
+@media (max-width: 450px){
   .nav-dashboard > li {
     width: 100%;
     max-width: 300px;
     float: none!important;
     margin: 0 auto!important;
   }
-
+ 
 }
