@@ -10,45 +10,58 @@ layout: mi-argentina
 		color: #ccc;
 		opacity: 1;
 	}
-	.panel-licencia { display:block; }
+	.licencia{
+		width: 80%;
+		margin:auto;
+	}
 
-		@media only screen and (orientation:portrait){
-		    .panel-licencia {  
-		        -webkit-transform: rotate(90deg);
+	.panels-row-licencia{
+		align-items: center;
+	    justify-content: center;
+	}
+	
+
+	
+	.panel-licencia { display:block; }
+	header, footer.main-footer{
+		display: none!important;
+	}
+		
+	
+	@media only screen and (orientation:portrait){
+		    .panel-licencia { 
+
+			    transform-origin: left top;
+			     -webkit-transform: rotate(90deg);
 		        -moz-transform: rotate(90deg);
 		        -o-transform: rotate(90deg);
 		        -ms-transform: rotate(90deg);
 		        transform: rotate(90deg);
+			    width: 100vh!important;
+			    height: 100vh!important;
+			    overflow-x: hidden;
+			    position: absolute;
+			    top: 0;
+			    left: 100%;
+			    margin-bottom: 0px;
 
 		    }
+		   
+			
 		}
-
-		@media only screen and (orientation:landscape){
-
-		    .panel-licencia {  
-		        -webkit-transform: rotate(0deg);
-		        -moz-transform: rotate(0deg);
-		        -o-transform: rotate(0deg);
-		        -ms-transform: rotate(0deg);
-		        transform: rotate(0deg);
-		    }
-		}
-
-
-	}
 </style>
-<br><br><br><br><br><br><br><br>
-<div class="col-md-8">
+	
+<div class="container-licencia">
 	<!--<h3>Panel licencia de conducir</h3>-->
-	<div class="row panels-row panels-row-miargentina">
-		<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="panels-row panels-row-miargentina panels-row-licencia">
+		<div>
 			<div class="panel panel-default panel-nolink panel-licencia">
 	        	<div class="panel-heading hidden-xs">
 	            	<h3>Licencia nacional de conducir</h3>
 	          	</div>
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<div class="panel-body">
-	          			<div class="carousel-inner">
+	          			<div class="carousel-inner licencia">
 						    <div class="item active">
 						    	<p class="m-b-1">Licencia nacional de conducir - frente</p>
 
@@ -78,6 +91,10 @@ layout: mi-argentina
 					</div>
 	        	</div>
 	   		</div>
-		</div>
+	   	</div>
+		
 	</div>
 </div>
+	
+
+
