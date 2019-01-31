@@ -293,6 +293,8 @@ window.onload = function() {
         filtrarPuntos(listaPuntos,provincia);
       
     })
+
+
 //FILTRAR PUNTOS FUNCION
 var provinciasCargadas = false;
 function filtrarPuntos(listaPuntos,provincia){
@@ -302,10 +304,17 @@ function filtrarPuntos(listaPuntos,provincia){
   
   //RECORRER PROVINCIAS
   $.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
+
   if(provinciasCargadas == false && nombreProvincia != ""){
-    $("#provincia").append('<option data-id="1" value="' + nombreProvincia +'">'+ nombreProvincia + '</option>');
+    if(nombreProvincia == url.searchParams.get("provincia")){provSelected = "selected";}else{provSelected = ""}
+
+    $("#provincia").append('<option data-id="1" value="' + nombreProvincia +'"' + provSelected +'>'+ nombreProvincia + '</option>');
   }
+
+
   if(nombreProvincia == provincia){
+   
+
     //RECORRER CADA PUNTO
     $.each(puntosProvincia, function(index, val) {
       var fechaPunto = "";
@@ -336,8 +345,9 @@ function filtrarPuntos(listaPuntos,provincia){
 
         $("#punto-clon .horario").html(val.gsx$horario.$t);
         $("#punto-clon .direccion").html(val.gsx$direccion.$t);
-        //$("#punto-clon a").attr("href","eetb/punto?&punto="+val.gsx$nombre.$t);
         $("#punto-clon a").attr("href","punto-de-atencion.html?&punto="+val.gsx$nombre.$t);
+       
+
         //Motivo suspendido
         if(val.gsx$suspendido.$t != ""){
           $("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
@@ -351,7 +361,8 @@ function filtrarPuntos(listaPuntos,provincia){
       }
     });
   } 
-    $("#provincia option[value="+url.searchParams.get("provincia")+"]").attr("selected","selected");
+    
+    //$("#provincia option[value="+url.searchParams.get("provincia")+"]").attr("selected","selected");
     
 });
   $("#provincia .preloader").remove();
