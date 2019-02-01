@@ -1,110 +1,6 @@
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
-<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
-    <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
-  <meta name="author" content="Presidencia de la Nación">
-  <link rel="shortcut icon" href="/favicon.ico">
-
-  <!-- Nav and address bar color -->
-  <meta name="theme-color" content="#0072b8">
-  <meta name="msapplication-navbutton-color" content="#0072b8">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
-
-  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/el-estado-en-tu-barrio/v2/punto-de-atencion.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Banco de Pruebas" />
-  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
-  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
-  <meta property="og:locale" content="es_AR" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Banco de Pruebas" />
-  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
-  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
-
-  <link href="/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
-  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
-  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">
-  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
-  <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
-  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
-  <link href="/css/argentina.css" rel="stylesheet">
-  <link href="/css/docs.css" rel="stylesheet">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="/node_modules/html5shiv/html5shiv.js"></script>
-      <script src="/node_modules/respond.js/respond.min.js"></script>
-  <![endif]-->  
-    
-</head>
-
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/node_modules/chosen-js/chosen.jquery.js"></script>
-
-
-<script>
-//MODO LAB
-var url_string = window.location.href;
-var url = new URL(url_string);
-var lab = url.searchParams.get("lab");
-  
-if(lab == ""){
-  $("head").append('<link href="/proyectos/documentacion/poncho_lab/css/poncho_lab.css" rel="stylesheet">');
-}
-  
-</script>
-
-  <body>
-
-    
-<header>
-
-
-  <nav class="navbar navbar-top navbar-default" role="navigation">
-    <div class="container">
-      <div>
-
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/proyectos/argentina/">
-            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
-            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
-          </a>
-          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
-          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
-        </div>
-
-        <ul class="nav navbar-nav navbar-right hidden-xs">
-          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
-          <li>
-            <div class="input-group">
-              <label for="buscar"><span class="sr-only">Buscar trámites, servicios o áreas ...</span></label>
-              <input id="buscar" type="text" class="form-control" aria-hidden="true" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Ingresar a Mi Argentina"><i class="fa fa-search"></i><span class="sr-only">Buscar</span></button>
-              </span>
-            </div>
-          </li>              
-          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-
-</header>
-
+---
+layout: argentina
+---
 
 <script type="text/javascript">
   var busqueda = document.getElementById('buscar');
@@ -132,7 +28,7 @@ if(lab == ""){
         <div class="col-md-12">
             <ol class="breadcrumb pull-left">
                 <li><a href="/">Argentina</a></li>
-                <li><a href="index.html">El Estado en tu Barrio </a></li>
+                <li><a href="/elestadoentubarrio/">El Estado en tu Barrio </a></li>
                 <li class="active"><span id="breadcrumbPunto">Punto</span></li>
             </ol>
         </div>
@@ -473,7 +369,7 @@ $(document).on("click",".mostrarTramite",function(){
     });
   //MÉTRICAS
   ga('create', 'UA-71585203-1', 'auto');
-  ga('send', { 'hitType': 'pageview', 'page': '/eetb/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
+  ga('send', { 'hitType': 'pageview', 'page': '/elestadoentubarrio/punto?&punto='+puntoId+'&tramite='+nombre, 'title': nombre });
       $(".modal-title").html(nombre);
       var converter = new showdown.Converter(),
       descripcion_formatted = converter.makeHtml(descripcion);
@@ -487,9 +383,3 @@ $(document).on("click",".mostrarTramite",function(){
   })
 })
 </script>
-
-
-
-    
-  </body>
-</html>

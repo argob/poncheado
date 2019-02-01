@@ -287,7 +287,7 @@ window.onload = function() {
     //LISTA DE PUNTOS
     var puntos;
     var listaPuntos;
-    $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
+    jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
       listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
         
         filtrarPuntos(listaPuntos,provincia);
@@ -299,73 +299,77 @@ window.onload = function() {
 var provinciasCargadas = false;
 function filtrarPuntos(listaPuntos,provincia){
   //RESET
-  $("#puntos").html("");
+  jQuery("#puntos").html("");
   cantidadPuntos = 0;
   
   //RECORRER PROVINCIAS
-  $.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
+  jQuery.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
 
   if(provinciasCargadas == false && nombreProvincia != ""){
     if(nombreProvincia == url.searchParams.get("provincia")){provSelected = "selected";}else{provSelected = ""}
 
-    $("#provincia").append('<option data-id="1" value="' + nombreProvincia +'"' + provSelected +'>'+ nombreProvincia + '</option>');
+    jQuery("#provincia").append('<option data-id="1" value="' + nombreProvincia +'"' + provSelected +'>'+ nombreProvincia + '</option>');
   }
 
 
   if(nombreProvincia == provincia){
-   
-
     //RECORRER CADA PUNTO
-    $.each(puntosProvincia, function(index, val) {
+    jQuery.each(puntosProvincia, function(index, val) {
       var fechaPunto = "";
 
       if(val.gsx$nombre.$t != "Todos" && val.gsx$publicado.$t == "si"){
-        $("#punto-clon .nombre").html(val.gsx$nombre.$t);
+        jQuery("#punto-clon .nombre").html(val.gsx$nombre.$t);
         
-        $("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
+        jQuery("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
 
         //Es de un solo día
         if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
           fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
-            $("#fechaPunto").parents(".media").show();
-            $("#fechaPunto").html(fechaPunto);
+            jQuery("#fechaPunto").parents(".media").show();
+            jQuery("#fechaPunto").html(fechaPunto);
         }
 
         //Tiene fecha inicio y fin
         if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
-            $("#fechaPunto").parents(".media").show();
-            $("#fechaPunto").html(fechaPunto);
+            jQuery("#fechaPunto").parents(".media").show();
+            jQuery("#fechaPunto").html(fechaPunto);
         }
 
-        //Es puntofijo
+        //Es punto fijo
         if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
-            $("#fechaPunto").parents(".media").hide();
+            jQuery("#fechaPunto").parents(".media").hide();
         }
 
-        $("#punto-clon .horario").html(val.gsx$horario.$t);
-        $("#punto-clon .direccion").html(val.gsx$direccion.$t);
-        $("#punto-clon a").attr("href","punto-de-atencion.html?&punto="+val.gsx$nombre.$t);
+        jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
+        jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
+        jQuery("#punto-clon a").attr("href","elestadoentubarrio/punto?&punto="+val.gsx$nombre.$t);
        
 
         //Motivo suspendido
         if(val.gsx$suspendido.$t != ""){
-          $("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
+          jQuery("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
         }
         else{
-          $("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
+          jQuery("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
         }
-        var punto = $("#punto-clon .punto").clone();
-        $("#puntos").append(punto);
+        var punto = jQuery("#punto-clon .punto").clone();
+        jQuery("#puntos").append(punto);
         cantidadPuntos++;
       }
     });
-  } 
-    
-    //$("#provincia option[value="+url.searchParams.get("provincia")+"]").attr("selected","selected");
-    
+   } 
 });
-  $("#provincia .preloader").remove();
+
+//Mostrar aviso de error
+if(jQuery("#provincia option:selected").val() == ""){
+  jQuery("#aviso").show();
+}
+else{
+  jQuery("#aviso").hide(); 
+}
+
+  jQuery("#provincia .preloader").remove();
 provinciasCargadas = true;
 //FILTRO
 var options = {
@@ -373,19 +377,19 @@ var options = {
 };
 var userList = new List('puntosListado', options);
 }
-$(document).on("change","select",function(){
-  var provinciaSeleccionada = $("#provincia option:selected").val();
+jQuery(document).on("change","select",function(){
+  var provinciaSeleccionada = jQuery("#provincia option:selected").val();
   filtrarPuntos(listaPuntos,provinciaSeleccionada);
     if(provinciaSeleccionada == ""){
-    $("#aviso").show();
+    jQuery("#aviso").show();
   }
   else{
-    $("#aviso").hide(); 
+    jQuery("#aviso").hide(); 
   }
 })
 //LISTA DE TRÁMITES
 var tramites;
-$.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
+jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
   listaTramites = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
   
 })
