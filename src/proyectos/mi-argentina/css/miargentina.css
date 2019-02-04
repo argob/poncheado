@@ -14,7 +14,7 @@ p {
 
 
 p, li, table, a{
-  font-size: 1em!important;
+  font-size: 1em;
   font-weight: 400;
   line-height: 1.471em;
 
@@ -875,26 +875,67 @@ a.btn-collapse i.collapseGira{
     width: 80%;
     margin:auto;
   }
+  
+  #lic-carousel .panel-body{
+    width: 630px;
+  }
 
   .panels-row-licencia{
     align-items: center;
     justify-content: center;
   }
-
-  
-  
-
-  
   .panel-licencia { display:block; }
+
   .display-panel-licencia{
     display: block;
   }
-  @media (max-width: 990px){
+
+  .item img{
+    height: auto!important;
+    width: 100%;
+  }
+
+  
+  .item:last-child img{
+        width: auto;
+        max-height: 500px;
+      }
+
+ 
+
+  @media (max-width: 836px){
     .container-licencia{
           padding-top: 0;
-        }
-       
+    }
+    .item img, .item:last-child img{
+        height: 500px!important;
+        max-height: 500px!important;
+        width: auto!important;
+      }
+
+    
+      #lic-carousel .panel-body{
+        width: 100%;
+      }
   }
+
+  @media(max-width: 630px){
+    .item img, .item:last-child img{
+          height: 400px!important;
+          max-height: 400px!important;
+          width: auto!important;
+        }
+  }  
+  @media(max-width: 500px){
+    .item img, .item:last-child img{
+          height: 200px!important;
+          max-height: 200px!important;
+          width: auto!important;
+        }
+    .licencia-volver p{
+      font-size: 14px!important;
+    }
+  }  
   
  @media only screen and (orientation:portrait){
         #lic-carousel{
@@ -926,11 +967,14 @@ a.btn-collapse i.collapseGira{
        .licencia img{
         width: 100%;
        }
-      
+      #lic-carousel .panel-body{
+        width: 100%!important;
+      }
 
-    
+      .panels-row-licencia .panel-border-primary{
+        border-top: none;
+      }
 
-      
     }
 
 @media only screen and (orientation:landscape){
@@ -943,7 +987,10 @@ a.btn-collapse i.collapseGira{
             transform: rotate(0deg);
           }
        
-      
+      .item:last-child img{
+        max-height: 258px;
+        width: auto;
+      }
     }
 
 
