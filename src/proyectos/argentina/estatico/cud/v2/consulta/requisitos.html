@@ -119,8 +119,8 @@ lugar: `
 					<div class="form-group m-t-2">
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
-{pedirTurno}
-
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
+ 
 					</div>
 					<div class="form-group m-t-2">
 						<label class="control-label">Dirección</label>
@@ -146,7 +146,7 @@ lugar: `
 					<div class="form-group m-t-2">
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
-{pedirTurno}
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
 
 					</div>
 					<div class="form-group m-t-2">
@@ -172,7 +172,7 @@ lugar: `
 					<div class="form-group m-t-2">
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
-{pedirTurno}
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
 
 					</div>
 					<div class="form-group m-t-2">
@@ -801,10 +801,15 @@ showLugares = true;
 }
 if(showLugares){
 var pedirTurno = '';
-if((item.gsx$boton.$t != "")) {
-pedirTurno = `<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="${item.gsx$boton.$t}" target="_blank">Pedir Turno</a></p>`
-}else{
-	pedirTurno = '';
+var perdirAsesoramiento = '';
+
+if(item["gsx$boton-turno"]["$t"] != "") {
+pedirTurno = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$boton-turno"]["$t"]+'" target="_blank">Turno junta</a>'
+}
+
+
+if(item["gsx$boton-asesoramiento"]["$t"] != "") {
+perdirAsesoramiento = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$boton-asesoramiento"]["$t"]+'" target="_blank">Turno asesoramiento</a>'
 }
 
 
@@ -813,6 +818,7 @@ html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
 .replace(/{direccion}/gi, item.gsx$direccion.$t)
 //.replace(/{localidad}/gi, item.gsx$localidad.$t)
 .replace(/{pedirTurno}/gi, pedirTurno)
+.replace(/{perdirAsesoramiento}/gi, perdirAsesoramiento)
 .replace(/{telefono}/gi, item.gsx$telefono.$t);
 jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
 }
