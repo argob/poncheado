@@ -1,0 +1,85 @@
+---
+layout: argentina
+---
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li><a href="https://www.argentina.gob.ar/salud/">Ministerio de Salud</a></li>
+            <li class="active">Regionalización del embarazo</li>
+         </ol>
+      </div>
+   </div>
+</div>
+
+<section>
+	<div class="container">
+		<h1>Regionalización del embarazo</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ad, pariatur facilis! Iure molestiae fugiat earum saepe illo dolor, velit ex voluptatem cupiditate veniam quis magnam reiciendis, blanditiis totam asperiores.</p>
+		<hr>
+
+
+	<fieldset>
+    <legend>
+      <label>Respondé las siguientes preguntas:</label>
+    </legend>
+    <div class="form-group item-form" id="formulario">
+		<div class="checkbox"><label for="opcion1"><input type="checkbox" value="1" id="opcion1"> Edad materna &lt; 15</label></div>
+		<div class="checkbox"><label for="opcion2"><input type="checkbox" value="2" id="opcion2"> Edad materna &gt;= 35</label></div>
+		<div class="checkbox"><label for="opcion3"><input type="checkbox" value="1" id="opcion3"> Madre sin pareja</label></div>
+		<div class="checkbox"><label for="opcion4"><input type="checkbox" value="2" id="opcion4"> Educación ninguna</label></div>
+		<div class="checkbox"><label for="opcion5"><input type="checkbox" value="1" id="opcion5"> Educación elemental</label></div>
+		<div class="checkbox"><label for="opcion6"><input type="checkbox" value="1" id="opcion6"> Gestas cero</label></div>
+		<div class="checkbox"><label for="opcion7"><input type="checkbox" value="2" id="opcion7"> Gestas &gt;= 4</label></div>
+		<div class="checkbox"><label for="opcion8"><input type="checkbox" value="4" id="opcion8"> Intervalo intergenésico corto (&lt;6m)</label></div>
+		<div class="checkbox"><label for="opcion9"><input type="checkbox" value="4" id="opcion9"> Isoinmunización</label></div>
+		<div class="checkbox"><label for="opcion10"><input type="checkbox" value="1" id="opcion10"> Aborto previo</label></div>
+		<div class="checkbox"><label for="opcion11"><input type="checkbox" value="4" id="opcion11"> Muerte fetal previa</label></div>
+		<div class="checkbox"><label for="opcion12"><input type="checkbox" value="3" id="opcion12"> Muerte neonatal previa</label></div>
+		<div class="checkbox"><label for="opcion13"><input type="checkbox" value="2" id="opcion13"> BPN previo</label></div>
+		<div class="checkbox"><label for="opcion14"><input type="checkbox" value="1" id="opcion14"> Hábito de fumar</label></div>
+		<div class="checkbox"><label for="opcion15"><input type="checkbox" value="1" id="opcion15"> IMC &gt; 29</label></div>
+		<div class="checkbox"><label for="opcion16"><input type="checkbox" value="4" id="opcion16"> HTA crónica</label></div>
+		<div class="checkbox"><label for="opcion17"><input type="checkbox" value="3" id="opcion17"> Diabéticas</label></div>
+		<div class="checkbox"><label for="opcion18"><input type="checkbox" value="4" id="opcion18"> VDRL+</label></div>
+		<div class="checkbox"><label for="opcion19"><input type="checkbox" value="4" id="opcion19"> Sin consulta prenatal</label></div>
+		<div class="checkbox"><label for="opcion20"><input type="checkbox" value="2" id="opcion20"> Consultas prenatales 1-4</label></div>
+    <p class="help-block error hidden">Ingresá el dato</p>
+  </div>
+
+<hr>
+	<div id="resultado">
+            <div class="h2 text-success" id="tipoEmbarazo">Sin riesgo</div>
+            <p class="lead">Puntaje: <span id="puntaje">0</span></p>
+            <p class="text-muted">Aca puede ir una aclaración</p>
+	</div>
+</fieldset>
+
+
+	</div>
+</section>
+<script>
+	jQuery("#formulario input").on("change",function(){
+		calcular();
+	})
+
+	function calcular(){
+		var suma = 0;
+		jQuery("#formulario input").each(function(){
+			if(jQuery(this).is(":checked")){
+				valor = jQuery(this).val();
+				suma = suma + parseInt(valor);
+			}
+		})
+
+		if(suma <= 1){jQuery("#tipoEmbarazo").html("Bajo riesgo")}
+		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html("Mediano riesgo")}
+		if(suma >= 7){jQuery("#tipoEmbarazo").html("Alto riesgo")}
+
+		jQuery("#puntaje").html(suma)
+	}
+
+
+</script>
