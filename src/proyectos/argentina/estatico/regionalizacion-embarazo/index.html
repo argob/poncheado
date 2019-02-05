@@ -26,8 +26,8 @@ layout: argentina
 
 <section>
 	<div class="container">
-		<h1>Regionalización del embarazo</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ad, pariatur facilis! Iure molestiae fugiat earum saepe illo dolor, velit ex voluptatem cupiditate veniam quis magnam reiciendis, blanditiis totam asperiores.</p>
+		<h1>Calculadora de embarazo de riesgo</h1>
+		<p>Elegí las opciones para ver el nivel de riesgo del embarazo de una persona.</p>
 		<hr>
 
 
@@ -61,9 +61,9 @@ layout: argentina
 
 <hr>
 	<div id="resultado">
-            <div class="h2 text-success" id="tipoEmbarazo">Sin riesgo</div>
+            <div class="h2" id="tipoEmbarazo"><i class="fa fa-check-circle text-success"></i> Bajo riesgo</div>
             <p class="lead">Puntaje: <span id="puntaje">0</span></p>
-            <p class="text-muted">Aca puede ir una aclaración</p>
+            <p class="text-muted"><a href="https://www.argentina.gob.ar/salud/crecerconsalud/embarazo-parto-puerperio/embarazo">Más información de salud sobre el embarazo</a></p>
 	</div>
 </fieldset>
 
@@ -84,9 +84,9 @@ layout: argentina
 			}
 		})
 
-		if(suma <= 1){jQuery("#tipoEmbarazo").html("Bajo riesgo")}
-		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html("Mediano riesgo")}
-		if(suma >= 7){jQuery("#tipoEmbarazo").html("Alto riesgo")}
+		if(suma <= 1){jQuery("#tipoEmbarazo").html('<i class="fa fa-check-circle text-success"></i> Bajo riesgo')}
+		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html('<i class="fa fa-exclamation-circle text-naranja"></i> Mediano riesgo')}
+		if(suma >= 7){jQuery("#tipoEmbarazo").html('<i class="fa fa-warning text-danger"></i> Alto riesgo')}
 
 		jQuery("#puntaje").html(suma)
 	}
