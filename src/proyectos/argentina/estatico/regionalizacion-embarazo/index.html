@@ -52,7 +52,7 @@ layout: argentina
 		<div class="checkbox"><label for="opcion14"><input type="checkbox" value="1" id="opcion14"> Hábito de fumar</label></div>
 		<div class="checkbox"><label for="opcion15"><input type="checkbox" value="1" id="opcion15"> IMC &gt; 29</label></div>
 		<div class="checkbox"><label for="opcion16"><input type="checkbox" value="4" id="opcion16"> HTA crónica</label></div>
-		<div class="checkbox"><label for="opcion17"><input type="checkbox" value="3" id="opcion17"> Diabéticas</label></div>
+		<div class="checkbox"><label for="opcion17"><input type="checkbox" value="3" id="opcion17"> Diabetes</label></div>
 		<div class="checkbox"><label for="opcion18"><input type="checkbox" value="4" id="opcion18"> VDRL+</label></div>
 		<div class="checkbox"><label for="opcion19"><input type="checkbox" value="4" id="opcion19"> Sin consulta prenatal</label></div>
 		<div class="checkbox"><label for="opcion20"><input type="checkbox" value="2" id="opcion20"> Consultas prenatales 1-4</label></div>
@@ -63,7 +63,10 @@ layout: argentina
 	<div id="resultado">
             <div class="h2" id="tipoEmbarazo"><i class="fa fa-check-circle text-success"></i> Bajo riesgo</div>
             <p class="lead">Puntaje: <span id="puntaje">0</span></p>
-            <p class="text-muted"><a href="https://www.argentina.gob.ar/salud/crecerconsalud/embarazo-parto-puerperio/embarazo">Más información de salud sobre el embarazo</a></p>
+            <div class="btn-toolbar">
+	            <a href="https://www.argentina.gob.ar/regionalizacion-del-embarazo" class="btn btn-link">Ver maternidades por nivel de complejidad</a>
+	            <a id="resetearBtn" class="btn btn-link">Resetear</a>
+            </div>
 	</div>
 </fieldset>
 
@@ -71,12 +74,21 @@ layout: argentina
 	</div>
 </section>
 <script>
+
+	var suma = 0;
 	jQuery("#formulario input").on("change",function(){
 		calcular();
 	})
 
+	jQuery("#resetearBtn").on("click",function(){
+		jQuery("#formulario input").prop("checked",false);
+		jQuery("#tipoEmbarazo").html('<i class="fa fa-check-circle text-success"></i> Bajo riesgo');
+		$('html,body').scrollTop(0);
+		jQuery("#puntaje").html("0");
+	})
+
 	function calcular(){
-		var suma = 0;
+		suma = 0;
 		jQuery("#formulario input").each(function(){
 			if(jQuery(this).is(":checked")){
 				valor = jQuery(this).val();
