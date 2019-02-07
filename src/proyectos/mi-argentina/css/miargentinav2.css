@@ -3,8 +3,8 @@
 .brand-icon{
   width: 300px;
 }
-.icono-arg-casa-negativo-header{
-  font-size: 20px!important
+.icono-dashboard{
+  font-size: 25px!important
 }
 
 
@@ -12,9 +12,13 @@
   float: left;
 }
 
-.navbar-right-mobile{
+.navbar-right-header{
   float: right;
 }
+.nav-header-dashboard li:first-child{
+  margin-top: -10px;
+}
+
 #dashboard-sidebar .panel-sidebar{
   border: 0;
   margin-bottom: 0px;
@@ -24,7 +28,15 @@
 .navbar ul li .dropdown-micuenta, .nav .open > a, .navbar ul li .dropdown-notificaciones{
   background-color: #ffffff!important;
 }
+.navbar-right .dropdown-micuenta{
+  right: 3px;
+  width: 275px;
+  left: initial;
+}
 
+.navbar-right .dropdown-micuenta h3{
+  margin-top: 20px;
+}
 .navbar .open > .dropdown-menu{
   border: 1px #dbdbdb solid;
 }
@@ -84,12 +96,13 @@
   color: #000000!important;
 }
 
-.dropdown-micuenta li a:hover, .dropdown-notificaciones li a:hover { 
+.dropdown-micuenta li a:hover, .dropdown-notificaciones li a:hover, .dropdown-notificaciones li a:visited, .page-sidebar .nav-pills li>a:active { 
   border-left: 4px #0072bb solid!important;
   color: #0072bb!important;
-  background-color: #ffffff!important;
 }
-
+.page-sidebar .nav-pills li>a:visited{
+  color: #333;
+}
 .dropdown-micuenta .media, .dropdown-notificaciones .media{
   width: 240px;
 }
@@ -99,13 +112,11 @@
 }
 
 
-.navbar-right .dropdown-micuenta{
-  right: 20px;
-}
 
 .nav-dashboard > li{
   float: left!important;
 }
+
 
 .nav-dashboard li img{
   width: 50%;
@@ -114,11 +125,23 @@
 }
 .sidebar{
     min-height: 100%;
+    max-width: 380px;
+    min-width: 380px;
+  }
+  .sidebar nav{
+    max-width: 320px;
+    min-width: 320px;
   }
 .dashboard{
   display: flex;
 }
 
+@media(max-width: 1999px){
+  .sidebar{
+    max-width: 330px;
+    min-width: 330px;
+  }
+}
 @media(max-width: 878px) and (min-width: 768px){
   #dashboard-sidebar i{
     width: 46px!important;
@@ -130,7 +153,7 @@
 
 @media (max-width: 767px){
   .brand-icon{
-    width:200px;
+    width:160px;
   }
   h1.title-dashboard{
     font-size: 1.9em;
@@ -138,11 +161,13 @@
   .sidebar{
     padding: 0px;
     width: 100%;
+    max-width: 100%!important;
   }
   #dashboard-sidebar{
     background-color: #f2f3f4;
     width: 85%;
     margin: auto;
+    max-width: 100%!important;
   }
   #dashboard-sidebar ul{
     padding: 0px 15px;
@@ -151,26 +176,42 @@
     background-color: initial!important;
   }
   
-  #dropdown-micuenta{
+  #dropdown-micuenta, a#dropdown-notificaciones{
     text-decoration: none!important;
+    
   }
-  #dropdown-notificaciones i{
-    font-size: 1.4em;
-  }
+  
   .notificaciones{
     margin-right: 15px;
   }
+
+  .dropdown-notificaciones{
+    float: right;
+    left: initial;
+    right: 60px!important;
+    max-width: 350px;
+  }
+
+
 }
 @media (max-width: 560px){
   #dashboard-sidebar p{
     font-size: 0.8em;
   }
+  .sidebar{
+    max-width: 100%!important;
+  }
   #dashboard-sidebar{
     width: 100%;
+    max-width: 100%!important;
   }
 
   h1.title-dashboard{
     text-align: center;
+  }
+
+  .navbar-right .dropdown-micuenta{
+    right: 5px;
   }
 }
 @media (max-width: 450px){
@@ -179,6 +220,18 @@
     max-width: 300px;
     float: none!important;
     margin: 0 auto!important;
+  }
+
+
+  .icono-dashboard{
+    font-size: 18px!important
+  }
+  .nav-header-dashboard li:first-child{
+    margin-top: -4px;
+  }
+
+  .navbar-right-header{
+    margin-top: 22px!important;
   }
  
 }
