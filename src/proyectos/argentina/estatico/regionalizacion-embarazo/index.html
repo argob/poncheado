@@ -63,10 +63,14 @@ layout: argentina
 	<div id="resultado">
             <div class="h2" id="tipoEmbarazo"><i class="fa fa-check-circle text-success"></i> Bajo riesgo</div>
             <p class="lead">Puntaje: <span id="puntaje">0</span></p>
-            <div class="btn-toolbar">
-	            <a href="https://www.argentina.gob.ar/regionalizacion-del-embarazo" class="btn btn-link">Ver maternidades por nivel de complejidad</a>
-	            <a id="resetearBtn" class="btn btn-link">Resetear</a>
+            <div>
+            	<a href="https://www.argentina.gob.ar/regionalizacion-del-embarazo" class="btn btn-primary">Mapa de maternidades</a>
             </div>
+
+            <div>
+           		<a id="resetearBtn" class="btn btn-link">Resetear calculadora</a>
+           	</div>
+            
 	</div>
 </fieldset>
 
@@ -97,7 +101,7 @@ layout: argentina
 		})
 
 		if(suma <= 1){jQuery("#tipoEmbarazo").html('<i class="fa fa-check-circle text-success"></i> Bajo riesgo')}
-		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html('<i class="fa fa-exclamation-circle text-naranja"></i> Mediano riesgo')}
+		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html('<i class="fa fa-exclamation-circle text-danger"></i> Mediano riesgo')}
 		if(suma >= 7){jQuery("#tipoEmbarazo").html('<i class="fa fa-warning text-danger"></i> Alto riesgo')}
 
 		jQuery("#puntaje").html(suma)
