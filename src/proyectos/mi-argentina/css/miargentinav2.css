@@ -4,7 +4,7 @@
   width: 300px;
 }
 .icono-dashboard{
-  font-size: 25px!important
+  font-size: 21px!important
 }
 
 
@@ -14,6 +14,7 @@
 
 .navbar-right-header{
   float: right;
+  margin-top: 1.3em!important;
 }
 .nav-header-dashboard li:first-child{
   margin-top: -10px;
@@ -51,11 +52,29 @@
     display: block;
     margin-bottom: 0px!important;
 }
-#dashboard-sidebar ul li:hover i{
-  color: #0072bb;
+
+
+#dashboard-sidebar ul li > a:hover{
+  background: #F4F4F4;
 }
-
-
+ #dashboard-sidebar ul li > a:active{
+  background: #E5EAEB;
+}
+#dashboard-sidebar ul li > a:hover, #dashboard-sidebar ul li > a:active,  #dashboard-sidebar ul li > a.active {
+  border-radius: 0px!important;
+}
+ #dashboard-sidebar ul li.active > a{
+  border-left: 5px solid #0072bb;
+  background-color: #E5EAEB;
+  border-radius: 0px;
+  
+ }
+#dashboard-sidebar ul li.active > a, #dashboard-sidebar ul li.active > a i{
+  color: #0072bb!important;
+}
+#dashboard-sidebar ul li.active > a .media{
+  margin-left: -7px;
+}
 #dashboard-sidebar i{
   text-align: center;
   width: 66px!important;
@@ -96,7 +115,7 @@
   color: #000000!important;
 }
 
-.dropdown-micuenta li a:hover, .dropdown-notificaciones li a:hover, .dropdown-notificaciones li a:visited, .page-sidebar .nav-pills li>a:active { 
+.dropdown-micuenta li a:hover, .dropdown-notificaciones li a:hover, .dropdown-notificaciones li a:visited { 
   border-left: 4px #0072bb solid!important;
   color: #0072bb!important;
 }
@@ -125,8 +144,7 @@
 }
 .sidebar{
     min-height: 100%;
-    max-width: 380px;
-    min-width: 380px;
+
   }
   .sidebar nav{
     max-width: 320px;
@@ -136,12 +154,7 @@
   display: flex;
 }
 
-@media(max-width: 1999px){
-  .sidebar{
-    max-width: 330px;
-    min-width: 330px;
-  }
-}
+
 @media(max-width: 878px) and (min-width: 768px){
   #dashboard-sidebar i{
     width: 46px!important;
@@ -154,7 +167,7 @@
 /***mobile**/
 @media (max-width: 767px){
   .brand-icon{
-    width:160px;
+    width:116px;
   }
   h1.title-dashboard{
     font-size: 1.9em;
@@ -168,25 +181,33 @@
     background-color: #f2f3f4;
     margin: auto;
     max-width: 100%!important;
+
   }
   #dashboard-sidebar ul{
-    padding: 0px 15px;
+    padding: 0px 15px!important;
+
   }
-  .nav-dashboard li a{
+
+
+  .nav-dashboard li{
+    margin-top: 0px!important;
+  }
+  .nav-dashboard li a, .nav-dashboard h1{
     padding: 5px!important;
   }
-  .nav-dashboard li{
-    margin-top: 0px;
-  }
+  
   .nav-dashboard > li > a:hover{
     background-color: initial!important;
   }
-  
+  .nav-dashboard li a p{
+    font-size: 0.9em;
+  }
   #dropdown-micuenta, a#dropdown-notificaciones{
     text-decoration: none!important;
-    
   }
-  
+  .dropdown-micuenta .media-body{
+    display: table-cell;
+  }
   .notificaciones{
     margin-right: 15px;
   }
@@ -197,7 +218,11 @@
     right: 60px!important;
     max-width: 350px;
   }
-
+#dashboard-sidebar ul li.active > a{
+  border: 0px;
+  margin-left: 0px;
+  background-color: #f2f3f4;
+}
 
 }
 @media (max-width: 560px){
@@ -215,5 +240,11 @@
 
   .navbar-right .dropdown-micuenta{
     right: 5px;
+  }
+}
+
+@media (max-width: 358px){
+  .nav-dashboard li{
+    width: 100%;
   }
 }
