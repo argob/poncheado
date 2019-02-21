@@ -119,7 +119,7 @@ a.panel span {
         <div class="col-md-9">                
           <div class="form-group">
                 <label class="control-label" for="localidad">Búsqueda</label>
-                <input type="text" class="form-control search">
+                <input type="text" class="form-control" id="buscador">
           </div>
         </div>
 
@@ -177,31 +177,33 @@ a.panel span {
 <div class="col-sm-12">
 <h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuándo estemos en tu localidad?</h2>
 </div>
-   <div class="col-md-6">
-      <div class="panel-pane pane-texto">
-               <div class="alert alert-info">
-                  <div class="media">
-                     <div class="media-left"> <i class="fa fa-desktop fa-fw fa-4x"></i></div>
-                     <div class="media-body">
-                        <h4><a target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio/">Registrate</a></h4>
-                        <p>Te avisaremos cuándo estemos cerca de tu casa.</p>
-                     </div>
-                  </div>
-               </div>
-      </div>
-   </div>
-   <div class="col-md-6">
-      <div class="panel-pane pane-texto">
-               <div class="alert alert-warning">
-                  <div class="media">
-                     <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
-                     <div class="media-body">
-                        <h4><a href="/elestadoentubarrio/preguntas-frecuentes">Preguntas frecuentes</a></h4>
-                        <p>Entrá acá sí tenés alguna duda.</p>
-                     </div>
-                  </div>
-               </div>
-          </div>
+  <div class="row">
+     <div class="col-md-6">
+        <div class="panel-pane pane-texto">
+                 <div class="alert alert-info">
+                    <div class="media">
+                       <div class="media-left"> <i class="fa fa-desktop fa-fw fa-4x"></i></div>
+                       <div class="media-body">
+                          <h4><a target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio/">Registrate</a></h4>
+                          <p>Te avisaremos cuándo estemos cerca de tu casa.</p>
+                       </div>
+                    </div>
+                 </div>
+        </div>
+     </div>
+     <div class="col-md-6">
+        <div class="panel-pane pane-texto">
+                 <div class="alert alert-warning">
+                    <div class="media">
+                       <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
+                       <div class="media-body">
+                          <h4><a href="/elestadoentubarrio/preguntas-frecuentes">Preguntas frecuentes</a></h4>
+                          <p>Entrá acá sí tenés alguna duda.</p>
+                       </div>
+                    </div>
+                 </div>
+            </div>
+     </div> 
    </div>
 </div>
 
@@ -371,12 +373,75 @@ else{
 
   jQuery("#provincia .preloader").remove();
 provinciasCargadas = true;
+
+
 //FILTRO
 var options = {
   valueNames: [ 'nombre']
 };
-var userList = new List('puntosListado', options);
+var lista = new List('puntosListado', options);
+
+
+
+
+
+// FUNCION REMOVER ACENTO
+var removeAccents = (function () {
+    var letters1 = "äáàâăëéèêĕüúùûŭöóòôŏÄÁÀÂĂËÉÈÊĔÜÚÙÛŬÖÓÒÔŎßșȘ",
+        letters2 = "aaaaaeeeeeuuuuuoooooAAAAAEEEEEUUUUUOOOOOssS",
+        patternLetters = new RegExp("[" + letters1 + "]", "g"),
+        lookupLetters = {}, letterTranslator;
+
+    letters1.split("").forEach(function (letter, i) {
+        lookupLetters[letter] = letters2[i];
+    });
+
+    letterTranslator = function(match) { 
+        return lookupLetters[match] || match;
+    };
+
+    return function removeAccents(input) {
+        return input.replace(patternLetters, letterTranslator);
+    };
+})();
+
+// FILTRO ACENTOS PARA LIST.JS
+function getAccentInsensitiveFilter(property, search) {
+    search = removeAccents(search).toLowerCase();
+
+    return function (item) {
+        var value = removeAccents(item.values()[property] || "").toLowerCase();
+        return value.indexOf(search) > -1;
+    };
 }
+
+
+
+$("#buscador").on("keydown",function(){
+  console.log("prueba")
+  var busqueda = $(this).val();
+  lista.filter(getAccentInsensitiveFilter("nombre", busqueda));//Filtro de acentos aplicado a List.js 
+})
+
+
+
+
+
+
+
+
+
+
+
+}//FIN DE CONDICIONAL
+
+
+
+
+
+
+
+
 jQuery(document).on("change","select",function(){
   var provinciaSeleccionada = jQuery("#provincia option:selected").val();
   filtrarPuntos(listaPuntos,provinciaSeleccionada);
