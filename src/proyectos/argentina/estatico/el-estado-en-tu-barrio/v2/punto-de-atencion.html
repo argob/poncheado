@@ -1,7 +1,3 @@
----
-layout: argentina
----
-
 <script type="text/javascript">
   var busqueda = document.getElementById('buscar');
   var buscar = document.getElementById('buscar-btn');
@@ -205,33 +201,7 @@ layout: argentina
 </div><!-- /.modal -->
 
     </main>
-    <footer class="main-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <img class="image-responsive" alt="Argentina.gob.ar - Presidencia de la Nación" src="/proyectos/argentina/img/argentinagob.svg" height="50">
-        <p class="text-muted small"><a href="https://creativecommons.org/licenses/by/2.5/ar/">Los contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Reconocimiento 2.5 Argentina License</a></p>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/servicios">Trámites y servicios</a></li>
-          <li><a href="/organismos">Organismos del Estado</a></li>
-          <li><a href="/pais">Nuestro país</a></li>
-          <li><a href="http://mapadelestado.modernizacion.gob.ar/">Mapa del Estado</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <ul>
-          <li><a href="/ayuda">Ayuda</a></li>
-          <li><a href="/sugerencias">Hacer una sugerencia</a></li>
-          <li><a href="/acerca">Acerca de este sitio</a></li>
-          <li><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
-          <li><a href="/creditos">Créditos</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+    
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -268,19 +238,16 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
             $("#fechaPunto").parents(".media").show();
             $("#fechaPunto").html(fechaPunto);
         }
-
         //Tiene fecha inicio y fin
         if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
             $("#fechaPunto").parents(".media").show();
             $("#fechaPunto").html(fechaPunto);
         }
-
         //Es puntofijo
         if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
             $("#fechaPunto").parents(".media").hide();
         }
-
         $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
         
             if(val.gsx$suspendido.$t != ""){
@@ -289,7 +256,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
             }
           }
       });
-
 //LISTA DE TRÁMITES DEL PUNTO
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
   $(".preloader").remove();
