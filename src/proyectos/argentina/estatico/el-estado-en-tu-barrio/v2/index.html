@@ -284,6 +284,7 @@ window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var provincia = url.searchParams.get("provincia");
+    var lista = "";
     
     
     //LISTA DE PUNTOS
@@ -379,9 +380,10 @@ provinciasCargadas = true;
 var options = {
   valueNames: [ 'nombre']
 };
-var lista = new List('puntosListado', options);
+lista = new List('puntosListado', options);
 
 
+}//FIN DE CONDICIONAL
 
 
 
@@ -417,26 +419,17 @@ function getAccentInsensitiveFilter(property, search) {
 
 
 
-$("#buscador").on("keydown",function(){
-  console.log("prueba")
-  var busqueda = $(this).val();
-  lista.filter(getAccentInsensitiveFilter("nombre", busqueda));//Filtro de acentos aplicado a List.js 
+
+jQuery("#buscador").on("keyup",function(){
+  var busqueda = $.trim(jQuery(this).val());
+  
+   if(busqueda == ""){
+      lista.filter(getAccentInsensitiveFilter("nombre", ""));//Filtro de acentos aplicado a List.js 
+    }
+    else{
+      lista.filter(getAccentInsensitiveFilter("nombre", busqueda));//Filtro de acentos aplicado a List.js 
+    }
 })
-
-
-
-
-
-
-
-
-
-
-
-}//FIN DE CONDICIONAL
-
-
-
 
 
 
@@ -447,6 +440,7 @@ jQuery(document).on("change","select",function(){
   filtrarPuntos(listaPuntos,provinciaSeleccionada);
     if(provinciaSeleccionada == ""){
     jQuery("#aviso").show();
+    jQuery("#puntos").html("");
   }
   else{
     jQuery("#aviso").hide(); 
@@ -456,7 +450,6 @@ jQuery(document).on("change","select",function(){
 var tramites;
 jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
   listaTramites = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
-  
 })
 }
 </script>
