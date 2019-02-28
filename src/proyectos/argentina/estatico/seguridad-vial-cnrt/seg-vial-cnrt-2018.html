@@ -58,9 +58,12 @@ layout: argentina
         
       }
     </style>
-
- 
-  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="/transporte/mapa-de-gestion-2019" class="btn btn-primary">Ver mapa de gestión 2019</a>
+      </div>
+    </div>
+    
     <div id="spreadDatos" class="m-t-3 p-t-2">
       <div class="row">
         <div class="col-xs-12">
@@ -647,16 +650,16 @@ layout: argentina
               <div class="row numbers" id ="show-numbers">
                 
               </div>
-              <table class="table table-spaced table-hover"  id="show-data">
-                <thead>
+              <table class="table table-spaced table-hover"  >
+                <thead id="show-titulo" class="hidden">
                   <tr>
                     <th class="col-lg-2">Mes</th>
                     <th>Operativos Realizados</th>
                     <th>Vehículos Controlados</th>
-                    
                   </tr>
-                </thead> 
-                <tbody class="list">
+                </thead>
+                <tbody class="list" id="show-data">
+                  
                 </tbody>
               </table>
               <nav class="text-center">
@@ -668,7 +671,7 @@ layout: argentina
       </section>
       
     </div>
-  </div>
+
  
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
@@ -699,9 +702,10 @@ $(document).ready(function () {
          
      
 
-      var lista = '';
+      var lista = ''
       var actualNumbers = '';
       var isSelected;
+     
 
       $.each(spreadSheetDatos, function( key, item ) {
         
@@ -731,8 +735,9 @@ $(document).ready(function () {
 
 
         actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(vehiculosControlados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Vehículos controlados en ' + mes + '</p></div>';
+        $('#show-titulo').removeClass('hidden');
       }else if(!isSelected || provincia == 'Total'){
-        
+         $('#show-titulo').addClass('hidden');
         actualNumbers += '<div class="col-md-6"><h3 class="text-success" style="font-size:32px;">' + numeral(operativosrealizados).format('0,0').replace(/#|,/g,'.') + '</h3><p class="lead">Operativos realizados</p></div>';
 
 
@@ -749,6 +754,9 @@ $(document).ready(function () {
 
       $('#show-data').empty();
       $('#show-data').append(lista);
+
+     
+     
 
        
 

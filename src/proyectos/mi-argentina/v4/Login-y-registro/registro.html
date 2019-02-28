@@ -1,35 +1,15 @@
 ---
-layout: mi-argentina-sin-buscador-ni-perfil
+layout: mi-argentina-login
 ---
 
 <section class="container p-t-0">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2 class="m-t-3">Creá tu cuenta de Mi Argentina</h2>
+      <h1 class="m-t-3">Creá tu cuenta de Mi Argentina</h1>
       <hr>
       <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
       <fieldset>
-        <legend><h3>Datos personales</h3></legend>
-        <div class="row">
-          <div class="col-sm-12 form-group item-form">
-            <fieldset>
-              <legend>
-                <label>Tipo de documento</label>
-              </legend>
-              <div class="form-group">
-                <label for="tipoCuil" class="radio-inline">
-                  <input type="radio" name="TipoDoc" id="tipoCuil" value="Cuil" required="" aria-required="true">
-                  CUIL
-                </label>
-                <label for="tipoPExtranjero" class="radio-inline">
-                  <input type="radio" name="TipoDoc" id="tipoPExtranjero" value="PasaporteExtranjero" required="" aria-required="true">
-                  Pasaporte extranjero
-                </label>
-                <p class="help-block error hidden">Ingresá tu tipo de documento</p>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+        <legend><h2>Datos personales</h2></legend>
         <div class="row">
           <div class="col-md-6 form-group item-form">
             <label for="cuil">CUIL o pasaporte extranjero</label>
@@ -84,7 +64,7 @@ layout: mi-argentina-sin-buscador-ni-perfil
       </fieldset>
       <fieldset>  
         <legend>
-          <h3>Domicilio</h3>
+          <h2>Domicilio</h2>
         </legend>
         
         <div class="row">
@@ -401,7 +381,7 @@ layout: mi-argentina-sin-buscador-ni-perfil
         </div>
       </fieldset>
       <fieldset>
-        <legend><h3>Datos de tu cuenta</h3></legend>
+        <legend><h2>Datos de tu cuenta</h2></legend>
         <div class="row">
           <div class="col-md-10 form-group item-form">
             <label for="email">Correo electrónico</label>
@@ -425,7 +405,7 @@ layout: mi-argentina-sin-buscador-ni-perfil
             <div class="form-group item-form">
               <div class="checkbox">
                <label for="Option_1">
-                <input id="Option_1" name="Option_1" type="checkbox" value="">Acepto los <a href="#">términos y condiciones</a>
+                <input checked id="Option_1" name="Option_1" type="checkbox" value="">Acepto los <a href="#">términos y condiciones</a>
               </label>
             </div>
             
@@ -444,16 +424,3 @@ layout: mi-argentina-sin-buscador-ni-perfil
   
 </section>
 
-<script>
-  $(function(){
-    var next = false;
-    $('.well button').on('click', function(event){
-      if(!next){
-        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número que ingresaste no está registrado. Por favor intentá de nuevo o <a href="#">registrate</a>.</span>');
-        $('#id_number').parent().addClass('has-error');
-        next = true;
-        return false;
-      }
-    });
-  });
-</script>

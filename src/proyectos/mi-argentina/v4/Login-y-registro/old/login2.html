@@ -1,5 +1,5 @@
 ---
-layout: mi-argentina-sin-buscador-ni-perfil
+layout: mi-argentina-login
 ---
 
 <section class="container-fluid p-t-0">
@@ -39,17 +39,3 @@ layout: mi-argentina-sin-buscador-ni-perfil
     </div> 
   </div>
 </section>
-
-<script>
-  $(function(){
-    var next = false;
-    $('.well button').on('click', function(event){
-      if(!next){
-        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número que ingresaste no está registrado. Por favor intentá de nuevo o <a href="#">registrate</a>.</span>');
-        $('#id_number').parent().addClass('has-error');
-        next = true;
-        return false;
-      }
-    });
-  });
-</script>
