@@ -46,17 +46,38 @@ layout: argentina
         max-width: 380px!important;
       }
 
-       .ean-btn, .ean-btn:hover, .ean-btn:visited, .ean-btn:focus, .ean-btn:active {
-          border: 0px!important;
-          color: #333333;
-          background-color: #F9F9F9 !important;
+      
+
+      #ean .popover{
+        top: 39px;
+        left: -118px!important;
+        display: block;
+        width: 250px!important;
+      }
+
+      #ean{
+        position: relative!important
+      }
+
+      #ean .popover .arrow{
+          left: 0!important;
+          right: 0!important;
+          margin: 0 auto!important;
+      }
+      
+      @media screen and (max-width: 767px){
+       
+        .descripcion, .proveedor, .ean{
+          white-space: unset!important;
+        }
+        
       }
       
     
     </style>
 
   
-        <div class="container">
+      <div class="container" id="#listaLamparasLed">
           
 
           <div id="listadoProducto">
@@ -67,7 +88,8 @@ layout: argentina
               <div class="form-group">
                 <label for=""> <strong>Zona</strong></label>
                 <select id="zonaId" class="form-control">
-                  <option data-zona="amba" value="amba" selected>AMBA</option>
+                  <option data-zona="seleccionar" value="seleccionar" selected>Seleccionar</option>
+                  <option data-zona="amba" value="amba">AMBA</option>
                   <option data-zona="pba" value="pba">Buenos Aires</option>
                   <option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
                   <option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
@@ -95,27 +117,14 @@ layout: argentina
                     <tr>
                       <th >Descripción</th>
                       <th>Proveedor</th>
-                      <th class="th-min">EAN 
-                    <button
-                      class="ean-btn message" 
-                      type="button"
-                      rel="popover" 
-                      data-container="body" 
-                      data-toggle="popover" 
-                      data-html="true" 
-                      data-placement="bottom" 
-                      data-content="<div>
-                                      <strong>European Article Number:</strong> 
-                                      <p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p>
-                                    </div>
-                                    <div class='m-x-2'>
-                                      <img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'>
-                                    </div>"
-                      >
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </button>
-                  </th>
-                      <th style="width: 120px;">Precio</th>
+                      <th>EAN 
+                        <a id="ean" href="#listaLamparasLed">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                              
+                        </a>
+                        <div id="eanContent"></div>
+                      </th>
+                      <th>Precio</th>
                       
                     </tr>
                   </thead> 
@@ -136,28 +145,13 @@ layout: argentina
 
         <div class="row panels-row">
 
-
-          <div class="col-xs-12 col-sm-offset-2 col-sm-4 ">
-            <a class="panel panel-default" href="/precios-cuidados">
-              <div class="panel-body">
-                <div class="media">
-                  
-                  <div class="media-body media-middle">
-                    <h3>Precios cuidados</h3>
-                    
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
           <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default" href="https://argentina.gob.ar./pasatealed/">
+            <a class="panel panel-default" href="/precios-cuidados/lista-de-supermercados-adheridos-2018">
               <div class="panel-body">
                 <div class="media">
                   
                   <div class="media-body">
-                    <h3>Pasate a LED</h3>
+                    <h3>Supermercados adheridos</h3>
                     
                   </div>
                 </div>
@@ -166,9 +160,42 @@ layout: argentina
           </div>
 
 
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="/precios-cuidados/productos-faltantes">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Productos faltantes</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
 
+
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="/opciones-para-ahorrar">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Opciones para ahorrar</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          
         </div>
 
+
+       <!-- <div>
+          <h3 class="text-center m-b-1  m-t-2">Si no encontrás un producto</h3>
+        </div>
 
         <div class="row">
           <div class="col-xs-12 col-sm-offset-3 col-sm-6 m-b-2">
@@ -180,13 +207,34 @@ layout: argentina
                   </div>
                   <div class="media-body">
                     <h3>0800-666-1518</h3>
-                    <p class="text-muted">Comunicate para informar la falta de un producto.</p>
+                    <p class="text-muted">Comunicate telefónicamente para informarnos</p>
                   </div>
                 </div>
               </div>
             </a>
           </div>
-        </div>
+        </div>-->
+
+
+        <section>
+          <div class="container">
+            <div class="row">
+              <div>
+                <div class="panel-separator"></div>
+                  <div class="panel-pane pane-area-contacto">
+                    <div class="pane-content">
+                      <h5 class="text-center">
+                        Comunicate para informar la falta de un producto
+                      </h5>
+                      <p class="margin-40 text-center">
+                        <strong>Teléfono:</strong> <a href="tel:08006661518">0800-666-1518</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
       </div>
           
     
@@ -203,7 +251,7 @@ layout: argentina
 $(document).ready(function () {
 
     
-    var zona = "amba"
+    var zona = "seleccionar";
     var precio='';
     var listadoProducto = "";
    
@@ -220,12 +268,12 @@ $(document).ready(function () {
         );
 
           function filtrarContenido(zona){
-
+            
           var lista = '';
 
+          if(zona != 'seleccionar'){
+            $.each(listadoProducto, function( key, item ) {
 
-          
-          $.each(listadoProducto, function( key, item ) {
 
             if(zona == "amba"){
               precio = item.gsx$amba.$t;
@@ -256,34 +304,40 @@ $(document).ready(function () {
               lista += ' <td class"precio"> <p class="text-success"> <strong>'+ precio +'</strong></p></td>';
               lista += '</tr>';
             }
-
           }
+
         );
 
-       $('#show-data').empty();
-          $('#show-data').append(lista);
+        $('#show-data').empty();
+        $('#show-data').append(lista);
 
-
-
-
-          var listOptions = {
-            valueNames: ['descripcion','proveedor','ean'],
-            page: 10,
-            plugins: [ ListPagination({}) ]
-            
-           };
-
-             var listaNueva = new List('listadoProducto', listOptions); 
-
-         
 
 
           
+          var listOptions = {
+            valueNames: ['descripcion','proveedor','ean'],
+            page: 10,
+            plugins: [ ListPagination({}) ],
+            
+            pagination:true
+           };
 
-           $('.search').on("keyup", function(){
+            var listaNueva = new List('listadoProducto', listOptions); 
+
+       $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
+
+          $('.pagination li').show();
+       }else{
+        $('#show-data').empty();
+
+        $('.pagination li').hide();
+        
+       }
+
+      
 
 
         }
@@ -293,17 +347,31 @@ $(document).ready(function () {
        zona = $("#zonaId option:selected" ).data('zona');
        
        filtrarContenido(zona);
+       console.log(zona);
       });
 
 
-     $(function () {
-      $('[data-toggle="popover"]').popover({
-        content: function () {
-            return $(this).next('.popper-content').html();
-        }
-      })
+    
+   
+
+     $("#ean").on("click", function(){
+       $('#eanContent').popover('toggle');
+   });
+
+   $('#eanContent').popover({
+       title: "European Article Number:",
+       html: 'true',
+       content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
+       placement:"bottom",
+       trigger: 'manual',
+        container: '#ean',
+       viewport:"#ean" 
+
+   });
+
       
-    })
+
+
 
   });
   })(jQuery);

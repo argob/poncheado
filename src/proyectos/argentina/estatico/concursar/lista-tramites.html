@@ -1,0 +1,156 @@
+---
+layout: argentina
+---
+    <style>
+      
+      @media screen and (max-width: 767px){
+        td{
+          white-space: unset!important;
+        }
+      }
+    </style>
+
+
+      <div class="container">
+        <div id="listadoTramites">
+          <div class="row">
+            
+            
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for=""><strong>Categoría</strong></label>
+                  <select id="categoria" class="form-control">
+                    <option data-categoria="todos" value="todos">Todos</option>
+                    
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-8">    
+                <div class="form-group">
+                  <label for=""> <strong> Buscá por descripción </strong></label>
+                  <input class="form-control search" placeholder="">
+                </div>
+              </div>
+          
+            </div>
+            <div class="row">
+              <div class="table-responsive col-md-12">
+                <table class="table table-spaced table-hover">
+                  <thead>
+                    <tr>
+                      <th>Trámite</th>
+                      <th width="480">Resumen</th>
+                      <th>Categoría</th>
+                      <th width="100">URL</th>
+
+                    </tr>
+                  </thead> 
+                  <tbody class="list" id="show-data"></tbody>
+                </table>
+
+              </div>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>           
+          </div>
+        </div>  
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+    var filtroCategorias = "todos";
+    
+    var listadoTramites ="";
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1ccW72TuOcrOx9b3yldjLOvb2s4SiJOy3L2oCi13U5iI/1/public/values?alt=json',
+    function (data) {
+
+          listadoTramites = data['feed']['entry'];
+          filtrarContenido(filtroCategorias);
+      });
+
+          function filtrarContenido(filtroCategorias){
+          var showData = $('#show-data');
+          
+          var html = '';
+
+
+          $.each( listadoTramites, function( key, item ) {
+
+           if((filtroCategorias == item.gsx$categoria.$t) || (filtroCategorias == "todos")){
+
+            html += '<tr>';
+            html += ' <td class="tramite"><strong>'+ item.gsx$tramite.$t + '</strong></td>';
+           
+            html += ' <td class="resumen"> '+ item.gsx$resumen.$t +'</td>';
+
+            html += ' <td class="categoria">'+ item.gsx$categoria.$t + '</td>';
+
+            html += ' <td class="url"><a class="btn btn-primary btn-sm" href="'+ item.gsx$url.$t + '"> VER MÁS</a></td>';
+            html += '</tr>';
+           }
+
+          });
+
+          showData.empty();
+          showData.append(html);
+
+
+
+
+          var listOptions = {
+            valueNames: ['tramite','resumen','categoria'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+            var listaNueva = new List('listadoTramites', listOptions); 
+          
+          $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+        }
+
+
+    $("#categoria").on("change", function() {
+       filtroCategorias = $( "#categoria option:selected" ).data('categoria');
+       filtrarContenido(filtroCategorias); 
+
+    });
+
+
+       jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1ccW72TuOcrOx9b3yldjLOvb2s4SiJOy3L2oCi13U5iI/2/public/values?alt=json',
+    function (data) {
+      var grupoCategorias= data['feed']['entry'] 
+
+      
+          $.each(grupoCategorias, function(index, el) {
+            var categoria = el['gsx$categoria']['$t'];
+            $('#categoria').append('<option data-categoria="'+ categoria +'" value="'+ categoria +'">'+ categoria +'</option>')
+          
+
+          });
+
+         
+
+      });
+
+
+  });
+  })(jQuery);
+  
+</script>

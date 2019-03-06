@@ -1,0 +1,215 @@
+---
+layout: argentina
+---
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/eetb_pba_header_0.jpg');">
+	<div class="jumbotron_bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb pull-left">
+						<li>
+							<a href="/">Inicio</a>
+						</li>
+						<li>
+							<a href="https://www.argentina.gob.ar/elestadoentubarrio">El Estado en tu Barrio</a>
+						</li>
+						<li class="active">Buenos Aires</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="jumbotron_body">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<p>
+						<img src="https://www.argentina.gob.ar/sites/default/files/presidencia.svg" style="width: 160px;" />
+						<img src="https://www.argentina.gob.ar/sites/default/files/logo-pba.svg" style="width: 160px;" />
+					</p>
+					<p>
+						<img src="https://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;" />
+					</p>
+					<h1 class="sr-only">El estado en tu barrio - Buenos Aires</h1>
+					<p>Te acercamos las soluciones que vos y tu familia necesitan. A través de los servicios de El Estado en tu Barrio vas a poder resolver tus trámites, cerca de tu casa, de una manera fácil, rápida y sin intermediarios. Estamos haciendo lo que hay que hacer.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay">&nbsp;</div>
+</section>
+<div class="container lugares-mapa">
+	<section class="p-b-0">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<h2 class="text-center">Conocé los puntos fijos de El Estado en tu Barrio</h2>
+				
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="row row-flex" id="barrios"></div>
+	</section>
+</div>
+
+
+
+<section>
+	<div class="container"  id="serviciosEetb">
+		<div>
+			<h2 class="text-center">Estos son los servicios y trámites que te acercamos</h2>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<form role="search">
+						<div class="input-group input-group-lg">
+							<input class="form-control search" placeholder="Buscá el trámite que necesitás" type="text" />
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button"></button>
+							</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<div id="servicios"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="text-center m-b-2">Mirá las fotos de El Estado en tu Barrio en Buenos Aires</h3>
+			</div>
+			<div class="col-md-4">
+				<img class="img-responsive img-rounded m-b-1" src="https://www.argentina.gob.ar/sites/default/files/eetb_pba_1_0.jpg" />
+			</div>
+			<div class="col-md-4">
+				<img class="img-responsive img-rounded m-b-1" src="https://www.argentina.gob.ar/sites/default/files/eetb_pba_2_0.jpg" />
+			</div>
+			<div class="col-md-4">
+				<img class="img-responsive img-rounded m-b-1" src="https://www.argentina.gob.ar/sites/default/files/eetb_pba_3_0.jpg" />
+			</div>
+		</div>
+	</div>
+</section>
+<section class="bg-gray">
+	<div class="container text-center">
+		<h3>Mirá de qué se trata el Estado en tu Barrio</h3>
+		<a class="btn btn-primary btn-lg" href="https://www.youtube.com/playlist?list=PLry2W0bcBZ9wVhqAZJoYGBw2kKO4HL22A" target="_blank">&nbsp; Ver los videos </a>
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.fuzzysearch.js/0.1.0/list.fuzzysearch.min.js"></script>
+<script>
+	(function($) {
+		$(document).ready(function () {
+			
+			var dataPoints = '';
+			var dataServ = '';
+      		var categoriasServicios = [];
+      		var indice = 0;
+
+			jQuery.getJSON('https://spreadsheets.google.com/feeds/list/19UMNGbX_Y8fJsptIOwelvbyDaonUaR5xIbMtmjAFIMg/1/public/values?alt=json', 
+				function(data){
+					dataPoints = data['feed']['entry'];
+
+					
+					bringPoints();
+					
+			});
+
+			jQuery.getJSON('https://spreadsheets.google.com/feeds/list/19jkYmpoMUCvcylRUPfLtYja6PjxpjH_a6kD_47o78Vw/1/public/values?alt=json', 
+				function(serv){
+					dataServ = serv['feed']['entry'];
+					
+
+					dataServ = serv.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
+					
+
+					bringServ();
+					
+			});
+
+			function bringPoints(){
+				var listPoints = '';
+				
+				$.each(dataPoints, function(index,eachPoints){
+
+					if(eachPoints.gsx$motivosuspencion.$t == ''){
+						listPoints += '<div class="col-xs-6 col-sm-4 m-y-1">';
+						listPoints += '<h4 class="m-t-2">'+ eachPoints.gsx$lugar.$t + '</h4>';
+						listPoints += '<p><b>Dirección: </b>'+ eachPoints.gsx$direccion.$t + '</p>';
+						listPoints += '<p><b>Días y horarios:</b> De '+ eachPoints.gsx$dias.$t +' de '+ eachPoints.gsx$horarios.$t +'</p>';
+						listPoints += '</div>'
+					}else{
+						listPoints += '<div class="col-xs-6 col-sm-4 m-y-1">';
+						listPoints += '<h4 class="m-t-2">'+ eachPoints.gsx$lugar.$t + '</h4>';
+						listPoints += `<div class="alert alert-warning"><div class="media"><div class="media-left"><i class="fa fa-warning"></i></div><div class="media-body">${eachPoints.gsx$motivosuspencion.$t}</div></div></div>`;
+						listPoints += '</div>';
+				}
+					
+				})
+				$('#barrios').empty();
+				$('#barrios').append(listPoints);
+				
+			}
+
+			
+
+			function bringServ(){
+				var busqueda;
+  				 var listOptions = { 
+              		valueNames: [ 'servi' ],
+          		};
+
+
+          		$.each(dataServ, function(row, item){
+
+					var serviciosList = '';
+						
+						$.each(item, function (i, e){
+							serviciosList += '<li><p class="servi">' + e.gsx$servicio.$t + '</p></li>';
+						})
+
+					$('#servicios').append('<div id="indiceServicio'+indice+'" class="contenedor"><h5>' + row + '</h5><ul class="list">' + serviciosList + '</ul></div>');
+
+					$(".list").each(function(){
+						window["indiceServicio" + indice] = new List('indiceServicio'+indice, listOptions);
+				    		
+				    
+				    
+				  });
+					indice++;
+				});
+
+
+
+					
+				$(":input").bind("keyup change", function(e) {
+	    			busqueda = $(this).val();
+	    			$(".list").each(function(a, val){
+	    				window['indiceServicio'+a].search(busqueda);
+	    				
+
+	      			if($(this).find("li").length == 0){
+	      				$(this).parents(".contenedor").hide();
+		       		}
+		       		else{
+		       			
+		         		$(this).parents(".contenedor").show();
+		       		}
+		       	});
+			});
+
+				
+		};
+	})
+	})(jQuery);
+
+
+</script>

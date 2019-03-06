@@ -1,0 +1,169 @@
+---
+layout: argentina
+---
+<style>
+  
+  th, td:first-child{
+    border-bottom: 0px!important;
+  }
+
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        h5{
+          font-size: 16px;
+        }
+        
+      }
+    </style>
+
+<div class="container">
+      
+      <div id="listadoAgencias" class="m-t-3 p-t-2">
+        <div class="row">
+          <div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for=""><strong>Provincia</strong></label>
+                <select id="provincia" class="form-control">
+                  <option data-provincia="todas" value="todos">Todas</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">    
+              <div class="form-group">
+                <label for=""> <strong>Agencia, ciudad o razón social </strong></label>
+                <input class="form-control search" id="agencia" placeholder="">
+              </div>
+            </div>
+            <div class="col-md-4">    
+              <div class="form-group">
+                <label for=""><strong>Nº de legajo</strong></label>
+                <input class="form-control search" id="legajo" placeholder="">
+              </div>
+            </div>
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                    
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>  
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    var provincia = "todas";
+    var listadoAgencias;
+    var grupoDeAgencias;
+    var lista;
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1g-0a1Z5ffnNsRARQBXhakpFRu6wqV8ZLVWZVd_yWc4w/1/public/values?alt=json',
+    function (data) {
+      listadoAgencias = data['feed']['entry'];
+
+      filtrarContenido(provincia);  
+
+      });
+
+    function filtrarContenido(provincia){
+      lista = '';
+      $.each(listadoAgencias, function( key, item ) {
+       
+       if((provincia == "todas") || (provincia == item.gsx$provincia.$t)){
+         lista += `<tr>`;
+         lista += `<td class="legajo"><p><b>Legajo: </b></p><p class="legajo">${item.gsx$legajo.$t}</p></td>`;
+         lista += `<td  class="agencia"><h5>${item.gsx$agencia.$t}</h5><p><b>Razón Social:</b><span class="razonsocial"> ${item.gsx$razonsocial.$t}</span> </p><p><b>CUIT: </b>${item.gsx$cuit.$t}</p><p><b>Disposición: </b>${item.gsx$disposicion.$t}</p><p class="direccion"><b>Direccion:</b>${item.gsx$domicilio.$t}  ${item.gsx$ciudad.$t}  ${item.gsx$provincia.$t}</p><p><b>Teléfono: </b>${item.gsx$telefono.$t}</p><p><b>Destinos: </b>${item.gsx$destino.$t}</p></td>`;
+        
+
+         
+          lista += '</tr>';
+        }
+      });
+       
+      $('#show-data').empty();
+      $('#show-data').append(lista);
+
+      var listOptions = {
+            valueNames: ['agencia','legajo', 'razonsocial', 'direccion', 'destinos'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+            var listaNueva = new List('listadoAgencias', listOptions); 
+
+            $('.search').on("keyup", function(){
+              var searchClass = $(this).val();
+              var searchId = $(this).attr('id');
+              
+            
+            listaNueva.search(searchClass,[searchId]);//propio de List.js
+            
+           });
+        }
+
+
+      jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1g-0a1Z5ffnNsRARQBXhakpFRu6wqV8ZLVWZVd_yWc4w/2/public/values?alt=json',
+    function (data) {
+
+          grupoDeAgencias = data['feed']['entry'];
+          
+          $.each(grupoDeAgencias, function( key, i ) {
+          var provinciaArray = i['gsx$provincias']['$t'];
+          $('#provincia').append('<option data-provincia="'+ provinciaArray +'" value="'+ provinciaArray +'">'+ provinciaArray +'</option>')
+
+          });
+        
+
+      });
+
+     
+  
+
+    $("#provincia").on("change", function() {
+       
+       provincia = $(document).find("#provincia option:selected").data('provincia');
+      
+      filtrarContenido(provincia);
+    });
+
+ 
+ 
+      
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

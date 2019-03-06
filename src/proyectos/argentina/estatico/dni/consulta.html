@@ -1,0 +1,131 @@
+---
+layout: argentina
+---
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="">RENAPER</a></li>
+    <li><a  class="active" href="">Consultá el estado de trámite del DNI</a></li>
+  </ol>
+
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Consultá el estado de trámite del DNI</h1>
+    
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr class="m-y-1">
+        <h2 class="m-t-2">Completá tus datos</h2>
+        <p class="m-b-0">Podes consultar el estado de trámite de tu DNI utilizando el número de DNI o <a href="">número de boleta.</a></p>
+        <hr class="m-y-1">
+        <!-- <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div> -->
+
+        <form action="" id="consulta_dni">
+
+          <fieldset>
+            <legend>
+              <label>Seleccioná una opción:</label>
+            </legend>
+
+            <div class="row">
+              <div class="col-md-8 item-form">
+
+                <div class="form-group item-form selectorTipo">
+                  <label for="tipo_dni" class="radio-inline">
+                    <input type="radio" name="opciones" id="tipo_dni" value="tipo_dni" required="" aria-required="true">
+                    Número de DNI y sexo
+                  </label>
+                  <label for="tipo_boleta" class="radio-inline">
+                    <input type="radio" name="opciones" id="tipo_boleta" value="tipo_boleta" required="" aria-required="true">
+                    Número de boleta
+                  </label>        
+                  <p class="help-block error hidden">Ingresá el dato</p>
+                </div>
+
+              </div>
+            </div>
+          </fieldset>
+
+
+          <fieldset class="tipo tipo_boleta" style="display:none">
+            <div class="row">
+              <div class="col-md-8 form-group">
+                <label class="control-label" for="numBoleta">Número de boleta</label>
+                <input type="number" class="form-control" id="numBoleta" tabindex="1" autofocus="" required="">
+              </div>
+            </div>
+          </fieldset>            
+
+          <fieldset class="tipo tipo_dni" style="display:none">
+            <div class="row">
+              <div class="col-md-8 form-group">
+                <label class="control-label" for="numDni">Número de DNI</label>
+                <input type="number" class="form-control" id="numDni" tabindex="1" autofocus="" required="">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="tipo tipo_dni" style="display:none">
+            <div class="row">
+            <div class="col-sm-12">
+              <fieldset>
+                <legend>
+                 <label>Sexo <span class="sr-only">Como aparece en tu documento</span></label>
+               </legend>
+               <p class="help-block">Como aparece en tu documento</p>
+               <div class="form-group item-form">
+                 <label for="f" class="radio-inline">
+                  <input type="radio" name="sexo" id="f" value="F" required="" aria-required="true">
+                  Femenino
+                </label>
+                 <label for="m" class="radio-inline">
+                  <input type="radio" name="sexo" id="m" value="M" required="" aria-required="true">
+                  Masculino
+                </label>
+                <p class="help-block error hidden">Ingresá tu sexo</p>
+            </div>
+
+            </fieldset>
+            </div>
+            </div>            
+          </fieldset>
+        
+          <fieldset class="text-center" id="botonConsulta" style="display:none">
+            <div class="row">
+               <div class="col-sm-8">
+                  <input type="submit" id="consButton" class="btn btn-primary btn-block" value="CONSULTAR" tabindex="8">
+                </div>
+            </div>
+          </fieldset>
+
+          </form>             
+   
+        <hr> 
+        <p class="pull-right"> 
+            <img src="https://www.argentina.gob.ar/sites/default/files/renaper_logo_1.png" width="150" class="img-responsive m-b-2" alt="logo RENAPER">
+        </p> 
+ 
+    </article>
+  </section>
+
+
+</div>
+
+
+<script>
+  $(function(){
+    $(".selectorTipo input[type=radio]").on("change",function(){
+      var opcion = $(this).val();
+      $(".tipo,#botonConsulta").val("").hide();
+      $("."+opcion + ",#botonConsulta").show();
+    })
+  })
+</script>

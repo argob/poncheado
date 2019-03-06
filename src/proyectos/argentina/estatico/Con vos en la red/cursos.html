@@ -1,0 +1,177 @@
+---
+layout: argentina
+---
+    <style>
+      
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+<div class="container">
+      
+      <div id="listadoCursos" class="m-t-3 p-t-2">
+        <div class="row">
+          <div class="col-md-6">    
+              <div class="form-group">
+                <label for=""> <strong>Buscá por nombre del curso </strong></label>
+                <input class="form-control search" placeholder="">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for=""><strong>Buscá por destinatario</strong></label>
+                <select id="destinatarios" class="form-control">
+                  <option data-destinatarios="todos" value="todos">Todos</option>
+                </select>
+              </div>
+            </div>
+
+            
+          <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th><p><strong>Nombre del curso</strong></p></th>
+                    <th class="col-xs-4"><p><strong>Objetivos</strong></p></th>
+                    <th><p><strong>Destinatarios</strong></p></th>
+                    <th><p><strong>Duración</strong></p></th> 
+
+                    <th><p><strong>Más información</strong></p></th>   
+                    
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    
+    var listadoCursos = "";
+    var destinatarios = "todos";
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1tnBSe27dheOQk66MFMwyDETPIVIA0iMq_GEuczv6DUo/1/public/values?alt=json',
+    function (data) {
+
+          listadoCursos = data['feed']['entry'];
+          
+          cargarContenido(destinatarios);
+
+  
+      });
+
+    function cargarContenido(destinatarios){
+
+          var lista = '';
+            
+            
+           $.each(listadoCursos, function( key, item ) {
+          if(destinatarios == "todos" || destinatarios == item.gsx$destinatarios.$t){
+                lista += '<tr>';
+              
+                lista += ' <td class="nombre"><b> ' + item.gsx$nombrecurso.$t + '</b></td>';
+
+                lista += ' <td><p> ' + item.gsx$objetivos.$t + '</p></td>';
+
+                lista += ' <td><p> ' + item.gsx$destinatarios.$t + '</p></td>';
+
+                lista += ' <td><p> ' + item.gsx$duracion.$t + '</p></td>';
+
+                lista += ' <td class="text-center"style="width:160px;"><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t +'">Ver</a></td>';
+               
+                
+                lista += '</tr>';
+            }
+
+
+          });
+
+
+           console.log(destinatarios);
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+     
+
+
+          var listOptions = {
+            valueNames: ['nombre'],
+            page: 10,
+            pagination: true
+            
+           };
+
+
+
+             var listaNueva = new List('listadoCursos', listOptions); 
+            
+
+           $('.search').on("keyup", function(){
+            var valorBuscado = $('.search').val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+
+            }
+
+
+      jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1tnBSe27dheOQk66MFMwyDETPIVIA0iMq_GEuczv6DUo/2/public/values?alt=json',
+    function (data) {
+         
+          grupoDeDestinatarios = data['feed']['entry'];
+          
+          $.each(grupoDeDestinatarios, function( key, i ) {
+          destinatarios = i['gsx$destinatarios']['$t'];
+          
+          $('#destinatarios').append('<option data-destinatarios="'+ destinatarios +'" value="'+ destinatarios +'">'+ destinatarios +'</option>')
+
+          });
+        
+
+      });
+
+     
+  $("#destinatarios").on("change", function() {
+       
+       destinatarios = $(document).find("#destinatarios option:selected").data('destinatarios');
+
+      cargarContenido(destinatarios);
+
+    });
+
+ 
+ 
+      
+
+});
+})(jQuery);
+ 
+ 
+  
+</script>
+
+

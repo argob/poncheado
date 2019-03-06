@@ -1,0 +1,233 @@
+---
+layout: argentina
+---
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+      p{
+        font-weight: 400;
+      }
+      .categoria-lf{
+        text-transform: lowercase;
+        font-size: 15px;
+      }
+      .categoria-lf::first-letter{
+
+        text-transform: uppercase; 
+      }
+      .th-min{
+        min-width: 250px;
+      }
+
+      .logo{
+        max-width: 380px!important;
+      }
+
+      .pagination li {
+      display:inline-block;
+      padding:5px;
+    }
+
+    li.disabled{
+      display: none;
+    }
+      
+    </style>
+
+
+   
+    <div class="container">
+      
+      <div id="listadoTerminos">
+        <div class="row m-t-3">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="">
+                <strong>
+                  Término
+                </strong>
+              </label>
+              <select id="selectTermino" class="form-control">
+                <option id="optionTermino" data-termino="todos" value="todos">Todos</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-9">    
+            <div class="form-group">
+              <label for=""><strong>Buscá por descripción</strong></label>
+              <input class="form-control search" placeholder="">
+            </div>
+          </div>
+
+
+         
+          <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th>Término</th>
+                  <th>Descripción</th>
+                  
+                  </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+                  
+              </tbody>
+            </table>
+            <nav class="text-center">
+              
+              <ul class="pagination" id="pag">
+                
+              </ul>
+           
+            </nav>  
+          </div> 
+
+
+        </div>
+      </div>
+     
+      </div>
+           
+    
+        
+
+<script src="https://cdn.rawgit.com/MGuadalupe/js/master/list-btn.js"></script>
+<script src="https://cdn.rawgit.com/MGuadalupe/js/master/pagination.js"></script>
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+
+    
+    var termino = "todos"
+    var listadoTerminos = "";
+   
+
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1j1SRu7ZZwc0uEMFOpQlhROdMnFHRlQpI-xtdSqCaLLk/1/public/values?alt=json',
+          
+
+          function (data) {
+            listadoTerminos = data['feed']['entry'];
+            filtrarContenido(termino);
+
+          }
+
+        );
+
+          function filtrarContenido(termino){
+
+          var lista = '';
+
+          
+          $.each(listadoTerminos, function( key, item ) {
+
+            if(termino == 'todos' || termino == item.gsx$termino.$t){
+                lista += '<tr>';
+                
+                lista += ' <td class="termino"> <p>'+ item.gsx$termino.$t + '</p></td>';
+                lista += ' <td class="descripcion"> <p>'+ item.gsx$descripcion.$t + '</p></td>';
+            
+                lista += '</tr>';
+              }
+
+               }  );
+
+            
+          
+
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+
+            var listOptions = {
+            valueNames: ['termino','descripcion'],
+            page: 10,
+            pagination: [{
+            name: "pagination",
+            paginationClass: "pagination",
+            next: true,
+            prev: true
+
+            
+          }]
+        };
+          
+          var listaNueva = new List('listadoTerminos', listOptions); 
+
+          
+
+
+
+         $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+
+
+
+           $("#selectTermino").on("change", function() {
+            termino = $("#selectTermino option:selected" ).data('termino');
+       
+        
+            filtrarContenido(termino);
+          
+          });
+
+
+       
+
+    };
+
+
+        jQuery.getJSON(
+        'https://spreadsheets.google.com/feeds/list/1j1SRu7ZZwc0uEMFOpQlhROdMnFHRlQpI-xtdSqCaLLk/1/public/values?alt=json',
+        function (data) {
+
+          $("#optionTermino").html("Todos");
+        var grupoTerminos= data['feed']['entry'];
+
+      
+          $.each(grupoTerminos , function(index, el) {
+
+            var terminoElegido= el['gsx$termino']['$t'];
+            $('#selectTermino').append('<option data-termino="'+ terminoElegido +'" value="'+ terminoElegido +'">'+ terminoElegido +'</option>')
+          });
+        });
+
+
+
+
+
+  });
+  })(jQuery);
+
+ 
+  
+</script>
+

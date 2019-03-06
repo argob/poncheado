@@ -44,11 +44,6 @@ layout: argentina
       .logo{
         max-width: 380px!important;
       }
-      .ean-btn, .ean-btn:hover, .ean-btn:visited, .ean-btn:focus, .ean-btn:active {
-          border: 0px!important;
-          color: #333333;
-          background-color: #F9F9F9 !important;
-      }
 
       #ean .popover{
         top: 39px;
@@ -66,7 +61,9 @@ layout: argentina
           right: 0!important;
           margin: 0 auto!important;
       }
-      
+      .media-body{
+        vertical-align: middle;
+      }
       @media screen and (max-width: 767px){
        
         .descripcion, .proveedor, .ean{
@@ -80,16 +77,19 @@ layout: argentina
    
     <div class="container" id="#listaPreciosCuidados">
         <div>
-          <h3 class="text-center m-y-3">Buscá un producto</h3>
+          <h4 class="text-center m-y-3 p-y-3">Seleccioná la región en donde vivís y buscá el producto que quieras comprar</h4>
         </div>
 
         <div id="listadoProductos">
           <div class="row">
             <div class="col-md-3">
             <div class="form-group">
-              <label for="" > <strong>Elegí una zona</strong></label>
+              <label for=""> 
+                <strong>Zona</strong>
+              </label>
               <select id="zona" class="form-control">
-                <option data-zona="amba" value="amba" selected>AMBA</option>
+                <option data-zona="seleccionar" value="seleccionar" selected>seleccionar</option>
+                <option data-zona="amba" value="amba">AMBA</option>
                 <option data-zona="pba" value="pba">Buenos Aires</option>
                 <option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
                 <option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
@@ -102,7 +102,8 @@ layout: argentina
             <div class="form-group">
               <label for=""><strong>Categoría</strong></label>
               <select id="categoria" class="form-control">
-                <option data-categoria="todos" value="todos">Todos</option>
+             <option data-categoria="todos" value="todos">Todos</option>
+                <!--<option data-categoria="---" value="---">---</option>-->
                 
               </select>
             </div>
@@ -110,7 +111,7 @@ layout: argentina
 
             <div class="col-md-6">    
             <div class="form-group">
-              <label for=""> <strong> Buscá por descripción </strong></label>
+              <label for=""> <strong>Buscá por marca, tipo de alimento o unidad</strong></label>
               <input class="form-control search" placeholder="">
             </div>
             </div>
@@ -141,9 +142,33 @@ layout: argentina
             </div>           
           </div>
         </div>
+
+      <div class="row">
+        <div class="col-sm-offset-4 col-sm-4 m-b-3">
+          
+            <div class="alert alert-warning">
+              <div class="media">
+                <a href="https://argentina.gob.ar/precios-cuidados/led" class="text-gray">
+                <div class="media-left">
+                  <i class="fa fa-lightbulb-o fa-fw fa-4x"></i>
+                </div>
+                <div class="media-body">
+                  <h5>Precios lámparas Led</h5>
+                </div>
+              </a>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+<!--
+      <div class="row">
         <div>
           <h3 class="text-center m-b-3">Enlaces relacionados</h3>
         </div>
+      </div>-->
 
         <div class="row panels-row">
 
@@ -178,21 +203,24 @@ layout: argentina
 
 
           <div class="col-xs-12 col-sm-4 ">
-            <a class="panel panel-default" href="/precios-cuidados/led">
+            <a class="panel panel-default" href="/opciones-para-ahorrar">
               <div class="panel-body">
                 <div class="media">
                   
                   <div class="media-body media-middle">
-                    <h3>Precios lámparas Led</h3>
+                    <h3>Opciones para ahorrar</h3>
                     
                   </div>
                 </div>
               </div>
             </a>
           </div>
+
+          
         </div>
 
-        <div>
+
+       <!-- <div>
           <h3 class="text-center m-b-1  m-t-2">Si no encontrás un producto</h3>
         </div>
 
@@ -212,19 +240,40 @@ layout: argentina
               </div>
             </a>
           </div>
+        </div>-->
+
+
+        <section>
+          <div class="container">
+            <div class="row">
+              <div>
+                <div class="panel-separator"></div>
+                  <div class="panel-pane pane-area-contacto">
+                    <div class="pane-content">
+                      <h5 class="text-center">
+                        Comunicate para informar la falta de un producto
+                      </h5>
+                      <p class="margin-40 text-center">
+                        <strong>Teléfono:</strong> <a href="tel:08006661518">0800-666-1518</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
 
 <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 
 <script type="text/javascript">
+(function($){
 
-(function($) {
 $(document).ready(function () {
 
-    var zona = "amba";
-    var categoria = "todos";
+    var zona = "---";
+    var categoria = "";
     var listadoProductos = "";
    
 
@@ -233,7 +282,9 @@ $(document).ready(function () {
     function (data) {
 
           listadoProductos = data['feed']['entry'];
+          console.log(listadoProductos);
           filtrarContenido(zona,categoria);
+          
 
       });
 
@@ -266,7 +317,7 @@ $(document).ready(function () {
 
 
 
-            if(item.gsx$categoria.$t == categoria || categoria == "todos"){
+            if((categoria == item.gsx$categoria.$t || categoria == "todos") &&  zona != "seleccionar"){
                 lista += '<tr>';
                 /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
                 lista += ' <td class="categoria descripcion">' +  '<p class="">' + item.gsx$descripcion.$t + '</p> <p class="categoria-lf text-muted">'+ item.gsx$categoria.$t +'</p></td>';
@@ -274,7 +325,11 @@ $(document).ready(function () {
                 lista += ' <td class="ean"> <p>'+ item.gsx$ean.$t +'</p></td>';
                 lista += ' <td> <p class="text-success"> <strong>'+ precio +'</strong></p></td>';
                 lista += '</tr>';
-            }
+            }else{
+              $('#show-data').empty();
+
+            $('.pagination li').hide();
+            } 
 
           });
 
@@ -293,15 +348,14 @@ $(document).ready(function () {
 
              var listaNueva = new List('listadoProductos', listOptions); 
 
-         
-
-
-          
-
-           $('.search').on("keyup", function(){
+          $('.search').on("keyup", function(){
             var valorBuscado = $(".search").val();
             listaNueva.search(valorBuscado);//propio de List.js
            });
+
+          $('.pagination li').show();
+
+         
 
 
         }
@@ -337,8 +391,9 @@ $(document).ready(function () {
     $("#zona ,#categoria").on("change", function() {
        zona = $("#zona option:selected" ).data('zona');
        categoria = $(document).find("#categoria option:selected").data('categoria');
-        
+        console.log(zona);
        filtrarContenido(zona, categoria);
+
     });
 
      

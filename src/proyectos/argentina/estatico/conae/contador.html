@@ -1,0 +1,131 @@
+---
+layout: argentina
+---
+
+<style>
+	.mb{
+		margin-bottom: 60px;
+	}
+	h2{
+		font-size: 60px;
+	}
+	.lh{
+		line-height: 1.6;
+	}
+</style>
+
+<section class="jumbotron" style="background-image: url('../sites/default/files/styles/jumbotron/public/espacio.jpg?itok=Jtjgr4te');">
+	<div class="overlay"></div>
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/educacion">Ministerio de Educación, Cultura, Ciencia y TecnologíaCiencia</a></li>
+            <li><a href="/ciencia">Ciencia, Tecnología e Innovación Productiva</a></li>
+            <li><a href="/ciencia/conae">Comisión Nacional de Actividades Espaciales</a></li>
+            <li class="active">Noche Espacial</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+
+
+      <div class="row">
+
+      	<div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+      		<p class="margin-20"> <img src="../sites/default/files/logo_5.png" style="width: 300px;"></p><h1 class="sr-only">Noche Espacial</h1><p>Lanzamiento del Satélite Argentino de Observación con Microondas SAOCOM 1A.</p></div>
+   
+      </div>
+    </div>
+  </div>
+</section>
+
+	<div class="row">
+	    <div class="contdown-cumbre center-block">
+	        <h3 class="text-primary text-center lh">
+	        	<strong>Cuenta regresiva para el lanzamiento del Satélite SAOCOM 1A</strong></h3>
+	        <div id="del-countdown" class="col-md-offset-2 col-md-8 mb m-t-3">
+	            <div>
+	                <div id="clock"></div>
+	                
+	            </div>
+	            
+	            <div id="units">
+
+	                <div class="col-xs-3 center-block ">
+	                	<p class="text-center text-muted"><small>DÍAS</small></p>
+	                </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="text-center text-muted"><small>HORAS</small></p>
+	            </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="text-center text-muted"><small>MINUTOS</small></p>
+	            </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="text-center text-muted"><small>SEGUNDOS</small></p>
+	            </div>
+	          </div>
+	          
+	        </div>
+	    </div>
+	</div>
+ 
+
+<script>
+	 window.onload = function(){
+		  var fechaLanzamiento = new Date("December 07, 2018 23:27:00");
+		  startTimer("clock", fechaLanzamiento);
+		    };
+
+
+		function startTimer(i, dateSeted){
+
+
+			clock.innerHTML = '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">-</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">-</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">-</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">-</h2></div>';
+	
+		    var intervaloDeTiempoEntreFechas = setInterval(function(){
+		    var clock = document.getElementById(i);
+		    var timer = updateTimer(dateSeted);
+		  
+		   
+		    //metemos el html dentro de clock que es un div con id
+		    clock.innerHTML = '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">' + timer.days + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">' + timer.hours + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">' + timer.minutes + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center m-t-0">' + timer.seconds + '</h2></div>';
+
+		  
+
+		    if(timer.total < 0){
+		      	clearInterval(intervaloDeTiempoEntreFechas);
+      			clock.innerHTML = '<div class="col-xs-3 center-block"><h2 class="text-center">0</h2></div>'
+      						+ '<div class="col-xs-3 center-block"><h2 class="text-center">0</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">0</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">0</h2></div>';
+		    }
+
+
+		  }, 1000);
+		}
+
+		function updateTimer(fechaCalculo){
+		  var time = fechaCalculo - new Date();
+		  return {
+		    'days': Math.floor( time/(1000*60*60*24) ),
+		    'hours': Math.floor( (time/(1000*60*60)) % 24 ),
+		    'minutes': Math.floor( (time/1000/60) % 60 ),
+		    'seconds': Math.floor( (time/1000) % 60 ),
+		    'total' : time
+		  };
+		}
+
+	
+</script>

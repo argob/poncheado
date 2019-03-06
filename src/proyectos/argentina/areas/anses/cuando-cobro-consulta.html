@@ -1,0 +1,83 @@
+---
+layout: argentina
+---
+
+<style>
+
+</style>
+
+<div class="container">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="https://www.argentina.gob.ar/anses">ANSES</a></li>
+    <li class="active">Fecha y lugar de cobro en ANSES</li>
+  </ol>
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Fecha y lugar de cobro en ANSES</h1>
+        <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div>
+        <hr class="m-y-1">
+        <h2 class="m-t-2 font-weight-bold">Completá tus datos</h2>
+        <p class="help-block">Ingresá abajo tu número de CUIL o de beneficio.</p>
+        <!-- <div class="row">
+          {% include argentina/redes-sociales.html param="col-md-7" %}
+        </div> -->
+
+        <form action="/proyectos/argentina/areas/anses/cuando-cobro-resultado.html" id="form-cuando-donde-cobro">
+          <fieldset>
+            <div class="row">
+
+              <div class="col-sm-12">
+
+                <fieldset>
+                  <legend>
+                   <label>Elegí una opción</label>
+                 </legend>
+                 <div class="form-group item-form">
+                  <label for="cuil" class="radio-inline">
+                    <input type="radio" name="tipoNumero" checked id="cuil" value="" required="" aria-required="true">
+                    CUIL
+                  </label>
+                   <label for="beneficio" class="radio-inline">
+                    <input type="radio" name="tipoNumero" id="beneficio" value="" required="" aria-required="true">
+                    Beneficio
+                  </label>
+                  <p class="help-block error hidden">Selecciona una opción</p>
+                </div>
+
+              </fieldset>
+
+            </div>            
+
+            <div class="col-sm-4">
+              <div class="form-group item-form">
+               <label for="numDoc">Número</label>
+               <input type="number" min="1" class="form-control" id="numDoc" required="" aria-required="true">
+               <p class="help-block error hidden">Ingresá tu número de documento</p>
+             </div>
+           </div>
+
+
+         </div>
+       </fieldset>
+      
+     <input type="submit" id="consButton" class="btn btn-success" value="ver fecha y lugar de cobro" tabindex="8">
+    </form>             
+
+
+
+      <hr> 
+      <p class="pull-right"> 
+        <img src="https://www.argentina.gob.ar/sites/default/files/anses_logo.png" width="150" class="img-responsive m-b-2" alt="logo de Anses">
+      </p> 
+
+
+  </article>
+</section>
+</div>

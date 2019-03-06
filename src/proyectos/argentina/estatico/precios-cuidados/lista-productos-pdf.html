@@ -1,0 +1,453 @@
+---
+layout: argentina
+---
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+
+      .item{
+        height: 310px;
+      }
+
+      .pie{
+        position: absolute;
+        bottom: 55px;
+        width: 90%;
+      }
+
+      .izq{
+        height: 30px;
+        padding-top: 6px;
+      }
+
+      .izq span{
+        font-size: 13px;
+        vertical-align: middle;
+        height: 30px;
+      }
+      p{
+        font-weight: 400;
+      }
+      .categoria-lf{
+        text-transform: lowercase;
+        font-size: 15px;
+      }
+      .categoria-lf::first-letter{
+
+        text-transform: uppercase; 
+      }
+      
+      
+
+      .logo{
+        max-width: 380px!important;
+      }
+
+      #ean .popover{
+        top: 39px;
+        left: -118px!important;
+        display: block;
+        width: 250px!important;
+      }
+
+      #ean{
+        position: relative!important
+      }
+
+      #ean .popover .arrow{
+          left: 0!important;
+          right: 0!important;
+          margin: 0 auto!important;
+      }
+      .media-body{
+        vertical-align: middle;
+      }
+      @media screen and (max-width: 767px){
+       
+        .descripcion, .proveedor, .ean{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+ 
+   
+    <div class="container" id="#listaPreciosCuidados">
+        <div>
+          <h4 class="text-center m-y-3 p-y-3">Seleccioná la región en donde vivís y buscá el producto que quieras comprar</h4>
+        </div>
+
+        <div id="listadoProductos">
+          <div class="row">
+            <div class="col-md-3">
+            <div class="form-group">
+              <label for=""> 
+                <strong>Zona</strong>
+              </label>
+              <select id="zona" class="form-control">
+                <option data-zona="seleccionar" value="seleccionar" selected>seleccionar</option>
+                <option data-zona="amba" value="amba">AMBA</option>
+                <option data-zona="pba" value="pba">Buenos Aires</option>
+                <option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
+                <option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
+                <option data-zona="patagonia" value="patagonia">Patagonia</option>
+              </select>
+            </div>
+            </div>  
+
+            <div class="col-md-3">
+            <div class="form-group">
+              <label for=""><strong>Categoría</strong></label>
+              <select id="categoria" class="form-control">
+             <option data-categoria="todos" value="todos">Todos</option>
+                <!--<option data-categoria="---" value="---">---</option>-->
+                
+              </select>
+            </div>
+            </div>
+
+            <div class="col-md-6">    
+            <div class="form-group">
+              <label for=""> <strong>Buscá por marca, tipo de alimento o unidad</strong></label>
+              <input class="form-control search" placeholder="">
+            </div>
+            </div>
+
+            <div class="table-responsive col-md-12">
+            <table class="table table-spaced table-hover">
+              <thead>
+                <tr>
+                  <th >Descripción</th>
+                  <th>Proveedor</th>
+                  <th>EAN 
+                    <a id="ean" href="#listaPreciosCuidados">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        
+                    </a>
+                    <div id="eanContent"></div>
+                  </th>
+                  <th >Precio</th>
+                </tr>
+              </thead> 
+              <tbody class="list" id="show-data">
+                
+              </tbody>
+            </table>
+            <nav class="text-center">
+              <ul class="pagination"></ul>
+            </nav>  
+            </div>           
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-4 m-b-2">
+            <a href="" id="pdf" style="display: none;" class="btn btn-primary btn-lg text-center center-block">
+            Descargá el listado</a>
+          </div>
+        </div>
+
+        <hr>
+
+      <div class="row">
+        <div class="col-sm-offset-4 col-sm-4 m-b-3 m-t-2">
+          
+            <div class="alert alert-warning">
+              <div class="media">
+                <a href="https://argentina.gob.ar/precios-cuidados/led" class="text-gray">
+                <div class="media-left">
+                  <i class="fa fa-lightbulb-o fa-fw fa-4x"></i>
+                </div>
+                <div class="media-body">
+                  <h5>Precios lámparas Led</h5>
+                </div>
+              </a>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+<!--
+      <div class="row">
+        <div>
+          <h3 class="text-center m-b-3">Enlaces relacionados</h3>
+        </div>
+      </div>-->
+
+        <div class="row panels-row">
+
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="/precios-cuidados/lista-de-supermercados-adheridos-2018">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body">
+                    <h3>Supermercados adheridos</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="/precios-cuidados/productos-faltantes">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Productos faltantes</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-4 ">
+            <a class="panel panel-default" href="/opciones-para-ahorrar">
+              <div class="panel-body">
+                <div class="media">
+                  
+                  <div class="media-body media-middle">
+                    <h3>Opciones para ahorrar</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          
+        </div>
+
+
+       <!-- <div>
+          <h3 class="text-center m-b-1  m-t-2">Si no encontrás un producto</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-3 col-sm-6 m-b-2">
+            <a class="panel panel-default" href="tel:08006661518">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-5">
+                    <i class="fa fa-phone fa-fw fa-3x text-success"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>0800-666-1518</h3>
+                    <p class="text-muted">Comunicate telefónicamente para informarnos</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>-->
+
+
+        <section>
+          <div class="container">
+            <div class="row">
+              <div>
+                <div class="panel-separator"></div>
+                  <div class="panel-pane pane-area-contacto">
+                    <div class="pane-content">
+                      <h5 class="text-center">
+                        Comunicate para informar la falta de un producto
+                      </h5>
+                      <p class="margin-40 text-center">
+                        <strong>Teléfono:</strong> <a href="tel:08006661518">0800-666-1518</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script type="text/javascript">
+(function($){
+
+$(document).ready(function () {
+
+    var zona = "---";
+    var categoria = "";
+    var listadoProductos = "";
+   
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/1/public/values?alt=json',
+    function (data) {
+
+          listadoProductos = data['feed']['entry'];
+         
+          filtrarContenido(zona,categoria);
+          
+
+      });
+
+          function filtrarContenido(zona, categoria){
+
+          var lista = '';
+
+
+          $.each(listadoProductos, function( key, item ) {
+            var precio = '';
+            if(zona == "amba"){
+              precio = item.gsx$amba.$t;
+            }
+
+            if(zona == "pba"){
+              precio = item.gsx$pba.$t;
+            }
+
+            if(zona == "centrocuyolitoral"){
+              precio = item.gsx$centrocuyolitoral.$t;
+            }
+
+            if(zona == "noanea"){
+              precio = item.gsx$noanea.$t;
+            }
+
+            if(zona == "patagonia"){
+              precio = item.gsx$patagonia.$t;
+            }
+
+
+
+            if((categoria == item.gsx$categoria.$t || categoria == "todos") &&  zona != "seleccionar"){
+                lista += '<tr>';
+                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+                lista += ' <td class="categoria descripcion">' +  '<p class="">' + item.gsx$descripcion.$t + '</p> <p class="categoria-lf text-muted">'+ item.gsx$categoria.$t +'</p></td>';
+                lista += ' <td class="proveedor"> <p>'+ item.gsx$proveedor.$t + '</p></td>';
+                lista += ' <td class="ean"> <p>'+ item.gsx$ean.$t +'</p></td>';
+                lista += ' <td> <p class="text-success"> <strong>'+ precio +'</strong></p></td>';
+                lista += '</tr>';
+            }else{
+              $('#show-data').empty();
+
+            $('.pagination li').hide();
+            } 
+
+          });
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+
+
+
+          var listOptions = {
+            valueNames: ['descripcion','categoria','proveedor','ean'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+             var listaNueva = new List('listadoProductos', listOptions); 
+
+          $('.search').on("keyup", function(){
+            var valorBuscado = $(".search").val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+          $('.pagination li').show();
+
+         
+
+
+        }
+
+ jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/2/public/values?alt=json',
+    function (data) {
+      var grupoCategorias= data['feed']['entry'] 
+
+      
+          $.each(grupoCategorias, function(index, el) {
+            var categoria = el['gsx$categoria']['$t'];
+            $('#categoria').append('<option data-categoria="'+ categoria +'" value="'+ categoria +'">'+ categoria +'</option>')
+          
+
+          });
+
+         
+
+      });
+
+
+
+   
+    $("#zona ,#categoria").on("change", function() {
+       zona = $("#zona option:selected" ).data('zona');
+       categoria = $(document).find("#categoria option:selected").data('categoria');
+        console.log(zona);
+       
+
+       jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/3/public/values?alt=json',
+    
+
+
+    function (data) {
+      var grupoPDF= data['feed']['entry'] 
+      var pdf = "";
+
+        $.each(grupoPDF, function( key, item ) {
+          pdf = item.gsx$pdf.$t;
+
+          $('#pdf').hide();
+          $('#pdf').attr('href', '');
+
+         if(zona == item.gsx$zona.$t){
+
+          $('#pdf').show();
+          $('#pdf').attr('href', pdf);
+          return false;
+          }
+          
+        });
+         
+        filtrarContenido(zona, categoria);
+      });
+
+    });
+
+     
+    
+      
+   $("#ean").on("click", function(){
+       $('#eanContent').popover('toggle');
+   });
+
+   $('#eanContent').popover({
+       title: "European Article Number:",
+       html: 'true',
+       content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
+       placement:"bottom",
+       trigger: 'manual',
+        container: '#ean',
+       viewport:"#ean" 
+
+   });
+
+      
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

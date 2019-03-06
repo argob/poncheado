@@ -191,16 +191,17 @@ title: Mapa de centros de HIV
               detalles[index].open(map, markers[index]);
 
             });
+            var markerCluster = new MarkerClusterer(map, markers, {
+              imagePath: '/sites/default/files/',
+              gridSize: 50,
+              minimumClusterSize: 800,
+              maxZoom: 19
+          });
 
         })
 
 
-        var markerCluster = new MarkerClusterer(map, markers, {
-          imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
-          gridSize: 50,
-          minimumClusterSize: 300,
-          maxZoom: 19
-        });
+       
 
 
 

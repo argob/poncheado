@@ -1,0 +1,847 @@
+---
+layout: argentina
+---
+
+<style type="text/css">
+legend {
+ margin-bottom: 0;
+ border-bottom: none;
+ }
+
+select[disabled] {
+ background-color: #ccc;
+}
+
+select[disabled] .form-control {
+ background-color: #e9e9e9;
+}
+
+.form-control[disabled], select[disabled] .form-control {
+ cursor: not-allowed;
+}
+
+.error {
+ display: block;
+ color: #a94442;
+}
+</style>
+
+
+
+<section>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="col-md-8 col-md-offset-2 p-t-2">
+               <form id="wizard-form-cud">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <h2>Datos de la persona para la cual se solicita el certificado</h2>
+                        <hr class="m-t-1 m-b-2 m-b-2" />
+
+
+                        
+
+
+                        <div class="form-group">
+                           <fieldset>
+                              <legend class="control-label">Tipo de trámite</legend>
+                              <div class="radio">
+                                 <label class="m-t-0" for="primeravezcud">
+                                    <input id="primeravezcud" name="tipotramite" type="radio" value="Solicitud-de-Certificado-por-primera-vez" />
+                                    <span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="renovacioncud">
+                                    <input id="renovacioncud" name="tipotramite" type="radio" value="Renovacion" /> Renovación 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="perdidacud">
+                                    <input id="perdidacud" name="tipotramite" type="radio" value="Perdida-del-certificado" /> Pérdida del certificado 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="agravamientocud">
+                                    <input id="agravamientocud" name="tipotramite" type="radio" value="Agravamiento" /> Agravamiento 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="bajafallecimientocud">
+                                    <input id="bajafallecimientocud" name="tipotramite" type="radio" value="Baja-por-fallecimiento" /> Baja por fallecimiento 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="bajavoluntariacud">
+                                    <input id="bajavoluntariacud" name="tipotramite" type="radio" value="Baja-voluntaria" /> Baja voluntaria 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="cambioidentidadadopcioncud">
+                                    <input id="cambioidentidadadopcioncud" name="tipotramite" type="radio" value="Cambio-de-identidad-por-adopcion" /> Cambio de identidad por adopción 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="cambioidentidadgenerocud">
+                                    <input id="cambioidentidadgenerocud" name="tipotramite" type="radio" value="Cambio-de-identidad-de-genero" /> Cambio de identidad de género 
+                                 </label>
+                              </div>
+                           </fieldset>
+                        </div>
+                        <div class="form-group" id="edad">
+                           <fieldset>
+                              <legend class="control-label">&iquest;Tiene 16 años o más?</legend>
+                              <div class="radio">
+                                 <label class="m-t-0" for="mayor16">
+                                    <input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" />
+                                    <span class="sr-only">Este Campo es Obligatorio</span> Sí 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="menor16">
+                                    <input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No 
+                                 </label>
+                              </div>
+                           </fieldset>
+                        </div>
+                        <div class="collapse" id="collapse-tutoria">
+                           <div class="form-group">
+                              <fieldset>
+                                 <legend class="control-label">&iquest;La persona firma por sí misma?</legend>
+                                 <div class="radio">
+                                    <label class="m-t-0" for="tutoriasi">
+                                       <input id="tutoriasi" name="tutoria" type="radio" value="si" /> Firma por sí misma. 
+                                    </label>
+                                    <br />
+                                    <label class="m-t-1" for="tutoriaconjunta">
+                                       <input id="tutoriaconjunta" name="tutoria" type="radio" value="conjuntamente" /> Firma conjuntamente con otra persona 
+                                       <strong>(Apoyo/s designado/s judicialmente)</strong>
+                                    </label>
+                                    <br />
+                                    <label class="m-t-1" for="tutoriatercero">
+                                       <input id="tutoriatercero" name="tutoria" type="radio" value="tercero" /> Otra persona firma por la persona para la cual se solicita el certificado 
+                                       <strong>(Curatela)</strong>
+                                    </label>
+                                 </div>
+                              </fieldset>
+                           </div>
+                        </div>
+                        <div class="collapse" id="collapse-guardador">
+                           <div class="form-group">
+                              <fieldset>
+                                 <legend class="control-label"> &iquest;La persona tiene tutor o guardador?</legend>
+                                 <div class="radio">
+                                    <label class="m-t-0" for="guardadorsi">
+                                       <input id="guardadorsi" name="guardador" type="radio" value="si" /> Si 
+                                    </label>
+                                    <br />
+                                    <label class="m-t-1" for="guardadorno">
+                                       <input id="guardadorno" name="guardador" type="radio" value="no" /> No 
+                                    </label>
+                                 </div>
+                              </fieldset>
+                           </div>
+                        </div>
+                        <div class="form-group" id="coberturamedica">
+                           <fieldset>
+                              <legend class="control-label">Cobertura médica</legend>
+                              <div class="radio">
+                                 <label class="m-t-0" for="obrasocial">
+                                    <input id="obrasocial" name="coberturamedica" type="radio" value="Obrasocial" />
+                                    <span class="sr-only">Este Campo es Obligatorio</span> Obra social 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="medicinapre-paga">
+                                    <input id="medicinapre-paga" name="coberturamedica" type="radio" value="Medicinapre-paga" /> Medicina pre-paga 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="coberturapublica">
+                                    <input id="coberturapublica" name="coberturamedica" type="radio" value="Atencion-en-hospital-o-centro-de-salud-publica" /> Atención en hospital o centro de salud pública 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="pami">
+                                    <input id="pami" name="coberturamedica" type="radio" value="Pami" /> PAMI 
+                                 </label>
+                                 <br />
+                                 <label class="m-t-1" for="programaincluirsalud">
+                                    <input id="programaincluirsalud" name="coberturamedica" type="radio" value="Programa-Incluir-Salud" /> Programa Incluir Salud 
+                                 </label>
+                              </div>
+                           </fieldset>
+                        </div>
+                        <div class="form-group" id="origenProblemaSalud">
+                           <fieldset>
+                              <legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
+                              <div class="checkbox">
+                                 <label class="m-b-1" for="discapacidadintelectualymental">
+                                    <input id="discapacidadintelectualymental" name="discapacidad" type="checkbox" value="discapacidadintelectualymental" />
+                                    <span class="sr-only">Este Campo es Obligatorio</span> Intelectual y Mental 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadvisual">
+                                    <input id="discapacidadvisual" name="discapacidad" type="checkbox" value="discapacidadvisual" /> Visual 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadmotor">
+                                    <input id="discapacidadmotor" name="discapacidad" type="checkbox" value="discapacidadmotor" /> Motor 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadauditivo">
+                                    <input id="discapacidadauditivo" name="discapacidad" type="checkbox" value="discapacidadauditivo" /> Auditivo 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadrespiratorio">
+                                    <input id="discapacidadrespiratorio" name="discapacidad" type="checkbox" value="discapacidadrespiratorio" /> Respiratorio 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadcardiovascular">
+                                    <input id="discapacidadcardiovascular" name="discapacidad" type="checkbox" value="discapacidadcardiovascular" /> Cardiovascular 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidadrenalurologico">
+                                    <input id="discapacidadrenalurologico" name="discapacidad" type="checkbox" value="discapacidadrenalurologico" /> Renal urológico 
+                                 </label>
+                                 <br />
+                                 <label class="m-b-1" for="discapacidaddigestivohepatico">
+                                    <input id="discapacidaddigestivohepatico" name="discapacidad" type="checkbox" value="discapacidaddigestivohepatico" /> Digestivo / Hepático 
+                                 </label>
+                              </div>
+                           </fieldset>
+                        </div>
+                     </div>
+                  </div>
+
+                  <fieldset>
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <legend>
+                              <h2>Lugar de Residencia</h2>
+                              <p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
+                           </legend>
+                           <hr>
+
+                           <fieldset>
+                              <div class="form-group">
+                                 <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
+                                 <select class="form-control" id="provincia" name="provincia">
+                                    <option value="">Elegí tu provincia</option>
+                                    <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+                                    <option value="Buenos Aires">Buenos Aires</option>
+                                    <option value="Catamarca">Catamarca</option>
+                                    <option value="Córdoba">Córdoba</option>
+                                    <option value="Corrientes">Corrientes</option>
+                                    <option value="Chaco">Chaco</option>
+                                    <option value="Chubut">Chubut</option>
+                                    <option value="Entre Ríos">Entre Ríos</option>
+                                    <option value="Formosa">Formosa</option>
+                                    <option value="Jujuy">Jujuy</option>
+                                    <option value="La Pampa">La Pampa</option>
+                                    <option value="La Rioja">La Rioja</option>
+                                    <option value="Mendoza">Mendoza</option>
+                                    <option value="Misiones">Misiones</option>
+                                    <option value="Neuquén">Neuquén</option>
+                                    <option value="Río Negro">Río Negro</option>
+                                    <option value="Salta">Salta</option>
+                                    <option value="San Juan">San Juan</option>
+                                    <option value="San Luis">San Luis</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Santa Fe">Santa Fe</option>
+                                    <option value="Santiago del Estero">Santiago del Estero</option>
+                                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                    <option value="Tucumán">Tucumán</option>
+                                 </select>
+                              </div>
+                           </fieldset>
+
+                           <fieldset>
+                              <div class="form-group">
+                                 <label class="control-label" for="localidad">Localidad</label>
+                                 <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
+                                 <select class="form-control" disabled="disabled" id="localidad" name="localidad" required>
+                                    <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
+                                 </select>
+                              </div>
+                           </fieldset>
+
+
+                        </div>
+                     </div>
+                  </fieldset>
+                  <!--<a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>-->
+                  <input class="btn btn-success btn-md" id="continuar" type="submit" value="Continuar" />
+                  <script>
+                            (function($) {
+                                $('[data-toogle-collapse]').each(function(key, item) {
+                                    var value = $(item).val();
+                                    var target = $(item).data('toogle-collapse');
+                                    $('input[name=' + $(item).attr('name') + ']').on('change', function() {
+                                        if ($(this).val() == value) {
+                                            $(target).collapse('show');
+                                        } else {
+                                            $(target).collapse('hide');
+                                        }
+                                    });
+                                });
+
+                            })(jQuery);
+                        </script>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script><script type="text/javascript">
+(function($) {
+    var data;
+
+    // Leo si hay algo guardado
+
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.getItem("wizard-form-cud") != undefined) {
+
+            data = JSON.parse(localStorage.getItem("wizard-form-cud"))
+
+            $.each(data, function(key, item) {
+                if (item.name == 'provincia' || item.name == 'localidad') {
+                    $('[name=' + item.name + ']').val(item.value);
+                } else {
+                    $('[name=' + item.name + '][value=' + item.value + ']').prop('checked', true);
+                }
+
+
+
+             })
+
+            
+
+        }
+        function checkItems(){
+         if((document.getElementById('bajafallecimientocud').checked) || (document.getElementById('bajavoluntariacud').checked)){
+            $('#edad, #coberturamedica, #origenProblemaSalud').addClass('hidden')
+            }else{
+              $('#edad, #coberturamedica, #origenProblemaSalud').removeClass('hidden')
+
+            }
+
+         if(document.getElementById('cambioidentidadadopcioncud').checked){
+            $('#origenProblemaSalud').addClass('hidden')
+         }else{
+            $('#origenProblemaSalud').removeClass('hidden')
+         }
+        }
+        
+        checkItems();
+
+         $('input[name="tipotramite"]').on('change', function() {
+            checkItems();
+         })
+
+        $.validator.setDefaults({
+            // debug: true,
+            success: "valid"
+        });
+
+        // Cuando mando el formulario guardo lo que se modificó
+
+        var wizard_form = $("#wizard-form-cud");
+
+
+        wizard_form.validate({
+            rules: {
+                tipotramite: {
+                    required: true
+                },
+                mayor18: {
+                    required: true
+                },
+                coberturamedica: {
+                    required: true
+                },
+                discapacidad: {
+                    required: true,
+                    minlength: 1
+                },
+                provincia: {
+                    required: true
+                },
+                localidad: {
+                    required: true
+                }
+            },
+            errorPlacement: function(error, element) {
+                if (element.is(":radio") || $(element).is(":checkbox")) {
+                    error.insertBefore(element.parent().parent());
+                } else {
+                    //error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
+                    error.insertBefore(element);
+
+                }
+            },
+            highlight: function(element, errorClass) {
+                if ($(element).is(":radio") || $(element).is(":checkbox")) {
+                    $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
+                } else {
+                    $(element).parent().addClass("has-error has-feedback");
+                }
+            },
+            success: function(label) {
+                label.parent().parent().removeClass("has-error has-feedback");
+                label.parents(".form-group").removeClass("has-error has-feedback");
+                label.remove();
+            },
+        });
+
+
+
+        $('#wizard-form-cud').on('submit', function(event) {
+
+
+            /*//ERRORES ACCESIBLES         
+            $("#errores").html("");
+            $("#errores").html("<h5>Los siguientes campos son obligatorios:</h5><ol></ol>");
+            $(".error").each(function(){
+               textoError = $(this).closest("fieldset").find(".control-label").html();
+               
+               $("#errores ol").append("<li>"+textoError+"</li>");
+            })
+
+            if($(".error").length >0){
+               console.log($(".error").length);
+               $("#errores").show().focus();
+            }*/
+            
+
+
+
+            event.preventDefault();
+
+            if (wizard_form.valid()) {
+
+                data = $(this).serializeArray();
+
+                localStorage.setItem("wizard-form-cud", JSON.stringify(data));
+
+                var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
+
+                if (localStorage.getItem("wizard-form-cud") == undefined) {
+                    // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
+                } else {
+                    // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
+                }
+
+                window.location.href = '/cud/requisitos';
+            }
+        });
+
+    } else {
+        //console.log('No tenés soporte :(');
+    }
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+    var dataProv = [{
+            provincia: "Ciudad Autónoma de Buenos Aires",
+            localidad: []
+        },
+        {
+            provincia: "Buenos Aires",
+            localidad: []
+        },
+        {
+            provincia: "Catamarca",
+            localidad: []
+        },
+        {
+            provincia: "Córdoba",
+            localidad: []
+        },
+        {
+            provincia: "Corrientes",
+            localidad: []
+        },
+        {
+            provincia: "Chaco",
+            localidad: []
+        },
+        {
+            provincia: "Chubut",
+            localidad: []
+        },
+        {
+            provincia: "Entre Ríos",
+            localidad: []
+        },
+        {
+            provincia: "Formosa",
+            localidad: []
+        },
+        {
+            provincia: "Jujuy",
+            localidad: []
+        },
+        {
+            provincia: "La Pampa",
+            localidad: []
+        },
+        {
+            provincia: "La Rioja",
+            localidad: []
+        },
+        {
+            provincia: "Mendoza",
+            localidad: []
+        },
+        {
+            provincia: "Misiones",
+            localidad: []
+        },
+        {
+            provincia: "Neuquén",
+            localidad: []
+        },
+        {
+            provincia: "Río Negro",
+            localidad: []
+        },
+        {
+            provincia: "Salta",
+            localidad: []
+        },
+        {
+            provincia: "San Juan",
+            localidad: []
+        },
+        {
+            provincia: "San Luis",
+            localidad: []
+        },
+        {
+            provincia: "Santa Cruz",
+            localidad: []
+        },
+        {
+            provincia: "Santa Fe",
+            localidad: []
+        },
+        {
+            provincia: "Santiago del Estero",
+            localidad: []
+        },
+        {
+            provincia: "Tierra del Fuego",
+            localidad: []
+        },
+        {
+            provincia: "Tucumán",
+            localidad: []
+        }
+    ]
+
+
+
+
+    // pusheo localidades a partir de spreadsheet
+
+
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1/public/values?alt=json', function(dataLugares) {
+
+        window.dataDrive = dataLugares.feed.entry;
+
+
+        $.each(dataDrive, function(key, item) {
+
+            var provinciaTrim = $.trim(item.gsx$provincia.$t);
+            var localidadTrim = $.trim(item.gsx$localidad.$t);
+
+            if (provinciaTrim == "Ciudad Autónoma de Buenos Aires") {
+
+                if (dataProv[0].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[0].localidad.push(localidadTrim);
+                    dataProv[0].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Buenos Aires") {
+
+                if (dataProv[1].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[1].localidad.push(localidadTrim);
+                    dataProv[1].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Catamarca") {
+
+                if (dataProv[2].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[2].localidad.push(localidadTrim);
+                    dataProv[2].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Córdoba") {
+
+                if (dataProv[3].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[3].localidad.push(localidadTrim);
+                    dataProv[3].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Corrientes") {
+
+                if (dataProv[4].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[4].localidad.push(localidadTrim);
+                    dataProv[4].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Chaco") {
+
+                if (dataProv[5].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[5].localidad.push(localidadTrim);
+                    dataProv[5].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Chubut") {
+
+                if (dataProv[6].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[6].localidad.push(localidadTrim);
+                    dataProv[6].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Entre Ríos") {
+
+                if (dataProv[7].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[7].localidad.push(localidadTrim);
+                    dataProv[7].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Formosa") {
+
+                if (dataProv[8].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[8].localidad.push(localidadTrim);
+                    dataProv[8].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Jujuy") {
+
+                if (dataProv[9].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[9].localidad.push(localidadTrim);
+                    dataProv[9].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "La Pampa") {
+
+                if (dataProv[10].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[10].localidad.push(localidadTrim);
+                    dataProv[10].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "La Rioja") {
+
+                if (dataProv[11].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[11].localidad.push(localidadTrim);
+                    dataProv[11].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Mendoza") {
+
+                if (dataProv[12].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[12].localidad.push(localidadTrim);
+                    dataProv[12].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Misiones") {
+
+                if (dataProv[13].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[13].localidad.push(localidadTrim);
+                    dataProv[13].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Neuquén") {
+
+                if (dataProv[14].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[14].localidad.push(localidadTrim);
+                    dataProv[14].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Río Negro") {
+
+                if (dataProv[15].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[15].localidad.push(localidadTrim);
+                    dataProv[15].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Salta") {
+
+                if (dataProv[16].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[16].localidad.push(localidadTrim);
+                    dataProv[16].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "San Juan") {
+
+                if (dataProv[17].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[17].localidad.push(localidadTrim);
+                    dataProv[17].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "San Luis") {
+
+                if (dataProv[18].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[18].localidad.push(localidadTrim);
+                    dataProv[18].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Santa Cruz") {
+
+                if (dataProv[19].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[19].localidad.push(localidadTrim);
+                    dataProv[19].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Santa Fe") {
+
+                if (dataProv[20].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[20].localidad.push(localidadTrim);
+                    dataProv[20].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Santiago del Estero") {
+
+                if (dataProv[21].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[21].localidad.push(localidadTrim);
+                    dataProv[21].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Tierra del Fuego") {
+
+                if (dataProv[22].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[22].localidad.push(localidadTrim);
+                    dataProv[22].localidad.sort();
+                }
+
+            }
+
+            if (provinciaTrim == "Tucumán") {
+
+                if (dataProv[23].localidad.indexOf(localidadTrim) == -1) {
+                    dataProv[23].localidad.push(localidadTrim);
+                    dataProv[23].localidad.sort();
+                }
+
+            }
+        });
+
+        localidadFn();
+
+    });
+
+
+    function localidadFn(jQuery) {
+        var localidadFieldset = $('select[name="localidad"]').parent();
+        if ($('select[name="provincia"]').value === '') {
+            localidadFieldset.attr('disabled', true);
+        } else {
+            localidadFieldset.removeAttr('disabled');
+        }
+        var indexProvincia = $('select[name="provincia"]').find(":selected").index();
+        load_localidades(indexProvincia);
+
+        if (data != "") {
+            $.each(data, function(index, val) {
+                if (val["name"] == "localidad") {
+                    $('select[name="localidad"]').val(val["value"]);
+                }
+            });
+        }
+
+
+    }
+
+    // hasta acá pusheo
+
+
+    if ($('select[name="provincia"]').val() === '') {
+        $('select[name="localidad"]').attr('disabled', true);
+    } else {
+        $('select[name="localidad"]').removeAttr('disabled');
+    }
+
+    $('select[name="provincia"]').on('change', function() {
+        var localidadFieldset = $('select[name="localidad"]');
+        //console.log(this.value === '')
+        if (this.value === '') {
+            localidadFieldset.attr('disabled', true);
+        } else {
+            localidadFieldset.removeAttr('disabled');
+            $('select[name="localidad"]').val($('select[name="localidad"] option:first').val());
+
+        }
+
+        var indexProvincia = $(this).find(":selected").index();
+        load_localidades(indexProvincia);
+
+    });
+
+
+    // -----------------------------------------------------------------
+
+
+    function load_localidades(indexProvincia) {
+        // First we clean all options
+
+        $('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
+        var aux, localidad, _i, _len;
+        dataLocalidades = dataProv[indexProvincia - 1].localidad;
+
+        for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
+            localidad = dataLocalidades[_i];
+            $('select[name="localidad"]').append('<option value="' + localidad + '">' + localidad + '</option>');
+        }
+
+    }
+
+})(jQuery);
+</script>

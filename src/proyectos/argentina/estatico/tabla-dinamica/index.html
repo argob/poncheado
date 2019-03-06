@@ -1,0 +1,264 @@
+---
+layout: argentina
+---
+
+<style>
+    @media only screen and (max-width: 768px) {
+       table, 
+       thead, 
+       tbody, 
+       th, 
+       td, 
+       tr { 
+            display: block; 
+        }
+
+       thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td{
+            border: none;
+            border-bottom: 1px solid #eee; 
+            position: relative;
+            padding-left: 50%!important; 
+            white-space: normal;
+            text-align:left;
+            word-break: break-all!important;
+        }
+        .table > tbody > tr > td{
+            padding-left: 50%!important;  
+        }
+        td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+        }
+        td:before { content: attr(data-title); }
+        }
+        
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="datatables.min.css">
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <h1>Tablas accesibles</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium veritatis mollitia adipisci ducimus nesciunt quo est voluptatem possimus, incidunt inventore sequi dolores neque eius, earum nemo doloribus temporibus! Fuga, iste!</p>
+            <div class="form-group">
+                <label for="dataTableSearch">ID SPREADSHEET</label>
+                <input type="text" class="form-control input-sm" id="idSpreadsheet" value="1omPgp2uA16lXOp0jAVTkVXtbzfUm-FCK5FTcwAjkCHY">
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label for="dataTableSearch">Buscar</label>
+                <input type="text" class="form-control" id="dataTableSearch">
+            </div>
+        </div>
+
+        <div class="col-md-12 m-b-4">
+            <table class="table tabla-condensed" id="dataTable">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+<script src="datatables.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var idSpread = "15wo8vZ6uDbttUsJ8Hk0tId3vAcPSzSr6kg6DgvshizQ";
+
+    $("#idSpreadsheet").on("change",function(){
+      //Inicializar poncho table
+      idSpread = $(this).val();
+      ponchoTable(idSpread);  
+    })
+
+    ponchoTable(idSpread);
+
+
+    function ponchoTable(idSpread){
+      var listado = [];
+      var filteredTitle = [];
+      var filteredTitleGsx = [];
+      var titulos = '';
+      var th = [];
+      var lista = '';      
+
+      if ( $.fn.DataTable.isDataTable('#dataTable') ) {
+        $('#dataTable').DataTable().destroy();
+      }
+
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/'+idSpread+'/1/public/values?alt=json',
+
+        function(data) {
+            listado = data['feed']['entry'];
+
+            //TITULOS
+            $.each(Object.keys(listado[0]), function(index, key) {
+                if (key.substr(0, 4) == 'gsx$') {
+                    filteredTitle.push(listado[0][key]["$t"]);
+                    filteredTitleGsx.push(key);
+                    titulos += '<th>' + listado[0][key]["$t"] + '</th>';
+                    th.push(listado[0][key]["$t"]);
+                   
+
+                }
+              
+            })
+
+            //Agregar titulos al thead de la tabla
+            $('#dataTable thead tr').empty();
+            $('#dataTable thead tr').append(titulos);
+
+
+            //CONTENIDO FILAS
+            $.each(listado, function(row, value) {
+                
+                if(row > 0){
+                lista += '<tr>';
+                  $.each(filteredTitleGsx, function(index, title) {
+                    var tdEmpty = '';
+                      if (title.substr(0, 4) == 'gsx$') {
+                         
+                          filas = listado[row][filteredTitleGsx[index]].$t;
+                          
+                          //Detectar si es bono
+                          if(title.includes("btn-") && filas != "" ){
+                            nameBtn = title.substr(8, title.length-8).replace("-"," ");
+                            filas = '<a class="btn btn-primary btn-sm" target="_blank" href="'+filas+'">'+nameBtn+'</a>'
+                          }
+
+                          if(filas == ''){
+                            tdEmpty = 'hidden-xs';
+                          }
+
+                          var converter = new showdown.Converter(),
+                          filas = converter.makeHtml(filas);
+
+                          lista += '<td class="'+ tdEmpty +'" data-title="'+ th[index] +'">' + filas + '</td>';
+
+                      }
+
+                     
+                  })
+                lista += '</tr>';
+                }
+
+            })
+
+            //Agregar contenido al body de la Tabla
+            $('#dataTable tbody').empty();
+            $('#dataTable tbody').append(lista);
+
+            initDataTable();
+        }
+    )
+
+    /*function formatTitle(keyFiltered) {
+        var titleLowerCase = keyFiltered.substr(4, keyFiltered.length - 4);
+        return titleLowerCase[0].toUpperCase() + titleLowerCase.slice(1);
+    }*/
+
+    function initDataTable() {
+        var tabla = $("#dataTable").DataTable({
+            "lengthChange": false,
+            "autoWidth" : false,
+            "info": false,
+            
+
+
+
+             "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
+            }
+        });
+
+  
+
+        
+
+        //BUSCADOR
+        $("#dataTable_filter").parent().parent().remove();
+        $('#dataTableSearch').on('keyup', function() {
+            tabla.search(this.value).draw();
+        });
+
+
+        //EXPAND ALL
+        tabla.rows().every(function(){
+            // If row has details collapsed
+             if(!this.child.isShown()){
+            // Expand row details
+            tabla.settings()[0].responsive._detailsDisplay(this, false);
+          }
+        });
+
+
+
+
+    }
+  }
+});
+</script>
+
+
+
+

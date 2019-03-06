@@ -1,0 +1,39 @@
+---
+layout: blank
+---
+
+<main role="main">
+  <div class="container">
+    <section>
+
+      <h1 class="text-center margin-40">Proyectos</h1>
+
+      {% for myfile in site.static_files %}
+        {{ myfile.path }}
+      {% endfor %}
+
+      <div class="row">
+
+        {% for proyect in site.data.proyects %}
+          <div class="col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/proyectos/{{ proyect.folder }}/">
+              <div style="background-image:url('/proyectos/{{ proyect.folder }}/img/screenshot.png');" class="panel-heading align-top"></div>
+              <div class="panel-body">
+                <h3>{{ proyect.name }}</h3>
+                <!-- <p class="text-muted">{{ proyect.description }}</p> -->
+              </div>
+            </a>
+            
+            <ul>
+              {% for page in proyect.pages %}
+                <li><a href="/proyectos/{{ proyect.folder }}/{{ page.file }}">{{ page.name }}</a></li>
+              {% endfor %}
+            </ul>
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </section>
+  </div>
+</main>

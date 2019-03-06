@@ -11,9 +11,15 @@ layout: argentina
     }
     
     .bg-danger {
-        color: white;
+    color: white;
+    margin: auto!important;
+    background-color: #EC4043!important;
+    }
+
+    .icon-disable{
+        color: #767676 !important;
         margin: auto!important;
-        background-color: #EC4043!important;
+        background-color: #ccc !important;
     }
     
     .text-danger {
@@ -60,13 +66,19 @@ layout: argentina
     }
     
 
-    .bg-active{
-      color: #EC4043!important;
-      background-color: white!important;
+    .icon-active{
+      color: #ffffff!important;
+      background-color: #EC4043!important;
       margin: auto!important;
     }
 
-    .bg-danger:hover, a.panel:focus {
+    .bg-active {
+    color: #EC4043!important;
+    background-color: white!important;
+    margin: auto!important;
+    }
+
+    .bg-danger:hover, a.panel:focus, .icon-disable:hover {
       opacity: 0.8;
     }
 
@@ -117,26 +129,35 @@ layout: argentina
 </style>
 
 
-<section class="jumbotron" style="background-image: url('img/patternm-sangre.png');">
+<section class="jumbotron jumbotron-pattern align-mid" style="background-image:url(https://www.argentina.gob.ar/sites/default/files/patternm-sangre.jpg);">
     <div class="jumbotron_bar">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ol class="breadcrumb pull-left">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="index.html">Donación de Sangre</a></li>
-            <li class="active">Quiénes pueden donar</li>
-          </ol>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="/desarrollosocial">Ministerio de Salud y Desarrollo Social</a>
+                        </li>
+                        <li>
+                            <a href="/salud">Salud</a>
+                        </li>
+                        <li class="active">Donar sangre</li>
+                    </ol>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     <div class="jumbotron_body">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <h2>¿Quiénes pueden donar?</h2>
-                    <p>Si tenés más de 18 años, gozás de buena salud y pesás más de 50kg podrías donar sangre.</p>
+                <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                    <h1>Quiénes pueden donar</h1>
+                    <p></p>
+                    <p>Si tenés más de16 años, gozás de buena salud y pesás más de 50kg podrías donar sangre.</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -149,16 +170,16 @@ layout: argentina
             <div class="col-md-10 col-md-offset-1">
                 <ul id="menu" class="row">
                     <li class="col-md-2 text-center col-md-offset-2">
-                        <a href="porque.html"><span class="bg-danger"><i class="fa fa-question"></i></span><p class="m-t-1"><b><small>Por qué donar</small></b></p></a>
+                        <a href="porque.html"><span class="icon-disable"><i class="fa fa-question"></i></span><p class="m-t-1"><b><small>Por qué donar</small></b></p></a>
                     </li>
                     <li class="col-md-2 text-center">
-                        <span class="bg-active"><i class="fa fa-users"></i></span><p class="m-t-1"><b><small>Quiénes pueden</small></b></p>
+                        <span class="icon-active"><i class="fa fa-users"></i></span><p class="m-t-1"><b><small>Quiénes pueden</small></b></p>
                     </li>
                     <li class="col-md-2 text-center">
-                        <a href="como.html"><span class="bg-danger"><i class="fa fa-heart"></i></span><p class="m-t-1"><b><small>Cómo hacerlo</small></b></p></a>
+                        <a href="como.html"><span class="icon-disable"><i class="fa fa-heart"></i></span><p class="m-t-1"><b><small>Cómo hacerlo</small></b></p></a>
                     </li>
                     <li class="col-md-2 text-center">
-                        <a href="donde.html"><span class="bg-danger"><i class="fa fa-map-marker"></i></span><p class="m-t-1"><b><small>Dónde donar</small></b></p></a>
+                        <a href="donde.html"><span class="icon-disable"><i class="fa fa-map-marker"></i></span><p class="m-t-1"><b><small>Dónde donar</small></b></p></a>
                     </li>
                 </ul>
             </div>
@@ -166,12 +187,12 @@ layout: argentina
     </div>
 </section>
 
-<section>
+<section class="bg-gray">
     <div class="container">
         <div class="row panels-row">
 
             <div class="col-xs-12 col-md-8 col-md-offset-2">
-                <div class="panel panel-default" href="identidad">
+                <div class="panel panel" href="identidad">
                     <div class="panel-body">
                         <div class="media">
                             <div class="media-left">
@@ -435,61 +456,59 @@ layout: argentina
 </section>
 
 
-<section class="bg-gray m-t-2">
-    <div class="container">
-        <div class="row panels-row">
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default panelFooter" href="donde.html">
-                    <div class="panel-body">
-                        <div class="media">
-                            <div class="media-left padding-20">
-                                <i class="fa fa-map-marker fa-fw fa-3x text-danger"></i>
+        <section class="bg-gray m-t-2">
+            <div class="container">
+                <div class="row panels-row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/aplicaciones/salud" target="_blank">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-left padding-20"> <i class="fa fa-mobile-phone fa-fw fa-3x text-danger"></i></div>
+                                    <div class="media-body">
+                                        <h3>
+                                            Bajate la aplicación
+                                        </h3>
+                                        <p>
+                                            Encontrá el centro de salud más cercano para donar sangre.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h3>Centros de atención</h3>
-                                <p>Encontrá el más cercano a tu domicilio.</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/manifestar-la-voluntad-de-donacion-de-organos-y-tejidos">
-                    <div class="panel-body">
-                        <div class="media">
-                            <div class="media-left padding-20">
-                                <i class="fa fa-heartbeat fa-fw fa-3x text-danger"></i>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/manifestar-la-voluntad-de-donacion-de-organos-y-tejidos">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-left padding-20">
+                                        <i class="fa fa-heartbeat fa-fw fa-3x text-danger"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h3>¿Querés ayudar más?</h3>
+                                        <p>Doná tus órganos.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h3>¿Querés ayudar más?</h3>
-                                <p>Doná tus órganos.</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <a class="panel panel-default panelFooter" href="faq.html">
-                    <div class="panel-body">
-                        <div class="media">
-                            <div class="media-left padding-20">
-                                <i class="fa fa-question fa-fw fa-3x text-danger"></i>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/salud/donarsangre/preguntas">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-left padding-20">
+                                        <i class="fa fa-question fa-fw fa-3x text-danger"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h3>Preguntas frecuentes</h3>
+                                        <p>Aclará tus dudas sobre la donación de sangre.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h3>Preguntas frecuentes</h3>
-                                <p>Aclará tus dudas sobre la donación de sangre.</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                </a>
+                </div>
             </div>
-
-        </div>
-    </div>
-</section>
+        </section>
 
 
 

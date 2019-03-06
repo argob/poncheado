@@ -1,0 +1,895 @@
+---
+layout: argentina
+---
+
+	<h1 class="m-y-2">Dónde ir y qué llevar para tramitar el CUD</h1>
+<div class="hidden" id="wizard-cud">
+	<div id="wizard-cud-items">&nbsp;</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h2>&nbsp;&nbsp; Dónde ir para que te den un turno</h2>
+		<hr class="m-y-1" />
+		<div class="m-t-2 hidden" id="show-data-lugar">&nbsp;</div>
+		<ul class="hidden" id="show-data-description-lugar"></ul>
+		<p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
+		<p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certificado.</p>
+		
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h2>&nbsp;&nbsp; Qué llevar para que te den un turno</h2>
+		<hr class="m-y-1" />
+		<p class="hidden" id="show-data-description">&nbsp;</p>
+		<ol class="m-t-2 hidden" id="show-data">
+			<li class="hidden" id="show-primera-vez">&nbsp;</li>
+			<li class="hidden" id="show-renovacion">&nbsp;</li>
+			<li class="hidden" id="show-perdida">&nbsp;</li>
+			<li class="hidden" id="show-agravamiento">&nbsp;</li>
+			<li class="hidden" id="show-fallecimiento">&nbsp;</li>
+			<li class="hidden" id="show-voluntaria">&nbsp;</li>
+			<li class="hidden" id="show-adopcion">&nbsp;</li>
+			<li class="hidden" id="show-genero">&nbsp;</li>
+		</ol>
+		<div class="well">
+			<p>
+				<strong>NOTA:</strong> Tené en cuenta que la Junta Evaluadora podrá solicitar nuevos estudios o informes para ampliar la documentación presentada, en los casos que la misma no sea concluyente.
+			</p>
+			<p>En caso de dudas respecto a los estudios que debés presentar, consultá con su equipo de salud/médico tratante.</p>
+		</div>
+	</div>
+</div>
+<!--
+ <div id="wizard-message" class="m-y-3 hidden"><h3 class="text-muted h4 m-t-2">No encontramos resultados para vos</h3><p>Probá cambiando la configuración del formulario.</p></div>
+ -->
+<div class="m-y-2">
+	<div class="m-y-2">
+		<a class="btn btn-link" href="/cud/consulta-requisitos" id="edit-form">MODIFICAR CONSULTA</a>
+		<a class="btn btn-link" href="" onclick="window.print()">IMPRIMIR RESULTADOS</a>
+	</div>
+</div>
+<div class="well m-y-4">
+	<h2 class="h3">Información adicional</h2>
+	<h3 class="h5 m-t-2 m-b-1">Datos de Contacto del Agencia Nacional de Discapacidad</h3>
+	<p>&nbsp;&nbsp;
+		<a href="mailto:consultas@andis.gob.ar">consultas@andis.gob.ar</a>
+	</p>
+	<p>
+		<strong>0800 555 3472</strong> (días hábiles de 8 a 18 hs)
+	</p>
+	<h3 class="h5 m-t-2 m-b-1">Lista de centros según localidad</h3>
+	<p>Si preferís llamar o ir personalmente consultá la 
+		<a href="https://www.argentina.gob.ar/juntas-evaluadoras-cud">lista de centros </a>
+	</p>
+	<h3 class="h5 m-t-2 m-b-1">Marco legal</h3>
+	<p>
+		<a href="/cud/marco-legal">Leyes y normativas que reglamentan el CUD </a>
+	</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
+<script type="text/javascript">
+//
+// Target blank extension
+//
+
+(function () {
+ 'use strict';
+
+ 	var targetblank = function () {
+ 		return [
+ 	{
+ 	type: 'output',
+ 	regex: '<a(.*?)>',
+ 	replace: function (match, content) {
+ 	return content.indexOf('mailto:') !== -1 ? '<a' + content + '>' : '<a target="_blank"' + content + '>';
+ 	}
+ }
+ ];
+ };
+
+ // Client-side export
+ if (typeof window !== 'undefined' && window.showdown && window.showdown.extensions) {
+ window.showdown.extension("targetblank", targetblank);
+ }
+ // Server-side export
+ if (typeof module !== 'undefined') {
+ module.exports = targetblank;
+ }
+
+}()); 
+</script><script>
+
+(function($) {
+
+ var templates={description: '<p>Según el trámite a realizar ({tipoTramite}) el origen del problema de salud por el cual se solicita el certificado (<span data-render="tipo-discapacidad"></span>) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
+ descriptionLugar: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+ descriptionLugarSingular: `<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+ lugar: `<li><div class="form-group m-t-2">
+ <label class="control-label">Junta</label>
+ <p>{junta}</p>
+ {pedirTurno}
+ </div> 
+ <div class="form-group m-t-2">
+ <label class="control-label">Dirección</label>
+ <p>{direccion}</p>
+ </div>
+ <div class="form-group m-t-2">
+ <label class="control-label">Teléfono</label>
+ <p>{telefono}</p>
+ </div>
+ <hr /></li>`, 
+ tipoDiscapacidad: `{tipoDiscapacidad}` 
+ };
+
+ var form_data;
+ var data = {};
+
+ // Leo si hay algo guardado
+
+ if(typeof(Storage) !== "undefined") {
+ if( localStorage.getItem("wizard-form-cud") != undefined ){
+
+ form_data = JSON.parse( localStorage.getItem("wizard-form-cud"))
+
+
+
+ jQuery.each(form_data, function(key, item){
+
+ if(item.name == 'discapacidad') {
+ data[item.value] = 'si';
+ }
+ data[item.name] = item.value;
+ });
+
+ var item_blank = true;
+
+
+ $.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
+ window.dataDrive = dataDiscapacidad.feed.entry;
+
+
+ mostrarDescripcion();
+ // console.log(dataDiscapacidad);
+
+ $.each( dataDrive, function( key, item ) {
+ 	
+
+ var show = false;
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X")
+ && 
+ ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "cdata-" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "") 
+ ) 
+ {
+ show = true;
+ }
+if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ (data.mayor18 == 'no')
+ &&
+ ( item.gsx$menor18años.$t == "X") 
+ 
+ && 
+ ( item.gsx$curatela.$t == "X") && (item.gsx$tutor.$t == "X") 
+ )
+ {
+ console.log(' No tiene tutor')
+ show = true;
+ }
+
+
+ if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ (data.mayor18 == 'no')
+ &&
+ ( item.gsx$menor18años.$t == "X") 
+ 
+ && 
+ ( item.gsx$curatela.$t == "C") && (item.gsx$tutor.$t == "T") 
+ )
+ {
+ 	console.log('tiene tutor')
+ show = true;
+ }
+ if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ (data.mayor18 == 'no' ) 
+ && 
+ ( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "") 
+ )
+ {
+ show = true;
+ }
+
+ if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "X") && (data.mayor18 == 'si' && data.tutoria == 'si') ){
+ show = true;
+ } 
+
+ if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "C") && (data.mayor18 == 'si' && data.tutoria == 'conjuntamente') ){
+ show = true;
+ } 
+
+ if((( item.gsx$mayorde18años.$t == "X") && ( item.gsx$menor18años.$t == "")) && ( item.gsx$curatela.$t == "T") && (data.mayor18 == 'si' && data.tutoria == 'tercero') ){
+ show = true;
+ } 
+
+ if((( item.gsx$mayorde18años.$t == "") && ( item.gsx$menor18años.$t == "X")) && ( item.gsx$tutor.$t == "X") && (data.mayor18 == 'no' && data.guardador == 'si')){
+ show = true;
+ } 
+ 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$obrasocial.$t == "X") 
+ && 
+ (data.coberturamedica == 'Obrasocial')
+ )
+ {
+ show = true;
+ }
+
+ 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$coberturaprepaga.$t == "X") 
+ && 
+ (data.coberturamedica == 'Medicinapre-paga') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$obrasocial.$t == "X") 
+ && (data.mayor18 == 'si' && data.coberturamedica == 'Obrasocial') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$pami.$t == "X") 
+&& (data.coberturamedica == 'Pami')
+ )
+ {
+  show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$incluirsalud.$t == "X") 
+&& (data.coberturamedica == 'Programa-Incluir-Salud')
+ )
+ {
+  show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "") 
+ && 
+ (item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$obrasocial.$t == "X") 
+ && (data.mayor18 == 'no' && data.coberturamedica == 'Obrasocial' )
+ )
+ {
+ show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$intelectualymental.$t == "X") 
+ && 
+ (data.discapacidadintelectualymental == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$intelectualymental.$t == "X") 
+ && (data.discapacidadintelectualymental == 'si')
+ && (data.tipotramite !== 'Baja-por-fallecimiento')
+ && (data.mayor18 == 'no')
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$intelectualymental.$t == "X") 
+ && (data.discapacidadintelectualymental == 'si')
+ && (data.tipotramite == 'Baja-por-fallecimiento')
+ && (item.gsx$excluiren.$t !== "BxF")
+ && (data.mayor18 == 'no')
+ )
+ {
+ show = true;
+ }
+
+
+
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$intelectualymental.$t == "X") 
+ && (data.discapacidadintelectualymental == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$visual.$t == "X") 
+ && 
+ (data.discapacidadvisual == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$visual.$t == "X") 
+ && (data.discapacidadvisual == 'si') 
+ && (data.mayor18 == 'no')
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$visual.$t == "X") 
+ && (data.discapacidadvisual == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$motor.$t == "X") 
+ && 
+ (data.discapacidadmotor == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$motor.$t == "X") 
+ && (data.discapacidadmotor == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$motor.$t == "X") 
+ && (data.discapacidadmotor == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$auditivo.$t == "X") 
+ && 
+ (data.discapacidadauditivo == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$auditivo.$t == "X") 
+ && (data.discapacidadauditivo == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$auditivo.$t == "X") 
+ && (data.discapacidadauditivo == 'si' )
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$respiratorio.$t == "X") 
+ && 
+ (data.discapacidadrespiratorio == 'si')
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$respiratorio.$t == "X") 
+ && (data.discapacidadrespiratorio == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$respiratorio.$t == "X") 
+ && (data.discapacidadrespiratorio == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$cardiovascular.$t == "X") 
+ && 
+ (data.discapacidadcardiovascular == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$cardiovascular.$t == "X") 
+ && (data.discapacidadcardiovascular == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$cardiovascular.$t == "X") 
+ && (data.discapacidadcardiovascular == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$renalurológico.$t == "X") 
+ && 
+ (data.discapacidadrenalurologico == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$renalurológico.$t == "X") 
+ && (data.discapacidadrenalurologico == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$renalurológico.$t == "X") 
+ && (data.discapacidadrenalurologico == 'si') 
+ && (data.mayor18 == 'si') 
+ )
+ {
+ show = true;
+ } 
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$digestivohepático.$t == "X") 
+ && 
+ (data.discapacidaddigestivohepatico == 'si') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "" ) 
+ && 
+ ( item.gsx$menor18años.$t == "X") 
+ && 
+ ( item.gsx$digestivohepático.$t == "X") 
+ && (data.discapacidaddigestivohepatico == 'si') 
+ && (data.mayor18 == 'no') 
+ )
+ {
+ show = true;
+ }
+
+ if(
+ ( item.gsx$mayorde18años.$t == "X") 
+ && 
+ ( item.gsx$menor18años.$t == "") 
+ && 
+ ( item.gsx$digestivohepático.$t == "X") 
+ && (data.discapacidaddigestivohepatico == 'si') 
+ && data.mayor18 == 'si' 
+ )
+ {
+ show = true;
+ }
+
+
+ if(show){
+
+ item_blank = false;
+
+ var html = templates.item;
+
+ var converter = new showdown.Converter({extensions: ['targetblank']}),
+ text = item.gsx$requisitos.$t,
+ requisitosmd = converter.makeHtml(text);
+ // console.log(requisitosmd);
+
+ html = html.replace(/{requisito}/gi, requisitosmd);
+
+ jQuery('#show-data').removeClass('hidden').append( html );
+
+
+ }
+
+
+ });
+
+ $(".panel a[target='_blank']").each(function() {
+ $('<span class="sr-only"> Abre en ventana nueva</span>').appendTo(this)
+ }); 
+ 
+ function mostrarDescripcion () {
+
+ var htmlDescription = templates.description; 
+
+ htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite 
+ .replace("Solicitud-de-Certificado-por-primera-vez","Solicitud por primera vez")
+ .replace("Renovacion","Renovación")
+ .replace("Perdida-del-certificado","Pérdida del certificado")
+ .replace("Baja-voluntaria","Baja voluntaria")
+ .replace("Cambio-de-identidad-de-genero","Cambio de identidad de género")
+ .replace("Baja-por-fallecimiento","Baja por fallecimiento"))
+ .replace(/{edad}/gi, data.mayor18
+ .replace("no","menor de 18 años")
+ .replace("si","mayor de 18 años"))
+ .replace(/{tipoCobertura}/gi, data.coberturamedica
+ .replace("Obrasocial","Obra social")
+ .replace("Medicinapre-paga","Medicina prepaga")
+ .replace("Atencion-en-hospital-o-centro-de-salud-publica","Atención en hospital o centro de salud pública")); 
+
+ jQuery('#show-data-description').removeClass('hidden').append( htmlDescription ); 
+
+ if(data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
+
+ var htmlPrimeraVez = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) <br>';
+
+
+ $('#show-primera-vez').removeClass('hidden').append( htmlPrimeraVez );
+ $('#btn-planilla').removeClass('hidden');
+ }
+
+
+ if(data.tipotramite == "Renovacion") {
+
+ var htmlRenovacion = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD anterior (original). En caso de pérdida del CUD traer la denuncia de extravío.';
+
+
+ $('#show-renovacion').removeClass('hidden').append( htmlRenovacion ); 
+ $('#btn-planilla').removeClass('hidden');
+ }
+
+ if(data.tipotramite == "Perdida-del-certificado") {
+
+ var htmlPerdida = '<strong> DNI </strong>de la persona que será evaluada (original y fotocopia) y denuncia de extravío del CUD.';
+
+ $('#show-perdida').removeClass('hidden').append( htmlPerdida ); 
+ }
+
+ if(data.tipotramite == "Agravamiento") {
+
+ var htmlAgravamiento = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD original vigente.';
+
+ $('#show-agravamiento').removeClass('hidden').append( htmlAgravamiento ); 
+ }
+
+ if(data.tipotramite == "Baja-por-fallecimiento") {
+
+ var htmlFallecimiento = '<strong>CUD</strong> original y Certificado de defunción (original y fotocopia).';
+
+ $('#show-fallecimiento').removeClass('hidden').append( htmlFallecimiento ); 
+ }
+
+ if(data.tipotramite == "Baja-voluntaria") {
+
+ var htmlVoluntaria = '<strong>DNI</strong> de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> original vigente.';
+
+ $('#show-voluntaria').removeClass('hidden').append( htmlVoluntaria ); 
+ }
+
+ if(data.tipotramite == "Cambio-de-identidad-por-adopcion") {
+
+ var htmlAdopcion = '<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia), <strong>CUD</strong> vigente (original) y nueva partida de nacimiento (original y fotocopia).';
+
+ $('#show-adopcion').removeClass('hidden').append( htmlAdopcion ); 
+ }
+
+ if(data.tipotramite == "Cambio-de-identidad-de-genero") {
+
+ var htmlGenero = '<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> vigente (original).';
+
+ $('#show-genero').removeClass('hidden').append( htmlGenero ); 
+ }
+
+
+ var htmlTipoDiscapacidad = templates.tipoDiscapacidad; 
+ var tipoDiscapacidad = ''
+
+ if (data.discapacidadintelectualymental == 'si') {
+ tipoDiscapacidad += 'Intelectual y Mental, ';
+ }
+ if (data.discapacidadvisual == 'si') {
+ tipoDiscapacidad += 'Visual, ';
+ }
+ if (data.discapacidadmotor == 'si') {
+ tipoDiscapacidad += 'Motora, ';
+ }
+ if (data.discapacidadauditivo == 'si'){
+ tipoDiscapacidad += 'Auditiva, ';
+ } 
+ if (data.discapacidadrespiratorio == 'si' ) {
+ tipoDiscapacidad += 'Respiratoria, ';
+ } 
+ if (data.discapacidadcardiovascular == 'si' ) {
+ tipoDiscapacidad += 'Cardiovascular, ';
+ } 
+ if (data.discapacidadrenalurologico == 'si' ) {
+ tipoDiscapacidad += 'Renal urológico, ';
+ } 
+ if (data.discapacidaddigestivohepatico == 'si') {
+ tipoDiscapacidad += 'Digestivo / Hepático, ';
+ }
+
+
+
+
+ htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidad}/gi, tipoDiscapacidad.slice(0, -2)); 
+
+ $('#show-data-description').find('[data-render=tipo-discapacidad]').append( htmlTipoDiscapacidad ); 
+
+ }
+
+
+ }); 
+
+ $.getJSON('https://spreadsheets.google.com/feeds/list/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1/public/values?alt=json', function (dataLugares) {
+ // $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1', function (dataLugares) {
+ window.dataDrive = dataLugares.feed.entry;
+
+ $.each( dataDrive, function( key, item ) {
+
+ var showLugares = false;
+
+ var provinciaTrim = $.trim(item.gsx$provincia.$t);
+ var localidadTrim = $.trim(item.gsx$localidad.$t);
+
+ if( provinciaTrim == data.provincia && localidadTrim == data.localidad ){
+ showLugares = true;
+ }
+
+ if(showLugares){
+
+ var pedirTurno = '';
+
+ if((data.localidad == "Torres")) {
+ pedirTurno = '<p class="margin-0"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/77" target="_blank">Pedir Turno</a></p>'
+ } 
+
+ if((data.localidad == "Pilar")) {
+ pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/333" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/305">Turno Junta</a></p>'
+ } 
+
+
+if((data.localidad == "Tres de Febrero")) {
+ pedirTurno = '<p class="margin-0 btn-toolbar"><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/267" target="_blank">Turno asesoramiento</a><a class="btn btn-success btn-sm" style="text-decoration: none;" href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/270">Turno Junta</a></p>'
+ } 
+
+
+ var html = templates.lugar;
+
+ html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
+ .replace(/{direccion}/gi, item.gsx$direccion.$t)
+ //.replace(/{localidad}/gi, item.gsx$localidad.$t)
+ .replace(/{pedirTurno}/gi, pedirTurno)
+ .replace(/{telefono}/gi, item.gsx$telefono.$t);
+
+ jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
+
+
+ }
+
+
+ });
+
+ showDescripcion();
+
+ function showDescripcion () {
+
+ var htmlDescription = templates.descriptionLugar;
+
+ if(jQuery('#show-data-description-lugar li').length == 1) {
+ htmlDescription = templates.descriptionLugarSingular;
+ }
+
+
+ htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
+ .replace(/{localidad}/gi, data.localidad);
+
+ jQuery('#show-data-lugar').removeClass('hidden').append( htmlDescription );
+
+ }
+
+ }); 
+
+
+
+ // if(item_blank){
+ // jQuery('#wizard-message').removeClass('hidden');
+ // }
+ 
+ }else{
+ // console.log('Todavía no guardaste nada');
+ window.location.replace('/cud/consulta-requisitos');
+ }
+
+ } else {
+
+ }
+
+ jQuery('#edit-form').on('click', function(event){
+ event.preventDefault();
+ // ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+ window.location.href = '/cud/consulta-requisitos';
+ });
+
+})(jQuery);
+
+ </script>
+<style type="text/css">
+.panel li a {
+ text-decoration: underline;
+}
+.panel li a:hover, 
+.panel li a:focus {
+ text-decoration: underline;
+}
+#show-data-description-lugar {
+ list-style-type: none;
+ padding: 0!important; 
+}
+li ul,
+li ol {
+ margin: 10px 0 0!important;
+}</style>

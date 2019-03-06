@@ -1,0 +1,213 @@
+---
+layout: argentina
+title: Centros de salud
+---
+<style>
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  .main-footer {
+    display: none;
+  }  
+
+.media h3{
+  font-size: 1.3em
+}
+
+.media h4{
+  font-size: 1.2em
+}
+
+@media (max-width: 480px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: auto;
+  }
+}
+
+</style>
+
+
+
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden-xs" href="/">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <div class="navbar-brand visible-xs-inline-block"> Centros de salud</div>
+
+        </div>  
+        <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
+          <div class="visible-xs">
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
+            </a>
+            <hr class="margin-20">
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://www.argentina.gob.ar/salud">Secretaría de Salud</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <section class="jumbotron">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 hidden-xs">
+            <h4>Centros de salud</h4>
+                  
+          </div>        
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+
+
+   
+<div class="state-loading" id="map-container">
+  <div id="map"></div>
+</div>
+
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&sensor=true">
+    </script>
+
+    <script type="text/javascript">
+(function($){    
+      $(document).ready(function() {
+        
+        //INICIALIZA EL MAPA
+        var map;
+        var mapOptions = {
+          center: new google.maps.LatLng(58, 16),
+          zoom: 5,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: {lat:-39.6930895,lng:-57.2432742}
+        };
+        map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+
+        
+        //CONSULTA A JSON
+        $.getJSON("https://www.argentina.gob.ar/sites/default/files/mapa_centro_salud.json", function(centros) {
+          centros = centros.establecimientos;
+          var markers = [];
+          var detalles = [];
+
+
+          //MAPEA LOS PUNTOS
+          $.each(centros, function(key, data) {
+            var latLng = new google.maps.LatLng(data.lat, data.lon); 
+
+            marker = "privado";
+            if(data.financiamiento == "Público"){
+              marker = "publico";
+            }
+            var marker = new google.maps.Marker({
+                position: latLng,
+                title: data.title,
+                icon: {
+                   url: 'https://www.argentina.gob.ar/sites/default/files/marker_salud_'+ marker +'.png?id=2',
+                   size: new google.maps.Size(30, 30),
+                   origin: new google.maps.Point(0, 0),
+                   anchor: new google.maps.Point(10, 10)
+                }                
+            });
+            markers.push(marker);
+            
+            //DETALLE CADA PUNTO
+            detalles[key] = new google.maps.InfoWindow({
+              content: '<div class="media"> <div class="media-body"><h5 class="text-primary">'+ data.financiamiento +'</h5><h3>'+ data.nombre + '</h3><h4>'+ data.provincia + ' / ' + data.localidad + '</h4><p>' + data.domicilio + '</p></div></div>',
+              maxWidth: 400
+            });
+
+            markers[key].addListener('click', function() {
+              closeWindows();
+              map.setZoom(15);
+              map.setCenter(markers[key].getPosition());
+              detalles[key].open(map, markers[key]);
+            });
+
+
+            $('#map-container').removeClass('state-loading');
+            marker.setMap(map);
+          });
+
+
+          //CLUSTERS
+          var mcOptions = {
+              enableRetinaIcons: true,
+              imageSizes: [20,30,40,50,60,70],
+              maxZoom: 10,
+              gridSize: 50,
+               styles: [{
+                  textColor: 'white',
+                  url: 'http://poncheado.argentina.gob.ar/proyectos/mi-argentina/v3/img/salud/m1.png',
+                   width: 45,
+                   height: 45
+              }]
+          };
+
+
+
+          
+          //Funcion Cerrar detalle
+          var closeWindows = function(){
+            for(i = 0; i < detalles.length; i++){
+              detalles[i].close();
+            }
+          }
+          
+          var markerCluster = new MarkerClusterer(map, markers, mcOptions);
+
+          google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+            console.log("click en cluster!");
+          });
+
+
+
+        });
+      });
+
+}(jQuery));      
+    </script>
+
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>

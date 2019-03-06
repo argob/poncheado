@@ -1,0 +1,747 @@
+---
+layout: argentina
+title: Mapa de puntos de atención
+---
+
+<style>
+  header,
+  body > .bg-primary {
+    display: none;
+  }
+  #map-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .jumbotron {
+    min-height: 0;
+    background: none;
+  }
+  .jumbotron .jumbotron_bar .container * {
+    margin: 0;
+  }
+  #map-container {
+    height:100vh;
+  }
+  #map {
+    height:100%;
+  }
+  #map .gm-style-iw strong {
+    font-weight: 400;
+  }
+  #filters {
+    position: absolute;
+    top: 210px;
+    max-width: 360px;
+    width: 95%;
+    left: 10px;
+  }
+  #search {
+    position: absolute;
+    top: 140px;
+    max-width: 360px;
+    width: 95%;
+    left: 10px;
+  }  
+  .dropdown-menu {
+      width: 100%;
+  }  
+
+  #filters-items .multiselect-container>li>a {
+    padding: 10px 25px 10px 0;
+  }  
+  .panel-title {
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.6);
+  }  
+  .panel-title a {
+      color: #fff;
+      text-decoration: none;
+  }
+  .panel-title a:hover {
+      text-decoration: none;
+  }
+  .multiselect-container>li>a>label.radio, 
+  .multiselect-container>li>a>label.checkbox {
+      padding: 3px 20px 3px 60px;
+  }  
+  .btn-border {
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+  }
+  .btn-border:hover {
+      border: 1px solid #dbdbdb;
+  }
+  .main-footer {
+    display: none;
+  }
+
+  .filters-button .navbar-toggle {
+      border-color: transparent;
+  }
+  .filters-button .navbar-toggle .icon-bar {
+      background-color: #888;
+  }
+
+  .filters-button {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+  }
+
+  #filters-map.navbar-collapse.in #search {
+        margin-top: 40px;
+  } 
+  #filters-map.navbar-collapse.in #filters {
+        margin-top: 40px;
+  }  
+  .multiselect.btn {
+    text-align: left;
+    text-transform: none;
+  }
+
+  #filters-map.collapse.in {
+    overflow-y: inherit!important;
+  }
+  hr.hr-sm {
+    margin: 15px 0;
+  }
+
+
+
+
+/* label.checkbox {
+  padding-left: 24px
+}
+input[type="checkbox"] {
+  display: none
+}  
+input[type="checkbox"] + .box:before,
+input[type="checkbox"] + .box:after {
+  transition: all .3s
+}  
+input[type="checkbox"] + .box:after {
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  margin-top: -5px
+  margin-left: -4px
+  display: inline-block
+  content: ' '
+  width: 20px
+  height: 20px
+  border: 2px solid #999
+  border-radius: 2px
+  background-color: #fff
+  z-index: 1000
+}  
+input[type="checkbox"]:checked + .box:after {
+  background-color: colors.primary
+  border-color: colors.primary
+ } 
+input[type="checkbox"]:checked + .box:before {
+  transform: rotate(45deg);
+  position: absolute;
+  left: 7px;
+  top: 0px;
+  width: 6px;
+  height: 13px;
+  border-width: 2px;
+  border-style: solid;
+  border-top: 0;
+  border-left: 0;
+  border-color: #fff
+  content: '';
+  z-index: 10000
+}
+*/
+
+@media (max-width: 480px) {
+  .navbar .container .navbar-header .navbar-brand {
+    width: 190px;
+  }
+}
+
+
+
+</style>
+
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden-xs" href="/">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <div class="navbar-brand visible-xs-inline-block"> Puntos de atención </div>
+        </div>  
+        <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
+          <div class="visible-xs">
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
+            </a>
+            <hr class="margin-20">
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:setGeolocation();" class="localize"><i class="fa fa-crosshairs"></i>&nbsp; Centrar mapa</a></li>
+<!--             <li><a href="/ayudapuntosdeatencion">Acerca de Puntos de atención</a></li>
+ -->          </ul>           
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="jumbotron">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb pull-left">
+              <li><a href="/">Inicio</a></li>
+              <li class="active">Puntos de atención</li>
+            </ol>            
+          </div>        
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+
+
+<div id="map-container" class="state-loading">
+  <div id="map"></div>
+    <div class="filters-button">
+      <button type="button" class="navbar-toggle btn btn-primary btn-sm" data-toggle="collapse" data-target="#filters-map">
+        Filtros
+      </button>
+    </div>
+    <div id="filters-map" class="collapse navbar-collapse">
+      <div class="row">
+        <div class="col-md-4 col-lg-3" id="search">
+            <div class="form-group">
+              <input id="address" type="textbox" class="form-control" placeholder="Ingrese una dirección y localidad" value="">
+            </div>
+        </div> 
+      </div>
+      <div class="row">
+          <div class="col-md-4 col-lg-3" id="filters">
+            <div class="panel panel-default panel-disabled">
+              <div class="panel-title"> 
+                <h5>
+                  <a data-toggle="collapse" href="#filters-items" aria-expanded="true" aria-controls="filters-items">
+                    Filtrar Búsqueda <b class="caret"></b>
+                  </a>
+                </h5>                    
+              </div>
+              <div class="panel-body">
+                <div id="filters-items" class="collapse in">
+                  <div>
+                    <label class="control-label" for="input-7">Organismo</label><br>
+                    <select class="form-control" name="organismos" id="option-organismos">
+                        <option value="todos">Todos los organismos</option>
+                        <option value="Superintendencia de Riesgos de Trabajo">SRT</option>
+                        <option value="Superintendencia de Servicios de Salud">SSS</option>
+                    </select>
+                  </div> 
+
+                  <div class="form-group hidden">
+                    <label class="control-label" for="input-8">Accesibilidad de la dependencia</label><br>
+                    <select class="form-control" id="option-accesibilidad" multiple="multiple">
+                        <optgroup label="Informacion">
+                            <option value="Visual">Visual</option>
+                            <option value="Acustica">Acustica</option>
+                        </optgroup>
+                        <optgroup label="Puerta de Entrada">
+                            <option value="Ancho > 80cm">Ancho > 80cm</option>
+                            <option value="Automática">Automática</option>
+                        </optgroup>
+                    </select>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>        
+      </div>
+    </div>
+</div>
+
+<div data-render="modales"></div> 
+          
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- <link rel="stylesheet" href="./js/bootstrap-multiselect.css" type="text/css">
+<script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
+ -->
+<script>
+
+  var autocomplete;
+
+  var initMap = function() {
+
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('address')),
+    {types: ['geocode']});
+
+    autocomplete.addListener('place_changed', onPlaceChanged);
+
+
+
+    // Setup map
+
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter,
+      scrollwheel: true,
+      streetViewControl: false
+    });
+
+    var geocoder = new google.maps.Geocoder();    
+
+    function onPlaceChanged() {
+      geocodeAddress(geocoder, map);
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          resultsMap.setZoom(17);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    } 
+
+
+    function isCheck(features,feature){
+      var attribute = 'gsx$' + feature;
+      return ((typeof(features[attribute]) != "undefined") && features[attribute].$t == 'SI');
+    }
+
+    function getHidden(features,feature){
+      if (feature == "totem"){
+        if (features.gsx$señalizaciónconcontraste.$t !== 'SI' && features.gsx$instruccionesiniciales.$t !== 'SI' && features.gsx$instruccionesenbraille.$t !== 'SI' && features.gsx$instruccionesenumeradas.$t !== 'SI' && features.gsx$panelinteractivoa70cmy130cmdealtura.$t !== 'SI' && features.gsx$textoscontrastados.$t !== 'SI' && features.gsx$sistemaconinstruccionessonoras.$t !== 'SI') {
+                  return 'hidden';
+          }  
+      }
+      else if (feature == "ascensor"){
+          return (features.gsx$ascensor.$t !== 'SI')? 'hidden' : '';
+      }
+      else if ( (feature == 'escaleradeslizante') || (feature == 'escaleraconposamanos')  ) {
+          return (features.gsx$atenciónenplantabaja.$t == 'SI')? 'hidden' : '';
+      }
+      return '';
+    }     
+
+    function renderIconFeature(features,feature){
+      if (isCheck(features,feature)){
+        return '<i class="fa fa-check fa-fw text-success" aria-hidden="true"></i>';
+      }
+      return '<i class="fa fa-close fa-fw text-danger" aria-hidden="true"></i>';
+    }
+
+    // Show markers loaded from spreadsheet
+
+    var markers = [];
+    var detalles = [];
+    var nombreOrganismos = [];
+
+    $.ajax({
+      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1TFGgNBEgi3VReO41VVusz8kTi8sqWtXYqwVtNmvZuMg/1',
+      data: 'json',
+      success: function(response){
+
+        // console.log(response);
+
+        var rows = response.feed.entry;
+
+        var marcador;
+
+        var showModal = $('[data-render=modales]');
+
+        var modal = '';
+
+        rows.forEach(function(row, key){
+
+            var index = markers.length;
+
+            var direccionpiso = '';
+            var correoelectronico = '';
+            var horariosdeatencion = '';
+            var telefono = '';
+            var telefonoTarjeta = '';            
+
+            if (row.gsx$direccionpiso.$t !== 'NA') {
+              direccionpiso = row.gsx$direccionpiso.$t;
+            }
+            if (row.gsx$teléfono.$t !== 'NA') {
+              telefono = '<small>Teléfono</small><p>'+ row.gsx$teléfono.$t + '</p>';
+              telefonoTarjeta = '<div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$teléfono.$t + '</strong> </small> </p></div></div>';
+
+            }            
+            if (row.gsx$correoelectrónico.$t !== 'NA') {
+              correoelectronico = '<small>Correo electrónico</small><p><a href="mailto:'+ row.gsx$correoelectrónico.$t + '">'+ row.gsx$correoelectrónico.$t + '</a></p>';
+            }
+            if (row.gsx$atenciondesde.$t !== 'NA') {
+              horariosdeatencion = '<small>Horarios de atención</small><p>'+ row.gsx$atencióndetalle.$t + ' de '+ row.gsx$atenciondesde.$t + ' a '+ row.gsx$atencionhasta.$t + 'hs</p>';
+            }
+            marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$geolocalizacionx.$t.replace(',', '.')), lng: parseFloat(row.gsx$geolocalizaciony.$t.replace(',', '.'))},
+              // map: map,
+              title: row.gsx$direccióncalle.$t,
+              icon: {
+                url: marcador,
+                size: new google.maps.Size(24, 24),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(12, 12)
+              }
+
+            });
+
+
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h2 class="h5 text-muted">'+ row.gsx$organismo.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$nombrenumero.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map-marker fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +', '+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</strong> </small> </p></div></div>'+ telefonoTarjeta +'<div class="m-t-1 text-right"><a href="" class="btn btn-default btn-sm hidden">SACAR TURNO</a>&nbsp;&nbsp;<a href="#'+ key +'" data-toggle="modal" class="btn btn-primary">&nbsp; VER MÁS</a></div>',
+              maxWidth: 400
+            });
+
+            nombreOrganismos[index] = row.gsx$organismo.$t;
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+              $('[data-toggle="modal"]').click( function() {
+                var id = $(this).attr('href').substr(1);
+                console.log(id);              
+              })  
+
+            });
+
+
+
+            window.loadModal = function(){       
+
+              modal += '<div id="'+ key + '" class="modal fade" tabindex="-1" role="dialog">';
+              modal += '  <div class="modal-dialog modal-md">';
+              modal += '    <div class="modal-content">';
+              modal += '      <div class="modal-header">';
+              modal += '          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> ';
+              modal += '          <h4 class="modal-title"><div class="text-muted small m-t-2">'+ row.gsx$organismo.$t + '</div> '+ row.gsx$nombrenumero.$t + '<div><small>'+ row.gsx$provincia.$t +', '+ row.gsx$localidad.$t +'</small></div></h4>';
+              modal += '      </div>';
+              modal += '      <div class="modal-body p-x-2">';
+              modal += '        <div class="row">';
+              modal += '            <div class="col-md-12">';
+              modal += '                <div class="media">';
+              modal += '                    <div class="media-left hidden-xs">';
+              modal += '                        <i class="text-secondary fa fa-home fa-fw fa-2x" aria-hidden="true"></i>';
+              modal += '                    </div>';
+              modal += '                    <div class="media-body">';
+              modal += '                        <h3 class="m-t-0 clearfix h5"><i class="text-secondary fa fa-home visible-xs-inline pull-left" aria-hidden="true"></i>Datos de contacto</h3>';
+              modal += '                        <div class="row">';
+              modal += '                            <div class="col-xs-12 col-md-12">';
+              modal += '                                '+ telefono +'';
+              modal += '                                '+ correoelectronico +'';
+              modal += '                                '+ horariosdeatencion +'';
+              modal += '                                <small>Dirección</small>';
+              modal += '                                      <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +' '+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
+              modal += '                              </div>';              
+              modal += '                            </div>';
+              modal += '                        </div>';
+              modal += '                    </div>';
+              modal += '                </div>';
+              modal += '            <div class="col-md-4 hidden">';
+              modal += '              <div class="media-left">';
+              modal += '                    <i class="fa fa-map-marker fa-fw fa-2x text-primary m-b-0"></i>';
+              modal += '              </div>';
+              modal += '                <div class="media-body">';
+              modal += '                    <p class="m-b-0">'+ row.gsx$direccióncalle.$t +' '+ row.gsx$direccionaltura.$t +' '+ direccionpiso +'</p>';
+              modal += '                    <p class="m-t-0">'+ row.gsx$localidad.$t +'. '+ row.gsx$provincia.$t +'</p>';
+              modal += '                </div>';
+              modal += '                <iframe src="https://maps.google.com/maps?q='+ row.gsx$geolocalizacionx.$t +','+ row.gsx$geolocalizaciony.$t +'&hl=es;z=14&amp;output=embed" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>';          
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '<div class="row">';
+              modal += '    <div class="col-md-12">';
+              modal += '        <div class="media m-t-2">';
+              modal += '            <div class="media-left hidden-xs">';
+              modal += '                <i class="text-secondary fa fa-info-circle fa-fw fa-2x" aria-hidden="true"></i>';
+              modal += '            </div>';
+              modal += '            <div class="media-body">';
+              modal += '                <h3 class="m-t-0 clearfix h5">';
+              modal += '                    <i class="text-secondary fa fa-info-circle visible-xs-inline pull-left" aria-hidden="true"></i>';
+              modal += '                    Información de la dependencia';
+              modal += '                </h3>';
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Acceso a la dependencia</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'atenciónenplantabaja') + 'Atención en Planta Baja</p>';
+              modal += '                    <p class="' + getHidden(row,'escaleradeslizante') + '">' + renderIconFeature(row,'escalerasconantideslizante') + 'Escaleras con antideslizante</p>';
+              modal += '                    <p class="' + getHidden(row,'escaleraconposamanos') + '">' + renderIconFeature(row,'escaleraconposamanos') + 'Escalera con posa manos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'rampa') + 'Rampa</p>';
+              modal += '                    <p class="' + getHidden(row,'ascensor') + '">' + renderIconFeature(row,'ascensor') + 'Ascensor</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Puerta de Entrada</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'ancho80cm') + 'Ancho > 80cm</p>';
+              modal += '                    <p>' + renderIconFeature(row,'automática') + 'Automática</p>';
+              modal += '                    <p>' + renderIconFeature(row,'puertaconmanija') + 'Puerta con manija</p>';
+              modal += '                    <p>' + renderIconFeature(row,'puertagiratoria') + 'Puerta giratoria</p>';      
+              modal += '                    <p>' + renderIconFeature(row,'entradaalternativa') + 'Entrada alternativa</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'espacioanterioryposteriorhorizontal') + 'Espacio anterior y posterior HORIZONTAL</p>';
+              modal += '                    <p>' + renderIconFeature(row,'franjaologodecontraste') + 'Franja o Logo de contraste</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Pasillos</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'cmconelmobiliario') + '> 80cm con el mobiliario</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Mostrador de Atención</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'dosalturas') + 'Dos alturas</p>';
+              modal += '                    <p>' + renderIconFeature(row,'partebaja85cm') + 'Parte baja < 85cm</p>';
+              modal += '                    <p>' + renderIconFeature(row,'espaciosinobstaculoscon60cmdefondo') + 'Espacio sin obstaculos con > 60cm de fondo</p>';
+              modal += '                    <p>' + renderIconFeature(row,'panelesdivisores') + 'Paneles divisores</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Area de Espera</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'asientos') + 'Asientos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'cmdealtura') + '40-50 cm de altura</p>';
+              modal += '                    <p>' + renderIconFeature(row,'respaldos') + 'Respaldos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'reposabrazos') + 'Reposa Brazos</p>';
+              modal += '                    <p>' + renderIconFeature(row,'bañosparapersonascondiscapacidad') + 'Baños para personas con discapacidad</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Información</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'visual') + 'Visual</p>';
+              modal += '                    <p>' + renderIconFeature(row,'acústica') + 'Acústica</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Señalización Visual</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';             
+              modal += '                    <p>' + renderIconFeature(row,'franjaologodecontraste') + 'Franja o Logo de contraste</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'lineacentraldelecturaa16m') + 'Linea central de lectura a 1,6m</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'textosenbraille') + 'Textos en Braille</p>';              
+              modal += '                    <p>' + renderIconFeature(row,'símbolosográficosfacilitadores') + 'Símbolos o Gráficos facilitadores</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Señalización Sonora</h5>';
+              modal += '            </div>';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'entendibleentodoeledificio') + 'Entendible en todo el edificio</p>';
+              modal += '                    <p>' + renderIconFeature(row,'señaldeatenciónpreviaalmensaje') + 'Señal de Atención previa al mensaje</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '        <hr class="hr-sm">';            
+              modal += '        <div class="row '+ getHidden(row,'totem') + '">';
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <h5 class="text-muted">Sistemas Interactivos de Información (totem)</h5>';
+              modal += '            </div12'
+              modal += '            <div class="col-xs-12 col-md-12">';
+              modal += '                <div>';
+              modal += '                    <p>' + renderIconFeature(row,'señalizaciónconcontraste') + 'Señalización con contraste</p>';
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesiniciales') + 'Instrucciones Iniciales</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesenbraille') + 'Instrucciones en Braille</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'instruccionesenumeradas') + 'Instrucciones enumeradas</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'panelinteractivoa70cmy130cmdealtura') + 'Panel Interactivo a > 70cm y < 130cm de altura</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'textoscontrastados') + 'Textos Contrastados</p>';             
+              modal += '                    <p>' + renderIconFeature(row,'sistemaconinstruccionessonoras') + 'Sistema con instrucciones sonoras</p>';
+              modal += '                </div>';
+              modal += '            </div>';
+              modal += '        </div>';                                                                                                
+              modal += '            </div>';
+              modal += '        </div>';
+              modal += '    </div>';
+              modal += '</div>';            
+              modal += '      </div>';
+              modal += '    </div>';
+              modal += '  </div>';
+              modal += '</div>';             
+
+            }
+
+            loadModal(); 
+
+
+        })
+
+              /* filter markers */
+            console.log("Nombre Organismos" + nombreOrganismos);
+
+            filterMarkers = function (organismos) {
+              console.log(" filtermarkers Organismos" + organismos);
+                for (i = 0; i < markers.length; i++) {
+                    var marker = markers[i];
+                    if(organismos.indexOf(nombreOrganismos[i]) > -1 || organismos == 'todos') {
+                      console.log("verdadero");
+                        marker.setVisible(true);
+                    }
+                    else {
+                      console.log("falso");
+                        marker.setVisible(false);
+                    }
+                }
+            }  
+
+          window.loadOrganismos = function(){
+
+            $("#option-organismos").on("change", function() {
+                  var listaOrganismos = [];
+                  $('#option-organismos').find(':selected').each(function(){
+                    console.log($(this).val() + " ");
+                    listaOrganismos.push($(this).val());
+                  });
+                  filterMarkers(listaOrganismos);
+            });                        
+
+          }
+
+        loadOrganismos();
+
+        showModal.empty();
+        showModal.append(modal); 
+
+        var markerCluster = new MarkerClusterer(map, markers, {
+          imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
+          gridSize: 50,
+          minimumClusterSize: 300,
+          maxZoom: 19
+        });
+
+
+
+        $('#map-container').removeClass('state-loading');
+
+      },
+      error: function(){
+        // console.log('nope');
+      }
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(10);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            // console.log('geo nope')
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(15);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+  }
+</script>
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&libraries=places&callback=initMap"></script>
+

@@ -1,0 +1,139 @@
+---
+layout: mi-argentina
+---
+
+{% include mi-argentina/usuario.html hijo="Tramites y consultas" %}
+
+<section>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+
+        {% include mi-argentina/menu.html active="vacunas" %}
+
+      </aside>
+
+      <div class="col-md-8">
+        <h4>Configurar notificaciones</h4>
+        <p>Activá las notificaciones para recibir novedades, vencimientos y actualizaciones de los servicios que te interesen.</p>
+        <p>Para hacerlo, primero seleccioná los servicios y después <a href="">elegí el canal</a> donde querés recibirlas.</p>
+        <div class="row panels-row-miargentina">
+          <div class="col-md-12">
+            <div class="panel panel-default panel-border-gray panel-nolink">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-2 m-y-1">
+                    <a href="" class="btn btn-sm btn-link m-y-0"><i class="fa fa-angle-left"></i> Volver</a>
+                  </div>
+                  <div class="col-md-10  m-y-1">
+                    <h2 class="m-y-0">Mis menores a cargo</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body estilo-salud-sin-ev">
+                <div>
+                  <p>Completá los datos de tu hijos menores de 18 años para recibir notificaciones del calendario escolar, fechas de actualización de documentos y vacunas.</p>
+                </div>
+
+                <hr class="m-y-2">
+
+                <div class="media">
+                  <div class="media-left hidden-xs  p-r-2 p-t-1">
+                    <i class="fa fa-user-circle-o text-muted fa-2x"></i>
+                  </div>
+                  <div class="media-body switch">
+                    <h3>Ignacio</h3>
+                    <p>5 años, sexo masculino.</p>
+                  </div>
+                  <div class="media-right p-t-1">
+                    <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                  </div>
+                </div>
+
+                <hr class="m-y-2">
+
+                <div class="media">
+                  <div class="media-left hidden-xs  p-r-2 p-t-1">
+                    <i class="fa fa-user-circle-o text-muted fa-2x"></i>
+                  </div>
+                  <div class="media-body switch">
+                    <h3>Sofía</h3>
+                    <p>14 años, sexo femenino.</p>
+                    <small class="text-muted">A partir de los 13 años ya puede tener su propia cuenta en Mi Argentina. Contale.</small>
+                  </div>
+                  <div class="media-right p-t-1">
+                    <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                  </div>
+                </div>
+
+                <hr class="m-y-2">
+
+                <div class="media">
+                  <div class="media-body ">
+                    <h3 class="m-b-1">Ingresá los datos del menor que desees agregar.</h3>
+                    <form>
+                      <div class="form-group">
+                        <label class="control-label" for="nombre">Nombre</label>
+                          <input class="form-control input-lg" type="text" name="nombre">
+                      </div>
+
+                        <div class="form-group has-error">
+                          <label for="birthday">Fecha de nacimiento</label>
+                          <input type="date" class="form-control input-lg" id="birthday" required="">
+                           <span class="help-block">Sólo podés agregar menores de 18 años.<br> A partir de esa edad deben tener su propia cuenta en MI Argentina.</span>
+                        </div>
+                 
+                      <div class="form-group">
+                        <label>Sexo</label>
+                        <p class="help-block">Como aparece en tu documento</p>
+                        <div class="form-group item-form">
+                          <label for="f" class="radio-inline">
+                            <input type="radio" name="sexo" id="f" value="F" required aria-required="true">
+                             Femenino
+                          </label>
+                          <label for="m" class="radio-inline">
+                             <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
+                             Masculino
+                          </label>
+                         </div>
+                       </div>
+                       <a class="btn btn-success btn-md" href="">AGREGAR</a>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+      </div>
+      <hr>
+        <p class="lead">Organismos relacionados</p>
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+            <p><a href="https://www.argentina.gob.ar/salud" target="_blank"><span class="sr-only">Abrir vínculo en nueva pestaña </span>Minsterio de Salud</a></p>
+          </div>
+        </div>
+    </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+<link href="{{ "/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+<script src="{{ "/node_modules/bootstrap-switch/js/bootstrap-switch.min.js" | prepend: site.baseurl }}"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#continue').click(function() {
+            $(this).remove();
+            $('form').fadeIn();
+        });
+    });
+</script>
+
+

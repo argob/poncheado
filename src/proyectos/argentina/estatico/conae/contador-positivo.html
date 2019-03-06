@@ -1,0 +1,104 @@
+---
+layout: argentina
+---
+
+<style>
+	.mb{
+		margin-bottom: 60px;
+	}
+</style>
+
+<section>
+  <article class="container">
+	<div class="row">
+	    <div class="contdown-cumbre center-block">
+	        <h3 class="text-primary text-center">
+	        	<strong>Cuenta Regresiva Lanzamiento Satélite SAOCOM 1A</strong></h3>
+	        <div id="del-countdown" class="col-md-offset-3 col-md-6 mb">
+	            <div>
+	                <div id="clock"></div>
+	                
+	            </div>
+	            
+	            <div id="units">
+
+	                <div class="col-xs-3 center-block ">
+	                	<p class="m-t-1 text-center text-muted"><small>DÍAS</small></p>
+	                </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="m-t-1 text-center text-muted"><small>HORAS</small></p>
+	            </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="m-t-1 text-center text-muted"><small>MINUTOS</small></p>
+	            </div>
+	            <div class="col-xs-3 center-block ">
+	            	<p class="m-t-1 text-center text-muted"><small>SEGUNDOS</small></p>
+	            </div>
+	          </div>
+	          
+	        </div>
+	    </div>
+	</div>
+  </article>
+</section>
+
+<script>
+	 window.onload = function(){
+		  var fechaLanzamiento = new Date("October 07, 2018 23:27:00");
+		  startTimer("clock", fechaLanzamiento);
+		    };
+
+
+		function startTimer(i, dateSeted){
+		//i es clock lo llamamos arriba cuando llamamos a la funcion starTimer dentro de la función window.onload()
+		    var intervaloDeTiempoEntreFechas = setInterval(function(){
+		    var clock = document.getElementById(i);
+		    var timer = updateTimer(dateSeted);
+		    var timerAfter = updateTimerPositive(dateSeted);
+		   
+		    //metemos el html dentro de clock que es un div con id
+		    clock.innerHTML = '<div class="col-xs-3 center-block"><h2 class="text-center">' + timer.days + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timer.hours + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timer.minutes + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timer.seconds + '</h2></div>';
+
+		  
+
+		    //check for end of timer, si el tiempo ya pasó los valores pasan a ser 0 todos
+		    if(timer.total < 0){
+		      
+		      clock.innerHTML = '<div class="col-xs-3 center-block"><h2 class="text-center">' + timerAfter.days + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timerAfter.hours + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timerAfter.minutes + '</h2></div>'
+		                    + '<div class="col-xs-3 center-block"><h2 class="text-center">' + timerAfter.seconds + '</h2></div>';
+		    }
+
+
+		  }, 1000);
+		}
+
+		function updateTimer(fechaCalculo){
+		  var time = fechaCalculo - new Date();
+		  return {
+		    'days': Math.floor( time/(1000*60*60*24) ),
+		    'hours': Math.floor( (time/(1000*60*60)) % 24 ),
+		    'minutes': Math.floor( (time/1000/60) % 60 ),
+		    'seconds': Math.floor( (time/1000) % 60 ),
+		    'total' : time
+		  };
+		}
+
+		function updateTimerPositive(dateCalcAfter){
+			
+		  var timeAfter = dateCalcAfter - new Date();
+		  var positiveNumber = Math.abs(timeAfter);
+		  
+		  return {
+		    'days': Math.round( positiveNumber/(1000*60*60*24) ),
+		    'hours': Math.round( (positiveNumber/(1000*60*60)) % 24 ),
+		    'minutes': Math.round( (positiveNumber/1000/60) % 60 ),
+		    'seconds': Math.round( (positiveNumber/1000) % 60 ),
+		    'total' : positiveNumber
+		  };
+		}
+</script>

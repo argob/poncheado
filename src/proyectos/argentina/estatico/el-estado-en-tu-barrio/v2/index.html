@@ -6,9 +6,37 @@ layout: argentina
   .well {
     width: 100%;
   }
+  legend {
+      margin-bottom: 0;
+      border-bottom: none;
+  } 
+select[disabled] {
+    background-color: #ccc;
+}
+select[disabled] .form-control {
+    background-color: #e9e9e9;
+}
+.form-control[disabled], select[disabled] .form-control {
+    cursor: not-allowed;
+}
+.error {
+    display: block;
+    color: #a94442;
+}
+a.panel span {
+    transition: none!important;
+}
+.panel h3{
+  font-weight: 600
+}
+.ellipsis{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>
 
-<section class="jumbotron" style="background-image: url('http://www.argentina.gob.ar/sites/default/files/eetb-gral.jpg');">
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/ettb-2019.jpg');">
   <div class="jumbotron_bar">
     <div class="container">
       <div class="row">
@@ -24,9 +52,9 @@ layout: argentina
   <div class="jumbotron_body">
     <div class="container">
       <div class="row">
-        <div class="col-md-7">
-          <p><img src="http://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"> </p>
-          <p>Nos acercamos con los servicios del Estado a diferentes barrios de todo el país para que todos puedan hacer sus trámites cerca de su casa, en un solo lugar y de una manera más rápida y fácil.</p>
+        <div class="col-md-6 col-sm-offset-3 text-center">
+          <h1><img alt="El Estado en tu Barrio" src="http://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"><span class="sr-only">El Estado en tu Barrio</span> </h1>
+          <p>Más de 5 millones de vecinos ya resolvieron sus trámites en <br class="hidden-xs">EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
         </div>
       </div>
     </div>
@@ -35,125 +63,214 @@ layout: argentina
 </section>
 
 
-<section>
+
+<section class="m-b-0 p-b-0 m-t-3">
   <div class="container">
-    <h2 class="m-b-2 m-y-4 text-center">¿ Dónde nos podes encontrar ?</h2>
-    <p class="lead text-center"></p>
-
-    <div id="filtros">
-      <div class="row">
-        <div class="col-md-3"> 
-            <div class="form-group">
-                <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
-                <select class="form-control" name="provincia" id="provincia" required>
-                    <option value="">Elegí tu provincia</option>
-                    <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-                    <option value="Buenos Aires">Buenos Aires</option>
-                    <option value="Catamarca">Catamarca</option>
-                    <option value="Córdoba">Córdoba</option>
-                    <option value="Corrientes">Corrientes</option>
-                    <option value="Chaco">Chaco</option>
-                    <option value="Chubut">Chubut</option>
-                    <option value="Entre Ríos">Entre Ríos</option>
-                    <option value="Formosa">Formosa</option>
-                    <option value="Jujuy">Jujuy</option>
-                    <option value="La Pampa">La Pampa</option>
-                    <option value="La Rioja">La Rioja</option>
-                    <option value="Mendoza">Mendoza</option>
-                    <option value="Misiones">Misiones</option>
-                    <option value="Neuquén">Neuquén</option>
-                    <option value="Río Negro">Río Negro</option>
-                    <option value="Salta">Salta</option>
-                    <option value="San Juan">San Juan</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="Santa Cruz">Santa Cruz</option>
-                    <option value="Santa Fe">Santa Fe</option>
-                    <option value="Santiago del Estero">Santiago del Estero</option>
-                    <option value="Tierra del Fuego">Tierra del Fuego</option>
-                    <option value="Tucumán">Tucumán</option>
-                </select>
-            </div>
-
-        </div>
-        <div class="col-md-6">                
-          <div class="form-group">
-                <label class="control-label" for="localidad">Localidad</label>
-                <select class="form-control" name="localidad" id="localidad" disabled="disabled" required>
-                    <option value="">Localidad</option>
-                </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-            <label for="" class="hidden-xs">&nbsp;</label><br class="hidden-xs">
-            <button id="buscar-lugares" class="btn btn-primary btn-block">BUSCAR PUNTOS</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <h3 id="titleLugar" class="hidden"><span id="titleLocalidad"></span> - <span id="titleProvincia"></span></h3>
-        <hr>
-      </div>
-    </div>
-
-    <div class="list row panels-row m-y-3" data-render="lugares"></div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="m-b-2 m-y-4 text-center">¿ Qué es el Estado en tu Barrio ?</h2>
-        </div>
-      </div>
 
       <div class="row panels-row">
         <div class="col-md-4 col-sm-6 text-center">
           <div class="icon-item">
-            <i class="fa fa-map-marker text-primary"></i>
+            <i class="m-b-0 fa fa-users text-primary"></i>
             <h3>Cerca de cada argentino</h3>
-            <p>Todos los organismos en un mismo lugar para hacer trámties de DNI, ANSES, Tarifa Social y más.</p>
+            <p> Nos acercamos a cada vecino recorriendo el país para que todos tengan las mismas oportunidades.</p>
           </div>
           </div>
             <div class="col-md-4 col-sm-6 text-center">
               <div class="icon-item">
-                <i class="fa fa-eye-slash text-primary"></i>
-                <h3>Sin intermediario</h3>
-                <p>Nos acercamos a diferentes barrios del país para que te quede más cómodo llegar.</p>
+                <i class="m-b-0 fa fa-comments text-primary"></i>
+                <h3>Sin intermediarios</h3>
+                <p>Atendemos tu consulta de forma directa, sin intermediarios, para hacerte la vida más fácil.</p>
               </div>
             </div>
             <div class="col-md-4 col-sm-6 text-center">
               <div class="icon-item">
-                <i class="fa fa-briefcase text-primary"></i>
+                <i class="m-b-0 fa fa-map-marker text-primary"></i>
                 <h3>Todo en un mismo lugar</h3>
-                <p>Estamos para ayudarte a saber qué trámites hacer, sus requisitos y cómo hacerlos.</p>
+                <p>Podés sacar el DNI, asesorarte sobre asignaciones familiares, gestionar la SUBE y mucho más.</p>
               </div>
             </div>
         </div>
 
+
+
+
+
+
+
+
+    <h2 class="m-t-4 text-center">¿Dónde nos podés encontrar?</h2>
+    <p class="lead text-center m-b-4">Cada semana nos acercamos a más de 24 localidades.</p>
+
+<div id="puntosListado">
+    <div id="filtros">
       <div class="row">
-        <div class="col-md-12">
-          <h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuando estemos cerca de tu casa?</h2>
+
+        <div class="col-md-3"> 
+            <div class="form-group">
+                <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
+                <select class="form-control" name="provincia" id="provincia" required>
+                    <option selected class="preloader">Cargando...</option>
+                    <option data-id="0" value="">Seleccioná una provincia</option>
+                </select>
+            </div>
+
         </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center m-t-2">
-          <p><a class="btn btn-primary btn-md" href="#">REGISTRATE</a></p>
-          <p><a class="btn btn-md btn-default" href="preguntas-frecuentes.html">PREGUNTAS FRECUENTAS</a></p>
-        </div>        
+
+        <div class="col-md-9">                
+          <div class="form-group">
+                <label class="control-label" for="localidad">Búsqueda</label>
+                <input type="text" class="form-control" id="buscador">
+          </div>
+        </div>
+
       </div>
+    </div>
+
+   
+<!-- PUNTO - MODELO -->
+<div id="punto-clon" style="display:none">
+    <div class="col-xs-12 col-sm-6 col-md-4 punto">
+                <a 
+                  href="" class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="label label-danger show motivo ellipsis"></h5>
+                        <h3 class="nombre">nombre punto </h3>
+                        <div class="media">
+                          <div class="media-left media-middle">
+                              <span class="fa fa-calendar" aria-hidden="true"></span>
+                          </div>
+                          <div class="media-body media-middle">
+                            <p><small id="fechaPunto"></small></p>
+                          </div>
+                        </div>
+                        <div class="media">
+                          <div class="media-left media-middle">
+                              <span class="fa fa-clock-o" aria-hidden="true"></span>
+                          </div>
+                          <div class="media-body media-middle">
+                            <p><small class="horario">19 hs</small></p>
+                          </div>
+                        </div>
+                        <div class="media">
+                          <div class="media-left media-middle">
+                              <span class="fa fa-map-marker" aria-hidden="true"></span>
+                          </div>
+                          <div class="media-body media-middle">
+                            <p><small class="direccion">aca va la direccion 454</small></p>
+                          </div>
+                        </div>
+                        <hr class="m-b-1 row">
+                        <p class="h4 text-primary m-y-0">MAS INFORMACIÓN</p>
+                    </div>
+                </a>
+              </div>
+      </div>
+      
+      <!-- PUNTO - MODELO Inicio-->
+      <div class="row panels-row m-y-0 list" id="puntos"></div>
+          <div class="alert alert-warning" id="aviso">Seleccioná una provincia para ver qué puntos están cerca de tu barrio.</div>
+      </div>
+      <!-- PUNTO - MODELO Fin-->
 
 
+<div class="row">
+<div class="col-sm-12">
+<h2 class="m-b-2 m-y-4 text-center">¿Querés que te avisemos cuándo estemos en tu localidad?</h2>
+</div>
+  <div class="row">
+     <div class="col-md-6">
+        <div class="panel-pane pane-texto">
+                 <div class="alert alert-info">
+                    <div class="media">
+                       <div class="media-left"> <i class="fa fa-desktop fa-fw fa-4x"></i></div>
+                       <div class="media-body">
+                          <h4><a target="_blank" href="https://contacto.casarosada.gob.ar/elestadoentubarrio/">Registrate</a></h4>
+                          <p>Te avisaremos cuándo estemos cerca de tu casa.</p>
+                       </div>
+                    </div>
+                 </div>
+        </div>
+     </div>
+     <div class="col-md-6">
+        <div class="panel-pane pane-texto">
+                 <div class="alert alert-warning">
+                    <div class="media">
+                       <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
+                       <div class="media-body">
+                          <h4><a href="/elestadoentubarrio/preguntas-frecuentes">Preguntas frecuentes</a></h4>
+                          <p>Entrá acá sí tenés alguna duda.</p>
+                       </div>
+                    </div>
+                 </div>
+            </div>
+     </div> 
+   </div>
+</div>
+
+
+
+
+      
+ 
 
   </div>
 </section>
-<section>
+<section class="m-t-0 p-t-0">
   <div class="container">
     <div class="row">    
       <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <h2 class="text-center">Qué trámites podes hacer</h2>
-          </div>
-        </div>
-        <div class="row panels-row list" data-render="servicios">
-        </div> 
+        <h2 class="m-b-2 m-y-4 text-center">Algunos trámites que podés hacer</h2>
+        
+<div class="row panels-row list" data-render="servicios">
+   <div class="col-md-4">
+      <div class="panel">
+      <div class="panel-body pane-content">
+         <h3 class="m-t-2 m-b-1">ANSES</h3>
+         <hr>
+         <div id="servicios-0">
+            <ul class="list ">
+              <li><span class="servicio">Asignación Universal por Hijo.</span></li>
+              <li><span class="servicio">Asignaciones Familiares.</span></li>
+              <li><span class="servicio">Asesoramiento sobre créditos.</span></li>
+            </ul>
+         </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-4">
+      <div class="panel">
+      <div class="panel-body">
+         <h3 class="m-t-2 m-b-1">DNI</h3>
+         <hr>
+         <div id="servicios-1">
+            <ul class="list">
+<li><span class="servicio">Actualizaciones.</span></li>
+<li><span class="servicio">Renovaciones.</span></li>
+<li><span class="servicio">Cambio de domicilio.</span></li>
+            </ul>
+         </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-4">
+      <div class="panel">
+      <div class="panel-body">
+         <h3 class="m-t-2 m-b-1">SUBE</h3>
+         <hr>
+         <div id="servicios-2">
+            <ul class="list">
+              <li><span class="servicio">Obtención y registro de la tarjeta.</span></li>
+              <li><span class="servicio">Solicitud de Tarifa Social.
+</span></li>
+            </ul>
+         </div>
+         </div>
+      </div>
+   </div>
+   
+</div>
+         
+
       </div>  
     </div>
   </div>
@@ -163,687 +280,176 @@ layout: argentina
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
 <script type="text/javascript">
-
-(function($) {
-
-    var templates = {
-      lugares: `<div class="col-xs-12 col-sm-6 col-md-4">
-                  <a 
-                    href="punto-de-atencion.html?provincia={provincia}&localidad={lugar}&inicio={inicio}&fin={fin}&hora={hora}&direccion={direccion}" class="panel panel-default">
-                      <div class="panel-body">
-                          {motivosuspendido}
-                          <h3>{lugar}</h3>
-                          <div class="media">
-                            <div class="media-left media-middle">
-                                <span class="fa fa-calendar" aria-hidden="true"></span>
-                            </div>
-                            <div class="media-body media-middle">
-                              <p><small>Del {inicio} al {fin}</small></p>
-                            </div>
-                          </div>
-                          <div class="media">
-                            <div class="media-left media-middle">
-                                <span class="fa fa-clock-o" aria-hidden="true"></span>
-                            </div>
-                            <div class="media-body media-middle">
-                              <p><small>{hora}hs</small></p>
-                            </div>
-                          </div>
-                          <div class="media">
-                            <div class="media-left media-middle">
-                                <span class="fa fa-map-marker" aria-hidden="true"></span>
-                            </div>
-                            <div class="media-body media-middle">
-                              <p><small>{direccion}</small></p>
-                            </div>
-                          </div>
-                          <hr class="m-b-1 row">
-                          <p class="h4 text-primary m-y-0">MAS INFORMACIÓN</p>
-                      </div>
-                  </a>
-                </div>`,
-      servicios: `<div class="col-md-4"><div class="well"><h4 class="m-t-1 text-primary">{categoria}</h5><div id="servicios-{i}"><ul class="list">`,
-    }
-
-    window.config = {
-      _provincia: 'Ninguna',
-      _localidad: 'Ninguna'
-    }
-
-    window.lugares = [];
-    var categoriasServicios = [];
-    var listadoServicios = [];
-
-    var render = {
-        lugares: function(){
-
-        $('[data-render=lugares]').html('');
-        $.each(lugares, function(index, lugar){
-
-          if ( !(config._provincia != 'Ninguna' && config._provincia != lugar.provincia ) && !(config._localidad != 'Ninguna' && config._localidad != lugar.lugar ) ) {
-
-            var motivosuspendido = '';
-            if (lugar.motivosuspendido !== ""){
-              motivosuspendido = '<h5 class="label label-danger show">'+ lugar.motivosuspendido +'</h5>';
-            } 
-
-            var html = templates.lugares;
-
-            html = html.replace(/{lugar}/gi, lugar.lugar)
-            .replace(/{index}/gi, index)
-            .replace(/{provincia}/gi, lugar.provincia)
-            .replace(/{inicio}/gi, lugar.inicio)
-            .replace(/{fin}/gi, lugar.fin)
-            .replace(/{hora}/gi, lugar.hora)
-            .replace(/{direccion}/gi, lugar.direccion)
-            .replace(/{linkmapa}/gi, lugar.linkmapa)
-            .replace(/{latitud}/gi, lugar.latitud)
-            .replace(/{longitud}/gi, lugar.longitud)
-            .replace(/{motivosuspendido}/gi, motivosuspendido);
-
-            $('[data-render=lugares]').append( html );
-
-          } 
-
-        });
-
-      },      
-      servicios: function( ){
-
-        jQuery('[data-render=servicios]').html('');
-
-        window.serviciosList = [];
-
-        jQuery.each(listadoServicios, function(index, items){
-
-          var html = templates.servicios;
-
-          html = html
-          .replace(/{categoria}/gi, categoriasServicios[index])
-          .replace(/{i}/gi, index);
-
-          jQuery.each(items, function(index, item){
-            html += '<li><span class="servicio">'+ item +'</span></li>';
-          });
-
-          jQuery('[data-render=servicios]').append( html + '</ul></div></div></div>' );
-
-          var listOptions = { 
-            valueNames: [ 'servicio' ],
-            fuzzySearch: {
-              searchClass: "search",
-              location: 0,
-              distance: 100,
-              threshold: 0.4,
-              multiSearch: true
-            }
-
-          };
-          serviciosList[index] = new List('servicios-'+ index, listOptions);
-
-        });
-      }      
-    }
-
-    jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1bdkeYatDDA0o4y-6LvNLmiliKto29hhEOfzY7vI2J_w/1/public/values?alt=json',
-      data: 'json',
-      success: function(response){
-        jQuery.each(response.feed.entry, function(index, row){
-
-          if ( !(config._provincia != 'Ninguna' && config._provincia != row.gsx$provincia.$t ) ) {
-
-            if( categoriasServicios.indexOf( row.gsx$categoria.$t ) == -1 ){
-              categoriasServicios.push( row.gsx$categoria.$t )
-              listadoServicios[ categoriasServicios.length - 1 ] = [ row.gsx$servicio.$t ];
-            }else{
-              var categoria = categoriasServicios.indexOf( row.gsx$categoria.$t );
-              listadoServicios[ categoria ].push( row.gsx$servicio.$t );
-            }
-          }
-        });
-        render.servicios();
-      }
-    });
-
-    jQuery.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1bBcS1dOHJMTNDNyj_da-X2dJN-rL6WKQYNe-KsF3wDw/1/public/values?alt=json',
-      data: 'json',
-      success: function(response){
-        jQuery.each(response.feed.entry, function(index, row){
-
-          lugares.push({
-            index: index,
-            provincia: row.gsx$provincia.$t,
-            lugar: row.gsx$lugar.$t,
-            inicio: row.gsx$inicio.$t,
-            fin: row.gsx$fin.$t,
-            hora: row.gsx$hora.$t,
-            direccion: row.gsx$direccion.$t,
-            linkmapa: row.gsx$linkmapa.$t,
-            latitud: row.gsx$latitud.$t,
-            longitud: row.gsx$longitud.$t,
-            motivosuspendido: row.gsx$motivosuspendido.$t
-          });
-
-        });
-        render.lugares();
-      }
-    });    
-
-    jQuery('#search').on('click', function(event){
-      buscar();
-      event.preventDefault();
-    });
-
-    jQuery('form[role=search]').on('submit', function(event){
-      buscar();
-      event.preventDefault();
-    });
-
-
-
-    var buscar = function(){
-      var busqueda = jQuery('.search').val()
-      jQuery.each(serviciosList, function(index, item){
-        serviciosList[index].fuzzySearch( busqueda );
-
-        if(serviciosList[index].matchingItems.length == 0){
-          jQuery('#servicios-'+ index ).prev().addClass('hidden');
-        }else{
-          jQuery('#servicios-'+ index ).prev().removeClass('hidden');
-        }
-      });
-
-    }
-
-
-
-            var dataProv = [
-                            {
-                                provincia: "CIUDAD AUTONOMA DE BUENOS AIRES",
-                                localidad: []
-                            },
-                            {
-                                provincia: "BUENOS AIRES",
-                                localidad: []
-                            },
-                            {
-                                provincia: "CATAMARCA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "CÓRDOBA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "CORRIENTES",
-                                localidad: []
-                            },
-                            {
-                                provincia: "CHACO",
-                                localidad: []
-                            },
-                            {
-                                provincia: "CHUBUT",
-                                localidad: []
-                            },
-                            {
-                                provincia: "ENTRE RIOS",
-                                localidad: []
-                            },
-                            {
-                                provincia: "FORMOSA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "JUJUY",
-                                localidad: []
-                            },                
-                            {
-                                provincia: "LA PAMPA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "LA RIOJA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "MENDOZA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "MISIONES",
-                                localidad: []
-                            },
-                            {
-                                provincia: "NEUQUEN",
-                                localidad: []
-                            },
-                            {
-                                provincia: "RIO NEGRO",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SALTA",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SAN JUAN",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SAN LUIS",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SANTA CRUZ",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SANTA FE",
-                                localidad: []
-                            },
-                            {
-                                provincia: "SANTIAGO DEL ESTERO",
-                                localidad: []
-                            },
-                            {
-                                provincia: "TIERRA DEL FUEGO",
-                                localidad: []
-                            },
-                            {
-                                provincia: "TUCUMAN",
-                                localidad: []
-                            }                                                                                                                                        
-                        ]            
-// pusheo localidades a partir de spreadsheet
-
-
-
-
-$.getJSON('https://spreadsheets.google.com/feeds/list/1aN49YlgADGzfTbByGIzBiKPyS1Y-4SZdhuDNteX1cu4/1/public/values?alt=json', function (dataLugares) {
-    window.dataDrive = dataLugares.feed.entry;
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CIUDAD AUTONOMA DE BUENOS AIRES"){
-
-        if(dataProv[0].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[0].localidad.push(item.gsx$localidad.$t);
-          dataProv[0].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "BUENOS AIRES"){
-
-        if(dataProv[1].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[1].localidad.push(item.gsx$localidad.$t);
-          dataProv[1].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CATAMARCA"){
-
-        if(dataProv[2].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[2].localidad.push(item.gsx$localidad.$t);
-          dataProv[2].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CÓRDOBA"){
-
-        if(dataProv[3].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[3].localidad.push(item.gsx$localidad.$t);
-          dataProv[3].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CORRIENTES"){
-
-        if(dataProv[4].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[4].localidad.push(item.gsx$localidad.$t);
-          dataProv[4].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CHACO"){
-
-        if(dataProv[5].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[5].localidad.push(item.gsx$localidad.$t);
-          dataProv[5].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "CHUBUT"){
-
-        if(dataProv[6].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[6].localidad.push(item.gsx$localidad.$t);
-          dataProv[6].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "ENTRE RIOS"){
-
-        if(dataProv[7].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[7].localidad.push(item.gsx$localidad.$t);
-          dataProv[7].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "FORMOSA"){
-
-        if(dataProv[8].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[8].localidad.push(item.gsx$localidad.$t);
-          dataProv[8].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "JUJUY"){
-
-        if(dataProv[9].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[9].localidad.push(item.gsx$localidad.$t);
-          dataProv[9].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "LA PAMPA"){
-
-        if(dataProv[10].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[10].localidad.push(item.gsx$localidad.$t);
-          dataProv[10].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "LA RIOJA"){
-
-        if(dataProv[11].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[11].localidad.push(item.gsx$localidad.$t);
-          dataProv[11].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "MENDOZA"){
-
-        if(dataProv[12].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[12].localidad.push(item.gsx$localidad.$t);
-          dataProv[12].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "MISIONES"){
-
-        if(dataProv[13].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[13].localidad.push(item.gsx$localidad.$t);
-          dataProv[13].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "NEUQUEN"){
-
-        if(dataProv[14].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[14].localidad.push(item.gsx$localidad.$t);
-          dataProv[14].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "RIO NEGRO"){
-
-        if(dataProv[15].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[15].localidad.push(item.gsx$localidad.$t);
-          dataProv[15].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SALTA"){
-
-        if(dataProv[16].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[16].localidad.push(item.gsx$localidad.$t);
-          dataProv[16].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SAN JUAN"){
-
-        if(dataProv[17].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[17].localidad.push(item.gsx$localidad.$t);
-          dataProv[17].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SAN LUIS"){
-
-        if(dataProv[18].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[18].localidad.push(item.gsx$localidad.$t);
-          dataProv[18].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SANTA CRUZ"){
-
-        if(dataProv[19].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[19].localidad.push(item.gsx$localidad.$t);
-          dataProv[19].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SANTA FE"){
-
-        if(dataProv[20].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[20].localidad.push(item.gsx$localidad.$t);
-          dataProv[20].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "SANTIAGO DEL ESTERO"){
-
-        if(dataProv[21].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[21].localidad.push(item.gsx$localidad.$t);
-          dataProv[21].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "TIERRA DEL FUEGO"){
-
-        if(dataProv[22].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[22].localidad.push(item.gsx$localidad.$t);
-          dataProv[22].localidad.sort();
-        }
-
-      }
-    });
-
-    $.each( dataDrive, function( key, item ) {
-      if (item.gsx$provincia.$t == "TUCUMAN"){
-
-        if(dataProv[23].localidad.indexOf(item.gsx$localidad.$t) == -1){
-          dataProv[23].localidad.push(item.gsx$localidad.$t);
-          dataProv[23].localidad.sort();
-        }
-
-      }
-    });
-
-    localidadFn();
-
-});
-
-
-function localidadFn( jQuery ) {
-    var localidadFieldset = $('select[name="localidad"]').parent();
-    if ($('select[name="provincia"]').value === ''  ) {
-        localidadFieldset.attr('disabled', true);
-    } else {
-        localidadFieldset.removeAttr('disabled');
-    }
-    var indexProvincia = $('select[name="provincia"]').find(":selected").index();
-    load_localidades(indexProvincia);
-}
-   
-// hasta acá pusheo
-
-
-           if ($('select[name="provincia"]').val() === '') {
-                $('select[name="localidad"]').attr('disabled', true);
-            }
-
-            $('select[name="provincia"]').on('change', function() {
-                var localidadFieldset = $('select[name="localidad"]');
-                if (this.value === '') {
-                    localidadFieldset.attr('disabled', true);
-                } else {
-                    localidadFieldset.removeAttr('disabled');
-                }
-
-                var indexProvincia = $(this).find(":selected").index();
-                load_localidades(indexProvincia);
-
-            });
-
-
-            // -----------------------------------------------------------------
-
-
-            function load_localidades(indexProvincia) {
-                // First we clean all options
-
-                $('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
-                    var aux, localidad, _i, _len;
-                    dataLocalidades = dataProv[indexProvincia - 1].localidad;
-
-                    for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
-                        localidad = dataLocalidades[_i];
-                        $('select[name="localidad"]').append('<option value="' + localidad +'">' + localidad +'</option>');
-                    }
-
-            }
-
-  window.onload = function() {
+window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
-    var prov = url.searchParams.get("provincia");
-    var loc = url.searchParams.get("localidad");
-    console.log(prov);
-    config._provincia = prov;
-    config._localidad = loc;
-    if (config._provincia !== null || config._localidad !== null ) {
-      $('#titleLugar').removeClass('hidden');
-      $('#titleLocalidad').text(config._localidad);
-      $('#titleProvincia').text(config._provincia); 
-      $('#localidad').removeAttr('disabled');
-      $("#provincia").val(config._provincia).trigger('change');
-      $("#localidad").val(config._localidad).trigger('change');
-      $("#buscar-lugares").prop('disabled', false);
-    }
-    render.lugares();
+    var provincia = url.searchParams.get("provincia");
+    var lista = "";
+    
+    
+    //LISTA DE PUNTOS
+    var puntos;
+    var listaPuntos;
+    jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
+      listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
+        
+        filtrarPuntos(listaPuntos,provincia);
+      
+    })
 
-  };
 
-  $("#buscar-lugares").click(function(){
-    config._provincia = $( "#provincia option:selected" ).val();
-    config._localidad = $( "#localidad option:selected" ).val();
-    $('#titleLugar').removeClass('hidden');
-    $('#titleLocalidad').text(config._localidad);
-    $('#titleProvincia').text(config._provincia);
-    render.lugares();
-  });
+//FILTRAR PUNTOS FUNCION
+var provinciasCargadas = false;
+function filtrarPuntos(listaPuntos,provincia){
+  //RESET
+  jQuery("#puntos").html("");
+  cantidadPuntos = 0;
+  
+  //RECORRER PROVINCIAS
+  jQuery.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
 
-  $("#localidad").on("change", function() {
-      $("#buscar-lugares").prop('disabled', false);
-  });
+  if(provinciasCargadas == false && nombreProvincia != ""){
+    if(nombreProvincia == url.searchParams.get("provincia")){provSelected = "selected";}else{provSelected = ""}
 
-  $("#buscar-lugares").prop('disabled', true);
-
-})(jQuery);
-
-</script>
-
-<style type="text/css">
-  legend {
-      margin-bottom: 0;
-      border-bottom: none;
+    jQuery("#provincia").append('<option data-id="1" value="' + nombreProvincia +'"' + provSelected +'>'+ nombreProvincia + '</option>');
   }
 
-select[disabled] {
-    background-color: #ccc;
+
+  if(nombreProvincia == provincia){
+    //RECORRER CADA PUNTO
+    jQuery.each(puntosProvincia, function(index, val) {
+      var fechaPunto = "";
+
+      if(val.gsx$localidad.$t != "Todos" && val.gsx$publicado.$t == "si"){
+        jQuery("#punto-clon .nombre").html(val.gsx$localidad.$t);
+        
+        jQuery("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
+
+        //Es de un solo día
+        if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
+          fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
+            jQuery("#fechaPunto").parents(".media").show();
+            jQuery("#fechaPunto").html(fechaPunto);
+        }
+
+        //Tiene fecha inicio y fin
+        if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
+          fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
+            jQuery("#fechaPunto").parents(".media").show();
+            jQuery("#fechaPunto").html(fechaPunto);
+        }
+
+        //Es punto fijo
+        if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
+            jQuery("#fechaPunto").parents(".media").hide();
+        }
+
+        jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
+        jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
+        jQuery("#punto-clon a").attr("href","elestadoentubarrio/punto?&punto="+val.gsx$nombre.$t);
+       
+
+        //Motivo suspendido
+        if(val.gsx$suspendido.$t != ""){
+          jQuery("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
+        }
+        else{
+          jQuery("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
+        }
+        var punto = jQuery("#punto-clon .punto").clone();
+        jQuery("#puntos").append(punto);
+        cantidadPuntos++;
+      }
+    });
+   } 
+});
+
+//Mostrar aviso de error
+if(jQuery("#provincia option:selected").val() == ""){
+  jQuery("#aviso").show();
+}
+else{
+  jQuery("#aviso").hide(); 
 }
 
-select[disabled] .form-control {
-    background-color: #e9e9e9;
+  jQuery("#provincia .preloader").remove();
+provinciasCargadas = true;
+
+
+//FILTRO
+var options = {
+  valueNames: [ 'nombre']
+};
+lista = new List('puntosListado', options);
+
+
+}//FIN DE CONDICIONAL
+
+
+
+// FUNCION REMOVER ACENTO
+var removeAccents = (function () {
+    var letters1 = "äáàâăëéèêĕüúùûŭöóòôŏÄÁÀÂĂËÉÈÊĔÜÚÙÛŬÖÓÒÔŎßșȘ",
+        letters2 = "aaaaaeeeeeuuuuuoooooAAAAAEEEEEUUUUUOOOOOssS",
+        patternLetters = new RegExp("[" + letters1 + "]", "g"),
+        lookupLetters = {}, letterTranslator;
+
+    letters1.split("").forEach(function (letter, i) {
+        lookupLetters[letter] = letters2[i];
+    });
+
+    letterTranslator = function(match) { 
+        return lookupLetters[match] || match;
+    };
+
+    return function removeAccents(input) {
+        return input.replace(patternLetters, letterTranslator);
+    };
+})();
+
+// FILTRO ACENTOS PARA LIST.JS
+function getAccentInsensitiveFilter(property, search) {
+    search = removeAccents(search).toLowerCase();
+
+    return function (item) {
+        var value = removeAccents(item.values()[property] || "").toLowerCase();
+        return value.indexOf(search) > -1;
+    };
 }
 
-.form-control[disabled], select[disabled] .form-control {
-    cursor: not-allowed;
-}
 
-.error {
-    display: block;
-    color: #a94442;
-}
 
-</style>
+
+jQuery("#buscador").on("keyup",function(){
+  var busqueda = $.trim(jQuery(this).val());
+  
+   if(busqueda == ""){
+      lista.filter(getAccentInsensitiveFilter("nombre", ""));//Filtro de acentos aplicado a List.js 
+    }
+    else{
+      lista.filter(getAccentInsensitiveFilter("nombre", busqueda));//Filtro de acentos aplicado a List.js 
+    }
+})
+
+
+
+
+
+jQuery(document).on("change","select",function(){
+  var provinciaSeleccionada = jQuery("#provincia option:selected").val();
+  filtrarPuntos(listaPuntos,provinciaSeleccionada);
+    if(provinciaSeleccionada == ""){
+    jQuery("#aviso").show();
+    jQuery("#puntos").html("");
+  }
+  else{
+    jQuery("#aviso").hide(); 
+  }
+})
+//LISTA DE TRÁMITES
+var tramites;
+jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
+  listaTramites = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
+})
+}
+</script>

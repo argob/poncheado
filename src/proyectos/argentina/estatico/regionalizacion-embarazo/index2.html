@@ -1,0 +1,109 @@
+---
+layout: argentina
+---
+
+<style>
+	.checkbox{
+		margin-top: 0px;
+	    margin-bottom: 0px;
+	    padding-top: 8px;
+	    padding-bottom: 8px;
+	}
+</style>
+
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li><a href="https://www.argentina.gob.ar/salud/">Ministerio de Salud</a></li>
+            <li class="active">Regionalización del embarazo</li>
+         </ol>
+      </div>
+   </div>
+</div>
+
+<section>
+	<div class="container">
+		<h1>Calculadora de embarazo de riesgo</h1>
+		<p>Elegí las opciones para ver el nivel de riesgo del embarazo de una persona.</p>
+		<hr>
+
+
+	<fieldset id="formulario">
+    <legend>
+      <h2>Respondé las siguientes preguntas:</h2>
+    </legend>
+    <div class="form-group item-form">
+		<div class="checkbox"><label for="opcion1"><input type="checkbox" value="1" id="opcion1"> Edad materna &lt; 15</label></div>
+		<div class="checkbox"><label for="opcion2"><input type="checkbox" value="2" id="opcion2"> Edad materna &gt;= 35</label></div>
+		<div class="checkbox"><label for="opcion3"><input type="checkbox" value="1" id="opcion3"> Madre sin pareja</label></div>
+		<div class="checkbox"><label for="opcion4"><input type="checkbox" value="2" id="opcion4"> Educación ninguna</label></div>
+		<div class="checkbox"><label for="opcion5"><input type="checkbox" value="1" id="opcion5"> Educación elemental</label></div>
+		<div class="checkbox"><label for="opcion6"><input type="checkbox" value="1" id="opcion6"> Gestas cero</label></div>
+		<div class="checkbox"><label for="opcion7"><input type="checkbox" value="2" id="opcion7"> Gestas &gt;= 4</label></div>
+		<div class="checkbox"><label for="opcion8"><input type="checkbox" value="4" id="opcion8"> Intervalo intergenésico corto (&lt;6m)</label></div>
+		<div class="checkbox"><label for="opcion9"><input type="checkbox" value="4" id="opcion9"> Isoinmunización</label></div>
+		<div class="checkbox"><label for="opcion10"><input type="checkbox" value="1" id="opcion10"> Aborto previo</label></div>
+		<div class="checkbox"><label for="opcion11"><input type="checkbox" value="4" id="opcion11"> Muerte fetal previa</label></div>
+		<div class="checkbox"><label for="opcion12"><input type="checkbox" value="3" id="opcion12"> Muerte neonatal previa</label></div>
+		<div class="checkbox"><label for="opcion13"><input type="checkbox" value="2" id="opcion13"> BPN previo</label></div>
+		<div class="checkbox"><label for="opcion14"><input type="checkbox" value="1" id="opcion14"> Hábito de fumar</label></div>
+		<div class="checkbox"><label for="opcion15"><input type="checkbox" value="1" id="opcion15"> IMC &gt; 29</label></div>
+		<div class="checkbox"><label for="opcion16"><input type="checkbox" value="4" id="opcion16"> HTA crónica</label></div>
+		<div class="checkbox"><label for="opcion17"><input type="checkbox" value="3" id="opcion17"> Diabetes</label></div>
+		<div class="checkbox"><label for="opcion18"><input type="checkbox" value="4" id="opcion18"> VDRL+</label></div>
+		<div class="checkbox"><label for="opcion19"><input type="checkbox" value="4" id="opcion19"> Sin consulta prenatal</label></div>
+		<div class="checkbox"><label for="opcion20"><input type="checkbox" value="2" id="opcion20"> Consultas prenatales 1-4</label></div>
+    
+    <button type="button" class="btn btn-success m-t-2" id="calcularBtn">Calcular</button>
+  </div>
+</fieldset>
+
+
+<fieldset id="resultado" style="display:none">
+    <h2 id="tipoEmbarazo">Sin riesgo</h2>
+    <p class="lead">Puntaje: <span id="puntaje">0</span></p>
+    <p class="text-muted"><a href="https://www.argentina.gob.ar/salud/crecerconsalud/embarazo-parto-puerperio/embarazo">Más información de salud sobre el embarazo</a></p>
+	<button type="button" class="btn btn-link" id="volverBtn">Volver a calcular</button>		
+</fieldset>
+
+
+
+	</div>
+</section>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script>
+	jQuery("#calcularBtn").on("click",function(){
+		jQuery("#formulario").hide();
+		jQuery("#resultado").show();
+		calcular();
+		$(window).scrollTop($('#resultado').position().top);
+	})
+
+	jQuery("#volverBtn").on("click",function(){
+		jQuery("#formulario").show();
+		jQuery("#resultado").hide();
+		jQuery("#formulario input").prop("checked",false);
+	})
+
+	function calcular(){
+		var suma = 0;
+		jQuery("#formulario input").each(function(){
+			if(jQuery(this).is(":checked")){
+				valor = jQuery(this).val();
+				suma = suma + parseInt(valor);
+			}
+		})
+
+		if(suma <= 1){jQuery("#tipoEmbarazo").html('<i class="fa fa-check-circle text-success"></i> Bajo riesgo')}
+		if(suma > 1 && suma <= 6){jQuery("#tipoEmbarazo").html('<i class="fa fa-exclamation-circle text-naranja"></i> Mediano riesgo')}
+		if(suma >= 7){jQuery("#tipoEmbarazo").html('<i class="fa fa-warning text-danger"></i> Alto riesgo')}
+
+		jQuery("#puntaje").html(suma)
+	}
+
+
+</script>

@@ -1,0 +1,184 @@
+---
+layout: argentina
+---
+
+<div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/vuce">VUCE</a></li>
+            <li class="active"><span>Guía de trámites</span></li>
+            
+          </ol>
+        </div>
+      </div>
+    </div>
+
+
+<div class="container">
+ <section>
+    <div id="tramites">
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="organismo">Organismo</label>
+            <select id="organismo" class="form-control">
+              <option data-organismo="todos" value="todos">Todos</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="col-md-8">    
+          <div class="form-group">
+            <label for="">Buscá por nombre de trámite</label>
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      
+      </div>
+
+      <table class="table table-spaced table-align-middle table-mobile">
+        <thead>
+            <th><a class="sort" data-sort="organismo">Organismo<span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="nombre_tramite">Nombre de trámite<span class="caret"></span></a></th>
+            <th width="150"></th>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+       
+       <div id="alerta" class="alert alert-warning col-md-12 no-result" style="display:none">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div> 
+
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+var listaTramites = [];
+var organismo = "todos";
+
+
+    $('body').tooltip({
+    selector: '[data-toggle="tooltip"]'
+    });
+
+
+    //Organismo
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1SXNEVIK3tQWouR4iDwjDSEwUXPZAM0U7pkU5WeO4DLM/2/public/values?alt=json', function (data) {
+        listaTipo = data.feed.entry;
+        
+        $.each(listaTipo,function(key,item){
+          item = '<option data-organismo="'+item.gsx$organismo.$t+'" value="'+item.gsx$organismo.$t+'">'+item.gsx$organismo.$t+'</option>';
+          $("#organismo").append(item);
+        })
+    });
+
+    //Listado de trámites
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1SXNEVIK3tQWouR4iDwjDSEwUXPZAM0U7pkU5WeO4DLM/1/public/values?alt=json', function (data) {
+        listaTramites = data.feed.entry;
+        //console.log(tramites);
+        showTramites(organismo);
+    });
+
+        
+        function showTramites(organismo){
+
+          console.log(organismo);
+          var showData = $('#show-data');
+          var html = '';
+
+          cantidad = 0;
+          $.each( listaTramites, function( key, item ) {
+          if( item.gsx$organismo.$t == organismo || organismo == "todos" ){
+            
+            var url_tramite_argentina = item.gsx$nombretramite.$t;
+            if(item.gsx$urltramiteargentina.$t != ""){
+              url_tramite_argentina = '<a target="_blank" href="'+ item.gsx$urltramiteargentina.$t + '">'+ item.gsx$nombretramite.$t + '</a>'
+            }
+
+            html += '<tr>';
+            html += ' <td class="organismo"><span class="td-label">Organismo</span>'+ item.gsx$organismo.$t + '</td>';
+            html += ' <td class="nombre_tramite"><span class="td-label">Nombre de trámite</span>' + url_tramite_argentina + '</td>';
+            html += ' <td><span class="td-label">Iniciar tramite</span><a target="_blank" class="btn btn-primary btn-sm" href="'+ item.gsx$urltad.$t + '">Iniciar trámite</a></td>';
+            html += '</tr>';
+            cantidad++;
+          }
+
+        });
+
+        if(cantidad == 0){
+          $(".pagination").hide();
+          $("#alerta").show();
+        }
+        else{
+         $(".pagination").show(); 
+         $("#alerta").hide();
+        }
+
+        showData.empty();
+        showData.html(html);
+
+        var listOptions = {
+          valueNames: [ 'nro_trata', 'organismo', 'tipo_tramite', 'nombre_tramite' ],
+          page: 10,
+          plugins: [ ListPagination({}) ]
+        };
+
+        var tramitesList = new List('tramites', listOptions);  
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            tramitesList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        tramitesList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+    }
+
+
+
+    $("#organismo").on("change", function() {
+      var organismo = $( "#organismo option:selected" ).data('organismo');
+
+      showTramites(organismo);
+
+    });
+
+});
+})(jQuery);
+
+</script>
+
+

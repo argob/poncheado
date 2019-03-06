@@ -1,0 +1,154 @@
+---
+layout: argentina
+---
+    <style>
+      
+      small{
+        color: #333333!important;
+      }
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        h5{
+          font-size: 16px;
+        }
+        
+      }
+    </style>
+
+
+      <div class="container">
+        <div id="listadoCentros">
+        <div class="row">
+          <div>
+         
+          
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th>Nº de expediente</th>
+                    <th>Hora de publicación</th>
+                    <th>Tipo de equipo</th>
+                    <th>Inicio de la operación</th>
+                    <th>Fin de la operación</th>
+                    <th>Características requeridas</th>
+                    <th>Lugar de operación</th>
+                    <th>Ofrecer buque</th>
+
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>  
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+      
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    
+    var listado = '';
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1CNZ9E0B7L5CHgGKTWud-OIDQt39dZSwaKlVK7TT0LIk/1/public/values?alt=json',
+    function (data) {
+
+          listado = data['feed']['entry'];
+        
+          filtrarContenido();
+
+
+      });
+
+
+          function filtrarContenido(){
+           
+          var lista = '';
+
+          $.each(listado, function( key, item ) {
+            
+                lista += '<tr>';
+                /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+                lista += ' <td><p>' + item.gsx$nexpediente.$t + '</p></td>';
+
+
+                lista += '<td><p>' + item.gsx$fechayhorapublicacion.$t + '</p></td>';
+
+                lista += '<td><p>' + item.gsx$tipodeequipo.$t + '</p></td>';
+
+                lista += '<td><p>' + item.gsx$fechainiciopublicacion.$t + '</p></td>';
+
+                lista += '<td><p>' + item.gsx$fechafinoperacion.$t + '</p></td>';
+
+                lista += '<td><p>' + item.gsx$caracteristicasespecialesrequeridas.$t + '</p></td>';
+
+                lista += '<td><p>' + item.gsx$areasdeoperacion.$t + '</p></td>';
+                
+                if(item.gsx$boton.$t != ""){
+                  link = '<a class="btn btn-sm btn-primary" target=_blank href="'+ item.gsx$boton.$t +'">Ofrecer</a>';
+                }
+                else{
+                  link = "";
+                }
+
+
+                lista += '<td class="text-center" style="width: 150px;">'+link+'</td>';
+
+              
+                lista += '</tr>';
+            
+                
+            
+
+           
+            
+
+
+          });
+
+          
+
+
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+     
+    
+
+        }
+
+
+  
+
+ 
+ 
+ 
+      
+
+});
+})(jQuery);
+ 
+  
+</script>
+
+

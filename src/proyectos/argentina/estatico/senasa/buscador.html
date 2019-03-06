@@ -1,0 +1,168 @@
+---
+layout: argentina
+---
+    <style>
+      
+      
+      @media screen and (max-width: 767px){
+       
+        td{
+          white-space: unset!important;
+        }
+        
+      }
+    </style>
+
+<div class="container">
+      
+      <div id="listadoTramites" class="m-t-3 p-t-2">
+        <div class="row">
+          <div class="col-md-6">    
+              <div class="form-group">
+                <label for=""> <strong>Buscá por trámite o servicio</strong></label>
+                <input class="form-control search" placeholder="">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for=""><strong>Buscá por perfiles</strong></label>
+                <select id="perfiles" class="form-control">
+                  <option data-perfiles="todos" value="todos">Todos</option>
+                </select>
+              </div>
+            </div>
+
+            
+          <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th><p><strong>Nombre del trámite</strong></p></th>
+                    <th><p><strong>Bajada del trámite</strong></p></th>
+                    <th><p class="text-center"><strong>Sitio web</strong></p></th>
+                    
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data">
+                </tbody>
+              </table>
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+<script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+    
+    var listadoTramites = "";
+    var perfil = "todos";
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1NG69Mt5mrVrjGK_3_6mrmTDalLwGKZsOFx-MBPJzRrk/1/public/values?alt=json',
+    function (data) {
+
+          listadoTramites = data['feed']['entry'];
+          
+          cargarContenido(perfil);
+  
+      });
+
+    function cargarContenido(perfilesFiltro){
+
+          var lista = '';
+          
+            
+           $.each(listadoTramites, function( key, item ) {
+           var perfilLista = item.gsx$perfil.$t;
+          if(!!~perfilLista.toLowerCase().indexOf(perfilesFiltro.toLowerCase()) || perfilesFiltro == "todos") {
+                lista += '<tr>';
+              
+                lista += ' <td class="nombre"><b> ' + item.gsx$nombretramite.$t + '</b></td>';
+
+                lista += ' <td><p> ' + item.gsx$resumen.$t + '</p></td>';
+                lista += ' <td class="text-center"style="width:160px;"><a class="btn btn-primary btn-sm" target="_blank" href="'+ item.gsx$url.$t +'">Ver más</a></td>';
+               
+                lista += '</tr>';
+            }
+
+
+          });
+     
+
+
+          $('#show-data').empty();
+          $('#show-data').append(lista);
+
+     
+
+
+          var listOptions = {
+            valueNames: ['nombre'],
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+
+
+             var listaNueva = new List('listadoTramites', listOptions); 
+            
+
+           $('.search').on("keyup", function(){
+            var valorBuscado = $('.search').val();
+            listaNueva.search(valorBuscado);//propio de List.js
+           });
+
+
+            }
+
+
+      jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1NG69Mt5mrVrjGK_3_6mrmTDalLwGKZsOFx-MBPJzRrk/2/public/values?alt=json',
+    function (data) {
+         
+          var grupoDePerfiles = data['feed']['entry'];
+          
+          $.each(grupoDePerfiles, function( key, i ) {
+          var perfilElegido = i['gsx$perfil']['$t'];
+          
+          $('#perfiles').append('<option data-perfiles="'+ perfilElegido +'" value="'+ perfilElegido +'">'+ perfilElegido +'</option>')
+
+          });
+        
+
+      });
+
+     
+  $("#perfiles").on("change", function() {
+       
+       perfil = $(document).find("#perfiles option:selected").data('perfiles');
+
+       console.log(perfil);
+      cargarContenido(perfil);
+
+    });
+
+ 
+ 
+      
+
+});
+})(jQuery);
+ 
+ 
+  
+</script>
+
+
