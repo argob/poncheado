@@ -348,7 +348,7 @@ layout: mi-argentina2
 							        </div>
 							        <div class="col-md-8 form-group item-form">
 							        	<label for="department">Partido o departamento</label>
-								        <select class="form-control" name="department" id="department">
+								        <select class="form-control" name="department" id="department" disable="false">
 								        	<option value="Departamento 1" selected="">Departamento 1</option>
 								            <option value="">Departamento 2</option>
 								            <option value="">Departamento 3</option>
@@ -357,7 +357,7 @@ layout: mi-argentina2
 								    </div>
 									<div class="col-md-8 form-group item-form">
 										<label for="localidad">Localidad</label>
-								        <select class="form-control" name="localidad" id="localidad">
+								        <select class="form-control" name="localidad" id="localidad" disable="false">
 							             
 							              <option value="Localidad 1" selected="">Localidad 1</option>
 							              <option value="">Localidad 2</option>
@@ -391,13 +391,17 @@ layout: mi-argentina2
 <script>
 	var elements = [document.getElementById('address_state').value, document.getElementById('department').value, document.getElementById('localidad').value];
 
-	document.getElementById('country').addEventListener('change', function(){
-		if(document.getElementById('country').value != "ARG"){
-			document.getElementById('address_state').disabled = true
-		}else{
-			document.getElementById('address_state').disabled = false
-		}
+	elements.forEach(element => {
+		document.getElementById('country').addEventListener('change', function(){
+			if(this.value != "ARG"){
+				element.disabled = true
+			}else{
+				element.disabled = false
+			}
+		})
 	})
+
+	
 	
 	
 </script>
