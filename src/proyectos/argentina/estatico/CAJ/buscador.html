@@ -37,7 +37,7 @@ layout: argentina
             <div class="col-md-6">    
               <div class="form-group">
                 <label for=""> <strong>Buscá por centros</strong></label>
-                <input class="form-control search" id="centros" placeholder="">
+                <input class="form-control" id="centros" placeholder="">
               </div>
             </div>
            
@@ -93,6 +93,41 @@ $(document).ready(function () {
       });
 
 
+
+// FILTRO ACENTOS PARA LIST.JS
+function getAccentInsensitiveFilter(property, search) {
+    search = removeAccents(search).toLowerCase();
+
+    return function (item) {
+        var value = removeAccents(item.values()[property] || "").toLowerCase();
+        return value.indexOf(search) > -1;
+    };
+}
+
+
+// FUNCION REMOVER ACENTO
+var removeAccents = (function () {
+    var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+        letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+        patternLetters = new RegExp("[" + letters1 + "]", "g"),
+        lookupLetters = {}, letterTranslator;
+
+    letters1.split("").forEach(function (letter, i) {
+        lookupLetters[letter] = letters2[i];
+    });
+
+    letterTranslator = function(match) { 
+        return lookupLetters[match] || match;
+    };
+
+    return function removeAccents(input) {
+        return input.replace(patternLetters, letterTranslator);
+    };
+})();
+
+
+
+
           function filtrarContenido(provinciaSelect){
             console.log(provinciaSelect);
           var lista = '';
@@ -112,17 +147,8 @@ $(document).ready(function () {
                 
                 lista += '</tr>';
             }
-                
-            
-
-           
-            
-
-
+    
           });
-
-          
-
 
 
           $('#show-data').empty();
@@ -144,9 +170,17 @@ $(document).ready(function () {
 
              
 
-          $('.search').on("keyup", function(){
-            var searchClass = $(this).val();
-            listaNueva.search(searchClass);//propio de List.js
+          $('#centros').on("keyup", function(){
+            var busqueda = $.trim(jQuery(this).val());
+
+            if(busqueda == ""){
+              listaNueva.filter(getAccentInsensitiveFilter("nombrecaj", ""));//Filtro de acentos aplicado a List.js 
+            }
+            else{
+              listaNueva.filter(getAccentInsensitiveFilter("nombrecaj", busqueda));//Filtro de acentos aplicado a List.js 
+            }
+
+
            });
         }
 
