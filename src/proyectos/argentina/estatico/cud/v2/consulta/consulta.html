@@ -129,6 +129,13 @@ select[disabled] .form-control {
                               <select class="form-control" disabled="disabled" id="localidad" name="localidad" required="">
                                  <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
                               </select>
+                              <div id="sanisidro" class="text-muted m-b-0 hidden" style="margin-top:1em;">
+                                 <p>Tené en cuenta que en San Isidro:</p>
+                                 <ul>
+                                    <li>Los turnos para Pre Juntas (Adultos) se otorgan a partir de los 14 años</li>
+                                    <li>Los turnos para Asesoramiento - Pre Juntas Evaluadoras (niños) se otorgan hasta los 13 años.</li>
+                                 </ul>
+                              </div>
                            </div>
                         </fieldset>
                      </div>
@@ -720,6 +727,17 @@ select[disabled] .form-control {
  }
 
  }
+
+
+ // -----------------------------------------------------------------
+
+ $('#localidad').change(function() {
+   if( $(this).val() == "San Isidro" ){
+     $('#sanisidro').removeClass('hidden');
+   } else if (!$('#sanisidro').hasClass('hidden')){
+      $('#sanisidro').addClass('hidden');
+   }
+});
 
 })(jQuery);
 </script>
