@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PonchoSelect</title>
+
+ <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.mobile.min.css" />
+
+    
+    
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://www.argentina.gob.ar/sites/default/files/css/css_Ps9-OBRN7HporQYTFlUHQ3dOUxkPLFaWo3JP9-kISkQ.css">
+</head>
+<body>
+	<div class="container">
+		<h1>PonchoSelect</h1>
+		<p>Este ejemplo está usando un "chosen" accesible y la API Geográfica de Datos Abiertos</p>
+		<hr>
+
+
+<div class="row">
+	<div class="col-sm-8 form-group">
+	<label for="Provincia">Provincia</label>
+		<select name="" id="provincias" class="form-control">
+			<option value="aaa">Seleccioná una provincia</option>
+			<option value="CABA">CABA</option>
+			<option value="Buenos Aires">Buenos Aires</option>
+			<option value="Catamarca">Catamarca</option>
+		</select>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-8 form-group">
+	<label for="localidad">Localidad</label>
+		<select name="" id="localidad" class="form-control">
+		</select>
+	</div>
+</div>
+
+	</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.all.min.js"></script>
+
+<script>
+
+
+$("#provincias").kendoComboBox();
+
+function seleccionarProvincia(provincia){
+	jQuery.get('https://apis.datos.gob.ar/georef/api/localidades?provincia='+provincia, function(data) {
+		$("#localidad").html("");
+			$.each(data.localidades, function(index, val) {
+				 $("#localidad").append('<option value="'+val.nombre+'">'+val.nombre+'</option>');
+			});
+			$("#localidad").kendoComboBox();
+	});
+}
+
+$(document).on("change","#provincias", function(){
+	seleccionarProvincia($(this).val())
+})
+
+</script>
+
+
+
+<script src="ponchoSelect.js"></script>
+</body>
+</html>
