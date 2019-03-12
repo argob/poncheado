@@ -74,7 +74,7 @@ layout: mi-argentina2
 			               	</div>
 		            	</div>	
 		            	<div class="m-y-2">
-	            			<a class="btn btn-link" href="/cud/consulta/consulta" id="edit-form">MODIFICAR CONSULTA</a>
+	            			<a class="btn btn-link" href="https://poncheado.argentina.gob.ar/proyectos/mi-argentina/v4/sidebar/actual/cud/consulta.html" id="edit-form">MODIFICAR CONSULTA</a>
 							<a class="btn btn-link" href="" onclick="window.print()">IMPRIMIR RESULTADOS</a>
 						</div>
 					
@@ -102,584 +102,792 @@ layout: mi-argentina2
  		 </div>
     </div>
 </section>
-<script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
+<script type="text/javascript">
+//
+// Target blank extension
+//
+(function () {
+'use strict';
+var targetblank = function () {
+return [
+{
+type: 'output',
+regex: '<a(.*?)>',
+replace: function (match, content) {
+return content.indexOf('mailto:') !== -1 ? '<a' + content + '>' : '<a target="_blank"' + content + '>';
+}
+}
+];
+};
+// Client-side export
+if (typeof window !== 'undefined' && window.showdown && window.showdown.extensions) {
+window.showdown.extension("targetblank", targetblank);
+}
+// Server-side export
+if (typeof module !== 'undefined') {
+module.exports = targetblank;
+}
+}());
+
+			</script><script>
 (function($) {
- $('[data-toogle-collapse]').each(function(key, item) {
- var value = $(item).val();
- var target = $(item).data('toogle-collapse');
- $('input[name=' + $(item).attr('name') + ']').on('change', function() {
- if ($(this).val() == value) {
- $(target).collapse('show');
- } else {
- $(target).collapse('hide');
- }
- });
- });
-
- })(jQuery);
- </script><script src="https://code.jquery.com/jquery-1.12.4.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script><script type="text/javascript">
-(function($) {
- var data;
-
- // Leo si hay algo guardado
-
- if (typeof(Storage) !== "undefined") {
- if (localStorage.getItem("wizard-form-cud") != undefined) {
-
- data = JSON.parse(localStorage.getItem("wizard-form-cud"))
-
- $.each(data, function(key, item) {
- if (item.name == 'provincia' || item.name == 'localidad') {
- $('[name=' + item.name + ']').val(item.value);
- } else {
- $('[name=' + item.name + '][value=' + item.value + ']').prop('checked', true);
- }
-
-
-
- })
-
+var templates={description: '<p>Según el trámite a realizar ({tipoTramite}) el origen del problema de salud por el cual se solicita el certificado (<span data-render="tipo-discapacidad"></span>) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
+descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
  
-
- }
- function checkChoise(){
- 	var bxfCheck;
- if((document.getElementById('bajafallecimientocud').checked) ||(document.getElementById('bajavoluntariacud').checked)){
- $('#edad, #coberturamedica, #origenProblemaSalud').addClass('hidden')
- bxfCheck = true;
- }else{
- $('#edad, #coberturamedica, #origenProblemaSalud').removeClass('hidden')
-	bxfCheck = false
- }
-	if(!bxfCheck){
-		if(document.getElementById('cambioidentidadadopcioncud').checked || document.getElementById('cambioidentidadgenerocud').checked){
-				$('#origenProblemaSalud').addClass('hidden')
-				console.log('seclickeo')
-		 	}else{
-		 		$('#origenProblemaSalud').removeClass('hidden')
-		 	}	
-		}
- 
- }
- 
- checkChoise();
-
- $('input[name="tipotramite"]').on('change', function() {
- checkChoise();
- })
-
- $.validator.setDefaults({
- // debug: true,
- focusInvalid : false,
- success: "valid"
- });
-
- // Cuando mando el formulario guardo lo que se modificó
-
- var wizard_form = $("#wizard-form-cud");
-
-
- wizard_form.validate({
- rules: {
- tipotramite: {
- required: true
- },
- mayor16: {
- required: true
- },
- guardador: {
- required: true
- },
- coberturamedica: {
- required: true
- },
- discapacidad: {
- required: true,
- minlength: 1
- },
- provincia: {
- required: true
- },
- localidad: {
- required: true
- }
- },
- errorPlacement: function(error, element) {
- if (element.is(":radio") || $(element).is(":checkbox")) {
- error.insertBefore(element.parent().parent());
- } else {
- //error.wrap('<div></div>').addClass('m-b-1').appendTo(element.prev());
- error.insertBefore(element);
-
- }
- },
- highlight: function(element, errorClass) {
- if ($(element).is(":radio") || $(element).is(":checkbox")) {
- $(element).parent().parent().parent().parent().addClass("has-error has-feedback");
- } else {
- $(element).parent().addClass("has-error has-feedback");
- }
- },
- success: function(label) {
- label.parent().parent().removeClass("has-error has-feedback");
- label.parents(".form-group").removeClass("has-error has-feedback");
- label.remove();
- },
- });
-
-
-
- $('#wizard-form-cud').on('submit', function(event) {
-
-
- //ERRORES ACCESIBLES 
- $("#errores").html("");
- $("#errores").html("<h5>Se requiere completar los siguientes campos:</h5><ol></ol>");
- $(".error:visible").each(function(){
- textoError = $(this).closest("fieldset").find(".control-label").html();
- 
- $("#errores ol").append("<li role='alert'>"+textoError+"</li>");
- })
-
- if($(".error").length >0){
- console.log($(".error").length);
- $("#errores").show().focus();
- }
- 
-
-
-
- event.preventDefault();
-
- if (wizard_form.valid()) {
-
- data = $(this).serializeArray();
-
- localStorage.setItem("wizard-form-cud", JSON.stringify(data));
-
- var ga_data = $(this).serialize().replace(/&/gi, ', ').replace(/=/gi, ':');
-
- if (localStorage.getItem("wizard-form-cud") == undefined) {
- // ga('send', 'event', 'Formulario', 'wizServicios_enviado', ga_data);
- } else {
- // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
- }
-
- window.location.href = '/cud/requisitos';
- }
- });
-
- } else {
- //console.log('No tenés soporte :(');
- }
-
-
-
-
- // -----------------------------------------------------------------
-
-
- var dataProv = [{
- provincia: "Ciudad Autónoma de Buenos Aires",
- localidad: []
- },
- {
- provincia: "Buenos Aires",
- localidad: []
- },
- {
- provincia: "Catamarca",
- localidad: []
- },
- {
- provincia: "Córdoba",
- localidad: []
- },
- {
- provincia: "Corrientes",
- localidad: []
- },
- {
- provincia: "Chaco",
- localidad: []
- },
- {
- provincia: "Chubut",
- localidad: []
- },
- {
- provincia: "Entre Ríos",
- localidad: []
- },
- {
- provincia: "Formosa",
- localidad: []
- },
- {
- provincia: "Jujuy",
- localidad: []
- },
- {
- provincia: "La Pampa",
- localidad: []
- },
- {
- provincia: "La Rioja",
- localidad: []
- },
- {
- provincia: "Mendoza",
- localidad: []
- },
- {
- provincia: "Misiones",
- localidad: []
- },
- {
- provincia: "Neuquén",
- localidad: []
- },
- {
- provincia: "Río Negro",
- localidad: []
- },
- {
- provincia: "Salta",
- localidad: []
- },
- {
- provincia: "San Juan",
- localidad: []
- },
- {
- provincia: "San Luis",
- localidad: []
- },
- {
- provincia: "Santa Cruz",
- localidad: []
- },
- {
- provincia: "Santa Fe",
- localidad: []
- },
- {
- provincia: "Santiago del Estero",
- localidad: []
- },
- {
- provincia: "Tierra del Fuego",
- localidad: []
- },
- {
- provincia: "Tucumán",
- localidad: []
- }
- ]
-
-
-
-
- // pusheo localidades a partir de spreadsheet
-
-
-
-
- $.getJSON('https://spreadsheets.google.com/feeds/list/1pvcQRLcLr8_gvJfb5rij-QhqUHcs5mS3lkJnBnfqyCw/1/public/values?alt=json', function(dataLugares) {
-
- window.dataDrive = dataLugares.feed.entry;
-
-
- $.each(dataDrive, function(key, item) {
-
- var provinciaTrim = $.trim(item.gsx$provincia.$t);
- var localidadTrim = $.trim(item.gsx$localidad.$t);
-
- if (provinciaTrim == "Ciudad Autónoma de Buenos Aires") {
-
- if (dataProv[0].localidad.indexOf(localidadTrim) == -1) {
- dataProv[0].localidad.push(localidadTrim);
- dataProv[0].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Buenos Aires") {
-
- if (dataProv[1].localidad.indexOf(localidadTrim) == -1) {
- dataProv[1].localidad.push(localidadTrim);
- dataProv[1].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Catamarca") {
-
- if (dataProv[2].localidad.indexOf(localidadTrim) == -1) {
- dataProv[2].localidad.push(localidadTrim);
- dataProv[2].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Córdoba") {
-
- if (dataProv[3].localidad.indexOf(localidadTrim) == -1) {
- dataProv[3].localidad.push(localidadTrim);
- dataProv[3].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Corrientes") {
-
- if (dataProv[4].localidad.indexOf(localidadTrim) == -1) {
- dataProv[4].localidad.push(localidadTrim);
- dataProv[4].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Chaco") {
-
- if (dataProv[5].localidad.indexOf(localidadTrim) == -1) {
- dataProv[5].localidad.push(localidadTrim);
- dataProv[5].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Chubut") {
-
- if (dataProv[6].localidad.indexOf(localidadTrim) == -1) {
- dataProv[6].localidad.push(localidadTrim);
- dataProv[6].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Entre Ríos") {
-
- if (dataProv[7].localidad.indexOf(localidadTrim) == -1) {
- dataProv[7].localidad.push(localidadTrim);
- dataProv[7].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Formosa") {
-
- if (dataProv[8].localidad.indexOf(localidadTrim) == -1) {
- dataProv[8].localidad.push(localidadTrim);
- dataProv[8].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Jujuy") {
-
- if (dataProv[9].localidad.indexOf(localidadTrim) == -1) {
- dataProv[9].localidad.push(localidadTrim);
- dataProv[9].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "La Pampa") {
-
- if (dataProv[10].localidad.indexOf(localidadTrim) == -1) {
- dataProv[10].localidad.push(localidadTrim);
- dataProv[10].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "La Rioja") {
-
- if (dataProv[11].localidad.indexOf(localidadTrim) == -1) {
- dataProv[11].localidad.push(localidadTrim);
- dataProv[11].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Mendoza") {
-
- if (dataProv[12].localidad.indexOf(localidadTrim) == -1) {
- dataProv[12].localidad.push(localidadTrim);
- dataProv[12].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Misiones") {
-
- if (dataProv[13].localidad.indexOf(localidadTrim) == -1) {
- dataProv[13].localidad.push(localidadTrim);
- dataProv[13].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Neuquén") {
-
- if (dataProv[14].localidad.indexOf(localidadTrim) == -1) {
- dataProv[14].localidad.push(localidadTrim);
- dataProv[14].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Río Negro") {
-
- if (dataProv[15].localidad.indexOf(localidadTrim) == -1) {
- dataProv[15].localidad.push(localidadTrim);
- dataProv[15].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Salta") {
-
- if (dataProv[16].localidad.indexOf(localidadTrim) == -1) {
- dataProv[16].localidad.push(localidadTrim);
- dataProv[16].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "San Juan") {
-
- if (dataProv[17].localidad.indexOf(localidadTrim) == -1) {
- dataProv[17].localidad.push(localidadTrim);
- dataProv[17].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "San Luis") {
-
- if (dataProv[18].localidad.indexOf(localidadTrim) == -1) {
- dataProv[18].localidad.push(localidadTrim);
- dataProv[18].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Santa Cruz") {
-
- if (dataProv[19].localidad.indexOf(localidadTrim) == -1) {
- dataProv[19].localidad.push(localidadTrim);
- dataProv[19].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Santa Fe") {
-
- if (dataProv[20].localidad.indexOf(localidadTrim) == -1) {
- dataProv[20].localidad.push(localidadTrim);
- dataProv[20].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Santiago del Estero") {
-
- if (dataProv[21].localidad.indexOf(localidadTrim) == -1) {
- dataProv[21].localidad.push(localidadTrim);
- dataProv[21].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Tierra del Fuego") {
-
- if (dataProv[22].localidad.indexOf(localidadTrim) == -1) {
- dataProv[22].localidad.push(localidadTrim);
- dataProv[22].localidad.sort();
- }
-
- }
-
- if (provinciaTrim == "Tucumán") {
-
- if (dataProv[23].localidad.indexOf(localidadTrim) == -1) {
- dataProv[23].localidad.push(localidadTrim);
- dataProv[23].localidad.sort();
- }
-
- }
- });
-
- localidadFn();
-
- });
-
-
- function localidadFn(jQuery) {
- var localidadFieldset = $('select[name="localidad"]').parent();
- if ($('select[name="provincia"]').value === '') {
- localidadFieldset.attr('disabled', true);
- } else {
- localidadFieldset.removeAttr('disabled');
- }
- var indexProvincia = $('select[name="provincia"]').find(":selected").index();
- load_localidades(indexProvincia);
-
- if (data != "") {
- $.each(data, function(index, val) {
- if (val["name"] == "localidad") {
- $('select[name="localidad"]').val(val["value"]);
- }
- });
- }
-
-
- }
-
- // hasta acá pusheo
-
-
- if ($('select[name="provincia"]').val() === '') {
- $('select[name="localidad"]').attr('disabled', true);
- } else {
- $('select[name="localidad"]').removeAttr('disabled');
- }
-
- $('select[name="provincia"]').on('change', function() {
- var localidadFieldset = $('select[name="localidad"]');
- //console.log(this.value === '')
- if (this.value === '') {
- localidadFieldset.attr('disabled', true);
- } else {
- localidadFieldset.removeAttr('disabled');
- $('select[name="localidad"]').val($('select[name="localidad"] option:first').val());
-
- }
-
- var indexProvincia = $(this).find(":selected").index();
- load_localidades(indexProvincia);
-
- });
-
-
- // -----------------------------------------------------------------
-
-
- function load_localidades(indexProvincia) {
- // First we clean all options
-
- $('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
- var aux, localidad, _i, _len;
- dataLocalidades = dataProv[indexProvincia - 1].localidad;
-
- for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
- localidad = dataLocalidades[_i];
- $('select[name="localidad"]').append('<option value="' + localidad + '">' + localidad + '</option>');
- }
-
- }
-
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Datos de contacto</label>
+						<p>{contacto}</p>
+					</div>
+					<hr />
+				</li>`,
+tipoDiscapacidad: `{tipoDiscapacidad}`
+};
+
+var templates2 = {
+	description: '<p>Según el trámite a realizar ({tipoTramite}):</p>',
+	descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
+
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Datos de contacto</label>
+						<p>{contacto}</p>
+					</div>
+					<hr />
+				</li>`
+};
+
+
+var templates3 = {description: '<p>Según el trámite a realizar ({tipoTramite}) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
+descriptionLugar: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+descriptionLugarSingular: `
+				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+lugar: `
+				<li>
+					<div class="form-group m-t-2">
+						<label class="control-label">Junta</label>
+						<p>{junta}</p>
+<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
+
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Dirección</label>
+						<p>{direccion}</p>
+					</div>
+					<div class="form-group m-t-2">
+						<label class="control-label">Datos de contacto</label>
+						<p>{contacto}</p>
+					</div>
+					<hr />
+				</li>`,
+tipoDiscapacidad: `{tipoDiscapacidad}`
+};
+var form_data;
+var data = {};
+// Leo si hay algo guardado
+if(typeof(Storage) !== "undefined") {
+if( localStorage.getItem("wizard-form-cud") != undefined ){
+form_data = JSON.parse( localStorage.getItem("wizard-form-cud"))
+jQuery.each(form_data, function(key, item){
+if(item.name == 'discapacidad') {
+data[item.value] = 'si';
+}
+data[item.name] = item.value;
+});
+var item_blank = true;
+$.getJSON('https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json', function (dataDiscapacidad) {
+window.dataDrive = dataDiscapacidad.feed.entry;
+mostrarDescripcion();
+// console.log(dataDiscapacidad);
+$.each( dataDrive, function( key, item ) {
+
+var show = false;
+var showT2 = false;
+var showT3 = false;
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "cdata-" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "")
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+(data.mayor16 == 'no' )
+&&
+( item.gsx$curatela.$t == "" && item.gsx$tutor.$t == "" && item.gsx$obrasocial.$t == "" && item.gsx$coberturaprepaga.$t == "" && item.gsx$atenciónenhospitalocentrodesaludpública.$t == "" && item.gsx$intelectualymental.$t == "" && item.gsx$visual.$t == "" && item.gsx$motor.$t == "" && item.gsx$auditivo.$t == "" && item.gsx$respiratorio.$t == "" && item.gsx$cardiovascular.$t == "" && item.gsx$renalurológico.$t == "" && item.gsx$digestivohepático.$t == "")
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$curatela.$t == "X") && (item.gsx$tutor.$t == "X")
+)
+{
+
+show = true;
+}
+
+
+if((item.gsx$mayorde16años.$t == "") &&( item.gsx$menor16años.$t == "X") &&( item.gsx$curatela.$t == "C") && (item.gsx$tutor.$t == "T") && (data.guardador == 'si') && (data.mayor16 == 'no')){
+
+show = true;
+console.log(data)
+}else if(
+( item.gsx$mayorde16años.$t == "") && ( item.gsx$menor16años.$t == "A")
+&& ( item.gsx$curatela.$t == "") && (item.gsx$tutor.$t == "") && (item.gsx$tutor.$t == "") && (data.guardador == 'no') && (data.mayor16 == 'no')
+)
+{
+	console.log(data)
+show = true;
+}
+
+
+
+
+
+
+
+
+if((( item.gsx$mayorde16años.$t == "X") && ( item.gsx$menor16años.$t == "")) && ( item.gsx$curatela.$t == "X") && (data.mayor16 == 'si' && data.tutoria == 'si') ){
+show = true;
+}
+if((( item.gsx$mayorde16años.$t == "X") && ( item.gsx$menor16años.$t == "")) && ( item.gsx$curatela.$t == "C") && (data.mayor16 == 'si' && data.tutoria == 'conjuntamente') ){
+show = true;
+}
+if((( item.gsx$mayorde16años.$t == "X") && ( item.gsx$menor16años.$t == "")) && ( item.gsx$curatela.$t == "T") && (data.mayor16 == 'si' && data.tutoria == 'tercero') ){
+show = true;
+}
+if((( item.gsx$mayorde16años.$t == "") && ( item.gsx$menor16años.$t == "X")) && ( item.gsx$tutor.$t == "X") && (data.mayor16 == 'no' && data.guardador == 'si')){
+show = true;
+}
+
+
+
+
+
+
+
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$obrasocial.$t == "X")
+&&
+data.coberturamedica == 'Obrasocial'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$coberturaprepaga.$t == "X")
+&&
+data.coberturamedica == 'Medicinapre-paga'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$obrasocial.$t == "X")
+&& (data.mayor16 == 'si' && data.coberturamedica == 'Obrasocial'
+))
+{
+show = true;
+}
+if(
+( item.gsx$pami.$t == "X")
+&& (data.coberturamedica == 'Pami') 
+
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "")
+&&
+(item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$obrasocial.$t == "X")
+&& data.mayor16 == 'no' && data.coberturamedica == 'Obrasocial'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$intelectualymental.$t == "X")
+&&
+data.discapacidadintelectualymental == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$intelectualymental.$t == "X")
+&& data.discapacidadintelectualymental == 'si'
+&& data.tipotramite !== 'Baja-por-fallecimiento'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(data.tipotramite == 'Baja-por-fallecimiento')
+{
+showT2 = true;
+}
+
+if(data.tipotramite == 'Baja-voluntaria')
+{
+showT2 = true;
+}
+
+if(data.tipotramite == 'Cambio-de-identidad-por-adopcion')
+{
+showT3 = true;
+}
+
+if(data.tipotramite == 'Cambio-de-identidad-de-genero')
+{
+showT3 = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$intelectualymental.$t == "X")
+&& data.discapacidadintelectualymental == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$visual.$t == "X")
+&&
+data.discapacidadvisual == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$visual.$t == "X")
+&& data.discapacidadvisual == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$visual.$t == "X")
+&& data.discapacidadvisual == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$motor.$t == "X")
+&&
+data.discapacidadmotor == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$motor.$t == "X")
+&& data.discapacidadmotor == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$motor.$t == "X")
+&& data.discapacidadmotor == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$auditivo.$t == "X")
+&&
+data.discapacidadauditivo == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$auditivo.$t == "X")
+&& data.discapacidadauditivo == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$auditivo.$t == "X")
+&& data.discapacidadauditivo == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$respiratorio.$t == "X")
+&&
+data.discapacidadrespiratorio == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$respiratorio.$t == "X")
+&& data.discapacidadrespiratorio == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$respiratorio.$t == "X")
+&& data.discapacidadrespiratorio == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$cardiovascular.$t == "X")
+&&
+data.discapacidadcardiovascular == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$cardiovascular.$t == "X")
+&& data.discapacidadcardiovascular == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$cardiovascular.$t == "X")
+&& data.discapacidadcardiovascular == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$renalurológico.$t == "X")
+&&
+data.discapacidadrenalurologico == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$renalurológico.$t == "X")
+&& data.discapacidadrenalurologico == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$renalurológico.$t == "X")
+&& data.discapacidadrenalurologico == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$digestivohepático.$t == "X")
+&&
+data.discapacidaddigestivohepatico == 'si'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "" )
+&&
+( item.gsx$menor16años.$t == "X")
+&&
+( item.gsx$digestivohepático.$t == "X")
+&& data.discapacidaddigestivohepatico == 'si'
+&& data.mayor16 == 'no'
+)
+{
+show = true;
+}
+if(
+( item.gsx$mayorde16años.$t == "X")
+&&
+( item.gsx$menor16años.$t == "")
+&&
+( item.gsx$digestivohepático.$t == "X")
+&& data.discapacidaddigestivohepatico == 'si'
+&& data.mayor16 == 'si'
+)
+{
+show = true;
+}
+
+
+
+if(show){
+item_blank = false;
+var html = templates.item;
+var converter = new showdown.Converter({extensions: ['targetblank']}),
+text = item.gsx$requisitos.$t,
+requisitosmd = converter.makeHtml(text);
+// console.log(requisitosmd);
+html = html.replace(/{requisito}/gi, requisitosmd);
+jQuery('#show-data').removeClass('hidden').append( html );
+
+
+
+
+
+if(document.getElementById('show-data') !== ''){
+	document.getElementById('llenarPlanilla').classList.remove('hidden');
+}
+	if(showT2){
+		jQuery('#show-data').remove(html);
+	}
+}
+});
+
+
+
+
+
+
+$(".panel a[target='_blank']").each(function() {
+$('<span class="sr-only"> Abre en ventana nueva</span>').appendTo(this)
+});
+function mostrarDescripcion () {
+var htmlDescription = templates.description;
+var htmlDescription2 = templates2.description;
+var htmlDescription3 = templates3.description;
+htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite
+.replace("Solicitud-de-Certificado-por-primera-vez","Solicitud por primera vez")
+.replace("Renovacion","Renovación")
+.replace("Perdida-del-certificado","Pérdida del certificado")
+.replace("Cambio-de-identidad-de-genero","Cambio de identidad de género"))
+.replace(/{edad}/gi, data.mayor16
+.replace("no","menor de 16 años")
+.replace("si","mayor de 16 años"))
+.replace(/{tipoCobertura}/gi, data.coberturamedica
+.replace("Obrasocial","Obra social")
+.replace("Medicinapre-paga","Medicina prepaga")
+.replace("Atencion-en-hospital-o-centro-de-salud-publica","Atención en hospital o centro de salud pública"));
+
+htmlDescription2 = htmlDescription2.replace(/{tipoTramite}/gi, data.tipotramite
+.replace("Baja-voluntaria","Baja voluntaria")
+.replace("Baja-por-fallecimiento","Baja por fallecimiento"))
+
+htmlDescription3 = htmlDescription3.replace(/{tipoTramite}/gi, data.tipotramite
+.replace("Cambio-de-identidad-de-genero","Cambio de identidad de género")
+.replace("Cambio-de-identidad-por-adopcion","Cambio de identidad por adopcion"))
+.replace(/{edad}/gi, data.mayor16
+.replace("no","menor de 16 años")
+.replace("si","mayor de 16 años"))
+.replace(/{tipoCobertura}/gi, data.coberturamedica
+.replace("Obrasocial","Obra social")
+.replace("Medicinapre-paga","Medicina prepaga")
+.replace("Atencion-en-hospital-o-centro-de-salud-publica","Atención en hospital o centro de salud pública"))
+
+
+if(data.tipotramite != "Cambio-de-identidad-de-genero" && data.tipotramite != "Cambio-de-identidad-por-adopcion" && data.tipotramite != "Baja-por-fallecimiento" && data.tipotramite != "Baja-voluntaria"){
+	jQuery('#show-data-description').removeClass('hidden').append( htmlDescription );
+}else if(data.tipotramite == "Cambio-de-identidad-de-genero" || data.tipotramite == "Cambio-de-identidad-por-adopcion") {
+	console.log(data.tipotramite +' '+ 'Cambio-de-identidad-de-genero')
+	jQuery('#show-data-description').removeClass('hidden').append( htmlDescription3 );
+
+}else if(data.tipotramite == "Baja-por-fallecimiento" || data.tipotramite == "Baja-voluntaria"){
+	jQuery('#show-data-description').removeClass('hidden').append( htmlDescription2 );
+}
+
+
+if(data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
+var htmlPrimeraVez = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia)<br>';
+$('#show-primera-vez').removeClass('hidden').append( htmlPrimeraVez );
+$('#btn-planilla').removeClass('hidden');
+}
+if(data.tipotramite == "Renovacion") {
+var htmlRenovacion = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD anterior (original). En caso de pérdida del CUD traer la denuncia de extravío.';
+$('#show-renovacion').removeClass('hidden').append( htmlRenovacion );
+$('#btn-planilla').removeClass('hidden');
+}
+if(data.tipotramite == "Perdida-del-certificado") {
+var htmlPerdida = '<strong> DNI </strong>de la persona que será evaluada (original y fotocopia) y denuncia de extravío del CUD.';
+$('#show-perdida').removeClass('hidden').append( htmlPerdida );
+}
+if(data.tipotramite == "Agravamiento") {
+var htmlAgravamiento = '<strong>DNI</strong> de la persona que será evaluada (original y fotocopia) y CUD original vigente.';
+$('#show-agravamiento').removeClass('hidden').append( htmlAgravamiento );
+}
+if(data.tipotramite == "Baja-por-fallecimiento") {
+var htmlFallecimiento = '<strong>CUD</strong> original y Certificado de defunción (original y fotocopia).';
+$('#show-fallecimiento').removeClass('hidden').append( htmlFallecimiento );
+}
+if(data.tipotramite == "Baja-voluntaria") {
+var htmlVoluntaria = '<strong>DNI</strong> de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> original vigente.';
+$('#show-voluntaria').removeClass('hidden').append( htmlVoluntaria );
+}
+if(data.tipotramite == "Cambio-de-identidad-por-adopcion") {
+
+var htmlAdopcion = '<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia), <strong>CUD</strong> vigente (original) y <strong>partida de nacimiento</strong> con adopción inscrita (Original y fotocopia)';
+
+$('#show-adopcion').removeClass('hidden').append( htmlAdopcion );
+}
+if(data.tipotramite == "Cambio-de-identidad-de-genero") {
+var htmlGenero = '<strong><a href="https://www.argentina.gob.ar/solicitar-mi-dni-de-acuerdo-con-mi-identidad-de-genero">DNI</a></strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia) y <strong>CUD</strong> vigente (original).';
+$('#show-genero').removeClass('hidden').append( htmlGenero );
+}
+var htmlTipoDiscapacidad = templates.tipoDiscapacidad;
+var tipoDiscapacidad = ''
+if (data.discapacidadintelectualymental == 'si') {
+tipoDiscapacidad += 'Intelectual y Mental, ';
+}
+if (data.discapacidadvisual == 'si') {
+tipoDiscapacidad += 'Visual, ';
+}
+if (data.discapacidadmotor == 'si') {
+tipoDiscapacidad += 'Motora, ';
+}
+if (data.discapacidadauditivo == 'si'){
+tipoDiscapacidad += 'Auditiva, ';
+}
+if (data.discapacidadrespiratorio == 'si' ) {
+tipoDiscapacidad += 'Respiratoria, ';
+}
+if (data.discapacidadcardiovascular == 'si' ) {
+tipoDiscapacidad += 'Cardiovascular, ';
+}
+if (data.discapacidadrenalurologico == 'si' ) {
+tipoDiscapacidad += 'Renal urológico, ';
+}
+if (data.discapacidaddigestivohepatico == 'si') {
+tipoDiscapacidad += 'Digestivo / Hepático, ';
+}
+htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidad}/gi, tipoDiscapacidad.slice(0, -2));
+$('#show-data-description').find('[data-render=tipo-discapacidad]').append( htmlTipoDiscapacidad );
+}
+});
+$.getJSON('https://spreadsheets.google.com/feeds/list/1pvcQRLcLr8_gvJfb5rij-QhqUHcs5mS3lkJnBnfqyCw/1/public/values?alt=json', function (dataLugares) {
+// $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1', function (dataLugares) {
+window.dataDrive = dataLugares.feed.entry;
+$.each( dataDrive, function( key, item ) {
+var showLugares = false;
+var provinciaTrim = $.trim(item.gsx$provincia.$t);
+var localidadTrim = $.trim(item.gsx$localidad.$t);
+if( provinciaTrim == data.provincia && localidadTrim == data.localidad ){
+showLugares = true;
+}
+if(showLugares){
+var pedirTurno = '';
+var perdirAsesoramiento = '';
+console.log(item);
+if(item["gsx$btn-sacar-turno"]["$t"] != "") {
+pedirTurno = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno"]["$t"]+'" target="_blank">Sacar turno</a>'
+}
+
+
+if(item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"] != "") {
+perdirAsesoramiento = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"]+'" target="_blank">Sacar turno para asesoramiento</a>'
+}
+
+
+var html = templates.lugar;
+html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
+.replace(/{direccion}/gi, item.gsx$direccion.$t)
+//.replace(/{localidad}/gi, item.gsx$localidad.$t)
+.replace(/{pedirTurno}/gi, pedirTurno)
+.replace(/{perdirAsesoramiento}/gi, perdirAsesoramiento)
+.replace(/{contacto}/gi, item.gsx$contacto.$t);
+jQuery('#show-data-description-lugar').removeClass('hidden').append( html );
+}
+});
+showDescripcion();
+function showDescripcion () {
+var htmlDescription = templates.descriptionLugar;
+if(jQuery('#show-data-description-lugar li').length == 1) {
+htmlDescription = templates.descriptionLugarSingular;
+}
+htmlDescription = htmlDescription.replace(/{provincia}/gi, data.provincia)
+.replace(/{localidad}/gi, data.localidad);
+jQuery('#show-data-lugar').removeClass('hidden').append( htmlDescription );
+}
+});
+// if(item_blank){
+// jQuery('#wizard-message').removeClass('hidden');
+// }
+}else{
+// console.log('Todavía no guardaste nada');
+window.location.replace('/cud/consulta-requisitos');
+}
+} else {
+}
+jQuery('#edit-form').on('click', function(event){
+event.preventDefault();
+// ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+window.location.href = '/cud/consulta-requisitos';
+});
 })(jQuery);
-</script>
+
+				</script>
+<style type="text/css">
+.panel li a {
+text-decoration: underline;
+}
+.panel li a:hover,
+.panel li a:focus {
+text-decoration: underline;
+}
+#show-data-description-lugar {
+list-style-type: none;
+padding: 0!important;
+}
+li ul,
+li ol {
+margin: 10px 0 0!important;
+}</style>

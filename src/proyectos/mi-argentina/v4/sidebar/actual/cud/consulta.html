@@ -202,7 +202,7 @@ layout: mi-argentina2
 					                           <hr />
 					                           <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label> 
 					                           <select class="form-control" id="provincia" name="provincia">
-					                              <option value="">Elegí tu provincia</option>
+					                              <option value="" selected="">Elegí tu provincia</option>
 					                              <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
 					                              <option value="Buenos Aires">Buenos Aires</option>
 					                              <option value="Catamarca">Catamarca</option>
@@ -264,7 +264,7 @@ layout: mi-argentina2
     </div>
 </section>
 <script>
-(function($) {
+ (function($) {
  $('[data-toogle-collapse]').each(function(key, item) {
  var value = $(item).val();
  var target = $(item).data('toogle-collapse');
@@ -841,6 +841,17 @@ layout: mi-argentina2
  }
 
  }
+
+
+ // -----------------------------------------------------------------
+
+ $('#localidad').change(function() {
+   if( $(this).val() == "San Isidro" ){
+     $('#sanisidro').removeClass('hidden');
+   } else if (!$('#sanisidro').hasClass('hidden')){
+      $('#sanisidro').addClass('hidden');
+   }
+});
 
 })(jQuery);
 </script>
