@@ -1,149 +1,109 @@
 ---
-layout: argentina
+layout: mi-argentina2
 ---
-<style type="text/css">
-legend {
- margin-bottom: 0;
- border-bottom: none;
- }
 
-select[disabled] {
- background-color: #ccc;
-}
-
-select[disabled] .form-control {
- background-color: #e9e9e9;
-}
-
-.form-control[disabled], select[disabled] .form-control {
- cursor: not-allowed;
-}
-
-.error {
- display: block;
- color: #a94442;
-}</style>
-<section>
-
-<div class="container">
-   <div class="row">
-      <div class="col-md-12">
-
- 
-
-
-         <div class="col-md-8 col-md-offset-2 p-t-2">
-
-
-         <div id="errores" aria-live="assertive" class="alert alert-danger" aria-atomic="true" style="display:none"></div>
-
-            <form id="wizard-form-cud">
-               <div class="panel panel-default">
-                  <div class="panel-body">
-                     <h2>Datos de la persona para la cual se solicita el certificado</h2>
-                     <hr class="m-t-1 m-b-2 m-b-2" />
-                     <div class="form-group">
-                        <fieldset>
-                           <legend class="control-label">Tipo de trámite</legend>
-                           <div class="radio"><label class="m-t-0" for="primeravezcud"><input id="primeravezcud" name="tipotramite" type="radio" value="Solicitud-de-Certificado-por-primera-vez" /> <span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez </label><br /><label class="m-t-1" for="renovacioncud"><input id="renovacioncud" name="tipotramite" type="radio" value="Renovacion" /> Renovación </label><br /><label class="m-t-1" for="perdidacud"><input id="perdidacud" name="tipotramite" type="radio" value="Perdida-del-certificado" /> Pérdida del certificado </label><br /><label class="m-t-1" for="agravamientocud"><input id="agravamientocud" name="tipotramite" type="radio" value="Agravamiento" /> Agravamiento </label><br /><label class="m-t-1" for="bajafallecimientocud"><input id="bajafallecimientocud" name="tipotramite" type="radio" value="Baja-por-fallecimiento" /> Baja por fallecimiento </label><br /><label class="m-t-1" for="bajavoluntariacud"><input id="bajavoluntariacud" name="tipotramite" type="radio" value="Baja-voluntaria" /> Baja voluntaria </label><br /><label class="m-t-1" for="cambioidentidadadopcioncud"><input id="cambioidentidadadopcioncud" name="tipotramite" type="radio" value="Cambio-de-identidad-por-adopcion" /> Cambio de identidad por adopción </label><br /><label class="m-t-1" for="cambioidentidadgenerocud"><input id="cambioidentidadgenerocud" name="tipotramite" type="radio" value="Cambio-de-identidad-de-genero" /> Cambio de identidad de género </label></div>
-                        </fieldset>
-                     </div>
-                     <div class="form-group" id="edad">
-                        <fieldset>
-                           <legend class="control-label">&iquest;Tiene 16 años o más?</legend>
-                           <div class="radio"><label class="m-t-0" for="mayor16"><input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" /> <span class="sr-only">Este Campo es Obligatorio</span> Sí </label><br /><label class="m-t-1" for="menor16"><input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No </label></div>
-                        </fieldset>
-                     </div>
-                     <div class="collapse" id="collapse-tutoria">
-                        <div class="form-group">
-                           <fieldset>
-                              <legend class="control-label">&iquest;La persona firma por sí misma?</legend>
-                              <div class="radio"><label class="m-t-0" for="tutoriasi"><input id="tutoriasi" name="tutoria" type="radio" value="si" /> Firma por sí misma. </label><br /><label class="m-t-1" for="tutoriaconjunta"><input id="tutoriaconjunta" name="tutoria" type="radio" value="conjuntamente" /> Firma conjuntamente con otra persona <strong>(Apoyo/s designado/s judicialmente)</strong> </label><br /><label class="m-t-1" for="tutoriatercero"><input id="tutoriatercero" name="tutoria" type="radio" value="tercero" /> Otra persona firma por la persona para la cual se solicita el certificado <strong>(Curatela)</strong> </label></div>
-                           </fieldset>
-                        </div>
-                     </div>
-                     <div class="collapse" id="collapse-guardador">
-                        <div class="form-group">
-                           <fieldset>
-                              <legend class="control-label"> &iquest;La persona tiene tutor o guardador?</legend>
-                              <div class="radio"><label class="m-t-0" for="guardadorsi"><input id="guardadorsi" name="guardador" type="radio" value="si" /> Si </label><br /><label class="m-t-1" for="guardadorno"><input id="guardadorno" name="guardador" type="radio" value="no" /> No </label></div>
-                           </fieldset>
-                        </div>
-                     </div>
-                     <div class="form-group" id="coberturamedica">
-                        <fieldset>
-                           <legend class="control-label">Cobertura médica</legend>
-                           <div class="radio"><label class="m-t-0" for="obrasocial"><input id="obrasocial" name="coberturamedica" type="radio" value="Obrasocial" /> <span class="sr-only">Este Campo es Obligatorio</span> Obra social </label><br /><label class="m-t-1" for="medicinapre-paga"><input id="medicinapre-paga" name="coberturamedica" type="radio" value="Medicinapre-paga" /> Medicina pre-paga </label><br /><label class="m-t-1" for="coberturapublica"><input id="coberturapublica" name="coberturamedica" type="radio" value="Atencion-en-hospital-o-centro-de-salud-publica" /> Atención en hospital o centro de salud pública </label><br /><label class="m-t-1" for="pami"><input id="pami" name="coberturamedica" type="radio" value="Pami" /> PAMI </label><br /><label class="m-t-1" for="programaincluirsalud"><input id="programaincluirsalud" name="coberturamedica" type="radio" value="Programa-Incluir-Salud" /> Programa Incluir Salud </label></div>
-                        </fieldset>
-                     </div>
-                     <div class="form-group" id="origenProblemaSalud">
-                        <fieldset>
-                           <legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
-                           <div class="checkbox"><label class="m-b-1" for="discapacidadintelectualymental"><input id="discapacidadintelectualymental" name="discapacidad" type="checkbox" value="discapacidadintelectualymental" /> <span class="sr-only">Este Campo es Obligatorio</span> Intelectual y Mental </label><br /><label class="m-b-1" for="discapacidadvisual"><input id="discapacidadvisual" name="discapacidad" type="checkbox" value="discapacidadvisual" /> Visual </label><br /><label class="m-b-1" for="discapacidadmotor"><input id="discapacidadmotor" name="discapacidad" type="checkbox" value="discapacidadmotor" /> Motor </label><br /><label class="m-b-1" for="discapacidadauditivo"><input id="discapacidadauditivo" name="discapacidad" type="checkbox" value="discapacidadauditivo" /> Auditivo </label><br /><label class="m-b-1" for="discapacidadrespiratorio"><input id="discapacidadrespiratorio" name="discapacidad" type="checkbox" value="discapacidadrespiratorio" /> Respiratorio </label><br /><label class="m-b-1" for="discapacidadcardiovascular"><input id="discapacidadcardiovascular" name="discapacidad" type="checkbox" value="discapacidadcardiovascular" /> Cardiovascular </label><br /><label class="m-b-1" for="discapacidadrenalurologico"><input id="discapacidadrenalurologico" name="discapacidad" type="checkbox" value="discapacidadrenalurologico" /> Renal urológico </label><br /><label class="m-b-1" for="discapacidaddigestivohepatico"><input id="discapacidaddigestivohepatico" name="discapacidad" type="checkbox" value="discapacidaddigestivohepatico" /> Digestivo / Hepático </label></div>
-                        </fieldset>
-                     </div>
-                  </div>
-               </div>
-               <div class="panel panel-default">
-                  <div class="panel-body">
-                     <div class="form-group">
-                        <fieldset>
-                           <legend> </legend>
-                           <h2>Lugar de Residencia</h2>
-                           <p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
-                           <hr />
-                           <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label> 
-                           <select class="form-control" id="provincia" name="provincia">
-                              <option value="">Elegí tu provincia</option>
-                              <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-                              <option value="Buenos Aires">Buenos Aires</option>
-                              <option value="Catamarca">Catamarca</option>
-                              <option value="Córdoba">Córdoba</option>
-                              <option value="Corrientes">Corrientes</option>
-                              <option value="Chaco">Chaco</option>
-                              <option value="Chubut">Chubut</option>
-                              <option value="Entre Ríos">Entre Ríos</option>
-                              <option value="Formosa">Formosa</option>
-                              <option value="Jujuy">Jujuy</option>
-                              <option value="La Pampa">La Pampa</option>
-                              <option value="La Rioja">La Rioja</option>
-                              <option value="Mendoza">Mendoza</option>
-                              <option value="Misiones">Misiones</option>
-                              <option value="Neuquén">Neuquén</option>
-                              <option value="Río Negro">Río Negro</option>
-                              <option value="Salta">Salta</option>
-                              <option value="San Juan">San Juan</option>
-                              <option value="San Luis">San Luis</option>
-                              <option value="Santa Cruz">Santa Cruz</option>
-                              <option value="Santa Fe">Santa Fe</option>
-                              <option value="Santiago del Estero">Santiago del Estero</option>
-                              <option value="Tierra del Fuego">Tierra del Fuego</option>
-                              <option value="Tucumán">Tucumán</option>
-                           </select>
-                        </fieldset>
-                     </div>
-                     <div class="form-group">
-                        <fieldset>
-                           <div class="form-group">
-                              <label class="control-label" for="localidad">Localidad</label> <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
-                              <select class="form-control" disabled="disabled" id="localidad" name="localidad" required="">
-                                 <option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
-                              </select>
-                           </div>
-                        </fieldset>
-                     </div>
-                  </div>
-               </div>
-               <input class="btn btn-success btn-md" id="continuar" type="submit" value="Continuar" />&nbsp;
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
-	
-
-</section><!--<a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>--><script>
- (function($) {
+<section class="p-y-0">
+	<div class="container-fluid">
+    	<div class="row dashboard">
+      		<div class="col-lg-3 col-sm-4 sidebar p-l-0">
+        
+        		{% include mi-argentina/menu-1-2019_index.html %} 
+						
+     		 </div>
+     	
+ 		 	<div class="col-lg-9 col-sm-8 hidden-xs">
+ 		 		<div class="row">
+    				<div class="col-xs-12 m-b-1">
+						<h1 class="title-dashboard">
+							Bienvenida María Paula
+					 	</h1>
+					 	
+					 </div>
+				</div>
+				<div class="row">
+					<div class="hidden" id="wizard-cud">
+						<div id="wizard-cud-items"></div>
+					</div>
+				</div>
+ 		 		<div class="row">
+ 		 			<div class="col-md-8" id="main-content">
+ 		 				<div class="panels-row-miargentina">
+			            	<div class="panel panel-default panel-nolink panel-border-success">
+			            		<div class="panel-heading">
+		            				<h2>Dónde ir para que te den un turno para tramitar el CUD</h2>
+		            			</div>
+			                  	<div class="panel-body">
+			                  		<div class="m-t-2 hidden" id="show-data-lugar"></div>
+									<ul class="hidden" id="show-data-description-lugar"></ul>
+									<p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
+									<p>Recordá que a la Evaluación por la Junta, deberá asistir la persona para la que se solicita el certificado.</p>
+			                  	</div>
+				            </div>
+				        </div>
+		            	<div class="panels-row-miargentina">
+		            		<div class="panel panel-default panel-nolink panel-border-success">
+		            			<div class="panel-heading">
+		            				<h2>Qué llevar para que te den un turno</h2>
+		            			</div>
+			                  	<div class="panel-body">
+			                    	<p class="hidden" id="show-data-description"></p>
+									<ol class="m-t-2 hidden" id="show-data">
+										<li class="hidden" id="show-primera-vez"></li>
+										<li class="hidden" id="show-renovacion"></li>
+										<li class="hidden" id="show-perdida"></li>
+										<li class="hidden" id="show-agravamiento"></li>
+										<li class="hidden" id="show-fallecimiento"></li>
+										<li class="hidden" id="show-voluntaria"></li>
+										<li class="hidden" id="show-adopcion"></li>
+										<li class="hidden" id="show-genero"></li>
+									</ol>
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="alert alert-info hiiden" id="llenarPlanilla">
+												<p>Podés completar la planilla para solicitar el certificado único de discapacidad online o descargarla para completarla a mano.</p>
+												<div class="row">
+													<div class="col-xs-12 m-y-2">
+														<a class="btn btn-success" href="https://www.argentina.gob.ar/cud/planilla-cud-formulario-1">Completá la planilla online</a>
+													</div>
+												</div>
+												<a href="https://www.argentina.gob.ar/sites/default/files/planilla_beneficiario_2018.pdf">O descargala para completar a mano.</a>
+											</div>
+										</div>
+									</div>
+								</div>
+			               	</div>
+		            	</div>	
+		            	<div class="m-y-2">
+	            			<a class="btn btn-link" href="/cud/consulta/consulta" id="edit-form">MODIFICAR CONSULTA</a>
+							<a class="btn btn-link" href="" onclick="window.print()">IMPRIMIR RESULTADOS</a>
+						</div>
+					
+						<div class="well m-y-4">
+							<h2 class="h3">Información adicional</h2>
+							<h3 class="h5 m-t-2 m-b-1">Datos de Contacto de la Agencia Nacional de Discapacidad</h3>
+							<p>
+								<a href="mailto:consultas@andis.gob.ar">consultas@andis.gob.ar</a>
+							</p>
+							<p>
+								<strong>0800 555 3472</strong> (días hábiles de 8 a 18 hs)
+							</p>
+							<h3 class="h5 m-t-2 m-b-1">Lista de centros según localidad</h3>
+							<p>Si preferís llamar o ir personalmente consultá la 
+								<a href="https://www.argentina.gob.ar/juntas-evaluadoras-cud">lista de centros </a>
+							</p>
+							<h3 class="h5 m-t-2 m-b-1">Marco legal</h3>
+							<p>
+								<a href="/cud/marco-legal">Leyes y normativas que reglamentan el CUD </a>
+							</p>
+						</div>
+					</div>
+				</div>
+ 		 	</div>
+ 		 </div>
+    </div>
+</section>
+<script>
+(function($) {
  $('[data-toogle-collapse]').each(function(key, item) {
  var value = $(item).val();
  var target = $(item).data('toogle-collapse');
