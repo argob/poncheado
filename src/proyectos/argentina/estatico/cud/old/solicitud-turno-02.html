@@ -73,8 +73,6 @@ layout: argentina
                 <p>Probá cambiando la configuración del formulario.</p>
               </div>
           -->
-              <p>pedir turno</p>
-
 
               <div class="m-y-2">
                 <div class="m-y-2">
@@ -762,18 +760,20 @@ layout: argentina
 
           });          
 
-
-          $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1awUpYAAf5iNiLG0cU6O2x9rfbImLiKGwCZ4XwRqyBRA/1', function (dataLugares) {
+          $.getJSON('https://spreadsheets.google.com/feeds/list/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1/public/values?alt=json', function (dataLugares) {
+          // $.getJSON('https://interfaces.argentina.gob.ar/api/public/v1.0/inap/12V6MPsOWRjAuy3wwtUI7ZToCw2L9BXnTGIDig0T7wUc/1', function (dataLugares) {
               window.dataDrive = dataLugares.feed.entry;
 
               $.each( dataDrive, function( key, item ) {
 
                 var showLugares = false;
 
-                if( item.gsx$provincia.$t == data.provincia && item.gsx$localidad.$t == data.localidad ){
+                var provinciaTrim = $.trim(item.gsx$provincia.$t);
+                var localidadTrim = $.trim(item.gsx$localidad.$t);
+
+                if( provinciaTrim == data.provincia && localidadTrim == data.localidad ){
                     showLugares = true;
                 }
-
 
                  if(showLugares){
 
@@ -785,8 +785,8 @@ layout: argentina
 
                     var html = templates.lugar;
 
-                    html = html.replace(/{junta}/gi, item.gsx$junta.$t)
-                    .replace(/{direccion}/gi, item.gsx$domicilio.$t)
+                    html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
+                    .replace(/{direccion}/gi, item.gsx$direccion.$t)
                     //.replace(/{localidad}/gi, item.gsx$localidad.$t)
                     .replace(/{pedirTurno}/gi, pedirTurno)
                     .replace(/{telefono}/gi, item.gsx$telefono.$t);
