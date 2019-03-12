@@ -738,6 +738,13 @@ select[disabled] .form-control {
       $('#sanisidro').addClass('hidden');
    }
 });
+$(window).on('load', function(){
+   if( $('#localidad').val() == "San Isidro" ){
+     $('#sanisidro').removeClass('hidden');
+   } else if (!$('#sanisidro').hasClass('hidden')){
+      $('#sanisidro').addClass('hidden');
+   }
+});
 
 })(jQuery);
 </script>
