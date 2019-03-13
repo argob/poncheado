@@ -104,11 +104,15 @@ layout: argentina
    		}
    		mes_evento = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY").format('MM');
    		termina_evento = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY").format('MM');
-   		horario = element["gsx$horario"]["$t"];;
+   		horario = element["gsx$horario"]["$t"];
    		//hora_desde = element["gsx$horadesde"]["$t"];
    		//hora_hasta = element["gsx$horahasta"]["$t"];
+   		var tieneHorario = '';
+   		if(horario){
+   			tieneHorario = "<p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> "+horario+"</small></p>";
+   		}
    		
-   		var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td ><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6><p class='Descripcion'>"+descripcion+"</p><p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> "+horario+"</small></p></td></tr>"
+   		var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td ><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6><p class='Descripcion'>"+descripcion+"</p>"+tieneHorario+"</td></tr>"
    		
    		if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
 			//Se filtra por mes
