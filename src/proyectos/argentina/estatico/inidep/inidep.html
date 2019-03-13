@@ -103,16 +103,35 @@ layout: argentina
    			fecha_evento = "Desde " + fecha_desde + " al " + fecha_hasta; 	
    		}
    		mes_evento = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY").format('MM');
+   		termina_evento = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY").format('MM');
    		horario = element["gsx$horario"]["$t"];;
    		//hora_desde = element["gsx$horadesde"]["$t"];
    		//hora_hasta = element["gsx$horahasta"]["$t"];
    		
-   
-   
-   		//Se filtra por mes
+   		var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td ><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6><p class='Descripcion'>"+descripcion+"</p><p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> "+horario+"</small></p></td></tr>"
+   		
    		if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
-   			$("#resultados tbody").append("<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td ><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6><p class='Descripcion'>"+descripcion+"</p><p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> "+horario+"</small></p></td></tr>");
-   		}
+			//Se filtra por mes
+			$("#resultados tbody").append(contenido_evento);
+
+		} else if(element["gsx$fechahasta"]["$t"]){
+
+			var inicio = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY");
+			var fin = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY");
+			var listMeses = [];
+
+			while (fin > inicio || inicio.format('M') === fin.format('M')) {
+			   listMeses.push(inicio.format('MM'));
+			   inicio.add(1,'month');
+			}
+			for (var i = 0; i < listMeses.length; i++) {
+				if(mes_seleccionado == listMeses[i]){
+				$("#resultados tbody").append(contenido_evento);
+
+				}
+			}
+
+		}
    
    
    		//EVENTOS DESTACADOS
@@ -126,6 +145,7 @@ layout: argentina
    	})
    
    
+
    	//lIST.JS
    	var options = {
    	 valueNames: [ 'Titulo', 'URL', 'Descripcion' ],
