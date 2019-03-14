@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tabs | Poncho</title>
+  <title>Desplegables | Poncho</title>
   <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
   <meta name="author" content="Presidencia de la Nación">
   <link rel="shortcut icon" href="/favicon.ico">
@@ -27,7 +27,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
   <meta property="og:site_name" content="Documentación Poncho"/>
-  <meta property="og:url" content="http://argob.github.io/poncho/componentes/tabs/index.html" />
+  <meta property="og:url" content="http://argob.github.io/poncho/componentes/Desplegables/index.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Botones" />
   <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
@@ -126,7 +126,7 @@
       <ol class="breadcrumb">
         <li><a href="/poncho/">Inicio</a></li>
         <li><a href="/poncho/componentes/botones/">Componentes</a></li>
-        <li class="active">Tabs</li>
+        <li class="active">Desplegables</li>
       </ol>
 
 <div class="jumbotron_body p-t-2 p-b-2">
@@ -148,96 +148,123 @@
         <section>
           <article class="row">
             <div class="col-sm-12">
-                <h1>Tabs</h1>
+                <h1>Desplegables</h1>
                 
                 <hr>
 
                 <fieldset>
 
-                <h3>Tabs</h3>
+                <h3>Usando un link</h3>
 
                 <div class="bd-example">
                   <div class="row row-ejemplo">
-                      <ul class="nav nav-tabs" style="margin-top: 0;">
-                        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                        <li><a data-toggle="tab" href="#seccion">Sección</a></li>
-                        <li><a data-toggle="tab" href="#contacto">Contacto</a></li>
-                      </ul>
-                        <div class="tab-content bg-white" style="padding:20px;border: 1px solid #ddd;border-top:none;">
-                          <div id="home" class="tab-pane fade in active">
-                            <h3>HOME</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="seccion" class="tab-pane fade">
-                            <h3>Sección</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="contacto" class="tab-pane fade">
-                            <h3>Contacto</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
+                      <div class="col-sm-12">
+                        <a data-toggle="collapse" href="#footwear" aria-expanded="false" aria-controls="footwear">Desplegar texto oculto</a>
+                        <div class="collapse" id="footwear">
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <pre><code class="language-html">
+                        &lt;div class="container">
+                          &lt;div class="row">
+                            &lt;div class="col-sm-12">
+                              &lt;p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit iure quod, quae architecto animi corporis dolorum odio? Assumenda itaque eos laboriosam at? Voluptatem maxime quam quas error possimus tempore ullam!&lt;/p>
+                            &lt;/div>
+                          &lt;/div>
+                        &lt;/div>
+                      </code></pre>
+                  </div>
+                </div>
+
+                <h3>Usando un botón</h3>
+
+                <div class="bd-example">
+                  <div class="row row-ejemplo">
+                      <div class="col-sm-12">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#footwear2" aria-expanded="false" aria-controls="footwear2">Abrir</button>
+                        <div class="collapse" id="footwear2">
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
                       </div>
                   </div>
                 </div>
 
-                <h3>Pils</h3>
+                <h3>Panel desplegable</h3>
 
                 <div class="bd-example">
                   <div class="row row-ejemplo">
-                      <ul class="nav nav-pills" style="margin-top: 0;">
-                        <li class="active"><a data-toggle="tab" href="#home1">Home</a></li>
-                        <li><a data-toggle="tab" href="#seccion1">Sección</a></li>
-                        <li><a data-toggle="tab" href="#contacto1">Contacto</a></li>
-                      </ul>
-                        <div class="tab-content">
-                          <div id="home1" class="tab-pane fade in active">
-                            <h3>HOME</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="seccion1" class="tab-pane fade">
-                            <h3>Sección</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="contacto1" class="tab-pane fade">
-                            <h3>Contacto</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
+                      <div class="col-sm-12">
+                        <div class="panel-group">
+                          <div class="panel">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+                              </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                              <div class="panel-body">Panel Body</div>
+                              <div class="panel-footer">Panel Footer</div>
+                            </div>
                           </div>
                         </div>
+                      </div>
                   </div>
                 </div>
 
-                <h3>Pils verticales</h3>
-
+                <h3>Acordeón</h3>
 
                 <div class="bd-example">
                   <div class="row row-ejemplo">
-                    <div class="col-sm-3">
-                      <h4 class="text-muted">Title</h4>
-                      <ul class="nav nav-pills nav-stacked" style="margin-top: 0;">
-                        <li class="active"><a data-toggle="tab" href="#home2">Home</a></li>
-                        <li><a data-toggle="tab" href="#seccion2">Sección</a></li>
-                        <li><a data-toggle="tab" href="#contacto2">Contacto</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="tab-content">
-                          <div id="home2" class="tab-pane fade in active">
-                            <h3>HOME</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="seccion2" class="tab-pane fade">
-                            <h3>Sección</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                          <div id="contacto2" class="tab-pane fade">
-                            <h3>Contacto</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus porro officia hic fugit nihil, rem dolorum inventore nulla, dignissimos aut. Beatae omnis asperiores incidunt, reprehenderit suscipit eligendi? Voluptas, facilis, eveniet.</p>
-                          </div>
-                        </div>
-                    </div>
+                      <div class="col-sm-12">
+                          <div class="panel-group" id="accordion">
+                            <div class="panel">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                                </h4>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                              </div>
+                            </div>
+                            <div class="panel">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                                </h4>
+                              </div>
+                              <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                              </div>
+                            </div>
+                            <div class="panel">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                                </h4>
+                              </div>
+                              <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                              </div>
+                            </div>
+                          </div> 
+                      </div>
                   </div>
                 </div>
-
                 
                   
                 </fieldset>
