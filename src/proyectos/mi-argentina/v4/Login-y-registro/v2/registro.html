@@ -1,0 +1,134 @@
+---
+layout: mi-argentina-login
+---
+
+<section class="container p-t-0">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="m-t-3">Creá tu cuenta de Mi Argentina</h1>
+      <hr>
+      <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
+      <form action="">
+        <fieldset>
+          <legend>
+            <h2>Ingresá los siguientes datos</h2>
+          </legend>
+            <div class="row">
+              <div class="col-md-6 form-group item-form">
+                <label for="dni">DNI</label>
+                <input type="number" class="form-control" id="dni" required="" min="0" aria-required="true">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 form-group item-form">
+                <fieldset>
+                  <legend>
+                    <label>Sexo <span class="sr-only">Como aparece en tu DNI</span></label>
+                  </legend>
+                  <p class="help-block">Como aparece en tu documento</p>
+                  <div class="item-form">
+                    <label for="f" class="radio-inline">
+                      <input type="radio" name="sexo" id="f" value="F" required="" aria-required="true">
+                      Femenino
+                    </label>
+                    <label for="m" class="radio-inline">
+                      <input type="radio" name="sexo" id="m" value="M" required="" aria-required="true">
+                      Masculino
+                    </label>
+                    <p class="help-block error hidden">Ingresá tu sexo</p>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group item-form">
+                <div class="col-xs-12">
+                  <label for="nro-tramite">Número de trámite del DNI</label>
+                  <p>
+                    <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
+                  </p>
+                  <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
+                    <div class="arrow-tramite"></div>
+                    <div class='col-xs-12 p-x-0'>
+                      <span class='close'  onclick="pophidde()">&times;</span>
+                    </div>
+                    <div>
+                      <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
+                    </div>
+                    <div class='m-x-1'>
+                      <img src='../../../../../proyectos/mi-argentina/old/v3/img/dni_id.png' alt='imagen-dni' class='img-responsive'>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group  item-form">
+                        <input type="number" class="form-control" id="nro-tramite" required="" min="0" aria-required="true">  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 form-group item-form">
+                <label for="email">Correo electrónico</label>
+                <input type="email" name="email" class="form-control" id="email" required="" aria-required="true">
+                <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+              </div> 
+            </div>
+            
+
+            <div class="row">
+              <div class="col-xs-10">
+                <label for="password">Creá una contraseña nueva para Mi Argentina</label>
+                <p class="help-block" id="help-password">Usá al menos 6 caracteres</p>
+                <div class="form-group item-form">
+                  <input id="password" name="password" type="password" class="form-control" maxlength="15" ">
+                  <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
+                  <p class="help-block error hidden">Usá al menos 6 caracteres</p>
+                  <p class="help-block error hidden">Ingresá tu contraseña</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <p class="m-b-2">Creando tu cuenta estás aceptando los <a href="#">términos y condiciones</a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <a href="" class="btn btn-success">Continuar</a>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  
+</section>
+
+<script>
+  var content = document.getElementById('content-dni-tramite')
+  function popshow(){
+    content.classList.toggle('hidden');
+  }
+
+  function pophidde(){
+    content.classList.add('hidden')
+  }
+  function viewpassword(){
+      var clave = document.getElementById('password')
+      if(clave.type === 'password'){
+        clave.type = 'text'
+        document.getElementById('eye-password').classList.remove("fa-eye-slash")
+        document.getElementById('eye-password').classList.add("fa-eye")
+      }else{
+        clave.type = 'password'
+        document.getElementById('eye-password').classList.remove("fa-eye")
+        document.getElementById('eye-password').classList.add("fa-eye-slash")
+      }
+      
+    }
+  
+</script>
+
