@@ -45,7 +45,7 @@ layout: mi-argentina-login
                     <label for="password_confirmacion">Contraseña</label>
                     <div class="form-group item-form">
                       <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" ">
-                      <span  class="fa fa-fw fa-eye input-icon" id="eye-password" onclick="viewpassword()"></span>
+                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
                       <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
                     </div>
                   </div>
@@ -84,12 +84,12 @@ layout: mi-argentina-login
     var clave = document.getElementById('password_confirmacion')
     if(clave.type === 'password'){
       clave.type = 'text'
-      document.getElementById('eye-password').classList.remove("fa-eye")
-      document.getElementById('eye-password').classList.add("fa-eye-slash")
-    }else{
-      clave.type = 'password'
       document.getElementById('eye-password').classList.remove("fa-eye-slash")
       document.getElementById('eye-password').classList.add("fa-eye")
+    }else{
+      clave.type = 'password'
+      document.getElementById('eye-password').classList.remove("fa-eye")
+      document.getElementById('eye-password').classList.add("fa-eye-slash")
     }
     
   }
