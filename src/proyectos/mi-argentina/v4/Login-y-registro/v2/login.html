@@ -1,0 +1,96 @@
+---
+layout: mi-argentina-login
+---
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<section class="container-fluid p-t-0">
+  <div class="row bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 m-b-2 m-t-2">
+          <form method="get" action="">
+            <fieldset>
+              <legend>
+                <h1 class="hidden">Bienvenido</h1>
+                <h2>¿No tenés cuenta?</h2>
+              </legend>
+              <a href="" class="btn btn-primary">Creá tu cuenta de mi argentina</a>
+            </fieldset>
+            
+            
+          </form>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 m-t-2">
+          <form method="get" action="">
+            <fieldset>
+                <legend>
+                  <h2>Ingresá a tu cuenta</h2>
+                </legend>
+                <div class="row">
+                  <div class="col-xs-12 form-group item-form">
+                    <label for="cuil">CUIL</label>
+                    <input type="number" class="form-control" id="cuil" required="" aria-required="true">
+                    <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <label for="password_confirmacion">Contraseña</label>
+                    <div class="form-group item-form">
+                      <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" ">
+                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
+                      <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                      <div class="g-recaptcha" data-sitekey="6LfpXVYUAAAAAM2xFK4e5nCKZsW4yc_3MW7gu4tV"></div>
+                  </div>
+                </div>
+                <div class="row m-t-2">
+                  <div class="col-md-8">
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                  </div>
+                </div>
+            </fieldset>
+          </form>
+          <p class="m-t-2 m-b-1">O ingresá con tu cuenta de Facebook o Google<span class="sr-only">Facebook o Google</span></p>
+          <div class="m-b-0">
+            <a href="#" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</a>
+            <a href="#" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3 m-b-3">
+          <hr>
+          <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        </div>
+      </div>
+      
+      
+    </div> 
+  </div>
+</section>
+
+<script>
+  function viewpassword(){
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      document.getElementById('eye-password').classList.remove("fa-eye-slash")
+      document.getElementById('eye-password').classList.add("fa-eye")
+    }else{
+      clave.type = 'password'
+      document.getElementById('eye-password').classList.remove("fa-eye")
+      document.getElementById('eye-password').classList.add("fa-eye-slash")
+    }
+    
+  }
+</script>
