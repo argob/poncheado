@@ -33,7 +33,7 @@ layout: argentina
             </div>
             <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Agencia, nombre, CUIT o razón social </strong></label>
+                <label for=""> <strong>Agencia, nombre, ciudad, CUIT o razón social </strong></label>
                 <input class="form-control search" id="agencia" placeholder="">
               </div>
             </div>
@@ -98,12 +98,15 @@ $(document).ready(function () {
         if(item.gsx$tipo.$t){
           tipo = '<p><b>Tipo: </b>'+ item.gsx$tipo.$t +'</p>';
         }
+        var comercializadora = "";
+        if(item.gsx$destinoscomocomercializadora.$t){
+          comercializadora = '<p><b>Comercializadora de: </b>'+ item.gsx$destinoscomocomercializadora.$t +'</p>';
+        }
             lista += '<tr>';
             /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-            lista += ' <td class="agencia nombre "><h5>' + item.gsx$agencia.$t + '</h5><p class="razon-social"><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p class="cuit"><b>CUIT: </b>' + item.gsx$cuit.$t + '</p>'+ tipo +'</td>';
-            lista += ' <td> <p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><b>Ciudad: </b><span class="ciudad">'+ item.gsx$ciudad.$t +'</span>, '+ item.gsx$provincias.$t + '</p>'+ `<p class="legajo"><b>Legajo: </b>${item.gsx$legajo.$t}</p></td>`;
-            lista += ' <td class="telefono"> <p><b>Teléfono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$email.$t +'">'+ item.gsx$email.$t + '</a></p></td>';
-            
+            lista += '<td><h5 class="agencia">'+ item.gsx$agencia.$t +'</h5><p class="razon-social"><b>Razón Social: </b>'+ item.gsx$razonsocial.$t +'</p><p class="cuit"><b>CUIT: </b>'+ item.gsx$cuit.$t + '</p><p class="legajo"><b>Legajo: </b>'+ item.gsx$legajo.$t+'</p><p><b>Certificado: </b>'+ item.gsx$disposicion.$t +'</p>'+ tipo +'</td>';
+            lista += '<td><p class="domicilio"><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p><p><b>Ciudad: </b><span class="lugar">'+ item.gsx$ciudad.$t +'</span>, '+ item.gsx$provincias.$t +'</p><p><b>Teléfono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$email.$t +'">'+ item.gsx$email.$t +'</a></p></td>';
+            lista += ' <td style="max-width:300px;"><p><b>Destinos como organizadora: </b>'+ item.gsx$destinoscomoorganizadora.$t +'</p>'+ comercializadora +'</td>';
             lista += '</tr>';
         }
       });
@@ -112,7 +115,7 @@ $(document).ready(function () {
       $('#show-data').append(lista);
  
       var listOptions = {
-        valueNames: ['agencia', 'razon-social', 'cuit', 'ciudad', 'legajo'],
+        valueNames: ['agencia', 'ciudad', 'razon-social', 'cuit', 'legajo'],
         page: 10,
         plugins: [ ListPagination({}) ]
         
@@ -121,10 +124,13 @@ $(document).ready(function () {
         
          
       $('.search').on("keyup", function(){
-        var searchClass = $(this).val();
+        var valorBuscado = $(this).val();
         var searchId = $(this).attr('id');
-        
-        listaNueva.search(searchClass,[searchId]);//propio de List.js
+        if(searchId == "agencia"){
+          listaNueva.search(valorBuscado,['agencia', 'ciudad', 'razon-social', 'cuit']);
+        } else {
+          listaNueva.search(valorBuscado,[searchId]);//propio de List.js
+        }
        });
       $.each(listaProvincias, function(index) {
         $("#provincia").append('<option data-provincia="'+index+'" value="'+index+'">'+index+'</option>');
