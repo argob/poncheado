@@ -1,0 +1,115 @@
+---
+layout: argentina
+---
+
+<div class="container"><!-- no copiar -->
+
+<style>
+
+  .res-val {
+    margin:0!important;
+  }
+  .numbers  h1, .numbers .h1 {
+    font-size: 4em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  .numbers h2, .numbers .h2 {
+    font-size: 3em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  .numbers h3, .numbers .h3 {
+    font-size: 2.4em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  .numbers h4, .numbers .h4 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+
+  .numbers p.lead {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: .2em 0;
+  }
+</style>
+
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="activities-sidbar">Calculador módulos para IGJ</h1>
+    <div class="section-actions social-share">
+      <p>Compartir en<br> redes sociales</p>
+      <div class="item-list">
+        <ul class="list-inline">
+          <li class="first"><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.argentina.gob.ar/redsube/simulador&amp;title=Simulador de RED SUBE"><span class="sr-only">Compartir en Facebook</span><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li><a href="https://twitter.com/share"><span class="sr-only">Compartir en Twitter</span><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li class="last"><a href="https://plus.google.com/share?url=https://www.argentina.gob.ar/redsube/simulador"><span class="sr-only">Compartir en Google Plus</span><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+
+
+
+        <p class="h5">Calculá el valor de los módulos</p>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label for="cantidad-mod">Cantidad de módulos</label>
+              <input type="number" class="form-control" id="cantidad-mod" value="" min="1">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <a id="js-calculate" href="#" class="btn btn-success btn-block">Calcular</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div id="resultado" class="hidden row numbers">
+              <div class="col-md-12">
+                <div class="h2 text-success res-val"></div>
+                <p class="lead">Costo total</p>
+              </div>
+            </div>
+          </div>
+        </div>
+<br>
+  </div>
+</div>
+
+
+
+<script>
+  var valorModulo = 20;
+  $('#js-calculate').click(function(){
+    fCalcular();
+  });
+  $('#cantidad-mod').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      fCalcular();
+    }
+    //event.stopPropagation();
+  });
+
+  function fCalcular(){
+    if($('#cantidad-mod').val()){
+      var resultado = $('#cantidad-mod').val()*valorModulo;
+      $('#resultado').removeClass('hidden');
+      $('#resultado .res-val').text('$ '+resultado);
+    }
+  }
+</script>
+
+</div><!-- container no copiar -->
