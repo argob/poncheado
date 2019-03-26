@@ -449,7 +449,9 @@ jQuery(document).on("change","select",function(){
 //LISTA DE TRÁMITES
 var tramites;
 jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
+ 
   listaTramites = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
+  
 })
 }
 </script>

@@ -121,10 +121,10 @@ $(document).ready(function () {
         
          
       $('.search').on("keyup", function(){
-        var searchClass = $(this).val();
+        var valorBuscado = $(this).val();
         var searchId = $(this).attr('id');
         
-        listaNueva.search(searchClass,[searchId]);//propio de List.js
+        listaNueva.search(valorBuscado,["agencia","cuit"]);//propio de List.js
        });
       $.each(listaProvincias, function(index) {
         $("#provincia").append('<option data-provincia="'+index+'" value="'+index+'">'+index+'</option>');
