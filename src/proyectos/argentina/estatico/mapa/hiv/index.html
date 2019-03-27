@@ -34,7 +34,8 @@ title: Mapa de centros de HIV
   }
   .main-footer {
     display: none;
-  }  
+  }
+  .media .fa.fa-fw{font-size: 18px;}
 
 @media (max-width: 480px) {
   .navbar .container .navbar-header .navbar-brand {
@@ -160,9 +161,16 @@ title: Mapa de centros de HIV
             var telefonoTarjeta = ''; 
 
             if (row.gsx$telefonodelcentro.$t !== '') {
-              telefonoTarjeta = '<div class="media"><div class="media-left"><i class="fa fa-phone fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$telefonodelcentro.$t + '</strong> </small> </p></div></div>';
+              telefonoTarjeta = '<div class="media"><div class="media-left"><i class="fa fa-phone fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$telefonodelcentro.$t + '</strong> </small> </p></div></div>';
 
-            }            
+            }
+
+            var coments = '';
+
+            if (row.gsx$comentarios.$t !== '') {
+              coments = '<div class="media"><div class="media-left"><i class="fa fa-info-circle fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$comentarios.$t + '</strong> </small> </p></div></div>';
+
+            }    
 
             marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
 
@@ -182,7 +190,7 @@ title: Mapa de centros de HIV
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-muted">'+ row.gsx$nombre.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$localidad.$t +' '+ row.gsx$municipio.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map-marker fa-2x fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$dirección.$t +' </strong> </small> </p></div></div>'+ telefonoTarjeta +'',
+              content: '<h2 class="h5 text-muted">'+ row.gsx$nombre.$t +'</h2><h3 class="h5 text-primary">'+ row.gsx$localidad.$t +' '+ row.gsx$municipio.$t +'</h3><div class="media"><div class="media-left"><i class="fa fa-map-marker fa-fw text-primary"></i></div><div class="media-body"><p class="text-muted m-b-0"><small><strong>'+ row.gsx$dirección.$t +' </strong> </small> </p></div></div>'+ telefonoTarjeta + coments +'',
               maxWidth: 400
             });
 
