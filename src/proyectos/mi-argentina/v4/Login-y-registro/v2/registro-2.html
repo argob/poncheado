@@ -36,7 +36,7 @@ layout: mi-argentina-login
             </div>
             <div class="row" >
               <div class="col-md-6 form-group item-form">
-                <label for="dni" id="documentLabel">DNI</label>
+                <label for="dni" id="documentLabel">Número de DNI</label>
                 <input type="number" class="form-control" id="dni" required="" min="0" aria-required="true">
               </div>
             </div>
@@ -61,41 +61,66 @@ layout: mi-argentina-login
                 </fieldset>
               </div>
             </div>
-            <div class="row">
-              <div class="form-group item-form">
-                <div class="col-xs-12">
-                  <label for="nro-tramite">Número de trámite del DNI</label>
-                  <p>
-                    <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
-                  </p>
-                  <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
-                    <div class="arrow-tramite"></div>
-                    <div class='col-xs-12 p-x-0'>
-                      <span class='close'  onclick="pophidde()">&times;</span>
-                    </div>
-                    <div>
-                      <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
-                    </div>
-                    <div class='m-x-1'>
-                      <img src='../../../../../proyectos/mi-argentina/old/v3/img/dni_id.png' alt='imagen-dni' class='img-responsive'>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group  item-form">
-                        <input type="number" class="form-control" id="nro-tramite" required="" min="0" aria-required="true">
-
+            <div id="passportIdData" class="hidden">
+              <div class="row">
+                <div class="col-md-10 form-group item-form">
+                  <label for="firstname">Nombres</label>
+                  <input type="text" name="name" class="form-control" id="firstname" required="" aria-required="true">
+                  <p class="help-block has-error hidden">Ingresá tu nombre</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 form-group item-form">
+                  <label for="lastname">Apellidos</label>
+                  <input type="text" name="lastname" class="form-control" id="apellido" required="" aria-required="true">
+                  <p class="help-block error hidden">Ingresá tu apellido</p>
+                </div>
+              </div>
+              <div class="row passportIdData hidden">
+                <div class="form-group col-md-4 item-form">
+                  <label for="birthday">Fecha de nacimiento</label>
+                  <input type="date" class="form-control" id="birthday" required="" aria-required="true">
+                  <p class="help-block error hidden">Ingresá la fecha</p>
+                </div>
+              </div>
+             </div>  
+              <div class="row" id="nro-tramite-content">
+                <div class="form-group item-form">
+                  <div class="col-xs-12">
+                    <label for="nro-tramite">Número de trámite del DNI</label>
+                    <p>
+                      <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro mi número de trámite?</a>
+                    </p>
+                    <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
+                      <div class="arrow-tramite"></div>
+                      <div class='col-xs-12 p-x-0'>
+                        <span class='close'  onclick="pophidde()">&times;</span>
+                      </div>
+                      <div>
+                        <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
+                      </div>
+                      <div class='m-x-1'>
+                        <img src='../../../../../proyectos/mi-argentina/old/v3/img/dni_id.png' alt='imagen-dni' class='img-responsive'>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8">
-                      <p class="has-error text-danger hidden m-b-3">El número debe tener 11 dígitos y pertenecer al último ejemplar de tu DNI.</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group  item-form">
+                          <input type="number" class="form-control" id="nro-tramite" required="" min="0" aria-required="true">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <p class="has-error text-danger hidden m-b-3">El número debe tener 11 dígitos y pertenecer al último ejemplar de tu DNI.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+           
+            
             <div class="row">
               <div class="col-md-8 form-group item-form">
                 <label for="country">País de residencia</label>
@@ -448,13 +473,17 @@ layout: mi-argentina-login
   function dniOrpassport(){
 
     document.getElementById('kindPassport').onclick = function(){
-      document.getElementById('documentLabel').innerHTML = 'Pasaporte extranjero'
+      document.getElementById('documentLabel').innerHTML = 'Número de Pasaporte'
       document.getElementById('genter').innerHTML = ''
+      document.getElementById('passportIdData').classList.remove('hidden')
+      document.getElementById('nro-tramite-content').classList.add('hidden')
     }
 
     document.getElementById('kindDni').onclick = function (){
-      document.getElementById('documentLabel').innerHTML = 'DNI'
+      document.getElementById('documentLabel').innerHTML = 'Número de DNI'
        document.getElementById('genter').innerHTML = 'Como aparece en tu DNI'
+       document.getElementById('passportIdData').classList.add('hidden')
+       document.getElementById('nro-tramite-content').classList.remove('hidden')
     }
   }
   dniOrpassport()
