@@ -21,11 +21,11 @@ layout: mi-argentina-login
                   </legend>
                   <div class="item-form m-t-1">
                     <label for="dni" class="radio-inline">
-                      <input type="radio" name="kindDoc" id="kindDni" value="DNI" required="" aria-required="true" onclick=" document.getElementById('dniField').classList.remove('hidden')">
+                      <input type="radio" name="kindDoc" id="kindDni" value="DNI" required="" aria-required="true" >
                       DNI
                     </label>
                     <label for="kindPassport" class="radio-inline">
-                      <input type="radio" name="kindDoc" id="kindPassport" value="passport" required="" aria-required="true" onclick=" document.getElementById('dniField').classList.add('hidden')">
+                      <input type="radio" name="kindDoc" id="kindPassport" value="passport" required="" aria-required="true">
                       Pasaporte extranjero
                     </label>
                     
@@ -34,9 +34,9 @@ layout: mi-argentina-login
                 </fieldset>
               </div>
             </div>
-            <div class="row" id="dniField">
+            <div class="row" >
               <div class="col-md-6 form-group item-form">
-                <label for="dni">DNI</label>
+                <label for="dni" id="documentLabel">DNI</label>
                 <input type="number" class="form-control" id="dni" required="" min="0" aria-required="true">
               </div>
             </div>
@@ -44,9 +44,9 @@ layout: mi-argentina-login
               <div class="col-sm-12 form-group item-form">
                 <fieldset>
                   <legend>
-                    <label>Sexo <span class="sr-only">Como aparece en tu DNI</span></label>
+                    <label>Sexo</label>
                   </legend>
-                  <p class="help-block">Como aparece en tu DNI</p>
+                  <p class="help-block" id="genter">Como aparece en tu DNI</p>
                   <div class="item-form">
                     <label for="f" class="radio-inline">
                       <input type="radio" name="sexo" id="f" value="F" required="" aria-required="true">
@@ -444,7 +444,20 @@ layout: mi-argentina-login
 </section>
 
 <script>
-  
+  /*Fields country validation*/
+  function dniOrpassport(){
+
+    document.getElementById('kindPassport').onclick = function(){
+      document.getElementById('documentLabel').innerHTML = 'Pasaporte extranjero'
+      document.getElementById('genter').innerHTML = ''
+    }
+
+    document.getElementById('kindDni').onclick = function (){
+      document.getElementById('documentLabel').innerHTML = 'DNI'
+       document.getElementById('genter').innerHTML = 'Como aparece en tu DNI'
+    }
+  }
+  dniOrpassport()
 
   function residence(){
     var fields = [document.getElementById('province-field'), document.getElementById('municipality-field'), document.getElementById('location-field') ]
@@ -460,9 +473,12 @@ layout: mi-argentina-login
   }
   
 
+
   document.getElementById('country').onchange = function(){
     residence()
   }
+
+/*Fields pass validation*/
 
   var content = document.getElementById('content-dni-tramite')
   function popshow(){
