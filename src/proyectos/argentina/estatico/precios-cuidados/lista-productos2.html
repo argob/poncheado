@@ -112,14 +112,14 @@ layout: argentina
 							<strong>Buscá por marca, tipo de alimento o unidad</strong>
 						</label>
 						<div class="input-group">
-							<input class="form-control search" placeholder="" />
+							<input id="inputSearch" class="form-control" placeholder="" />
 							<span class="input-group-btn">
 								<span class="input-group-btn"> <button class="btn-primary btn form-submit" type="submit" id="editSubmit" name="op" value="<i class=&quot;fa fa-search&quot;></i>"> <i class="fa fa-search"></i> </button> </span>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-offset-2 col-md-8" id="alertPrecios">
+				<!--<div class="col-xs-12 col-md-offset-2 col-md-8" id="alertPrecios">
 					<div class="alert alert-info">
 						<div class="media">
 							<div class="media-left">
@@ -134,7 +134,7 @@ layout: argentina
 						
 					</div>
 					
-				</div>
+				</div>-->
 				<div class="col-md-12">
 					<p class="text-center text-danger hide" id="errorBusqueda">Seleccioná tu zona y categoría para podér realizar la búsqueda.</p>
 				</div>
@@ -370,10 +370,11 @@ layout: argentina
 
  var listaNueva = new List('listadoProductos', listOptions);
 
- $('.search').on("keyup", function () {
+ $('#inputSearch').on("keyup", function () {
 
- var valorBuscado = $(".search").val();
- listaNueva.search(valorBuscado); //propio de List.js
+ var valorBuscado = $(this).val();
+ //listaNueva.search(valorBuscado); //propio de List.js
+ listaNueva.filter(getAccentInsensitiveFilter("descripcion", valorBuscado))
  });
 
  $('.pagination li').show();
@@ -381,6 +382,36 @@ layout: argentina
 
 
  }
+
+	 // FUNCION REMOVER ACENTO
+	var removeAccents = (function () {
+	   var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+	       letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+	       patternLetters = new RegExp("[" + letters1 + "]", "g"),
+	       lookupLetters = {}, letterTranslator;
+
+	   letters1.split("").forEach(function (letter, i) {
+	       lookupLetters[letter] = letters2[i];
+	   });
+
+	   letterTranslator = function(match) {
+	       return lookupLetters[match] || match;
+	   };
+
+	   return function removeAccents(input) {
+	       return input.replace(patternLetters, letterTranslator);
+	   };
+	})();
+
+	// FILTRO ACENTOS PARA LIST.JS
+	function getAccentInsensitiveFilter(property, search) {
+	   search = removeAccents(search).toLowerCase();
+
+	   return function (item) {
+	       var value = removeAccents(item.values()[property] || "").toLowerCase();
+	       return value.indexOf(search) > -1;
+	   };
+	}
 
  jQuery.getJSON(
  'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/2/public/values?alt=json',

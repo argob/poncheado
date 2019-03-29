@@ -126,16 +126,16 @@ $(document).ready(function () {
       $('.search').on("keyup", function(){
         var valorBuscado = $(this).val();
         var searchId = $(this).attr('id');
-<<<<<<< HEAD
+
         
         listaNueva.search(valorBuscado,["agencia","cuit"]);//propio de List.js
-=======
+
         if(searchId == "agencia"){
           listaNueva.search(valorBuscado,['agencia', 'ciudad', 'razon-social', 'cuit']);
         } else {
           listaNueva.search(valorBuscado,[searchId]);//propio de List.js
         }
->>>>>>> c45a72223f0bde402ab36c9a7fb79702831b58db
+
        });
       $.each(listaProvincias, function(index) {
         $("#provincia").append('<option data-provincia="'+index+'" value="'+index+'">'+index+'</option>');
