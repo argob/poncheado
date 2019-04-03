@@ -53,7 +53,7 @@ $(document).ready(function () {
 
     function (data) {
        console.log(data)
-      var paquete =[16 , 1 , 7 , 10 , 20];
+      var paquete =[16 , 1 , 7 , 10];
       var datos = '';
       var minNumber = '';
       
@@ -63,12 +63,12 @@ $(document).ready(function () {
       for(var x = 0; x < paquete.length ; x++ ){
          var numeroDePaquete = paquete[x];
 
-         datos += '<div class="col-md-4 col-sm-6 m-t-2 m-b-3 contador"><h4 class="text-color text-center m-b-1">' + data[numeroDePaquete].i + '</h4><h2 class="text-center h2">' + numeral(data[numeroDePaquete].av).format('0') + '</h2><p  class="text-center">Promedio diario: </p><h3 class="text-center h3">' + numeral(data[numeroDePaquete].prom).format('0.00a') +'</h3></div>';
+         datos += '<div class="col-sm-3 m-t-2 m-b-3 contador"><h4 class="text-color text-center m-b-1">' + data[numeroDePaquete].i + '</h4><h2 class="text-center h2">' + numeral(data[numeroDePaquete].av).format('0') + '</h2><p  class="text-center">Promedio diario: </p><h3 class="text-center h3">' + numeral(data[numeroDePaquete].prom).format('0.00a') +'</h3></div>';
                
         }
 
             $('#show-data').html(datos);
-            $('#show-data div:nth-child(4)').addClass('col-md-offset-2 col-sm-offset-0');
+            //$('#show-data div:nth-child(4)').addClass('col-md-offset-2 col-sm-offset-0');
            
       });
      

@@ -701,19 +701,12 @@ h1.title-dashboard{
 }
 
 
-/***  licencia de conducir **/
+/***  licencia de conducir 
 .container-licencia {
   padding-top: 10%;
 }
 
-.control-licencia.right, .control-licencia.left {
-  background-image: none;
-}
 
-.control-licencia, .control-licencia:hover, .control-licencia:focus {
-  color: #101010;
-  opacity: 1;
-}
 
 .licencia {
   width: 85%;
@@ -725,11 +718,7 @@ h1.title-dashboard{
   justify-content: center;
 }
 
-.panel-licencia {
-  display: block;
-}
-
-.display-panel-licencia {
+.panel-licencia, .display-panel-licencia {
   display: block;
 }
 
@@ -746,6 +735,15 @@ h1.title-dashboard{
 .panel-licencia{
    margin-bottom: 0px!important; 
   }
+
+@media (max-height: 630px){
+  .display-panel-licencia {
+    display: none !important;
+  }
+ .container-licencia{
+  padding-top: 0px;
+ }
+}
 
 @media (max-width: 991px) {
   .container-licencia {
@@ -894,13 +892,14 @@ h1.title-dashboard{
     border-top: none;
   }
 
-  .display-panel-licencia {
-    display: none !important;
-  }
+  
  
 }
 
 @media(max-width: 991px){
+  .container-g-licencia{
+    width: 100%;
+  }
   .container-licencia{
     height: 100vh;
   }
@@ -909,7 +908,9 @@ h1.title-dashboard{
   }
 
 }
-@media (min-width: 991px) {
+
+
+@media (min-width: 992px) {
   
   .panel-licencia {
     -webkit-transform: rotate(0deg);
@@ -926,8 +927,26 @@ h1.title-dashboard{
 }
 
 
+**/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***----------------------FOOTER Y HEADER---------------------------------***/
+
+.main-footer{
+  padding: 28px 0px 15px 0px;
+}
 @media only screen and (max-width: 768px) {
   .main-footer img.image-responsive {
     max-width: 250px !important;

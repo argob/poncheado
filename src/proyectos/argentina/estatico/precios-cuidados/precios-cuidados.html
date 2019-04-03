@@ -1,0 +1,405 @@
+---
+layout: argentina
+---
+<style type="text/css">
+   #map {
+   height: 600px;
+   width: 100%;
+   }
+   .item {
+   height: 310px;
+   }
+   .pie {
+   position: absolute;
+   bottom: 55px;
+   width: 90%;
+   }
+   .izq {
+   height: 30px;
+   padding-top: 6px;
+   }
+   .izq span {
+   font-size: 13px;
+   vertical-align: middle;
+   height: 30px;
+   }
+   .categoria-lf {
+   text-transform: lowercase;
+   font-size: 15px;
+   }
+   .categoria-lf::first-letter {
+   text-transform: uppercase;
+   }
+   .logo {
+   max-width: 380px !important;
+   }
+   #ean .popover {
+   top: 39px;
+   left: -118px !important;
+   display: block;
+   width: 250px !important;
+   }
+   #ean {
+   position: relative !important
+   }
+   #ean .popover .arrow {
+   left: 0 !important;
+   right: 0 !important;
+   margin: 0 auto !important;
+   }
+   .media-body {
+   vertical-align: middle;
+   }
+   @media screen and (max-width: 767px) {
+   .descripcion,
+   .proveedor,
+   .ean {
+   white-space: unset !important;
+   }
+   }
+</style>
+<section>
+   <div class="container" id="listaPreciosCuidados">
+      <div>
+         <p class="text-center m-b-3 p-y-3">Primero seleccioná la zona y categoría. Después, podés buscar por marca, descripción o unidad.</p>
+      </div>
+      <div id="listadoProductos">
+         <div class="row">
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label for=""><strong>Zona</strong> </label> 
+                  <select class="form-control" id="zona">
+                     <option data-zona="seleccionar" selected="selected" value="seleccionar">Seleccionar</option>
+                     <option data-zona="amba" value="amba">AMBA</option>
+                     <option data-zona="pba" value="pba">Buenos Aires</option>
+                     <option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
+                     <option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
+                     <option data-zona="patagonia" value="patagonia">Patagonia</option>
+                  </select>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label for=""><strong>Categoría</strong> </label> 
+                  <select class="form-control" id="categoria">
+                     <option data-categoria="seleccionar" selected="selected" value="seleccionar">Seleccionar</option>
+                     <option data-categoria="todos" value="todos">Todos</option>
+                     <!--<option data-categoria="---" value="---">---</option>-->
+                  </select>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label for=""><strong>Buscá por marca, tipo de alimento o unidad</strong> </label>
+                  <input class="form-control" id="inputSearch" placeholder="" />
+               </div>
+            </div>
+            <div class="col-md-12">
+               <p class="text-center text-danger hide" id="errorBusqueda">Seleccioná tu zona y categoría para podér realizar la búsqueda.</p>
+            </div>
+            <div class="table-responsive col-md-12 hide" id="hideTabla">
+               <table class="table table-spaced table-hover">
+                  <thead>
+                     <tr>
+                        <th class="col-md-6">Descripción</th>
+                        <th class="col-md-3">Proveedor</th>
+                        <th class="col-md-2">EAN</th>
+                        <th class="col-md-1">Precio</th>
+                     </tr>
+                  </thead>
+                  <tbody class="list" id="show-data"></tbody>
+               </table>
+               <div class="row">
+                  <nav class="text-center">
+                     <ul class="pagination"></ul>
+                  </nav>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <p class="text-center m-t-3 p-y-3">Descargá los listados completos de productos y precios para supermercados minoristas y mayoristas.</p>
+               </div>
+               <div class="col-md-4 col-md-offset-4">
+                  <div id="btnPdf">&nbsp;</div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="bg-white">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="row panels-row">
+               <div class="col-xs-12 col-sm-4">
+                  <div class="panel-body">
+                     <h3><a class="panel panel-default" href="/precios-cuidados/productos-faltantes">Productos faltantes</a></h3>
+                     <p class="text-muted"><a class="panel panel-default" href="/precios-cuidados/productos-faltantes">Conocé los productos que no están disponibles cada semana.</a></p>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-sm-4">
+                  <div class="panel-body">
+                     <h3><a class="panel panel-default" href="/informar-irregularidades-en-precios-cuidados">Informar irregularidades</a></h3>
+                     <p class="text-muted"><a class="panel panel-default" href="/informar-irregularidades-en-precios-cuidados">Avisá si algún producto no está disponible o si tuviste algún problema.</a></p>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-sm-4">
+                  <div class="panel-body">
+                     <h3><a class="panel panel-default" href="/precios-cuidados/lista-de-supermercados-adheridos-2018">Supermercados adheridos</a></h3>
+                     <p class="text-muted"><a class="panel panel-default" href="/precios-cuidados/lista-de-supermercados-adheridos-2018">Enterate dónde podés conseguir los productos.</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section>
+   <div class="container">
+      <div class="panel-pane pane-texto">
+         <div class="pane-content">
+            <div>
+               <h5>Te puede interesar</h5>
+            </div>
+         </div>
+      </div>
+      <div class="panel-separator">&nbsp;</div>
+      <div class="panel-pane pane-texto">
+         <div class="pane-content">
+            <div>
+               <ul>
+                  <li><a href="https://www.preciosclaros.gob.ar/#">Precios claros</a></li>
+                  <li><a href="https://www.argentina.gob.ar/elmercadoentubarrio">El mercado en tu barrio</a></li>
+                  <li><a href="http://www.mercadocentral.gob.ar/">Mercado central</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="bg-gray">
+   <div class="container">
+      <div class="row">
+         <div class="col-sm-6">
+            <div class="panel-pane pane-texto">
+               <div class="pane-content">&nbsp;</div>
+            </div>
+            <div class="panel-separator">&nbsp;</div>
+            <div class="panel-pane pane-area-contacto">
+               <div class="pane-content">
+                  <h2 class="h3 section-title">Contacto</h2>
+                  <strong class="margin-40">Servicio gratuito de orientación y asesoramiento</strong><br /><span class="text-primary" style="font-size:19px; font-weight:500;">0800-666-1518</span><br /><br /><strong class="margin-40">Si tenés alguna duda, escribí a</strong><br /><span style=""><a href="mailto:info@produccion.gob.ar">info@produccion.gob.ar</a> </span><br />&nbsp;
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6">&nbsp;</div>
+      </div>
+   </div>
+</section>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script><script type="text/javascript">
+   (function ($) {
+   
+   $(document).ready(function () {
+   
+   jQuery.getJSON(
+   'https://spreadsheets.google.com/feeds/list/1X_Yzb35aVOtAsG4jZv9KMt0Zqyrsr-dqlKb3iVthm0I/od6/public/values?alt=json',
+   function (data) {
+   var pdfLinkMin = data['feed']['entry'][0]['gsx$pdfurl']['$t'];
+   var pdfLinkMay = data['feed']['entry'][1]['gsx$pdfurl']['$t'];
+   var link1 = '<a class="btn btn-primary text-center m-r-1" href="' + pdfLinkMin + '" target="_blank"><i class="fa fa-download"></i> Minoristas</a>';
+   var link2 = '<a class="btn btn-primary text-center m-l-1" href="' + pdfLinkMay + '" target="_blank"><i class="fa fa-download"></i> Mayoristas</a>';
+   $('#btnPdf').append(link1);
+   $('#btnPdf').append(link2);
+   });
+   
+   
+   $('#editSubmit').on('click', function () {
+   if ((zona == "-") || (categoria == "seleccionar")) {
+   $('#errorBusqueda').removeClass('hide');
+   }
+   });
+   
+   var zona = "-";
+   var categoria = "seleccionar";
+   var listadoProductos = "";
+   
+   
+   jQuery.getJSON(
+   'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/1/public/values?alt=json',
+   function (data) {
+   listadoProductos = data['feed']['entry'];
+   
+   filtrarContenido(zona, categoria);
+   });
+   
+   function filtrarContenido(zona, categoria) {
+   
+   var lista = '';
+   
+   
+   $.each(listadoProductos, function (key, item) {
+   var precio = '';
+   if (zona == "amba") {
+   precio = item.gsx$amba.$t;
+   }
+   
+   if (zona == "pba") {
+   precio = item.gsx$pba.$t;
+   }
+   
+   if (zona == "centrocuyolitoral") {
+   precio = item.gsx$centrocuyolitoral.$t;
+   }
+   
+   if (zona == "noanea") {
+   precio = item.gsx$noanea.$t;
+   }
+   
+   if (zona == "patagonia") {
+   precio = item.gsx$patagonia.$t;
+   }
+   
+   if (categoria != "seleccionar" && (categoria == item.gsx$categoria.$t ||
+   categoria == "todos") && zona !=
+   "seleccionar") {
+   $('#hideTabla').removeClass('hide');
+   $('#errorBusqueda').addClass('hide');
+   lista += '<tr>';
+   /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
+   lista += ' <td class="categoria descripcion">' + '<p class="">' + item.gsx$descripcion
+   .$t + '</p> <p class="categoria-lf text-muted">' + item.gsx$categoria.$t +
+   '</p></td>';
+   lista += ' <td class="proveedor"> <p>' + item.gsx$proveedor.$t +
+   '</p></td>';
+   lista += ' <td class="ean"> <p>' + item.gsx$ean.$t + '</p></td>';
+   lista += ' <td> <p class="text-success"> <strong>' + precio +
+   '</strong></p></td>';
+   lista += '</tr>';
+   } else {
+   $('#show-data').empty();
+   
+   $('.pagination li').hide();
+   $('#pdfListado').hide();
+   
+   }
+   
+   });
+   
+   $('#show-data').empty();
+   $('#show-data').append(lista);
+   
+   var listOptions = {
+   valueNames: ['descripcion', 'categoria', 'proveedor', 'ean'],
+   page: 10,
+   plugins: [ListPagination({})]
+   
+   };
+   
+   var listaNueva = new List('listadoProductos', listOptions);
+   
+   $('#inputSearch').on("keyup", function () {
+   
+   var valorBuscado = $(this).val();
+   //listaNueva.search(valorBuscado); //propio de List.js
+ 	listaNueva.filter(getAccentInsensitiveFilter("descripcion", valorBuscado))
+   });
+   
+   $('.pagination li').show();
+   $('#pdfListado').show();
+   }
+   
+	 // FUNCION REMOVER ACENTO
+	var removeAccents = (function () {
+	   var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+	       letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+	       patternLetters = new RegExp("[" + letters1 + "]", "g"),
+	       lookupLetters = {}, letterTranslator;
+
+	   letters1.split("").forEach(function (letter, i) {
+	       lookupLetters[letter] = letters2[i];
+	   });
+
+	   letterTranslator = function(match) {
+	       return lookupLetters[match] || match;
+	   };
+
+	   return function removeAccents(input) {
+	       return input.replace(patternLetters, letterTranslator);
+	   };
+	})();
+
+	// FILTRO ACENTOS PARA LIST.JS
+	function getAccentInsensitiveFilter(property, search) {
+	   search = removeAccents(search).toLowerCase();
+
+	   return function (item) {
+	       var value = removeAccents(item.values()[property] || "").toLowerCase();
+	       return value.indexOf(search) > -1;
+	   };
+	}
+
+   jQuery.getJSON(
+   'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/2/public/values?alt=json',
+   function (data) {
+   var grupoCategorias = data['feed']['entry']
+   
+   $.each(grupoCategorias, function (index, el) {
+   var categoria = el['gsx$categoria']['$t'];
+   $('#categoria').append('<option data-categoria="' + categoria +
+   '" value="' + categoria + '">' + categoria + '</option>')
+   });
+   });
+   
+   $("#zona ,#categoria").on("change", function () {
+   zona = $("#zona option:selected").data('zona');
+   categoria = $(document).find("#categoria option:selected").data('categoria');
+   
+   jQuery.getJSON(
+   'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/3/public/values?alt=json',
+   
+   function (data) {
+   var grupoPDF = data['feed']['entry']
+   var pdf = "";
+   
+   $.each(grupoPDF, function (key, item) {
+   pdf = item.gsx$pdf.$t;
+   $('#hideTabla').hide();
+   $('#pdfPC').hide();
+   $('#pdf').attr('href', '');
+   
+   if (zona == item.gsx$zona.$t && categoria != "seleccionar") {
+   $('#hideTabla').show();
+   $('#pdfPC').show();
+   $('#pdf').attr('href', pdf);
+   return false;
+   }
+   
+   });
+   
+   filtrarContenido(zona, categoria);
+   });
+   
+   });
+   
+   
+   $("#ean").on("click", function () {
+   $('#eanContent').popover('toggle');
+   });
+   
+   $('#eanContent').popover({
+   title: "European Article Number:",
+   html: 'true',
+   content: "<div><p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p></div><div class='m-x-1'><img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'></div>",
+   placement: "bottom",
+   trigger: 'manual',
+   container: '#ean',
+   viewport: "#ean"
+   
+   });
+   
+   
+   
+   });
+   })(jQuery);
+</script>
