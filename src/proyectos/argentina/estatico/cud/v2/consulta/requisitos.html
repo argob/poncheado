@@ -806,15 +806,25 @@ if(showLugares){
 var pedirTurno = '';
 var perdirAsesoramiento = '';
 console.log(item);
-if(item["gsx$btn-sacar-turno"]["$t"] != "") {
-pedirTurno = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno"]["$t"]+'" target="_blank">Sacar turno</a>'
+
+if(localidadTrim == "San Isidro"){
+
+pedirTurno = '<a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/348" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Asesoramiento (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/352" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Asesoramiento - Pre Junta (Niños)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/355" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Demencia y Auditivos (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/358" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Mentales (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/362" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Motor - Visceral - Visual (Adultos)</a>';
+
 }
 
 
-if(item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"] != "") {
-perdirAsesoramiento = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"]+'" target="_blank">Sacar turno para asesoramiento</a>'
-}
+else{
 
+	if(item["gsx$btn-sacar-turno"]["$t"] != "") {
+	pedirTurno = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno"]["$t"]+'" target="_blank">Sacar turno</a>'
+	}
+
+	if(item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"] != "") {
+	perdirAsesoramiento = '<a class="btn btn-success btn-sm" style="text-decoration: none;" href="'+item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"]+'" target="_blank">Sacar turno para asesoramiento</a>'
+	}
+
+}
 
 var html = templates.lugar;
 html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
