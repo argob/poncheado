@@ -372,9 +372,18 @@ layout: argentina
 
  $('#inputSearch').on("keyup", function () {
 
- var valorBuscado = $(this).val();
- //listaNueva.search(valorBuscado); //propio de List.js
- listaNueva.filter(getAccentInsensitiveFilter("descripcion", valorBuscado))
+	 var valorBuscado = $(this).val();
+	 //listaNueva.search(valorBuscado); //propio de List.js
+
+	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, 'descripcion'))
+/*
+	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, function(item) {
+		if (item.values() == 'descripcion') {
+		   return 'descripcion';
+		} else {
+		   return 'proveedor';
+		}
+	});*/
  });
 
  $('.pagination li').show();
@@ -404,7 +413,7 @@ layout: argentina
 	})();
 
 	// FILTRO ACENTOS PARA LIST.JS
-	function getAccentInsensitiveFilter(property, search) {
+	function getAccentInsensitiveFilter(search, property) {
 	   search = removeAccents(search).toLowerCase();
 
 	   return function (item) {
