@@ -54,7 +54,7 @@
     </div>
   </nav>
 
-  <div class="page-sidebar m-b-2 hidden dashboard-sidebar">
+  <div class="page-sidebar m-b-2 hidden menutoggle  dashboard-sidebar">
   <ul class="nav nav-pills nav-stacked nav-dashboard m-t-2 p-r-0 col-xs-12" >
     <h1 class="m-t-1 title-dashboard">
       Bienvenida María Paula
@@ -200,12 +200,9 @@
     document.querySelector('.inicio').addEventListener("click", function (){
 
          document.getElementById('menuMobile').classList.toggle('forMenuMobile')
-         
-          document.querySelector('.dashboard-sidebar').classList.toggle('hidden')
-        
-         
-         
-      })
+         document.querySelector('.dashboard-sidebar').classList.remove('hidden')
+          document.querySelector('.dashboard-sidebar').classList.toggle('menutoggle')
+     })
   }
       
     </script>
