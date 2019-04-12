@@ -24,23 +24,32 @@ canvas{
 	
 
 <div style="display:none">
-	<img id="image" src="cud.png" alt="">
+	<img id="imagen" src="cud.png" alt="">
 </div>
 
-<div id="carrousel" width="600px"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="resultado" width="600px"></div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.js"></script>
+<script src="cropper.js"></script>
 
 
 
 <script>
+$(function(){
+var imagen = $('#imagen');
 
-var imagen = $('#image');
-var resultado = $("#resultado");
-
-
-var cropper = imagen.cropper();
 var credenciales = [{
 	"x":46,
 	"y":33,
@@ -61,16 +70,22 @@ var credenciales = [{
 }];
 
 
-for (var i = 0; i < 3; i++) {
-	imagen.cropper("setData",credenciales[i]);
-	var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
-	$('#carrousel').append(croppedImageDataURL)
-	
-}
+//var cropper = imagen.cropper("setData",credenciales[1]);
+var cropper = imagen.cropper({ready : function(){ 
+
+	for (var i = 0; i < 3; i++) {
+		imagen.cropper("setData",credenciales[i]);
+		var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
+		$('#resultado').append(croppedImageDataURL)
+	}	
+
+}});
 
 
 
 
+
+})
 
 </script>
 
