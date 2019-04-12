@@ -22,8 +22,6 @@ canvas{
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus porro, quis earum possimus dolorem amet molestiae quaerat. Odit quibusdam id repudiandae aliquid autem ex aperiam! Animi similique odio, magnam sed.</p>
 	<hr>
 	
-
-
 <div style="display:none">
 	<img id="imagen" src="cud.png" alt="">
 </div>
@@ -37,8 +35,10 @@ canvas{
 
 <script>
 $(function(){
+
 var imagen = $('#imagen');
 
+//SETEO LOS DATOS DE LAS CREDENCIALES
 var credenciales = [{
 	"x":46,
 	"y":33,
@@ -58,27 +58,21 @@ var credenciales = [{
 	"height":271
 }];
 
-
-
-//var cropper = imagen.cropper("setData",credenciales[1]);
+//INICIALIZO CROPPER
 var cropper = imagen.cropper({ready : function(){ 
-
+	//RECORRO LAS 3 CREDENCIALES
 	for (var i = 0; i < 3; i++) {
+		//SETEO LAS COORDENADAS DE CADA CREDENCIAL 
 		imagen.cropper("setData",credenciales[i]);
+
+		//CROPEO
 		var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
+
+		//AGREGO LAS IMAGENES EN CONTENEDEDOR DESTINO
 		$('#resultado').append(croppedImageDataURL)
 	}	
 
 }});
-
-
-for (var i = 0; i < 3; i++) {
-	imagen.cropper("setData",credenciales[i]);
-	var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
-	$('#resultado').append(croppedImageDataURL)
-	console.log(croppedImageDataURL)
-}
-
 
 })
 
