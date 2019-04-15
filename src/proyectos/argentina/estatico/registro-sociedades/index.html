@@ -246,5 +246,26 @@ var cuit = document.querySelector("#cuit");
 			}
 		}
 	});
+	var inputQuantity = [];
+    $(function() {
+      $("#cuit").each(function(i) {
+        inputQuantity[i]=this.defaultValue;
+         $(this).data("idx",i);
+      });
+      $("#cuit").on("keyup", function (e) {
+        var $field = $(this),
+            val=this.value,
+            $thisIndex=parseInt($field.data("idx"),10); 
+        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+            this.value = inputQuantity[$thisIndex];
+            return;
+        } 
+        if (val.length > Number($field.attr("maxlength"))) {
+          val=val.slice(0, 11);
+          $field.val(val);
+        }
+        inputQuantity[$thisIndex]=val;
+      });      
+    });
 
 </script>
