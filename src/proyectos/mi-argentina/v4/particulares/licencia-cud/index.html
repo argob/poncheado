@@ -2,6 +2,7 @@
 layout: mi-argentina2
 ---
 
+<link rel="stylesheet" href="../../../css/miargentina.css">
 <section class="p-y-0" >
 	<div class="container-fluid">
 		<div class="row dashboard">
@@ -13,13 +14,16 @@ layout: mi-argentina2
 	 		<div class="col-lg-9 col-sm-8 ">
 		 		<div class="row">
 					<div class="col-xs-12 m-b-1">
-						<h1 class="title-dashboard">
+						<h1 class="title-dashboard display-panel-licencia">
 							Constancia cud
 				 		</h1>
 				 	</div>
 				</div>
+				<div style="display:none">
+					<img id="imagen" src="cud.png" alt="">
+				</div>
 		 		<div class="row main">
-		 			<div class="col-md-8 container-licencia">
+		 			<div class="col-md-8">
 					<!--<h3>Panel licencia de conducir</h3>-->
 						<div class="panels-row-miargentina panels-row-licencia">
 							<div class="panel panel-default panel-nolink panel-licencia panel-border-primary">
@@ -27,7 +31,7 @@ layout: mi-argentina2
 					        		<div class="row">
 					                    <div class="col-md-12">
 					                    	<a id="volver" href="#" class="btn btn-link btn-sm m-b-0 pull-left licencia-volver-lg"><i class="fa fa-arrow-left"></i> Volver</a>
-											<h2 class="pull-left titulo-con-volver">Licencia nacional de conducir</h2>
+											<h2 class="pull-left titulo-con-volver">Planilla</h2>
 										</div>
 									</div>
 								</div>
@@ -42,14 +46,15 @@ layout: mi-argentina2
 												    			<p class="m-t-0"><i class="fa fa-arrow-left "></i>Volver</p>
 												    		</a>
 									                    </div>
-														<p class="hidden-xs m-b-0 text-center"><strong>Frente</strong></p>
-														<p class="pull-left visible-xs m-b-0 licencia-txt">Licencia nacional de conducir - frente</p>
+														<p class="hidden-xs m-b-0 text-center"><strong>Planilla Cud</strong></p>
+														<p class="pull-left visible-xs m-b-0 licencia-txt">Descripción</p>
 													</div>
 												</div>
-												<div class="row fila-licencia">
-													<div class="col-xs-12">
-														<img src="frente.png" alt="licencia-de-conducir-frente"  class="center-block m-t-1">
-													</div>	
+												<div class="row">
+													<div class="fila-licencia">
+														
+													</div>
+													
 												</div>
 											</div>
 											
@@ -61,14 +66,15 @@ layout: mi-argentina2
 												    			<p class="m-t-0"><i class="fa fa-arrow-left "></i>Volver</p>
 												    		</a>
 									                    </div>
-									                    <p class="hidden-xs m-b-0 text-center"><strong>Dorso</strong></p>
-														<p class="pull-left visible-xs m-b-0 licencia-txt">Licencia nacional de conducir - dorso</p>
+									                    <p class="hidden-xs m-b-0 text-center"><strong>Datos del beneficiario</strong></p>
+														<p class="pull-left visible-xs m-b-0 licencia-txt">Datos del beneficiario</p>
 													</div>
 												</div>
-												<div class="row fila-licencia">
-													<div class="col-xs-12">
-														<img src="dorso.png" alt="licencia-de-conducir-dorso"  class="center-block m-t-1">
-													</div>	
+												<div class="row">
+													<div class="fila-licencia">
+														
+													</div>
+													
 												</div>
 											</div>
 
@@ -80,14 +86,15 @@ layout: mi-argentina2
 												    			<p class="m-t-0"><i class="fa fa-arrow-left "></i>Volver</p>
 												    		</a>
 									                    </div>
-									                    <p class="hidden-xs m-b-0 text-center"><strong>QR</strong></p>
-														<p class="pull-left visible-xs licencia-txt m-b-0">Licencia nacional de conducir - QR</p>
+									                    <p class="hidden-xs m-b-0 text-center"><strong>Número de certificado</strong></p>
+														<p class="pull-left visible-xs licencia-txt m-b-0">Número de certificado</p>
 													</div>
 												</div>
-												<div class="row fila-licencia">
-													<div class="col-xs-12">
-														<img src="qrr.png" alt="licencia-de-conducir-qr" class="center-block m-t-1 qr-licencia">
-													</div>	
+												<div class="row">
+													<div class="fila-licencia">
+														
+													</div>
+													
 												</div>
 											</div>
 
@@ -115,7 +122,71 @@ layout: mi-argentina2
 	</div>
 </section>
 
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="cropper.js"></script>
+<script>
+$(function(){
 
+var imagen = $('#imagen');
+
+//SETEO LOS DATOS DE LAS CREDENCIALES
+var credenciales = [{
+	"x":46,
+	"y":33,
+	"width":894,
+	"height":1205
+	
+},
+{
+	"x":150,
+	"y":1272,
+	"width":389,
+	"height":271
+},
+{
+	"x":544,
+	"y":1272,
+	"width":389,
+	"height":271
+}];
+
+//INICIALIZO CROPPER
+var cropper = imagen.cropper({ready : function(){ 
+	//RECORRO LAS 3 CREDENCIALES
+	for (var i = 0; i < 3; i++) {
+		//SETEO LAS COORDENADAS DE CADA CREDENCIAL 
+		imagen.cropper("setData",credenciales[i]);
+
+		//CROPEO
+		var croppedImageDataURL = imagen.cropper('getCroppedCanvas')
+
+		//AGREGO LAS IMAGENES EN CONTENEDEDOR DESTINO
+		console.log(croppedImageDataURL)
+
+		
+		
+		$('.fila-licencia').eq(i).append(croppedImageDataURL)
+}
+}
+}
+)})
+
+
+window.onload = function() {
+
+	var header = document.getElementsByTagName("header")[0]
+	var footer = document.getElementsByTagName("footer")[0]
+	var aside = document.getElementsByTagName("aside")[0]
+	
+	header.classList.add('display-panel-licencia');
+	footer.classList.add('display-panel-licencia');
+
+}
+
+		
+
+
+</script>
 
 
 
@@ -148,19 +219,8 @@ layout: mi-argentina2
 <head>
 	<meta charset="UTF-8">
 	<title>Cropeo credencial</title>
-	<link rel="stylesheet" href="cropper.min.css">
-	<style>
+	
 
-img {
-  max-width: 100%; /* This rule is very important, please do not ignore this! */
-}
-
-canvas{
-	border:2px solid red;
-}
-
-
-	</style>
 </head>
 <body>
 
@@ -169,61 +229,12 @@ canvas{
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus porro, quis earum possimus dolorem amet molestiae quaerat. Odit quibusdam id repudiandae aliquid autem ex aperiam! Animi similique odio, magnam sed.</p>
 	<hr>
 	
-<div style="display:none">
-	<img id="imagen" src="cud.png" alt="">
-</div>
-
-<div id="resultado" width="600px"></div>
-
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-<script src="cropper.js"></script>
 
 
 
-<script>
-$(function(){
 
-var imagen = $('#imagen');
 
-//SETEO LOS DATOS DE LAS CREDENCIALES
-var credenciales = [{
-	"x":46,
-	"y":33,
-	"width":894,
-	"height":1205
-},
-{
-	"x":150,
-	"y":1272,
-	"width":389,
-	"height":271
-},
-{
-	"x":544,
-	"y":1272,
-	"width":389,
-	"height":271
-}];
 
-//INICIALIZO CROPPER
-var cropper = imagen.cropper({ready : function(){ 
-	//RECORRO LAS 3 CREDENCIALES
-	for (var i = 0; i < 3; i++) {
-		//SETEO LAS COORDENADAS DE CADA CREDENCIAL 
-		imagen.cropper("setData",credenciales[i]);
-
-		//CROPEO
-		var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
-
-		//AGREGO LAS IMAGENES EN CONTENEDEDOR DESTINO
-		$('#resultado').append(croppedImageDataURL)
-	}	
-
-}});
-
-})
-
-</script>
 
 </body>
 </html>-->
