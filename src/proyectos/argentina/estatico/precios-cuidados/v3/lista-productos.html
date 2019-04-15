@@ -112,7 +112,7 @@ layout: argentina
 							<strong>Buscá por marca, tipo de alimento o unidad</strong>
 						</label>
 						<div class="input-group">
-							<input id="inputSearch" class="form-control" placeholder="" />
+							<input id="inputSearch" class="form-control fuzzy-search" placeholder="" />
 							<span class="input-group-btn">
 								<span class="input-group-btn"> <button class="btn-primary btn form-submit" type="submit" id="editSubmit" name="op" value="<i class=&quot;fa fa-search&quot;></i>"> <i class="fa fa-search"></i> </button> </span>
 							</span>
@@ -274,7 +274,8 @@ layout: argentina
 		</div>
 	</div>
 </section>
-<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<!--<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="list.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script type="text/javascript">
  (function ($) {
@@ -375,7 +376,8 @@ layout: argentina
 	 var valorBuscado = $(this).val();
 	 //listaNueva.search(valorBuscado); //propio de List.js
 
-	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, 'descripcion'))
+	 //listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, 'descripcion'))
+	 listaNueva.search(valorBuscado, ['descripcion', 'categoria', 'proveedor', 'ean']);
 /*
 	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, function(item) {
 		if (item.values() == 'descripcion') {
