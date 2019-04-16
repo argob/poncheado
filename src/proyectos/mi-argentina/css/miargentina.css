@@ -1,11 +1,21 @@
 /*****Tipografía******/
 
 h1{
-  font-size: 2em;
+  font-size: 22px;
 }
 h2{
+  font-size: 18px;
+}
+
+@media (min-width: 991px){
+  h1{
+    font-size: 2em;
+  }
+  h2{
   font-size: 1.8em;
 }
+}
+/**********/
 
 .alert .btn{
   margin-top: 15px;
@@ -334,7 +344,8 @@ a.btn-collapse i.collapseGira {
   margin: auto;
 }
 .sidebar{
-  min-height: 82vh;
+  min-height: 720px;
+  height: calc(100vh - 220px);
   max-width: 320px;
   min-width: 280px;
   padding-left: 0;
@@ -658,9 +669,10 @@ a.btn-collapse i.collapseGira {
 .container-licencia {
   padding-top: 10%;
 }
-.control-licencia{
+.control-licencia span, .control-licencia:hover span, .control-licencia:active span, .control-licencia:visited span{
   background-image: none!important;
   color: #464646;
+
 }
 .licencia {
   width: 85%;
@@ -707,7 +719,7 @@ a.btn-collapse i.collapseGira {
     -o-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg)!important;
-    width: 100vh !important;
+    width: 95vh !important;
     height: 100vw !important;
     overflow-x: hidden;
     position: absolute;
@@ -1087,7 +1099,7 @@ input:checked + .slider:before {
 input:checked + .slider {
   box-shadow:0 0 0 2px #2e7d33,0 0 2px #2e7d33;
 }
-/*****login****/
+/*****login ID****/
 .login-container{
   display: flex;
   flex-direction: column;
@@ -1106,14 +1118,14 @@ input:checked + .slider {
   color: #c5c2c2;
 }
 /*toggle dni*/
-.login-container{
+/*.login-container{
   height: calc(95vh - 195px);
  display: flex;
  flex-direction: column;
  width: 100%;
 min-height: 900px;
  position: relative;
- background-color: #E5EAEB !important;
+
 }
 .login-container section:first-child{
    background: #F2F3F4;
@@ -1122,8 +1134,41 @@ min-height: 900px;
 
 .login-container section:nth-child(2){
  width: 100%;
-  min-height: 300px;
+  min-height: 250px;
+  background-color: #E5EAEB !important;
+  margin-top: auto;
+}*/
+.body-login{
+   background-color: #FFFFFF !important;
 }
+.login-container{
+ 
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ background: #F2F3F4;
+ position: relative;
+
+}
+.login-container section:first-child{
+   background: #F2F3F4;
+   width: 100%;
+}
+.login-container section:nth-child(2){
+ width: 100%;
+ background-color: #E5EAEB !important;
+  
+}
+
+.content-dni-tramite {
+    position: absolute !important;
+    max-width: 400px !important;
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding: 10px 20px 20px 20px;
+    top: -300px;
+  }
 .arrow-tramite{
   border-bottom: 0 solid rgba(0, 0, 0, 0);
   border-left: 11px solid rgba(0, 0, 0, 0);
@@ -1158,3 +1203,32 @@ ul.data li{
   margin-top: 40px!important;
 }
 
+.container-id{
+  background: #F2F3F4;
+  padding-top: 20px;
+}
+.container-id .media .media-body{
+  vertical-align: middle;
+}
+
+@media (max-width: 767px){
+  .brand-id{
+    padding-left: 0px!important;
+  }
+}
+
+/*Credencial CUD*/
+
+.fila-licencia canvas {
+  max-height: 271px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media(max-width: 1199px) and (min-width: 768px){
+  .fila-licencia canvas {
+    max-width: 330px;
+   
+  }
+}

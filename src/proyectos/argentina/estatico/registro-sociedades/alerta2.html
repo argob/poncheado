@@ -1,0 +1,127 @@
+---
+layout: argentina
+---
+<style>
+.error{color:#a94442;}
+/*.table-sociedad tbody td p{text-transform: lowercase;}
+.table-sociedad tbody td p::first-letter{text-transform: uppercase;}*/
+@media screen and (min-width: 768px){
+	.form-radio{margin-top: 10px;}
+}
+@media screen and (max-width: 991px){
+	.hidden-xs{display: none;}
+}
+</style>
+<div class="container">
+	<ol class="breadcrumb">
+        <li><a href="#">Inicio</a></li>
+        <li class="active">Registro de sociedades</li>
+    </ol>
+</div>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1>Registro de sociedades</h1>
+		    </div>
+			<div class="col-md-3">
+				<fieldset>
+					<legend>
+						<label>Buscar por</label>
+					</legend>
+					<div class="form-group item-form form-radio">
+						<label for="r" class="radio-inline">
+							<input type="radio" name="bpor" id="r" required aria-required="true" checked>
+							Razón social
+						</label>
+						<label for="c" class="radio-inline">
+							<input type="radio" name="bpor" id="c" required aria-required="true">
+							CUIT
+						</label>
+					</div>
+				</fieldset>
+		    </div>
+			<div class="col-md-6">
+				<fieldset>
+					<div id="rsocialGroup" class="form-group item-form">
+						<label for="rsocial">Razón social (ingresá al menos 5 letras)</label>
+						<input id="rsocial" name="rsocial" type="text" class="form-control" required aria-required="true" selected>
+						<p class="help-block error hidden">Por favor ingresá al menos 5 letras para buscar por razón social</p>
+					</div>
+					<div id="cuitGroup" class="form-group item-form hidden">
+						<label for="cuit">Cuit (ingresá 11 números)</label>
+						<input id="cuit" name="cuit" type="number" class="form-control" required aria-required="true" maxlength="11">
+						<p class="help-block error hidden">Por favor ingresá 11 números para buscar por CUIT</p>
+					</div>
+				</fieldset>
+		    </div>
+			<div class="col-md-3">
+				<label class="hidden-xs" for="rsocial">&nbsp</label>
+				<button class="btn btn-primary btn-block" id="btbuscar"> BUSCAR </button>
+		    </div>
+			<div class="col-md-12">
+				<div class="alert alert-info">
+					<p>No se encuentran resultados para la razón social o el CUIT que buscaste. Por favor intentá con otros datos.</p>
+				</div>
+		    </div>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+var rsocialGroup = document.querySelector("#rsocialGroup");
+var cuitGroup = document.querySelector("#cuitGroup");
+var r = document.querySelector("#r");
+var c = document.querySelector("#c");
+var buscar = document.querySelector("#btbuscar");
+var rsocial = document.querySelector("#rsocial");
+var cuit = document.querySelector("#cuit");
+
+    r.addEventListener("change", function() {
+        rsocialGroup.classList.toggle('hidden');
+        cuitGroup.classList.toggle('hidden');
+    });
+
+    c.addEventListener("change", function() {
+        rsocialGroup.classList.toggle('hidden');
+        cuitGroup.classList.toggle('hidden');
+    });
+
+	buscar.addEventListener("click", function(){
+		if(!rsocialGroup.classList.contains('hidden')){
+			if(rsocial.value.length<5){
+				rsocialGroup.querySelector(".error").classList.remove('hidden');
+			}else {
+				rsocialGroup.querySelector(".error").classList.add('hidden');
+			}
+
+		}else if(!cuitGroup.classList.contains('hidden')){
+			if(cuit.value.length!=11){
+				cuitGroup.querySelector(".error").classList.remove('hidden');
+			}else {
+				cuitGroup.querySelector(".error").classList.add('hidden');
+			}
+		}
+	});
+	var inputQuantity = [];
+    $(function() {
+      $("#cuit").each(function(i) {
+        inputQuantity[i]=this.defaultValue;
+         $(this).data("idx",i);
+      });
+      $("#cuit").on("keyup", function (e) {
+        var $field = $(this),
+            val=this.value,
+            $thisIndex=parseInt($field.data("idx"),10); 
+        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+            this.value = inputQuantity[$thisIndex];
+            return;
+        } 
+        if (val.length > Number($field.attr("maxlength"))) {
+          val=val.slice(0, 11);
+          $field.val(val);
+        }
+        inputQuantity[$thisIndex]=val;
+      });      
+    });
+
+</script>

@@ -1,0 +1,123 @@
+---
+layout: argentina
+---
+
+<div class="container">
+    <section>
+        <div id="convocatorias">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input id="inputSearch" class="form-control fuzzy-search" placeholder="Filtrá convocatorias por jurisdicción, organismo o denominación..." /> <!--  search -->
+                    </div>
+                </div>
+            </div>
+            <table class="table table-spaced">
+                <thead>
+                    <tr>
+                        <th style="width: 330px;"><a class="sort" data-sort="denominacion">Denominación </a></th>
+                        <th><a class="sort" data-sort="jurisdiccion">Jurisdicción </a></th>
+                        <th><a class="sort" data-sort="organismo">Organismo </a></th>
+                        <th>Tipo de Convocatoria</th>
+                        <th>Reserva de Puesto de Discapacidad</th>
+                        <th>Familia de Puestos</th>
+                        <th>Zona Geográfica</th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="show-data"></tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<!--<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="list.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+
+            var convocatorias = "";
+
+            $.getJSON('https://spreadsheets.google.com/feeds/list/1AikOjiZIH6J0Mr99YXUIxB9FNH0NH9WLLP_432ejEnI/1/public/values?alt=json', function(data) {
+                //$.getJSON('data_bancos.txt', function (data) {
+                //https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1AikOjiZIH6J0Mr99YXUIxB9FNH0NH9WLLP_432ejEnI/1
+                convocatorias = data['feed']['entry'];
+                showconvocatorias();
+                //console.log(data);
+            });
+
+            window.showconvocatorias = function() {
+                var showData = $('#show-data');
+
+                var html = '';
+                $.each(convocatorias, function(key, item) {
+                    //console.log("testeo"+item.gsx$ean.$t);
+                    html += '<tr>';
+                    html += ' <td> <b class="denominacion">' + item.gsx$denominacion.$t + '</b><br> Tipo de cargo: <span class="cargo">' + item.gsx$cargo.$t + '</span><br> Agrupamiento: <span class="agrupamiento">' + item.gsx$agrupamiento.$t + '</span><br>Nivel: <span class="nivel">' + item.gsx$nivel.$t + '</span></td>';
+                    html += ' <td class="jurisdiccion">' + item.gsx$jurisdiccion.$t + '</td>';
+                    html += ' <td class="organismo">' + item.gsx$organismo.$t + '</td>';
+                    html += ' <td class="tipo">' + item.gsx$tipo.$t + '</td>';
+                    html += ' <td class="reservadiscapacidad">' + item.gsx$reservadiscapacidad.$t + '</td>';
+                    html += ' <td class="familia">' + item.gsx$familia.$t + '</td>';
+                    html += ' <td class="zona">' + item.gsx$zona.$t + '</td>';
+
+                    html += '</tr>';
+
+                });
+
+                showData.empty();
+                showData.append(html);
+
+                //var listOptions = {valueNames: [ 'jurisdiccion', 'organismo', 'tipo', 'cargo', 'agrupamiento', 'nivel', 'reservadiscapacidad', 'familia', 'zona', 'denominacion' ] };
+                var listOptions = {
+                    valueNames: ['jurisdiccion', 'organismo', 'denominacion', 'cargo', 'agrupamiento', 'nivel']
+                };
+                var convocatoriasList = new List('convocatorias', listOptions);
+
+
+
+                $('#inputSearch').on("keyup", function () {
+
+                    var valorBuscado = $(this).val();
+                    convocatoriasList.search(valorBuscado, ['jurisdiccion', 'organismo', 'denominacion', 'cargo', 'agrupamiento', 'nivel']);
+
+                });
+            }
+
+             // FUNCION REMOVER ACENTO
+            var removeAccents = (function () {
+                   var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+                       letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+                       patternLetters = new RegExp("[" + letters1 + "]", "g"),
+                       lookupLetters = {}, letterTranslator;
+
+               letters1.split("").forEach(function (letter, i) {
+                   lookupLetters[letter] = letters2[i];
+               });
+
+               letterTranslator = function(match) {
+                   return lookupLetters[match] || match;
+               };
+
+               return function removeAccents(input) {
+                   return input.replace(patternLetters, letterTranslator);
+               };
+            })();
+
+            // FILTRO ACENTOS PARA LIST.JS
+            function getAccentInsensitiveFilter(search, property) {
+               search = removeAccents(search).toLowerCase();
+
+               return function (item) {
+                   var value = removeAccents(item.values()[property] || "").toLowerCase();
+                   return value.indexOf(search) > -1;
+               };
+            }
+
+
+        });
+    })(jQuery);
+</script>
