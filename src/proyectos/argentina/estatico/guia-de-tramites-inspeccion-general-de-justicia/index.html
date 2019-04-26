@@ -1,0 +1,172 @@
+---
+layout: mi-argentina
+---
+
+
+<section>
+    <div class="container">
+        <div class="panel-pane pane-listado">
+            <div class="pane-content">
+                <div id="pruebaloca" class="col-md-12 m-t-3 p-x-0">
+                    <h2 class="h3 m-b-2">Novedades</h2>
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/solicitar-matricula-de-corredor-0" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Solicitar matrícula de Corredor</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/node/40314" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Obtener matrícula de despachante de aduana</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/matricula-de-martillero" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Matrícula de martillero</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/solicitar-turnos-en-la-inspeccion-general-de-justicia" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Solicitar turnos en la Inspección General de Justicia</h3></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/certificado-de-vigencia-y-pleno-cumplimiento-cevip" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Certificado de Vigencia y Pleno Cumplimiento CEVIP</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/autorizacion-para-funcionar-como-persona-juridica-asociaciones-civiles" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Autorización para funcionar como persona jurídica: Asociaciones Civiles</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/autorizacion-para-funcionar-como-persona-juridica-federaciones-y-confederaciones" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Autorización para funcionar como persona jurídica: Federaciones y Confederaciones</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/reserva-de-denominacion-de-una-sociedad-comercial-o-entidad-civil" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Reserva de denominación de una sociedad comercial o entidad civil</h3></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row panels-row">
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/consulta-en-linea-de-tramites-de-sociedades" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Consulta en línea de trámites de sociedades</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/emision-de-boletas-de-tasas-inspeccion-general-de-justicia" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Emisión de Boletas de Tasas - Inspección General de Justicia</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/autorizacion-para-funcionar-como-persona-juridica-camaras-empresarias" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Autorización para funcionar como persona jurídica: Cámaras Empresarias</h3></div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="/node/36312" class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Inscripción de matrícula de comerciante</h3></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script>
+	jQuery( document ).ready(function() {
+
+		var buscando = '<div class="row">'+
+			'<div class="col-sm-6">'+
+			'<div class="form-group">'+
+			'<label class="form-label"><strong>Buscar por palabra clave</strong></label>'+
+			'<input class="form-control" id="input-search"></select>'+
+			'</div></div></div>';
+		var alerta = '<div id="sinResultados" class="alert alert-warning hidden">'+
+			'<p class="m-b-0">No hay resultados para mostrar</p></div>';
+		var paginado = '<div id="pagination" class="text-center"><ul class="pagination"></ul></div>';
+
+		jQuery('#pruebaloca .panels-row .col-xs-12').unwrap()
+		jQuery('#pruebaloca').children().not('h2').not('#pagination').wrapAll('<div class="list row panels-row"></div>');
+
+		jQuery('#pruebaloca .panel-body h3').each(function() {
+			jQuery(this).addClass('tramites');
+		});
+		jQuery('#pruebaloca').prepend(buscando);
+		jQuery('#pruebaloca .list').after(paginado);
+		jQuery('#pruebaloca .list').after(alerta);
+
+		var listOptions = {
+		 
+			page: 12,
+			valueNames: ['panel-body'],
+			plugins: [ ListPagination({}) ]
+		 
+		};
+
+		var listaNueva = new List('pruebaloca', listOptions); 
+		 
+		jQuery('#input-search').on("keyup", function(){
+			var searchVal = jQuery(this).val();
+			listaNueva.filter(getAccentInsensitiveFilter("panel-body", searchVal));
+			if(jQuery('.list').children().length === 0) {
+				jQuery('#sinResultados').removeClass('hidden');
+			} else {
+				jQuery('#sinResultados').addClass('hidden');
+			}
+		});
+
+		 // FUNCION REMOVER ACENTO
+		  var removeAccents = (function () {
+		     var letters1 = "äáàâăëéèêĕíïìîöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+		         letters2 = "aaaaaeeeeeiiiiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+		         patternLetters = new RegExp("[" + letters1 + "]", "g"),
+		         lookupLetters = {}, letterTranslator;
+
+		     letters1.split("").forEach(function (letter, i) {
+		         lookupLetters[letter] = letters2[i];
+		     });
+
+		     letterTranslator = function(match) {
+		         return lookupLetters[match] || match;
+		     };
+
+		     return function removeAccents(input) {
+		         return input.replace(patternLetters, letterTranslator);
+		     };
+		  })();
+
+		  // FILTRO ACENTOS PARA LIST.JS
+		  function getAccentInsensitiveFilter(property, search) {
+		     search = removeAccents(search).toLowerCase();
+
+		     return function (item) {
+		         var value = removeAccents(item.values()[property] || "").toLowerCase();
+		         return value.indexOf(search) > -1;
+		     };
+		  }
+
+	});// document ready
+
+</script>
