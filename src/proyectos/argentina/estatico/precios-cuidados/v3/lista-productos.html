@@ -376,8 +376,10 @@ layout: argentina
 	 var valorBuscado = $(this).val();
 	 //listaNueva.search(valorBuscado); //propio de List.js
 
+	var nuevoValor = accentFold(valorBuscado); 
+	console.log(nuevoValor);
 	 //listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, 'descripcion'))
-	 listaNueva.search(valorBuscado, ['descripcion', 'categoria', 'proveedor', 'ean']);
+	 listaNueva.search(nuevoValor, ['descripcion', 'categoria', 'proveedor', 'ean']);
 /*
 	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, function(item) {
 		if (item.values() == 'descripcion') {
@@ -394,35 +396,23 @@ layout: argentina
 
  }
 
-	 // FUNCION REMOVER ACENTO
-	var removeAccents = (function () {
-	   var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
-	       letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
-	       patternLetters = new RegExp("[" + letters1 + "]", "g"),
-	       lookupLetters = {}, letterTranslator;
-
-	   letters1.split("").forEach(function (letter, i) {
-	       lookupLetters[letter] = letters2[i];
-	   });
-
-	   letterTranslator = function(match) {
-	       return lookupLetters[match] || match;
-	   };
-
-	   return function removeAccents(input) {
-	       return input.replace(patternLetters, letterTranslator);
-	   };
-	})();
-
-	// FILTRO ACENTOS PARA LIST.JS
-	function getAccentInsensitiveFilter(search, property) {
-	   search = removeAccents(search).toLowerCase();
-
-	   return function (item) {
-	       var value = removeAccents(item.values()[property] || "").toLowerCase();
-	       return value.indexOf(search) > -1;
-	   };
-	}
+function accentFold(inStr) {
+  return inStr.replace(
+    /([àáâãäå])|([ç])|([èéêë])|([ìíîï])|([ñ])|([òóôõöø])|([ß])|([ùúûü])|([ÿ])|([æ])/g, 
+    function (str, a, c, e, i, n, o, s, u, y, ae) {
+      if (a) return 'a';
+      if (c) return 'c';
+      if (e) return 'e';
+      if (i) return 'i';
+      if (n) return 'n';
+      if (o) return 'o';
+      if (s) return 's';
+      if (u) return 'u';
+      if (y) return 'y';
+      if (ae) return 'ae';
+    }
+  );
+}
 
  jQuery.getJSON(
  'https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/2/public/values?alt=json',
