@@ -1,0 +1,203 @@
+---
+layout: argentina
+---
+<style src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css"></style>
+<style type="text/css">
+#map {
+ height: 600px;
+ width: 100%;
+ }
+
+ .item {
+ height: 310px;
+ }
+
+ .pie {
+ position: absolute;
+ bottom: 55px;
+ width: 90%;
+ }
+
+ .izq {
+ height: 30px;
+ padding-top: 6px;
+ }
+
+ .izq span {
+ font-size: 13px;
+ vertical-align: middle;
+ height: 30px;
+ }
+
+ .categoria-lf {
+ text-transform: lowercase;
+ font-size: 15px;
+ }
+
+ .categoria-lf::first-letter {
+
+ text-transform: uppercase;
+ }
+
+
+
+ .logo {
+ max-width: 380px !important;
+ }
+
+ #ean .popover {
+ top: 39px;
+ left: -118px !important;
+ display: block;
+ width: 250px !important;
+ }
+
+ #ean {
+ position: relative !important
+ }
+
+ #ean .popover .arrow {
+ left: 0 !important;
+ right: 0 !important;
+ margin: 0 auto !important;
+ }
+
+ .media-body {
+ vertical-align: middle;
+ }
+
+ @media screen and (max-width: 767px) {
+
+ .descripcion,
+ .proveedor,
+ .ean {
+ white-space: unset !important;
+ }
+
+ }</style>
+<section>
+	<div class="container" id="listaPreciosCuidados">
+		
+		<div id="listadoProductos">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">
+							<strong>Zona</strong>
+						</label>
+						<select class="form-control" id="zona">
+							<option data-zona="seleccionar" selected="selected" value="seleccionar">Seleccionar</option>
+							<option data-zona="amba" value="amba">AMBA</option>
+							<option data-zona="pba" value="pba">Buenos Aires</option>
+							<option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option>
+							<option data-zona="noanea" value="noanea">Noreste y Noroeste</option>
+							<option data-zona="patagonia" value="patagonia">Patagonia</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">
+							<strong>Categoría</strong>
+						</label>
+						<select class="form-control" id="categoria">
+						
+							<option data-categoria="todos" selected="selected" value="todos">Todos</option>
+							<!--<option data-categoria="---" value="---">---</option>-->
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="">
+							<strong>Buscá por marca, tipo de alimento o unidad</strong>
+						</label>
+						<div class="input-group">
+							<input id="inputSearch" class="form-control fuzzy-search" placeholder="" />
+							<span class="input-group-btn">
+								<span class="input-group-btn"> <button class="btn-primary btn form-submit" type="submit" id="editSubmit" name="op" value="<i class=&quot;fa fa-search&quot;></i>"> <i class="fa fa-search"></i> </button> </span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!--<div class="col-xs-12 col-md-offset-2 col-md-8" id="alertPrecios">
+					<div class="alert alert-info">
+						<div class="media">
+							<div class="media-left">
+								<i class="fa fa-exclamation-circle fa-2x"></i>
+							</div>
+							<div class="media-body">
+								<p>Primero seleccioná la zona y categoría. Después, podés buscar por marca, descripción o unidad.
+									<br /><b>Los precios fueron renovados el 7 de septiembre de 2018.</b>
+								</p>	
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>-->
+				<div class="col-md-12">
+					<p class="text-center text-danger hide" id="errorBusqueda">Seleccioná tu zona y categoría para podér realizar la búsqueda.</p>
+				</div>
+				<div class="table-responsive col-md-12" id="hideTabla">
+					<table id="myTable" class="table table-spaced table-hover">
+						<thead>
+							<tr>
+								<th class="col-md-6">Descripción</th>
+								<th class="col-md-3">Proveedor</th>
+								<th class="col-md-2">EAN</th>
+								<th class="col-md-1">Precio</th>
+							</tr>
+						</thead>
+						<tbody class="list" id="show-data"></tbody>
+					</table>
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="btnPdf">&nbsp;</div>
+						</div>
+					</div>
+					<div class="row">
+						<nav class="text-center">
+							<ul class="pagination"></ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+(function ($) {
+	jQuery(document).ready(function () {
+
+	    var tableArray = [];
+	    jQuery.getJSON('https://spreadsheets.google.com/feeds/list/1ujAEl4zhXi_O0ALaOzbbAKAscHyoT4_2GDkpzh-5Flc/od6/public/values?alt=json', function(json) {
+
+	    	listadoProductos = json['feed']['entry'];
+	    	console.log(listadoProductos);
+
+	        for (var i = 0; i < json.feed.entry.length; i++) {
+	          var iArray = [];
+	          iArray.push(json.feed.entry[i].gsx$name.$t);
+	          iArray.push('<a href="'+json.feed.entry[i].gsx$url.$t+ '">URL</a>');
+	          tableArray.push(iArray);
+	          jQuery("#dataContent").append("<h2>" + json.feed.entry[i].gsx$name.$t + "</h2>");
+	          jQuery("#dataContent").append('<img src="' + json.feed.entry[i].gsx$url.$t + '" class="img2 img-responsive">');
+	          
+	        }
+	        jQuery('#example').DataTable( {
+		        data: tableArray,
+		        columns: [
+		            { title: "Name" },
+		            { title: "URL" }
+		        ]
+		    } );
+	    });
+	    
+		//$('#myTable').DataTable();
+	});
+})(jQuery);
+
+</script>
