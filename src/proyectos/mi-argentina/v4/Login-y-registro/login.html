@@ -2,23 +2,23 @@
 layout: mi-argentina-login
 ---
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<link rel="stylesheet" href="../../css/miargentina.css">
+
 <div class="login-container body-login">
   <section class="container-fluid container-id">
     <div class="row">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-            <form method="get" action="">
+            <form method="get" action="loading.html">
               <fieldset>
                 <legend>
-                  <h1 class="hidden">Bienvenido</h1>
+                  <h1 class="hidden">Ingresá o creá tu cuenta de Mi Argentina</h1>
                   <h2>Ingresá a tu cuenta</h2>
                 </legend>
                 <div class="row">
                   <div class="col-xs-12 form-group item-form">
                     <label for="cuil">CUIL o pasaporte extranjero</label>
-                    <input type="number" class="form-control" id="cuil" required="" aria-required="true">
+                    <input type="number" class="form-control" id="cuil" required aria-required="true">
                     <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
                   </div>
                 </div>
@@ -26,7 +26,7 @@ layout: mi-argentina-login
                   <div class="col-xs-12">
                     <label for="password_confirmacion">Contraseña</label>
                     <div class="form-group item-form">
-                      <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" ">
+                      <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" " required>
                       <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
                       <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
                     </div>
@@ -42,26 +42,30 @@ layout: mi-argentina-login
             </form>
             <p class="m-t-2 m-b-1">O ingresá con Facebook o Google<span class="sr-only">Facebook o Google</span></p>
             <div class="m-b-0">
-              <a href="#" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</a>
-              <a href="#" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a>
+              <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</button>
+              <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a></button>
             </div>
           </div>
         </div>
       </div> 
     </div>
   </section>
-  <section class="container-fluid p-y-2">
+  <section class="container-fluid p-t-2 p-b-3">
     <div class="row">
       <div class="container">
         <div class="row">
+
           <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-            <form method="get" action="">
+
+            <form method="get" action="registro.html">
+
               <fieldset>
                 <legend>
-                  
+
                   <h2>¿No tenés cuenta?</h2>
                 </legend>
-                <a href="" class="btn btn-primary">Creá tu cuenta</a>
+                <button type="submit" class="btn btn-primary">Creá tu cuenta</button>
+                
               </fieldset>
               
               
