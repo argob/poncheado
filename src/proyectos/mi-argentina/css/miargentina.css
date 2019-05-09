@@ -28,6 +28,10 @@ h2{
   float: right;
 }
 
+.no-underline{
+  text-decoration: none!important;
+}
+
 /********PANELES**********/
 
 .panel-body .list-group {
@@ -66,7 +70,7 @@ a.btn-collapse i.collapseGira {
 .panels-row-miargentina .panel-default {
   width: 100%;
 }
-.panels-row-miargentina .panel-default>.panel-heading {
+.panels-row-miargentina .panel-default>.panel-heading, .panels-row-miargentina .panel-default fieldset legend .panel-heading {
   min-height: 0 !important;
   background-color: transparent;
   border-bottom: 1px solid #ccc;
@@ -876,9 +880,7 @@ a.btn-collapse i.collapseGira {
   border-color: #0072BB #F2F3F4 #F2F3F4!important;
 }
 /***************switches**********************/
-.switch input{
-  display: none;
-}
+
 .switch {
   display:inline-block;
   width:70px;
@@ -886,6 +888,7 @@ a.btn-collapse i.collapseGira {
   margin:8px;
   transform:translateY(50%);
   position:relative;
+  margin-top: 0px;
 }
 .slider {
   position:absolute;
@@ -912,28 +915,26 @@ a.btn-collapse i.collapseGira {
   transition:.4s;
 }
 
+.slider span{
+  padding-left: 8px;
+  color: #fff;
+}
 
 
-
+input:checked + .slider span:nth-child(2){
+  visibility: hidden;
+}
 input:checked + .slider:before  {
   transform:translateX(40px);
   background-color: #fff;
-
-  
 }
 
 
 input:checked + .slider {
   box-shadow:0 0 0 2px #0072bb,0 0 2px #0072bb;
+  background-color: #0072bb;
+}
 
-}
-.switch-txt{
-  padding-left: 35px;
-  padding-top: 3px;
-  color: #fff;
-  position: absolute;
-  font-weight: bolder;
-}
 /*****login ID****/
 .login-container{
   display: flex;
