@@ -34,6 +34,9 @@ a.panel span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.puntoFijo{display: none;}
+
 </style>
 
 <section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/ettb-2019.jpg');">
@@ -54,7 +57,7 @@ a.panel span {
       <div class="row">
         <div class="col-md-6 col-sm-offset-3 text-center">
           <h1><img alt="El Estado en tu Barrio" src="http://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"><span class="sr-only">El Estado en tu Barrio</span> </h1>
-          <p>Más de 5 millones de vecinos ya resolvieron sus trámites en <br class="hidden-xs">EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
+          <p>Más de 6 millones de vecinos ya resolvieron sus trámites en <br class="hidden-xs">EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
         </div>
       </div>
     </div>
@@ -124,6 +127,17 @@ a.panel span {
         </div>
 
       </div>
+      <div class="row">
+        <div class="col-md-12">
+           <div class="checkbox m-b-2">
+              <label>
+                <input type="checkbox" id="puntosFijosCheckbox"> Ver puntos fijos
+              </label>
+              <p class="text-muted">Estamos abriendo oficinas fijas para estar cerca de los vecinos y quedarnos acompañándolos en forma permanente con soluciones para mejorar su vida</p>
+            </div>          
+        </div>
+      </div>
+
     </div>
 
    
@@ -140,7 +154,7 @@ a.panel span {
                               <span class="fa fa-calendar" aria-hidden="true"></span>
                           </div>
                           <div class="media-body media-middle">
-                            <p><small id="fechaPunto"></small></p>
+                            <p><small class="fechaPunto"></small></p>
                           </div>
                         </div>
                         <div class="media">
@@ -280,7 +294,7 @@ window.onload = function() {
     var listaPuntos;
     jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
       listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
-        
+        console.log(listaPuntos);
         filtrarPuntos(listaPuntos,provincia);
       
     })
@@ -316,21 +330,24 @@ function filtrarPuntos(listaPuntos,provincia){
         //Es de un solo día
         if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
           fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
-            jQuery("#fechaPunto").parents(".media").show();
-            jQuery("#fechaPunto").html(fechaPunto);
+            jQuery("#punto-clon .fechaPunto").parents(".media").show();
+            jQuery("#punto-clon .fechaPunto").html(fechaPunto);
         }
 
         //Tiene fecha inicio y fin
         if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
-            jQuery("#fechaPunto").parents(".media").show();
-            jQuery("#fechaPunto").html(fechaPunto);
+            jQuery("#punto-clon .fechaPunto").parents(".media").show();
+            jQuery("#punto-clon .fechaPunto").html(fechaPunto);
         }
 
         //Es punto fijo
+        jQuery("#punto-clon .punto").removeClass("puntoFijo");
         if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
-            jQuery("#fechaPunto").parents(".media").hide();
+            jQuery("#punto-clon .fechaPunto").parents(".media").hide();
+            jQuery("#punto-clon .fechaPunto").parents(".punto").addClass("puntoFijo");
         }
+
 
         jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
         jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
@@ -351,6 +368,17 @@ function filtrarPuntos(listaPuntos,provincia){
     });
    } 
 });
+
+$("#puntosFijosCheckbox").on("change",function(){
+  if($('#puntosFijosCheckbox:checkbox:checked').length > 0){
+    $(document).find(".puntoFijo").show()
+  }
+  else{
+   $(document).find(".puntoFijo").hide()
+  }
+})
+
+
 
 //Mostrar aviso de error
 if(jQuery("#provincia option:selected").val() == ""){
