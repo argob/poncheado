@@ -1,0 +1,217 @@
+---
+layout: argentina
+---
+<div class="container">
+
+<section>
+    <div id="tarifas">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Filtrá por tipo de vehículo</label>
+                    <select class="form-control" id="tipo-vehiculo">
+                        <option data-tipovehiculo="todos" value="todos">Todos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Buscá por acceso o ruta</label>
+                    <select class="form-control" id="tipo-acceso">
+                        <option data-tipoacceso="todos" value="todos">Todos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="">Buscá por peaje</label>
+                    <input id="busq" class="form-control" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <table class="table table-spaced table-align-middle table-mobile">
+            <thead>
+                <tr>
+                    <th style="width: 150px;"><a class="sort" data-sort="acceso">Acceso o ruta </a></th>
+                    <th><a class="sort" data-sort="peaje">Peaje </a></th>
+                    <th style="width: 170px;"><a class="sort" data-sort="ejes">Ejes de vehículo </a></th>
+                    <th style="width: 150px;"><a class="sort" data-sort="pago">Modo de pago </a></th>
+                    <th style="width: 150px;"><a class="sort" data-sort="franja">Franja Horaria </a></th>
+                    <th style="width: 100px;"><a class="sort" data-sort="tarifa">Tarifa </a></th>
+                </tr>
+            </thead>
+            <tbody class="list" id="show-data"></tbody>
+        </table>
+        <nav class="text-center">
+            <ul class="pagination"></ul>
+        </nav>
+        <div class="alert alert-warning col-md-12 no-result" id="alerta" style="display:none">
+            <div class="media">
+                <div class="media-left media-middle">&nbsp;</div>
+                <div class="media-body">
+                    <p>No hay resultados para mostrar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--<script src="{{ "/node_modules/list.js/dist/list.min.js" | prepend: site.baseurl }}"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script>
+    (function($) {
+        $(document).ready(function() {
+
+            var eje = "todos";
+            var acceso = "todos";
+
+            $('body').tooltip({
+                selector: '[data-toggle="tooltip"]'
+            });
+
+            //Ejes
+            $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/3/public/values?alt=json', function(data) {
+                ejes = data.feed.entry;
+                //console.log(ejes);
+
+                $.each(ejes, function(key, item) {
+                    item = '<option data-tipovehiculo="' + item.gsx$ejes.$t + '" value="' + item.gsx$ejes.$t + '">' + item.gsx$ejes.$t + '</option>';
+                    $("#tipo-vehiculo").append(item);
+                })
+            });
+
+            //Accesos
+
+            $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/2/public/values?alt=json', function(data) {
+                accesos = data.feed.entry;
+
+                $.each(accesos, function(key, item) {
+                    item = '<option data-tipoacceso="' + item.gsx$accesos.$t + '" value="' + item.gsx$accesos.$t + '">' + item.gsx$accesos.$t + '</option>';
+                    $("#tipo-acceso").append(item);
+                })
+            });
+
+            $.getJSON('https://spreadsheets.google.com/feeds/list/1ApIT6kjzc70fiGGte3oIz7RzN-MhKH0D-ajhFWVHhJw/1/public/values?alt=json', function(data) {
+                window.tarifas = data.feed.entry;
+                showtarifas(acceso, eje);
+            });
+
+            window.showtarifas = function(acceso, eje) {
+                var showData = $('#show-data');
+
+                var html = '';
+
+                console.log(eje + acceso);
+                cantidad = 0;
+                $.each(tarifas, function(key, item) {
+
+                    var franja = '<td class="franja">' + item.gsx$franja.$t + '</td>';
+
+                    if (item.gsx$comentario.$t != "") {
+                        franja = '<td class="franja" data-placement="right" data-toggle="tooltip" title="' + item.gsx$comentario.$t + '" data-container="body"><span class="td-label">Franja Horaria</span>' + item.gsx$franja.$t + '</td>';
+                    }
+
+                    if ((item.gsx$ejes.$t == eje || eje == "todos") && (item.gsx$acceso.$t == acceso || acceso == "todos")) {
+
+                        html += '<tr>';
+                        html += ' <td class="acceso"><span class="td-label">Acceso o ruta</span> <h6>' + item.gsx$acceso.$t + '</h6></td>';
+                        html += ' <td class="peaje"><span class="td-label">Peaje</span>' + item.gsx$peaje.$t + '</td>';
+                        html += ' <td class="ejes"><span class="td-label">Ejes de vehículo</span>' + item.gsx$ejes.$t + '</td>';
+                        html += ' <td class="pago"><span class="td-label">Modo de pago</span>' + item.gsx$pago.$t + '</td>';
+                        html += franja;
+                        html += ' <td class="tarifa"><span class="td-label">Tarifa</span>' + item.gsx$tarifa.$t + '</td>';
+                        html += '</tr>';
+
+                        cantidad++;
+                    }
+
+                });
+
+                if (cantidad == 0) {
+                    $(".pagination").hide();
+                    $("#alerta").show();
+                } else {
+                    $(".pagination").show();
+                    $("#alerta").hide();
+                }
+
+                showData.empty();
+                showData.html(html);
+
+                var listOptions = {
+                    valueNames: ['peaje'],
+                    page: 20,
+                    plugins: [ListPagination({})]
+
+                };
+
+                var tarifasList = new List('tarifas', listOptions);
+
+                jQuery('#busq').on("keyup", function() {
+                    var valueSearch = jQuery("#busq").val();
+                    //tarifasList.search(valueSearch);
+                    tarifasList.filter(getAccentInsensitiveFilter("peaje", valueSearch))
+                });
+
+                $('.no-result').hide()
+
+                tarifasList.on('updated', function(list) {
+                    if (list.matchingItems.length > 0) {
+                        $('.no-result').hide()
+                    } else {
+                        $('.no-result').show()
+                    }
+                })
+
+            }
+
+            $("#tipo-vehiculo,#tipo-acceso").on("change", function() {
+                var acceso = $("#tipo-acceso option:selected").data('tipoacceso');
+                var eje = $("#tipo-vehiculo option:selected").data('tipovehiculo');
+
+                showtarifas(acceso, eje);
+
+            });
+
+            /*$("#tipo-acceso").on("change", function() {
+            var vehiculo = $( "#tipo-acceso option:selected" ).data('tipoacceso');
+            showtarifas(vehiculo);
+            });*/// FUNCION REMOVER ACENTO
+              var removeAccents = (function () {
+                 var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+                     letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+                     patternLetters = new RegExp("[" + letters1 + "]", "g"),
+                     lookupLetters = {}, letterTranslator;
+
+                 letters1.split("").forEach(function (letter, i) {
+                     lookupLetters[letter] = letters2[i];
+                 });
+
+                 letterTranslator = function(match) {
+                     return lookupLetters[match] || match;
+                 };
+
+                 return function removeAccents(input) {
+                     return input.replace(patternLetters, letterTranslator);
+                 };
+              })();
+
+              // FILTRO ACENTOS PARA LIST.JS
+              function getAccentInsensitiveFilter(property, search) {
+                 search = removeAccents(search).toLowerCase();
+
+                 return function (item) {
+                     var value = removeAccents(item.values()[property] || "").toLowerCase();
+                     return value.indexOf(search) > -1;
+                 };
+              }
+
+        });
+    })(jQuery);
+</script>
+
+
+
+</div>
