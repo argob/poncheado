@@ -1,0 +1,242 @@
+---
+layout: argentina
+---
+<div class="container">
+
+    <div class="panel-pane pane-page-breadcrumb">
+        <div class="pane-content">
+            <ol class="breadcrumb">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/jefatura">Jefatura de Gabinete de Ministros</a></li>
+                <li><a href="/modernizacion">Modernización</a></li>
+                <li><a href="/premionacionalcalidad">Premio Nacional a la Calidad</a></li>
+                <li class="active">Calendario - Premio Nacional a la Calidad</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6"></div>
+    </div>
+
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<section>
+
+<h1>Calendario - Premio Nacional a la Calidad</h1>
+<style>
+    #resultados .fa-calendar-o{margin-top: 6px;}
+    #resultados .date{margin-top: 6px;}
+</style>
+<div id="eventos_destacados">
+    <div class="row panels-row m-t-2">
+        <div class="hidden">
+            <div class="col-sm-4" id="destacado_clon">
+                <a class="panel panel-default" href=""> </a>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h3>&nbsp;</h3></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row panels-row" id="listaDestacados">&nbsp;</div>
+        </div>
+    </div>
+</div>
+<div id="eventos">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Mes</label>
+                <select class="form-control" id="selectorMes" name="">
+                    <option value="00">Todos los meses</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label>Buscá eventos</label>
+                <input class="form-control" id="text_titulo" placeholder="" />
+            </div>
+        </div>
+    </div>
+    <table class="table" id="resultados">
+        <thead>
+            <tr>
+                <th class="text-center" width="200px">Fecha</th>
+                <th>Evento</th>
+            </tr>
+        </thead>
+        <tbody class="list"></tbody>
+    </table>
+    <div class="alert alert-warning" id="alertaResultados" style="display:none">No se encontraron eventos con la búsqueda realizada.</div>
+    <div class="text-center">
+        <div class="pagination">&nbsp;</div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment-with-locales.min.js"></script>
+<script>
+    (function($) {
+        $(document).ready(function() {
+
+            key = "1Wz_mfFYxpDsjk_0gz3otkTsCQNxQC2I3DyQx4e4Bg8E";
+            $.getJSON('https://spreadsheets.google.com/feeds/list/' + key + '/1/public/values?alt=json', function(data) {
+                window.lista = data.feed.entry;
+
+                //Traer datos iniciales
+                buscar();
+
+            })
+
+            function buscar() {
+
+                //LIMPIAR
+                $("#resultados tbody").html("");
+                $("#listaDestacados").html("");
+                mes_seleccionado = $("#selectorMes").val();
+
+                //LISTA DE EVENTOS
+                $.each(lista, function(index, element) {
+                    titulo = element["gsx$titulo"]["$t"];
+                    descripcion = element["gsx$descripcion"]["$t"];
+                    sitio_url = element["gsx$url"]["$t"];
+                    fecha_desde = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY").format("DD/MM/YYYY");
+                    fecha_hasta = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY").format("DD/MM/YYYY");
+
+                    if (fecha_hasta == "Invalid date") {
+                        fecha_evento = fecha_desde;
+                    } else {
+                        fecha_evento = "Desde " + fecha_desde + " al " + fecha_hasta;
+                    }
+                    mes_evento = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY").format('MM');
+                    termina_evento = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY").format('MM');
+                    horario = element["gsx$horario"]["$t"];
+                    //hora_desde = element["gsx$horadesde"]["$t"];
+                    //hora_hasta = element["gsx$horahasta"]["$t"];
+                    var tieneHorario = '';
+                    if (horario) {
+                        tieneHorario = "<p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> " + horario + "</small></p>";
+                    }
+
+                    var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o'></i><div class='date'><small>" + fecha_evento + "</small></div></td><td class='descripcion'><h5><a class='URL' href='" + sitio_url + "'>" + titulo + "</a></h5><p class='Descripcion'>" + descripcion + "</p>" + tieneHorario + "</td></tr>"
+
+                    if (mes_seleccionado == mes_evento || mes_seleccionado == 0) {
+                        //Se filtra por mes
+                        $("#resultados tbody").append(contenido_evento);
+
+                    } else if (element["gsx$fechahasta"]["$t"]) {
+
+                        var inicio = moment(element["gsx$fechadesde"]["$t"], "DD/MM/YYYY");
+                        var fin = moment(element["gsx$fechahasta"]["$t"], "DD/MM/YYYY");
+                        var listMeses = [];
+
+                        while (fin > inicio || inicio.format('M') === fin.format('M')) {
+                            listMeses.push(inicio.format('MM'));
+                            inicio.add(1, 'month');
+                        }
+                        for (var i = 0; i < listMeses.length; i++) {
+                            if (mes_seleccionado == listMeses[i]) {
+                                $("#resultados tbody").append(contenido_evento);
+
+                            }
+                        }
+
+                    }
+
+                    //EVENTOS DESTACADOS
+                    if (element["gsx$destacado"]["$t"] == "si") {
+                        var elemento = $("#destacado_clon").clone();
+                        $("#listaDestacados").append(elemento);
+
+                        elemento.find("h3").html(titulo);
+                        elemento.find("a").attr("href", sitio_url);
+                    }
+                })
+
+                //lIST.JS
+                var options = {
+                    valueNames: ['descripcion'],
+                    page: 5,
+                    pagination: true
+                };
+                var serviciosList = new List('eventos', options);
+
+                //FILTRO PALABRA
+                var busqueda = $("#text_titulo").val();
+                //serviciosList.search(busqueda);	
+
+                serviciosList.filter(getAccentInsensitiveFilter("descripcion", busqueda))
+
+                //AVISO NO HAY RESULTADOS
+                if ($("#resultados tbody tr").length == 0) {
+                    $("#alertaResultados").show();
+                } else {
+                    $("#alertaResultados").hide();
+                }
+
+            }
+
+            //BOTÓN BUSQUEDA
+            $("#selectorMes").on("change", function() {
+                buscar();
+            })
+
+            $("#text_titulo").keyup(function(e) {
+                buscar();
+            });
+
+            // FUNCION REMOVER ACENTO
+            var removeAccents = (function() {
+                var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+                    letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+                    patternLetters = new RegExp("[" + letters1 + "]", "g"),
+                    lookupLetters = {},
+                    letterTranslator;
+
+                letters1.split("").forEach(function(letter, i) {
+                    lookupLetters[letter] = letters2[i];
+                });
+
+                letterTranslator = function(match) {
+                    return lookupLetters[match] || match;
+                };
+
+                return function removeAccents(input) {
+                    return input.replace(patternLetters, letterTranslator);
+                };
+            })();
+
+            // FILTRO ACENTOS PARA LIST.JS
+            function getAccentInsensitiveFilter(property, search) {
+                search = removeAccents(search).toLowerCase();
+
+                return function(item) {
+                    var value = removeAccents(item.values()[property] || "").toLowerCase();
+                    return value.indexOf(search) > -1;
+                };
+            }
+
+        });
+    })(jQuery);
+</script>
+
+</section>
+</div>
+</div>
+</div>

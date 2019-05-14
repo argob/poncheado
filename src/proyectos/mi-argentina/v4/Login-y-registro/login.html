@@ -12,13 +12,13 @@ layout: mi-argentina-login
             <form method="get" action="loading.html">
               <fieldset>
                 <legend>
-                  <h1 class="hidden">Ingresá o creá tu cuenta de Mi Argentina</h1>
-                  <h2>Ingresá a tu cuenta</h2>
+                  <h1 class="sr-only">Ingresá o creá tu cuenta de Mi Argentina</h1>
+                  <h2 aria-hidden="true">Ingresá a tu cuenta</h2>
                 </legend>
                 <div class="row">
                   <div class="col-xs-12 form-group item-form">
                     <label for="cuil">CUIL o pasaporte extranjero</label>
-                    <input type="number" class="form-control" id="cuil" required aria-required="true">
+                    <input type="text" class="form-control" id="cuil" required aria-required="true">
                     <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
                   </div>
                 </div>
@@ -26,8 +26,8 @@ layout: mi-argentina-login
                   <div class="col-xs-12">
                     <label for="password_confirmacion">Contraseña</label>
                     <div class="form-group item-form">
-                      <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" " required>
-                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
+                      <input id="password_confirmacion"  type="password" class="form-control" maxlength="15" " required>
+                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()" alt="Mostrar contraseña"></span>
                       <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
                     </div>
                     <p><a href="recuperar-contrasena1.html">¿Olvidaste tu contraseña?</a></p>
@@ -38,13 +38,15 @@ layout: mi-argentina-login
                     <button type="submit" class="btn btn-success">Ingresar</button>
                   </div>
                 </div>
-              </fieldset>
-            </form>
+              
+           
             <p class="m-t-2 m-b-1">O ingresá con Facebook o Google<span class="sr-only">Facebook o Google</span></p>
             <div class="m-b-0">
               <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</button>
               <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a></button>
             </div>
+            </fieldset>
+           </form>
           </div>
         </div>
       </div> 
