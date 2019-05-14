@@ -26,6 +26,7 @@ select[disabled] .form-control {
 a.panel span {
     transition: none!important;
 }
+
 .panel h3{
   font-weight: 600
 }
@@ -33,6 +34,20 @@ a.panel span {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#puntos .punto{
+ display:flex;
+}
+
+
+#puntos .punto > a{
+ display:flex;
+ flex-direction: column;
+}
+
+#puntos .punto .panel-footer{
+  margin-top: auto;
 }
 
 .puntoFijo{display: none;}
@@ -127,7 +142,7 @@ a.panel span {
         </div>
 
       </div>
-      <div class="row">
+      <div class="row" id="puntosFijos" style="display:none">
         <div class="col-md-12">
            <div class="checkbox m-b-2">
               <label>
@@ -173,8 +188,9 @@ a.panel span {
                             <p><small class="direccion">aca va la direccion 454</small></p>
                           </div>
                         </div>
-                        <hr class="m-b-1 row">
-                        <p class="h4 text-primary m-y-0">MAS INFORMACIÓN</p>
+                    </div>
+                    <div class="panel-footer">
+                        <p class="h4 text-primary">MAS INFORMACIÓN</p>
                     </div>
                 </a>
               </div>
@@ -369,12 +385,24 @@ function filtrarPuntos(listaPuntos,provincia){
    } 
 });
 
+
+//Puntos fijos
+if(jQuery("#provincia option:selected").val() == "Buenos Aires"){
+  jQuery("#puntosFijos").show();
+}
+else{
+  jQuery("#puntosFijos").hide(); 
+}
+
+
 $("#puntosFijosCheckbox").on("change",function(){
   if($('#puntosFijosCheckbox:checkbox:checked').length > 0){
-    $(document).find(".puntoFijo").show()
+    jQuery(document).find("#puntos .punto").hide()
+    jQuery(document).find(".puntoFijo").show()
   }
   else{
-   $(document).find(".puntoFijo").hide()
+   jQuery(document).find("#puntos .punto").show()
+   jQuery(document).find(".puntoFijo").hide()
   }
 })
 
@@ -387,6 +415,8 @@ if(jQuery("#provincia option:selected").val() == ""){
 else{
   jQuery("#aviso").hide(); 
 }
+
+
 
   jQuery("#provincia .preloader").remove();
 provinciasCargadas = true;
