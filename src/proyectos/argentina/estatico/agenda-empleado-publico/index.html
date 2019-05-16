@@ -91,7 +91,7 @@ layout: argentina
    		//Traer datos iniciales
    		$(".section-eventos").removeClass('state-loading');
    		$("#eventos").show();
-   		//buscar();
+   		buscar();
    
    	})
    
@@ -141,16 +141,13 @@ layout: argentina
 		if(ubicacion){ 
 			tieneUbicacion = "<p class='margin-0'><small><i class='fa fa-map-marker'></i> <strong>Ubicación:</strong> "+ubicacion+"</small></p>";
 		}
+   		
+   		var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td class='descripcion'><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6>"+tieneDescipcion+tieneDestinatario+tieneHorario+tieneUbicacion+"</td></tr>";
 
 		//Se filtra por mes
-		if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
-			$("#resultados tbody").append("<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-1'></i><div class='m-t-1'><small>"+fecha_evento+"</small></div></td><td class='eventoTitulo'><h6><a class='eventoURL' href='"+sitio_url+"'>"+titulo+"</a></h6>"+tieneDescipcion+tieneDestinatario+tieneHorario+tieneUbicacion+"</td></tr>");
-		}
-
-   		
-   		
-   		var contenido_evento = "<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-2'></i><div class='m-t-2'><small>"+fecha_evento+"</small></div></td><td class='descripcion'><h6 class='Titulo'><a class='URL' href='"+sitio_url+"'>"+titulo+"</a></h6>"+tieneDescipcion+tieneHorario+tieneUbicacion+"</td></tr>"
-   		
+		/*if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
+			$("#resultados tbody").append(contenido_evento);
+		}*/
    		if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
 			//Se filtra por mes
 			$("#resultados tbody").append(contenido_evento);
@@ -180,7 +177,7 @@ layout: argentina
    	//lIST.JS
    	var options = {
    	 valueNames: [ 'descripcion' ],
-   	 page: 5,
+   	 page: 10,
    		pagination: true
    	};
    	var serviciosList = new List('eventos', options);
