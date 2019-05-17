@@ -1,0 +1,71 @@
+---
+layout: mi-argentina-login
+---
+
+<section class="container-fluid container-id">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+        <form method="get" action="recuperar-contrasena2.html">
+          <div class="form-group">
+            <fieldset>
+              <legend>
+                <h1>Recuperá tu contraseña</h1>
+                <p>Elegí una forma de recuperar tu contraseña y te vamos a enviar un correo electrónico con un enlace para poder continuar.</p>
+              </legend>
+
+              <div class="row">
+                <div class="col-sm-12 form-group item-form m-t-1">
+                  <fieldset>
+                    <legend>
+                      <label>Recuperar usando</label>
+                    </legend>
+                    <div class="item-form m-y-1">
+                      <label for="email" class="radio-inline">
+                        <input type="radio" name="kindOfRestore" id="email" value="email"  aria-required="true" checked required >
+                        Correo electrónico
+                      </label>
+                      <label for="cuil" class="radio-inline">
+                        <input type="radio" name="kindOfRestore" id="cuil" value="cuil" aria-required="true" required>
+                        CUIL
+                      </label>
+                      
+                      
+                    </div>
+                    <label for="password_restore" id="txt-label">Correo Electrónico</label>
+                      <div class="form-group item-form">
+                        <input id="password_restore" name="password_restore" type="email" class="form-control" maxlength="15">
+                        <p class="has-error text-danger m-t-1 hidden">Ingresá tu Correo electrónico</p>
+                      </div>
+
+                      <button type="submit" class="btn btn-success">Enviar</button>
+                      
+                  </fieldset>
+                  <a href="" class="btn btn-link" onclick="window.history.back();">Volver</a>
+                </div>
+              </div>
+              
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> 
+</div>
+</section>
+<script>
+  function changeInput(){
+    document.getElementById('cuil').onclick = function(){
+      document.getElementById('txt-label').innerHTML = 'CUIL'
+      document.getElementById('password_restore').type = 'number'
+       document.getElementById('password_restore').maxLength = 11
+    }
+     document.getElementById('email').onclick = function(){
+      document.getElementById('txt-label').innerHTML = 'Correo Electrónico'
+       document.getElementById('password_restore').type = 'email'
+       document.getElementById('password_restore').maxLength = 15
+    }
+  }
+  changeInput();
+</script>
