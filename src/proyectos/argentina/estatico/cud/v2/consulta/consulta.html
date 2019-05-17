@@ -51,7 +51,8 @@ select[disabled] .form-control {
                      <div class="form-group" id="edad">
                         <fieldset>
                            <legend class="control-label">&iquest;Tiene 16 años o más?</legend>
-                           <div class="radio"><label class="m-t-0" for="mayor16"><input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" /> <span class="sr-only">Este Campo es Obligatorio</span> Sí </label><br /><label class="m-t-1" for="menor16"><input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No </label></div>
+                           <div class="radio"><label class="m-t-0" for="mayor16">
+                              <input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" /> <span class="sr-only">Este Campo es Obligatorio</span> Sí </label><br /><label class="m-t-1" for="menor16"><input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No </label></div>
                         </fieldset>
                      </div>
                      <div class="collapse" id="collapse-tutoria">
@@ -66,7 +67,7 @@ select[disabled] .form-control {
                         <div class="form-group">
                            <fieldset>
                               <legend class="control-label"> &iquest;La persona tiene tutor o guardador?</legend>
-                              <div class="radio"><label class="m-t-0" for="guardadorsi"><input id="guardadorsi" name="guardador" type="radio" value="si" /> Si </label><br /><label class="m-t-1" for="guardadorno"><input id="guardadorno" name="guardador" type="radio" value="no" /> No </label></div>
+                              <div class="radio"><label class="m-t-0" for="guardadorsi"><input id="guardadorsi" name="guardador" type="radio" value="si" /> Sí </label><br /><label class="m-t-1" for="guardadorno"><input id="guardadorno" name="guardador" type="radio" value="no" /> No (madre o padre) </label></div>
                            </fieldset>
                         </div>
                      </div>
@@ -89,7 +90,7 @@ select[disabled] .form-control {
                      <div class="form-group">
                         <fieldset>
                            <legend> </legend>
-                           <h2>Lugar de Residencia</h2>
+                           <h2>Lugar de residencia</h2>
                            <p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
                            <hr />
                            <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label> 
@@ -136,6 +137,11 @@ select[disabled] .form-control {
                                     <li>Los turnos para Asesoramiento - Pre Juntas Evaluadoras (niños) se otorgan hasta los 13 años.</li>
                                  </ul>
                               </div>
+
+                              <div id="tresdefebrero" class="text-muted m-b-0 well hidden" style="margin-top:1em;">
+                                 <p>Si no hay turnos disponibles y tu CUD se vence este mes acercate sin turno a la oficina para que lo evaluemos</p>
+                              </div>
+                              
                            </div>
                         </fieldset>
                      </div>
@@ -192,12 +198,14 @@ select[disabled] .form-control {
  function checkChoise(){
  	var bxfCheck;
  if((document.getElementById('bajafallecimientocud').checked) ||(document.getElementById('bajavoluntariacud').checked)){
- $('#edad, #coberturamedica, #origenProblemaSalud').addClass('hidden')
+ $('#edad, #coberturamedica, #origenProblemaSalud, #collapse-guardador, #collapse-tutoria').addClass('hidden')
  bxfCheck = true;
  }else{
- $('#edad, #coberturamedica, #origenProblemaSalud').removeClass('hidden')
+ $('#edad, #coberturamedica, #origenProblemaSalud, #collapse-guardador, #collapse-tutoria').removeClass('hidden')
 	bxfCheck = false
  }
+
+
 	if(!bxfCheck){
 		if(document.getElementById('cambioidentidadadopcioncud').checked || document.getElementById('cambioidentidadgenerocud').checked){
 				$('#origenProblemaSalud').addClass('hidden')
@@ -210,10 +218,24 @@ select[disabled] .form-control {
  }
  
  checkChoise();
-
+var ischeck = false;
  $('input[name="tipotramite"]').on('change', function() {
- checkChoise();
+   checkChoise();
+   
+   $('#collapse-guardador, #collapse-tutoria').addClass('hidden')
  })
+
+$('input[name="mayor16"]').click(function(){
+   $('#collapse-guardador, #collapse-tutoria').removeClass('hidden')
+ })
+
+
+
+
+
+
+
+
 
  $.validator.setDefaults({
  // debug: true,
@@ -730,14 +752,35 @@ select[disabled] .form-control {
 
 
  // -----------------------------------------------------------------
+var localidadesCarteles = [
+   {
+      nombre: "San Isidro",
+      id_localidad: '#sanisidro'
+   },
+   {
+      nombre: "Tres de Febrero",
+      id_localidad: '#tresdefebrero'
 
- $('#localidad').change(function() {
-   if( $(this).val() == "San Isidro" ){
-     $('#sanisidro').removeClass('hidden');
-   } else if (!$('#sanisidro').hasClass('hidden')){
-      $('#sanisidro').addClass('hidden');
    }
-});
+   ]
+
+    $('#localidad').change(function() {
+
+      localidadesCarteles.forEach(c => {
+      if( $('#localidad').val() ==  c.nombre ){
+        $(c.id_localidad).removeClass('hidden');
+      } else if (!$(c.id_localidad).hasClass('hidden')){
+         $(c.id_localidad).addClass('hidden');
+      }
+   })
+      
+      
+   });
+
+
+
+
+
 $(window).on('load', function(){
    if( $('#localidad').val() == "San Isidro" ){
      $('#sanisidro').removeClass('hidden');
