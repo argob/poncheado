@@ -1,7 +1,7 @@
 ---
 layout: mi-argentina
 ---
-
+<link rel="stylesheet" href="../../../css/miargentina.css">
 <section>
   <div class="container">
     <div class="row">
@@ -65,15 +65,29 @@ layout: mi-argentina
                     </ul>
                     
                       
-                    <a href="javascript:;" id="dni"  data-target-selector="#dniContent">
+                    <a onclick="popshow()" role="button" data-toggle="popover" data-trigger="focus">
                       <p class="col-xs-12 p-x-0 m-t-1" aria-hidden="true"><small>¿Dónde encuentro estos datos?</small></p>
                     </a>
-                    <div id="dniContainer" class="col-xs-12 m-t-1" >
-                      <div id="dniContent" class="hidden"></div>
+                    <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
+                      <div class="arrow-tramite"></div>
+                      <div class='col-xs-12 p-x-0'>
+                        <span class='close' aria-label="Cerrar"  onclick="pophidde()">&times;</span>
+                      </div>
+                      <div>
+                        <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
+                      </div>
+                      <div class='m-x-1'>
+                        <img src='../../../../../proyectos/mi-argentina/old/v3/img/dni_id.png' alt='Frente DNI parte inferior' title="Imagen ilustrativa del DNI" class='img-responsive'>
+                      </div>
                     </div>
                     <div class="m-b-1">
                       <div class="form-check">
-                        <label class="form-check-label cursor-pointer ml" for="idVerificado" id="verificado"><input type="checkbox" class="form-check-input" id="idVerificado"><i class="fa fa-square-o fa-2x fa-fw text-success media-middle"></i> <i class="fa fa-check-square-o fa-2x fa-fw text-success media-middle"></i>  Verificado</label>
+                        <label class="form-check-label cursor-pointer ml" for="idVerificado" id="verificado">
+                          <input type="checkbox" class="form-check-input" id="idVerificado" >
+                          <i class="fa fa-square-o fa-2x fa-fw text-success media-middle"></i>
+                          <i class="fa fa-check-square-o fa-2x fa-fw text-success media-middle hidden"></i> 
+                           <span>Verificado</span2
+                        </label>
                       </div>  
                     </div>
                     
@@ -159,41 +173,25 @@ layout: mi-argentina
 </section>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#dni').on('click', function(){
-      $('#dniContent').popover('toggle');
-    });
-
-    $('#dniContent').popover({
-      html: 'true',
-
-      content: "<div class='col-xs-12 p-x-0'><span class='close'>&times;</span></div><div><p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p></div><div class='m-x-1'><img src='../img/dni_id.png' alt='imagen-dni' class='img-responsive'></div>",
-      placement: 'top',
-      trigger: 'manual',
-      container: '#dniContainer' ,
-      viewport: '#dniContent',
-    });
-
-     $('#dniContent').on('show.bs.popover', function(){
-        $(this).find('.arrow').attr('style', 'top:50%');
-      })
-
-     $('#dniContent').on('popover', function(){
-        $(this).find('.arrow').attr('style', 'top:50%');
-      })
-
-    $(document).on('click', '.close', function(){
-      $('#dniContent').popover('hide');
-    });
-
-    $('#verificado').on('change', function(){
-        $('#verificadoContainer').toggleClass('hidden');
-
-    })
-    
+   var content = document.getElementById('content-dni-tramite')
+  function popshow(){
+    content.classList.toggle('hidden');
+    content.style.top = "130px"
+    content.style.left = "10px"
+  }
+  function pophidde(){
+    content.classList.add('hidden')
+  }
+document.getElementById('idVerificado').addEventListener('click', function(){
+  if(document.getElementById('idVerificado').checked){
+    document.querySelector('.fa-square-o').classList.add('hidden')
+    document.querySelector('.fa-check-square-o').classList.remove('hidden')
+  }else{
+    document.querySelector('.fa-square-o').classList.remove('hidden')
+    document.querySelector('.fa-check-square-o').classList.add('hidden')
+  }
+})
 
 
-
-  });
-(jQuery);
+  
 </script>
