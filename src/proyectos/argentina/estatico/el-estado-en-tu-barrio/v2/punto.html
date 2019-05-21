@@ -227,10 +227,9 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
      $.each(listaPuntos, function(index, val) {
     
      if(val.gsx$nombre.$t == puntoId){
-      console.log("match");
-      console.log(val);  
         provincia = val.gsx$provincia.$t;
         excepcion = val.gsx$excepcion.$t;
+        gmaps = "";
         $("#nombrePunto,#breadcrumbPunto").html(val.gsx$localidad.$t);
         $("#provincia").html(val.gsx$provincia.$t);
         $("#direccion").html(val.gsx$direccion.$t + " - " + val.gsx$localidad.$t);
@@ -254,7 +253,17 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
         if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
             $("#fechaPunto").parents(".media").hide();
         }
-        $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
+
+        
+        //Está cargado el punto en Gmaps?
+        if(val.gsx$linkgmaps.$t != ""){
+          gmaps = $.parseHTML(val.gsx$linkgmaps.$t)[0]["src"];
+          $("#mapa iframe").attr("src",gmaps)
+        }
+        
+        else{
+          $("#mapa iframe").attr("src","https://www.google.com/maps?q=" + val.gsx$latitud.$t + "," + val.gsx$longitud.$t + "&output=embed")
+        }
         
             if(val.gsx$suspendido.$t != ""){
               $("#motivosuspendido h5").html(val.gsx$suspendido.$t);
@@ -310,7 +319,6 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
   //FILTRAR TRÁMITES
   $("#buscadorTramite").on("keyup", function(event) {
      var palabra = $(this).val();
-     console.log(palabra);
      $(".content_format li").addClass("hidden").removeClass("filtrado");
      $(".content_format li a:containsi('"+palabra+"')").parents("li").removeClass("hidden").addClass("filtrado");
      $("#tramites .panel").each(function(i){
