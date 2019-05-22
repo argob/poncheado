@@ -15,7 +15,7 @@ layout: mi-argentina2
  		 		<div class="row">
     				<div class="col-xs-12 m-b-1">
 						<h1 class="title-dashboard">
-							Donde ir y que llevar
+							Dónde ir y qué llevar
 					 	</h1>
 					 	
 					 </div>
@@ -35,7 +35,7 @@ layout: mi-argentina2
 			                  	<div class="panel-body">
 			                  		<div class="m-t-2 hidden" id="show-data-lugar"></div>
 									<ul class="hidden" id="show-data-description-lugar"></ul>
-									<p class="m-b-2">Cualquier persona que lleve la documentación puede soicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
+									<p class="m-b-2">Cualquier persona que lleve la documentación puede solicitar el turno. La dirección mencionada es la del centro de atención que te corresponde. Podés ir o llamar si tenés alguna duda.</p>
 									<p>Recordá que a la Evaluación por la Junta deberá asistir la persona para que que se solicita el certificado.</p>
 			                  	</div>
 				            </div>
@@ -47,7 +47,7 @@ layout: mi-argentina2
 		            			</div>
 			                  	<div class="panel-body">
 			                    	<p class="hidden" id="show-data-description"></p>
-									<ol class="m-t-2 hidden" id="show-data">
+									<ol class="hidden" id="show-data">
 										<li class="hidden" id="show-primera-vez"></li>
 										<li class="hidden" id="show-renovacion"></li>
 										<li class="hidden" id="show-perdida"></li>
@@ -130,26 +130,26 @@ module.exports = targetblank;
 
 			</script><script>
 (function($) {
-var templates={description: '<p>Según el trámite a realizar ({tipoTramite}) el origen del problema de salud por el cual se solicita el certificado (<span data-render="tipo-discapacidad"></span>) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
+var templates={description: '<p>Según el trámite a realizar <strong>({tipoTramite})</strong> el origen del problema de salud por el cual se solicita el certificado <strong>(<span data-render="tipo-discapacidad"></span>)</strong> , la edad <strong>({edad})</strong> y el tipo de cobertura <strong>({tipoCobertura})</strong> tenés que presentar esta documentación:</p>', item: '<li>{requisito}</li>',
 descriptionLugar: `
-				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a alguno de los siguientes lugares: </p>`,
+				<p>Según tu localidad <strong>({localidad})</strong> y provincia <strong>({provincia})</strong> podés ir a alguno de los siguientes lugares: </p>`,
 descriptionLugarSingular: `
-				<p>Según tu localidad ({localidad}) y provincia ({provincia}) podés ir a este lugar: </p>`,
+				<p>Según tu localidad <strong>({localidad})</strong> y provincia <strong>({provincia})</strong> podés ir a este lugar: </p>`,
 lugar: `
 				<li>
 					<div class="form-group m-t-2">
-						<label class="control-label">Junta</label>
-						<p>{junta}</p>
-<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
+						<p>Junta</p>
+						<p><strong>{junta}</strong></p>
+						<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
  
 					</div>
 					<div class="form-group m-t-2">
-						<label class="control-label">Dirección</label>
-						<p>{direccion}</p>
+						<p>Dirección</p>
+						<p><strong>{direccion}</strong></p>
 					</div>
 					<div class="form-group m-t-2">
-						<label class="control-label">Datos de contacto</label>
-						<p>{contacto}</p>
+						<p>Datos de contacto</p>
+						<p><strong>{contacto}</strong></p>
 					</div>
 					<hr />
 				</li>`,
