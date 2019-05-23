@@ -97,6 +97,8 @@ layout: argentina
       <div class="modal-body">
         <p class="main">Viajá con tu <strong>SUBE</strong> en los colectivos de estas localidades:</p>
         <ul id="listaLocalidades"></ul>
+        <p class="tit-servicio"></p>
+        <ul id="listaServicios"></ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -106,132 +108,145 @@ layout: argentina
 </div>
 
 <script>
-var provincias = 
+var provincias =
 {
     "Buenos Aires": {
         "localidades": [
-            "Diegolata",
-            "Mar del Plata",
-            "Partido de la Costa",
-            "Pinamar",
-            "Villa Gesell ",
-            "Olavarría",
-            "Necochea ",
-            "Bahía Blanca ",
-            "San Nicolás de los Arroyos ",
-            "Pergamino"
+        "Mar del Plata",
+        "Partido de la Costa",
+        "Pinamar",
+        "Villa Gesell ",
+        "Olavarría",
+        "Necochea ",
+        "Bahía Blanca ",
+        "San Nicolás de los Arroyos ",
+        "Pergamino",
+        "Junín"
         ]
     },
     "Catamarca": {
         "localidades": [
-            "San Fernando del Valle de Catamarca"
+        "San Fernando del Valle de Catamarca"
         ]
     },
     "Chaco": {
         "localidades": [
-            "Resistencia",
-            "Roque Sáenz Peña"
+        "Resistencia",
+        "Roque Sáenz Peña"
         ]
     },
     "Chubut": {
         "localidades": [
-            "Comodoro Rivadavia",
-            "Trelew",
-            "Rawson"
+        "Comodoro Rivadavia",
+        "Trelew",
+        "Rawson"
         ]
     },
     "Córdoba": {
         "localidades": [
-            "Villa Allende"
+        "Villa Allende"
         ]
     },
     "Corrientes": {
         "localidades": [
-            "Corrientes"
+        "Corrientes"
         ]
     },
     "Entre Ríos": {
         "localidades": [
-            "Paraná",
-            "Gualeguaychú"
+        "Paraná",
+        "Gualeguaychú"
         ]
     },
     "Formosa": {
         "localidades": [
-            "Formosa"
+        "Formosa"
         ]
     },
     "Jujuy": {
         "localidades": [
-            "Palpalá",
-            "San Salvador de Jujuy"
+        "Palpalá",
+        "San Salvador de Jujuy"
         ]
     },
     "La Pampa": {
         "localidades": [
-            "Santa Rosa",
-            "General Pico"
+        "Santa Rosa",
+        "General Pico"
         ]
     },
     "Neuquén": {
         "localidades": [
-            "Neuquén",
-            "San Martin de los Andes"
+        "Neuquén",
+        "San Martin de los Andes"
+        ],
+        "servicios": [
+        "Tren del Valle Cipolleti - Neuquén"
         ]
     },
     "Río Negro": {
         "localidades": [
-            "Viedma",
-            "San Carlos de Bariloche",
-            "Cipolletti"
+        "Viedma",
+        "San Carlos de Bariloche",
+        "Cipolletti"
+        ],
+        "servicios": [
+        "Tren del Valle Cipolleti - Neuquén"
         ]
     },
     "San Juan": {
         "localidades": [
-            "San Juan"
+        "San Juan"
         ]
     },
     "San Luis": {
         "localidades": [
-            "San Luis"
+        "San Luis"
         ]
     },
     "Santa Cruz": {
         "localidades": [
-            "Río Gallegos"
+        "Río Gallegos"
         ]
     },
     "Santa Fe": {
         "localidades": [
-            "Santa Fe de la Vera Cruz",
-            "Venado Tuerto",
-            "Rafaela"
+        "Santa Fe de la Vera Cruz",
+        "Venado Tuerto",
+        "Rafaela"
         ]
     },
     "Tierra del Fuego": {
         "localidades": [
-            "Ushuaia",
-            "Río Grande"
+        "Ushuaia",
+        "Río Grande"
         ]
     }
-}   
-
+}
 
 jQuery(".provinciaMapa").click(function(){
     nombreProvincia = jQuery(this).find("title").html();
     jQuery("#modalMapa .modal-title").html(nombreProvincia);
     jQuery("#listaLocalidades").html("");
+    jQuery("#listaServicios").html("");
+    jQuery(".modal-body .tit-servicio").html("");
     jQuery(".modal-body .main").html("Todavía no podés viajar con <strong>SUBE</strong> en esta provincia.");
     
     
     jQuery.each(provincias, function(index1, provincia) {
-       console.log(index1);
+       //console.log(index1);
         
         if(index1 == nombreProvincia){
             jQuery(".modal-body .main").html("Viajá con tu <strong>SUBE</strong> en los colectivos de estas localidades:");        
             jQuery.each(provincia.localidades, function(index2, localidad) {
                 jQuery("#listaLocalidades").append('<li>'+localidad+'</li>')
-            })
+            })  
+            if(provincia.servicios){
+                jQuery(".modal-body .tit-servicio").html("Viajá con tu <strong>SUBE</strong> en los siguientes servicios:");  
+                jQuery.each(provincia.servicios, function(index2, servicio) {
+                    jQuery("#listaServicios").append('<li>'+servicio+'</li>')
+                })
+            }
         }
 
        //EN EL CASO QUE SEA "CABA"
