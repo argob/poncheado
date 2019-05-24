@@ -1737,6 +1737,24 @@ layout: mi-argentina2
     }
   }
 
+  function userOrNotUser(){
+	var personaAevaluar = document.querySelectorAll("input[name='presenta-planilla']")
+	personaAevaluar.forEach(p => {
+	    p.addEventListener('click', function(){
+	    document.getElementById('form-content').classList.remove('hidden')	
+	  if(p.value == 'persona-a-evaluar'){
+	  document.getElementById('noEsLaPersonaAevaluar').classList.add('hidden')
+	  document.getElementById('planilla').href= "cud-planilla-simple.html"
+	    }else{
+	    document.getElementById('noEsLaPersonaAevaluar').classList.remove('hidden')
+	    document.getElementById('planilla').href= "cud-planilla.html"
+	  }
+	  })
+	})
+}
+
+userOrNotUser();
+
    window.onload = function(){
     if(!localStorage.getItem('usuario')){
       localStorage.setItem('usuario', JSON.stringify([]));
@@ -1763,7 +1781,7 @@ layout: mi-argentina2
  
   var noUsers = [];
  
-
+/*Esta función chequea que radiobutton está clickeado y setea el localstorage*/
   function setLocalStorage(gender1 , gender2 , gender3 , gender4 , tipoNacionalidad1 , tipoNacionalidad2, residence1, residence2, residence3, residence4, _19279_1, _19279_2, simbolo1, simbolo2, asignacion1, asignacion2,rolChoise1, rolChoise2, rolChoise3, parentChoise1, parentChoise2, parentChoise3, designation1, designation2 ){
     
     
@@ -1772,12 +1790,6 @@ layout: mi-argentina2
       gender = document.getElementById(eval('gender' + i)).value
       }
     }
-     
-   /* for(var i = 1; i < 6; i ++){
-      if(document.getElementById(eval('kindDocument' + i)).checked){
-      kindDocument = document.getElementById(eval('kindDocument' + i)).value
-      }
-    }*/
 
     for(var i = 1; i < 3; i ++){
       if(document.getElementById(eval('tipoNacionalidad' + i)).checked){
@@ -1825,17 +1837,12 @@ layout: mi-argentina2
       }
     }
 
-     /*for(var i = 1; i < 6; i ++){
-      if(document.getElementById(eval('kindDocumentNotUser' + i)).checked){
-      kindDocumentNotUser = document.getElementById(eval('kindDocumentNotUser' + i)).value
-      }
-    }*/
     localStorage.setItem('usuario', JSON.stringify(setData()));
     localStorage.setItem('nouser', JSON.stringify(setDataNoUser()));
 
   }
 
-
+/*Esta función crea el objeto con los datos de la persona que se va a atender, este objeto luego se envia al localstorage*/
  function setData(){
 
   var user = new User(document.getElementById('firstname').value, 
@@ -1866,8 +1873,10 @@ layout: mi-argentina2
   	simbolo, asignacion, 
   	document.getElementById('vencimiento').value.split("-").reverse().join("-"))
   users.push(user)
+  console.log(user)
   return users
  }
+ /*Esta función crea el objeto con los datos de la persona que NO se va a atender (nouser), este objeto luego se envia al localstorage*/
 function setDataNoUser(){
   var noUserObj = new NoUser(rolChoise, parentChoise, 
   	  document.getElementById('firstname_notevaluate').value, 
@@ -1897,47 +1906,37 @@ function setDataNoUser(){
   return noUsers
 }
 
-var personaAevaluar = document.querySelectorAll("input[name='presenta-planilla']")
-personaAevaluar.forEach(p => {
-    p.addEventListener('click', function(){
-    document.getElementById('form-content').classList.remove('hidden')	
-  if(p.value == 'persona-a-evaluar'){
-  document.getElementById('noEsLaPersonaAevaluar').classList.add('hidden')
-  document.getElementById('planilla').href= "cud-planilla-simple.html"
-    }else{
-    document.getElementById('noEsLaPersonaAevaluar').classList.remove('hidden')
-    document.getElementById('planilla').href= "cud-planilla.html"
-  }
-  })
-})
+/*se evalua que mostrar según que elijan en los dos primeros radiobutton*/
 
-var nacionalidad = document.getElementById('nacionalidad')
-var residencia = document.querySelectorAll("input[name='Residencia']")
 
+
+
+
+
+
+/*Esta función muestra u oculta algún elemento en función al option elegido de algún select*/
 
 function toggleElementsSelect(element, elementToggle, value, changeOperator){
 	var elementId = document.getElementById(element)
 	var elementToggle = document.getElementById(elementToggle)
 
 	elementId.addEventListener('change', function(){
-		if(changeOperator == 'false'){
+		if(!changeOperator){
 			if(elementId.value != value){
-			elementToggle.classList.remove('hidden');
+				elementToggle.classList.remove('hidden');
+			}else{
+				elementToggle.classList.add('hidden');
+			}
 		}else{
-			elementToggle.classList.add('hidden');
+			if(elementId.value == value){
+				elementToggle.classList.remove('hidden');
+			}else{
+				elementToggle.classList.add('hidden');
+			}
 		}
-	}else if(changeOperator == 'true'){
-		if(elementId.value == value){
-			elementToggle.classList.remove('hidden');
-		}else{
-			elementToggle.classList.add('hidden');
-			
-			
-		}
-	}
 	})
 }
-
+/*Esta función muestra u oculta algún elemento en función al radio button*/
 function toggleElementsRadio(element, elementToggle, value){
 	var elementRadio = document.querySelectorAll(element)
 	var elementToggle = document.getElementById(elementToggle)
@@ -1953,7 +1952,7 @@ function toggleElementsRadio(element, elementToggle, value){
 	})
 }
 
-toggleElementsSelect('nacionalidad', 'residencia' , 'ARG', 'false')
+toggleElementsSelect('nacionalidad', 'residencia' , 'ARG', false)
 toggleElementsRadio("input[name='Residencia']", 'expireDate', 'Permanente' )
 toggleElementsSelect('nacionalidad', 'tipo-nac', 'ARG', 'true')
 toggleElementsRadio("input[name='vehiculo19279']", '19279date', 'No' )
