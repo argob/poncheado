@@ -46,6 +46,47 @@ layout: argentina
     .flex-panels .panel:hover .big small{
         color: rgba(255, 255, 255,.4);
     }
+    /* footer de paneles anchos */
+    .inter-flex{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    .inter{
+        padding: 0 15px;
+    }
+    .inter-flex .auno{
+        flex: 0 0 15%;
+        width: 15%;
+    }
+    .inter-flex .ados{
+        flex: 0 0 30%;
+        width: 30%;
+        display: flex;
+        align-items: center;
+    }
+    .numero-big{
+        flex: 0 0 auto;
+        padding-right: 15px;
+    }
+    .inter-flex .atres{
+        flex: 0 0 45%;
+        width: 45%;
+    }
+    .inter-flex .atres p{
+        margin-bottom: 0;
+    }
+    .panel .inter-flex *{
+        transition: none;
+    }
+    .panel:focus .inter-flex *,
+    .panel:active .inter-flex *,
+    .panel:hover .inter-flex *{
+        color: #fff;
+    }
     @media all and (min-width: 576px) {
         .flex-panels .col{
             flex: 0 0 50%;
@@ -199,6 +240,97 @@ layout: argentina
                     <p class="text-muted">¡Metas cumplidas!<br><i class="fa fa-star" aria-hidden="true"></i></p>
                 </div>
             </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <span class="fecha hidden">20180101</span>
+            <span class="duracion hidden">(729)</span>
+            <a href="#proyecto-prueba" data-toggle="modal" class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="nombre-proyecto">Plan Federal de Fibra Óptica</h3>
+                </div>
+                <div class="panel-footer">
+                    <div class="inter-flex">
+                        <div class="inter auno">
+                            <span>88%</span> Avance
+                        </div>
+                        <div class="inter ados">
+                            <div class="numero-big text-gray">954</div><h4>Conjunto de datos publicados a través de datosgobar</h4>
+                        </div>
+                        <div class="inter atres">
+                            <p>Organismo Responsable</p>
+                            <h4>Subsecretaría de Innovación Pública y Gobierno Abierto</h4>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div id="proyecto-prueba" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                        <p class="text-primary">Gobierno Abierto</p>
+                        <h4 class="modal-title">Plan de apertura y gestión de datos públicos</h4>
+                    </div>
+                    <div class="modal-body p-x-2">
+                        <p class="m-t-1">Desarrollamos e implementamos las políticas, plataformas, servicios y estándares requeridos para la gestión de los datos públicos como un activo cívico.</p>
+                        <h5 class="m-t-1">Impacto</h5>
+                        <p>Contribuimos al fortalecimiento democrático, al desarrollo de políticas públicas basados en la evidencia y a la creación de valor a través del gerenciamiento de los datos públicos como un activo cívico.</p>
+                        <h5 class="m-t-1">Público objetivo</h5>
+                        <ul>
+                            <li>Ciudadanos</li>
+                            <li>Gobiernos Subnacionales</li>
+                            <li>Organizaciones de la Sociedad Civil</li>
+                        </ul>
+                        <h5 class="m-t-1">Organismo responsable</h5>
+                        <p>Subsecretaría de Innovación Pública y Gobierno Abierto.</p>
+                        <!--<div class="row numbers p-b-1 text-center">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="h4">{inicioProyecto} </div>
+                                <p class="text-muted">Comienzo</p>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="h4">{finProyecto}</div>
+                                <p class="text-muted">Finalización prevista</p>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div>
+                                <p class="text-muted">Cumplimiento de la meta</p>
+                            </div>
+                        </div>-->
+                        <h5 class="m-t-2">Indicadores​</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Indicador</th>
+                                    <th>Meta Anual</th>
+                                    <th>Avance</th>
+                                </tr>
+                            </thead>
+                            <tbody data-render="indicadores"> </tbody>
+                        </table>
+                        <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Etapas del proyecto</th>
+                                    <th>Inicio</th>
+                                    <th>Fin</th>
+                                    <th style="width:130px;">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody data-render="hitos"> </tbody>
+                        </table>
+                        <h5 class="m-t-2">Público objetivo</h5>
+                        <p><span>{ciudadano}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p>
+                        <h5 class="m-t-3">Organismo responsable</h5>
+                        <p>{area}</p>
+                        <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
