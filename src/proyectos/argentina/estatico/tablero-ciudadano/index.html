@@ -58,26 +58,45 @@ layout: argentina
     .inter{
         padding: 0 15px;
     }
-    .inter-flex .auno{
-        flex: 0 0 15%;
-        width: 15%;
+    .inter-flex .inter{
+        flex: 0 0 100%;
+        width: 100%;
+        word-break: normal;
+        position: relative;
     }
+    .inter-flex .auno,
     .inter-flex .ados{
-        flex: 0 0 30%;
-        width: 30%;
         display: flex;
         align-items: center;
+        flex-wrap: 
+    }
+    .inter-flex .auno span{
+        color: #2897D4 ;
+        font-size: 33px;
+        display: flex;
+        align-items: center;
+        padding-right: 15px;
+    }
+    .inter-flex .auno span small{
+        font-size: 16px;
+    }
+    .avance{
+        color: #2897D4 ;
+        font-size: 33px;
+        display: flex;
+        align-items: center;
+    }
+    .avance small{
+        font-size: 16px;
     }
     .numero-big{
         flex: 0 0 auto;
         padding-right: 15px;
+        font-size: 45px;
+        color: #979797;
     }
-    .inter-flex .atres{
-        flex: 0 0 45%;
-        width: 45%;
-    }
-    .inter-flex .atres p{
-        margin-bottom: 0;
+    .inter-flex .atres *{
+        margin: 0;
     }
     .panel .inter-flex *{
         transition: none;
@@ -102,13 +121,45 @@ layout: argentina
             width: 33.333333%;
             max-width: initial;
         }
-    }
-    /*@media all and (min-width: 992px) {
-        .flex-panels .col{
-            flex: 0 0 33.333333%;
-            width: 33.333333%;
+        .inter-flex .auno{
+            flex: 0 0 21%;
+            width: 21%;
         }
-    }*/
+        .inter-flex .auno:after,
+        .inter-flex .ados:after{
+            content: "";
+            width:1px;
+            height: 47px;
+            display: block;
+            background-color: #CCCCCC;
+            position: absolute;
+            right: 0;
+            top:50%;
+            margin-top: -23px;
+        }
+        .inter-flex .ados{
+            flex: 0 0 35%;
+            width: 35%;
+        }
+        .inter-flex .atres{
+            flex: 0 0 44%;
+            width: 44%;
+        }
+    }
+    @media all and (min-width: 992px) {
+        .inter-flex .auno{
+            flex: 0 0 15%;
+            width: 15%;
+        }
+        .inter-flex .ados{
+            flex: 0 0 35%;
+            width: 35%;
+        }
+        .inter-flex .atres{
+            flex: 0 0 45%;
+            width: 45%;
+        }
+    }
     @media all and (min-width: 1200px) {
         .flex-panels {
             justify-content: space-between;
@@ -150,14 +201,13 @@ layout: argentina
     </div>
     <div class="overlay"></div>
 </section>
-
 <div class="container">
 
 <section>
     <h3>Lineamientos</h3>
-    <div class="row flex-panels m-b-1">
+    <div class="row flex-panels m-b-1" id="tipo-proyectos">
         <div class="col">
-            <a class="panel panel-default" href="#">
+            <a class="panel panel-default" href="javascript:" data-tipoproyectos="gobierno" value="gobierno">
                 <div class="panel-body">
                     <i class="text-secondary fa fa-users fa-fw fa-2x" aria-hidden="true"></i>
                     <h2>Gobierno Abierto</h2>
@@ -174,7 +224,7 @@ layout: argentina
             </a>
         </div>
         <div class="col">
-            <a class="panel panel-default" href="#">
+            <a class="panel panel-default" href="javascript:" data-tipoproyectos="empleo" value="empleo">
                 <div class="panel-body">
                     <i class="text-secondary fa fa-briefcase fa-fw fa-2x" aria-hidden="true"></i>
                     <h2>Nuevo Empleo Público</h2>
@@ -191,7 +241,7 @@ layout: argentina
             </a>
         </div>
         <div class="col">
-            <a class="panel panel-default" href="#">
+            <a class="panel panel-default" href="javascript:" data-tipoproyectos="estado" value="estado">
                 <div class="panel-body">
                     <i class="text-secondary fa fa-desktop fa-fw fa-2x" aria-hidden="true"></i>
                     <h2>Gobierno Digital</h2>
@@ -208,7 +258,7 @@ layout: argentina
             </a>
         </div>
         <div class="col">
-            <a class="panel panel-default" href="#">
+            <a class="panel panel-default" href="javascript:" data-tipoproyectos="municipio" value="municipio">
                 <div class="panel-body">
                     <i class="text-secondary icono-arg-inclusion-digital fa-fw fa-2x" aria-hidden="true"></i>
                     <h2>Inclusión Digital</h2>
@@ -225,7 +275,7 @@ layout: argentina
             </a>
         </div>
         <div class="col">
-            <a class="panel panel-default" href="#">
+            <a class="panel panel-default" href="javascript:" data-tipoproyectos="conectividad" value="conectividad">
                 <div class="panel-body">
                     <i class="text-secondary fa fa-wifi fa-fw fa-2x" aria-hidden="true"></i>
                     <h2>Conectividad</h2>
@@ -242,7 +292,7 @@ layout: argentina
             </a>
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <span class="fecha hidden">20180101</span>
             <span class="duracion hidden">(729)</span>
@@ -253,7 +303,7 @@ layout: argentina
                 <div class="panel-footer">
                     <div class="inter-flex">
                         <div class="inter auno">
-                            <span>88%</span> Avance
+                            <span>88<small>%</small></span> Avance
                         </div>
                         <div class="inter ados">
                             <div class="numero-big text-gray">954</div><h4>Conjunto de datos publicados a través de datosgobar</h4>
@@ -276,31 +326,16 @@ layout: argentina
                     </div>
                     <div class="modal-body p-x-2">
                         <p class="m-t-1">Desarrollamos e implementamos las políticas, plataformas, servicios y estándares requeridos para la gestión de los datos públicos como un activo cívico.</p>
-                        <h5 class="m-t-1">Impacto</h5>
+                        <h5 class="m-t-2">Impacto</h5>
                         <p>Contribuimos al fortalecimiento democrático, al desarrollo de políticas públicas basados en la evidencia y a la creación de valor a través del gerenciamiento de los datos públicos como un activo cívico.</p>
-                        <h5 class="m-t-1">Público objetivo</h5>
+                        <h5 class="m-t-2">Público objetivo</h5>
                         <ul>
                             <li>Ciudadanos</li>
                             <li>Gobiernos Subnacionales</li>
                             <li>Organizaciones de la Sociedad Civil</li>
                         </ul>
-                        <h5 class="m-t-1">Organismo responsable</h5>
+                        <h5 class="m-t-2">Organismo responsable</h5>
                         <p>Subsecretaría de Innovación Pública y Gobierno Abierto.</p>
-                        <!--<div class="row numbers p-b-1 text-center">
-                            <div class="col-sm-6 col-md-4">
-                                <div class="h4">{inicioProyecto} </div>
-                                <p class="text-muted">Comienzo</p>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-                                <div class="h4">{finProyecto}</div>
-                                <p class="text-muted">Finalización prevista</p>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-                                <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div>
-                                <p class="text-muted">Cumplimiento de la meta</p>
-                            </div>
-                        </div>-->
-                        <h5 class="m-t-2">Indicadores​</h5>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -309,13 +344,19 @@ layout: argentina
                                     <th>Avance</th>
                                 </tr>
                             </thead>
-                            <tbody data-render="indicadores"> </tbody>
+                            <tbody data-render="indicadores">
+                                <tr>
+                                    <td>Cantidad de conjuntos de datos publicados a través de datos.gob.ar</td>
+                                    <td>954 conjuntos de datos publicados a través de datos.gob.ar</td>
+                                    <td><span class="avance">88<small>%</small></span></td>
+                                </tr>
+                            </tbody>
                         </table>
-                        <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5>
+                        <h5 class="m-t-3">Etapas del proyecto​</h5>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Etapas del proyecto</th>
+                                    <th>Hitos</th>
                                     <th>Inicio</th>
                                     <th>Fin</th>
                                     <th style="width:130px;">Estado</th>
@@ -323,29 +364,24 @@ layout: argentina
                             </thead>
                             <tbody data-render="hitos"> </tbody>
                         </table>
-                        <h5 class="m-t-2">Público objetivo</h5>
-                        <p><span>{ciudadano}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p>
-                        <h5 class="m-t-3">Organismo responsable</h5>
-                        <p>{area}</p>
                         <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </section>
 
 <section>
-    <h4 class="m-b-2 ">Gobierno abierto cuenta estos <strong>12 proyectos</strong></h4>
     <div id="proyectos">
-        <div class="row">
-            <div class="col-md-6">
+        <!--<div class="row">
+             <div class="col-md-6">
                 <div class="form-group">
                     <label>Buscá proyectos</label>
                     <input class="form-control search" placeholder="Buscá proyectos por nombre o descripción" />
                 </div>
             </div>
-            <div class="col-md-3">
+             <div class="col-md-3">
                 <div class="form-group">
                     <label for="">Filtrar por lineamiento</label>
                     <select class="form-control" id="tipo-proyectos">
@@ -368,16 +404,15 @@ layout: argentina
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <h5 class="m-b-2 ">Podés buscar los resultados según público objetivo</h5>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="">Filtrar por público objetivo</label>
                     <div class="row panels-row" id="alcance">
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <a class="panel panel-default" data-filtro="ciudadano">
                               <div class="panel-body">
-                                <span class="badge badge-pill badge-secondary pull-right">6</span>
                                 <p>Ciudadanos</p>
                               </div>
                             </a>
@@ -385,7 +420,6 @@ layout: argentina
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <a class="panel panel-default" data-filtro="civil">
                               <div class="panel-body">
-                                <span class="badge badge-pill badge-secondary pull-right">6</span>
                                 <p>Organizaciones de la Sociedad Civil</p>
                               </div>
                             </a>
@@ -393,7 +427,6 @@ layout: argentina
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <a class="panel panel-default" data-filtro="apn">
                               <div class="panel-body">
-                                <span class="badge badge-pill badge-secondary pull-right">6</span>
                                 <p>Administración Pública</p>
                               </div>
                             </a>
@@ -401,7 +434,6 @@ layout: argentina
                         <div class="col-xs-12 col-sm-6 col-md-3">
                             <a class="panel panel-default" data-filtro="gobiernos">
                               <div class="panel-body">
-                                <span class="badge badge-pill badge-secondary pull-right">6</span>
                                 <p>Gobiernos Subnacionales</p>
                               </div>
                             </a>
@@ -410,6 +442,7 @@ layout: argentina
                 </div>
             </div>
         </div>
+        <h4 class="m-b-2 ">Proyectos</h4>
         <div class="list row panels-row" data-render="tarjetas">&nbsp;</div>
     </div>
 </section>
@@ -425,8 +458,8 @@ layout: argentina
     jQuery(function() {
 
         var templates = {
-            tarjeta: '<div class="col-xs-12 col-sm-12 col-md-12"><span class="fecha hidden">{inicioProyecto}</span><span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"><h3 class="nombre-proyecto">{nombre}</h3> <p class="text-muted descripcion-proyecto">{descripcion}</p><div class="media m-t-1"> <div class="media-left media-middle"> <span class="fa fa-check fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <div class="text-muted">{metas}</div></div></div><div class="media"> <div class="media-left media-middle"> <span class="fa fa-line-chart fa-2x fa-fw text-muted" aria-hidden="true"></span> </div><div class="media-body media-middle"> <span class="text-muted cumplimiento" data-render="cumplimiento">{avancePorcentajeInicial}</span><span class="text-muted"></span></div></div></div></a></div>',
-            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <h4 class="modal-title">{proyecto}</h4> </div> <div class="modal-body p-x-2"> <p>{etiquetas}</p> <h5 class="m-t-2">Descripción</h5> <p>{descripcion}</p> <h5 class="m-t-3">Impacto</h5> <p>{impacto}</p> <div class="row numbers p-b-1 text-center"> <div class="col-sm-6 col-md-4"> <div class="h4">{inicioProyecto} </div> <p class="text-muted">Comienzo</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4">{finProyecto}</div> <p class="text-muted">Finalización prevista</p> </div> <div class="col-sm-6 col-md-4"> <div class="h4" data-render="cumplimiento">{avancePorcentajeInicial} </div> <p class="text-muted">Cumplimiento de la meta</p> </div> </div> <h5 class="m-t-2">Indicadores​</h5> <table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr> </thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">¿Cómo lo vamos a lograr?​</h5> <table class="table"> <thead> <tr> <th>Etapas del proyecto</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr> </thead> <tbody data-render="hitos"> </tbody> </table> <h5 class="m-t-2">Público objetivo</h5> <p><span>{ciudadano}</span><span>{civil}</span><span>{apn}</span><span>{gobiernos}</span></p> <h5 class="m-t-3">Organismo responsable</h5> <p>{area}</p> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p> </div> </div> </div> </div>',
+            tarjeta: '<div class="col-xs-12 col-sm-12 col-md-12"> <span class="fecha hidden">{inicioProyecto}</span> <span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3 class="nombre-proyecto">{nombre}</h3> </div><div class="panel-footer"> <div class="inter-flex"> <div class="inter auno"> <span>{avancePorcentajeInicial}</span> Avance </div><div class="inter ados"> <h4>{metas}</h4> </div><div class="inter atres"> <p>Organismo Responsable</p><h4>{area}</h4> </div></div></div></a></div>',
+            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <p class="text-primary">{area}</p><h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body p-x-2"> <p class="m-t-1">{descripcion}</p><h5 class="m-t-2">Impacto</h5> <p>{impacto}</p><h5 class="m-t-2">Público objetivo</h5> <ul> <li>{ciudadano}</li><li>{civil}</li><li>{apn}</li><li>{gobiernos}</li></ul> <h5 class="m-t-2">Organismo responsable</h5> <p>{area}</p><table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr></thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">Etapas del proyecto​</h5> <table class="table"> <thead> <tr> <th>Hitos</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr></thead> <tbody data-render="hitos"> </tbody> </table> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p></div></div></div></div>',
             hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
             indicador: '<tr> <td><p>{nombre}</p></td><td><p>{metaAnual}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
         }
@@ -465,6 +498,7 @@ layout: argentina
                             area: row.gsx$area.$t,
                             link: row.gsx$link.$t,
                             indicadores: [],
+                            avance: row.gsx$avance.$t,
                             hitos: []
                         });
 
@@ -476,6 +510,7 @@ layout: argentina
                             formulacion: row.gsx$formulacion.$t,
                             metaAnual: row.gsx$metaanual.$t,
                             avance: row.gsx$avance.$t,
+                            area: row.gsx$area.$t,
                             porcentaje: row.gsx$porcentaje.$t
                         });
 
@@ -549,12 +584,14 @@ layout: argentina
                             .replace(/{apn}/gi, proyecto.apn.replace("no", "").replace("si", "Administración Pública, "))
                             .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no", "").replace("si", "Gobiernos Subnacionales, "))
                             .replace(/{metas}/gi, proyecto.indicadores[0].metaAnual)
+                            .replace(/{area}/gi, proyecto.area)
                             .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
                             .replace(/{duracionProyecto}/gi, duracion);
                         //.replace(/{estado}/gi, 'Iniciado');
 
                         if (!/[a-zA-Z]/.test(proyecto.indicadores[0].porcentaje)) {
-                            html = html.replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje + ' cumplido')
+                            //html = html.replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje + ' cumplido')
+                            html = html.replace(/{avancePorcentajeInicial}/gi, proyecto.indicadores[0].porcentaje)
                         }
 
                         var etiquetas = proyecto.innovacion.replace("no", "").replace("si", "innovacion | ") + proyecto.participacion.replace("no", "").replace("si", "participacion | ") + proyecto.apertura.replace("no", "").replace("si", "apertura | ") + proyecto.eficiencia.replace("no", "").replace("si", "eficiencia | ");
@@ -563,6 +600,7 @@ layout: argentina
                         modal = modal.replace(/{proyecto}/gi, proyecto.nombre)
                             .replace(/{index}/gi, index)
                             .replace(/{etiquetas}/gi, etiquetas)
+                            .replace(/{lineamiento}/gi, proyecto.lineamiento)
                             .replace(/{descripcion}/gi, proyecto.descripcion)
                             .replace(/{estado}/gi, proyecto.estado)
                             .replace(/{ciudadano}/gi, proyecto.ciudadano.replace("no", "").replace("si", "Ciudadanos, "))
@@ -625,8 +663,8 @@ layout: argentina
             }
         }
 
-        jQuery("#tipo-proyectos").on("change", function() {
-            config.tipo = jQuery("#tipo-proyectos option:selected").data('tipoproyectos');
+        jQuery("#tipo-proyectos .panel").on("click", function() {
+            config.tipo = jQuery(this).data('tipoproyectos');
             render.tarjetas();
         });
 
