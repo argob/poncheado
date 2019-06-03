@@ -82,67 +82,9 @@ a.panel span {
 
 </style>
 
-<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/ettb-2019.jpg');">
-  <div class="jumbotron_bar">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ol class="breadcrumb pull-left">
-            <li><a href="/">Inicio</a></li>
-            <li class="active">El Estado en tu Barrio</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="jumbotron_body">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-offset-3 text-center">
-          <h1><img alt="El Estado en tu Barrio" src="http://www.argentina.gob.ar/sites/default/files/el-estado-en-tu-barrrio.png" style="width: 320px;"><span class="sr-only">El Estado en tu Barrio</span> </h1>
-          <p>Más de 6 millones de vecinos ya resolvieron sus trámites en <br class="hidden-xs">EL ESTADO EN TU BARRIO, cerca de sus casas, sin intermediarios y en un mismo lugar.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="overlay"></div>
-</section>
-
-
 
 <section class="m-b-0 p-b-0 m-t-3">
   <div class="container">
-
-      <div class="row panels-row">
-        <div class="col-md-4 col-sm-6 text-center">
-          <div class="icon-item">
-            <i class="m-b-0 fa fa-users text-primary"></i>
-            <h3>Cerca de cada argentino</h3>
-            <p> Nos acercamos a cada vecino recorriendo el país para que todos tengan las mismas oportunidades.</p>
-          </div>
-          </div>
-            <div class="col-md-4 col-sm-6 text-center">
-              <div class="icon-item">
-                <i class="m-b-0 fa fa-comments text-primary"></i>
-                <h3>Sin intermediarios</h3>
-                <p>Atendemos tu consulta de forma directa, sin intermediarios, para hacerte la vida más fácil.</p>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6 text-center">
-              <div class="icon-item">
-                <i class="m-b-0 fa fa-map-marker text-primary"></i>
-                <h3>Todo en un mismo lugar</h3>
-                <p>Podés sacar el DNI, asesorarte sobre asignaciones familiares, gestionar la SUBE y mucho más.</p>
-              </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
 
     <h2 class="m-t-4 text-center">¿Dónde nos podés encontrar?</h2>
     <p class="lead text-center m-b-4">Cada semana nos acercamos a más de 40 localidades.</p>
@@ -171,14 +113,43 @@ a.panel span {
 
       </div>
       <div class="row" id="puntosFijos" style="display:none">
-        <div class="col-md-12">
-           <div class="checkbox m-b-2">
+
+       <div class="col-xs-12 col-sm-4">
+        <div class="form-group">
+            <div class="radio">
               <label>
-                <input type="checkbox" id="puntosFijosCheckbox"> <strong>Ver solo oficinas fijas </strong>
-                </label>
-              <p class="text-muted">Estamos abriendo oficinas fijas para estar cerca de los vecinos y quedarnos acompañándolos en forma permanente con soluciones para mejorar su vida.</p>
-            </div>          
+                <input type="radio" name="tipo" value="TI" checked><strong>Oficinas itinerantes</strong>
+              </label>
+            </div>
+            <div class="m-l-1">
+              <p>Estan en un lugar de forma temporal.</p>
+            </div>  
         </div>
+        </div>
+
+         <div class="col-xs-12 col-sm-4">
+                <div class="form-group">
+            <div class="radio">
+              <label>
+                <input type="radio" name="tipo" value="TI" checked><strong>Oficinas fijas</strong>
+              </label>
+            </div>
+            <div class="m-l-1">
+              <p>Permanencen en un mismo lugar.</p>
+            </div>  
+        </div>
+
+        </div>
+
+
+<!--         <div class="col-md-12">
+   <div class="checkbox m-b-2">
+      <label>
+        <input type="checkbox" id="puntosFijosCheckbox"> <strong>Ver solo oficinas fijas </strong>
+        </label>
+      <p class="text-muted">Estamos abriendo oficinas fijas para estar cerca de los vecinos y quedarnos acompañándolos en forma permanente con soluciones para mejorar su vida.</p>
+    </div>          
+</div> -->
       </div>
 
     </div>
@@ -386,40 +357,41 @@ function filtrarPuntos(listaPuntos,provincia){
         
         jQuery("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
 
-        //Es de un solo día
+        //Es de un solo día?
         if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
           fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
             jQuery("#punto-clon .fechaPunto").parents(".media").show();
             jQuery("#punto-clon .fechaPunto").html(fechaPunto);
         }
 
-        //Tiene fecha inicio y fin
+        //Tiene fecha inicio y fin?
         if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
           fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
             jQuery("#punto-clon .fechaPunto").parents(".media").show();
             jQuery("#punto-clon .fechaPunto").html(fechaPunto);
         }
 
-        //Es punto fijo
+        //Es punto fijo?
         jQuery("#punto-clon .punto").removeClass("puntoFijo");
         if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
             jQuery("#punto-clon .fechaPunto").parents(".media").hide();
             jQuery("#punto-clon .fechaPunto").parents(".punto").addClass("puntoFijo");
         }
 
-
         jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
         jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
         jQuery("#punto-clon a").attr("href","elestadoentubarrio/punto?&punto="+val.gsx$nombre.$t);
        
 
-        //Motivo suspendido
+        //Tiene motivo suspendido?
         if(val.gsx$suspendido.$t != ""){
           jQuery("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
         }
         else{
           jQuery("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
         }
+        
+        //Renderizar punto
         var punto = jQuery("#punto-clon .punto").clone();
         jQuery("#puntos").append(punto);
         cantidadPuntos++;
@@ -461,7 +433,7 @@ else{
 
 
 
-  jQuery("#provincia .preloader").remove();
+jQuery("#provincia .preloader").remove();
 provinciasCargadas = true;
 
 
