@@ -37,12 +37,15 @@ layout: argentina
     .flex-panels .progress-bar{
         background-color: #707070;
     }
+    .flex-panels .panel:focus .progress,
     .flex-panels .panel:hover .progress{
         background-color: rgba(255, 255, 255,.4);
     }
+    .flex-panels .panel:focus .progress-bar,
     .flex-panels .panel:hover .progress-bar{
         background-color: #fff;
     }
+    .flex-panels .panel:focus .big small,
     .flex-panels .panel:hover .big small{
         color: rgba(255, 255, 255,.4);
     }
@@ -98,6 +101,7 @@ layout: argentina
     .inter-flex .atres *{
         margin: 0;
     }
+    .panel{cursor: pointer;}
     .panel .inter-flex *{
         transition: none;
     }
@@ -106,12 +110,16 @@ layout: argentina
     .panel:hover .inter-flex *{
         color: #fff;
     }
-    .panel.active{background: #0072bb;color:#fff;}
+    .panel.active{background: #0072bb;color:#fff!important;}
+    .panel.active .text-secondary,
+    .panel.active .text-muted{color:#fff!important;}
     .panel.active .progress{background-color: rgba(255, 255, 255,.4);}
     .panel.active .progress-bar{background-color: #fff;}
     .panel.active .big small{color: rgba(255, 255, 255,.4);}
     .panel .panel-footer.state-loading{height: 100%;min-height: 150px;}
     .panel .panel-footer.state-loading:after{background: none;}
+
+    div[data-render=tarjetas] .alert{width: 100%;}
 
     @media all and (min-width: 576px) {
         .flex-panels .col{
@@ -155,8 +163,8 @@ layout: argentina
     }
     @media all and (min-width: 992px) {
         .inter-flex .auno{
-            flex: 0 0 15%;
-            width: 15%;
+            flex: 0 0 20%;
+            width: 20%;
         }
         .inter-flex .ados{
             flex: 0 0 35%;
@@ -553,9 +561,14 @@ layout: argentina
             }
         }
 
+        var alertavacia = '<div class="col-xs-12"><div class="alert alert-info"><p>No se encontraron resultados. Intente cambiando el criterio para filtrar.</p></div></div>';
+
         jQuery("#tipo-proyectos .panel").on("click", function() {
             config.tipo = jQuery(this).data('tipoproyectos');
             render.tarjetas();
+            if (jQuery('[data-render=tarjetas]').is(':empty')){
+                jQuery('[data-render=tarjetas]').html(alertavacia);
+            }
             jQuery("#tipo-proyectos .panel").removeClass('active');
             jQuery(this).addClass('active');
         });
@@ -571,8 +584,10 @@ layout: argentina
             }
 
             render.tarjetas();
+            if (jQuery('[data-render=tarjetas]').is(':empty')){
+                jQuery('[data-render=tarjetas]').html(alertavacia);
+            }
         });
-
     });
 </script>
 
