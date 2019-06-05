@@ -3,7 +3,8 @@ layout: argentina
 ---
     <style>
       
-      
+      .state-loading:after{background: none;}
+
       @media screen and (max-width: 767px){
        
         td{
@@ -23,14 +24,14 @@ layout: argentina
           <div>
             <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Nº de legajo</strong></label>
-                <input class="form-control" id="legajo" placeholder="">
+                <label for=""> <strong>Agencia o razón social </strong></label>
+                <input class="form-control" id="agencia" placeholder="">
               </div>
             </div>
             <div class="col-md-4">    
               <div class="form-group">
-                <label for=""> <strong>Agencia, ciudad o razón social </strong></label>
-                <input class="form-control" id="agencia" placeholder="">
+                <label for=""> <strong>Nº de legajo o ciudad</strong></label>
+                <input class="form-control" id="legajo" placeholder="">
               </div>
             </div>
             <div class="table-responsive col-md-12">
@@ -66,6 +67,7 @@ layout: argentina
 <script type="text/javascript">
 (function($) {
 $(document).ready(function () {
+    jQuery('#show-data').addClass('state-loading');
     var provincia = "todos";
     var listadoAgencias = "";
     var grupoDeAgencias = "";
@@ -77,14 +79,16 @@ $(document).ready(function () {
           filtrarContenido(provincia);
       });
           function filtrarContenido(provincia){
+            
+          jQuery('#show-data').removeClass('state-loading');
           var lista = '';
           
           $.each(listadoAgencias, function( key, item ) {
           if((provincia == "todos") || (provincia == item.gsx$provincia.$t)){
-                lista += '<tr class="razon-social">';
+                lista += '<tr>';
                 /*el class es para identificar los filtros en el list.js (es para el buscador y paginado)*/
-                lista += ' <td><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p></td>';
-                lista += ` <td> <p><b>Sucursal:</b> `+ item.gsx$sucursal.$t + '</p><p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><span class="cuidad"><b>Ciudad: </b>'+ item.gsx$ciudad.$t +'</span>, '+ item.gsx$provincia.$t + '</p> <p> <b>Código postal: </b>' + item.gsx$cpostal.$t +'</p>'+ `<p class="legajo"><b>Legajo: </b>${item.gsx$legajo.$t}</p><p><b>Idoneo:</b> ${item.gsx$idoneo.$t}</p><p><b>Matrícula:</b> ${item.gsx$matricula.$t}</p></td>`;
+                lista += ' <td class="agencia"><h5>' + item.gsx$agencia.$t + '</h5><p><b>Razón Social: </b>' + item.gsx$razonsocial.$t + '</p> <p><b>CUIT: </b>' + item.gsx$cuit.$t + '</p><p><b>Tipo: </b>' + item.gsx$tipo.$t +'</p></td>';
+                lista += ` <td class="legajo"> <p><b>Sucursal:</b> `+ item.gsx$sucursal.$t + '</p><p><b>Domicilio:</b> '+ item.gsx$domicilio.$t + '</p> <p><span class="cuidad"><b>Ciudad: </b>'+ item.gsx$ciudad.$t +'</span>, '+ item.gsx$provincia.$t + '</p> <p> <b>Código postal: </b>' + item.gsx$cpostal.$t +'</p>'+ `<p><b>Legajo: </b>${item.gsx$legajo.$t}</p><p><b>Idoneo:</b> ${item.gsx$idoneo.$t}</p><p><b>Matrícula:</b> ${item.gsx$matricula.$t}</p></td>`;
                 lista += ' <td class="telefono"> <p><b>Teléfono: </b>('+ item.gsx$prefijo.$t + ') '+ item.gsx$telefono.$t +'</p><p><b>E-mail: </b><a href="'+ item.gsx$mail.$t +'">'+ item.gsx$mail.$t + '</a></p></td>';
                 
                 lista += '</tr>';
@@ -108,7 +112,7 @@ $(document).ready(function () {
             var searchId = $(this).attr('id');
             
             //listaNueva.search(valorBuscado,[searchId]);//propio de List.js
-            listaNueva.filter(getAccentInsensitiveFilter("razon-social", valorBuscado))
+            listaNueva.filter(getAccentInsensitiveFilter("agencia", valorBuscado))
            });
           $('#legajo').on("keyup", function(){
             var valorBuscado = $(this).val();
