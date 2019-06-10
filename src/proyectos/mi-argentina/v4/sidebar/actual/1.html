@@ -1,0 +1,195 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../../css/miargentina.css">
+<style>
+.content-popup{
+	position: initial;
+	max-width: 400px !important;
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding: 10px 20px 20px 20px;
+    margin: 15px 0;
+}
+.arrow-popup{
+	border-bottom: 0 solid rgba(0, 0, 0, 0);
+    border-left: 11px solid rgba(0, 0, 0, 0);
+    border-right: 11px solid rgba(0, 0, 0, 0);
+    border-top: 11px solid rgba(0, 0, 0, 0.25);
+    bottom: 37px;
+    height: 11px;
+    left: 199px;
+    margin-left: -11px;
+    position: absolute;
+    width: 22px;
+}
+
+.arrow-popup:after {
+    content: " ";
+    border-width: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    bottom: 1px;
+    margin-left: -10px;
+    border-top-color: #fff;
+    border-bottom-width: 0;
+}
+</style>
+<section class="p-y-0">
+	<div class="container-fluid">
+    	<div class="row dashboard">
+      		<div class="col-lg-3 col-sm-4 sidebar hidden-xs p-l-0s">
+        
+        		{% include mi-argentina/menu-1-2019_index.html %} 
+						
+     		 </div>
+     	
+ 		 	<div class="col-lg-9 col-sm-8">
+ 		 		<div class="row">
+    				<div class="col-xs-12 m-b-1">
+						<h1 class="title-dashboard">
+							Bienvenida María Paula
+					 	</h1>
+					 	<p>Todos tus documentos, constancias, certificados y licencias en un solo lugar para consultarlos cuando quieras. Además, si configurás tus notificaciones te avisamos cuándo renovarlos.</p>
+					 </div>
+				</div>
+ 		 		<div class="row main">
+ 		 			<div class="col-md-8">
+ 		 				<div class="panels-row-miargentina">
+						   	<div class="panel panel-default panel-border-gray panel-nolink" id="detalleCedulaVerde">
+						        <div class="panel-heading" role="tab">
+						          <div class="row">
+						            
+						            <div class="col-md-12">
+						              
+						                <a data-id="volver" href="#" class="volver btn btn-link btn-sm m-b-0 pull-left m-r-1"><i class="fa fa-arrow-left"></i>Volver</a>
+						              
+						              <h2 class="pull-left titulo-con-volver">Cédula de Identificación del Vehículo (cédula verde)</h2>
+						            </div>
+						            
+						          </div>
+						        </div>
+						        <div id="detalleCedulaVerde">
+						          	<div class="panel-body">
+
+							          	<ul class="list-group">
+							          		
+										    <li class="list-group-item">
+										      <div class="media">
+										        <div class="media-left p-r-1 hidden-xs">
+										          <i class="fa fa-car fa-fw fa-2x text-muted m-t-1"></i>
+										        </div>
+										        <div class="media-body">
+										          <form id="form_habilitar_cedula">
+										            <div id="form-group">
+										              <div class="input-group input-group-lg">
+										                <label class="form-label" for="boleta">Ingresá el número de tu cédula física</label>
+										                <div class="content-popup bg-white hidden" id="content-cedula">
+										                  <div class="arrow-popup"></div>
+										                  <div class="col-xs-12 p-x-0">
+										                    <span class="close pophidde"  onclick="popHide(document.getElementById('content-cedula'))" aria-label="Cerrar">×</span>
+										                  </div>
+										                  <div>
+										                    <p>El Nro de cédula se encuentra en el frente a la izquierda de los datos.</p>
+										                  </div>
+										                  <div class="m-x-1">
+										                    <img src="https://www.argentina.gob.ar/sites/default/files/numero_cedula.png" alt="El Nro de cédula se encuentra en el frente a la izquierda de los datos." title="Imagen ilustrativa de la Cédula" class="img-responsive">
+										                  </div>
+										                </div>
+										                <p><a onclick="popShow(document.getElementById('content-cedula'))" role="button" data-toggle="popover" data-trigger="focus">¿Dónde encuentro este número?</a></p>
+										              </div>
+										            </div>
+										            <p><input class="form-control" name="numero_cedula" type="text"></p>
+										            <p id="cedulaMessage"></p>
+										            <input class="btn btn-link" value="HABILITAR" type="submit">
+										          </form>
+										        </div>
+										      </div>
+										    </li>
+							  			</ul>
+						  			</div>
+					  			</div>
+						  	</div>
+					</div>
+								
+					</div>
+					
+ 		 			<div class="col-lg-4">
+ 		 				<div class="row main-panels panels-row panels-row-miargentina pclose">
+ 		 					<div class="col-xs-12">
+	 		 					<div class="panel panel-default panel-nolink panel-border-primary">
+									<div class="panel-heading">
+										<div class="panel-heading-title">
+											<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema. Estas son las vacunas que te aplicaste y fueron registradas en el sistema.</h2>
+										</div>
+										
+										<div class="text-right btn-close">
+											<i class="fa fa-close"></i>
+										</div>
+									</div>
+						          	<div class="panel-body">
+						          		<div class="panel-content-padding">
+						          			<a class="item-panel" href="">Fiebre amarilla</a>
+							        		<p>Información sobre la vacuna</p>
+						          		</div>
+						          	</div>
+						        </div>
+						  	</div>
+						  	<div class="col-xs-12">
+								<div class="panel panel-default panel-nolink panel-border-primary">
+									<div class="panel-heading" >
+										<div class="panel-heading-title">
+											<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+										</div>
+										<div class="text-right">
+											<a href="#collapsePanel3" class="collapsed btn-collapse" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePanel"> 
+												<i class="fa fa-chevron-up"></i>
+											</a>
+										</div>
+									</div>
+									<div class="panel-collapse collapse in" role="tabpanel" id="collapsePanel3" aria-labelledby="collapsePanel" aria-expanded="true">
+										<div class="panel-body">
+											<ul class="list-group">
+												<li class="list-group-item">
+													<h3><a href="">Antigripal</a></h3>
+													<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+												</li>
+												<li class="list-group-item">
+													<h3><a href="">Fiebre amarilla</a></h3>
+													<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+												</li>
+											</ul>
+										</div>
+										<div class="panel-footer">
+											<a href="">Para más información llamá a INCUCAI al 0800-555-4628.</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+ 		 			</div>
+
+ 		 	</div>
+ 		</div>
+    </div>
+</section>
+<script src="../../js/alert-collapse.js"></script>
+<script src="../../js/alert-close.js"></script>
+
+<script>
+	
+	  function popShow(content){
+	    content.classList.toggle('hidden');
+	  }
+
+	  function popHide(content){
+	    content.classList.add('hidden')
+	  }
+</script>
+
