@@ -1,0 +1,293 @@
+---
+layout: mi-argentina2
+---
+
+<style>
+/*.wizard {
+    margin: 20px auto;
+    background: #fff;
+}*/
+
+    .wizard-head .nav-tabs {
+        position: relative;
+        margin-bottom: 0;
+		border:none;
+		display: flex;
+		justify-content: space-between
+    }
+
+    .wizard-head {
+        position: relative;
+    }
+    div.wizard-inner {
+        position: relative;
+    }
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+.wizard-head .nav-tabs > li{float:none;position: relative;z-index: 2;background: #fff;}
+
+.wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus,
+.mobile-step.active > a, .mobile-step.active > a:hover, .mobile-step.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #0F73B9;
+    z-index: 2;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    color:#fff;
+}
+span.round-tab i{
+    color:#fff;
+}
+.wizard-head li.active span.round-tab,
+.mobile-step.active span.round-tab {
+    box-shadow: 0 4px 8px rgba(0,0,0,.4);
+    
+}
+.wizard-head li.disabled span.round-tab,
+.mobile-step.disabled span.round-tab {
+    background: #BCBCBC;
+    
+}
+.wizard-head li.disabled span.round-tab i,
+.mobile-step.disabled span.round-tab i{
+    color: #BCBCBC;
+}
+span.round-tab:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,.2);
+}
+.wizard-head .nav-tabs:before,
+.wizard-head .nav-tabs:after{display: none!important;}
+
+.wizard-head .nav-tabs > li a {
+    padding: 0;
+	margin: 0;
+}
+
+    .wizard-head .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.tab-pane {
+    position: relative;
+}
+
+.mobile-step a{display: block;}
+.mobile-step.disabled > a:hover,
+.mobile-step.disabled > a:focus{cursor: not-allowed;}
+
+.panel-heading{display: none;}
+@media( min-width : 768px ) {
+	.mobile-step{display: none;}
+	.panel-heading{display: block;}
+	}
+</style>
+
+<section class="p-y-0">
+	<div class="container-fluid">
+    	<div class="row dashboard">
+      		<div class="col-lg-3 col-sm-4 sidebar p-l-0 hidden-xs">
+        
+        		{% include mi-argentina/menu-1-2019_index.html %} 
+						
+     		 </div>
+     	
+ 		 	<div class="col-lg-9 col-sm-8">
+ 		 		<div class="row">
+			        <div class="col-sm-10 salud-title">
+			          <h1 class="title-dashboard">
+							Formulario de Reclamo ante Defensa del Consumidor
+					 	</h1>
+			          <p>Los datos que tienen un asterisco * son obligatorios.</p>
+			        </div>
+			    </div>
+ 		 		<div class="row main">
+ 		 			<div class="col-md-8" id="main-content">
+ 		 				<div class="row panels-row panels-row-miargentina">
+ 		 					
+					        
+					        <div class="col-xs-12">
+ 		 						<div class="panel panel-default panel-border-gray panel-nolink">
+		 		 					<div class="panel-heading">
+										<div class="wizard-head">
+											<div class="connecting-line"></div>
+											<ul class="nav nav-tabs" role="tablist">
+							
+												<li role="presentation" class="active">
+													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del proveedor del producto o servicio">
+														<span class="round-tab">
+															<i class="fa fa-check"></i><!--1-->
+														</span> Datos del proveedor del producto o servicio
+													</a>
+												</li>
+							
+												<li role="presentation" class="disabled">
+													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Datos personales">
+														<span class="round-tab">
+															<!--<i class="glyphicon glyphicon-pencil"></i>-->2
+														</span> Datos personales
+													</a>
+												</li>
+												<li role="presentation" class="disabled">
+													<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Datos del reclamo">
+														<span class="round-tab">
+															<!--<i class="glyphicon glyphicon-picture"></i>-->3
+														</span> Datos del reclamo
+													</a>
+												</li>
+							
+												<li role="presentation" class="disabled">
+													<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar datos">
+														<span class="round-tab">
+															<!--<i class="glyphicon glyphicon-ok"></i>-->4
+														</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+								    </div>
+							        <div class="panel-body">
+										<form role="form">
+											<div class="tab-content" role="tablist">
+													<div role="presentation" class="mobile-step activo">
+														<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del proveedor del producto o servicio">
+															<span class="round-tab">
+																<!-- <i class="fa fa-check"></i>-->1 
+															</span> Datos del proveedor del producto o servicio
+														</a>
+													</div>
+													<div class="tab-pane active" role="tabpanel" id="step1">
+														<h3 class="m-b-0">Buscá al proveedor para agregar sus datos.</h3>
+														<p>Esta información la podés sacar de tu factura o ticket.</p>
+														<ul class="list-inline">
+															<li><button type="button" class="btn btn-success next-step">Continuar</button></li>
+														</ul>
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Datos personales">
+															<span class="round-tab">
+																<!-- <i class="fa fa-check"></i>-->2
+															</span> Datos personales
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="step2">
+														<h3 class="m-b-0">Datos de la persona que hace el reclamo.</h3>
+														<p>¿Sos el titular del producto o servicio? *</p>
+														<div>
+															<button type="button" class="btn btn-default prev-step">Volver</button>
+															<button type="button" class="btn btn-success next-step">Continuar</button>
+														</div>
+														</ul>
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Datos del reclamo">
+															<span class="round-tab">
+																<!-- <i class="fa fa-check"></i>-->3
+															</span> Datos del reclamo
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="step3">
+														<h3 class="m-b-0">paso 3</h3>
+														<p>Paso 3</p>
+														<ul class="list-inline">
+															<li><button type="button" class="btn btn-default prev-step">Volver</button></li>
+															<li><button type="button" class="btn btn-success btn-info-full next-step">Terminar</button></li>
+														</ul>
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Confirmar datos">
+															<span class="round-tab">
+																<!-- <i class="fa fa-check"></i>-->4 
+															</span> Confirmar datos
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="complete">
+														<h3 class="m-b-0">Confirmá los datos del reclamo</h3>
+														<p>Datos del proveedor del producto o servicio.</p>
+														<ul class="list-inline">
+															<li><button type="button" class="btn btn-default prev-step">Volver</button></li>
+															<li><button type="button" class="btn btn-success btn-info-full next-step">Confirmar</button></li>
+														</ul>
+													</div>
+											</div>
+										</form>
+						            </div>
+							    </div>
+							</div>
+
+					    </div>
+					</div>
+ 		 		</div>
+ 		 	</div>
+ 		</div>
+ 	</div>
+</section>
+<script>
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard-head .nav-tabs li.active');
+        var $miact = $('.tab-content .mobile-step.activo');
+        $active.next().removeClass('disabled');
+        $miact.removeClass('activo');
+        $miact.next().next().addClass('activo').removeClass('disabled');
+		
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard-head .nav-tabs li.active');
+        prevTab($active);
+
+    });
+	$(".mobile-step > a").click(function(e){
+		$(".mobile-step").removeClass('activo');
+		$(this).parent().addClass('activo');
+		e.preventDefault();
+		var link = $(this).attr('href');
+		$(".nav-tabs a[href='"+link+"']").trigger("click");
+	});
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+</script>
