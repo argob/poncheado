@@ -30,7 +30,7 @@ layout: mi-argentina2
  		 			<div class="col-lg-8" id="main-content">
  		 				<div class="panels-row-miargentina panels-row-miargentina-cud">
 				        	<div class="panel panel-default panel-nolink panel-border-success">
-				        		<form action="" onsubmit="event.preventDefault()"> 
+				        		<form action="removeClass('step2', 'hidden')" onsubmit="event.preventDefault()"> 
 							      	<fieldset>
 								        <legend>
 									        <div class="panel-heading">
@@ -39,7 +39,6 @@ layout: mi-argentina2
 							        	</legend>
 	 		 							<div class="panel-body">
 	 		 								<div class="col-md-8">
-
 	 		 									<div class="form-group item-form">
 										            <div class="radio">
 										              <label for="personaAevaluar" class="m-b-1">
@@ -52,8 +51,19 @@ layout: mi-argentina2
 										              </label>
 										            </div>
 										        </div>
-										        
-										        <div class="hidden" id="form-content">
+										    </div>
+	 		 							</div>
+ 		 							</fieldset>
+ 		 							<button type="submit">Guardar datos</button>
+ 		 						</form>
+ 		 						<form action="" class="hidden" id="step2">
+ 		 							<fieldset>
+ 		 								<legend>
+ 		 									<div class="panel-heading">
+ 		 										
+ 		 									</div>
+ 		 									<div class="panel-body">
+ 		 										 <div class="hidden" id="form-content">
 										        	<fieldset>
 										        		<legend><h3>Datos de la persona con discapacidad</h3></legend>
 										        	
@@ -1663,10 +1673,8 @@ layout: mi-argentina2
 												       
 											        </fieldset>
 										        </div>
-										        
-										        
-	 		 								</div>
-	 		 							</div>
+ 		 									</div>
+ 		 								</legend>
  		 							</fieldset>
  		 						</form>
 							</div>
@@ -1743,7 +1751,10 @@ layout: mi-argentina2
     this.defensory_notevaluate = defensory_notevaluate
     }
   }
-
+function removeClass(id, classR){
+	document.getElementById(id).classList.remove(classR)
+}
+ 
   function userOrNotUser(){
 	var personaAevaluar = document.querySelectorAll("input[name='presenta-planilla']")
 	personaAevaluar.forEach(p => {
