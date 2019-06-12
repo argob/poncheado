@@ -17,13 +17,15 @@ layout: mi-argentina2
     }
 
     .wizard-head {
-        position: relative;
+        position: relative;padding: 14px 0;
     }
     div.wizard-inner {
         position: relative;
     }
 
-.connecting-line {
+.tab-content{position: relative;}
+
+.wizard-head .connecting-line {
     height: 2px;
     background: #e0e0e0;
     position: absolute;
@@ -35,6 +37,7 @@ layout: mi-argentina2
     z-index: 1;
 }
 .wizard-head .nav-tabs > li{float:none;position: relative;z-index: 2;background: #fff;}
+.wizard-head .nav-tabs > li > a{display: flex;padding: 0 8px;}
 
 .wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus,
 .mobile-step.active > a, .mobile-step.active > a:hover, .mobile-step.active > a:focus {
@@ -45,9 +48,9 @@ layout: mi-argentina2
 }
 
 span.round-tab {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
     display: inline-block;
     border-radius: 100px;
     background: #0F73B9;
@@ -55,11 +58,22 @@ span.round-tab {
     position: relative;
     text-align: center;
     font-size: 14px;
+    color:#fff;flex: 0 0 24px;margin-right: 8px;
+}
+span.round-tab i,
+span.round-tab span{
     color:#fff;
 }
-span.round-tab i{
-    color:#fff;
-}
+
+span.round-tab i{display: none;}
+.check span.round-tab i{display: inline-block;}
+.check .stepnumber{display: none;}
+
+.mobile-step a h5,
+.wizard-head li a h5{color:#333333;margin: 3px 0 0;font-size: 14px;}
+.mobile-step.disabled a h5,
+.wizard-head li.disabled a h5{color:#BCBCBC;word-break: keep-all;}
+
 .wizard-head li.active span.round-tab,
 .mobile-step.active span.round-tab {
     box-shadow: 0 4px 8px rgba(0,0,0,.4);
@@ -87,13 +101,15 @@ span.round-tab:hover {
 
     .wizard-head .nav-tabs > li a:hover {
         background: transparent;
+		border-color: transparent;
     }
 
 .tab-pane {
     position: relative;
 }
 
-.mobile-step a{display: block;}
+.mobile-step{margin: 24px 0;}
+.mobile-step a{display: flex;text-decoration: none}
 .mobile-step.disabled > a:hover,
 .mobile-step.disabled > a:focus{cursor: not-allowed;}
 
@@ -102,6 +118,30 @@ span.round-tab:hover {
 	.mobile-step{display: none;}
 	.panel-heading{display: block;}
 	}
+@media( max-width : 768px ) {
+	.tab-pane{margin-left: 32px;}
+	.tab-content .tab-pane:last-child:after{
+		background: #fff;
+		content: "";
+		position: absolute;
+		height: calc(100% + 24px);
+		left: -21px;
+		width: 2px;
+		top: -24px;
+		z-index: 3;
+	}
+	.tab-content .connecting-line {
+		height: 100%;
+		background: #e0e0e0;
+		position: absolute;
+		width: 2px;
+		margin: 0 auto;
+		top: 0;
+		bottom: 0;
+		left: 11px;
+		z-index: 1;
+	}
+}
 </style>
 
 <section class="p-y-0">
@@ -135,32 +175,35 @@ span.round-tab:hover {
 											<ul class="nav nav-tabs" role="tablist">
 							
 												<li role="presentation" class="active">
-													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del proveedor del producto o servicio">
+													<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos del proveedor del producto o servicio">
 														<span class="round-tab">
-															<i class="fa fa-check"></i><!--1-->
-														</span> Datos del proveedor del producto o servicio
+															<i class="fa fa-check"></i><span class="stepnumber">1</span>
+														</span>
+														<h5>Datos del proveedor del producto o servicio</h5>
 													</a>
 												</li>
 							
 												<li role="presentation" class="disabled">
-													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Datos personales">
+													<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos personales">
 														<span class="round-tab">
-															<!--<i class="glyphicon glyphicon-pencil"></i>-->2
-														</span> Datos personales
+															<i class="fa fa-check"></i><span class="stepnumber">2</span>
+														</span>
+														<h5>Datos personales</h5> 
 													</a>
 												</li>
 												<li role="presentation" class="disabled">
-													<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Datos del reclamo">
+													<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos del reclamo">
 														<span class="round-tab">
-															<!--<i class="glyphicon glyphicon-picture"></i>-->3
-														</span> Datos del reclamo
+															<i class="fa fa-check"></i><span class="stepnumber">3</span>
+														</span>
+														<h5>Datos del reclamo</h5> 
 													</a>
 												</li>
 							
 												<li role="presentation" class="disabled">
-													<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Confirmar datos">
+													<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Confirmar datos">
 														<span class="round-tab">
-															<!--<i class="glyphicon glyphicon-ok"></i>-->4
+															<i class="fa fa-check"></i><span class="stepnumber">4</span>
 														</span>
 													</a>
 												</li>
@@ -170,14 +213,16 @@ span.round-tab:hover {
 							        <div class="panel-body">
 										<form role="form">
 											<div class="tab-content" role="tablist">
+													<div class="connecting-line"></div>
 													<div role="presentation" class="mobile-step activo">
-														<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Datos del proveedor del producto o servicio">
+														<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos del proveedor del producto o servicio">
 															<span class="round-tab">
-																<!-- <i class="fa fa-check"></i>-->1 
-															</span> Datos del proveedor del producto o servicio
+																<i class="fa fa-check"></i><span class="stepnumber">1</span>
+															</span>
+															<h5>Datos del proveedor del producto o servicio</h5> 
 														</a>
 													</div>
-													<div class="tab-pane active" role="tabpanel" id="step1">
+													<div class="tab-pane active" role="tabpanel" id="step-1">
 														<h3 class="m-b-0">Buscá al proveedor para agregar sus datos.</h3>
 														<p>Esta información la podés sacar de tu factura o ticket.</p>
 														<ul class="list-inline">
@@ -185,13 +230,14 @@ span.round-tab:hover {
 														</ul>
 													</div>
 													<div role="presentation" class="mobile-step disabled">
-														<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Datos personales">
+														<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos personales">
 															<span class="round-tab">
-																<!-- <i class="fa fa-check"></i>-->2
-															</span> Datos personales
+																<i class="fa fa-check"></i><span class="stepnumber">2</span>
+															</span>
+															<h5>Datos personales</h5> 
 														</a>
 													</div>
-													<div class="tab-pane" role="tabpanel" id="step2">
+													<div class="tab-pane" role="tabpanel" id="step-2">
 														<h3 class="m-b-0">Datos de la persona que hace el reclamo.</h3>
 														<p>¿Sos el titular del producto o servicio? *</p>
 														<div>
@@ -201,13 +247,14 @@ span.round-tab:hover {
 														</ul>
 													</div>
 													<div role="presentation" class="mobile-step disabled">
-														<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Datos del reclamo">
+														<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos del reclamo">
 															<span class="round-tab">
-																<!-- <i class="fa fa-check"></i>-->3
-															</span> Datos del reclamo
+																<i class="fa fa-check"></i><span class="stepnumber">3</span>
+															</span>
+															<h5>Datos del reclamo</h5> 
 														</a>
 													</div>
-													<div class="tab-pane" role="tabpanel" id="step3">
+													<div class="tab-pane" role="tabpanel" id="step-3">
 														<h3 class="m-b-0">paso 3</h3>
 														<p>Paso 3</p>
 														<ul class="list-inline">
@@ -216,13 +263,14 @@ span.round-tab:hover {
 														</ul>
 													</div>
 													<div role="presentation" class="mobile-step disabled">
-														<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Confirmar datos">
+														<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Confirmar datos">
 															<span class="round-tab">
-																<!-- <i class="fa fa-check"></i>-->4 
-															</span> Confirmar datos
+																<i class="fa fa-check"></i><span class="stepnumber">4</span>
+															</span>
+															<h5>Confirmar datos</h5> 
 														</a>
 													</div>
-													<div class="tab-pane" role="tabpanel" id="complete">
+													<div class="tab-pane" role="tabpanel" id="step-4">
 														<h3 class="m-b-0">Confirmá los datos del reclamo</h3>
 														<p>Datos del proveedor del producto o servicio.</p>
 														<ul class="list-inline">
@@ -251,28 +299,45 @@ $(document).ready(function () {
     //Wizard
     $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 
-        var $target = $(e.target);
+        var target = $(e.target);
     
-        if ($target.parent().hasClass('disabled')) {
+        if (target.parent().hasClass('disabled')) {
             return false;
         }
     });
 
     $(".next-step").click(function (e) {
 
-        var $active = $('.wizard-head .nav-tabs li.active');
-        var $miact = $('.tab-content .mobile-step.activo');
-        $active.next().removeClass('disabled');
-        $miact.removeClass('activo');
-        $miact.next().next().addClass('activo').removeClass('disabled');
+        var active = $('.wizard-head .nav-tabs li.active');
+        var miact = $('.tab-content .mobile-step.activo');
+        active.next().removeClass('disabled');
+        miact.removeClass('activo');
+        miact.next().next().addClass('activo').removeClass('disabled');
+/*
+		console.log($('.wizard-head .nav-tabs li').index( active ));
+		console.log(active.prev().hasClass('check'));
+		if( $('.wizard-head .nav-tabs li').index( active ) != 0 ) && ( active.prev().hasClass('check') ){
+        	active.addClass('check');
+		}*/
+		active.addClass('check');
 		
-        nextTab($active);
+        miact.addClass('check');
+		
+        nextTab(active);
 
     });
     $(".prev-step").click(function (e) {
 
-        var $active = $('.wizard-head .nav-tabs li.active');
-        prevTab($active);
+        var active = $('.wizard-head .nav-tabs li.active');
+        var miact = $('.tab-content .mobile-step.activo');
+
+		
+        active.removeClass('check');
+        miact.removeClass('check').removeClass('activo');
+		miact.prev().prev().removeClass('check').addClass('activo');
+		miact.next().next().removeClass('check').removeClass('activo');
+
+        prevTab(active);
 
     });
 	$(".mobile-step > a").click(function(e){
@@ -281,6 +346,10 @@ $(document).ready(function () {
 		e.preventDefault();
 		var link = $(this).attr('href');
 		$(".nav-tabs a[href='"+link+"']").trigger("click");
+	});
+    $("a[data-toggle='tab']").click(function (e) {
+		var miparent = $(this).parent();
+		miparent.removeClass('check');
 	});
 });
 
