@@ -3,7 +3,7 @@ layout: argentina
 ---
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-      
+
 <style>
 /* PONCHO UPLOADER - Inicio */
 
@@ -103,22 +103,22 @@ span.file-size {
 <div class="container">
 	<h1>Multiple File Upload Viewer</h1>
 </div>
+
 <div class="container">
-<form action="">
+<form action="funcionSubir.php" method="POST" id="formulario" enctype="multipart/form-data" name="pruebaForm">
 	<div>
-		<label for="upload">
-			<input type="file" id="upload" multiple>
+		<label for="PonchoUploader">
+			<input type="file" id="PonchoUploader" multiple>
 		Upload Files
 		</label>
 	</div>
 	<div class="files">
 		<h2>Files Selected</h2>
-		<ul></ul>
+		<ul id="lista"></ul>
 	</div>
 	<input type="submit" value="Submit" name="submit" id="submit" />
 </form>	
 </div>
-
 <!-- PONCHO UPLOADER - Fin-->
 
 
@@ -139,12 +139,13 @@ let state = {};
 // state management
 function updateState(newState) {
 	state = { ...state, ...newState };
-	console.log(state);
+	//state.push(newState)
+
 }
 
 // event handlers
-$("input").change(function(e) {
-	let files = document.getElementsByTagName("input")[0].files;
+$("#PonchoUploader").change(function(e) {
+	let files = document.getElementById("PonchoUploader").files;
 	let filesArr = Array.from(files);
 	updateState({ files: files, filesArr: filesArr });
 
@@ -161,11 +162,46 @@ $(".files").on("click", "li > i", function(e) {
 	renderFileList();
 });
 
-$("form").on("submit", function(e) {
+$("#formulario").on("submit", function(e) {
 	e.preventDefault();
-	console.log(state);
-	renderFileList();
+
+
+	var data = new FormData();
+
+	$.each($("#PonchoUploader").files, function(i, file) {
+	    data.append('file', file);
+	});
+
+
+	console.log(data);
+	
+	$.ajax({
+	    type: 'POST',
+	    url: '/your/url',
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    data : data,
+	    success: function(result){
+	        console.log(result);
+	    },
+	    error: function(err){
+	        console.log(err);
+	    }
+	})
+
+
+
+
+ 	
 });
+
+
+
+
+
+
+
 
 // render functions
 function renderFileList() {
@@ -184,7 +220,7 @@ function renderFileList() {
 			file.name
 		} <span class="file-size">${size} ${suffix}</span><i class="material-icons md-48">delete</i></li>`;
 	});
-	$("ul").html(fileMap);
+	$("#lista").append(fileMap);
 }
 
 </script>

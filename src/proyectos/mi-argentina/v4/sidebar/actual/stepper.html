@@ -70,7 +70,7 @@ span.round-tab i{display: none;}
 .check .stepnumber{display: none;}
 
 .mobile-step a h5,
-.wizard-head li a h5{color:#333333;margin: 3px 0 0;font-size: 14px;}
+.wizard-head li a h5{color:#333333;margin: 3px 0 0;font-size: 14px;word-break: keep-all;}
 .mobile-step.disabled a h5,
 .wizard-head li.disabled a h5{color:#BCBCBC;word-break: keep-all;}
 
@@ -97,6 +97,7 @@ span.round-tab:hover {
 .wizard-head .nav-tabs > li a {
     padding: 0;
 	margin: 0;
+	border:none;
 }
 
     .wizard-head .nav-tabs > li a:hover {
@@ -174,7 +175,7 @@ span.round-tab:hover {
 											<div class="connecting-line"></div>
 											<ul class="nav nav-tabs" role="tablist">
 							
-												<li role="presentation" class="active">
+												<li role="presentation" class="active"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 													<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos del proveedor del producto o servicio">
 														<span class="round-tab">
 															<i class="fa fa-check"></i><span class="stepnumber">1</span>
@@ -183,7 +184,7 @@ span.round-tab:hover {
 													</a>
 												</li>
 							
-												<li role="presentation" class="disabled">
+												<li role="presentation" class="disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 													<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos personales">
 														<span class="round-tab">
 															<i class="fa fa-check"></i><span class="stepnumber">2</span>
@@ -191,7 +192,7 @@ span.round-tab:hover {
 														<h5>Datos personales</h5> 
 													</a>
 												</li>
-												<li role="presentation" class="disabled">
+												<li role="presentation" class="disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 													<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos del reclamo">
 														<span class="round-tab">
 															<i class="fa fa-check"></i><span class="stepnumber">3</span>
@@ -200,7 +201,7 @@ span.round-tab:hover {
 													</a>
 												</li>
 							
-												<li role="presentation" class="disabled">
+												<li role="presentation" class="disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 													<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Confirmar datos">
 														<span class="round-tab">
 															<i class="fa fa-check"></i><span class="stepnumber">4</span>
@@ -214,7 +215,7 @@ span.round-tab:hover {
 										<form role="form">
 											<div class="tab-content" role="tablist">
 													<div class="connecting-line"></div>
-													<div role="presentation" class="mobile-step activo">
+													<div role="presentation" class="mobile-step activo"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 														<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos del proveedor del producto o servicio">
 															<span class="round-tab">
 																<i class="fa fa-check"></i><span class="stepnumber">1</span>
@@ -229,7 +230,7 @@ span.round-tab:hover {
 															<li><button type="button" class="btn btn-success next-step">Continuar</button></li>
 														</ul>
 													</div>
-													<div role="presentation" class="mobile-step disabled">
+													<div role="presentation" class="mobile-step disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 														<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos personales">
 															<span class="round-tab">
 																<i class="fa fa-check"></i><span class="stepnumber">2</span>
@@ -246,7 +247,7 @@ span.round-tab:hover {
 														</div>
 														</ul>
 													</div>
-													<div role="presentation" class="mobile-step disabled">
+													<div role="presentation" class="mobile-step disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 														<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos del reclamo">
 															<span class="round-tab">
 																<i class="fa fa-check"></i><span class="stepnumber">3</span>
@@ -262,7 +263,7 @@ span.round-tab:hover {
 															<li><button type="button" class="btn btn-success btn-info-full next-step">Terminar</button></li>
 														</ul>
 													</div>
-													<div role="presentation" class="mobile-step disabled">
+													<div role="presentation" class="mobile-step disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
 														<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Confirmar datos">
 															<span class="round-tab">
 																<i class="fa fa-check"></i><span class="stepnumber">4</span>
@@ -313,15 +314,6 @@ $(document).ready(function () {
         active.next().removeClass('disabled');
         miact.removeClass('activo');
         miact.next().next().addClass('activo').removeClass('disabled');
-/*
-		console.log($('.wizard-head .nav-tabs li').index( active ));
-		console.log(active.prev().hasClass('check'));
-		if( $('.wizard-head .nav-tabs li').index( active ) != 0 ) && ( active.prev().hasClass('check') ){
-        	active.addClass('check');
-		}*/
-		active.addClass('check');
-		
-        miact.addClass('check');
 		
         nextTab(active);
 
@@ -332,10 +324,9 @@ $(document).ready(function () {
         var miact = $('.tab-content .mobile-step.activo');
 
 		
-        active.removeClass('check');
-        miact.removeClass('check').removeClass('activo');
-		miact.prev().prev().removeClass('check').addClass('activo');
-		miact.next().next().removeClass('check').removeClass('activo');
+        miact.removeClass('activo');
+		miact.prev().prev().addClass('activo');
+		miact.next().next().removeClass('activo');
 
         prevTab(active);
 
@@ -346,10 +337,6 @@ $(document).ready(function () {
 		e.preventDefault();
 		var link = $(this).attr('href');
 		$(".nav-tabs a[href='"+link+"']").trigger("click");
-	});
-    $("a[data-toggle='tab']").click(function (e) {
-		var miparent = $(this).parent();
-		miparent.removeClass('check');
 	});
 });
 
