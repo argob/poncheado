@@ -1,7 +1,148 @@
 ---
 layout: mi-argentina2
 ---
+<style>
+/*.wizard {
+	margin: 20px auto;
+	background: #fff;
+}*/
 
+	.wizard-head .nav-tabs {
+		position: relative;
+		margin-bottom: 0;
+		border:none;
+		display: flex;
+		justify-content: space-between
+	}
+
+	.wizard-head {
+		position: relative;padding: 14px 0;
+	}
+	div.wizard-inner {
+		position: relative;
+	}
+
+.tab-content{position: relative;}
+
+.wizard-head .connecting-line {
+	height: 2px;
+	background: #e0e0e0;
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: 50%;
+	z-index: 1;
+}
+.wizard-head .nav-tabs > li{float:none;position: relative;z-index: 2;background: #fff;}
+.wizard-head .nav-tabs > li > a{display: flex;padding: 0 8px;}
+
+.wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus,
+.mobile-step.active > a, .mobile-step.active > a:hover, .mobile-step.active > a:focus {
+	color: #555555;
+	cursor: default;
+	border: 0;
+	border-bottom-color: transparent;
+}
+
+span.round-tab {
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+	border-radius: 100px;
+	background: #0F73B9;
+	z-index: 2;
+	position: relative;
+	text-align: center;
+	font-size: 14px;
+	color:#fff;flex: 0 0 24px;margin-right: 8px;
+}
+span.round-tab i,
+span.round-tab span{
+	color:#fff;
+}
+
+span.round-tab i{display: none;}
+.check span.round-tab i{display: inline-block;}
+.check .stepnumber{display: none;}
+
+.mobile-step a h5,
+.wizard-head li a h5{color:#333333;margin: 3px 0 0;font-size: 14px;word-break: keep-all;}
+.mobile-step.disabled a h5,
+.wizard-head li.disabled a h5{color:#BCBCBC;word-break: keep-all;}
+
+.wizard-head li.active span.round-tab,
+.mobile-step.active span.round-tab {
+	box-shadow: 0 4px 8px rgba(0,0,0,.4);
+	
+}
+.wizard-head li.disabled span.round-tab,
+.mobile-step.disabled span.round-tab {
+	background: #BCBCBC;
+	
+}
+.wizard-head li.disabled span.round-tab i,
+.mobile-step.disabled span.round-tab i{
+	color: #BCBCBC;
+}
+span.round-tab:hover {
+	box-shadow: 0 4px 8px rgba(0,0,0,.2);
+}
+.wizard-head .nav-tabs:before,
+.wizard-head .nav-tabs:after{display: none!important;}
+
+.wizard-head .nav-tabs > li a {
+	padding: 0;
+	margin: 0;
+	border:none;
+}
+
+	.wizard-head .nav-tabs > li a:hover {
+		background: transparent;
+		border-color: transparent;
+	}
+
+.tab-pane {
+	position: relative;
+}
+
+.mobile-step{margin: 24px 0;}
+.mobile-step a{display: flex;text-decoration: none}
+.mobile-step.disabled > a:hover,
+.mobile-step.disabled > a:focus{cursor: not-allowed;}
+
+.panel-heading{display: none;}
+@media( min-width : 768px ) {
+	.mobile-step{display: none;}
+	.panel-heading{display: block;}
+	}
+@media( max-width : 768px ) {
+	.tab-pane{margin-left: 32px;}
+	.tab-content .tab-pane:last-child:after{
+		background: #fff;
+		content: "";
+		position: absolute;
+		height: calc(100% + 24px);
+		left: -21px;
+		width: 2px;
+		top: -24px;
+		z-index: 3;
+	}
+	.tab-content .connecting-line {
+		height: 100%;
+		background: #e0e0e0;
+		position: absolute;
+		width: 2px;
+		margin: 0 auto;
+		top: 0;
+		bottom: 0;
+		left: 11px;
+		z-index: 1;
+	}
+}
+</style>
 <link rel="stylesheet" href="../../../css/miargentina.css">
 <section class="p-y-0">
 	<div class="container-fluid">
@@ -24,255 +165,319 @@ layout: mi-argentina2
  		 			<div class="col-md-8" id="main-content">
  		 				<div id="errores" aria-live="assertive" class="alert alert-danger" aria-atomic="true" style="display:none"></div>
 	 					<div class="panels-row-miargentina">
-		            		<div class="panel panel-default panel-nolink panel-border-success">
-			            		<div class="panel-heading">
-			            				
-			            		</div>
-				                <div class="panel-body">
-				                	<h2>PASO 1</h2>
-				                  	<form>
-				                  		<h3>Completá los siguientes datos</h3>
-				                  		<fieldset>
-				                  			<div class="item-form">
-				                  				<legend class="control-label">Tipo de trámite</legend>
-					                           	<div class="form-group item-form">
-					                           		<div class="radio">
-														<label for="primeravezcud">
-															<input id="primeravezcud" name="tipotramite" type="radio" value="Solicitud-de-Certificado-por-primera-vez" />
-															<span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="renovacioncud">
-															<input id="renovacioncud" name="tipotramite" type="radio" value="Renovacion" /> Renovación 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="perdidacud">
-															<input id="perdidacud" name="tipotramite" type="radio" value="Perdida-del-certificado" /> Pérdida del certificado 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="agravamientocud">
-															<input id="agravamientocud" name="tipotramite" type="radio" value="Agravamiento" /> Agravamiento 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="bajafallecimientocud">
-															<input id="bajafallecimientocud" name="tipotramite" type="radio" value="Baja-por-fallecimiento" /> Baja por fallecimiento 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="bajavoluntariacud">
-															<input id="bajavoluntariacud" name="tipotramite" type="radio" value="Baja-voluntaria" /> Baja voluntaria 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="cambioidentidadadopcioncud">
-															<input id="cambioidentidadadopcioncud" name="tipotramite" type="radio" value="Cambio-de-identidad-por-adopcion" /> Cambio de identidad por adopción 
-														</label>
-													</div>
-													<div class="radio">
-														<label for="cambioidentidadgenerocud">
-															<input id="cambioidentidadgenerocud" name="tipotramite" type="radio" value="Cambio-de-identidad-de-genero" /> Cambio de identidad de género 
-														</label>
-													</div>
-					                           	</div>
-					                        </div>
-					                    </fieldset>
-					                    <fieldset>
-					                    	<div class="item-form" id="edad">
-					                    		<legend class="control-label">&iquest;Tiene 16 años o más?</legend>
-						                        <div class="form-group item-form" >
-						                           <div class="radio">
-														<label for="mayor16">
-															<input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" />
-															<span class="sr-only">Este Campo es Obligatorio</span> Sí 
-														</label>
-													</div>
-													<div class="radio">
-														<label  for="menor16">
-															<input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No 
-														</label>
-													</div>
-												</div>
+							<div class="panel panel-default panel-border-success panel-nolink">
+								<div class="panel-heading">
+									<div class="wizard-head">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+						
+											<li role="presentation" class="active"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">1</span>
+													</span>
+													<h5>Completá los siguientes datos</h5>
+												</a>
+											</li>
+						
+											<li role="presentation" class="disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">2</span>
+													</span>
+													<h5>Completá los siguientes datos</h5> 
+												</a>
+											</li>
+											<li role="presentation" class="disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">3</span>
+													</span>
+													<h5>Completá los siguientes datos</h5> 
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="panel-body">
+									<form role="form">
+										<div class="tab-content" role="tablist">
+											<div class="connecting-line"></div>
+											<div role="presentation" class="mobile-step activo"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">1</span>
+													</span>
+													<h5>Completá los siguientes datos</h5> 
+												</a>
 											</div>
-					                    </fieldset>
-					                    <div class="collapse" id="collapse-tutoria">
-					                    	<fieldset>
-					                     		<div class="item-form">
-						                        	<legend class="control-label">&iquest;La persona firma por sí misma?</legend>
-						                            <div class="form-group item-form">
-														<div class="radio">
-															<label  for="tutoriasi">
-																<input id="tutoriasi" name="tutoria" type="radio" value="si" /> Firma por sí misma. 
-															</label>
+											<div class="tab-pane active" role="tabpanel" id="step-1">
+												<form>
+													<h3>Completá los siguientes datos</h3>
+													<fieldset>
+														<div class="item-form">
+															<legend class="control-label">Tipo de trámite</legend>
+																<div class="form-group item-form">
+																	<div class="radio">
+																	<label for="primeravezcud">
+																		<input id="primeravezcud" name="tipotramite" type="radio" value="Solicitud-de-Certificado-por-primera-vez" />
+																		<span class="sr-only">Este Campo es Obligatorio</span> Solicitud por primera vez 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="renovacioncud">
+																		<input id="renovacioncud" name="tipotramite" type="radio" value="Renovacion" /> Renovación 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="perdidacud">
+																		<input id="perdidacud" name="tipotramite" type="radio" value="Perdida-del-certificado" /> Pérdida del certificado 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="agravamientocud">
+																		<input id="agravamientocud" name="tipotramite" type="radio" value="Agravamiento" /> Agravamiento 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="bajafallecimientocud">
+																		<input id="bajafallecimientocud" name="tipotramite" type="radio" value="Baja-por-fallecimiento" /> Baja por fallecimiento 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="bajavoluntariacud">
+																		<input id="bajavoluntariacud" name="tipotramite" type="radio" value="Baja-voluntaria" /> Baja voluntaria 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="cambioidentidadadopcioncud">
+																		<input id="cambioidentidadadopcioncud" name="tipotramite" type="radio" value="Cambio-de-identidad-por-adopcion" /> Cambio de identidad por adopción 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="cambioidentidadgenerocud">
+																		<input id="cambioidentidadgenerocud" name="tipotramite" type="radio" value="Cambio-de-identidad-de-genero" /> Cambio de identidad de género 
+																	</label>
+																</div>
+																</div>
 														</div>
-														<div class="radio">
-															<label  for="tutoriaconjunta">
-																<input id="tutoriaconjunta" name="tutoria" type="radio" value="conjuntamente" /> Firma conjuntamente con otra persona 
-																<strong>(Apoyo/s designado/s judicialmente)</strong>
-															</label>
+													</fieldset>
+													<fieldset>
+														<div class="item-form" id="edad">
+															<legend class="control-label">&iquest;Tiene 16 años o más?</legend>
+															<div class="form-group item-form" >
+																<div class="radio">
+																	<label for="mayor16">
+																		<input data-toogle-collapse="#collapse-tutoria" id="mayor16" name="mayor16" type="radio" value="si" />
+																		<span class="sr-only">Este Campo es Obligatorio</span> Sí 
+																	</label>
+																</div>
+																<div class="radio">
+																	<label  for="menor16">
+																		<input data-toogle-collapse="#collapse-guardador" id="menor16" name="mayor16" type="radio" value="no" /> No 
+																	</label>
+																</div>
+															</div>
 														</div>
-														<div class="radio">
-															<label  for="tutoriatercero">
-																<input id="tutoriatercero" name="tutoria" type="radio" value="tercero" /> Otra persona firma por la persona para la cual se solicita el certificado 
-																<strong>(Curatela)</strong>
-															</label>
-														</div>
+													</fieldset>
+													<div class="collapse" id="collapse-tutoria">
+														<fieldset>
+															<div class="item-form">
+																<legend class="control-label">&iquest;La persona firma por sí misma?</legend>
+																<div class="form-group item-form">
+																	<div class="radio">
+																		<label  for="tutoriasi">
+																			<input id="tutoriasi" name="tutoria" type="radio" value="si" /> Firma por sí misma. 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label  for="tutoriaconjunta">
+																			<input id="tutoriaconjunta" name="tutoria" type="radio" value="conjuntamente" /> Firma conjuntamente con otra persona 
+																			<strong>(Apoyo/s designado/s judicialmente)</strong>
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label  for="tutoriatercero">
+																			<input id="tutoriatercero" name="tutoria" type="radio" value="tercero" /> Otra persona firma por la persona para la cual se solicita el certificado 
+																			<strong>(Curatela)</strong>
+																		</label>
+																	</div>
+																</div>	
+															</div>
+														</fieldset>
+													</div>
+													<div class="collapse" id="collapse-guardador">
+														<fieldset>
+															<div class="item-form">
+																<legend class="control-label"> &iquest;La persona tiene tutor o guardador?</legend>
+																<div class="form-group item-form">
+																	<div class="radio">
+																		<label class="m-t-0" for="guardadorsi">
+																			<input id="guardadorsi" name="guardador" type="radio" value="si" /> Si 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label  for="guardadorno">
+																			<input id="guardadorno" name="guardador" type="radio" value="no" /> No 
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+													<button type="button" class="btn btn-success next-step">Guardar datos</button>
+												</form>
+											</div>
+											<div role="presentation" class="mobile-step disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">2</span>
+													</span>
+													<h5>Completá los siguientes datos</h5> 
+												</a>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step-2">
+												<form >
+													<h3>Completá los siguientes datos</h3>
+													<div  id="coberturamedica">
+														<fieldset>
+															<div class="item-form">
+																<legend class="control-label">Cobertura médica</legend>
+																	<div class="form-group item-form">
+																		<div class="radio">
+																		<label class="m-t-0" for="obrasocial">
+																			<input id="obrasocial" name="coberturamedica" type="radio" value="Obrasocial" />
+																			<span class="sr-only">Este Campo es Obligatorio</span> Obra social 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label for="medicinapre-paga">
+																			<input id="medicinapre-paga" name="coberturamedica" type="radio" value="Medicinapre-paga" /> Medicina pre-paga 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label for="coberturapublica">
+																			<input id="coberturapublica" name="coberturamedica" type="radio" value="Atencion-en-hospital-o-centro-de-salud-publica" /> Atención en hospital o centro de salud pública 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label for="pami">
+																			<input id="pami" name="coberturamedica" type="radio" value="Pami" /> PAMI 
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label for="programaincluirsalud">
+																			<input id="programaincluirsalud" name="coberturamedica" type="radio" value="Programa-Incluir-Salud" /> Programa Incluir Salud 
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+													<div class="form-group" id="origenProblemaSalud">
+														<fieldset>
+															<legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
+															<div class="checkbox">
+																<label class="m-b-1" for="discapacidadintelectualymental">
+																	<input id="discapacidadintelectualymental" name="discapacidad" type="checkbox" value="discapacidadintelectualymental" />
+																	<span class="sr-only">Este Campo es Obligatorio</span> Intelectual y Mental 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadvisual">
+																	<input id="discapacidadvisual" name="discapacidad" type="checkbox" value="discapacidadvisual" /> Visual 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadmotor">
+																	<input id="discapacidadmotor" name="discapacidad" type="checkbox" value="discapacidadmotor" /> Motor 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadauditivo">
+																	<input id="discapacidadauditivo" name="discapacidad" type="checkbox" value="discapacidadauditivo" /> Auditivo 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadrespiratorio">
+																	<input id="discapacidadrespiratorio" name="discapacidad" type="checkbox" value="discapacidadrespiratorio" /> Respiratorio 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadcardiovascular">
+																	<input id="discapacidadcardiovascular" name="discapacidad" type="checkbox" value="discapacidadcardiovascular" /> Cardiovascular 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidadrenalurologico">
+																	<input id="discapacidadrenalurologico" name="discapacidad" type="checkbox" value="discapacidadrenalurologico" /> Renal urológico 
+																</label>
+																<br />
+																<label class="m-b-1" for="discapacidaddigestivohepatico">
+																	<input id="discapacidaddigestivohepatico" name="discapacidad" type="checkbox" value="discapacidaddigestivohepatico" /> Digestivo / Hepático 
+																</label>
+															</div>
+														</fieldset>
 													</div>	
-						                        </div>
-						                    </fieldset>
-						                </div>
-						                <div class="collapse" id="collapse-guardador">
-					                     	<fieldset>
-					                     		<div class="item-form">
-					                     			<legend class="control-label"> &iquest;La persona tiene tutor o guardador?</legend>
-					                              	<div class="form-group item-form">
-														<div class="radio">
-															<label class="m-t-0" for="guardadorsi">
-																<input id="guardadorsi" name="guardador" type="radio" value="si" /> Si 
-															</label>
-														</div>
-														<div class="radio">
-															<label  for="guardadorno">
-																<input id="guardadorno" name="guardador" type="radio" value="no" /> No 
-															</label>
-														</div>
-													</div>
-					                     		</div>
-					                     	</fieldset>
+													<button type="button" class="btn btn-link prev-step">Volver</button>
+													<button type="button" class="btn btn-success next-step">Guardar datos</button>
+												</form>
+											</div>
+											<div role="presentation" class="mobile-step disabled"><!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab">
+														<i class="fa fa-check"></i><span class="stepnumber">3</span>
+													</span>
+													<h5>Completá los siguientes datos</h5> 
+												</a>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step-3">
+													<form id="wizard-form-cud" action="cud-wizard-requisitos.html">
+															<h3>Completá los siguientes datos</h3>
+															<h3>Lugar de Residencia</h3>
+															<p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
+															<fieldset>
+																<label class="control-label" for="provincia">Provincia</label> 
+																   <select class="form-control" id="provincia" name="provincia">
+																	<option value="" selected="">Elegí tu provincia</option>
+																	  <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+																	  <option value="Buenos Aires">Buenos Aires</option>
+																	  <option value="Catamarca">Catamarca</option>
+																	  <option value="Córdoba">Córdoba</option>
+																	<option value="Corrientes">Corrientes</option>
+																	<option value="Chaco">Chaco</option>
+																	<option value="Chubut">Chubut</option>
+																	<option value="Entre Ríos">Entre Ríos</option>
+																	<option value="Formosa">Formosa</option>
+																	<option value="Jujuy">Jujuy</option>
+																	<option value="La Pampa">La Pampa</option>
+																	<option value="La Rioja">La Rioja</option>
+																	<option value="Mendoza">Mendoza</option>
+																	<option value="Misiones">Misiones</option>
+																	<option value="Neuquén">Neuquén</option>
+																	<option value="Río Negro">Río Negro</option>
+																	<option value="Salta">Salta</option>
+																	<option value="San Juan">San Juan</option>
+																	<option value="San Luis">San Luis</option>
+																	<option value="Santa Cruz">Santa Cruz</option>
+																	<option value="Santa Fe">Santa Fe</option>
+																	<option value="Santiago del Estero">Santiago del Estero</option>
+																	<option value="Tierra del Fuego">Tierra del Fuego</option>
+																	<option value="Tucumán">Tucumán</option>
+															   </select>
+															</fieldset>
+															<fieldset>
+																   <div class="form-group">
+																	<label class="control-label" for="localidad">Localidad</label> <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
+																	  <select class="form-control" disabled="disabled" id="localidad" name="localidad" required="">
+																		<option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
+																	  </select>
+															   </div>
+															</fieldset>
+															<button class="btn btn-link btn-md" id="continuar" type="submit" >Consultar requisitos</button>
+															<button type="button" class="btn btn-link prev-step">Volver</button>
+															<button type="button" class="btn btn-success next-step">Guardar datos</button>
+														</form>
+											</div>
 										</div>
-										<a href="salud.html" class="btn btn-link">Cancelar</a>
-								        <button type="submit" class="btn btn-success">Guardar datos</button>
-									</form>
-									<h2>PASO 2</h2>
-									<form >
-										<h3>Completá los siguientes datos</h3>
-										<div  id="coberturamedica">
-					                        <fieldset>
-					                        	<div class="item-form">
-					                        		<legend class="control-label">Cobertura médica</legend>
-						                           	<div class="form-group item-form">
-							                           	<div class="radio">
-															<label class="m-t-0" for="obrasocial">
-																<input id="obrasocial" name="coberturamedica" type="radio" value="Obrasocial" />
-																<span class="sr-only">Este Campo es Obligatorio</span> Obra social 
-															</label>
-														</div>
-														<div class="radio">
-															<label for="medicinapre-paga">
-																<input id="medicinapre-paga" name="coberturamedica" type="radio" value="Medicinapre-paga" /> Medicina pre-paga 
-															</label>
-														</div>
-														<div class="radio">
-															<label for="coberturapublica">
-																<input id="coberturapublica" name="coberturamedica" type="radio" value="Atencion-en-hospital-o-centro-de-salud-publica" /> Atención en hospital o centro de salud pública 
-															</label>
-														</div>
-														<div class="radio">
-															<label for="pami">
-																<input id="pami" name="coberturamedica" type="radio" value="Pami" /> PAMI 
-															</label>
-														</div>
-														<div class="radio">
-															<label for="programaincluirsalud">
-																<input id="programaincluirsalud" name="coberturamedica" type="radio" value="Programa-Incluir-Salud" /> Programa Incluir Salud 
-															</label>
-														</div>
-													</div>
-					                        	</div>
-					                        </fieldset>
-					                    </div>
-					                    <div class="form-group" id="origenProblemaSalud">
-					                        <fieldset>
-					                           <legend class="control-label">Origen del problema de salud por el cual solicita el certificado de discapacidad</legend>
-												<div class="checkbox">
-													<label class="m-b-1" for="discapacidadintelectualymental">
-														<input id="discapacidadintelectualymental" name="discapacidad" type="checkbox" value="discapacidadintelectualymental" />
-														<span class="sr-only">Este Campo es Obligatorio</span> Intelectual y Mental 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadvisual">
-														<input id="discapacidadvisual" name="discapacidad" type="checkbox" value="discapacidadvisual" /> Visual 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadmotor">
-														<input id="discapacidadmotor" name="discapacidad" type="checkbox" value="discapacidadmotor" /> Motor 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadauditivo">
-														<input id="discapacidadauditivo" name="discapacidad" type="checkbox" value="discapacidadauditivo" /> Auditivo 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadrespiratorio">
-														<input id="discapacidadrespiratorio" name="discapacidad" type="checkbox" value="discapacidadrespiratorio" /> Respiratorio 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadcardiovascular">
-														<input id="discapacidadcardiovascular" name="discapacidad" type="checkbox" value="discapacidadcardiovascular" /> Cardiovascular 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidadrenalurologico">
-														<input id="discapacidadrenalurologico" name="discapacidad" type="checkbox" value="discapacidadrenalurologico" /> Renal urológico 
-													</label>
-													<br />
-													<label class="m-b-1" for="discapacidaddigestivohepatico">
-														<input id="discapacidaddigestivohepatico" name="discapacidad" type="checkbox" value="discapacidaddigestivohepatico" /> Digestivo / Hepático 
-													</label>
-												</div>
-					                        </fieldset>
-					                    </div>	
-					                    <a href="salud.html" class="btn btn-link">Cancelar</a>
-								        <button type="submit" class="btn btn-success">Guardar datos</button>
-									</form>
-									<h2>PASO 3</h2>
-									<form id="wizard-form-cud" action="cud-wizard-requisitos.html">
-										<h3>Completá los siguientes datos</h3>
-										<h3>Lugar de Residencia</h3>
-										<p class="text-muted m-b-0">Según el domicilio que figura en el DNI de la persona para la cual se solicita el CUD</p>
-										<fieldset>
-				                        	<label class="control-label" for="provincia">Provincia</label> 
-				                           	<select class="form-control" id="provincia" name="provincia">
-				                            	<option value="" selected="">Elegí tu provincia</option>
-				                              	<option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-				                              	<option value="Buenos Aires">Buenos Aires</option>
-				                              	<option value="Catamarca">Catamarca</option>
-				                              	<option value="Córdoba">Córdoba</option>
-												<option value="Corrientes">Corrientes</option>
-												<option value="Chaco">Chaco</option>
-												<option value="Chubut">Chubut</option>
-												<option value="Entre Ríos">Entre Ríos</option>
-												<option value="Formosa">Formosa</option>
-												<option value="Jujuy">Jujuy</option>
-												<option value="La Pampa">La Pampa</option>
-												<option value="La Rioja">La Rioja</option>
-												<option value="Mendoza">Mendoza</option>
-												<option value="Misiones">Misiones</option>
-												<option value="Neuquén">Neuquén</option>
-												<option value="Río Negro">Río Negro</option>
-												<option value="Salta">Salta</option>
-												<option value="San Juan">San Juan</option>
-												<option value="San Luis">San Luis</option>
-												<option value="Santa Cruz">Santa Cruz</option>
-												<option value="Santa Fe">Santa Fe</option>
-												<option value="Santiago del Estero">Santiago del Estero</option>
-												<option value="Tierra del Fuego">Tierra del Fuego</option>
-												<option value="Tucumán">Tucumán</option>
-				                           </select>
-				                        </fieldset>
-				                        <fieldset>
-				                           	<div class="form-group">
-				                            	<label class="control-label" for="localidad">Localidad</label> <!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
-				                              	<select class="form-control" disabled="disabled" id="localidad" name="localidad" required="">
-				                                	<option value="">Elegí tu localidad o la más cercana a tu domicilio</option>
-				                              	</select>
-				                           </div>
-				                        </fieldset>
-				                        <button class="btn btn-link btn-md" id="continuar" type="submit" >Consultar requisitos</button>
 									</form>
 								</div>
-			            	</div>
+							</div>
+		            		
 		            	</div>
 				    </div>
 				</div>
@@ -280,6 +485,9 @@ layout: mi-argentina2
  		</div>
     </div>
 </section>
+<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script>
 <script>
  (function($) {
  $('[data-toogle-collapse]').each(function(key, item) {
@@ -294,9 +502,6 @@ layout: mi-argentina2
  });
  });
 
- })(jQuery);
- </script><script src="https://code.jquery.com/jquery-1.12.4.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/localization/messages_es_AR.min.js"></script><script type="text/javascript">
-(function($) {
  var data;
 
  // Leo si hay algo guardado
@@ -803,15 +1008,17 @@ layout: mi-argentina2
  localidadFieldset.removeAttr('disabled');
  }
  var indexProvincia = $('select[name="provincia"]').find(":selected").index();
- load_localidades(indexProvincia);
 
- if (data != "") {
- $.each(data, function(index, val) {
- if (val["name"] == "localidad") {
- $('select[name="localidad"]').val(val["value"]);
- }
- });
- }
+	 load_localidades(indexProvincia);
+	 
+
+	if (data != "") {
+		$.each(data, function(index, val) {
+			if (val["name"] == "localidad") {
+				$('select[name="localidad"]').val(val["value"]);
+			}
+		});
+	}
 
 
  }
@@ -826,18 +1033,18 @@ layout: mi-argentina2
  }
 
  $('select[name="provincia"]').on('change', function() {
- var localidadFieldset = $('select[name="localidad"]');
- //console.log(this.value === '')
- if (this.value === '') {
- localidadFieldset.attr('disabled', true);
- } else {
- localidadFieldset.removeAttr('disabled');
- $('select[name="localidad"]').val($('select[name="localidad"] option:first').val());
+	var localidadFieldset = $('select[name="localidad"]');
+	//console.log(this.value === '')
+	if (this.value === '') {
+	localidadFieldset.attr('disabled', true);
+	} else {
+	localidadFieldset.removeAttr('disabled');
+	$('select[name="localidad"]').val($('select[name="localidad"] option:first').val());
 
- }
+	}
 
- var indexProvincia = $(this).find(":selected").index();
- load_localidades(indexProvincia);
+	var indexProvincia = $(this).find(":selected").index();
+	load_localidades(indexProvincia);
 
  });
 
@@ -848,14 +1055,14 @@ layout: mi-argentina2
  function load_localidades(indexProvincia) {
  // First we clean all options
 
- $('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
- var aux, localidad, _i, _len;
- dataLocalidades = dataProv[indexProvincia - 1].localidad;
+	$('select[name="localidad"]').empty().append('<option value="" selected>Elegí tu localidad o la más cercana a tu domicilio</option>');
+	var aux, localidad, _i, _len;
+	dataLocalidades = dataProv[indexProvincia - 1].localidad;
 
- for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
- localidad = dataLocalidades[_i];
- $('select[name="localidad"]').append('<option value="' + localidad + '">' + localidad + '</option>');
- }
+	for (_i = 0, _len = dataLocalidades.length; _i < _len; _i++) {
+		localidad = dataLocalidades[_i];
+		$('select[name="localidad"]').append('<option value="' + localidad + '">' + localidad + '</option>');
+	}
 
  }
 
@@ -871,4 +1078,59 @@ layout: mi-argentina2
 });
 
 })(jQuery);
+
+
+$(document).ready(function () {
+	//Initialize tooltips
+	$('.nav-tabs > li a[title]').tooltip();
+	
+	//Wizard
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+		var target = $(e.target);
+	
+		if (target.parent().hasClass('disabled')) {
+			return false;
+		}
+	});
+
+	$(".next-step").click(function (e) {
+
+		var active = $('.wizard-head .nav-tabs li.active');
+		var miact = $('.tab-content .mobile-step.activo');
+		active.next().removeClass('disabled');
+		miact.removeClass('activo');
+		miact.next().next().addClass('activo').removeClass('disabled');
+		
+		nextTab(active);
+
+	});
+	$(".prev-step").click(function (e) {
+
+		var active = $('.wizard-head .nav-tabs li.active');
+		var miact = $('.tab-content .mobile-step.activo');
+
+		
+		miact.removeClass('activo');
+		miact.prev().prev().addClass('activo');
+		miact.next().next().removeClass('activo');
+
+		prevTab(active);
+
+	});
+	$(".mobile-step > a").click(function(e){
+		$(".mobile-step").removeClass('activo');
+		$(this).parent().addClass('activo');
+		e.preventDefault();
+		var link = $(this).attr('href');
+		$(".nav-tabs a[href='"+link+"']").trigger("click");
+	});
+});
+
+function nextTab(elem) {
+	$(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+	$(elem).prev().find('a[data-toggle="tab"]').click();
+}
 </script>
