@@ -2,6 +2,11 @@
 layout: mi-argentina
 ---
 
+<style>
+	.fileUploader .state-loading{
+		min-height: initial!important;
+	}
+</style>
 
 <div class="container container-g-licencia">
 	<div class="row">
@@ -67,6 +72,8 @@ layout: mi-argentina
 	        </ul>
 	      </nav>
 	    </aside>
+
+
 	    <div class="col-md-8 container-licencia">
 		<!--<h3>Panel licencia de conducir</h3>-->
 			<div class="panels-row-miargentina panels-row-licencia">
@@ -80,44 +87,28 @@ layout: mi-argentina
 					</div>
 
 					<div class="panel-body">
-				
 						
 						<div class="row">
 							<div class="col-sm-12">
-								<button class="btn btn-link m-t-0">Subir documento</button>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, rerum nobis nesciunt. Nobis nisi facere impedit voluptates error suscipit excepturi esse provident voluptas in harum, atque delectus dolorem dicta laboriosam.
 							</div>
 						</div>
-						
-						<div class="row">
-							<div class="col-sm-12">
-								
-								<div class="row">
-									<div class="col-sm-8">
-										Nombre de archivo.pdf
-									</div>
-									<div class="col-sm-4">
-										<button class="btn btn-danger pull-right btn-sm m-t-0">Quitar</button>		
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-8">
-										Nombre de archivo.pdf
-									</div>
-									<div class="col-sm-4">
-										<button class="btn btn-danger pull-right btn-sm m-t-0">Quitar</button>		
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-8">
-										Nombre de archivo.pdf
-									</div>
-									<div class="col-sm-4">
-										<button class="btn btn-danger pull-right btn-sm m-t-0">Quitar</button>		
-									</div>
-								</div>														
 
+						<div class="fileUploader">
+							<div class="row m-t-2">
+								<div class="col-sm-12">
+									<input class="btn btn-block btn-link m-t-0" value="Subir documento" type="file" multiple id="fileUploaderBtn">
+									<div class="alert alert-info" id="fileUploaderAlert" style="display:none">Agregaste 10 documentos. Para agregar más primero quitar alguna documento.</div>
+								</div>
 							</div>
+							
+							<div class="row m-t-1">
+								<div class="col-sm-12 fileList"></div>
+							</div>
+
 						</div>
+
+
 					
 					</div>
 
@@ -127,4 +118,68 @@ layout: mi-argentina
 	</div>
 	
 </div>
+
+
+<script>
+$(function(){
+	var archivosSubidos = 0;
+	var limiteArchivos = 3;
+	var limiteAlcanzado = false;
+
+	//AGREGAR ARCHIVO
+	$(document).on("change","#fileUploaderBtn", function(){
+		var el = $(this);
+		el.addClass("state-loading");
+
+			//Se emula la carga del archivo
+			setTimeout(function(){
+				archivosSubidos++;
+				console.log(archivosSubidos);
+				nuevoArchivo = '<div class="row"><div class="col-sm-8">Nombre de nuevo archivo.pdf</div><div class="col-sm-4"><button class="btn btn-danger pull-right btn-sm m-t-0">Quitar</button></div></div>';
+
+				el.removeClass("state-loading")
+				$(".fileList").append(nuevoArchivo);
+				validarCantidad();
+			},1000)
+
+
+		
+	})
+
+	//QUITAR ARCHIVO
+	$(document).on("click",".fileUploader .btn-danger", function(){
+		var el = $(this);
+		el.addClass("state-loading");
+
+		
+		//Se emula la eliminacion del archivo
+		setTimeout(function(){ 
+			archivosSubidos--;
+			el.removeClass("state-loading")
+			el.parent().parent().remove();
+			validarCantidad();
+		},1000)
+	})
+
+
+
+
+	//VALIDACIÓN CANTIDAD
+	function validarCantidad(){
+		console.log(archivosSubidos + " - " + limiteArchivos);
+		if(archivosSubidos < limiteArchivos ){
+			limiteAlcanzado = false;
+			$("#fileUploaderBtn").show();
+			$("#fileUploaderAlert").hide();
+		}
+		else{
+			limiteAlcanzado = true;
+			$("#fileUploaderBtn").hide();
+			$("#fileUploaderAlert").show();
+		}
+	}
+
+
+})	
+</script>
 
