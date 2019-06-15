@@ -134,10 +134,10 @@ layout: mi-argentina2
 																		<div class="row">
 																			<div class="col-md-8">
 																			  	<div class="autocomplete">
-																				   <input id="empresa" type="text" name="proveedor" placeholder="Country" class="form-control">
+																				   <input id="empresa" type="text" name="proveedor" class="form-control">
 																				</div>
 																			</div> 
-																			<div class="col-md-2">
+																			<div class="col-sm-2">
 																				<input type="submit" class="btn btn-primary btn-block m-t-0">
 																			</div>
 																		</div>
@@ -148,10 +148,10 @@ layout: mi-argentina2
 																		<div class="row">
 																			<div class="col-md-8">
 																			  	<div class="autocomplete">
-																				   <input id="cuit" type="text" name="proveedor" placeholder="Country" class="form-control">
+																				   <input id="cuit" type="text" name="proveedor" class="form-control">
 																				</div>
 																			</div> 
-																			<div class="col-md-2">
+																			<div class="col-sm-2">
 																				<input type="submit" class="btn btn-primary btn-block m-t-0">
 																			</div>
 																		</div>
@@ -1247,9 +1247,12 @@ layout: mi-argentina2
 				var mostrar = e.dataset.show;
 				var elementoMostrar = document.getElementById(mostrar)
 				elementoMostrar.classList.remove('hidden')
-				autocomplete(elementoMostrar.querySelector('input[type="text"'), proveedores, elementoMostrar.querySelector('input[type="text"').id);
+				var emInput = elementoMostrar.querySelector('input[type="text"')
+				emInput.value = '';
+				autocomplete(emInput, proveedores, elementoMostrar.querySelector('input[type="text"').id);
 		})
-	
+		
+
 var proveedores =   [
     			{	"empresa": "Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A", 
     				"cuit": "30678814357", 
