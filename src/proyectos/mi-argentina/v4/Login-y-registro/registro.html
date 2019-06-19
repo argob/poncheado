@@ -10,7 +10,7 @@ layout: mi-argentina-login
         <h1>Creá tu cuenta</h1>
         <hr class="m-y-1">
         <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
-        <form method="get" action="success1.html">
+        <form method="get" action="success1.html" id="formR">
           <fieldset>
             <legend>
               <p class="lead">Ingresá los siguientes datos:</p>
@@ -39,7 +39,7 @@ layout: mi-argentina-login
             <div class="row" >
               <div class="col-md-6 form-group item-form">
                 <label for="dni" id="documentLabel">Número de DNI</label>
-                <input type="number" class="form-control" id="dni" name="nroDoc" required  aria-required="true" minlength="6">
+                <input type="number" class="form-control" id="dni" name="nroDoc" required  aria-required="true" minlength="6" data-alerta="Ingresá número de DNI">
               </div>
             </div>
             <div class="row">
@@ -74,8 +74,7 @@ layout: mi-argentina-login
               <div class="row">
                 <div class="col-md-10 form-group item-form">
                   <label for="lastname">Apellidos</label>
-                  <input type="text" name="fullname" class="form-control" id="lastname" 
-                   aria-required="true">
+                  <input type="text" name="fullname" class="form-control" id="lastname" aria-required="true" data-alerta="Ingresá tu apellido">
                   <p class="help-block error hidden">Ingresá tu apellido</p>
                 </div>
               </div>
@@ -536,6 +535,13 @@ layout: mi-argentina-login
       }
       
     }
-  
+
+var elforms = document.querySelectorAll('[data-alerta]');
+
+elforms.forEach(el => {
+    el.setCustomValidity(el.dataset.alerta);
+});
+
+
 </script>
 
