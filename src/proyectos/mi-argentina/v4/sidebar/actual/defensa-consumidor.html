@@ -113,9 +113,9 @@ layout: mi-argentina2
 																<legend>
 																	<h2 class="m-b-1">Buscá al proveedor para agregar sus datos. </h2>
 																	<p class="help-block">Esta información la podés sacar de tu factura o ticket.</p>
-																	<p><strong>¿Cómo querés buscar al proveedor (empresa o negocio)? *</strong></p>
 																</legend>
-																<div class="radio-container">
+																<div class="content-container">
+																	<p><strong>¿Cómo querés buscar al proveedor (empresa o negocio)? *</strong></p>
 																	<div class="radio">
 																		<label for="porEmpresa">
 																			<input type="radio" value="porEmpresa" name="buscaProveedor" id="porEmpresa" data-show="proveedorPorEmpresa">
@@ -134,12 +134,10 @@ layout: mi-argentina2
 																		<div class="row">
 																			<div class="col-md-8">
 																			  	<div class="autocomplete">
-																				   <input id="empresa" type="text" name="proveedor" placeholder="Country" class="form-control">
+																				   <input id="empresa" type="text" name="proveedor" class="form-control">
 																				</div>
 																			</div> 
-																			<div class="col-md-2">
-																				<input type="submit" class="btn btn-primary btn-block m-t-0">
-																			</div>
+																			
 																		</div>
 																		 
 																	</div>
@@ -148,19 +146,22 @@ layout: mi-argentina2
 																		<div class="row">
 																			<div class="col-md-8">
 																			  	<div class="autocomplete">
-																				   <input id="cuit" type="text" name="proveedor" placeholder="Country" class="form-control">
+																				   <input id="cuit" type="text" name="proveedor" class="form-control">
 																				</div>
 																			</div> 
-																			<div class="col-md-2">
-																				<input type="submit" class="btn btn-primary btn-block m-t-0">
-																			</div>
+																			
 																		</div>
 																	</div>
-																
-
 																</div>
-																</fieldset>
+																<div class="content-container hidden" data-info="infoProveedor">
+																	<div class="alert alert-info">
+																		<h1>hola</h1>
+																	</div>
+																</div>
+															</fieldset>
+															
 														</form>
+														
 													</div>
 													<div role="presentation" class="mobile-step disabled">
 														<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos de la persona con discapacidad">
@@ -1188,7 +1189,7 @@ layout: mi-argentina2
 																		</div>
 																	  </div> 
 																	</fieldset>
-																	<!--<a href="../salud.html" class="btn btn-link">Cancelar</a>-->
+																	
 																	   <button type="button" class="btn btn-link  prev-step">Volver</button>
 																	   <button type="button" class="btn btn-success next-step">Continuar</button>
 																  </form>
@@ -1237,21 +1238,43 @@ layout: mi-argentina2
 
 <script>
 
+var currentProv;
 	
-		document.querySelectorAll('.radio-container input[type="radio"]').forEach(e => {
+		document.querySelectorAll('.content-container input[type="radio"]').forEach(e => {
 			e.addEventListener('change', function(){
-				grupo = e.closest(".radio-container");
+				grupo = e.closest(".content-container");
 				grupo.querySelectorAll('.group-container').forEach(gc => {
 					gc.classList.add('hidden')
 				})
 				var mostrar = e.dataset.show;
+
 				var elementoMostrar = document.getElementById(mostrar)
 				elementoMostrar.classList.remove('hidden')
-				autocomplete(elementoMostrar.querySelector('input[type="text"'), proveedores, elementoMostrar.querySelector('input[type="text"').id);
+				var emInput = elementoMostrar.querySelector('input[type="text"')
+				emInput.value = '';
+				autocomplete(emInput, proveedores, elementoMostrar.querySelector('input[type="text"').id);
+
 		})
-	
+
+		
+	})
+		
+
+function showStep(element){
+
+	element.classList.remove('hidden')
+
+}
+function hideContent(element){
+	element.classList.add('hidden')
+}
 var proveedores =   [
     			{	"empresa": "Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A", 
+    				"cuit": "30678814357", 
+    				"domicilio":"Av. Independencia 169. Ciudad Autónoma de Buenos Aires",
+    				"Código postal": 1099
+    			},
+    			{	"empresa": "Movistar - TELEFÓNICA MÓVILES URUGUAY S.A", 
     				"cuit": "30678814357", 
     				"domicilio":"Av. Independencia 169. Ciudad Autónoma de Buenos Aires",
     				"Código postal": 1099
@@ -1268,52 +1291,61 @@ var proveedores =   [
     			}
     		]
 
+/************************AUTOCOMPLETE*****************************/
 
-
-function autocomplete(inp, arr, key) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
+function autocomplete(inp, arr, key, btn) {
+  /*Tres argumentos, lo que escribe, el array con las opciones disponibles segun lo escrito, y la key del objeto que está llamando*/
   var currentFocus;
-  /*execute a function when someone writes in the text field:*/
-  inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
+
+	inp.addEventListener("input", function(e) {
+      var a, b, i,  val = this.value;
+      /*limpia la lista primero*/
       closeAllLists();
       if (!val) { return false;}
       currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
+      /*Crea el div que va a traer los valores, le pone un id y las clases del autocomplete*/
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
+      
+      
+     
+      /*hace un append de ese div dentro de container autocomplete*/
       this.parentNode.appendChild(a);
-   		console.log(arr[0][key])
-      /*for each item in the array...*/
+   		
       for (i = 0; i < arr.length; i++) {
-        /*check if the item starts with the same letters as the text field value:*/
+        /*recorre el array y chequea si el item donde está posicionado coincide con lo que se escribe*/
+        /*el [key] es dinámico ya que en un primer momento hay que hacerlo coincidir con el key nombre, y luego con cuit*/
         if (arr[i][key].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          /*create a DIV element for each matching element:*/
+        	
+        	
+          /*si machean, crea un div*/
           b = document.createElement("DIV");
-          /*make the matching letters bold:*/
+          
+
+          /*Pone el bold las letras que machean*/
           b.innerHTML = "<strong>" + arr[i][key].substr(0, val.length) + "</strong>";
           b.innerHTML += arr[i][key].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
+          /*carga todas las opciones en inputs*/
           b.innerHTML += "<input type='hidden' value='" + arr[i][key] + "'>";
-          /*execute a function when someone clicks on the item value (DIV element):*/
+          
               b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
+              /*carga la opción elegida en el input*/
               inp.value = this.getElementsByTagName("input")[0].value;
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
+              /*cierra el select con las distintas opciones*/
               closeAllLists();
+
           });
           a.appendChild(b);
+         
         }
+        
       }
-  });
 
-  /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function(e) {
+    });
+
+
+  	inp.addEventListener("keydown", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
@@ -1336,38 +1368,77 @@ function autocomplete(inp, arr, key) {
           if (x) x[currentFocus].click();
         }
       }
-  });
-  function addActive(x) {
-    /*a function to classify an item as "active":*/
-    if (!x) return false;
-    /*start by removing the "active" class on all items:*/
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
-    x[currentFocus].classList.add("autocomplete-active");
-  }
-  function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
+  	});
+	function addActive(x) {
+	    /*a function to classify an item as "active":*/
+	    if (!x) return false;
+	    /*start by removing the "active" class on all items:*/
+	    removeActive(x);
+	    if (currentFocus >= x.length) currentFocus = 0;
+	    if (currentFocus < 0) currentFocus = (x.length - 1);
+	    /*add class "autocomplete-active":*/
+	    x[currentFocus].classList.add("autocomplete-active");
+	}
+	function removeActive(x) {
+	    /*a function to remove the "active" class from all autocomplete items:*/
+	    for (var i = 0; i < x.length; i++) {
+	      x[i].classList.remove("autocomplete-active");
+	    }
+	}
+	function closeAllLists(elmnt) {
+		/*close all autocomplete lists in the document, except the one passed as an argument:*/
+		var x = document.getElementsByClassName("autocomplete-items");
+	    for (var i = 0; i < x.length; i++) {
+	    	if (elmnt != x[i] && elmnt != inp) {
+	      		x[i].parentNode.removeChild(x[i]);
+	     	}
+	     
+	    }
+	}
+	
+	document.addEventListener("click", function (e) {
+	    closeAllLists(e.target);
+	    console.log(e.target)
+	   
+	})
+
+	
+	if(inp != ''){
+
+		/*Si eligió un proveedor creá un botón que al hacer click oculta el contenido actual y muestra el siguiente*/
+     	var btn = document.createElement('button');
+	  	btn.setAttribute('class', 'btn btn-primary')
+	  	btn.setAttribute('type', 'button')
+	  	btn.setAttribute('data-search', 'proveedor')
+	  	btn.innerHTML = "Buscar" + ' ' +[key]
+	  	
+	  	
+	  	inp.parentNode.appendChild(btn)
+	  	
+	    
+
+	    /*Busca el siguiente contenedor donde se guardará la información nueva*/
+	    var container = inp.closest('.content-container')
+	    var nexContainer = container.nextElementSibling
+	    console.log(currentProv)
+	    /*switch(nexContainer.dataset.info){
+	    	case 'infoProveedor' :
+	    	nexContainer.childNode.innerHTML = `<small>${currentProv}</small>`
+	    	break;
+	    }
+		*/
+	    
+	 	btn.addEventListener('click', function(){
+	 		showStep(nexContainer)
+	      	hideContent(container)
+	    })
+
+
     }
-  }
-  function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
-      x[i].parentNode.removeChild(x[i]);
-    }
-  }
-}
-/*execute a function when someone clicks in the document:*/
-document.addEventListener("click", function (e) {
-    closeAllLists(e.target);
-});
 }
 
-})
+
+		
+
+
 </script>
