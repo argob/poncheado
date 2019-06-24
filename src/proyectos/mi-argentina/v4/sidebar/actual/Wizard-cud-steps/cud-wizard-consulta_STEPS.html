@@ -31,29 +31,28 @@ layout: mi-argentina2
 
 											<li role="presentation" class="active">
 												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-												<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab"
-													title="Completá los siguientes datos">
-													<span class="round-tab">
-														<i class="fa fa-check"></i><span class="stepnumber">1</span>
+												<a id="paso-1" href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Completá los siguientes datos">
+													<span class="round-tab"><span class="sr-only">Paso 1</span>
+														<i class="fa fa-check"></i><span class="stepnumber" aria-hidden="true">1</span>
 													</span>
 												</a>
 											</li>
 
 											<li role="presentation" class="disabled">
 												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-												<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab"
+												<a id="paso-2" href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab"
 													title="Completá los siguientes datos">
-													<span class="round-tab">
-														<i class="fa fa-check"></i><span class="stepnumber">2</span>
+													<span class="round-tab"><span class="sr-only">Paso 2</span>
+														<i class="fa fa-check"></i><span class="stepnumber" aria-hidden="true">2</span>
 													</span>
 												</a>
 											</li>
 											<li role="presentation" class="disabled">
 												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-												<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab"
+												<a id="paso-3" href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab"
 													title="Completá los siguientes datos">
-													<span class="round-tab">
-														<i class="fa fa-check"></i><span class="stepnumber">3</span>
+													<span class="round-tab"><span class="sr-only">Paso 3</span>
+														<i class="fa fa-check"></i><span class="stepnumber" aria-hidden="true">3</span>
 													</span>
 												</a>
 											</li>
@@ -63,12 +62,15 @@ layout: mi-argentina2
 								<div class="panel-body">
 									<form role="form">
 										<div class="tab-content" role="tablist">
-											<div class="tab-pane active" role="tabpanel" id="step-1">
+											<div class="tab-pane active" role="tabpanel" id="step-1" aria-labelledby="paso-1">
 												<form>
-													<h3>Completá los siguientes datos</h3>
 													<fieldset>
+														<legend>
+															<h3>Completá los siguientes datos</h3>
+														</legend>
+													<fieldset>
+														<legend class="control-label">Tipo de trámite</legend>
 														<div class="item-form">
-															<legend class="control-label">Tipo de trámite</legend>
 															<div class="form-group item-form">
 																<div class="radio">
 																	<label for="primeravezcud">
@@ -136,9 +138,9 @@ layout: mi-argentina2
 														</div>
 													</fieldset>
 													<fieldset>
-														<div class="item-form" id="edad">
 															<legend class="control-label">&iquest;Tiene 16 años o más?
 															</legend>
+														<div class="item-form" id="edad">
 															<div class="form-group item-form">
 																<div class="radio">
 																	<label for="mayor16">
@@ -162,9 +164,9 @@ layout: mi-argentina2
 													</fieldset>
 													<div class="collapse" id="collapse-tutoria">
 														<fieldset>
-															<div class="item-form">
 																<legend class="control-label">&iquest;La persona firma
 																	por sí misma?</legend>
+															<div class="item-form">
 																<div class="form-group item-form">
 																	<div class="radio">
 																		<label for="tutoriasi">
@@ -197,9 +199,9 @@ layout: mi-argentina2
 													</div>
 													<div class="collapse" id="collapse-guardador">
 														<fieldset>
-															<div class="item-form">
 																<legend class="control-label"> &iquest;La persona tiene
 																	tutor o guardador?</legend>
+															<div class="item-form">
 																<div class="form-group item-form">
 																	<div class="radio">
 																		<label class="m-t-0" for="guardadorsi">
@@ -219,9 +221,10 @@ layout: mi-argentina2
 													</div>
 													<button type="button"
 														class="btn btn-success next-step">Siguiente</button>
+													</fieldset>
 												</form>
 											</div>
-											<div class="tab-pane" role="tabpanel" id="step-2">
+											<div class="tab-pane" role="tabpanel" id="step-2" aria-labelledby="paso-2" hidden>
 												<form>
 													<fieldset>
 														<legend>
@@ -360,16 +363,20 @@ layout: mi-argentina2
 															class="btn btn-success next-step">Siguiente</button>
 												</form>
 											</div>
-											<div class="tab-pane" role="tabpanel" id="step-3">
+											<div class="tab-pane" role="tabpanel" id="step-3" aria-labelledby="paso-3" hidden>
 												<form id="wizard-form-cud" action="cud-wizard-requisitos.html">
-													<h3>Completá los siguientes datos</h3>
+													<fieldset>
+														<legend>
+															<h3>Completá los siguientes datos</h3>
+														</legend>
 													<h4>Lugar de Residencia</h4>
 													<p class="text-muted m-b-0">Según el domicilio que figura en el DNI
 														de la persona para la cual se solicita el CUD</p>
 													<fieldset>
+														<legend>
+															<label class="control-label" for="provincia">Provincia</label>
+														</legend>
 														<div class="form-group">
-															<label class="control-label"
-																for="provincia">Provincia</label>
 															<select class="form-control" id="provincia"
 																name="provincia">
 																<option value="" selected="">Elegí tu provincia</option>
@@ -404,9 +411,10 @@ layout: mi-argentina2
 														</div>
 													</fieldset>
 													<fieldset>
+														<legend>
+															<label class="control-label" for="localidad">Localidad</label>
+														</legend>
 														<div class="form-group">
-															<label class="control-label"
-																for="localidad">Localidad</label>
 															<!-- <p class="text-muted m-b-1" >Elegí tu localidad o la más cercana a tu domicilio</p> -->
 															<select class="form-control" disabled="disabled"
 																id="localidad" name="localidad" required="">
@@ -419,6 +427,7 @@ layout: mi-argentina2
 														class="btn btn-link prev-step">Anterior</button>
 													<button type="button" class="btn btn-success next-step">Consultar
 														requisitos</button>
+													</fieldset>
 												</form>
 											</div>
 										</div>
