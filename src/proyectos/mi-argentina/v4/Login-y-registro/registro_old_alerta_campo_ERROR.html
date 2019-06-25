@@ -1,0 +1,1766 @@
+---
+layout: mi-argentina-login
+---
+<div class="login-container">
+    <section class="container-fluid">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 m-t-2">
+                         
+                      <form method="get" action="success1.html">
+                       
+                        
+                        <fieldset>
+                          <legend>
+                            <h1>Creá tu cuenta</h1>
+                            <hr class="m-y-1">
+                            <p>Por favor completá estos datos para continuar.</p>
+                          
+                          </legend>
+                          
+                          <p><a href="/ingresar/">¿Ya estás registrado? Ingresá a tu cuenta.</a></p>
+                        
+                       
+                           <div id="errores" rol='alert' aria-live='assertive' class="alert alert-danger" style="display: none;"></div>
+                            
+                            <label class="control-label" for="id_number">Identificación (CUIL o pasaporte extranjero)</label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <select class="form-control" name="id_type" id="id_type" required>
+                                            <option value="CUIL" selected="">CUIL</option>
+                                            <option value="PASS">Pasaporte</option>
+                                        </select>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-8 item-form">
+                                    <div class="form-group">
+                                        <input id="id_number" class="form-control" type="number" name="id_number" value="" maxlength="12" minlength="9" required title="Escribí tu cuil o pasaporte">
+                                        <p class="help-block error text-danger hidden">El número no es válido.</p>
+                                    </div>
+                                </div>
+                               </div>
+                            <div class="form-group item-form">
+                                <label class="control-label" for="first_name">Nombre</label>
+                                <input type="text" name="nombre" placeholder="Su nombre de usuario" class="form-control" required title="Escribí tu nombre">
+                                <p  class="help-block error text-danger hidden">Ingresá tu nombre</p>
+                            </div>
+                            <div class="form-group item-form">
+                                <label class="control-label" for="last_name">Apellido</label>
+                                <input id="last_name" class="form-control" type="text" name="last_name" value=""  required title="Escribí tu apellido">
+                                <p class="help-block error text-danger hidden">Ingresá tu apellido</p>
+                            </div>
+        
+                            <div class="form-group item-form">
+                              <fieldset>
+                                <legend>
+                                  <label id="gender" class="control-label">Sexo (según tu documento)</label>
+                                </legend>
+                                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="gender" value="F"  required> Femenino
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="gender" value="M"  required> Masculino
+                                    </label>
+                                </div>
+                                <p  class="help-block error text-danger hidden">Ingresá tu sexo</p>
+                              </fieldset>
+                              
+                            </div>
+                            <div class="form-group item-form">
+                                <label class="control-label" for="birthdate">Fecha de nacimiento</label>
+                                <input id="birthdate" class="form-control" type="text" name="birthdate" value="" placeholder="dd/mm/aaaa" data-mask="09/09/0000" autocomplete="off" maxlength="10" title="Escribí tu fecha de nacimiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"required>
+                                <p  class="help-block error text-danger hidden">Ingresá tu fecha de Nacimiento</p>
+                            </div>
+        
+                            <div class="form-group item-form">
+                                <label class="control-label" for="country">País de residencia</label>
+                                <select class="form-control chosen-select" name="country" id="country"  required>
+                                    <option value=""></option>
+                                    
+                                    <option value="AFG">Afganistán</option>
+                                    
+                                    <option value="ALB">Albania</option>
+                                    
+                                    <option value="DEU">Alemania</option>
+                                    
+                                    <option value="AND">Andorra</option>
+                                    
+                                    <option value="AGO">Angola</option>
+                                    
+                                    <option value="AIA">Anguila</option>
+                                    
+                                    <option value="ATA">Antártida</option>
+                                    
+                                    <option value="ATG">Antigua y Barbuda</option>
+                                    
+                                    <option value="SAU">Arabia Saudita</option>
+                                    
+                                    <option value="DZA">Argelia</option>
+                                    
+                                    <option value="ARG">Argentina</option>
+                                    
+                                    <option value="ARM">Armenia</option>
+                                    
+                                    <option value="ABW">Aruba</option>
+                                    
+                                    <option value="AUS">Australia</option>
+                                    
+                                    <option value="AUT">Austria</option>
+                                    
+                                    <option value="AZE">Azerbaiyán</option>
+                                    
+                                    <option value="BHS">Bahamas</option>
+                                    
+                                    <option value="BGD">Bangladés</option>
+                                    
+                                    <option value="BRB">Barbados</option>
+                                    
+                                    <option value="BHR">Baréin</option>
+                                    
+                                    <option value="BEL">Bélgica</option>
+                                    
+                                    <option value="BLZ">Belice</option>
+                                    
+                                    <option value="BEN">Benín</option>
+                                    
+                                    <option value="BMU">Bermudas</option>
+                                    
+                                    <option value="BLR">Bielorrusia</option>
+                                    
+                                    <option value="BOL">Bolivia</option>
+                                    
+                                    <option value="BES">Bonaire</option>
+                                    
+                                    <option value="BIH">Bosnia y Herzegovina</option>
+                                    
+                                    <option value="BWA">Botsuana</option>
+                                    
+                                    <option value="BRA">Brasil</option>
+                                    
+                                    <option value="BRN">Brunéi Darussalam</option>
+                                    
+                                    <option value="BGR">Bulgaria</option>
+                                    
+                                    <option value="BFA">Burkina Faso</option>
+                                    
+                                    <option value="BDI">Burundi</option>
+                                    
+                                    <option value="BTN">Bután</option>
+                                    
+                                    <option value="CPV">Cabo Verde</option>
+                                    
+                                    <option value="KHM">Camboya</option>
+                                    
+                                    <option value="CMR">Camerún</option>
+                                    
+                                    <option value="CAN">Canadá</option>
+                                    
+                                    <option value="QAT">Catar</option>
+                                    
+                                    <option value="TCD">Chad</option>
+                                    
+                                    <option value="CHL">Chile</option>
+                                    
+                                    <option value="CHN">China</option>
+                                    
+                                    <option value="CYP">Chipre</option>
+                                    
+                                    <option value="COL">Colombia</option>
+                                    
+                                    <option value="COM">Comoras</option>
+                                    
+                                    <option value="COG">Congo</option>
+                                    
+                                    <option value="KOR">Corea</option>
+                                    
+                                    <option value="CIV">Costa de Marfil</option>
+                                    
+                                    <option value="CRI">Costa Rica</option>
+                                    
+                                    <option value="HRV">Croacia</option>
+                                    
+                                    <option value="CUB">Cuba</option>
+                                    
+                                    <option value="CUW">Curaçao</option>
+                                    
+                                    <option value="DNK">Dinamarca</option>
+                                    
+                                    <option value="DMA">Dominica</option>
+                                    
+                                    <option value="ECU">Ecuador</option>
+                                    
+                                    <option value="EGY">Egipto</option>
+                                    
+                                    <option value="SLV">El Salvador</option>
+                                    
+                                    <option value="ARE">Emiratos Árabes Unidos</option>
+                                    
+                                    <option value="ERI">Eritrea</option>
+                                    
+                                    <option value="SVK">Eslovaquia</option>
+                                    
+                                    <option value="SVN">Eslovenia</option>
+                                    
+                                    <option value="ESP">España</option>
+                                    
+                                    <option value="USA">Estados Unidos</option>
+                                    
+                                    <option value="EST">Estonia</option>
+                                    
+                                    <option value="ETH">Etiopía</option>
+                                    
+                                    <option value="PHL">Filipinas</option>
+                                    
+                                    <option value="FIN">Finlandia</option>
+                                    
+                                    <option value="FJI">Fiyi</option>
+                                    
+                                    <option value="FRA">Francia</option>
+                                    
+                                    <option value="GAB">Gabón</option>
+                                    
+                                    <option value="GMB">Gambia</option>
+                                    
+                                    <option value="GEO">Georgia</option>
+                                    
+                                    <option value="SGS">Georgia del sur y las islas sandwich del sur</option>
+                                    
+                                    <option value="GHA">Ghana</option>
+                                    
+                                    <option value="GIB">Gibraltar</option>
+                                    
+                                    <option value="GRD">Granada</option>
+                                    
+                                    <option value="GRC">Grecia</option>
+                                    
+                                    <option value="GRL">Groenlandia</option>
+                                    
+                                    <option value="GLP">Guadalupe</option>
+                                    
+                                    <option value="GUM">Guam</option>
+                                    
+                                    <option value="GTM">Guatemala</option>
+                                    
+                                    <option value="GUF">Guayana Francesa</option>
+                                    
+                                    <option value="GGY">Guernsey</option>
+                                    
+                                    <option value="GIN">Guinea</option>
+                                    
+                                    <option value="GNB">Guinea-Bisáu</option>
+                                    
+                                    <option value="GNQ">Guinea Ecuatorial</option>
+                                    
+                                    <option value="GUY">Guyana</option>
+                                    
+                                    <option value="HTI">Haití</option>
+                                    
+                                    <option value="HND">Honduras</option>
+                                    
+                                    <option value="HKG">Hong Kong</option>
+                                    
+                                    <option value="HUN">Hungría</option>
+                                    
+                                    <option value="IND">India</option>
+                                    
+                                    <option value="IDN">Indonesia</option>
+                                    
+                                    <option value="IRQ">Irak</option>
+                                    
+                                    <option value="IRN">Irán</option>
+                                    
+                                    <option value="IRL">Irlanda</option>
+                                    
+                                    <option value="BVT">Isla Bouvet</option>
+                                    
+                                    <option value="IMN">Isla de Man</option>
+                                    
+                                    <option value="CXR">Isla de Navidad</option>
+                                    
+                                    <option value="HMD">Isla Heard e Islas McDonald</option>
+                                    
+                                    <option value="ISL">Islandia</option>
+                                    
+                                    <option value="NFK">Isla Norfolk</option>
+                                    
+                                    <option value="CYM">Islas Caimán</option>
+                                    
+                                    <option value="CCK">Islas Cocos</option>
+                                    
+                                    <option value="COK">Islas Cook</option>
+                                    
+                                    <option value="UMI">Islas de Ultramar Menores de Estados Unidos</option>
+                                    
+                                    <option value="FRO">Islas Feroe</option>
+                                    
+                                    <option value="FLK">Islas Malvinas</option>
+                                    
+                                    <option value="MNP">Islas Marianas del Norte</option>
+                                    
+                                    <option value="MHL">Islas Marshall</option>
+                                    
+                                    <option value="SLB">Islas Salomón</option>
+                                    
+                                    <option value="TCA">Islas Turcas y Caicos</option>
+                                    
+                                    <option value="VIR">Islas Vírgenes</option>
+                                    
+                                    <option value="ISR">Israel</option>
+                                    
+                                    <option value="ITA">Italia</option>
+                                    
+                                    <option value="JAM">Jamaica</option>
+                                    
+                                    <option value="JPN">Japón</option>
+                                    
+                                    <option value="JEY">Jersey</option>
+                                    
+                                    <option value="JOR">Jordania</option>
+                                    
+                                    <option value="KAZ">Kazajistán</option>
+                                    
+                                    <option value="KEN">Kenia</option>
+                                    
+                                    <option value="KGZ">Kirguistán</option>
+                                    
+                                    <option value="KIR">Kiribati</option>
+                                    
+                                    <option value="KWT">Kuwait</option>
+                                    
+                                    <option value="LAO">Lao</option>
+                                    
+                                    <option value="LSO">Lesoto</option>
+                                    
+                                    <option value="LVA">Letonia</option>
+                                    
+                                    <option value="LBN">Líbano</option>
+                                    
+                                    <option value="LBR">Liberia</option>
+                                    
+                                    <option value="LBY">Libia</option>
+                                    
+                                    <option value="LIE">Liechtenstein</option>
+                                    
+                                    <option value="LTU">Lituania</option>
+                                    
+                                    <option value="LUX">Luxemburgo</option>
+                                    
+                                    <option value="MAC">Macao</option>
+                                    
+                                    <option value="MKD">Macedonia</option>
+                                    
+                                    <option value="MDG">Madagascar</option>
+                                    
+                                    <option value="MYS">Malasia</option>
+                                    
+                                    <option value="MWI">Malaui</option>
+                                    
+                                    <option value="MDV">Maldivas</option>
+                                    
+                                    <option value="MLI">Malí</option>
+                                    
+                                    <option value="MLT">Malta</option>
+                                    
+                                    <option value="MAR">Marruecos</option>
+                                    
+                                    <option value="MTQ">Martinica</option>
+                                    
+                                    <option value="MUS">Mauricio</option>
+                                    
+                                    <option value="MRT">Mauritania</option>
+                                    
+                                    <option value="MYT">Mayotte</option>
+                                    
+                                    <option value="MEX">México</option>
+                                    
+                                    <option value="FSM">Micronesia</option>
+                                    
+                                    <option value="MDA">Moldavia</option>
+                                    
+                                    <option value="MCO">Mónaco</option>
+                                    
+                                    <option value="MNG">Mongolia</option>
+                                    
+                                    <option value="MNE">Montenegro</option>
+                                    
+                                    <option value="MSR">Montserrat</option>
+                                    
+                                    <option value="MOZ">Mozambique</option>
+                                    
+                                    <option value="MMR">Myanmar</option>
+                                    
+                                    <option value="NAM">Namibia</option>
+                                    
+                                    <option value="NRU">Nauru</option>
+                                    
+                                    <option value="NPL">Nepal</option>
+                                    
+                                    <option value="NIC">Nicaragua</option>
+                                    
+                                    <option value="NER">Níger</option>
+                                    
+                                    <option value="NGA">Nigeria</option>
+                                    
+                                    <option value="NIU">Niue</option>
+                                    
+                                    <option value="NOR">Noruega</option>
+                                    
+                                    <option value="NCL">Nueva Caledonia</option>
+                                    
+                                    <option value="NZL">Nueva Zelanda</option>
+                                    
+                                    <option value="OMN">Omán</option>
+                                    
+                                    <option value="NLD">Países Bajos</option>
+                                    
+                                    <option value="PAK">Pakistán</option>
+                                    
+                                    <option value="PLW">Palaos</option>
+                                    
+                                    <option value="PSE">Palestina, Estado de</option>
+                                    
+                                    <option value="PAN">Panamá</option>
+                                    
+                                    <option value="PNG">Papúa Nueva Guinea</option>
+                                    
+                                    <option value="PRY">Paraguay</option>
+                                    
+                                    <option value="PER">Perú</option>
+                                    
+                                    <option value="PCN">Pitcairn</option>
+                                    
+                                    <option value="PYF">Polinesia Francesa</option>
+                                    
+                                    <option value="POL">Polonia</option>
+                                    
+                                    <option value="PRT">Portugal</option>
+                                    
+                                    <option value="PRI">Puerto Rico</option>
+                                    
+                                    <option value="GBR">Reino Unido</option>
+                                    
+                                    <option value="CAF">República Centroafricana</option>
+                                    
+                                    <option value="CZE">República Checa</option>
+                                    
+                                    <option value="DOM">República Dominicana</option>
+                                    
+                                    <option value="REU">Reunión</option>
+                                    
+                                    <option value="RWA">Ruanda</option>
+                                    
+                                    <option value="ROU">Rumania</option>
+                                    
+                                    <option value="RUS">Rusia</option>
+                                    
+                                    <option value="ESH">Sahara Occidental</option>
+                                    
+                                    <option value="WSM">Samoa</option>
+                                    
+                                    <option value="ASM">Samoa Americana</option>
+                                    
+                                    <option value="BLM">San Bartolomé</option>
+                                    
+                                    <option value="KNA">San Cristóbal y Nieves</option>
+                                    
+                                    <option value="SMR">San Marino</option>
+                                    
+                                    <option value="MAF">San Martín</option>
+                                    
+                                    <option value="SPM">San Pedro y Miquelón</option>
+                                    
+                                    <option value="SHN">Santa Helena</option>
+                                    
+                                    <option value="LCA">Santa Lucía</option>
+                                    
+                                    <option value="STP">Santo Tomé y Príncipe</option>
+                                    
+                                    <option value="VCT">San Vicente y las Granadinas</option>
+                                    
+                                    <option value="SEN">Senegal</option>
+                                    
+                                    <option value="SRB">Serbia</option>
+                                    
+                                    <option value="SYC">Seychelles</option>
+                                    
+                                    <option value="SLE">Sierra leona</option>
+                                    
+                                    <option value="SGP">Singapur</option>
+                                    
+                                    <option value="SXM">Sint Maarten</option>
+                                    
+                                    <option value="SYR">Siria</option>
+                                    
+                                    <option value="SOM">Somalia</option>
+                                    
+                                    <option value="LKA">Sri Lanka</option>
+                                    
+                                    <option value="SWZ">Suazilandia</option>
+                                    
+                                    <option value="ZAF">Sudáfrica</option>
+                                    
+                                    <option value="SDN">Sudán</option>
+                                    
+                                    <option value="SSD">Sudán del Sur</option>
+                                    
+                                    <option value="SWE">Suecia</option>
+                                    
+                                    <option value="CHE">Suiza</option>
+                                    
+                                    <option value="SUR">Surinam</option>
+                                    
+                                    <option value="SJM">Svalbard y Jan Mayen</option>
+                                    
+                                    <option value="THA">Tailandia</option>
+                                    
+                                    <option value="TWN">Taiwán</option>
+                                    
+                                    <option value="TZA">Tanzania</option>
+                                    
+                                    <option value="TJK">Tayikistán</option>
+                                    
+                                    <option value="IOT">Territorio Británico del Océano Índico</option>
+                                    
+                                    <option value="ATF">Territorios Australes Franceses</option>
+                                    
+                                    <option value="TLS">Timor-Leste</option>
+                                    
+                                    <option value="TGO">Togo</option>
+                                    
+                                    <option value="TKL">Tokelau</option>
+                                    
+                                    <option value="TON">Tonga</option>
+                                    
+                                    <option value="TTO">Trinidad y Tobago</option>
+                                    
+                                    <option value="TUN">Túnez</option>
+                                    
+                                    <option value="TKM">Turkmenistán</option>
+                                    
+                                    <option value="TUR">Turquía</option>
+                                    
+                                    <option value="TUV">Tuvalu</option>
+                                    
+                                    <option value="UKR">Ucrania</option>
+                                    
+                                    <option value="UGA">Uganda</option>
+                                    
+                                    <option value="URY">Uruguay</option>
+                                    
+                                    <option value="UZB">Uzbekistán</option>
+                                    
+                                    <option value="VUT">Vanuatu</option>
+                                    
+                                    <option value="VEN">Venezuela</option>
+                                    
+                                    <option value="VNM">Vietnam</option>
+                                    
+                                    <option value="WLF">Wallis y Futuna</option>
+                                    
+                                    <option value="YEM">Yemen</option>
+                                    
+                                    <option value="DJI">Yibuti</option>
+                                    
+                                    <option value="ZMB">Zambia</option>
+                                    
+                                    <option value="ZWE">Zimbabue</option>
+                                    
+                                </select>
+                                <p  class="help-block error text-danger hidden">Ingresá tu país de residencia</p>
+                            </div>
+                            <div class="form-group item-form" style="display:none">
+                                <label class="control-label">Provincia</label>
+                                <select class="form-control" name="state"  required>
+                                    <option value=""></option>
+                                    
+                                        <option value="6">Buenos Aires</option>
+                                    
+                                        <option value="10">Catamarca</option>
+                                    
+                                        <option value="14">Córdoba</option>
+                                    
+                                        <option value="18">Corrientes</option>
+                                    
+                                        <option value="22">Chaco</option>
+                                    
+                                        <option value="26">Chubut</option>
+                                    
+                                        <option value="30">Entre Ríos</option>
+                                    
+                                        <option value="34">Formosa</option>
+                                    
+                                        <option value="38">Jujuy</option>
+                                    
+                                        <option value="42">La Pampa</option>
+                                    
+                                        <option value="46">La Rioja</option>
+                                    
+                                        <option value="50">Mendoza</option>
+                                    
+                                        <option value="54">Misiones</option>
+                                    
+                                        <option value="58">Neuquén</option>
+                                    
+                                        <option value="62">Río Negro</option>
+                                    
+                                        <option value="66">Salta</option>
+                                    
+                                        <option value="70">San Juan</option>
+                                    
+                                        <option value="74">San Luis</option>
+                                    
+                                        <option value="78">Santa Cruz</option>
+                                    
+                                        <option value="82">Santa Fe</option>
+                                    
+                                        <option value="86">Santiago del Estero</option>
+                                    
+                                        <option value="90">Tucumán</option>
+                                    
+                                        <option value="94">Tierra del Fuego</option>
+                                    
+                                        <option value="2">Ciudad Autónoma de Buenos Aires</option>
+                                    
+                                </select>
+                                <p class="help-block error text-danger hidden">Ingresá tu provincia</p>
+                            </div>
+                            <div class="form-group item-form" style="display:none">
+                                <label class="control-label">Municipio</label>
+                                <select class="form-control" name="district" disabled="disabled"  required>
+                                    <option value=""></option>
+                                    
+                                        <option value="6007">Adolfo Alsina</option>
+                                    
+                                        <option value="6014">Adolfo Gonzales Chaves</option>
+                                    
+                                        <option value="6021">Alberti</option>
+                                    
+                                        <option value="6056">Bahía Blanca</option>
+                                    
+                                        <option value="6063">Balcarce</option>
+                                    
+                                        <option value="6070">Baradero</option>
+                                    
+                                        <option value="6077">Arrecifes</option>
+                                    
+                                        <option value="6084">Benito Juárez</option>
+                                    
+                                        <option value="6098">Berisso</option>
+                                    
+                                        <option value="6105">Bolívar</option>
+                                    
+                                        <option value="6112">Bragado</option>
+                                    
+                                        <option value="6119">Brandsen</option>
+                                    
+                                        <option value="6134">Cañuelas</option>
+                                    
+                                        <option value="6140">Capitán Sarmiento</option>
+                                    
+                                        <option value="6147">Carlos Casares</option>
+                                    
+                                        <option value="6154">Carlos Tejedor</option>
+                                    
+                                        <option value="6161">Carmen de Areco</option>
+                                    
+                                        <option value="6168">Castelli</option>
+                                    
+                                        <option value="6175">Colón</option>
+                                    
+                                        <option value="6182">Coronel de Marina Leonardo Rosales</option>
+                                    
+                                        <option value="6189">Coronel Dorrego</option>
+                                    
+                                        <option value="6196">Coronel Pringles</option>
+                                    
+                                        <option value="6203">Coronel Suárez</option>
+                                    
+                                        <option value="6210">Chacabuco</option>
+                                    
+                                        <option value="6217">Chascomús</option>
+                                    
+                                        <option value="6224">Chivilcoy</option>
+                                    
+                                        <option value="6231">Daireaux</option>
+                                    
+                                        <option value="6252">Escobar</option>
+                                    
+                                        <option value="6260">Esteban Echeverría</option>
+                                    
+                                        <option value="6266">Exaltación de la Cruz</option>
+                                    
+                                        <option value="6277">Florentino Ameghino</option>
+                                    
+                                        <option value="6280">General Alvarado</option>
+                                    
+                                        <option value="6294">General Arenales</option>
+                                    
+                                        <option value="6301">General Belgrano</option>
+                                    
+                                        <option value="6322">General La Madrid</option>
+                                    
+                                        <option value="6329">General Las Heras</option>
+                                    
+                                        <option value="6343">General Paz</option>
+                                    
+                                        <option value="6351">General Pinto</option>
+                                    
+                                        <option value="6357">General Pueyrredón</option>
+                                    
+                                        <option value="6371">General San Martín</option>
+                                    
+                                        <option value="6392">General Villegas</option>
+                                    
+                                        <option value="6399">Guaminí</option>
+                                    
+                                        <option value="6406">Hipólito Yrigoyen</option>
+                                    
+                                        <option value="6408">Hurlingham</option>
+                                    
+                                        <option value="6413">Junín</option>
+                                    
+                                        <option value="6420">La Costa</option>
+                                    
+                                        <option value="6441">La Plata</option>
+                                    
+                                        <option value="6455">Las Flores</option>
+                                    
+                                        <option value="6462">Leandro N. Alem</option>
+                                    
+                                        <option value="6476">Lobería</option>
+                                    
+                                        <option value="6483">Lobos</option>
+                                    
+                                        <option value="6490">Lomas de Zamora</option>
+                                    
+                                        <option value="6497">Luján</option>
+                                    
+                                        <option value="6505">Magdalena</option>
+                                    
+                                        <option value="6518">Mar Chiquita</option>
+                                    
+                                        <option value="6532">Mercedes</option>
+                                    
+                                        <option value="6574">Navarro</option>
+                                    
+                                        <option value="6588">9 de Julio</option>
+                                    
+                                        <option value="6595">Olavarría</option>
+                                    
+                                        <option value="6602">Patagones</option>
+                                    
+                                        <option value="6609">Pehuajó</option>
+                                    
+                                        <option value="6623">Pergamino</option>
+                                    
+                                        <option value="6651">Puán</option>
+                                    
+                                        <option value="6655">Punta Indio</option>
+                                    
+                                        <option value="6679">Rivadavia</option>
+                                    
+                                        <option value="6686">Rojas</option>
+                                    
+                                        <option value="6693">Roque Pérez</option>
+                                    
+                                        <option value="6700">Saavedra</option>
+                                    
+                                        <option value="6707">Saladillo</option>
+                                    
+                                        <option value="6714">Salto</option>
+                                    
+                                        <option value="6728">San Andrés de Giles</option>
+                                    
+                                        <option value="6742">San Cayetano</option>
+                                    
+                                        <option value="6770">San Pedro</option>
+                                    
+                                        <option value="6784">Suipacha</option>
+                                    
+                                        <option value="6791">Tandil</option>
+                                    
+                                        <option value="6805">Tigre</option>
+                                    
+                                        <option value="6819">Tornquist</option>
+                                    
+                                        <option value="6826">Trenque Lauquen</option>
+                                    
+                                        <option value="6833">Tres Arroyos</option>
+                                    
+                                        <option value="6840">Tres de Febrero</option>
+                                    
+                                        <option value="6854">25 de Mayo</option>
+                                    
+                                        <option value="6861">Vicente López</option>
+                                    
+                                        <option value="10007">Ambato</option>
+                                    
+                                        <option value="10014">Ancasti</option>
+                                    
+                                        <option value="10028">Antofagasta de la Sierra</option>
+                                    
+                                        <option value="10035">Belén</option>
+                                    
+                                        <option value="10042">Capayán</option>
+                                    
+                                        <option value="10056">El Alto</option>
+                                    
+                                        <option value="10063">Fray Mamerto Esquiú</option>
+                                    
+                                        <option value="10070">La Paz</option>
+                                    
+                                        <option value="10077">Paclín</option>
+                                    
+                                        <option value="10084">Pomán</option>
+                                    
+                                        <option value="10091">Santa María</option>
+                                    
+                                        <option value="10098">Santa Rosa</option>
+                                    
+                                        <option value="10105">Tinogasta</option>
+                                    
+                                        <option value="14007">Calamuchita</option>
+                                    
+                                        <option value="14021">Colón</option>
+                                    
+                                        <option value="14028">Cruz del Eje</option>
+                                    
+                                        <option value="14035">General Roca</option>
+                                    
+                                        <option value="14042">General San Martín</option>
+                                    
+                                        <option value="14049">Ischilín</option>
+                                    
+                                        <option value="14056">Juárez Celman</option>
+                                    
+                                        <option value="14063">Marcos Juárez</option>
+                                    
+                                        <option value="14077">Pocho</option>
+                                    
+                                        <option value="14084">Presidente Roque Sáenz Peña</option>
+                                    
+                                        <option value="14091">Punilla</option>
+                                    
+                                        <option value="14098">Río Cuarto</option>
+                                    
+                                        <option value="14105">Río Primero</option>
+                                    
+                                        <option value="14112">Río Seco</option>
+                                    
+                                        <option value="14119">Río Segundo</option>
+                                    
+                                        <option value="14126">San Alberto</option>
+                                    
+                                        <option value="14133">San Javier</option>
+                                    
+                                        <option value="14140">San Justo</option>
+                                    
+                                        <option value="14147">Santa María</option>
+                                    
+                                        <option value="14154">Sobremonte</option>
+                                    
+                                        <option value="14161">Tercero Arriba</option>
+                                    
+                                        <option value="14168">Totoral</option>
+                                    
+                                        <option value="14175">Tulumba</option>
+                                    
+                                        <option value="14182">Unión</option>
+                                    
+                                        <option value="18021">Capital</option>
+                                    
+                                        <option value="18028">Concepción</option>
+                                    
+                                        <option value="18035">Curuzú Cuatiá</option>
+                                    
+                                        <option value="18063">General Paz</option>
+                                    
+                                        <option value="18084">Ituzaingó</option>
+                                    
+                                        <option value="18091">Lavalle</option>
+                                    
+                                        <option value="18105">Mercedes</option>
+                                    
+                                        <option value="18112">Monte Caseros</option>
+                                    
+                                        <option value="18126">Saladas</option>
+                                    
+                                        <option value="18154">San Miguel</option>
+                                    
+                                        <option value="18161">San Roque</option>
+                                    
+                                        <option value="22007">Almirante Brown</option>
+                                    
+                                        <option value="22014">Bermejo</option>
+                                    
+                                        <option value="22036">12 de Octubre</option>
+                                    
+                                        <option value="22056">General Donovan</option>
+                                    
+                                        <option value="22063">General Güemes</option>
+                                    
+                                        <option value="22070">Independencia</option>
+                                    
+                                        <option value="22126">1º de Mayo</option>
+                                    
+                                        <option value="22133">Quitilipi</option>
+                                    
+                                        <option value="22161">Tapenagá</option>
+                                    
+                                        <option value="22168">25 de Mayo</option>
+                                    
+                                        <option value="26014">Cushamen</option>
+                                    
+                                        <option value="26021">Escalante</option>
+                                    
+                                        <option value="26042">Gaiman</option>
+                                    
+                                        <option value="26049">Gastre</option>
+                                    
+                                        <option value="26056">Languiñeo</option>
+                                    
+                                        <option value="26070">Paso de Indios</option>
+                                    
+                                        <option value="26077">Rawson</option>
+                                    
+                                        <option value="26084">Río Senguer</option>
+                                    
+                                        <option value="26091">Sarmiento</option>
+                                    
+                                        <option value="26098">Tehuelches</option>
+                                    
+                                        <option value="26105">Telsen</option>
+                                    
+                                        <option value="30008">Colón</option>
+                                    
+                                        <option value="30015">Concordia</option>
+                                    
+                                        <option value="30021">Diamante</option>
+                                    
+                                        <option value="30028">Federación</option>
+                                    
+                                        <option value="30035">Federal</option>
+                                    
+                                        <option value="30049">Gualeguay</option>
+                                    
+                                        <option value="30063">Islas del Ibicuy</option>
+                                    
+                                        <option value="30070">La Paz</option>
+                                    
+                                        <option value="30077">Nogoyá</option>
+                                    
+                                        <option value="30084">Paraná</option>
+                                    
+                                        <option value="30088">San Salvador</option>
+                                    
+                                        <option value="30091">Tala</option>
+                                    
+                                        <option value="30105">Victoria</option>
+                                    
+                                        <option value="30113">Villaguay</option>
+                                    
+                                        <option value="34007">Bermejo</option>
+                                    
+                                        <option value="34014">Formosa</option>
+                                    
+                                        <option value="34021">Laishi</option>
+                                    
+                                        <option value="34035">Patiño</option>
+                                    
+                                        <option value="34042">Pilagás</option>
+                                    
+                                        <option value="34049">Pilcomayo</option>
+                                    
+                                        <option value="34056">Pirané</option>
+                                    
+                                        <option value="34063">Ramón Lista</option>
+                                    
+                                        <option value="38007">Cochinoca</option>
+                                    
+                                        <option value="38014">El Carmen</option>
+                                    
+                                        <option value="38028">Humahuaca</option>
+                                    
+                                        <option value="38035">Ledesma</option>
+                                    
+                                        <option value="38042">Palpalá</option>
+                                    
+                                        <option value="38049">Rinconada</option>
+                                    
+                                        <option value="38063">San Pedro</option>
+                                    
+                                        <option value="38070">Santa Bárbara</option>
+                                    
+                                        <option value="38084">Susques</option>
+                                    
+                                        <option value="38094">Tilcara</option>
+                                    
+                                        <option value="38098">Tumbaya</option>
+                                    
+                                        <option value="38105">Valle Grande</option>
+                                    
+                                        <option value="38112">Yavi</option>
+                                    
+                                        <option value="42007">Atreucó</option>
+                                    
+                                        <option value="42014">Caleu Caleu</option>
+                                    
+                                        <option value="42021">Capital</option>
+                                    
+                                        <option value="42028">Catriló</option>
+                                    
+                                        <option value="42035">Conhelo</option>
+                                    
+                                        <option value="42042">Curacó</option>
+                                    
+                                        <option value="42049">Chalileo</option>
+                                    
+                                        <option value="42070">Guatraché</option>
+                                    
+                                        <option value="42077">Hucal</option>
+                                    
+                                        <option value="42098">Loventué</option>
+                                    
+                                        <option value="42105">Maracó</option>
+                                    
+                                        <option value="42112">Puelén</option>
+                                    
+                                        <option value="42119">Quemú Quemú</option>
+                                    
+                                        <option value="42126">Rancul</option>
+                                    
+                                        <option value="42154">Utracán</option>
+                                    
+                                        <option value="46014">Capital</option>
+                                    
+                                        <option value="46021">Castro Barros</option>
+                                    
+                                        <option value="46028">Coronel Felipe Varela</option>
+                                    
+                                        <option value="46035">Chamical</option>
+                                    
+                                        <option value="46042">Chilecito</option>
+                                    
+                                        <option value="46049">Famatina</option>
+                                    
+                                        <option value="46063">General Belgrano</option>
+                                    
+                                        <option value="46070">General Juan F. Quiroga</option>
+                                    
+                                        <option value="46084">General Ocampo</option>
+                                    
+                                        <option value="46105">Independencia</option>
+                                    
+                                        <option value="46112">Rosario Vera Peñaloza</option>
+                                    
+                                        <option value="50007">Capital</option>
+                                    
+                                        <option value="50028">Guaymallén</option>
+                                    
+                                        <option value="50035">Junín</option>
+                                    
+                                        <option value="50049">Las Heras</option>
+                                    
+                                        <option value="50056">Lavalle</option>
+                                    
+                                        <option value="50063">Luján de Cuyo</option>
+                                    
+                                        <option value="50070">Maipú</option>
+                                    
+                                        <option value="50077">Malargüe</option>
+                                    
+                                        <option value="50084">Rivadavia</option>
+                                    
+                                        <option value="50091">San Carlos</option>
+                                    
+                                        <option value="50098">San Martín</option>
+                                    
+                                        <option value="50105">San Rafael</option>
+                                    
+                                        <option value="50119">Tunuyán</option>
+                                    
+                                        <option value="50126">Tupungato</option>
+                                    
+                                        <option value="54014">Cainguás</option>
+                                    
+                                        <option value="54021">Candelaria</option>
+                                    
+                                        <option value="54035">Concepción</option>
+                                    
+                                        <option value="54042">Eldorado</option>
+                                    
+                                        <option value="54049">General Manuel Belgrano</option>
+                                    
+                                        <option value="54063">Iguazú</option>
+                                    
+                                        <option value="54070">Leandro N. Alem</option>
+                                    
+                                        <option value="54077">Libertador General San Martín</option>
+                                    
+                                        <option value="54084">Montecarlo</option>
+                                    
+                                        <option value="54091">Oberá</option>
+                                    
+                                        <option value="54098">San Ignacio</option>
+                                    
+                                        <option value="54105">San Javier</option>
+                                    
+                                        <option value="54112">San Pedro</option>
+                                    
+                                        <option value="54119">25 de Mayo</option>
+                                    
+                                        <option value="58014">Añelo</option>
+                                    
+                                        <option value="58035">Confluencia</option>
+                                    
+                                        <option value="58042">Chos Malal</option>
+                                    
+                                        <option value="58056">Lácar</option>
+                                    
+                                        <option value="58077">Minas</option>
+                                    
+                                        <option value="58084">Ñorquín</option>
+                                    
+                                        <option value="58091">Pehuenches</option>
+                                    
+                                        <option value="58098">Picún Leufú</option>
+                                    
+                                        <option value="58105">Picunches</option>
+                                    
+                                        <option value="62007">Adolfo Alsina</option>
+                                    
+                                        <option value="62014">Avellaneda</option>
+                                    
+                                        <option value="62021">Bariloche</option>
+                                    
+                                        <option value="62035">El Cuy</option>
+                                    
+                                        <option value="62042">General Roca</option>
+                                    
+                                        <option value="62049">9 de julio</option>
+                                    
+                                        <option value="62056">Ñorquinco</option>
+                                    
+                                        <option value="62063">Pichi Mahuida</option>
+                                    
+                                        <option value="62077">San Antonio</option>
+                                    
+                                        <option value="62084">Valcheta</option>
+                                    
+                                        <option value="62091">25 de Mayo</option>
+                                    
+                                        <option value="66007">Anta</option>
+                                    
+                                        <option value="66014">Cachi</option>
+                                    
+                                        <option value="66042">Chicoana</option>
+                                    
+                                        <option value="66056">General José de San Martín</option>
+                                    
+                                        <option value="66070">Iruya</option>
+                                    
+                                        <option value="66098">La Viña</option>
+                                    
+                                        <option value="66112">Metán</option>
+                                    
+                                        <option value="66119">Molinos</option>
+                                    
+                                        <option value="66126">Orán</option>
+                                    
+                                        <option value="66133">Rivadavia</option>
+                                    
+                                        <option value="66140">Rosario de la Frontera</option>
+                                    
+                                        <option value="66147">Rosario de Lerma</option>
+                                    
+                                        <option value="66154">San Carlos</option>
+                                    
+                                        <option value="66161">Santa Victoria</option>
+                                    
+                                        <option value="70021">Calingasta</option>
+                                    
+                                        <option value="70035">Caucete</option>
+                                    
+                                        <option value="70049">Iglesia</option>
+                                    
+                                        <option value="70056">Jáchal</option>
+                                    
+                                        <option value="70063">9 de Julio</option>
+                                    
+                                        <option value="70105">Sarmiento</option>
+                                    
+                                        <option value="70119">Valle Fértil</option>
+                                    
+                                        <option value="70126">25 de Mayo</option>
+                                    
+                                        <option value="70133">Zonda</option>
+                                    
+                                        <option value="74007">Ayacucho</option>
+                                    
+                                        <option value="74021">Coronel Pringles</option>
+                                    
+                                        <option value="74035">General Pedernera</option>
+                                    
+                                        <option value="74042">Gobernador Dupuy</option>
+                                    
+                                        <option value="74049">Junín</option>
+                                    
+                                        <option value="74056">La Capital</option>
+                                    
+                                        <option value="74063">Libertador General San Martín</option>
+                                    
+                                        <option value="78014">Deseado</option>
+                                    
+                                        <option value="78049">Río Chico</option>
+                                    
+                                        <option value="82014">Caseros</option>
+                                    
+                                        <option value="82021">Castellanos</option>
+                                    
+                                        <option value="82028">Constitución</option>
+                                    
+                                        <option value="82042">General López</option>
+                                    
+                                        <option value="82049">General Obligado</option>
+                                    
+                                        <option value="82056">Iriondo</option>
+                                    
+                                        <option value="82063">La Capital</option>
+                                    
+                                        <option value="82070">Las Colonias</option>
+                                    
+                                        <option value="82077">9 de Julio</option>
+                                    
+                                        <option value="82084">Rosario</option>
+                                    
+                                        <option value="82091">San Cristóbal</option>
+                                    
+                                        <option value="82098">San Javier</option>
+                                    
+                                        <option value="82105">San Jerónimo</option>
+                                    
+                                        <option value="82112">San Justo</option>
+                                    
+                                        <option value="82119">San Lorenzo</option>
+                                    
+                                        <option value="82126">San Martín</option>
+                                    
+                                        <option value="82133">Vera</option>
+                                    
+                                        <option value="86007">Aguirre</option>
+                                    
+                                        <option value="86014">Alberdi</option>
+                                    
+                                        <option value="86028">Avellaneda</option>
+                                    
+                                        <option value="86035">Banda</option>
+                                    
+                                        <option value="86049">Capital</option>
+                                    
+                                        <option value="86056">Copo</option>
+                                    
+                                        <option value="86070">Figueroa</option>
+                                    
+                                        <option value="86077">General Taboada</option>
+                                    
+                                        <option value="86091">Jiménez</option>
+                                    
+                                        <option value="86119">Moreno</option>
+                                    
+                                        <option value="86133">Pellegrini</option>
+                                    
+                                        <option value="86147">Río Hondo</option>
+                                    
+                                        <option value="86154">Rivadavia</option>
+                                    
+                                        <option value="86168">Salavina</option>
+                                    
+                                        <option value="86189">Silípica</option>
+                                    
+                                        <option value="90007">Burruyacú</option>
+                                    
+                                        <option value="90014">Cruz Alta</option>
+                                    
+                                        <option value="90028">Famaillá</option>
+                                    
+                                        <option value="90035">Graneros</option>
+                                    
+                                        <option value="90056">Leales</option>
+                                    
+                                        <option value="90063">Lules</option>
+                                    
+                                        <option value="90070">Monteros</option>
+                                    
+                                        <option value="90091">Simoca</option>
+                                    
+                                        <option value="90098">Tafí del Valle</option>
+                                    
+                                        <option value="90105">Tafí Viejo</option>
+                                    
+                                        <option value="90119">Yerba Buena</option>
+                                    
+                                        <option value="94014">Ushuaia</option>
+                                    
+                                        <option value="6035">Avellaneda</option>
+                                    
+                                        <option value="6049">Azul</option>
+                                    
+                                        <option value="6126">Campana</option>
+                                    
+                                        <option value="6238">Dolores</option>
+                                    
+                                        <option value="6308">General Guido</option>
+                                    
+                                        <option value="6336">General Lavalle</option>
+                                    
+                                        <option value="6385">General Viamonte</option>
+                                    
+                                        <option value="6410">Ituzaingó</option>
+                                    
+                                        <option value="6412">José C. Paz</option>
+                                    
+                                        <option value="6469">Lincoln</option>
+                                    
+                                        <option value="6515">Malvinas Argentinas</option>
+                                    
+                                        <option value="6525">Marcos Paz</option>
+                                    
+                                        <option value="6547">Monte</option>
+                                    
+                                        <option value="6553">Monte Hermoso</option>
+                                    
+                                        <option value="6581">Necochea</option>
+                                    
+                                        <option value="6644">Pinamar</option>
+                                    
+                                        <option value="6665">Ramallo</option>
+                                    
+                                        <option value="6735">San Antonio de Areco</option>
+                                    
+                                        <option value="6749">San Fernando</option>
+                                    
+                                        <option value="6812">Tordillo</option>
+                                    
+                                        <option value="6847">Tres Lomas</option>
+                                    
+                                        <option value="6875">Villarino</option>
+                                    
+                                        <option value="6882">Zárate</option>
+                                    
+                                        <option value="10021">Andalgalá</option>
+                                    
+                                        <option value="10049">Capital</option>
+                                    
+                                        <option value="10112">Valle Viejo</option>
+                                    
+                                        <option value="14014">Capital</option>
+                                    
+                                        <option value="14070">Minas</option>
+                                    
+                                        <option value="18049">Esquina</option>
+                                    
+                                        <option value="18070">Goya</option>
+                                    
+                                        <option value="18077">Itatí</option>
+                                    
+                                        <option value="18098">Mburucuyá</option>
+                                    
+                                        <option value="18133">San Cosme</option>
+                                    
+                                        <option value="18147">San Martín</option>
+                                    
+                                        <option value="18168">Santo Tomé</option>
+                                    
+                                        <option value="22021">Comandante Fernández</option>
+                                    
+                                        <option value="22039">2 de Abril</option>
+                                    
+                                        <option value="22077">Libertad</option>
+                                    
+                                        <option value="22084">Libertador General San Martín</option>
+                                    
+                                        <option value="22098">Mayor Luis J. Fontana</option>
+                                    
+                                        <option value="22112">O'Higgins</option>
+                                    
+                                        <option value="22140">San Fernando</option>
+                                    
+                                        <option value="22147">San Lorenzo</option>
+                                    
+                                        <option value="22154">Sargento Cabral</option>
+                                    
+                                        <option value="26007">Biedma</option>
+                                    
+                                        <option value="26035">Futaleufú</option>
+                                    
+                                        <option value="30056">Gualeguaychú</option>
+                                    
+                                        <option value="30098">Uruguay</option>
+                                    
+                                        <option value="38021">Dr. Manuel Belgrano</option>
+                                    
+                                        <option value="38056">San Antonio</option>
+                                    
+                                        <option value="38077">Santa Catalina</option>
+                                    
+                                        <option value="42056">Chapaleufú</option>
+                                    
+                                        <option value="42063">Chical Co</option>
+                                    
+                                        <option value="42084">Lihuel Calel</option>
+                                    
+                                        <option value="42133">Realicó</option>
+                                    
+                                        <option value="42140">Toay</option>
+                                    
+                                        <option value="46007">Arauco</option>
+                                    
+                                        <option value="46056">General Angel V. Peñaloza</option>
+                                    
+                                        <option value="46091">General San Martín</option>
+                                    
+                                        <option value="46098">Vinchina</option>
+                                    
+                                        <option value="50014">General Alvear</option>
+                                    
+                                        <option value="50112">Santa Rosa</option>
+                                    
+                                        <option value="54007">Apóstoles</option>
+                                    
+                                        <option value="54028">Capital</option>
+                                    
+                                        <option value="58007">Aluminé</option>
+                                    
+                                        <option value="58021">Catán Lil</option>
+                                    
+                                        <option value="58028">Collón Curá</option>
+                                    
+                                        <option value="58070">Los Lagos</option>
+                                    
+                                        <option value="66021">Cafayate</option>
+                                    
+                                        <option value="66028">Capital</option>
+                                    
+                                        <option value="66084">La Candelaria</option>
+                                    
+                                        <option value="66105">Los Andes</option>
+                                    
+                                        <option value="70070">Pocito</option>
+                                    
+                                        <option value="70077">Rawson</option>
+                                    
+                                        <option value="70091">San Martín</option>
+                                    
+                                        <option value="70098">Santa Lucía</option>
+                                    
+                                        <option value="70112">Ullum</option>
+                                    
+                                        <option value="74014">Belgrano</option>
+                                    
+                                        <option value="74028">Chacabuco</option>
+                                    
+                                        <option value="78007">Corpen Aike</option>
+                                    
+                                        <option value="78021">Güer Aike</option>
+                                    
+                                        <option value="78028">Lago Argentino</option>
+                                    
+                                        <option value="78035">Lago Buenos Aires</option>
+                                    
+                                        <option value="82035">Garay</option>
+                                    
+                                        <option value="86021">Atamisqui</option>
+                                    
+                                        <option value="86042">Belgrano</option>
+                                    
+                                        <option value="86063">Choya</option>
+                                    
+                                        <option value="86084">Guasayán</option>
+                                    
+                                        <option value="86098">Juan F. Ibarra</option>
+                                    
+                                        <option value="86105">Loreto</option>
+                                    
+                                        <option value="86126">Ojo de Agua</option>
+                                    
+                                        <option value="86140">Quebrachos</option>
+                                    
+                                        <option value="86161">Robles</option>
+                                    
+                                        <option value="86175">San Martín</option>
+                                    
+                                        <option value="90021">Chicligasta</option>
+                                    
+                                        <option value="90042">Juan B. Alberdi</option>
+                                    
+                                        <option value="90049">La Cocha</option>
+                                    
+                                        <option value="90077">Río Chico</option>
+                                    
+                                        <option value="94007">Río Grande</option>
+                                    
+                                        <option value="2000">Ciudad Autónoma de Buenos Aires</option>
+                                    
+                                        <option value="6042">Ayacucho</option>
+                                    
+                                        <option value="6091">Berazategui</option>
+                                    
+                                        <option value="6270">Ezeiza</option>
+                                    
+                                        <option value="6274">Florencio Varela</option>
+                                    
+                                        <option value="6448">Laprida</option>
+                                    
+                                        <option value="6511">Maipú</option>
+                                    
+                                        <option value="6539">Merlo</option>
+                                    
+                                        <option value="6658">Quilmes</option>
+                                    
+                                        <option value="6672">Rauch</option>
+                                    
+                                        <option value="6763">San Nicolás</option>
+                                    
+                                        <option value="6798">Tapalqué</option>
+                                    
+                                        <option value="6868">Villa Gesell</option>
+                                    
+                                        <option value="18007">Bella Vista</option>
+                                    
+                                        <option value="18042">Empedrado</option>
+                                    
+                                        <option value="18119">Paso de los Libres</option>
+                                    
+                                        <option value="22119">Presidencia de la Plaza</option>
+                                    
+                                        <option value="26028">Florentino Ameghino</option>
+                                    
+                                        <option value="26063">Mártires</option>
+                                    
+                                        <option value="30042">Feliciano</option>
+                                    
+                                        <option value="34028">Matacos</option>
+                                    
+                                        <option value="42091">Limay Mahuida</option>
+                                    
+                                        <option value="42147">Trenel</option>
+                                    
+                                        <option value="46077">General Lamadrid</option>
+                                    
+                                        <option value="46126">Sanagasta</option>
+                                    
+                                        <option value="50042">La Paz</option>
+                                    
+                                        <option value="62028">Conesa</option>
+                                    
+                                        <option value="62070">Pilcaniyeu</option>
+                                    
+                                        <option value="66035">Cerrillos</option>
+                                    
+                                        <option value="66049">General Güemes</option>
+                                    
+                                        <option value="66063">Guachipas</option>
+                                    
+                                        <option value="66077">La Caldera</option>
+                                    
+                                        <option value="70084">Rivadavia</option>
+                                    
+                                        <option value="82007">Belgrano</option>
+                                    
+                                        <option value="6630">Pila</option>
+                                    
+                                        <option value="6638">Pilar</option>
+                                    
+                                        <option value="6721">Salliqueló</option>
+                                    
+                                        <option value="6756">San Isidro</option>
+                                    
+                                        <option value="18056">General Alvear</option>
+                                    
+                                        <option value="18175">Sauce</option>
+                                    
+                                        <option value="22028">Chacabuco</option>
+                                    
+                                        <option value="22043">Fray Justo Santa María de Oro</option>
+                                    
+                                        <option value="22091">Maipú</option>
+                                    
+                                        <option value="46119">San Blas de los Sauces</option>
+                                    
+                                        <option value="50021">Godoy Cruz</option>
+                                    
+                                        <option value="54056">Guaraní</option>
+                                    
+                                        <option value="58063">Loncopué</option>
+                                    
+                                        <option value="58112">Zapala</option>
+                                    
+                                        <option value="70007">Albardón</option>
+                                    
+                                        <option value="70014">Angaco</option>
+                                    
+                                        <option value="86112">Mitre</option>
+                                    
+                                        <option value="90084">Capital</option>
+                                    
+                                        <option value="90112">Trancas</option>
+                                    
+                                        <option value="6028">Almirante Brown</option>
+                                    
+                                        <option value="6245">Ensenada</option>
+                                    
+                                        <option value="6287">General Alvear</option>
+                                    
+                                        <option value="6315">General Juan Madariaga</option>
+                                    
+                                        <option value="6364">General Rodríguez</option>
+                                    
+                                        <option value="6427">La Matanza</option>
+                                    
+                                        <option value="6434">Lanús</option>
+                                    
+                                        <option value="6560">Moreno</option>
+                                    
+                                        <option value="6568">Morón</option>
+                                    
+                                        <option value="6616">Pellegrini</option>
+                                    
+                                        <option value="6648">Presidente Perón</option>
+                                    
+                                        <option value="6760">San Miguel</option>
+                                    
+                                        <option value="6778">San Vicente</option>
+                                    
+                                        <option value="18014">Berón de Astrada</option>
+                                    
+                                        <option value="18140">San Luis del Palmar</option>
+                                    
+                                        <option value="22049">General Belgrano</option>
+                                    
+                                        <option value="22105">9 de Julio</option>
+                                    
+                                        <option value="58049">Huiliches</option>
+                                    
+                                        <option value="66091">La Poma</option>
+                                    
+                                        <option value="70028">Capital</option>
+                                    
+                                        <option value="70042">Chimbas</option>
+                                    
+                                        <option value="78042">Magallanes</option>
+                                    
+                                        <option value="86182">Sarmiento</option>
+                                    
+                                </select>
+                                <p class="help-block error text-danger hidden">Ingresá tu municipio</p>
+                            </div>
+                            <div class="form-group item-form" style="display:none">
+                                <label class="control-label">Localidad</label>
+                                <select class="form-control" name="locality" disabled="disabled"  required>
+                                    <option value=""></option>
+                                    
+                                </select>
+                                <p class="help-block error text-danger hidden">Ingresá tu localidad</p>
+                            </div>
+        
+                            <div class="form-group item-form">
+                                <label class="control-label" for="email">Correo Electrónico</label>
+                                <input id="email" class="form-control" type="email" name="email" value="" pattern="+@." required>
+                                <p  class="help-block error text-danger hidden">Ingresá tu correo electrónico</p>
+                            </div>
+                            <div class="form-group item-form">
+                                <label class="control-label" for="password">Contraseña</label>
+                                <input id="password" class="form-control" type="password" name="password"  required>
+                                <p class="help-block error text-danger hidden">Ingresá tu contraseña</p>
+                            </div>
+                            
+                            <div class="form-group item-form">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="toc" name="toc"  required> He leído y acepto los <a href="https://www.argentina.gob.ar/terminos-y-condiciones" target="_blank">términos y condiciones</a>
+                                    </label>
+                                </div>
+                                <p class="help-block error text-danger hidden">Tenés que aceptar los términos y condiciones</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-4 col-xs-12">
+                                
+                                <button type="button" class="btn btn-success btn-block validator">Continuar</button>
+
+                              </div>
+                            </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    
+$(function(){
+    $('.validator').click(function(e){
+        e.preventDefault()
+        $('.error').removeClass("hidden");
+        $('.item-form').addClass('has-error has-feedback');
+        
+            mostrarErrores()
+            $(".has-error .form-control").first().focus().attr('aria-busy','true')
+        
+
+    });
+
+ 
+});
+
+
+
+function mostrarErrores(){
+  $("#errores").html("");
+  $("#errores").html("<p>Se han producido los siguientes errores:</p><ol></ol>");
+  var cantidadErrores = 0;
+  
+  
+    $(".has-error").each(function(i,v){
+
+        if($(this).find('input').val() == ''){
+            $("#errores ol").append("<li>El campo está vacío</li>");
+        }else{
+            var mensajeError = $(this).find(".help-block.error").html();
+            $("#errores ol").append("<li>"+mensajeError+"</li>");
+        }
+        cantidadErrores++;
+
+
+  });
+
+  
+  if(cantidadErrores >0){
+    $("#errores").show();
+    
+   
+  }else{
+  
+    $("#errores").hide(); 
+  }
+
+  
+}
+
+    
+
+var content_popover = document.getElementById('content-popover');
+function popshow(){
+  content_popover.classList.toggle('hidden');
+}
+function pophidde(){
+  content_popover.classList.add('hidden')
+}
+
+
+</script>

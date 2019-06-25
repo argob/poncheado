@@ -22,7 +22,7 @@ layout: mi-argentina-login
                           <p><a href="/ingresar/">¿Ya estás registrado? Ingresá a tu cuenta.</a></p>
                         
                        
-                           <div id="errores" rol='alert' aria-live='assertive' class="alert alert-danger" style="display: none;"></div>
+                           
                             
                             <label class="control-label" for="id_number">Identificación (CUIL o pasaporte extranjero)</label>
                             <div class="row">
@@ -1707,50 +1707,14 @@ $(function(){
     $('.validator').click(function(e){
         e.preventDefault()
         $('.error').removeClass("hidden");
+
         $('.item-form').addClass('has-error has-feedback');
-        window.onload = function() {
-            mostrarErrores()
-            $(".has-error .form-control").first().focus().attr('aria-busy','true')
-        }
-
+        $('.has-error .form-control').attr('aria-label', $('.error').html());
+        $(".has-error .form-control").first().focus()
+        
     });
-
- 
 });
 
-
-
-function mostrarErrores(){
-  $("#errores").html("");
-  $("#errores").html("<p>Se han producido los siguientes errores:</p><ol></ol>");
-  var cantidadErrores = 0;
-  
-  
-    $(".has-error").each(function(i,v){
-
-        if($(this).find('input').val() == ''){
-            $("#errores ol").append("<li>El campo está vacío</li>");
-        }else{
-            var mensajeError = $(this).find(".help-block.error").html();
-            $("#errores ol").append("<li>"+mensajeError+"</li>");
-        }
-        cantidadErrores++;
-
-
-  });
-
-  
-  if(cantidadErrores >0){
-    $("#errores").show();
-    
-   
-  }else{
-  
-    $("#errores").hide(); 
-  }
-
-  
-}
 
     
 
