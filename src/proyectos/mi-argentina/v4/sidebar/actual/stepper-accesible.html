@@ -1,0 +1,240 @@
+---
+layout: mi-argentina2
+---
+<style>
+	/* steps */
+	.wizard-head .nav-tabs{position: relative;margin-bottom: 0;border:none;display: flex;justify-content: space-between}
+	.wizard-head {position: relative;padding: 14px 0;}
+	div.wizard-inner {position: relative;}
+	.tab-content{position: relative;}
+	.wizard-head .connecting-line {height: 2px;background: #e0e0e0;position: absolute;width: 100%;margin: 0 auto;left: 0;right: 0;top: 50%;z-index: 1;}
+	.wizard-head .nav-tabs > li{float:none;position: relative;z-index: 2;background: #fff;}
+	.wizard-head .nav-tabs > li > a{display: flex;padding: 0 8px;}
+	.wizard-head .nav-tabs > li.active > a, .wizard-head .nav-tabs > li.active > a:hover, .wizard-head .nav-tabs > li.active > a:focus{color: #555555;cursor: default;border: 0;border-bottom-color: transparent;}
+	span.round-tab {width: 24px;height: 24px;line-height: 24px;display: inline-block;border-radius: 100px;background: #0F73B9;z-index: 2;position: relative;text-align: center;font-size: 14px;color:#fff;flex: 0 0 24px;}
+	span.round-tab i,
+	span.round-tab span{color:#fff;}
+	span.round-tab i{display: none;}
+	.check span.round-tab i{display: inline-block;}
+	.check .stepnumber{display: none;}
+	.wizard-head li a h5{color:#333333;margin: 3px 8px 0;font-size: 14px;word-break: keep-all;}
+	.wizard-head li.disabled a h5{color:#BCBCBC;word-break: keep-all;}
+	.wizard-head li.active span.round-tab{box-shadow: 0 4px 8px rgba(0,0,0,.4);}
+	.wizard-head li.disabled span.round-tab{background: #BCBCBC;}
+	.wizard-head li.disabled span.round-tab i{color: #BCBCBC;}
+	span.round-tab:hover {box-shadow: 0 4px 8px rgba(0,0,0,.2);}
+	.wizard-head .nav-tabs:before,
+	.wizard-head .nav-tabs:after{display: none!important;}
+	.wizard-head .nav-tabs > li a {padding: 0;margin: 0;border:none;}
+	.wizard-head .nav-tabs > li a:hover {  background: transparent;  border-color: transparent;}
+	.tab-pane {position: relative;}
+	@media( max-width : 768px ) {
+		.wizard-head li a h5{display: none;}
+	}
+	/* fin steps */
+</style>
+
+<section class="p-y-0">
+	<div class="container-fluid">
+		<div class="row dashboard">
+			<div class="col-lg-3 col-sm-4 sidebar p-l-0 hidden-xs">
+
+				{% include mi-argentina/menu-1-2019_index.html %}
+
+			</div>
+
+			<div class="col-lg-9 col-sm-8">
+				<div class="row">
+					<div class="col-xs-12 m-b-1">
+						<h1 class="title-dashboard">
+							Titulo de la página
+						</h1>
+						<p>
+							Texto descripción
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8" id="main-content">
+						<div class="panels-row-miargentina">
+							<div class="panel panel-default panel-border-success panel-nolink">
+								<div class="panel-heading">
+									<div class="wizard-head">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active">
+												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a id="paso-1" href="#step-1" data-toggle="tab" aria-controls="step-1"
+													role="tab" title="Titulo del paso 1">
+													<span class="round-tab"><span class="sr-only">Paso 1</span>
+														<i class="fa fa-check"></i><span class="stepnumber"
+															aria-hidden="true">1</span>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a id="paso-2" href="#step-2" data-toggle="tab" aria-controls="step-2"
+													role="tab" title="Titulo del paso 2">
+													<span class="round-tab"><span class="sr-only">Paso 2</span>
+														<i class="fa fa-check"></i><span class="stepnumber"
+															aria-hidden="true">2</span>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
+												<a id="paso-3" href="#step-3" data-toggle="tab" aria-controls="step-3"
+													role="tab" title="Titulo del paso 3">
+													<span class="round-tab"><span class="sr-only">Paso 3</span>
+														<i class="fa fa-check"></i><span class="stepnumber"
+															aria-hidden="true">3</span>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="panel-body">
+									<form role="form">
+										<div class="tab-content" role="tablist">
+											<div class="tab-pane active" role="tabpanel" id="step-1"
+												aria-labelledby="paso-1">
+												<form>
+													<fieldset>
+														<legend>
+															<h3>Titulo del paso 1</h3>
+														</legend>
+														<fieldset>
+															<legend class="control-label">Subtitulo del paso 1</legend>
+														</fieldset>
+														<button type="button"
+															class="btn btn-success next-step">Siguiente</button>
+													</fieldset>
+												</form>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step-2" aria-labelledby="paso-2"
+												hidden>
+												<form>
+													<fieldset>
+														<legend>
+															<h3>Titulo del paso 2</h3>
+														</legend>
+														<fieldset>
+															<legend class="control-label">Subtitulo del paso 2</legend>
+														</fieldset>
+														<button type="button"
+															class="btn btn-link back-step">Anterior</button>
+														<button type="button"
+															class="btn btn-success next-step">Siguiente</button>
+													</fieldset>
+												</form>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step-3" aria-labelledby="paso-3"
+												hidden>
+												<form>
+													<fieldset>
+														<legend>
+															<h3>Titulo del paso 2</h3>
+														</legend>
+														<fieldset>
+															<legend class="control-label">Subtitulo del paso 2</legend>
+														</fieldset>
+														<button type="button"
+															class="btn btn-link back-step">Anterior</button>
+														<button type="button"
+															class="btn btn-success next-step">Finalizar</button>
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var cache = {}, last;
+		
+		Array.prototype.forEach.call(document.querySelectorAll('[role="tablist"]'), function (tablist) {
+			Array.prototype.forEach.call(tablist.querySelectorAll('[href^="#"][role="tab"]'), function (tab, index, tabs) {
+				cache[tab.hash] = [tab, document.getElementById(tab.getAttribute('aria-controls'))];
+				
+				if (tab.getAttribute('aria-selected') === 'true') {
+					last = cache[''] = cache[tab.hash];
+				} else {
+					tab.setAttribute('tabindex', -1);
+				}
+				
+				tab.addEventListener('keydown', function (event) {
+					var next = event.keyCode === 37 ? tabs[index - 1] : event.keyCode === 39 ? tabs[index + 1] : null;
+					
+					if (next) {
+						location.hash = next.hash;
+						
+						next.focus();
+					}
+				});
+			});
+		});
+		
+		window.addEventListener('hashchange', onhashchange);
+		
+		onhashchange();
+		
+		function onhashchange() {
+			var tab = cache[location.hash];
+			
+			if (tab) {
+				if (last) {
+					last[0].removeAttribute('aria-selected');
+					last[0].setAttribute('tabindex', -1);
+					last[1].setAttribute('hidden', '');
+				}
+				
+				tab[0].setAttribute('aria-selected', 'true');
+				tab[0].removeAttribute('tabindex');
+				tab[1].removeAttribute('hidden', '');
+				
+				last = tab;
+			}
+		}
+	});
+	
+	$(document).ready(function () {
+		//Inicia tooltips
+		$('.nav-tabs > li a[title]').tooltip();
+		//pasos wizard
+		$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+			var target = $(e.target);
+			if (target.parent().hasClass('disabled')) {
+				return false;
+			}
+		});
+		// click en boton siguiente paso
+		$(".next-step").click(function (e) {
+			var active = $('.wizard-head .nav-tabs li.active');
+			active.next().removeClass('disabled');
+			nextTab(active);
+		});
+		// click en boton anterior
+		$(".prev-step").click(function (e) {
+			var active = $('.wizard-head .nav-tabs li.active');		
+			prevTab(active);
+		});
+	});
+	// Simula clic en siguiente tab
+	function nextTab(elem) {
+		$(elem).next().find('a[data-toggle="tab"]').click();
+	}
+	// Simula clic en el tab anterior
+	function prevTab(elem) {
+		$(elem).prev().find('a[data-toggle="tab"]').click();
+	}
+</script>
