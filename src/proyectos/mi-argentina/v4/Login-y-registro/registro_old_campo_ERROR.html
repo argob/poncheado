@@ -11,6 +11,7 @@ layout: mi-argentina-login
                         <hr class="m-y-1">
                         <p>Por favor completá estos datos para continuar.</p>
                         <p><a href="/ingresar/">¿Ya estás registrado? Ingresá a tu cuenta.</a></p>
+                        <div id="errores" rol='alert' class="alert alert-danger" style="display: none;"></div>
                         <form method="get" action="success1.html">
                             <fieldset>
                                 <legend>
@@ -1697,6 +1698,7 @@ layout: mi-argentina-login
     var elementError ;
     document.querySelector('.validator').addEventListener('click', function(){
 
+        //simulo una validación de pusheando a un nuevo array los campos vacíos
         document.querySelectorAll('.form-control').forEach(i => {
 
             if(i.value == ''){
@@ -1704,22 +1706,27 @@ layout: mi-argentina-login
              }
 
         })
+        // agrego la clase has-error a esos items
+        //al obtener solo los que están vacíos le saco la clase hidden a los p (que ya vienen con la clase error por default)
+        
          errorElements.forEach(e => {
-            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
             e.closest('.item-form').classList.add('has-error')
+            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
+            
 
 
         })
         
-        elementError = errorElements.closest('.item-form').querySelector('.form-control') 
+        elementError = errorElements[0].closest('.item-form') 
         
-        if(elementError.value == ''){
-            elementError.setAttribute('aria-label', errorElements[0].textContent)
-            elementError.focus()
+        if(errorElements[0].value == ''){
+            elementError.setAttribute('aria-label', elementError.querySelector('.error').textContent)
+            //elementError.focus()
             }
-
+            mostrarErrores()
 
         })
+
     document.addEventListener("keypress", function(e){
         
         e.target.nextElementSibling.classList.add('hidden')
@@ -1727,6 +1734,39 @@ layout: mi-argentina-login
         e.target.parentNode.classList.remove('has-error')
 
     })
+
+    function mostrarErrores(){
+  $("#errores").html("");
+  $("#errores").html("<h3 tabindex='0'>Se han producido los siguientes errores:</h3><ol></ol>");
+  var cantidadErrores = 0;
+  
+  
+    $(".has-error").each(function(i,v){
+
+        if($(this).find('input').val() == ''){
+            $("#errores ol").append("<li>El campo está vacío &nbsp;</li>");
+
+        }else{
+            var mensajeError = $(this).find(".help-block.error").html();
+            $("#errores ol").append("<li>"+mensajeError+"</li>");
+        }
+        cantidadErrores++;
+
+
+  });
+
+  
+  if(cantidadErrores >0){
+    $("#errores").show();
+    
+   
+  }else{
+  
+    $("#errores").hide(); 
+  }
+
+  
+}
 
         
 

@@ -1717,14 +1717,14 @@ $(function(){
 
 function mostrarErrores(){
   $("#errores").html("");
-  $("#errores").html("<h3 tabindex="0">Se han producido los siguientes errores:</h3><ol></ol>");
+  $("#errores").html("<h3 tabindex='-1'>Se han producido los siguientes errores:</h3><ol></ol>");
   var cantidadErrores = 0;
   
   
     $(".has-error").each(function(i,v){
 
         if($(this).find('input').val() == ''){
-            $("#errores ol").append("<li>El campo está vacío</li>");
+            $("#errores ol").append("<li>El campo está vacío &nbsp;</li>");
         }else{
             var mensajeError = $(this).find(".help-block.error").html();
             $("#errores ol").append("<li>"+mensajeError+"</li>");

@@ -13,14 +13,16 @@ layout: mi-argentina-login
             <h2 aria-hidden="true">Ingresá a tu cuenta</h2>
             <form method="get">
               <div id="errores" rol='alert' aria-live='assertive' class="alert alert-danger"></div>
+              <label for="cuil">CUIL o pasaporte extranjero</label>
               <div class="row">
                 <div class="col-xs-12 form-group item-form">
-                  <label for="cuil">CUIL o pasaporte extranjero</label>
+                  
                   <input type="text" class="form-control" id="cuil" required aria-required="true">
                   <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
                 </div>
+                <label for="password_confirmacion">Contraseña</label>
                 <div class="col-xs-12 form-group item-form">
-                   <label for="password_confirmacion">Contraseña</label>
+                   
                     <input id="password_confirmacion"  type="password" class="form-control" maxlength="15" " required>
                     <a href="#" class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()" alt="Mostrar contraseña"><span class="sr-only">Mostrar contraseña</span></a>
                     <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
@@ -93,8 +95,9 @@ layout: mi-argentina-login
              }
 
         })
-         console.log(errorElements)
+        
          errorElements.forEach(e => {
+
             e.closest('.item-form').querySelector('.error').classList.remove('hidden');
             e.closest('.item-form').classList.add('has-error')
 
@@ -103,9 +106,11 @@ layout: mi-argentina-login
         
         elementError = errorElements[0].closest('.item-form').querySelector('.form-control') 
         
-        if(elementError.value == ''){
+        if(errorElements.length>0){
+          console.log('holis')
             elementError.setAttribute('aria-label', errorElements[0].textContent)
             //elementError.focus()
+            mostrarErrores()
           }
 
 
@@ -121,15 +126,17 @@ layout: mi-argentina-login
         
 
 function mostrarErrores(){
-  document.querySelector('#errores').innerHTML = ''
+   document.querySelector('#errores').innerHTML = ''
   document.querySelector('#errores').innerHTML = '<h3>Se han producido los siguientes errores:</h3><ol></ol>'
   let cantidadDeErrores = 0
   document.querySelectorAll('.has-error').forEach(error => {
-    let mensajeError = error.querySelector(".help-block.error").textContent;
-    let li;
-    li.innerHTML = `<li>${mensajeError}</li>`
-    error.querySelector('input').appendChild(li)
+    var ol = document.querySelector('#errores ol')
+    var li = document.createElement('li')
+    li.innerText = error.querySelector('p').textContent
+    ol.appendChild(li)
+   
   })
+ 
 
 }
 

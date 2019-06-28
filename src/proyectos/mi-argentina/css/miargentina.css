@@ -1271,6 +1271,8 @@ ul.data li{
  }
 }
 
+
+
 /*id paso de validación verificado*/
 #idVerificado{
   visibility: hidden;
@@ -1392,3 +1394,15 @@ position: relative;
   .wizard-head li a h5{display: none;}
 }
 /* fin steps */
+
+/*Hide spiner (input number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   /* display: none; <- Crashes Chrome on hover */
+   -webkit-appearance: none;
+   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+   -moz-appearance:textfield; /* Firefox */
+}
