@@ -3,83 +3,81 @@ layout: argentina
 ---
 
 <style type="text/css">
-.well {
-  width: 100%;
-}
+  .well {
+    width: 100%;
+  }
 
-legend {
-  margin-bottom: 0;
-  border-bottom: none;
-}
+  legend {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
 
-select[disabled] {
-  background-color: #ccc;
-}
+  select[disabled] {
+    background-color: #ccc;
+  }
 
-select[disabled] .form-control {
-  background-color: #e9e9e9;
-}
+  select[disabled] .form-control {
+    background-color: #e9e9e9;
+  }
 
-.form-control[disabled],
-select[disabled] .form-control {
-  cursor: not-allowed;
-}
+  .form-control[disabled],
+  select[disabled] .form-control {
+    cursor: not-allowed;
+  }
 
-.error {
-  display: block;
-  color: #a94442;
-}
+  .error {
+    display: block;
+    color: #a94442;
+  }
 
-a.panel span {
-  transition: none!important;
-}
+  a.panel span {
+    transition: none !important;
+  }
 
-.panel h3 {
-  font-weight: 600
-}
+  .panel h3 {
+    font-weight: 600
+  }
 
-.ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-#puntos .punto {
-  display: flex;
-}
+  #puntos .punto {
+    display: flex;
+  }
 
-#puntos .punto>a {
-  display: flex;
-  flex-direction: column;
-}
+  #puntos .punto>a {
+    display: flex;
+    flex-direction: column;
+  }
 
-#puntos .punto .panel-footer {
-  margin-top: auto;
-}
+  #puntos .punto .panel-footer {
+    margin-top: auto;
+  }
 
-.puntoFijo {
-  display: none;
-}
+  .puntoFijo {
+    display: none;
+  }
 
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
-}
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
 
-.video-container iframe,
-.video-container object,
-.video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-
+  .video-container iframe,
+  .video-container object,
+  .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 
@@ -89,60 +87,59 @@ a.panel span {
     <h2 class="m-t-4 text-center">¿Dónde nos podés encontrar?</h2>
     <p class="lead text-center m-b-4">Cada semana nos acercamos a más de 40 localidades.</p>
 
-<div id="puntosListado">
-    <div id="filtros">
-      <div class="row">
+    <div id="puntosListado">
+      <div id="filtros">
+        <div class="row">
 
-        <div class="col-md-3"> 
+          <div class="col-md-3">
             <div class="form-group">
-                <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
-                <select class="form-control" name="provincia" id="provincia" required>
-                    <option selected class="preloader">Cargando...</option>
-                    <option data-id="0" value="">Seleccioná una provincia</option>
-                </select>
+              <label class="control-label" for="provincia" style="font-size: 16px;">Provincia</label>
+              <select class="form-control" name="provincia" id="provincia" required>
+                <option data-id="0" value="" class="preloader">Cargando...</option>
+              </select>
             </div>
 
-        </div>
-
-        <div class="col-md-9">                
-          <div class="form-group">
-                <label class="control-label" for="localidad">Búsqueda</label>
-                <input type="text" class="form-control" id="buscador">
           </div>
-        </div>
 
-      </div>
-      <div class="row" id="puntosFijos" style="display:none">
-
-       <div class="col-xs-12 col-sm-4">
-        <div class="form-group">
-            <div class="radio">
-              <label>
-                <input type="radio" name="tipo" value="TI" checked><strong>Oficinas itinerantes</strong>
-              </label>
+          <div class="col-md-9">
+            <div class="form-group">
+              <label class="control-label" for="localidad">Búsqueda</label>
+              <input type="text" class="form-control" id="buscador">
             </div>
-            <div class="m-l-1">
-              <p>Cada semana en un barrio diferente.</p>
-            </div>  
-        </div>
-        </div>
+          </div>
 
-         <div class="col-xs-12 col-sm-4">
-                <div class="form-group">
-            <div class="radio">
-              <label>
-                <input type="radio" name="tipo" value="TI" checked><strong>Oficinas fijas</strong>
-              </label>
+        </div>
+        <div class="row" id="puntosFijos" style="display:none">
+
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="tipo" value="it"><strong>Oficinas itinerantes</strong>
+                </label>
+              </div>
+              <div class="m-l-1">
+                <p>Cada semana en un barrio diferente.</p>
+              </div>
             </div>
-            <div class="m-l-1">
-              <p>Todas las semanas en un mismo lugar.</p>
-            </div>  
-        </div>
+          </div>
 
-        </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="tipo" value="fi"><strong>Oficinas fijas</strong>
+                </label>
+              </div>
+              <div class="m-l-1">
+                <p>Todas las semanas en un mismo lugar.</p>
+              </div>
+            </div>
+
+          </div>
 
 
-<!--         <div class="col-md-12">
+          <!--         <div class="col-md-12">
    <div class="checkbox m-b-2">
       <label>
         <input type="checkbox" id="puntosFijosCheckbox"> <strong>Ver solo oficinas fijas </strong>
@@ -150,369 +147,399 @@ a.panel span {
       <p class="text-muted">Estamos abriendo oficinas fijas para estar cerca de los vecinos y quedarnos acompañándolos en forma permanente con soluciones para mejorar su vida.</p>
     </div>          
 </div> -->
+        </div>
+
+      </div>
+
+
+      <!-- PUNTO - MODELO -->
+      <div id="punto-clon" style="display:none">
+        <div class="col-xs-12 col-sm-6 col-md-4 punto">
+          <a href="" class="panel panel-default">
+            <div class="panel-body">
+              <h5 class="label label-danger show motivo ellipsis"></h5>
+              <h3 class="nombre">nombre punto </h3>
+              <div class="media">
+                <div class="media-left media-middle">
+                  <span class="fa fa-calendar" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                  <p><small class="fechaPunto"></small></p>
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-left media-middle">
+                  <span class="fa fa-clock-o" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                  <p><small class="horario">19 hs</small></p>
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-left media-middle">
+                  <span class="fa fa-map-marker" aria-hidden="true"></span>
+                </div>
+                <div class="media-body media-middle">
+                  <p><small class="direccion">aca va la direccion 454</small></p>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <p class="h4 text-primary">MAS INFORMACIÓN</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- PUNTO - MODELO Inicio-->
+      <div class="row panels-row m-y-0 list" id="puntos"></div>
+      <div class="alert alert-warning" id="aviso">Seleccioná una provincia para ver qué puntos están cerca de tu barrio.
+      </div>
+    </div>
+    <!-- PUNTO - MODELO Fin-->
+    <hr>
+
+    <div class="row m-t-4">
+      <div class="col-sm-12 text-center">
+        <h2>¿Querés que te avisemos cuando estemos en tu localidad?</h2>
+        <p class="text-center"><a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" target="_blank"
+            class="btn btn-primary btn-lg">Anotate</a></p>
       </div>
 
     </div>
-
-   
-<!-- PUNTO - MODELO -->
-<div id="punto-clon" style="display:none">
-    <div class="col-xs-12 col-sm-6 col-md-4 punto">
-                <a 
-                  href="" class="panel panel-default">
-                    <div class="panel-body">
-                        <h5 class="label label-danger show motivo ellipsis"></h5>
-                        <h3 class="nombre">nombre punto </h3>
-                        <div class="media">
-                          <div class="media-left media-middle">
-                              <span class="fa fa-calendar" aria-hidden="true"></span>
-                          </div>
-                          <div class="media-body media-middle">
-                            <p><small class="fechaPunto"></small></p>
-                          </div>
-                        </div>
-                        <div class="media">
-                          <div class="media-left media-middle">
-                              <span class="fa fa-clock-o" aria-hidden="true"></span>
-                          </div>
-                          <div class="media-body media-middle">
-                            <p><small class="horario">19 hs</small></p>
-                          </div>
-                        </div>
-                        <div class="media">
-                          <div class="media-left media-middle">
-                              <span class="fa fa-map-marker" aria-hidden="true"></span>
-                          </div>
-                          <div class="media-body media-middle">
-                            <p><small class="direccion">aca va la direccion 454</small></p>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <p class="h4 text-primary">MAS INFORMACIÓN</p>
-                    </div>
-                </a>
-              </div>
-      </div>
-      
-      <!-- PUNTO - MODELO Inicio-->
-      <div class="row panels-row m-y-0 list" id="puntos"></div>
-          <div class="alert alert-warning" id="aviso">Seleccioná una provincia para ver qué puntos están cerca de tu barrio.</div>
-      </div>
-      <!-- PUNTO - MODELO Fin-->
-<hr>
-
-  <div class="row m-t-4">
-        <div class="col-sm-12 text-center">
-          <h2>¿Querés que te avisemos cuando estemos en tu localidad?</h2>
-          <p class="text-center"><a href="https://contacto.casarosada.gob.ar/elestadoentubarrio/" target="_blank" class="btn btn-primary btn-lg">Anotate</a></p>
-        </div>
-        
-  </div>
 
 
   </div>
 </section>
 <section class="m-t-0 p-t-0">
   <div class="container">
-    <div class="row">    
+    <div class="row">
 
 
-    <div class="col-sm-8 col-sm-offset-2">
-      <h2 class="m-t-4 text-center">Conocé más de El Estado en tu Barrio</h2>
+      <div class="col-sm-8 col-sm-offset-2">
+        <h2 class="m-t-4 text-center">Conocé más de El Estado en tu Barrio</h2>
 
-      <div class="video-container">
-        <iframe width="480" src="https://www.youtube.com/embed/videoseries?list=PLry2W0bcBZ9xrTVi0gx2BcmM1q0l6QVqn&index=1"
-        frameborder="0" allowfullscreen></iframe>
-       </div>
+        <div class="video-container">
+          <iframe width="480"
+            src="https://www.youtube.com/embed/videoseries?list=PLry2W0bcBZ9xrTVi0gx2BcmM1q0l6QVqn&index=1"
+            frameborder="0" allowfullscreen></iframe>
+        </div>
 
-          <div class="text-center m-t-2">
-         <a href="https://www.youtube.com/watch?v=fvb6WoMOiKQ" target="_blank" class="btn btn-link">Ver más videos</a>
-       </div>
-    </div>
+        <div class="text-center m-t-2">
+          <a href="https://www.youtube.com/watch?v=fvb6WoMOiKQ" target="_blank" class="btn btn-link">Ver más videos</a>
+        </div>
+      </div>
 
       <div class="col-md-12">
         <h2 class="m-b-2 m-y-4 text-center">Algunos trámites que podés hacer</h2>
-                
-        <div class="row panels-row list" data-render="servicios">
-           <div class="col-md-4">
-              <div class="panel">
-              <div class="panel-body pane-content">
-                 <h3 class="m-t-2 m-b-1">ANSES</h3>
-                 <hr>
-                 <div id="servicios-0">
-                    <ul class="list ">
-                      <li><span class="servicio">Asignación Universal por Hijo.</span></li>
-                      <li><span class="servicio">Asignaciones Familiares.</span></li>
-                      <li><span class="servicio">Asesoramiento sobre créditos.</span></li>
-                    </ul>
-                 </div>
-                 </div>
-              </div>
-           </div>
-           <div class="col-md-4">
-              <div class="panel">
-              <div class="panel-body">
-                 <h3 class="m-t-2 m-b-1">DNI</h3>
-                 <hr>
-                 <div id="servicios-1">
-                    <ul class="list">
-                      <li><span class="servicio">Actualizaciones.</span></li>
-                      <li><span class="servicio">Renovaciones.</span></li>
-                      <li><span class="servicio">Cambio de domicilio.</span></li>
-                    </ul>
-                 </div>
-                 </div>
-              </div>
-           </div>
-           <div class="col-md-4">
-              <div class="panel">
-              <div class="panel-body">
-                 <h3 class="m-t-2 m-b-1">SUBE</h3>
-                 <hr>
-                 <div id="servicios-2">
-                    <ul class="list">
-                      <li><span class="servicio">Obtención y registro de la tarjeta.</span></li>
-                      <li><span class="servicio">Solicitud de Tarifa Social.
-        </span></li>
-                    </ul>
-                 </div>
-                 </div>
-              </div>
-           </div>
-           
-        </div>
-                 
 
-      </div>  
+        <div class="row panels-row list" data-render="servicios">
+          <div class="col-md-4">
+            <div class="panel">
+              <div class="panel-body pane-content">
+                <h3 class="m-t-2 m-b-1">ANSES</h3>
+                <hr>
+                <div id="servicios-0">
+                  <ul class="list ">
+                    <li><span class="servicio">Asignación Universal por Hijo.</span></li>
+                    <li><span class="servicio">Asignaciones Familiares.</span></li>
+                    <li><span class="servicio">Asesoramiento sobre créditos.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel">
+              <div class="panel-body">
+                <h3 class="m-t-2 m-b-1">DNI</h3>
+                <hr>
+                <div id="servicios-1">
+                  <ul class="list">
+                    <li><span class="servicio">Actualizaciones.</span></li>
+                    <li><span class="servicio">Renovaciones.</span></li>
+                    <li><span class="servicio">Cambio de domicilio.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel">
+              <div class="panel-body">
+                <h3 class="m-t-2 m-b-1">SUBE</h3>
+                <hr>
+                <div id="servicios-2">
+                  <ul class="list">
+                    <li><span class="servicio">Obtención y registro de la tarjeta.</span></li>
+                    <li><span class="servicio">Solicitud de Tarifa Social.
+                      </span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
     </div>
   </div>
 </section>
 
 
 <section>
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-        <div class="panel-pane pane-texto">
-                 <div class="alert alert-warning">
-                    <div class="media">
-                       <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
-                       <div class="media-body">
-                          <h5>¿Tenés alguna duda?</h5>
-                          <p>Consultá las <a href="/elestadoentubarrio/preguntas-frecuentes" target="_blank">preguntas frecuentes</a>.</p>
-                       </div>
-                    </div>
-                 </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel-pane pane-texto">
+        <div class="alert alert-warning">
+          <div class="media">
+            <div class="media-left"> <i class="fa fa-info fa-fw fa-4x"></i></div>
+            <div class="media-body">
+              <h5>¿Tenés alguna duda?</h5>
+              <p>Consultá las <a href="/elestadoentubarrio/preguntas-frecuentes" target="_blank">preguntas
+                  frecuentes</a>.</p>
             </div>
-     </div>
-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
 <script type="text/javascript">
-window.onload = function() {
+  window.onload = function () {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var provincia = url.searchParams.get("provincia");
     var lista = "";
-    
-    
+
+
     //LISTA DE PUNTOS
     var puntos;
     var listaPuntos;
-    jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json', function(data) {
-      listaPuntos = data.feed.entry.reduce(function(result, current) { result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || []; result[current.gsx$provincia.$t].push(current); return result; }, {});
-        console.log(listaPuntos);
-        filtrarPuntos(listaPuntos,provincia);
-      
+    jQuery.get(
+      'https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/1/public/values?alt=json',
+      function (data) {
+        listaPuntos = data.feed.entry.reduce(function (result, current) {
+          result[current.gsx$provincia.$t] = result[current.gsx$provincia.$t] || [];
+          result[current.gsx$provincia.$t].push(current);
+          return result;
+        }, {});
+        //console.log(listaPuntos);
+        filtrarPuntos(listaPuntos, provincia);
+
+      })
+
+
+    //FILTRAR PUNTOS FUNCION
+    var provinciasCargadas = false;
+
+    function filtrarPuntos(listaPuntos, provincia) {
+      //RESET
+      jQuery("#puntos").html("");
+      cantidadPuntos = 0;
+
+      //RECORRER PROVINCIAS
+      jQuery.each(listaPuntos, function (nombreProvincia, puntosProvincia) {
+
+        if (provinciasCargadas == false && nombreProvincia != "") {
+          if (nombreProvincia == url.searchParams.get("provincia")) {
+            provSelected = "selected";
+          } else {
+            provSelected = ""
+          }
+
+          jQuery("#provincia").append('<option data-id="1" value="' + nombreProvincia + '"' + provSelected + '>' +
+            nombreProvincia + '</option>');
+        }
+
+
+        if (nombreProvincia == provincia) {
+          //RECORRER CADA PUNTO
+          jQuery.each(puntosProvincia, function (index, val) {
+            var fechaPunto = "";
+
+            if (val.gsx$localidad.$t != "Todos" && val.gsx$publicado.$t == "si") {
+              jQuery("#punto-clon .nombre").html(val.gsx$localidad.$t);
+
+              jQuery("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
+
+              //Es de un solo día?
+              if (val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == "") {
+                fechaPunto = '<span>El día <span>' + val.gsx$fechadesde.$t + '</span></span>';
+                jQuery("#punto-clon .fechaPunto").parents(".media").show();
+                jQuery("#punto-clon .fechaPunto").html(fechaPunto);
+              }
+
+              //Tiene fecha inicio y fin?
+              if (val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != "") {
+                fechaPunto = '<span>Desde <span>' + val.gsx$fechadesde.$t + '</span> hasta <span>' + val
+                  .gsx$fechahasta.$t + '</span></span>';
+                jQuery("#punto-clon .fechaPunto").parents(".media").show();
+                jQuery("#punto-clon .fechaPunto").html(fechaPunto);
+              }
+
+              //Es punto fijo?
+              jQuery("#punto-clon .punto").removeClass("puntoFijo");
+              if (val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == "") {
+                jQuery("#punto-clon .fechaPunto").parents(".media").hide();
+                jQuery("#punto-clon .fechaPunto").parents(".punto").addClass("puntoFijo");
+              }
+
+              jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
+              jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
+              jQuery("#punto-clon a").attr("href", "elestadoentubarrio/punto?&punto=" + val.gsx$nombre.$t);
+
+
+              //Tiene motivo suspendido?
+              if (val.gsx$suspendido.$t != "") {
+                jQuery("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido
+                  .$t);
+              } else {
+                jQuery("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
+              }
+
+              //Renderizar punto
+              var punto = jQuery("#punto-clon .punto").clone();
+              jQuery("#puntos").append(punto);
+              cantidadPuntos++;
+            }
+          });
+        }
+      });
+
+
+      //Puntos fijos
+      if (jQuery("#provincia option:selected").val() == "Buenos Aires") {
+        jQuery("#puntosFijos").show();
+      } else {
+        jQuery("#puntosFijos").hide();
+      }
+
+
+      /*$("#puntosFijosCheckbox").on("change", function () {
+        if ($('#puntosFijosCheckbox:checkbox:checked').length > 0) {
+          jQuery(document).find("#puntos .punto").hide()
+          jQuery(document).find(".puntoFijo").show()
+        } else {
+          jQuery(document).find("#puntos .punto").show()
+          jQuery(document).find(".puntoFijo").hide()
+        }
+      })*/
+
+      $('input[type=radio][name=tipo]').change(function() {
+          if (this.value == 'fi') {
+            jQuery(document).find("#puntos .punto").hide()
+            jQuery(document).find(".puntoFijo").show()
+          }
+          else if (this.value == 'it') {
+          jQuery(document).find("#puntos .punto").show()
+          jQuery(document).find(".puntoFijo").hide()
+          }
+      });
+
+
+
+      //Mostrar aviso de error
+      if (jQuery("#provincia option:selected").val() == "") {
+        jQuery("#aviso").show();
+      } else {
+        jQuery("#aviso").hide();
+      }
+
+
+
+      //jQuery("#provincia .preloader").remove();
+      jQuery("#provincia .preloader").text('Seleccioná una provincia');
+      provinciasCargadas = true;
+
+
+      //FILTRO
+      var options = {
+        valueNames: ['nombre']
+      };
+      lista = new List('puntosListado', options);
+
+
+    } //FIN DE CONDICIONAL
+
+
+
+    // FUNCION REMOVER ACENTO
+    var removeAccents = (function () {
+      var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+        letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+        patternLetters = new RegExp("[" + letters1 + "]", "g"),
+        lookupLetters = {},
+        letterTranslator;
+
+      letters1.split("").forEach(function (letter, i) {
+        lookupLetters[letter] = letters2[i];
+      });
+
+      letterTranslator = function (match) {
+        return lookupLetters[match] || match;
+      };
+
+      return function removeAccents(input) {
+        return input.replace(patternLetters, letterTranslator);
+      };
+    })();
+
+    // FILTRO ACENTOS PARA LIST.JS
+    function getAccentInsensitiveFilter(property, search) {
+      search = removeAccents(search).toLowerCase();
+
+      return function (item) {
+        var value = removeAccents(item.values()[property] || "").toLowerCase();
+        return value.indexOf(search) > -1;
+      };
+    }
+
+
+
+
+    jQuery("#buscador").on("keyup", function () {
+      var busqueda = $.trim(jQuery(this).val());
+
+      if (busqueda == "") {
+        lista.filter(getAccentInsensitiveFilter("nombre", "")); //Filtro de acentos aplicado a List.js 
+      } else {
+        lista.filter(getAccentInsensitiveFilter("nombre", busqueda)); //Filtro de acentos aplicado a List.js 
+      }
     })
 
 
-//FILTRAR PUNTOS FUNCION
-var provinciasCargadas = false;
-function filtrarPuntos(listaPuntos,provincia){
-  //RESET
-  jQuery("#puntos").html("");
-  cantidadPuntos = 0;
-  
-  //RECORRER PROVINCIAS
-  jQuery.each(listaPuntos, function(nombreProvincia, puntosProvincia) {
-
-  if(provinciasCargadas == false && nombreProvincia != ""){
-    if(nombreProvincia == url.searchParams.get("provincia")){provSelected = "selected";}else{provSelected = ""}
-
-    jQuery("#provincia").append('<option data-id="1" value="' + nombreProvincia +'"' + provSelected +'>'+ nombreProvincia + '</option>');
-  }
 
 
-  if(nombreProvincia == provincia){
-    //RECORRER CADA PUNTO
-    jQuery.each(puntosProvincia, function(index, val) {
-      var fechaPunto = "";
 
-      if(val.gsx$localidad.$t != "Todos" && val.gsx$publicado.$t == "si"){
-        jQuery("#punto-clon .nombre").html(val.gsx$localidad.$t);
-        
-        jQuery("#punto-clon .fecha_desde").parents(".media").removeClass("hidden");
-
-        //Es de un solo día?
-        if(val.gsx$fechadesde.$t != "" && val.gsx$fechahasta.$t == ""){
-          fechaPunto = '<span>El día <span>'+val.gsx$fechadesde.$t+'</span></span>';
-            jQuery("#punto-clon .fechaPunto").parents(".media").show();
-            jQuery("#punto-clon .fechaPunto").html(fechaPunto);
-        }
-
-        //Tiene fecha inicio y fin?
-        if(val.gsx$fechahasta.$t != "" && val.gsx$fechahasta.$t != ""){
-          fechaPunto = '<span>Desde <span>'+val.gsx$fechadesde.$t+'</span> hasta <span>'+val.gsx$fechahasta.$t+'</span></span>';
-            jQuery("#punto-clon .fechaPunto").parents(".media").show();
-            jQuery("#punto-clon .fechaPunto").html(fechaPunto);
-        }
-
-        //Es punto fijo?
-        jQuery("#punto-clon .punto").removeClass("puntoFijo");
-        if(val.gsx$fechadesde.$t == "" && val.gsx$fechahasta.$t == ""){
-            jQuery("#punto-clon .fechaPunto").parents(".media").hide();
-            jQuery("#punto-clon .fechaPunto").parents(".punto").addClass("puntoFijo");
-        }
-
-        jQuery("#punto-clon .horario").html(val.gsx$horario.$t);
-        jQuery("#punto-clon .direccion").html(val.gsx$direccion.$t);
-        jQuery("#punto-clon a").attr("href","elestadoentubarrio/punto?&punto="+val.gsx$nombre.$t);
-       
-
-        //Tiene motivo suspendido?
-        if(val.gsx$suspendido.$t != ""){
-          jQuery("#punto-clon .motivo").removeClass("hidden").addClass("show").html(val.gsx$suspendido.$t);
-        }
-        else{
-          jQuery("#punto-clon .motivo").removeClass("show").addClass("hidden").html("");
-        }
-        
-        //Renderizar punto
-        var punto = jQuery("#punto-clon .punto").clone();
-        jQuery("#puntos").append(punto);
-        cantidadPuntos++;
+    jQuery(document).on("change", "select", function () {
+      var provinciaSeleccionada = jQuery("#provincia option:selected").val();
+      filtrarPuntos(listaPuntos, provinciaSeleccionada);
+      if (provinciaSeleccionada == "") {
+        jQuery("#aviso").show();
+        jQuery("#puntos").html("");
+      } else {
+        jQuery("#aviso").hide();
       }
-    });
-   } 
-});
+    })
+    //LISTA DE TRÁMITES
+    var tramites;
+    jQuery.get(
+      'https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json',
+      function (data) {
 
+        listaTramites = data.feed.entry.reduce(function (result, current) {
+          result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || [];
+          result[current.gsx$categoria.$t].push(current);
+          return result;
+        }, {});
 
-//Puntos fijos
-if(jQuery("#provincia option:selected").val() == "Buenos Aires"){
-  jQuery("#puntosFijos").show();
-}
-else{
-  jQuery("#puntosFijos").hide(); 
-}
-
-
-$("#puntosFijosCheckbox").on("change",function(){
-  if($('#puntosFijosCheckbox:checkbox:checked').length > 0){
-    jQuery(document).find("#puntos .punto").hide()
-    jQuery(document).find(".puntoFijo").show()
+      })
   }
-  else{
-   jQuery(document).find("#puntos .punto").show()
-   jQuery(document).find(".puntoFijo").hide()
-  }
-})
-
-
-
-//Mostrar aviso de error
-if(jQuery("#provincia option:selected").val() == ""){
-  jQuery("#aviso").show();
-}
-else{
-  jQuery("#aviso").hide(); 
-}
-
-
-
-jQuery("#provincia .preloader").remove();
-provinciasCargadas = true;
-
-
-//FILTRO
-var options = {
-  valueNames: [ 'nombre']
-};
-lista = new List('puntosListado', options);
-
-
-}//FIN DE CONDICIONAL
-
-
-
-// FUNCION REMOVER ACENTO
-var removeAccents = (function () {
-    var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
-        letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
-        patternLetters = new RegExp("[" + letters1 + "]", "g"),
-        lookupLetters = {}, letterTranslator;
-
-    letters1.split("").forEach(function (letter, i) {
-        lookupLetters[letter] = letters2[i];
-    });
-
-    letterTranslator = function(match) { 
-        return lookupLetters[match] || match;
-    };
-
-    return function removeAccents(input) {
-        return input.replace(patternLetters, letterTranslator);
-    };
-})();
-
-// FILTRO ACENTOS PARA LIST.JS
-function getAccentInsensitiveFilter(property, search) {
-    search = removeAccents(search).toLowerCase();
-
-    return function (item) {
-        var value = removeAccents(item.values()[property] || "").toLowerCase();
-        return value.indexOf(search) > -1;
-    };
-}
-
-
-
-
-jQuery("#buscador").on("keyup",function(){
-  var busqueda = $.trim(jQuery(this).val());
-  
-   if(busqueda == ""){
-      lista.filter(getAccentInsensitiveFilter("nombre", ""));//Filtro de acentos aplicado a List.js 
-    }
-    else{
-      lista.filter(getAccentInsensitiveFilter("nombre", busqueda));//Filtro de acentos aplicado a List.js 
-    }
-})
-
-
-
-
-
-jQuery(document).on("change","select",function(){
-  var provinciaSeleccionada = jQuery("#provincia option:selected").val();
-  filtrarPuntos(listaPuntos,provinciaSeleccionada);
-    if(provinciaSeleccionada == ""){
-    jQuery("#aviso").show();
-    jQuery("#puntos").html("");
-  }
-  else{
-    jQuery("#aviso").hide(); 
-  }
-})
-//LISTA DE TRÁMITES
-var tramites;
-jQuery.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/2/public/values?alt=json', function(data) {
- 
-  listaTramites = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
-  
-})
-}
 </script>
