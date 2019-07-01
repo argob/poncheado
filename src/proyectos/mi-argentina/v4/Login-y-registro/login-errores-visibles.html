@@ -1,0 +1,147 @@
+---
+layout: mi-argentina-login
+---
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<div class="login-container body-login">
+  <section class="container-fluid container-id">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+            <h1 class="sr-only">Ingresá o creá tu cuenta de Mi Argentina</h1>
+            <h2 aria-hidden="true">Ingresá a tu cuenta</h2>
+            <form method="get">
+              <div  rol='alert' aria-live='assertive' class="alert alert-danger" tabindex="0">
+                  <h3>Se han producido los siguientes errores:</h3>
+                  <p>El CUIL tiene un formato no válido</p>
+                  <p>La contraseña ingresada no es correcta</p>
+                  
+              </div>
+              <label for="cuil">CUIL o pasaporte extranjero</label>
+              <div class="row">
+                <div class="col-xs-12 form-group item-form">
+                  
+                  <input type="text" class="form-control" id="cuil" required aria-required="true">
+                  <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+                </div>
+                <label for="password_confirmacion">Contraseña</label>
+                <div class="col-xs-12 form-group item-form">
+                   
+                    <input id="password_confirmacion"  type="password" class="form-control" maxlength="15" " required>
+                    <a href="#" class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()" alt="Mostrar contraseña"><span class="sr-only">Mostrar contraseña</span></a>
+                    <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p><a href="recuperar-contrasena1.html">¿Olvidaste tu contraseña?</a></p>
+                </div> 
+              </div>
+              
+              <div class="row m-t-2">
+                <div class="col-md-8">
+                  <button type="button" class="btn btn-success validator">Ingresar</button>
+                </div>
+              </div>
+              <p class="m-t-2 m-b-1">O ingresá con Facebook o Google<span class="sr-only">Facebook o Google</span></p>
+                <div class="m-b-0">
+                <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</button>
+                <button type="submit" onclick="location.href='https://facebook.com'" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </section>
+  <section class="container-fluid p-t-2 p-b-3">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+
+            <form method="get" action="registro.html">
+
+              <fieldset>
+                <legend>
+
+                  <h2>¿No tenés cuenta?</h2>
+                </legend>
+                <button type="submit" class="btn btn-primary ">Creá tu cuenta</button>
+                
+              </fieldset>
+              
+              
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+      
+   
+  </section>
+
+</div>
+  
+
+<script>
+ var errorElements = []
+    var elementError ;
+    document.querySelector('.validator').addEventListener('click', function(){
+        
+        document.querySelectorAll('.form-control').forEach(i => {
+
+            if(i.value == ''){
+                errorElements.push(i)
+
+             }
+
+        })
+        
+         errorElements.forEach(e => {
+
+            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
+            e.closest('.item-form').classList.add('has-error')
+
+
+        })
+        
+        elementError = errorElements[0].closest('.item-form').querySelector('.form-control') 
+        
+        if(errorElements.length>0){
+          console.log('holis')
+            elementError.setAttribute('aria-label', errorElements[0].textContent)
+            //elementError.focus()
+            mostrarErrores()
+          }
+
+
+        })
+   /* document.addEventListener("keypress", function(e){
+        
+        e.target.nextElementSibling.classList.add('hidden')
+        e.target.parentNode.parentNode.classList.remove('has-error')
+        e.target.parentNode.classList.remove('has-error')
+
+    })
+*/
+        
+
+function mostrarErrores(){
+   document.querySelector('#errores').innerHTML = ''
+  document.querySelector('#errores').innerHTML = ''
+  let cantidadDeErrores = 0
+  document.querySelectorAll('.has-error').forEach(error => {
+    var ol = document.querySelector('#errores ol')
+    var li = document.createElement('li')
+    li.innerText = error.querySelector('p').textContent
+    ol.appendChild(li)
+   
+  })
+ }
+
+
+</script>
