@@ -129,12 +129,16 @@ layout: argentina
 						horario = element["gsx$horario"]["$t"];
 						ubicacion = element["gsx$ubicacion"]["$t"];
 						textofecha = element["gsx$textofecha"]["$t"];
+						email = element["gsx$email"]["$t"];
+						telefono = element["gsx$telefono"]["$t"];
 						//hora_desde = element["gsx$horadesde"]["$t"];
 						//hora_hasta = element["gsx$horahasta"]["$t"];
 
 						var tieneDescipcion = '';
 						var tieneContacto = '';
 						var tieneHorario = '';
+						var tieneTelefono = '';
+						var tieneEmail = '';
 						var tieneUbicacion = '';
 						var informes = '';
 						if (descripcion) {
@@ -154,9 +158,18 @@ layout: argentina
 								"<p class='margin-0'><small><i class='fa fa-clock-o'></i> <strong>Horario:</strong> " +
 								horario + "</small></p>";
 						}
+						if (telefono) {
+							tieneTelefono =
+								"<p class='margin-0'><small><i class='fa fa-phone'></i> <strong>Teléfono:</strong> " +
+								telefono + "</small></p>";
+						}
+						if (email) {
+							tieneEmail =
+								"<p class='margin-0'><small><i class='fa fa-envelope-o'></i> <strong>Email:</strong> <a href='mailto:"+ email +"' target='_blank'>" + email + "</a></small></p>";
+						}
 						if (ubicacion) {
 							tieneUbicacion =
-								"<p class='margin-0'><small><i class='fa fa-map-marker'></i> <strong>Ubicación:</strong> " +
+								"<p class='margin-0'><small><i class='fa fa-map-marker'></i> <strong>Lugar:</strong> " +
 								ubicacion + "</small></p>";
 						}
 						if (textofecha){
@@ -168,7 +181,7 @@ layout: argentina
 						}
 
 						var contenido_evento =
-						"<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-1'></i><div class='m-t-1'><small>" + fecha_evento + "</small></div></td><td class='descripcion'><h6 class='Titulo'>"+ link +"</h6>" + tieneDescipcion + informes + tieneContacto + tieneHorario + tieneUbicacion + "</td></tr>";
+						"<tr><td class='text-center'><i class='fa fa-2x text-muted fa-calendar-o m-t-1'></i><div class='m-t-1'><small>" + fecha_evento + "</small></div></td><td class='descripcion'><h6 class='Titulo'>"+ link +"</h6>" + tieneDescipcion + informes + tieneContacto + tieneTelefono + tieneEmail + tieneHorario + tieneUbicacion + "</td></tr>";
 
 						//Se filtra por mes
 						/*if(mes_seleccionado == mes_evento || mes_seleccionado == 0){
