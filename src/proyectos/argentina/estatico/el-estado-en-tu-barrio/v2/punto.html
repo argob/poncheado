@@ -275,6 +275,8 @@ $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YV
 $.get('https://spreadsheets.google.com/feeds/list/1vIvBjh_8c1VE18mdbCINZMHPhN-YVVr5yVkUS0BpSrw/3/public/values?alt=json', function(data) {
   $(".preloader").remove();
   listaCategorias = data.feed.entry.reduce(function(result, current) { result[current.gsx$categoria.$t] = result[current.gsx$categoria.$t] || []; result[current.gsx$categoria.$t].push(current); return result; }, {});
+
+  
   $.each(listaCategorias, function(punto, val) {
         $("#categoria-clon .content_format").html("");
         $("#categoria-clon .nombreCategoria").html(punto);
@@ -363,4 +365,6 @@ $(document).on("click",".mostrarTramite",function(){
       $('#modalTramite').modal("show");
   })
 })
+
+
 </script>
