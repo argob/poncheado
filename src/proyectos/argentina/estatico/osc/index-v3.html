@@ -269,12 +269,7 @@ section {
       tema: 'todos',
       apoyo: 'todos'
     }
-
-    $.ajax({
-      url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1yE3ENqa9yURo3frHDlkgA2RalUUI4yUcdOaZmaid7Ek/1',
-      data: 'json',
-      success: function(response){
-        // console.log(response.feed.entry);
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1yE3ENqa9yURo3frHDlkgA2RalUUI4yUcdOaZmaid7Ek/1/public/values?alt=json', function (response) {
 
         $.each(response.feed.entry, function(index, row){
 
@@ -306,7 +301,6 @@ section {
         render.items();
 
 
-      }
     });
 
 
