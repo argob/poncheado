@@ -450,47 +450,9 @@ layout: mi-argentina-login
               </div>
             </div>
             <div class="row">
-              <div class="col-md-10">
-                <p>Para crear tu cuenta es necesario que aceptes los términos y condiciones de Mi Argentina.</p>
-                <fieldset>
-                  <legend>
-                    <a href="#">Términos y condiciones generales</a>
-                  </legend>
-                  <div class="form-group item-form">
-                    <div class="checkbox">
-                      <label for="aceptoTerminos" class="radio-inline">
-                        <input type="checkbox" name="tyc" id="aceptoTerminos" value required aria-required="true" >
-                        Acepto términos y condiciones
-                      </label>
-                    </div>
-                  </div>
-                </fieldset>
-                <p>Mi Argentina puede mostrarte información sensible en la sección Mi Salud. Podés aceptar los términos y condiciones de esta sección si querés te los mostremos.</p>
-                <fieldset>
-                  <legend>
-                    <a href="#">Términos y condiciones de Salud</a>
-                  </legend>
-                  <div class="form-group item-form">
-                    <div class="checkbox">
-                      <label for="aceptoTerminosSalud" class="radio-inline">
-                        <input type="checkbox" name="tycs" id="aceptoTerminosSalud" value required aria-required="true" >
-                        Acepto los términos y condiciones de Salud
-                      </label>
-                    </div>
-                    <div class="checkbox hidden" id="checkSalud">
-                      <label for="aceptoInfoDiscapacidad" class="radio-inline">
-                        <input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value required aria-required="true" >
-                        Acepto ver información de discapacidad.
-                      </label>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 col-xs-12">
+              <div class="col-sm-4 col-xs-12">
                 
-                <button type="submit" disabled class="btn btn-success btn-block">Crear mi cuenta</button>
+                <button type="submit" class="btn btn-success btn-block">Continuar</button>
 
               </div>
             </div>
@@ -580,23 +542,6 @@ elforms.forEach(el => {
     el.setCustomValidity(el.dataset.alerta);
 });
 
-// terminos y condiciones
-  $('#aceptoTerminos').on('click', function() {
-    if($(this).is(':checked')) {
-      $('#formR button[type="submit"]').prop('disabled', false);
-    } else {
-      $('#formR button[type="submit"]').attr('disabled', true);
-    }
-  })
 
-  $('#aceptoTerminosSalud').on('click', function() {
-    if($(this).is(':checked')) {
-      $('#checkSalud').removeClass('hidden');
-    } else {
-      $('#checkSalud').addClass('hidden');
-    }
-  })
-
-    
 </script>
 
