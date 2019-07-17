@@ -1,6 +1,11 @@
 ---
 layout: mi-argentina2
 ---
+<style>
+	p{
+		word-break: break-all;
+	}
+</style>
 <link rel="stylesheet" href="../../../css/miargentina.css">
 <section class="p-y-0">
 	<div class="container-fluid">
@@ -210,6 +215,16 @@ layout: mi-argentina2
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 <script type="text/javascript">
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1;
+if(isAndroid) {
+	let scrollBtn = document.createElement('div')
+	let icon = document.createElement('i')
+	icon.classList.add('fa ', 'fa-chevron-down')
+	scrollBtn.classList.add('scrollBtnAndroid')
+	scrollBtn.appendChild(icon)
+}
+
 //
 // Target blank extension
 //
