@@ -1,0 +1,1444 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../../css/miargentina.css">
+
+<style>
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0px 15px;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9; 
+}
+
+</style>
+
+
+<section class="p-y-0">
+	<div class="container-fluid">
+    	<div class="row dashboard">
+      		<div class="col-lg-3 col-sm-4 sidebar hidden-xs p-l-0">
+        
+        		{% include mi-argentina/menu-1-2019_index.html %} 
+						
+     		 </div>
+     	
+ 		 	<div class="col-xs-12">
+ 		 		<div class="row">
+    				<div class="col-xs-12 m-b-1">
+						<h1 class="title-dashboard">
+							Formulario online para completar la planilla de solicitud del Certificado Único de Discapacidad (CUD)
+
+					 	</h1>
+					 	
+					 </div>
+				</div>
+ 		 		<div class="row">
+ 		 			<div class="col-lg-8">
+ 		 				<div class="panels-row-miargentina panels-row-miargentina-cud">
+							<div class="panel panel-default panel-nolink panel-border-success">
+									<div class="panel-heading">
+										<div class="wizard-head">
+											<div class="connecting-line"></div>
+											<ul class="nav nav-tabs" role="tablist">
+							
+												<li role="presentation" class="active">
+													<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos de la persona con discapacidad">
+														<span class="round-tab">
+															<i class="fa fa-check"></i><span class="stepnumber">1</span>
+														</span>
+														<h5>Datos del proveedor del producto o servicio</h5>
+													</a>
+												</li>
+							
+												<li role="presentation" class="disabled">
+													<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos de la persona con discapacidad">
+														<span class="round-tab">
+															<i class="fa fa-check"></i><span class="stepnumber">2</span>
+														</span>
+														<h5>Datos de la persona que hace el reclamo</h5> 
+													</a>
+												</li>
+												<li role="presentation" class="disabled">
+													<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos de la persona con discapacidad">
+														<span class="round-tab">
+															<i class="fa fa-check"></i><span class="stepnumber">3</span>
+														</span>
+														<h5>Datos del reclamo</h5> 
+													</a>
+												</li>
+							
+												<li role="presentation" class="disabled">
+													<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Datos del representante legal de la persona con discapacidad">
+														<span class="round-tab">
+															<i class="fa fa-check"></i><span class="stepnumber">4</span>
+														</span>
+														<h5>Confirmá los datos del reclamo</h5>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="panel-body">
+										<form role="form">
+											<div class="tab-content" role="tablist">
+													<div class="connecting-line"></div>
+													<div role="presentation" class="mobile-step activo">
+														<a href="#step-1" data-toggle="tab" aria-controls="step-1" role="tab" title="Datos de la persona con discapacidad">
+															<span class="round-tab">
+																<i class="fa fa-check"></i><span class="stepnumber">1</span>
+															</span>
+															<h5>Buscá al proveedor para agregar sus datos.</h5> 
+															<p class="help-block">Esta información la podés sacar de tu factura o ticket.</p>
+														</a>
+													</div>
+													<div class="tab-pane active" role="tabpanel" id="step-1">
+														<form action="" onsubmit="event.preventDefault()">
+															<fieldset>
+																<legend>
+																	<h2 class="m-b-1">Buscá al proveedor para agregar sus datos. </h2>
+																	<p class="help-block">Esta información la podés sacar de tu factura o ticket.</p>
+																</legend>
+																<div class="content-container">
+																	<p><strong>¿Cómo querés buscar al proveedor (empresa o negocio)? *</strong></p>
+																	<div class="radio">
+																		<label for="porEmpresa">
+																			<input type="radio" value="porEmpresa" name="buscaProveedor" id="porEmpresa" data-show="proveedorPorEmpresa">
+																			Por nombre de empresa o negocio
+																		</label>
+																	</div>
+																	<div class="radio">
+																		<label for="porCuit">
+																			<input type="radio" value="porCuit" name="buscaProveedor" id="porCuit" class="inputAutocomplete" data-show="proveedorPorCuit">
+																			Por numero de CUIT
+																		</label>
+																	</div>
+																
+																	<div class="form-group hidden group-container" id="proveedorPorEmpresa">
+																		<label for="empresa">Buscar por nombre o empresa</label>
+																		<div class="row">
+																			<div class="col-md-8">
+																			  	<div class="autocomplete">
+																				   <input id="empresa" type="text" name="proveedor" class="form-control">
+																				</div>
+																			</div> 
+																			
+																		</div>
+																		 
+																	</div>
+																	<div class="form-group hidden group-container" id="proveedorPorCuit">
+																		<label for="cuit">Buscar por cuit</label>
+																		<div class="row">
+																			<div class="col-md-8">
+																			  	<div class="autocomplete">
+																				   <input id="cuit" type="text" name="proveedor" class="form-control">
+																				</div>
+																			</div> 
+																			
+																		</div>
+																	</div>
+																</div>
+																<div class="content-container hidden" data-info="infoProveedor">
+																	<div class="alert alert-info">
+																		<h1>hola</h1>
+																	</div>
+																</div>
+															</fieldset>
+															
+														</form>
+														
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step-2" data-toggle="tab" aria-controls="step-2" role="tab" title="Datos de la persona con discapacidad">
+															<span class="round-tab">
+																<i class="fa fa-check"></i><span class="stepnumber">2</span>
+															</span>
+															<h5>Datos de la persona con discapacidad</h5> 
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="step-2">
+														<form action="">
+															<h3>Datos de la persona con discapacidad</h3>
+															<div class="row">
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<small>Nombres</small>
+																		<p><strong>María Juana</strong></p> 
+																	</div>
+																	<div class="form-group">
+																		<small>Fecha de nacimiento</small>
+																		<p><strong>10/04/1986</strong></p> 
+																	</div>
+																	<div class="form-group">
+																		<small>Tipo de documento</small>
+																		<p><strong>DNI</strong></p> 
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<small>Apellido</small>
+																		<p><strong>Fernandez</strong></p> 
+																	</div>
+																	<div class="form-group">
+																		<small>Sexo</small>
+																		<p><strong>Femenino</strong></p> 
+																	</div>
+																	<div class="form-group">
+																		<small>Número de documento</small>
+																		<p><strong>24666222</strong></p> 
+																	</div>
+																</div>
+																<div class="col-xs-12">
+																	<div class="form-group">
+																		<label for="expedido_notevaluate">País donde fue expedido</label>
+																			<select id="expedido_notevaluate" name=docpaisexpedido" class="form-control" required aria-required="true">
+																				<option value="">Seleccioná un pais</option>
+																				<option value="ARG" selected="">Argentina</option>                        
+																			</select>
+																			<p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<small>Número de CUIL</small>
+																		<p><strong>27215663210</strong></p> 
+																	</div>
+																</div>
+																<div class="col-xs-12">
+																	<div class="form-group">
+																		<label for="estadoCivil">Estado civil</label>
+																		<select id="estadoCivil" name="estadoCivil" class="form-control">
+																			<option value="" selected="">Seleccioná un estado civil</option>
+																			<option value="Soltero">Soltero/a</option>
+																			<option value="Casado/a">Casado/a</option>
+																			<option value="Divorciado/a">Divorciado/a</option>
+																			<option value="Viudo/a">Viudo/a</option>
+																			<option value="Vínculo de hecho">Vínculo de hecho</option>
+																			<option value="Separado/a">Separado/a</option>
+																		</select>
+																		<p class="help-block error hidden">Ingresá tu estado civil</p>
+																	</div>
+																</div>
+																<div class="col-xs-12">
+																	<div class="form-group">
+																		<small>Correo electrónico</small>
+																		<p><strong>juanafernandez@gmail.com</strong></p> 
+																	</div>
+																</div>
+																<div class="col-xs-12">
+																	<div class="form-group">
+																		<small>Nacionalidad</small>
+																		<p id="nacionalidad"><strong>Argentina</strong></p> 
+																	</div>
+																</div>
+																<div class="col-xs-12">
+																	<fieldset id="tipo-nac" class="">
+																		<legend>
+																			<label>Tipo de nacionalidad</label>
+																		</legend>
+																		<div class="form-group">
+																			<div class="radio">
+																			<label for="nativo">
+																				<input type="radio" name="tipo-nac" id="nativo" value="Nativo" required aria-required="true" >Nativo
+																			</label>
+																			</div>
+																			<div class="radio">
+																			<label for="naturalizado">
+																				<input type="radio" name="tipo-nac" id="naturalizado" value="Naturalizado" required aria-required="true">Naturalizado
+																			</label> 
+																			</div>
+																			<p class="help-block error hidden">Ingresá tu tipo de nacionalidad</p>
+																		</div>
+																	</fieldset>
+																	<fieldset class="hidden" id="residencia">
+																			<legend>
+																			<label >Residencia</label>
+																			</legend>
+																		<div class="form-group item-form" >
+																			<div class="radio">
+																				<label for="transitoria">
+																				<input type="radio" name="Residencia" id="transitoria" value="Transitoria" required aria-required="true" >Transitoria
+																				</label>
+																			</div>
+																			<div class="radio">
+																				<label for="permanente">
+																				<input type="radio" name="Residencia" id="permanente" value="Permanente" required aria-required="true">Permanente
+																				</label> 
+																			</div>
+																			<div class="radio">
+																				<label for="temporaria">
+																				<input type="radio" name="Residencia" id="temporaria" value="Temporaria" required aria-required="true">Temporaria
+																				</label> 
+																			</div>
+																			<div class="radio">
+																				<label for="precaria">
+																				<input type="radio" name="Residencia" id="precaria" value="Precaria" required aria-required="true">Precaria
+																				</label> 
+																			</div>
+																			<p class="help-block error hidden">Ingresá tu tipo de Residencia</p>
+																		</div>
+																	</fieldset>
+																	<div class="form-group row item-form hidden" id="expireDate">
+																		<div class="col-md-8">
+																			<label for="vencimiento">Fecha de vencimiento de la residencia</label>
+																			<div class="row">
+																				<div class="col-md-10">
+																					<input type="date" class="form-control" id="vencimiento" required="false" aria-required="true">
+																				</div>
+																			</div>
+																			<p class="help-block error hidden">Ingresá la fecha de vencimiento de tu residencia</p>
+																		</div>
+																	</div>
+																</div>
+																</div>
+																<!--<a href="../salud.html" class="btn btn-link">Cancelar</a>-->
+																<button type="button" class="btn btn-default prev-step">Volver</button>
+																<button type="button" class="btn btn-success next-step">Continuar</button>
+															</form>
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step-3" data-toggle="tab" aria-controls="step-3" role="tab" title="Datos de la persona con discapacidad">
+															<span class="round-tab">
+																<i class="fa fa-check"></i><span class="stepnumber">3</span>
+															</span>
+															<h5>Datos de la persona con discapacidad</h5> 
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="step-3">
+															<form action="">
+																	<h3>Datos de la persona con discapacidad</h3>
+																	<fieldset>
+																		<legend>
+																		  <h3>Domicilio</h3>
+																		</legend>
+																		  <div class="form-group item-form">
+																			<label for="provincia">Provincia</label>
+																			<select class="form-control" id="provincia" name="provincia" required>
+																			  <option value="">Elegí tu provincia</option>
+																			  <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+																			  <option value="Buenos Aires">Buenos Aires</option>
+																			  <option value="Catamarca">Catamarca</option>
+																			  <option value="Córdoba">Córdoba</option>
+																			  <option value="Corrientes">Corrientes</option>
+																			  <option value="Chaco">Chaco</option>
+																			  <option value="Chubut">Chubut</option>
+																			  <option value="Entre Ríos">Entre Ríos</option>
+																			  <option value="Formosa">Formosa</option>
+																			  <option value="Jujuy">Jujuy</option>
+																			  <option value="La Pampa">La Pampa</option>
+																			  <option value="La Rioja">La Rioja</option>
+																			  <option value="Mendoza">Mendoza</option>
+																			  <option value="Misiones">Misiones</option>
+																			  <option value="Neuquén">Neuquén</option>
+																			  <option value="Río Negro">Río Negro</option>
+																			  <option value="Salta">Salta</option>
+																			  <option value="San Juan">San Juan</option>
+																			  <option value="San Luis">San Luis</option>
+																			  <option value="Santa Cruz">Santa Cruz</option>
+																			  <option value="Santa Fe">Santa Fe</option>
+																			  <option value="Santiago del Estero">Santiago del Estero</option>
+																			  <option value="Tierra del Fuego">Tierra del Fuego</option>
+																			  <option value="Tucumán">Tucumán</option>
+																			</select>
+																			<p class="help-block error hidden">Ingresá tu provincia</p>
+																		</div>
+																		<div class="form-group item-form">
+																			<label for="localidad">Localidad</label>
+																			<select class="form-control" id="localidad" name="localidad" required>
+																			  <option value="">Elegí tu localidad</option>
+																			  <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+																			  <option value="localidad2">Departamento 2</option>
+																			 </select>
+																			<p class="help-block error hidden">Ingresá tu partido o departamento</p>
+																		</div>
+																		<div class="form-group item-form">
+																			<label for="departamento">Partido o departamento</label>
+																			<select class="form-control" id="departamento" name="departamento" required>
+																			  <option value="">Elegí tu provincia</option>
+																			  <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+																			  <option value="depto2">Departamento 2</option>
+																			 </select>
+																			<p class="help-block error hidden">Ingresá tu partido o departamento</p>
+																		</div>
+																		<div class="row form-group item-form">
+																			  <div class="col-md-6">
+																				  <label for="address_postalcode">Código postal</label>
+																				<input type="number" name="address_postalcode" class="form-control" id="address_postalcode" required aria-required="true">
+																				<p class="help-block error hidden">Ingresá un código postal</p>
+																			  </div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-8 form-group item-form">
+																			  <label for="address_street">Calle</label>
+																			  <input type="text" name="address" class="form-control" id="address_street" required="" aria-required="true">
+																			  <p class="help-block error hidden">Ingresá una calle</p>
+																			</div>  
+						
+																			<div class="col-md-4 form-group item-form">
+																			  <label for="address">Nº de calle</label>
+																			  <input type="text" class="form-control" id="address_street_number" required="" aria-required="true">
+																			  <p class="help-block error hidden">Ingresá un número de calle</p>
+																			</div> 
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 form-group item-form">
+																			  <label for="address_floor_number">Piso</label>
+																			  <input type="text" name="address" class="form-control" id="address_floor_number" required="" aria-required="true">
+																			  <p class="help-block error hidden">Ingresá un piso</p>
+																			</div>  
+						
+																			<div class="col-md-6 form-group item-form">
+																			  <label for="address_apartment_number">Departamento</label>
+																			  <input type="text" class="form-control" name="address" id="address_apartment_number" required="" aria-required="true">
+																			  <p class="help-block error hidden">Ingresá un un departamento</p>
+																			</div> 
+																		</div>
+																	</fieldset>
+																	<fieldset>
+																		<legend>Teléfono fijo o móvil</legend>
+																		<p class="help-block" id="help_telefono">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
+																		  <div class="row">
+																			  <div class="form-group col-xs-12 col-sm-4 col-md-3 item-form">
+																				<div class="input-group">
+																					<span class="input-group-addon">0</span>
+																					  <input aria-label="Código de area de teléfono" class="form-control" id="codeareatel" required aria-required="true" type="text"> 
+																				</div>
+																				<p class="help-block error hidden">Ingresá el código de área</p>
+																			</div>
+																			<div class="form-group col-xs-12 col-sm-6 item-form">
+																				<div class="input-group">
+																					<span class="input-group-addon"></span>
+																					<input aria-label="Número de teléfono" class="form-control" id="tel" required aria-required="true" type="text"> 
+																				</div>
+																				<p class="help-block error hidden">Ingresá tu número de teléfono (fijo o móvil)</p>
+																			</div>
+																		  </div>
+																	   </fieldset>
+																	   <fieldset>
+																		<legend>
+																		  <label>Adquirió Vehículo a través de ley 19.279</label>
+																		</legend>
+																		<div class="form-group item-form">
+																		  <label for="si19279" class="radio-inline">
+																			<input type="radio" name="vehiculo19279" id="si19279" value="Si" required aria-required="true">
+																			Si
+																		  </label>
+																		  <label for="no19279" class="radio-inline">
+																			<input type="radio" name="vehiculo19279" id="no19279" value="No" required aria-required="true">
+																			No
+																		  </label>        
+																		  <p class="help-block error hidden">Ingresá el dato</p>
+																		</div>
+																	</fieldset>
+																	<div class="hidden" id="19279date">
+																		<label for="date">Fecha en la que lo adquirió (si adquirió un vehículo a través de esa ley)</label>
+																		<div class="row">
+																			<div class="col-md-10">
+																				<input type="date" class="form-control" id="date" required aria-required="true">
+																			</div>
+																		</div>
+																		<p class="help-block error hidden">Ingresá la fecha de nacimiento</p>
+																	</div>
+																	<fieldset>
+																		<legend>
+																		  <label>Posee símbolo internacional de acceso automotor</label>  
+																		</legend>
+																	
+																		<div class="form-group item-form">
+																		  <label for="sisimboloautomotor" class="radio-inline">
+																			<input type="radio" name="simboloautomotor" id="sisimboloautomotor" value="Si" required aria-required="true">
+																			Si
+																		  </label>
+																		  <label for="nosimboloautomotor" class="radio-inline">
+																			<input type="radio" name="simboloautomotor" id="nosimboloautomotor" value="No" required aria-required="true">
+																			No
+																		  </label>        
+																		  <p class="help-block error hidden">Ingresá el dato</p>
+																		</div>
+																	</fieldset>
+																	<fieldset>
+																		<legend>
+																		  <label class="m-b-0">Asignaciones familiares</label>
+																		  <p class="help-block">En caso de cumplir con todos los requisitos exigidos por el ordenamiento legal de asignaciones familiares: </p>
+																		  <label>¿La persona con discapacidad estaría interesada en percibir las  asignaciones familiares vinculadas a la discapacidad a las que pudiese  tener derecho?.</label>
+																		</legend>
+																		<div class="form-group item-form">
+																		  <label for="siasignacion" class="radio-inline">
+																			<input type="radio" name="asignacion" id="siasignacion" value="Si" required aria-required="true">
+																			Si
+																		  </label>
+																		  <label for="noasignacion" class="radio-inline">
+																			<input type="radio" name="asignacion" id="noasignacion" value="No" required aria-required="true">
+																			No
+																		  </label>        
+																		  <p class="help-block error hidden">Ingresá el dato</p>
+																		</div>
+																	</fieldset>
+																   
+																	   <button type="button" class="btn btn-link prev-step">Volver</button>
+																	   <button type="button" class="btn btn-success next-step">Continuar</button>
+																   </form>
+													</div>
+													<div role="presentation" class="mobile-step disabled">
+														<a href="#step-4" data-toggle="tab" aria-controls="step-4" role="tab" title="Datos del representante legal de la persona con discapacidad">
+															<span class="round-tab">
+																<i class="fa fa-check"></i><span class="stepnumber">4</span>
+															</span>
+															<h5>Datos del representante legal de la persona con discapacidad</h5> 
+														</a>
+													</div>
+													<div class="tab-pane" role="tabpanel" id="step-4">
+															<form action="">
+																	<h3>Datos del representante legal de la persona con discapacidad</h3>
+																	
+																	<fieldset>
+																		<legend class="m-b-0">
+																		  <label>Para el caso de personas a evaluar mayores de edad</label>
+																		</legend>
+																		<div class="form-group">
+																		  <div class="radio">
+																			<label for="judicial" >
+																			  <input type="radio" name="Tipo" id="judicial" value="Interesado/a con apoyo designado judicialmente" required aria-required="true" >Interesado/a con apoyo designado judicialmente <div><small class="text-muted">(art. 43 Código Civil y Comercial de la Nación)</small></div>
+																			</label>
+																		  </div>
+																		  <div class="radio">
+																			<label for="extrajudicial" >
+																			  <input type="radio" name="Tipo" id="extrajudicial" value="Interesado/a con apoyo extrajudicial" required aria-required="true">Interesado/a con apoyo extrajudicial <div><small  class="text-muted">(art. 103 in fine Código Civil y Comercial de la Nación).</small></div>
+																			</label> 
+																		  </div>
+																		  <div class="radio">
+																			<label for="curador" >
+																			  <input type="radio" name="Tipo" id="curador" value="Curador/a designado judicialmente" required aria-required="true">Curador/a designado judicialmente <div><small  class="text-muted">(art. 32 Código Civil y Comercial de la Nación)</small></div>
+																			</label> 
+																		  </div>
+																		  <p class="help-block error hidden">Elija una opción</p>
+																		</div>
+																	  </fieldset>
+																	<fieldset>
+																		  <legend class="m-b-0">
+																			<label>Para el caso de personas a evaluar menores de edad</label>
+																		  </legend>
+																		  <div class="form-group item-form">
+																			<div class="radio">
+																				  <label for="madre" >
+																					<input type="radio" name="parent" id="madre" value="Madre" required aria-required="true" >Madre
+																				  </label>
+																			</div>
+																			<div class="radio">
+																			  <label for="padre">
+																				<input type="radio" name="parent" id="padre" value="Padre" required aria-required="true">Padre
+																			  </label> 
+																			</div>
+																			<div class="radio">
+																			  <label for="tutor">
+																				<input type="radio" name="parent" id="tutor" value="Tutor/a - Guardador/a" required aria-required="true">Tutor/a - Guardador/a <div><small  class="text-muted">(designado judicialmente)</small></div>
+																			  </label> 
+																			</div>
+																			<p class="help-block error hidden">Elija una opción</p>
+																		  </div>  
+																	</fieldset>
+																	<div class="form-group item-form">
+																		<label for="firstname_notevaluate">Nombres</label>
+																		<input type="text" name="name" class="form-control" id="firstname_notevaluate" required aria-required="true">
+																		<p class="help-block error hidden">Ingresá tu nombre</p>
+																	</div>
+																	<div class="form-group item-form">
+																		<label for="lastname_notevaluate">Apellidos</label>
+																		<input type="text" name="lastname" class="form-control" id="lastname_notevaluate" required aria-required="true">
+																		<p class="help-block error hidden">Ingresá tu apellido</p>
+																	</div>
+																	<div class="row">
+																		  <div class="col-md-6">
+																			 <div class="form-group item-form">
+																				 <label for="tipoDoc_not_user">Tipo de Documento</label>
+																				   <select id="tipoDoc_not_user" name="document_not_evaluate" class="form-control">
+																					   <option value="DNI" selected="">DNI</option>
+																					<option value="Libreta de Enrolamiento">Libreta de Enrolamiento</option>
+																					<option value="Libreta Cívica">Libreta Cívica</option>
+																					<option value="Pasaporte extranjero">Pasaporte extranjero</option>
+																					<option value="Cédula de identidad">Cédula de identidad</option>
+																				  </select>
+																				  <p class="help-block error hidden">Elegí un tipo de documento</p>
+																			</div>
+																		</div>
+																		<div class="col-md-6">
+																			  <div class="form-group item-form">
+																				   <label for="numDoc_notevaluate">Nº de documento</label>
+																				<input type="number" min="1" class="form-control" id="numDoc_notevaluate" required aria-required="true">
+																				<p class="help-block error hidden">Ingresá tu número de documento</p>
+																			 </div>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<label for="expedido_notevaluate">País donde fue expedido</label>
+																			<select id="expedido_notevaluate" name=docpaisexpedido" class="form-control" required aria-required="true">
+																			<option value="">Seleccioná un pais</option>
+																			<option value="ARG" selected="">Argentina</option>                        
+																			<option value="BRA">Brasil</option>                        
+																			<option value="URY">Uruguay</option>                        
+																			<option value="PRY">Paraguay</option>                        
+																			<option value="CHL">Chile</option>                        
+																			<option value="BOL">Bolivia</option>                                        
+																			<option value="AFG">Afganistán</option>                        
+																			<option value="ALB">Albania</option>                        
+																			<option value="DEU">Alemania</option>                        
+																			<option value="AND">Andorra</option>                        
+																			<option value="AGO">Angola</option>                        
+																			<option value="AIA">Anguila</option>                        
+																			<option value="ATA">Antártida</option>                        
+																			<option value="ATG">Antigua y Barbuda</option>                        
+																			<option value="SAU">Arabia Saudita</option>                        
+																			<option value="DZA">Argelia</option>                        
+																			<option value="ARM">Armenia</option>                        
+																			<option value="ABW">Aruba</option>                        
+																			<option value="AUS">Australia</option>                        
+																			<option value="AUT">Austria</option>                        
+																			<option value="AZE">Azerbaiyán</option>                        
+																			<option value="BHS">Bahamas</option>                        
+																			<option value="BGD">Bangladés</option>                        
+																			<option value="BRB">Barbados</option>                        
+																			<option value="BHR">Baréin</option>                        
+																			<option value="BEL">Bélgica</option>                        
+																			<option value="BLZ">Belice</option>                        
+																			<option value="BEN">Benín</option>                        
+																			<option value="BMU">Bermudas</option>                        
+																			<option value="BLR">Bielorrusia</option>                        
+																			<option value="BES">Bonaire</option>                        
+																			<option value="BIH">Bosnia y Herzegovina</option>                        
+																			<option value="BWA">Botsuana</option>                        
+																			<option value="BRN">Brunéi Darussalam</option>                        
+																			<option value="BGR">Bulgaria</option>                        
+																			<option value="BFA">Burkina Faso</option>                        
+																			<option value="BDI">Burundi</option>                        
+																			<option value="BTN">Bután</option>                        
+																			<option value="CPV">Cabo Verde</option>                        
+																			<option value="KHM">Camboya</option>                        
+																			<option value="CMR">Camerún</option>                        
+																			<option value="CAN">Canadá</option>                        
+																			<option value="QAT">Catar</option>                        
+																			<option value="TCD">Chad</option>                        
+																			<option value="CHL">Chile</option>                        
+																			<option value="CHN">China</option>                        
+																			<option value="CYP">Chipre</option>                        
+																			<option value="COL">Colombia</option>                        
+																			<option value="COM">Comoras</option>                        
+																			<option value="COG">Congo</option>                        
+																			<option value="KOR">Corea</option>                        
+																			<option value="CIV">Costa de Marfil</option>                        
+																			<option value="CRI">Costa Rica</option>                        
+																			<option value="HRV">Croacia</option>                        
+																			<option value="CUB">Cuba</option>                        
+																			<option value="CUW">Curaçao</option>                        
+																			<option value="DNK">Dinamarca</option>                        
+																			<option value="DMA">Dominica</option>                        
+																			<option value="ECU">Ecuador</option>                        
+																			<option value="EGY">Egipto</option>                        
+																			<option value="SLV">El Salvador</option>                        
+																			<option value="ARE">Emiratos Árabes Unidos</option>                        
+																			<option value="ERI">Eritrea</option>                        
+																			<option value="SVK">Eslovaquia</option>                        
+																			<option value="SVN">Eslovenia</option>                        
+																			<option value="ESP">España</option>                        
+																			<option value="USA">Estados Unidos</option>                        
+																			<option value="EST">Estonia</option>                        
+																			<option value="ETH">Etiopía</option>                        
+																			<option value="PHL">Filipinas</option>                        
+																			<option value="FIN">Finlandia</option>                        
+																			<option value="FJI">Fiyi</option>                        
+																			<option value="FRA">Francia</option>                        
+																			<option value="GAB">Gabón</option>                        
+																			<option value="GMB">Gambia</option>                        
+																			<option value="GEO">Georgia</option>                        
+																			<option value="SGS">Georgia del sur y las islas sandwich del sur</option>                        
+																			<option value="GHA">Ghana</option>                        
+																			<option value="GIB">Gibraltar</option>                        
+																			<option value="GRD">Granada</option>                        
+																			<option value="GRC">Grecia</option>                        
+																			<option value="GRL">Groenlandia</option>                        
+																			<option value="GLP">Guadalupe</option>                        
+																			<option value="GUM">Guam</option>                        
+																			<option value="GTM">Guatemala</option>                        
+																			<option value="GUF">Guayana Francesa</option>                        
+																			<option value="GGY">Guernsey</option>                        
+																			<option value="GIN">Guinea</option>                        
+																			<option value="GNB">Guinea-Bisáu</option>                        
+																			<option value="GNQ">Guinea Ecuatorial</option>                        
+																			<option value="GUY">Guyana</option>                        
+																			<option value="HTI">Haití</option>                        
+																			<option value="HND">Honduras</option>                        
+																			<option value="HKG">Hong Kong</option>                        
+																			<option value="HUN">Hungría</option>                        
+																			<option value="IND">India</option>                        
+																			<option value="IDN">Indonesia</option>                        
+																			<option value="IRQ">Irak</option>                        
+																			<option value="IRN">Irán</option>                        
+																			<option value="IRL">Irlanda</option>                        
+																			<option value="BVT">Isla Bouvet</option>                        
+																			<option value="IMN">Isla de Man</option>                        
+																			<option value="CXR">Isla de Navidad</option>                        
+																			<option value="HMD">Isla Heard e Islas McDonald</option>                        
+																			<option value="ISL">Islandia</option>                        
+																			<option value="NFK">Isla Norfolk</option>                        
+																			<option value="CYM">Islas Caimán</option>                        
+																			<option value="CCK">Islas Cocos</option>                        
+																			<option value="COK">Islas Cook</option>                        
+																			<option value="UMI">Islas de Ultramar Menores de Estados Unidos</option>                        
+																			<option value="FRO">Islas Feroe</option>                        
+																			<option value="FLK">Islas Malvinas</option>                        
+																			<option value="MNP">Islas Marianas del Norte</option>                        
+																			<option value="MHL">Islas Marshall</option>                        
+																			<option value="SLB">Islas Salomón</option>                        
+																			<option value="TCA">Islas Turcas y Caicos</option>                        
+																			<option value="VIR">Islas Vírgenes</option>                        
+																			<option value="ISR">Israel</option>                        
+																			<option value="ITA">Italia</option>                        
+																			<option value="JAM">Jamaica</option>                        
+																			<option value="JPN">Japón</option>                        
+																			<option value="JEY">Jersey</option>                        
+																			<option value="JOR">Jordania</option>                        
+																			<option value="KAZ">Kazajistán</option>                        
+																			<option value="KEN">Kenia</option>                        
+																			<option value="KGZ">Kirguistán</option>                        
+																			<option value="KIR">Kiribati</option>                        
+																			<option value="KWT">Kuwait</option>                        
+																			<option value="LAO">Lao</option>                        
+																			<option value="LSO">Lesoto</option>                        
+																			<option value="LVA">Letonia</option>                        
+																			<option value="LBN">Líbano</option>                        
+																			<option value="LBR">Liberia</option>                        
+																			<option value="LBY">Libia</option>                        
+																			<option value="LIE">Liechtenstein</option>                        
+																			<option value="LTU">Lituania</option>                        
+																			<option value="LUX">Luxemburgo</option>                        
+																			<option value="MAC">Macao</option>                        
+																			<option value="MKD">Macedonia</option>                        
+																			<option value="MDG">Madagascar</option>                        
+																			<option value="MYS">Malasia</option>                        
+																			<option value="MWI">Malaui</option>                        
+																			<option value="MDV">Maldivas</option>                        
+																			<option value="MLI">Malí</option>                        
+																			<option value="MLT">Malta</option>                        
+																			<option value="MAR">Marruecos</option>                        
+																			<option value="MTQ">Martinica</option>                        
+																			<option value="MUS">Mauricio</option>                        
+																			<option value="MRT">Mauritania</option>                        
+																			<option value="MYT">Mayotte</option>                        
+																			<option value="MEX">México</option>                        
+																			<option value="FSM">Micronesia</option>                        
+																			<option value="MDA">Moldavia</option>                        
+																			<option value="MCO">Mónaco</option>                        
+																			<option value="MNG">Mongolia</option>                        
+																			<option value="MNE">Montenegro</option>                        
+																			<option value="MSR">Montserrat</option>                        
+																			<option value="MOZ">Mozambique</option>                        
+																			<option value="MMR">Myanmar</option>                        
+																			<option value="NAM">Namibia</option>                        
+																			<option value="NRU">Nauru</option>                        
+																			<option value="NPL">Nepal</option>                        
+																			<option value="NIC">Nicaragua</option>                        
+																			<option value="NER">Níger</option>                        
+																			<option value="NGA">Nigeria</option>                        
+																			<option value="NIU">Niue</option>                        
+																			<option value="NOR">Noruega</option>                        
+																			<option value="NCL">Nueva Caledonia</option>                        
+																			<option value="NZL">Nueva Zelanda</option>                        
+																			<option value="OMN">Omán</option>                        
+																			<option value="NLD">Países Bajos</option>                        
+																			<option value="PAK">Pakistán</option>                        
+																			<option value="PLW">Palaos</option>                        
+																			<option value="PSE">Palestina, Estado de</option>                        
+																			<option value="PAN">Panamá</option>                        
+																			<option value="PNG">Papúa Nueva Guinea</option>                        
+																			<option value="PER">Perú</option>                        
+																			<option value="PCN">Pitcairn</option>                        
+																			<option value="PYF">Polinesia Francesa</option>                        
+																			<option value="POL">Polonia</option>                        
+																			<option value="PRT">Portugal</option>                        
+																			<option value="PRI">Puerto Rico</option>                        
+																			<option value="GBR">Reino Unido</option>                        
+																			<option value="CAF">República Centroafricana</option>                        
+																			<option value="CZE">República Checa</option>                        
+																			<option value="DOM">República Dominicana</option>                        
+																			<option value="REU">Reunión</option>                        
+																			<option value="RWA">Ruanda</option>                        
+																			<option value="ROU">Rumania</option>                        
+																			<option value="RUS">Rusia</option>                        
+																			<option value="ESH">Sahara Occidental</option>                        
+																			<option value="WSM">Samoa</option>                        
+																			<option value="ASM">Samoa Americana</option>                        
+																			<option value="BLM">San Bartolomé</option>                        
+																			<option value="KNA">San Cristóbal y Nieves</option>                        
+																			<option value="SMR">San Marino</option>                        
+																			<option value="MAF">San Martín</option>                        
+																			<option value="SPM">San Pedro y Miquelón</option>                        
+																			<option value="SHN">Santa Helena</option>                        
+																			<option value="LCA">Santa Lucía</option>                        
+																			<option value="STP">Santo Tomé y Príncipe</option>                        
+																			<option value="VCT">San Vicente y las Granadinas</option>                        
+																			<option value="SEN">Senegal</option>                        
+																			<option value="SRB">Serbia</option>                        
+																			<option value="SYC">Seychelles</option>                        
+																			<option value="SLE">Sierra leona</option>                        
+																			<option value="SGP">Singapur</option>                        
+																			<option value="SXM">Sint Maarten</option>                        
+																			<option value="SYR">Siria</option>                        
+																			<option value="SOM">Somalia</option>                        
+																			<option value="LKA">Sri Lanka</option>                        
+																			<option value="SWZ">Suazilandia</option>                        
+																			<option value="ZAF">Sudáfrica</option>                        
+																			<option value="SDN">Sudán</option>                        
+																			<option value="SSD">Sudán del Sur</option>                        
+																			<option value="SWE">Suecia</option>                        
+																			<option value="CHE">Suiza</option>                        
+																			<option value="SUR">Surinam</option>                        
+																			<option value="SJM">Svalbard y Jan Mayen</option>                        
+																			<option value="THA">Tailandia</option>                        
+																			<option value="TWN">Taiwán</option>                        
+																			<option value="TZA">Tanzania</option>                        
+																			<option value="TJK">Tayikistán</option>                        
+																			<option value="IOT">Territorio Británico del Océano Índico</option>                        
+																			<option value="ATF">Territorios Australes Franceses</option>                        
+																			<option value="TLS">Timor-Leste</option>                        
+																			<option value="TGO">Togo</option>                        
+																			<option value="TKL">Tokelau</option>                        
+																			<option value="TON">Tonga</option>                        
+																			<option value="TTO">Trinidad y Tobago</option>                        
+																			<option value="TUN">Túnez</option>                        
+																			<option value="TKM">Turkmenistán</option>                        
+																			<option value="TUR">Turquía</option>                        
+																			<option value="TUV">Tuvalu</option>                        
+																			<option value="UKR">Ucrania</option>                        
+																			<option value="UGA">Uganda</option>                        
+																			<option value="UZB">Uzbekistán</option>                        
+																			<option value="VUT">Vanuatu</option>                        
+																			<option value="VEN">Venezuela</option>                        
+																			<option value="VNM">Vietnam</option>                        
+																			<option value="WLF">Wallis y Futuna</option>                        
+																			<option value="YEM">Yemen</option>                        
+																			<option value="DJI">Yibuti</option>                        
+																			<option value="ZMB">Zambia</option>                        
+																			<option value="ZWE">Zimbabue</option>                  
+																		  </select>
+																		  <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+																	</div>
+																	<div class="form-group">
+																		<label for="nacionalidad_notevaluate">Nacionalidad</label>
+																		   <select id="nacionalidad_notevaluate" name="Nacionalidad" class="form-control" required aria-required="true">
+																			<option value="">Seleccioná un pais</option>
+																			<option value="ARG" selected="">Argentina</option>                        
+																			<option value="BRA">Brasil</option>                        
+																			<option value="URY">Uruguay</option>                        
+																			<option value="PRY">Paraguay</option>                        
+																			<option value="CHL">Chile</option>                        
+																			<option value="BOL">Bolivia</option>                                        
+																			<option value="AFG">Afganistán</option>                        
+																			<option value="ALB">Albania</option>                        
+																			<option value="DEU">Alemania</option>                        
+																			<option value="AND">Andorra</option>                        
+																			<option value="AGO">Angola</option>                        
+																			<option value="AIA">Anguila</option>                        
+																			<option value="ATA">Antártida</option>                        
+																			<option value="ATG">Antigua y Barbuda</option>                        
+																			<option value="SAU">Arabia Saudita</option>                        
+																			<option value="DZA">Argelia</option>                        
+																			<option value="ARM">Armenia</option>                        
+																			<option value="ABW">Aruba</option>                        
+																			<option value="AUS">Australia</option>                        
+																			<option value="AUT">Austria</option>                        
+																			<option value="AZE">Azerbaiyán</option>                        
+																			<option value="BHS">Bahamas</option>                        
+																			<option value="BGD">Bangladés</option>                        
+																			<option value="BRB">Barbados</option>                        
+																			<option value="BHR">Baréin</option>                        
+																			<option value="BEL">Bélgica</option>                        
+																			<option value="BLZ">Belice</option>                        
+																			<option value="BEN">Benín</option>                        
+																			<option value="BMU">Bermudas</option>                        
+																			<option value="BLR">Bielorrusia</option>                        
+																			<option value="BES">Bonaire</option>                        
+																			<option value="BIH">Bosnia y Herzegovina</option>                        
+																			<option value="BWA">Botsuana</option>                        
+																			<option value="BRN">Brunéi Darussalam</option>                        
+																			<option value="BGR">Bulgaria</option>                        
+																			<option value="BFA">Burkina Faso</option>                        
+																			<option value="BDI">Burundi</option>                        
+																			<option value="BTN">Bután</option>                        
+																			<option value="CPV">Cabo Verde</option>                        
+																			<option value="KHM">Camboya</option>                        
+																			<option value="CMR">Camerún</option>                        
+																			<option value="CAN">Canadá</option>                        
+																			<option value="QAT">Catar</option>                        
+																			<option value="TCD">Chad</option>                        
+																			<option value="CHL">Chile</option>                        
+																			<option value="CHN">China</option>                        
+																			<option value="CYP">Chipre</option>                        
+																			<option value="COL">Colombia</option>                        
+																			<option value="COM">Comoras</option>                        
+																			<option value="COG">Congo</option>                        
+																			<option value="KOR">Corea</option>                        
+																			<option value="CIV">Costa de Marfil</option>                        
+																			<option value="CRI">Costa Rica</option>                        
+																			<option value="HRV">Croacia</option>                        
+																			<option value="CUB">Cuba</option>                        
+																			<option value="CUW">Curaçao</option>                        
+																			<option value="DNK">Dinamarca</option>                        
+																			<option value="DMA">Dominica</option>                        
+																			<option value="ECU">Ecuador</option>                        
+																			<option value="EGY">Egipto</option>                        
+																			<option value="SLV">El Salvador</option>                        
+																			<option value="ARE">Emiratos Árabes Unidos</option>                        
+																			<option value="ERI">Eritrea</option>                        
+																			<option value="SVK">Eslovaquia</option>                        
+																			<option value="SVN">Eslovenia</option>                        
+																			<option value="ESP">España</option>                        
+																			<option value="USA">Estados Unidos</option>                        
+																			<option value="EST">Estonia</option>                        
+																			<option value="ETH">Etiopía</option>                        
+																			<option value="PHL">Filipinas</option>                        
+																			<option value="FIN">Finlandia</option>                        
+																			<option value="FJI">Fiyi</option>                        
+																			<option value="FRA">Francia</option>                        
+																			<option value="GAB">Gabón</option>                        
+																			<option value="GMB">Gambia</option>                        
+																			<option value="GEO">Georgia</option>                        
+																			<option value="SGS">Georgia del sur y las islas sandwich del sur</option>                        
+																			<option value="GHA">Ghana</option>                        
+																			<option value="GIB">Gibraltar</option>                        
+																			<option value="GRD">Granada</option>                        
+																			<option value="GRC">Grecia</option>                        
+																			<option value="GRL">Groenlandia</option>                        
+																			<option value="GLP">Guadalupe</option>                        
+																			<option value="GUM">Guam</option>                        
+																			<option value="GTM">Guatemala</option>                        
+																			<option value="GUF">Guayana Francesa</option>                        
+																			<option value="GGY">Guernsey</option>                        
+																			<option value="GIN">Guinea</option>                        
+																			<option value="GNB">Guinea-Bisáu</option>                        
+																			<option value="GNQ">Guinea Ecuatorial</option>                        
+																			<option value="GUY">Guyana</option>                        
+																			<option value="HTI">Haití</option>                        
+																			<option value="HND">Honduras</option>                        
+																			<option value="HKG">Hong Kong</option>                        
+																			<option value="HUN">Hungría</option>                        
+																			<option value="IND">India</option>                        
+																			<option value="IDN">Indonesia</option>                        
+																			<option value="IRQ">Irak</option>                        
+																			<option value="IRN">Irán</option>                        
+																			<option value="IRL">Irlanda</option>                        
+																			<option value="BVT">Isla Bouvet</option>                        
+																			<option value="IMN">Isla de Man</option>                        
+																			<option value="CXR">Isla de Navidad</option>                        
+																			<option value="HMD">Isla Heard e Islas McDonald</option>                        
+																			<option value="ISL">Islandia</option>                        
+																			<option value="NFK">Isla Norfolk</option>                        
+																			<option value="CYM">Islas Caimán</option>                        
+																			<option value="CCK">Islas Cocos</option>                        
+																			<option value="COK">Islas Cook</option>                        
+																			<option value="UMI">Islas de Ultramar Menores de Estados Unidos</option>                        
+																			<option value="FRO">Islas Feroe</option>                        
+																			<option value="FLK">Islas Malvinas</option>                        
+																			<option value="MNP">Islas Marianas del Norte</option>                        
+																			<option value="MHL">Islas Marshall</option>                        
+																			<option value="SLB">Islas Salomón</option>                        
+																			<option value="TCA">Islas Turcas y Caicos</option>                        
+																			<option value="VIR">Islas Vírgenes</option>                        
+																			<option value="ISR">Israel</option>                        
+																			<option value="ITA">Italia</option>                        
+																			<option value="JAM">Jamaica</option>                        
+																			<option value="JPN">Japón</option>                        
+																			<option value="JEY">Jersey</option>                        
+																			<option value="JOR">Jordania</option>                        
+																			<option value="KAZ">Kazajistán</option>                        
+																			<option value="KEN">Kenia</option>                        
+																			<option value="KGZ">Kirguistán</option>                        
+																			<option value="KIR">Kiribati</option>                        
+																			<option value="KWT">Kuwait</option>                        
+																			<option value="LAO">Lao</option>                        
+																			<option value="LSO">Lesoto</option>                        
+																			<option value="LVA">Letonia</option>                        
+																			<option value="LBN">Líbano</option>                        
+																			<option value="LBR">Liberia</option>                        
+																			<option value="LBY">Libia</option>                        
+																			<option value="LIE">Liechtenstein</option>                        
+																			<option value="LTU">Lituania</option>                        
+																			<option value="LUX">Luxemburgo</option>                        
+																			<option value="MAC">Macao</option>                        
+																			<option value="MKD">Macedonia</option>                        
+																			<option value="MDG">Madagascar</option>                        
+																			<option value="MYS">Malasia</option>                        
+																			<option value="MWI">Malaui</option>                        
+																			<option value="MDV">Maldivas</option>                        
+																			<option value="MLI">Malí</option>                        
+																			<option value="MLT">Malta</option>                        
+																			<option value="MAR">Marruecos</option>                        
+																			<option value="MTQ">Martinica</option>                        
+																			<option value="MUS">Mauricio</option>                        
+																			<option value="MRT">Mauritania</option>                        
+																			<option value="MYT">Mayotte</option>                        
+																			<option value="MEX">México</option>                        
+																			<option value="FSM">Micronesia</option>                        
+																			<option value="MDA">Moldavia</option>                        
+																			<option value="MCO">Mónaco</option>                        
+																			<option value="MNG">Mongolia</option>                        
+																			<option value="MNE">Montenegro</option>                        
+																			<option value="MSR">Montserrat</option>                        
+																			<option value="MOZ">Mozambique</option>                        
+																			<option value="MMR">Myanmar</option>                        
+																			<option value="NAM">Namibia</option>                        
+																			<option value="NRU">Nauru</option>                        
+																			<option value="NPL">Nepal</option>                        
+																			<option value="NIC">Nicaragua</option>                        
+																			<option value="NER">Níger</option>                        
+																			<option value="NGA">Nigeria</option>                        
+																			<option value="NIU">Niue</option>                        
+																			<option value="NOR">Noruega</option>                        
+																			<option value="NCL">Nueva Caledonia</option>                        
+																			<option value="NZL">Nueva Zelanda</option>                        
+																			<option value="OMN">Omán</option>                        
+																			<option value="NLD">Países Bajos</option>                        
+																			<option value="PAK">Pakistán</option>                        
+																			<option value="PLW">Palaos</option>                        
+																			<option value="PSE">Palestina, Estado de</option>                        
+																			<option value="PAN">Panamá</option>                        
+																			<option value="PNG">Papúa Nueva Guinea</option>                        
+																			<option value="PER">Perú</option>                        
+																			<option value="PCN">Pitcairn</option>                        
+																			<option value="PYF">Polinesia Francesa</option>                        
+																			<option value="POL">Polonia</option>                        
+																			<option value="PRT">Portugal</option>                        
+																			<option value="PRI">Puerto Rico</option>                        
+																			<option value="GBR">Reino Unido</option>                        
+																			<option value="CAF">República Centroafricana</option>                        
+																			<option value="CZE">República Checa</option>                        
+																			<option value="DOM">República Dominicana</option>                        
+																			<option value="REU">Reunión</option>                        
+																			<option value="RWA">Ruanda</option>                        
+																			<option value="ROU">Rumania</option>                        
+																			<option value="RUS">Rusia</option>                        
+																			<option value="ESH">Sahara Occidental</option>                        
+																			<option value="WSM">Samoa</option>                        
+																			<option value="ASM">Samoa Americana</option>                        
+																			<option value="BLM">San Bartolomé</option>                        
+																			<option value="KNA">San Cristóbal y Nieves</option>                        
+																			<option value="SMR">San Marino</option>                        
+																			<option value="MAF">San Martín</option>                        
+																			<option value="SPM">San Pedro y Miquelón</option>                        
+																			<option value="SHN">Santa Helena</option>                        
+																			<option value="LCA">Santa Lucía</option>                        
+																			<option value="STP">Santo Tomé y Príncipe</option>                        
+																			<option value="VCT">San Vicente y las Granadinas</option>                        
+																			<option value="SEN">Senegal</option>                        
+																			<option value="SRB">Serbia</option>                        
+																			<option value="SYC">Seychelles</option>                        
+																			<option value="SLE">Sierra leona</option>                        
+																			<option value="SGP">Singapur</option>                        
+																			<option value="SXM">Sint Maarten</option>                        
+																			<option value="SYR">Siria</option>                        
+																			<option value="SOM">Somalia</option>                        
+																			<option value="LKA">Sri Lanka</option>                        
+																			<option value="SWZ">Suazilandia</option>                        
+																			<option value="ZAF">Sudáfrica</option>                        
+																			<option value="SDN">Sudán</option>                        
+																			<option value="SSD">Sudán del Sur</option>                        
+																			<option value="SWE">Suecia</option>                        
+																			<option value="CHE">Suiza</option>                        
+																			<option value="SUR">Surinam</option>                        
+																			<option value="SJM">Svalbard y Jan Mayen</option>                        
+																			<option value="THA">Tailandia</option>                        
+																			<option value="TWN">Taiwán</option>                        
+																			<option value="TZA">Tanzania</option>                        
+																			<option value="TJK">Tayikistán</option>                        
+																			<option value="IOT">Territorio Británico del Océano Índico</option>                        
+																			<option value="ATF">Territorios Australes Franceses</option>                        
+																			<option value="TLS">Timor-Leste</option>                        
+																			<option value="TGO">Togo</option>                        
+																			<option value="TKL">Tokelau</option>                        
+																			<option value="TON">Tonga</option>                        
+																			<option value="TTO">Trinidad y Tobago</option>                        
+																			<option value="TUN">Túnez</option>                        
+																			<option value="TKM">Turkmenistán</option>                        
+																			<option value="TUR">Turquía</option>                        
+																			<option value="TUV">Tuvalu</option>                        
+																			<option value="UKR">Ucrania</option>                        
+																			<option value="UGA">Uganda</option>                        
+																			<option value="UZB">Uzbekistán</option>                        
+																			<option value="VUT">Vanuatu</option>                        
+																			<option value="VEN">Venezuela</option>                        
+																			<option value="VNM">Vietnam</option>                        
+																			<option value="WLF">Wallis y Futuna</option>                        
+																			<option value="YEM">Yemen</option>                        
+																			<option value="DJI">Yibuti</option>                        
+																			<option value="ZMB">Zambia</option>                        
+																			<option value="ZWE">Zimbabue</option>                  
+																		  </select>
+																		  <p class="help-block error hidden">Ingresá tu país de nacimiento</p>
+																	</div>
+																	<fieldset>
+																		<legend>
+																		  <h3>Domicilio</h3>
+																		  <p class="help-block">El que figura en el documento del Madre / Padre / Tutor/a / Guarda / Curador/a o Apoyo</p>
+																		</legend>
+																		<div class="form-group item-form">
+																			<label for="provincia_notevaluate">Provincia</label>
+																			<select class="form-control" id="provincia_notevaluate" name="provincia">
+																			  <option value="">Elegí tu provincia</option>
+																			  <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+																			  <option value="Buenos Aires">Buenos Aires</option>
+																			  <option value="Catamarca">Catamarca</option>
+																			  <option value="Córdoba">Córdoba</option>
+																			  <option value="Corrientes">Corrientes</option>
+																			  <option value="Chaco">Chaco</option>
+																			  <option value="Chubut">Chubut</option>
+																			  <option value="Entre Ríos">Entre Ríos</option>
+																			  <option value="Formosa">Formosa</option>
+																			  <option value="Jujuy">Jujuy</option>
+																			  <option value="La Pampa">La Pampa</option>
+																			  <option value="La Rioja">La Rioja</option>
+																			  <option value="Mendoza">Mendoza</option>
+																			  <option value="Misiones">Misiones</option>
+																			  <option value="Neuquén">Neuquén</option>
+																			  <option value="Río Negro">Río Negro</option>
+																			  <option value="Salta">Salta</option>
+																			  <option value="San Juan">San Juan</option>
+																			  <option value="San Luis">San Luis</option>
+																			  <option value="Santa Cruz">Santa Cruz</option>
+																			  <option value="Santa Fe">Santa Fe</option>
+																			  <option value="Santiago del Estero">Santiago del Estero</option>
+																			  <option value="Tierra del Fuego">Tierra del Fuego</option>
+																			  <option value="Tucumán">Tucumán</option>
+																			</select>
+																			<p class="help-block error hidden">Ingresá tu provincia</p>
+																		  </div>
+																		  <div class="form-group item-form">
+																			<label for="localidad_notevaluate">Localidad</label>
+																			<select name="localidad" id="localidad_notevaluate" class="form-control">
+																				<option value="">Elegí tu localidad</option>
+																				<option value="localidad1">Localidad1</option>
+																				<option value="localidad2">Localidad2</option>
+																				<p class="help-block error hidden">Ingresá tu partido o departamento</p>
+																			</select>
+																		</div>
+																	</fieldset>
+																	<div class="row">
+																		  <div class="col-md-6 form-group item-form">
+																			  <label for="cp__notevaluate">Código postal</label>
+																			<input type="number" name="address_postalcode" class="form-control" id="cp__notevaluate" required aria-required="true">
+																			<p class="help-block error hidden">Ingresá un código postal</p>
+																		  </div>
+																	  </div>
+																	  <div class="row">
+																		<div class="col-md-8 form-group item-form">
+																		  <label for="address_street_notevaluate">Calle</label>
+																		  <input type="text" name="address" class="form-control" id="address_street_notevaluate" required="" aria-required="true">
+																		  <p class="help-block error hidden">Ingresá una calle</p>
+																		</div>  
+						
+																		<div class="col-md-4 form-group item-form">
+																		  <label for="address_street_number_notevaluate">Nº de calle</label>
+																		  <input type="text" class="form-control" id="address_street_number_notevaluate" required="" aria-required="true">
+																		  <p class="help-block error hidden">Ingresá un número de calle</p>
+																		</div> 
+																	</div>
+																	<div class="row">
+																		<div class="col-md-6 form-group item-form">
+																		  <label for="address_floor_number_notevaluate">Piso</label>
+																		  <input type="text" name="address" class="form-control" id="address_floor_number_notevaluate" >
+																		  <p class="help-block error hidden">Ingresá un piso</p>
+																		</div>  
+						
+																		<div class="col-md-6 form-group item-form">
+																		  <label for="address_apartment_number__notevaluate">Departamento</label>
+																		  <input type="text" class="form-control" name="address" id="address_apartment_number__notevaluate" >
+																		  <p class="help-block error hidden">Ingresá un un departamento</p>
+																		</div> 
+																	</div>
+																	<fieldset>
+																	  <legend>Teléfono fijo o móvil
+																		  <p class="help-block" id="help_telefono">Incluí el <a href="https://www.argentina.gob.ar/codigos-de-area-telefonicos-de-argentina" aria-label="Ingresá código de área. Si no lo sabés consultá en este enlace" target="_blank">código de área</a> de tu localidad</p>
+																	  </legend>
+																		 
+																		<div class="row">
+																		  <div class="form-group col-xs-12 col-sm-4 item-form">
+																			<div class="input-group">
+																			  <span class="input-group-addon">0</span>
+																			  <input aria-label="Código de area de teléfono" class="form-control" id="codeareatel_notevaluate" required aria-required="true" type="text"> 
+																		  </div>
+																		  <p class="help-block error hidden">Ingresá el código de área</p>
+																		</div>
+																		<div class="form-group col-xs-12 col-sm-6 item-form">
+																		  <div class="input-group">
+																			<span class="input-group-addon"></span>
+																			<input aria-label="Número de teléfono" class="form-control" id="tel_notevaluate" required aria-required="true" type="text"> 
+																		  </div>
+																		  <p class="help-block error hidden">Ingresá tu número de teléfono (fijo o móvil)</p>
+																		</div>
+																	  </div> 
+																	</fieldset>
+																	
+																	   <button type="button" class="btn btn-link  prev-step">Volver</button>
+																	   <button type="button" class="btn btn-success next-step">Continuar</button>
+																  </form>
+													</div>
+											</div>
+										</form>
+									</div>
+								</div>
+				        	<div class="panel panel-default panel-nolink panel-border-success" style="display: none;">
+				        		<div class="panel-heading">
+				        			
+				        		</div>
+				        		<div class="panel-body">
+				        			<div class="col-md-8">
+	 		 							<form action="" onsubmit="event.preventDefault()">
+	 		 								<fieldset>
+	 		 									<legend>
+	 		 										<h2 class="m-b-1">Datos de la persona con discapacidad</h2>
+													<strong>Indicá si esta planilla la va a presentar en la Junta Evaluadora la persona con discapacidad o su representante legal (madre, padre, tutor, guarda, curador o apoyo):</strong>
+	 		 									</legend>
+	 		 									<div class="form-group">
+										            <div class="radio">
+										              <label for="personaAevaluar" class="m-b-1">
+										                <input type="radio" value="persona-a-evaluar" name="presenta-planilla" id="personaAevaluar">
+										                La planilla la va a presentar la persona con discapacidad
+										              </label>
+										              <label for="otraPersona">
+										               <input type="radio" value="otro" name="presenta-planilla" id="otraPersona" >
+										               La planilla la va a presentar un representante legal de la persona con discapacidad
+										              </label>
+										            </div>
+									        	</div>
+									        	<a href="salud.html" class="btn btn-link">Cancelar</a>
+									        	<button type="submit" class="btn btn-success">Guardar datos</button>
+									        </fieldset>
+									    </form>
+									</div>
+								</div>
+							</div>
+ 		 				</div>
+ 		 			</div>
+    			</div>
+    		</div>
+		</section>
+
+
+<script>
+
+var currentProv;
+	
+		document.querySelectorAll('.content-container input[type="radio"]').forEach(e => {
+			e.addEventListener('change', function(){
+				grupo = e.closest(".content-container");
+				grupo.querySelectorAll('.group-container').forEach(gc => {
+					gc.classList.add('hidden')
+				})
+				var mostrar = e.dataset.show;
+
+				var elementoMostrar = document.getElementById(mostrar)
+				elementoMostrar.classList.remove('hidden')
+				var emInput = elementoMostrar.querySelector('input[type="text"')
+				emInput.value = '';
+				autocomplete(emInput, proveedores, elementoMostrar.querySelector('input[type="text"').id);
+
+		})
+
+		
+	})
+		
+
+function showStep(element){
+
+	element.classList.remove('hidden')
+
+}
+function hideContent(element){
+	element.classList.add('hidden')
+}
+var proveedores =   [
+    			{	"empresa": "Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A", 
+    				"cuit": "30678814357", 
+    				"domicilio":"Av. Independencia 169. Ciudad Autónoma de Buenos Aires",
+    				"Código postal": 1099
+    			},
+    			{	"empresa": "Movistar - TELEFÓNICA MÓVILES URUGUAY S.A", 
+    				"cuit": "30678814357", 
+    				"domicilio":"Av. Independencia 169. Ciudad Autónoma de Buenos Aires",
+    				"Código postal": 1099
+    			},
+    			{	"empresa": "Personal - TELEFÓNICA MÓVILES ARGENTINA S.A", 
+    				"cuit":"32678814351", 
+    				"domicilio":"Av. Corrientes 566, C1043AAS CABA",
+    				"Código postal": 1099
+    			},
+    			{	"empresa": "Claro - TELEFÓNICA MÓVILES ARGENTINA S.A", 
+    				"cuit": "33678814355", 
+    				"domicilio":"Av. de Mayo 878, C1084AAQ CABA",
+    				"Código postal": 1099
+    			}
+    		]
+
+/************************AUTOCOMPLETE*****************************/
+
+function autocomplete(inp, arr, key, btn) {
+  /*Tres argumentos, lo que escribe, el array con las opciones disponibles segun lo escrito, y la key del objeto que está llamando*/
+  var currentFocus;
+
+	inp.addEventListener("input", function(e) {
+      var a, b, i,  val = this.value;
+      /*limpia la lista primero*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*Crea el div que va a traer los valores, le pone un id y las clases del autocomplete*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      
+      
+     
+      /*hace un append de ese div dentro de container autocomplete*/
+      this.parentNode.appendChild(a);
+   		
+      for (i = 0; i < arr.length; i++) {
+        /*recorre el array y chequea si el item donde está posicionado coincide con lo que se escribe*/
+        /*el [key] es dinámico ya que en un primer momento hay que hacerlo coincidir con el key nombre, y luego con cuit*/
+        if (arr[i][key].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        	
+        	
+          /*si machean, crea un div*/
+          b = document.createElement("DIV");
+          
+
+          /*Pone el bold las letras que machean*/
+          b.innerHTML = "<strong>" + arr[i][key].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i][key].substr(val.length);
+          /*carga todas las opciones en inputs*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i][key] + "'>";
+          
+              b.addEventListener("click", function(e) {
+              /*carga la opción elegida en el input*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*cierra el select con las distintas opciones*/
+              closeAllLists();
+
+          });
+          a.appendChild(b);
+         
+        }
+        
+      }
+
+    });
+
+
+  	inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  	});
+	function addActive(x) {
+	    /*a function to classify an item as "active":*/
+	    if (!x) return false;
+	    /*start by removing the "active" class on all items:*/
+	    removeActive(x);
+	    if (currentFocus >= x.length) currentFocus = 0;
+	    if (currentFocus < 0) currentFocus = (x.length - 1);
+	    /*add class "autocomplete-active":*/
+	    x[currentFocus].classList.add("autocomplete-active");
+	}
+	function removeActive(x) {
+	    /*a function to remove the "active" class from all autocomplete items:*/
+	    for (var i = 0; i < x.length; i++) {
+	      x[i].classList.remove("autocomplete-active");
+	    }
+	}
+	function closeAllLists(elmnt) {
+		/*close all autocomplete lists in the document, except the one passed as an argument:*/
+		var x = document.getElementsByClassName("autocomplete-items");
+	    for (var i = 0; i < x.length; i++) {
+	    	if (elmnt != x[i] && elmnt != inp) {
+	      		x[i].parentNode.removeChild(x[i]);
+	     	}
+	     
+	    }
+	}
+	
+	document.addEventListener("click", function (e) {
+	    closeAllLists(e.target);
+	    console.log(e.target)
+	   
+	})
+
+	
+	if(inp != ''){
+
+		/*Si eligió un proveedor creá un botón que al hacer click oculta el contenido actual y muestra el siguiente*/
+     	var btn = document.createElement('button');
+	  	btn.setAttribute('class', 'btn btn-primary')
+	  	btn.setAttribute('type', 'button')
+	  	btn.setAttribute('data-search', 'proveedor')
+	  	btn.innerHTML = "Buscar" + ' ' +[key]
+	  	
+	  	
+	  	inp.parentNode.appendChild(btn)
+	  	
+	    
+
+	    /*Busca el siguiente contenedor donde se guardará la información nueva*/
+	    var container = inp.closest('.content-container')
+	    var nexContainer = container.nextElementSibling
+	    console.log(currentProv)
+	    /*switch(nexContainer.dataset.info){
+	    	case 'infoProveedor' :
+	    	nexContainer.childNode.innerHTML = `<small>${currentProv}</small>`
+	    	break;
+	    }
+		*/
+	    
+	 	btn.addEventListener('click', function(){
+	 		showStep(nexContainer)
+	      	hideContent(container)
+	    })
+
+
+    }
+}
+
+
+		
+
+
+</script>
