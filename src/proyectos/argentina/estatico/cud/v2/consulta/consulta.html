@@ -156,6 +156,11 @@ select[disabled] .form-control {
 	
 
 </section><!--<a href="solicitud-turno-02.html" class="m-t-2 btn btn-primary btn-success btn-md">Continuar</a>--><script>
+
+
+
+localStorage.clear();
+
  (function($) {
  $('[data-toogle-collapse]').each(function(key, item) {
  var value = $(item).val();
@@ -199,6 +204,7 @@ select[disabled] .form-control {
  	var bxfCheck;
  if((document.getElementById('bajafallecimientocud').checked) ||(document.getElementById('bajavoluntariacud').checked)){
  $('#edad, #coberturamedica, #origenProblemaSalud, #collapse-guardador, #collapse-tutoria').addClass('hidden')
+ $('#edad input[type="radio"], #coberturamedica input[type="radio"], #origenProblemaSalud input[type="radio"], #collapse-guardador input[type="radio"], #collapse-tutoria input[type="radio"]').prop('checked',false)
  bxfCheck = true;
  }else{
  $('#edad, #coberturamedica, #origenProblemaSalud, #collapse-guardador, #collapse-tutoria').removeClass('hidden')
@@ -209,6 +215,7 @@ select[disabled] .form-control {
 	if(!bxfCheck){
 		if(document.getElementById('cambioidentidadadopcioncud').checked || document.getElementById('cambioidentidadgenerocud').checked){
 				$('#origenProblemaSalud').addClass('hidden')
+				$('#origenProblemaSalud input[type="radio"]').prop('checked',false)
 				console.log('seclickeo')
 		 	}else{
 		 		$('#origenProblemaSalud').removeClass('hidden')
@@ -223,10 +230,12 @@ var ischeck = false;
    checkChoise();
    
    $('#collapse-guardador, #collapse-tutoria').addClass('hidden')
+   $('#collapse-guardador input[type="radio"], #collapse-tutoria input[type="radio"]').prop('checked',false)
  })
 
 $('input[name="mayor16"]').click(function(){
    $('#collapse-guardador, #collapse-tutoria').removeClass('hidden')
+   $('#collapse-guardador input[type="radio"], #collapse-tutoria input[type="radio"]').removeClass('hidden').prop('checked',false)
  })
 
 
@@ -334,7 +343,8 @@ $('input[name="mayor16"]').click(function(){
  // ga('send', 'event', 'Formulario', 'wizServicios_modificado', ga_data);
  }
 
- window.location.href = '/cud/requisitos';
+ //window.location.href = '/cud/requisitos';
+ window.location.href = 'requisitos.html';
  }
  });
 
