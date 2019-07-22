@@ -756,9 +756,10 @@ layout: argentina
 								tipoDiscapacidad += 'Digestivo / Hepático, ';
 							}
 							// pepe
-							if (data.coberturamedica == 'Programa-Incluir-Salud'){
+							if (data.coberturamedica == 'Programa-Incluir-Salud' && data.mayor16 == 'si'){
 								//alert('Programa-Incluir-Salud');
-								$('#show-data').append('<li>Último recibo de cobro de Pensión No Contributiva</li>');
+								$('#show-data').removeClass('hidden');
+								$('#show-data').append('<li><strong>Último recibo de cobro de Pensión No Contributiva</strong></li>');
 							}
 							htmlTipoDiscapacidad = htmlTipoDiscapacidad.replace(/{tipoDiscapacidad}/gi,
 								tipoDiscapacidad.slice(0, -2));
