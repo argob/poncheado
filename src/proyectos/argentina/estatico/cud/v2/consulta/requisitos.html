@@ -90,7 +90,6 @@ layout: argentina
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.1/showdown.min.js"></script>
 <script type="text/javascript">
-
 	//
 	// Target blank extension
 	//
@@ -130,8 +129,7 @@ layout: argentina
 					<div class="form-group m-t-2">
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
-<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
- 
+						<p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
 					</div>
 					<div class="form-group m-t-2">
 						<label class="control-label">Dirección</label>
@@ -141,11 +139,13 @@ layout: argentina
 						<label class="control-label">Datos de contacto</label>
 						<p>{contacto}</p>
 					</div>
+					<div class="form-group m-t-2">
+						{servicio}
+					</div>
 					<hr />
 				</li>`,
 			tipoDiscapacidad: `{tipoDiscapacidad}`
 		};
-
 		var templates2 = {
 			description: '<p>Según el trámite a realizar ({tipoTramite}):</p>',
 			descriptionLugar: `
@@ -158,7 +158,6 @@ layout: argentina
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
 <p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
-
 					</div>
 					<div class="form-group m-t-2">
 						<label class="control-label">Dirección</label>
@@ -168,11 +167,12 @@ layout: argentina
 						<label class="control-label">Datos de contacto</label>
 						<p>{contacto}</p>
 					</div>
+					<div class="form-group m-t-2">
+						{servicio}
+					</div>
 					<hr />
 				</li>`
 		};
-
-
 		var templates3 = {
 			description: '<p>Según el trámite a realizar ({tipoTramite}) , la edad ({edad}) y el tipo de cobertura ({tipoCobertura}) tenés que presentar esta documentación:</p>',
 			item: '<li>{requisito}</li>',
@@ -186,7 +186,6 @@ layout: argentina
 						<label class="control-label">Junta</label>
 						<p>{junta}</p>
 <p class="margin-0">{perdirAsesoramiento} {pedirTurno} </p>
-
 					</div>
 					<div class="form-group m-t-2">
 						<label class="control-label">Dirección</label>
@@ -195,6 +194,9 @@ layout: argentina
 					<div class="form-group m-t-2">
 						<label class="control-label">Datos de contacto</label>
 						<p>{contacto}</p>
+					</div>
+					<div class="form-group m-t-2">
+						{servicio}
 					</div>
 					<hr />
 				</li>`,
@@ -219,19 +221,15 @@ layout: argentina
 				if (data.tipotramite == 'Baja-por-fallecimiento') {
 					showT2 = true;
 				}
-
 				if (data.tipotramite == 'Baja-voluntaria') {
 					showT2 = true;
 				}
-
 				$.getJSON(
 					'https://spreadsheets.google.com/feeds/list/1x_lJqz4MwgqM4KemzM3w2d3K9hXMxpuIeav0oSGPvvU/1/public/values?alt=json',
 					function (dataDiscapacidad) {
 						window.dataDrive = dataDiscapacidad.feed.entry;
 						mostrarDescripcion();
-
 						//console.log(dataDiscapacidad);
-
 						$.each(dataDrive, function (key, item) {
 							//console.log(data);
 							var show = false;
@@ -269,15 +267,11 @@ layout: argentina
 								(item.gsx$menor16años.$t == "X") &&
 								(item.gsx$curatela.$t == "X") && (item.gsx$tutor.$t == "X")
 							) {
-
 								show = true;
 							}
-
-
 							if ((item.gsx$mayorde16años.$t == "") && (item.gsx$menor16años.$t == "X") && (
 									item.gsx$curatela.$t == "C") && (item.gsx$tutor.$t == "T") && (data
 									.guardador == 'si') && (data.mayor16 == 'no')) {
-
 								show = true;
 								//console.log(data)
 							} else if (
@@ -289,14 +283,6 @@ layout: argentina
 								//console.log(data)
 								show = true;
 							}
-
-
-
-
-
-
-
-
 							if (((item.gsx$mayorde16años.$t == "X") && (item.gsx$menor16años.$t == "")) &&
 								(item.gsx$curatela.$t == "X") && (data.mayor16 == 'si' && data.tutoria ==
 									'si')) {
@@ -317,13 +303,6 @@ layout: argentina
 									'si')) {
 								show = true;
 							}
-
-
-
-
-
-
-
 							if (
 								(item.gsx$mayorde16años.$t == "X") &&
 								(item.gsx$menor16años.$t == "X") &&
@@ -350,7 +329,6 @@ layout: argentina
 							if (
 								(item.gsx$pami.$t == "X") &&
 								(data.coberturamedica == 'Pami')
-
 							) {
 								show = true;
 							}
@@ -383,15 +361,12 @@ layout: argentina
 							if (data.tipotramite == 'Baja-por-fallecimiento') {
 								showT2 = true;
 							}
-
 							if (data.tipotramite == 'Baja-voluntaria') {
 								showT2 = true;
 							}
-
 							if (data.tipotramite == 'Cambio-de-identidad-por-adopcion') {
 								showT3 = true;
 							}
-
 							if (data.tipotramite == 'Cambio-de-identidad-de-genero') {
 								showT3 = true;
 							}
@@ -586,9 +561,6 @@ layout: argentina
 							) {
 								show = true;
 							}
-
-
-
 							if (show) {
 								item_blank = false;
 								var html = templates.item;
@@ -600,11 +572,6 @@ layout: argentina
 								// console.log(requisitosmd);
 								html = html.replace(/{requisito}/gi, requisitosmd);
 								jQuery('#show-data').removeClass('hidden').append(html);
-
-
-
-
-
 								if (document.getElementById('show-data') !== '') {
 									document.getElementById('llenarPlanilla').classList.remove('hidden');
 								} 
@@ -614,21 +581,13 @@ layout: argentina
 								}
 							}
 						});
-
-
-
-
-
-
 						$(".panel a[target='_blank']").each(function () {
 							$('<span class="sr-only"> Abre en ventana nueva</span>').appendTo(this)
 						});
-
 						function mostrarDescripcion() {
 							var htmlDescription = templates.description;
 							var htmlDescription2 = templates2.description;
 							var htmlDescription3 = templates3.description;
-
 							if(data.mayor16 && data.tipotramite && data.coberturamedica){
 							htmlDescription = htmlDescription.replace(/{tipoTramite}/gi, data.tipotramite
 									.replace("Solicitud-de-Certificado-por-primera-vez",
@@ -665,7 +624,6 @@ layout: argentina
 									.replace("Atencion-en-hospital-o-centro-de-salud-publica",
 										"Atención en hospital o centro de salud pública"))
 							}
-
 							if (data.tipotramite != "Cambio-de-identidad-de-genero" && data.tipotramite !=
 								"Cambio-de-identidad-por-adopcion" && data.tipotramite !=
 								"Baja-por-fallecimiento" && data.tipotramite != "Baja-voluntaria") {
@@ -674,13 +632,10 @@ layout: argentina
 								"Cambio-de-identidad-por-adopcion") {
 								//console.log(data.tipotramite +' '+ 'Cambio-de-identidad-de-genero')
 								jQuery('#show-data-description').removeClass('hidden').append(htmlDescription3);
-
 							} else if (data.tipotramite == "Baja-por-fallecimiento" || data.tipotramite ==
 								"Baja-voluntaria") {
 								jQuery('#show-data-description').removeClass('hidden').append(htmlDescription2);
 							}
-
-
 							if (data.tipotramite == "Solicitud-de-Certificado-por-primera-vez") {
 								var htmlPrimeraVez =
 									'<strong>DNI</strong> de la persona que será evaluada (original y fotocopia)<br>';
@@ -718,10 +673,8 @@ layout: argentina
 								//alert('volu');
 							}
 							if (data.tipotramite == "Cambio-de-identidad-por-adopcion") {
-
 								var htmlAdopcion =
 									'<strong>DNI</strong> que acredite la nueva identidad de la persona que fue evaluada (original y fotocopia), <strong>CUD</strong> vigente (original) y <strong>partida de nacimiento</strong> con adopción inscrita (Original y fotocopia)';
-
 								$('#show-adopcion').removeClass('hidden').append(htmlAdopcion);
 							}
 							if (data.tipotramite == "Cambio-de-identidad-de-genero") {
@@ -782,43 +735,48 @@ layout: argentina
 							if (showLugares) {
 								var pedirTurno = '';
 								var perdirAsesoramiento = '';
+								var servicio = '';
 								//console.log(item);
-
 								if (localidadTrim == "San Isidro") {
-
 									pedirTurno =
 										'<a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/348" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Asesoramiento (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/352" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Asesoramiento - Pre Junta (Niños)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/355" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Demencia y Auditivos (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/358" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Mentales (Adultos)</a><br><a href="https://turnos.argentina.gob.ar/turnos/seleccionTurno/362" class="btn btn-success btn-sm" style="text-decoration:none">Sacar turno Pre Junta Motor - Visceral - Visual (Adultos)</a>';
-
 								} else {
-
 									if (item["gsx$btn-sacar-turno"]["$t"] != "") {
 										pedirTurno =
 											'<a class="btn btn-success btn-sm" style="text-decoration: none;" href="' +
 											item["gsx$btn-sacar-turno"]["$t"] +
 											'" target="_blank">Sacar turno</a>'
 									}
-
 									if (item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"] != "") {
 										perdirAsesoramiento =
 											'<a class="btn btn-success btn-sm" style="text-decoration: none;" href="' +
 											item["gsx$btn-sacar-turno-para-asesoramiento"]["$t"] +
 											'" target="_blank">Sacar turno para asesoramiento</a>'
+
+										
 									}
 
+									if (item["gsx$btn-consulta-el-servicio-mas-cercano"]["$t"] != "") {
+										servicio =
+										`<label class="control-label">Sacá turno en el Servicio Social Zonal más cercano a tu domicilio.</label><a class="btn btn-success" style="text-decoration: none;" href="'${
+											item["gsx$btn-consulta-el-servicio-mas-cercano"]["$t"]} 
+											'" target="_blank">Consultá el servicio más cercano</a>`
+									}
+									console.log(servicio)
+									
 								}
-
 								var html = templates.lugar;
 								html = html.replace(/{junta}/gi, item.gsx$nombre.$t)
 									.replace(/{direccion}/gi, item.gsx$direccion.$t)
 									//.replace(/{localidad}/gi, item.gsx$localidad.$t)
 									.replace(/{pedirTurno}/gi, pedirTurno)
 									.replace(/{perdirAsesoramiento}/gi, perdirAsesoramiento)
-									.replace(/{contacto}/gi, item.gsx$contacto.$t);
+									.replace(/{contacto}/gi, item.gsx$contacto.$t)
+									.replace(/{servicio}/gi, servicio);
 								jQuery('#show-data-description-lugar').removeClass('hidden').append(html);
 							}
 						});
 						showDescripcion();
-
 						function showDescripcion() {
 							var htmlDescription = templates.descriptionLugar;
 							if (jQuery('#show-data-description-lugar li').length == 1) {
@@ -850,17 +808,14 @@ layout: argentina
 	.panel li a {
 		text-decoration: underline;
 	}
-
 	.panel li a:hover,
 	.panel li a:focus {
 		text-decoration: underline;
 	}
-
 	#show-data-description-lugar {
 		list-style-type: none;
 		padding: 0 !important;
 	}
-
 	li ul,
 	li ol {
 		margin: 10px 0 0 !important;
