@@ -459,7 +459,7 @@ layout: mi-argentina-login
                   <div class="form-group item-form">
                     <div class="checkbox">
                       <label for="aceptoTerminos" class="radio-inline">
-                        <input type="checkbox" name="tyc" id="aceptoTerminos" value required aria-required="true" >
+                        <input type="checkbox" name="tyc" id="aceptoTerminos" checked="checked" value required aria-required="true" >
                         Acepto términos y condiciones
                       </label>
                     </div>
@@ -468,7 +468,7 @@ layout: mi-argentina-login
                 <p>Para ver información sobre tu salud aceptá los términos y condiciones de Salud.  </p>
                 <fieldset>
                   <legend>
-                    <a href="#">Términos y condiciones de Salud</a>
+                    <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" target="_blank">Términos y condiciones de Salud</a>
                   </legend>
                   <div class="form-group item-form">
                     <div class="checkbox">
@@ -477,11 +477,12 @@ layout: mi-argentina-login
                         Acepto los términos y condiciones de Salud
                       </label>
                     </div>
-                    <div class="checkbox hidden" id="checkSalud">
+                    <div class="checkbox" id="checkSalud">
                       <label for="aceptoInfoDiscapacidad" class="radio-inline">
                         <input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value >
                         Acepto ver información de discapacidad.
                       </label>
+                      <p class="help-block error hidden">Debe aceptar los términos y condiciones de Salud</p>
                     </div>
                   </div>
                 </fieldset>
@@ -490,8 +491,13 @@ layout: mi-argentina-login
             <div class="row">
               <div class="col-sm-6 col-xs-12">
                 
-                <button type="submit" disabled class="btn btn-success btn-block">Crear mi cuenta</button>
+                <button type="submit" class="btn btn-success btn-block">Crear mi cuenta</button>
 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSalud">Abrir modal</button>
               </div>
             </div>
           </fieldset>
@@ -502,7 +508,49 @@ layout: mi-argentina-login
   </div>
   
 </section>
+<style>
+.modal {
+  text-align: center;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal-content{
+  border:0;
+  border-radius: 3px;
+}
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+  .modal-sm {
+    width: 335px;
+  }
+}
 
+</style>
+<div id="modalSalud" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+          <h4 class="modal-title sr-only" id="tituloModal">Términos y condiciones</h4>
+          <p>No aceptaste los Términos y Condiciones de salud. </p>
+          <p>¿Estás seguro que querés continuar?</p>
+          <div class="row m-t-1">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-link m-r-1" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-success">Continuar</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script>
@@ -581,19 +629,22 @@ elforms.forEach(el => {
 });
 
 // terminos y condiciones
-  $('#aceptoTerminos').on('click', function() {
-    if($(this).is(':checked')) {
-      $('#formR button[type="submit"]').prop('disabled', false);
+
+// muestra error si quiere checkear discapacidad sin estar checkeado salud
+  $('#aceptoInfoDiscapacidad').on('click', function(e) {
+    if(!$('#aceptoTerminosSalud').is(':checked')) {
+      e.preventDefault();
+      $('#checkSalud .help-block').removeClass('hidden');
     } else {
-      $('#formR button[type="submit"]').attr('disabled', true);
+      $('#checkSalud .help-block').addClass('hidden');
     }
   })
-
-  $('#aceptoTerminosSalud').on('click', function() {
+// oculta mensaje de error si salud está chequeado
+  $('#aceptoTerminosSalud').on('change', function(e) {
     if($(this).is(':checked')) {
-      $('#checkSalud').removeClass('hidden');
+      $('#checkSalud .help-block').addClass('hidden');
     } else {
-      $('#checkSalud').addClass('hidden');
+      $('#aceptoInfoDiscapacidad').attr('checked', false);
     }
   })
 
