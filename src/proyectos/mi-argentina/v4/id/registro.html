@@ -451,16 +451,17 @@ layout: mi-argentina-login
             </div>
             <div class="row">
               <div class="col-md-10">
-                <p>Condiciones de uso y política de protección de datos personales de Mi Argentina, tu perfil digital ciudadano.  </p>
+                <p>Para crear tu cuenta es necesrio que aceptes los términos y condiciones de Mi Argentina</p>
                 <fieldset>
                   <legend>
                     <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" target="_blank">Términos y condiciones generales</a>
                   </legend>
                   <div class="form-group item-form">
-                    <div class="checkbox">
+                    <div class="checkbox" id="checkGenerales">
                       <label for="aceptoTerminos" class="radio-inline">
                         <input type="checkbox" name="tyc" id="aceptoTerminos" checked="checked" value required aria-required="true" >
                         Acepto términos y condiciones
+                        <p class="help-block error hidden text-danger">Tenés que aceptar los términos y condiciones generales</p>
                       </label>
                     </div>
                   </div>
@@ -474,15 +475,15 @@ layout: mi-argentina-login
                     <div class="checkbox">
                       <label for="aceptoTerminosSalud" class="radio-inline">
                         <input type="checkbox" name="tycs" id="aceptoTerminosSalud" value >
-                        Acepto los términos y condiciones de Salud
+                        Acepto ver información sobre mi salud
                       </label>
                     </div>
                     <div class="checkbox" id="checkSalud">
                       <label for="aceptoInfoDiscapacidad" class="radio-inline">
                         <input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value >
-                        Acepto ver información de discapacidad.
+                        Acepto ver información sobre discapacidad.
                       </label>
-                      <p class="help-block error hidden">Debe aceptar los términos y condiciones de Salud</p>
+                      <p class="help-block error hidden text-danger">Tenés que aceptar los términos y condiciones de Salud</p>
                     </div>
                   </div>
                 </fieldset>
@@ -491,7 +492,7 @@ layout: mi-argentina-login
             <div class="row">
               <div class="col-sm-6 col-xs-12">
                 
-                <button type="submit" class="btn btn-success btn-block">Crear mi cuenta</button>
+                <button id="btnCrearCuenta" type="submit" class="btn btn-success btn-block">Crear mi cuenta</button>
 
               </div>
             </div>
@@ -629,24 +630,24 @@ elforms.forEach(el => {
 });
 
 // terminos y condiciones
-
-// muestra error si quiere checkear discapacidad sin estar checkeado salud
-  $('#aceptoInfoDiscapacidad').on('click', function(e) {
+$('#aceptoInfoDiscapacidad').on('change', function(e) {
     if(!$('#aceptoTerminosSalud').is(':checked')) {
-      e.preventDefault();
-      $('#checkSalud .help-block').removeClass('hidden');
-    } else {
-      $('#checkSalud .help-block').addClass('hidden');
+		$('#aceptoTerminosSalud').attr('checked', true);
     }
-  })
-// oculta mensaje de error si salud está chequeado
+});
   $('#aceptoTerminosSalud').on('change', function(e) {
-    if($(this).is(':checked')) {
-      $('#checkSalud .help-block').addClass('hidden');
-    } else {
+    if(!$(this).is(':checked')) {
       $('#aceptoInfoDiscapacidad').attr('checked', false);
     }
-  })
+  });
+
+$('#btnCrearCuenta').on('click', function(e) {
+    if(!$('#aceptoTerminos').is(':checked')) {
+      $('#checkGenerales .help-block').removeClass('hidden');
+    } else {
+      $('#checkGenerales .help-block').addClass('hidden');
+    }
+});
 
     
 </script>
