@@ -483,7 +483,7 @@ layout: mi-argentina-login
                         <input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value >
                         Acepto ver información sobre discapacidad.
                       </label>
-                      <p class="help-block error hidden text-danger">Tenés que aceptar los términos y condiciones de Salud</p>
+                      <p class="help-block">Tenés que aceptar los términos y condiciones de Salud para aceptar los de discapacidad</p>
                     </div>
                   </div>
                 </fieldset>
@@ -632,12 +632,12 @@ elforms.forEach(el => {
 // terminos y condiciones
 $('#aceptoInfoDiscapacidad').on('change', function(e) {
     if(!$('#aceptoTerminosSalud').is(':checked')) {
-		$('#aceptoTerminosSalud').attr('checked', true);
+		$('#aceptoTerminosSalud').prop('checked', true);
     }
 });
   $('#aceptoTerminosSalud').on('change', function(e) {
     if(!$(this).is(':checked')) {
-      $('#aceptoInfoDiscapacidad').attr('checked', false);
+      $('#aceptoInfoDiscapacidad').prop('checked', false);
     }
   });
 
