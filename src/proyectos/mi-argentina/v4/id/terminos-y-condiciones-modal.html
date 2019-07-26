@@ -1,0 +1,120 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../../../css/miargentina.css">
+<section>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-8">
+			<form action="">
+				<fieldset>
+					<legend>
+						<h1>Términos y condiciones</h1>
+					</legend>
+					<p class="m-b-1">Bienvenido a Mi Argentina, tu perfil digital ciudadano. Para poder continuar es necesario que aceptes los términos y condiciones.</p>
+					<div class="form-group item-form">
+						<div class="checkbox">
+							<label for="aceptoTerminos" class="radio-inline">
+								<input type="checkbox" checked name="tyc" id="aceptoTerminos" value required
+									aria-required="true">
+								Acepto los términos y condiciones generales.
+							</label>
+						</div>
+					</div>
+					<p><strong>Mi Salud</strong></p>
+					<p>Mi Argentina puede mostrarte información sensible en la sección Mi Salud. Podés aceptar los términos y condiciones de esta sección si querés te los mostremos.</p>
+					<div class="form-group item-form">
+						<div class="checkbox">
+							<label for="aceptoTerminosSalud" class="radio-inline">
+								<input type="checkbox" name="tycs" id="aceptoTerminosSalud" value>
+									Acepto los términos y condiciones de Salud.
+							</label>
+						</div>
+						<div class="checkbox" id="checkSalud">
+							<label for="aceptoInfoDiscapacidad" class="radio-inline">
+								<input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value>
+									Acepto ver información de discapacidad.
+							</label>
+							<p class="help-block error hidden">Debe aceptar los términos y condiciones de Salud</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<button type="button" class="btn btn-link m-r-1">Cancelar</button>
+							<button id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</section>
+<style>
+.modal {
+  text-align: center;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal-content{
+  border:0;
+  border-radius: 3px;
+}
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+  .modal-sm {
+    width: 340px;
+  }
+}
+
+</style>
+<!-- esta clase se la agrega al body cuando abre el modal. debe ser contenedora -->
+<div class=" modal-open">
+
+<div id="modalSalud" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="tituloModal" style="display: block;">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+          <h5 class="modal-title m-b-1" id="tituloModal">Términos y condiciones</h5>
+          <p>Es necesario que aceptes los nuevos términos y condiciones para ingresar en Mi Argentina</p>
+          <div class="row m-t-1">
+            <div class="col-xs-12">
+              <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" class="btn btn-link">IR A TÉRMINOS Y CONDICIONES</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Este div es solo para el fondo de color -->
+<div class="modal-backdrop fade in"></div>
+</div>
+
+<script>
+// terminos y condiciones
+
+// muestra error si quiere checkear discapacidad sin estar checkeado salud
+$('#aceptoInfoDiscapacidad').on('click', function(e) {
+    if(!$('#aceptoTerminosSalud').is(':checked')) {
+      e.preventDefault();
+      $('#checkSalud .help-block').removeClass('hidden');
+    } else {
+      $('#checkSalud .help-block').addClass('hidden');
+    }
+  })
+// oculta mensaje de error si salud está chequeado
+  $('#aceptoTerminosSalud').on('change', function(e) {
+    if($(this).is(':checked')) {
+      $('#checkSalud .help-block').addClass('hidden');
+    } else {
+      $('#aceptoInfoDiscapacidad').attr('checked', false);
+    }
+  })
+</script>
