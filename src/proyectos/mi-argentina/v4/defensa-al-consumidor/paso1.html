@@ -1,0 +1,197 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../css/miargentina.css">
+<section class="p-y-0">
+	<div class="container-fluid">
+    	<div class="row dashboard">
+      		<div class="col-lg-3 col-sm-4 sidebar p-l-0 hidden-xs">
+        
+        		{% include mi-argentina/menu-1-2019_index.html %} 
+						
+     		 </div>
+     	
+ 		 	<div class="col-lg-9 col-sm-8">
+				<div class="row">
+					<div class="col-xs-12 m-b-1">
+						<div aria-label="breadcrumb">
+							<ol class="breadcrumb p-l-0 p-y-0">
+								<li class="breadcrumb-item">
+									<a href="../inicio/inicio.html">
+										Mi Argentina
+									</a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">Mis trámites</li>
+							</ol>
+						</div>
+						<h1 class="title-dashboard">
+							Reclamo ante Defensa del Consumidor
+						</h1>
+						<hr class="m-y-2">
+						<p class="help-block">Los datos que tienen un asterisco * son obligatorios.</p>
+					</div>
+				</div>
+				<!--panel por pasos-->
+				<div class="row">
+					<div class="col-md-8" id="main-content">
+						<div class="panels-row-miargentina" aria-live="polite">
+							<div class="panel panel-default panel-border-success panel-nolink">
+								<div class="panel-heading">
+									<div class="wizard-head">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active">
+												<span class="round-tab">
+													<i class="fa fa-check"></i>
+													<span class="stepnumber" aria-hidden="true">1</span>
+												</span>
+											</li>
+											<li role="presentation" class="disabled">
+												<span class="round-tab">
+													<i class="fa fa-check"></i>
+													<span class="stepnumber" aria-hidden="true">2</span>
+												</span>
+											</li>
+											<li role="presentation" class="disabled">
+												<span class="round-tab">
+													<i class="fa fa-check"></i>
+													<span class="stepnumber" aria-hidden="true">3</span>
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="panel-body">
+									<form id="DefensaAlConsumidor">
+										<div id="errores" rol="alert" aria-live="assertive" class="alert alert-danger sr-only"></div>
+										<div class="tab-content" role="tablist">
+											<div class="tab-pane active" role="tabpanel" id="paso-1" aria-labelledby="paso-1">
+												<fieldset>
+													<legend>
+														<h3>Datos del proveedor del producto o servicio</h3>
+														<p><strong>Buscá al proveedor para agregar sus datos</strong>.</p>
+														<p class="help-block">Esta información la podés sacar de tu factura o ticket.</p>
+													</legend>
+													<fieldset data-id="datosProveedor">
+														<legend class="sr-only">¿Cómo querés buscar al proveedor (empresa o negocio)? *</legend>
+														<div class="form-group" data-required="true">
+															<label for="" class="control-label">¿Cómo querés buscar al proveedor (empresa o negocio)? *</label>
+															<div class="radio-group" data-schema-key="datosProveedor">
+																<div class="radio">
+																	<label for="entidad">
+																		<input type="radio"  autocomplete="off" name="datosProveedor" id="entidad">
+																		Por nombre de empresa o negocio
+																	</label>
+																</div>
+																<select  id="nombreEntidad" placeholder="Seleccionar"  class="form-control m-t-1 m-b-2 hidden searchProv">
+																	<option value="Movistar">Movistar</option>
+																	<option value="Personal">Personal</option>
+																	<option value="Claro">Claro</option>
+																	<option value="Tuenti">Tuenti</option>
+																</select>
+																<div class="radio">
+																	<label for="cuit">
+																		<input type="radio"  autocomplete="off" name="datosProveedor" id="cuit">
+																		Por número de CUIT
+																	</label>
+																</div>
+																<div id="numeroCuit">
+																	<input type="text"  class="form-control m-t-1 m-b-2 hidden">
+																	<button type="button" class="btn btn-success next-step searchProv">Buscar proveedor por CUIT</button>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+													
+												</fieldset>
+											</div>
+						
+											<div class="tab-pane hidden" role="tabpanel" id="paso-2" aria-labelledby="paso-2">
+												<fieldset>
+													<legend>
+														<h3>Completá los siguientes datos</h3>
+													</legend>
+													<fieldset data-id="requisitoCoberturaMedica">
+														<legend class="sr-only">Cobertura médica</legend>
+														<div class="form-group">
+															<label class="control-label">Cobertura médica</label>
+															<div class="af-radio-group" id="2Q5327tHr3KJ8NyG3"
+																data-schema-key="requisitoCoberturaMedica">
+																<div class="radio">
+																	<label>
+																		<input type="radio" value="Obra social" autocomplete="off"
+																			name="requisitoCoberturaMedica">
+																		Obra social
+																	</label>
+																</div>
+																<div class="radio">
+																	<label>
+																		<input type="radio" value="Medicina pre-paga" autocomplete="off"
+																			name="requisitoCoberturaMedica">
+																		Medicina pre-paga
+																	</label>
+																</div>
+																<div class="radio">
+																	<label for="xJGbsoxASfof9FxnQ">
+																		<input type="radio"
+																			value="Atención en hospital o centro de salud pública"
+																			autocomplete="off" name="requisitoCoberturaMedica">
+																		Atención en hospital o centro de salud pública
+																	</label>
+																</div>
+																<div class="radio">
+																	<label>
+																		<input type="radio" value="PAMI" autocomplete="off"
+																			name="requisitoCoberturaMedica">
+																		PAMI
+																	</label>
+																</div>
+																<div class="radio">
+																	<label>
+																		<input type="radio" value="Programa Incluir Salud" autocomplete="off"
+																			name="requisitoCoberturaMedica">
+																		Programa Incluir Salud
+																	</label>
+																</div>
+															</div>
+															<span class="help-block"></span>
+														</div>
+													</fieldset>
+													<button type="button" class="btn btn-link back-step" data-step-button="2">Anterior</button>
+													<button type="button" class="btn btn-success next-step">Siguiente</button>
+												</fieldset>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<a href="../tad/tad.html" role="button" class="btn btn-link">cancelar</a>
+					</div>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
+</section>
+
+<script>
+
+	function hideElements(radioNames, value, elementReveal){
+		
+		document.querySelectorAll(radioNames).forEach(r => {
+			r.addEventListener('click', function(event){
+				if(event.target.id == value){
+					document.querySelector(elementReveal).classList.remove('hidden')
+				}else{
+					document.querySelector(elementReveal).classList.add('hidden')
+				}
+			})
+		})
+	}
+	
+
+	hideElements('[name="datosProveedor"]', 'entidad', '#nombreEntidad')
+	hideElements('[name="datosProveedor"]', 'cuit', '#numeroCuit')
+	//hideElements('')
+	
+</script>
