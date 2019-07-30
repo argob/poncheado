@@ -1,0 +1,130 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../../../css/miargentina.css">
+<section>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-8">
+			<form action="">
+				<fieldset>
+					<legend>
+						<h1>Términos y condiciones</h1>
+					</legend>
+					<p class="m-b-1">Hemos modificado los términos y condiciones. Para poder continuar es necesario que los aceptes nuevamente.</p>
+					
+					<fieldset>
+						<legend>
+							<a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" target="_blank">Términos y condiciones generales</a>
+						</legend>
+						<div class="form-group item-form">
+							<div class="checkbox" id="checkGenerales">
+							<label for="aceptoTerminos" class="radio-inline">
+								<input type="checkbox" name="tyc" id="aceptoTerminos" checked="checked" value required aria-required="true" >
+								Acepto términos y condiciones generales.
+								<p class="help-block error hidden text-danger">Tenés que aceptar los términos y condiciones generales</p>
+							</label>
+							</div>
+						</div>
+					</fieldset>
+					<p><strong>Mi Salud</strong></p>
+					<p>Además, Mi Argentina puede mostrarte información sobre salud y discapacidad en la sección Mi Salud. Si querés visualizarla, podés aceptar los términos y condiciones de esta sección.</p>
+					
+					<fieldset>
+						<legend>
+							<a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" target="_blank">Términos y condiciones de Salud</a>
+						</legend>
+						<div class="form-group item-form">
+							<div class="checkbox">
+							<label for="aceptoTerminosSalud" class="radio-inline">
+								<input type="checkbox" name="tycs" id="aceptoTerminosSalud" value >
+								Acepto ver información sobre mi salud.
+							</label>
+							</div>
+							<div class="checkbox">
+							<label for="aceptoInfoDiscapacidad" class="radio-inline">
+								<input type="checkbox" name="tid" id="aceptoInfoDiscapacidad" value >
+								Acepto ver información sobre discapacidad.
+							</label>
+							<p class="help-block" style="padding-left:15px;">Tenés que aceptar los términos y condiciones de Salud para aceptar los de discapacidad</p>
+							</div>
+						</div>
+					</fieldset>
+					<div class="row">
+						<div class="col-xs-12">
+							<button id="btnGuardar" type="submit" class="btn btn-success">Aceptar y continuar</button>
+						</div>
+					</div>
+					<div class="row">
+					  <div class="col-sm-6 col-xs-12">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSalud">Abrir modal</button>
+					  </div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</section>
+<style>
+.modal {
+	text-align: center;
+}
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+.modal-content{
+	border:0;
+	border-radius: 3px;
+}
+@media screen and (min-width: 768px) { 
+	.modal:before {
+	display: inline-block;
+	vertical-align: middle;
+	content: " ";
+	height: 100%;
+	}
+	.modal-sm {
+	width: 335px;
+	}
+}
+
+</style>
+<div id="modalSalud" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
+	<div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+		<div class="modal-body">
+			<h4 class="modal-title sr-only" id="tituloModal">Términos y condiciones</h4>
+			<p>No aceptaste los Términos y Condiciones de salud. </p>
+			<p>¿Estás seguro que querés continuar?</p>
+			<div class="row m-t-1">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-link m-r-1" data-dismiss="modal">Cancelar</button>
+				<button type="submit" class="btn btn-success">Continuar</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<script>
+// terminos y condiciones
+$('#aceptoInfoDiscapacidad').on('change', function(e) {
+    if(!$('#aceptoTerminosSalud').is(':checked')) {
+		$('#aceptoTerminosSalud').prop('checked', true);
+    }
+});
+  $('#aceptoTerminosSalud').on('change', function(e) {
+    if(!$(this).is(':checked')) {
+      $('#aceptoInfoDiscapacidad').prop('checked', false);
+    }
+  });
+
+$('#btnGuardar').on('click', function(e) {
+    if(!$('#aceptoTerminos').is(':checked')) {
+      $('#checkGenerales .help-block').removeClass('hidden');
+    } else {
+      $('#checkGenerales .help-block').addClass('hidden');
+    }
+});
+</script>
