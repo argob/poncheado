@@ -83,6 +83,7 @@ title: Desarrollo social
   margin-right: 5px;
   display: inline-block; 
   }
+  .circle.bg-refe{background-color: #0072bb;}
 
   .navbar-default.navbar-ref {
     box-shadow: none;
@@ -140,14 +141,8 @@ title: Desarrollo social
             <hr class="margin-20">
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/interior/listadodeobras">Listado de obras</a></li>
-            <li class="social-btn">
-              <ul>
-                <li class="small p-a-1">Compartir en:</li>
-                <li><a href="javascript: window.open('https://twitter.com/share?text=Obras%20del%20Ministerio%20del%20Interior,%20Obras%20Públicas%20y%20Vivienda%20&url=https://www.argentina.gob.ar/interior/mapa', 'pop', 'width=600, height=260, scrollbars=no');"><span class="fa fa-twitter"></span></a></li>  
-                <li><a href="http://www.facebook.com/sharer/sharer.php?u=https://www.argentina.gob.ar/interior/mapaobras&amp;title=Mapa de Obras"><span class="fa fa-facebook"></span></a></li>             
-              </ul>
-            </div>
+            <li><a href="/desarrollosocial">Desarrollo social</a></li>
+            <li><a href="/desarrollosocial/descargas">Descargas</a></li>
           </ul>
         </div>
       </div>
@@ -190,35 +185,7 @@ title: Desarrollo social
         </button>
 
         <div class="collapse navbar-collapse" id="map-ref-collapse">
-          <div class="well credits ref"> 
-            <p clasS="m-t-1 checkbox">
-              <label for="centros-referencia">
-              <input class="referencia" type="checkbox" data-categoria="Centros de Referencia" id="centros-referencia"><span class="circle bg-primary"></span>Centros de Referencia
-              </label>
-            </p>
-            <p clasS="m-t-1 checkbox">
-              <label for="centros-integradores">
-              <input class="referencia" type="checkbox" data-categoria="Centros Integradores Comunitarios" id="centros-integradores"><span class="circle bg-warning"></span>Centros Integradores Comunitarios
-              </label>
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-uva"></span>Consejo Federal de Mayores
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-success"></span>Instituciones de Microcrédito
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-tomate"></span>Mercados Solidarios 
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-fucsia"></span>Organismos de Protección Integral 
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-lima"></span>Pro Huerta 
-            </p>
-            <p clasS="m-t-1">
-              <span class="circle bg-arandano"></span>Puerto Centralizado
-            </p>
+          <div class="well credits ref" id="referencias"> 
 
           </div>          
       </div>
@@ -408,10 +375,40 @@ title: Desarrollo social
     // Show markers loaded from spreadsheet
 
     var detalles = [];
+    //$('#referencias')
+    
+    $.ajax({
+      url: 'https://spreadsheets.google.com/feeds/list/1gBBlBkU2nMio5MV_qadALPZSRR-SSLQ6zWPNRNTj5ms/2/public/values?alt=json',
+      // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1',
+      data: 'json',
+      success: function(refes){
+        var referencias = refes.feed.entry;
+          var i = 1;
+
+        referencias.forEach(function(refe, index){
+          var color = refe.gsx$color.$t;
+          var nombre = refe.gsx$categoria.$t;
+          var lista = "";
+          console.log(color);
+          
+          lista += `<p clasS="m-t-1 checkbox">
+              <label for="refe-${i}">
+              <input class="referencia" type="checkbox" checked data-categoria="${nombre}" id="refe-${i}"><span class="circle bg-refe" style="background-color:${color}"></span>${nombre}
+              </label>
+            </p>`;
+
+          $("#referencias").append(lista);
+          i++;
+        });
+      },
+      error: function(){
+        // error
+      }
+    });
 
 
     $.ajax({
-      url: 'https://spreadsheets.google.com/feeds/list/1BQRIV77NRX041NJWU9a7vHFsgVpktoIcx1AkSeAcWrQ/1/public/values?alt=json',
+      url: 'https://spreadsheets.google.com/feeds/list/1gBBlBkU2nMio5MV_qadALPZSRR-SSLQ6zWPNRNTj5ms/1/public/values?alt=json',
       // url: 'https://interfaces.argentina.gob.ar/api/public/v1.0/inap/1rO0sGwj7Z9PA_Kg6rmBsxjLmUhlXBbYQnxdydBNsUiI/1',
       data: 'json',
       success: function(response){
@@ -427,7 +424,8 @@ title: Desarrollo social
 
           var index = markers.length;
 
-              marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$marker.$t;
+              //marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$marker.$t;
+              marcador = "markers/" + row.gsx$marker.$t + ".png";
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
@@ -458,29 +456,11 @@ title: Desarrollo social
               var localidad = '<div class="m-t-1"><i class="fa fa-map-marker m-r-2"></i><b>Departamento / Localidad:</b>' + ' <span>' + row.gsx$localidad.$t + '</span></div>';
             }
 
-            if (row.gsx$beneficiarios.$t == "" || row.gsx$beneficiarios.$t == "-" ){
-              var beneficiarios = '';
-            } else {
-              var beneficiarios = '<div><i class="fa icono-arg-genero"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Beneficiarios:</b>' + ' <span>' + row.gsx$beneficiarios.$t + '</span></div>';
-            }
-
-            if (row.gsx$estado.$t == "" || row.gsx$estado.$t == "-" ){
-              var estado = '';
-            } else {
-              var estado = '<div class="m-b-1"><i class="fa fa-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Estado:</b>' + ' <span>' + row.gsx$estado.$t + '</span></div>';
-            }
-
-            if (row.gsx$video.$t == "" || row.gsx$video.$t == "-" ){
-              var video = '';
-            } else {
-              var video = '<div><a type="button" class="botones btn btn-sm btn-primary" target="_blank" href="' + row.gsx$video.$t + '">Ver video</a></div>';
-            }
-
 
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-primary">'+ row.gsx$titulo.$t +'</h5><span>' + row.gsx$descripcion.$t + '</span>' + categoria + localidad + provincia + beneficiarios + estado + video,
+              content: '<h2 class="h5 text-primary">'+ row.gsx$titulo.$t +'</h5><span>' + row.gsx$descripcion.$t + '</span>' + categoria + localidad + provincia,
               maxWidth: 400
             })
 
@@ -514,7 +494,8 @@ title: Desarrollo social
         });
 
         var markerCluster = new MarkerClusterer(map, markers, {
-          imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
+          //imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
+          imagePath: 'markers',
           gridSize: 50,
           minimumClusterSize: 2000,
           maxZoom: 19
