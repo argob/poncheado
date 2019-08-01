@@ -389,7 +389,7 @@ title: Desarrollo social
           var color = refe.gsx$color.$t;
           var nombre = refe.gsx$categoria.$t;
           var lista = "";
-          console.log(color);
+          //console.log(color);
           
           lista += `<p clasS="m-t-1 checkbox">
               <label for="refe-${i}">
@@ -421,7 +421,7 @@ title: Desarrollo social
 
         rows.forEach(function(row, key){
 
-
+          //console.log(row);
           var index = markers.length;
 
               //marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$marker.$t;
@@ -429,7 +429,7 @@ title: Desarrollo social
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
-              // map: map,
+               map: map,
               title: row.gsx$titulo.$t,
               category: row.gsx$categoria.$t,
               icon: {
@@ -438,29 +438,73 @@ title: Desarrollo social
 
             });
 
-            if (row.gsx$provincia.$t == "" || row.gsx$provincia.$t == "-" ){
-              var provincia = '';
-            } else {
-              var provincia = '<div><i class="fa icono-arg-barrio"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Provincia:</b>' + ' <span>' + row.gsx$provincia.$t + '</span></div>';
-            }
-
             if (row.gsx$categoria.$t == "" || row.gsx$categoria.$t == "-" ){
               var categoria = '';
             } else {
-              var categoria = '<div class="m-t-1"><i class="fa fa-map-marker m-r-2"></i><b>Categoria:</b>' + ' <span>' + row.gsx$categoria.$t + '</span></div>';
+              var categoria = '<div class="m-t-1">' + row.gsx$categoria.$t + '</div>';
             }
+
+            if (row.gsx$titulo.$t == "" || row.gsx$titulo.$t == "-" ){
+              var titulo = '';
+            } else {
+              var titulo = '<h2 class="h5 text-primary">'+ row.gsx$titulo.$t +'</h5>';
+            }
+
+            if (row.gsx$articulador.$t == "" || row.gsx$articulador.$t == "-" ){
+              var articulador = '';
+            } else {
+              var articulador = '<div class="m-t-1">' + row.gsx$articulador.$t + '</div>';
+            }
+
+            if (row.gsx$provincia.$t == "" || row.gsx$provincia.$t == "-" ){
+              var provincia = '';
+            } else {
+              var provincia = '<div class="m-t-1">' + row.gsx$provincia.$t + '</div>';
+            }
+
 
             if (row.gsx$localidad.$t == "" || row.gsx$localidad.$t == "-" ){
               var localidad = '';
             } else {
-              var localidad = '<div class="m-t-1"><i class="fa fa-map-marker m-r-2"></i><b>Departamento / Localidad:</b>' + ' <span>' + row.gsx$localidad.$t + '</span></div>';
+              var localidad = '<div class="m-t-1">' + row.gsx$localidad.$t + '</div>';
+            }
+
+
+            if (row.gsx$email.$t == "" || row.gsx$email.$t == "-" ){
+              var email = '';
+            } else {
+              var email = '<div class="m-t-1"><a href="mailto:'+ row.gsx$email.$t +'" target="_blank">'+ row.gsx$email.$t +'</a></div>';
+            }
+
+            if (row.gsx$sitioweb.$t == "" || row.gsx$sitioweb.$t == "-" ){
+              var sitioweb = '';
+            } else {
+              var sitioweb = '<div class="m-t-1"><a href="'+ row.gsx$sitioweb.$t +'" target="_blank">' + row.gsx$sitioweb.$t + '</a></div>';
+            }
+
+            if (row.gsx$direccion.$t == "" || row.gsx$direccion.$t == "-" ){
+              var direccion = '';
+            } else {
+              var direccion = '<div class="m-t-1">' + row.gsx$direccion.$t + '</div>';
+            }
+
+            if (row.gsx$telefono.$t == "" || row.gsx$telefono.$t == "-" ){
+              var telefono = '';
+            } else {
+              var telefono = '<div class="m-t-1">' + row.gsx$telefono.$t + '</div>';
+            }
+
+            if (row.gsx$otrostelefonos.$t == "" || row.gsx$otrostelefonos.$t == "-" ){
+              var otrostelefonos = '';
+            } else {
+              var otrostelefonos = '<div class="m-t-1">' + row.gsx$otrostelefonos.$t + '</div>';
             }
 
 
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: '<h2 class="h5 text-primary">'+ row.gsx$titulo.$t +'</h5><span>' + row.gsx$descripcion.$t + '</span>' + categoria + localidad + provincia,
+              content: categoria + titulo + articulador + provincia + localidad + email + sitioweb + direccion + telefono + otrostelefonos + '<div class="m-t-1"><a target="_blank" href="mailto:xxx@xxx.gob.ar?subject=Nombre%20del%20centro%20-%20Provincia">Cambiar información</a></div>',
               maxWidth: 400
             })
 
@@ -473,13 +517,20 @@ title: Desarrollo social
             // function to show or hide all markers
             function toggleMarkers(catego) {
               if(markers[index].category == catego){
-                if(markers[index].map != null){
-                  markers[index].setMap(null);
+                if(markers[index].getVisible()){
+                  markers[index].setVisible(false);
                 } else {
-                  markers[index].setMap(map);
+                  markers[index].setVisible(true);
                 }
               }
             }
+            // google.maps.event.addListener(map, 'zoom_changed', function() { 
+            //     if(markers[index].map != null){
+            //       markers[index].setMap(null);
+            //     } else {
+            //       markers[index].setMap(map);
+            //     }
+            // }); 
                 
             var refe = document.getElementsByClassName("referencia");
             for (let index = 0; index < refe.length; index++) {
