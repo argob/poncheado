@@ -1,84 +1,59 @@
 let count = 1;
 	let alerts = []
-	let newFormEntry = `<div id="step1-0${count}">
-	<fieldset>
-		<legend>
-			Buscá al proveedor para agregar sus datos.
-			<span class="help-block">
-				Esta información la podés sacar de tu factura o
-				ticket.
-			</span>
-		</legend>
-    
-      
-      <fieldset data-id="datosProveedor${count}">
-        <legend class="sr-only">
-          ¿Cómo querés buscar al proveedor (empresa o
-          negocio)? *
-        </legend>
-        <div class="form-group" data-required="true">
-          <label for="" class="control-label">
-            ¿Cómo querés buscar al proveedor (empresa o
-            negocio)? *
-          </label>
-          <div
-            class="radio-group"
-            data-schema-key="datosProveedor"
-          >
-            <div class="radio">
-              <label for="entidad${count}">
-                <input
-                  type="radio"
-                  autocomplete="off"
-                  name="datosProveedor"
-                  id="entidad${count}"
-                />
-                Por nombre de empresa o negocio
-              </label>
-            </div>
-            <select
-              id="nombreEntidad${count}"
-              placeholder="Seleccionar"
-              class="form-control m-t-1 m-b-2 hidden"
-              onchange="
-                showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))"
-            >
-              <option value="">Elegir una opción</option>
-              <option value="Movistar">Movistar</option>
-              <option value="Personal">Personal</option>
-              <option value="Claro">Claro</option>
-              <option value="Tuenti">Tuenti</option>
-            </select>
-            <div class="radio">
-              <label for="cuit${count}">
-                <input
-                  type="radio"
-                  autocomplete="off"
-                  name="datosProveedor"
-                  id="cuit${count}"
-                />
-                Por número de CUIT
-              </label>
-            </div>
-            <div id="numeroCuit${count}" class="hidden">
-              <input
-                type="text"
-                class="form-control m-t-1 m-b-2"
-              />
-              <button
-                type="button"
-                class="btn btn-success btn-block-xs next-step searchProv"
-                onclick="
-                showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))
-                "
-              >
-                Buscar proveedor por CUIT
-              </button>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </fieldset></div>`
+	let newFormEntry = `<div id="step1-0${count}" class="col-xs-12 col-md-8">
+							<fieldset>
+								<legend>
+									Buscá al proveedor para agregar sus datos.
+								<span class="help-block">
+									Esta información la podés sacar de tu factura o
+									ticket.
+								</span>
+							</legend>
+							<fieldset data-id="datosProveedor${count}">
+								<legend class="sr-only">
+									¿Cómo querés buscar al proveedor (empresa o negocio)? *
+								</legend>
+        						<div class="form-group" data-required="true">
+								<label for="" class="control-label">
+									¿Cómo querés buscar al proveedor (empresa o
+									negocio)? *
+								</label>
+          						<div class="radio-group" data-schema-key="datosProveedor">
+									<div class="radio">
+										<label for="entidad${count}">
+											<input type="radio" autocomplete="off" name="datosProveedor" id="entidad${count}"/>
+												Por nombre de empresa o negocio
+										</label>
+									</div>
+									<div class="form-group group-container hidden" id="nombreEntidad${count}">
+										<label for="empresa">Buscar por nombre o empresa</label>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="autocomplete">
+													<input id="empresa" type="text" name="proveedor" class="form-control">
+												<button class="btn btn-primary m-t-2" type="button" data-search="proveedor"
+												onclick="showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))">Buscar empresa</button></div>
+											</div>
+										</div>
+									</div>
+									<div class="radio">
+										<label for="cuit${count}">
+											<input type="radio" autocomplete="off" name="datosProveedor" id="cuit${count}" />
+												Por número de CUIT
+										</label>
+									</div>
+									<div id="numeroCuit${count}" class="hidden">
+										<input type="text" class="form-control m-t-1 m-b-2"/>
+										<button type="button" class="btn btn-success btn-block-xs next-step searchProv" onclick=" showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))
+										" >
+											Buscar proveedor por CUIT
+										</button>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</fieldset>
+				</div>`
   
 	let containerone = document.createElement('div')
 	window.onload = function() {
@@ -86,6 +61,22 @@ let count = 1;
 		document.querySelector('#step-1').appendChild(containerone);
 		showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
 		showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
+
+		document.querySelectorAll('[name="datosProveedor"]').forEach(e => {
+			e.addEventListener('change', function(){
+				
+				var mostrar = e.dataset.show;
+
+				var elementoMostrar = document.getElementById(`nombreEntidad${count}`)
+				elementoMostrar.classList.remove('hidden')
+				var emInput = elementoMostrar.querySelector('input[type="text"')
+				emInput.value = '';
+				autocomplete(emInput, proveedores, elementoMostrar.querySelector('input[type="text"').id);
+
+			})
+
+		
+		})
 	};
 	function showElements(radioNames, value, elementReveal) {
 		
@@ -111,7 +102,6 @@ let count = 1;
 		});
 	}
 	function showElement(elementEvent, e, element) {
-		
 		document.querySelectorAll(elementEvent).forEach(r => {
 			r.addEventListener(e, function() {
 				document.querySelector(element).classList.remove("hidden");
@@ -119,9 +109,16 @@ let count = 1;
 		});
 		
 	}
-	function hideElement(element) {
-		element.classList.add("hidden");
+
+	function hideElement(elementEvent, e, element) {
+		document.querySelectorAll(elementEvent).forEach(r => {
+			r.addEventListener(e, function() {
+				document.querySelector(element).classList.remove("hidden");
+			});
+		});
+	
 	}
+	
 	function showHideElements(element, element2) {
 		element.classList.remove("hidden");
 		element2.classList.add("hidden");
@@ -130,7 +127,7 @@ let count = 1;
 	function addNewEnty() {
 		count++;
 		console.log(count)
-		let newFormEntry2 = `<div id="step1-0${count}">
+		let newFormEntry2 = `<div id="step1-0${count}" class="col-xs-12 col-md-8">
 		<fieldset>
 		<legend>
 		<p><strong>Datos del proveedor del producto o servicio</strong></p>
@@ -171,19 +168,17 @@ let count = 1;
 					Por nombre de empresa o negocio
 				</label>
 				</div>
-				<select
-				id="nombreEntidad${count}"
-				placeholder="Seleccionar"
-				class="form-control m-t-1 m-b-2 hidden"
-				onchange="
-					showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))"
-				>
-				<option value="">Elegir una opción</option>
-				<option value="Movistar">Movistar</option>
-				<option value="Personal">Personal</option>
-				<option value="Claro">Claro</option>
-				<option value="Tuenti">Tuenti</option>
-				</select>
+				<div class="form-group group-container hidden" id="nombreEntidad${count}">
+					<label for="empresa${count}">Buscar por nombre o empresa</label>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="autocomplete">
+								<input id="empresa" type="text" name="proveedor" class="form-control">
+							<button class="btn btn-primary m-t-2" type="button" data-search="proveedor"
+							onclick="showHideElements(document.querySelector('#infoEntidad'),document.querySelector('#step1-0${count}'))">Buscar empresa</button></div>
+						</div>
+					</div>
+				</div>
 				<div class="radio">
 				<label for="cuit${count}">
 					<input
@@ -232,6 +227,8 @@ let count = 1;
 	function confirmEnty() {
 		showHideElements(document.querySelector('#step1-1'), document.querySelector('#infoEntidad'))
 		let alert = `<p class="help-block">Proveedor ${count}</p>
+		<div class="row">
+			<div class="col-lg-10">
 				<div class="alert alert-success">
 					<small>
 						Nombre del proveedor (empresa o negocio) *
@@ -242,9 +239,12 @@ let count = 1;
 						</strong>
 					</p>
 				</div>
-				<button class="btn btn-link btn-block-xs changeEnty"  type="button">
-					Modificar proveedor
-				</button>`
+			</div>
+		</div>
+		
+		<button class="btn btn-link btn-block-xs changeEnty"  type="button">
+			Modificar proveedor
+		</button>`
 		let alertContainer =  document.createElement('div');
 		alertContainer.setAttribute('id', `alert${count}`)
 		alertContainer.innerHTML = alert
@@ -252,11 +252,10 @@ let count = 1;
 	
 		alerts.push(alertContainer)
 		changeEnty()
-		
+		document.querySelector('#toStep2').classList.remove('hidden')
 		if(count >= 3){
 			document.querySelector('#addNewEnty').classList.add('hidden')
 		}
-		
 	}
 	function changeEnty(){
 		document.querySelectorAll('.changeEnty').forEach(b => {
@@ -264,12 +263,9 @@ let count = 1;
 				event.preventDefault();
 				showHideElements(document.querySelector(`#step1-01`), document.querySelector('#step1-1'))
 				this.parentElement.remove()
+				document.querySelector('#toStep2').classList.add('hidden')
 			})
-
-			
 		})
-
-		
 	}
 	
 	
@@ -277,4 +273,25 @@ let count = 1;
 	
 	showElements('[name="conciliarSiNo"]', "conciliarNo", "#addNewEnty");
 	showElement('[name="conciliarSiNo"]', 'click', "#toStep2")
+	showElement('#otro', 'click', "#reclamo")
+
+	document.querySelector('#otro').addEventListener('click', function(){
+		document.querySelector('#reclamoContainer').classList.remove('hidden')
+	})
+	
 	hideElements('[name="conciliarSiNo"]', "conciliarNo", "#conciliar");
+	function selectCaba(selectPrimary, selectChanged1, selectChanged2){
+		document.querySelector(selectPrimary).addEventListener('change', function(){
+			if(this.value == 'CABA'){
+				document.querySelector(selectChanged1).value = 'CABA'
+				document.querySelector(selectChanged2). value = 'CABA'
+			}
+		})
+	}
+	
+	selectCaba('#provincia', '#PartidoDpto', '#localidad')
+	selectCaba('#provDelivery', '#partidoDptoDelivery', '#localidadDelivery')
+
+
+
+	

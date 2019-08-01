@@ -1,7 +1,30 @@
 ---
 layout: mi-argentina2
 ---
-
+<style>
+		.autocomplete-items {
+		  position: absolute;
+		  border: 1px solid #d4d4d4;
+		  border-bottom: none;
+		  border-top: none;
+		  z-index: 99;
+		  top: 40%;
+		  left: 0;
+		  right: 0;
+		  margin: 0px 15px;
+		}
+		.autocomplete-items div {
+		  padding: 10px;
+		  cursor: pointer;
+		  background-color: #fff; 
+		  border-bottom: 1px solid #d4d4d4; 
+		}
+		.autocomplete-items div:hover {
+		  /*when hovering an item:*/
+		  background-color: #e9e9e9; 
+		}
+		
+</style>
 <link rel="stylesheet" href="../../css/miargentina.css" />
 <section class="p-y-0">
 	<div class="container-fluid">
@@ -10,7 +33,7 @@ layout: mi-argentina2
 				{% include mi-argentina/menu-1-2019_index.html %}
 			</div>
 
-			<div class="col-lg-9 col-sm-8">
+			<div class="col-lg-9 col-sm-8 m-y-2">
 				<div class="row">
 					<div class="col-xs-12 m-b-1">
 						<div aria-label="breadcrumb">
@@ -105,31 +128,40 @@ layout: mi-argentina2
 															resolución:10 días.
 															<a href="">Conocer más sobre Concili.ar</a>
 														</p>
-														<fieldset>
-															<legend class="sr-only">
-																¿Querés utilizar el sistema Concili.ar? *
-															</legend>
-															<div class="radio-group">
-																<label for="conciliarSi" class="radio-inline">
-																	<input
-																		type="radio"
-																		autocomplete="off"
-																		name="conciliarSiNo"
-																		id="conciliarSi"
-																	/>
-																	Si
+														<div class="m-t-2">
+															<fieldset>
+																<legend class="sr-only">
+																	¿Querés utilizar el sistema Concili.ar? *
+																</legend>
+															
+																<label for="" class="control-label">
+																	¿Querés utilizar el sistema Concili.ar? *
 																</label>
-																<label for="conciliarNo" class="radio-inline">
-																	<input
-																		type="radio"
-																		autocomplete="off"
-																		name="conciliarSiNo"
-																		id="conciliarNo"
-																	/>
-																	No
-																</label>
-															</div>
-														</fieldset>
+																<div class="radio-group">
+																	<label for="conciliarSi" class="radio-inline">
+																		<input
+																			type="radio"
+																			autocomplete="off"
+																			name="conciliarSiNo"
+																			id="conciliarSi"
+																		/>
+																		Si
+																	</label>
+																
+																	<label for="conciliarNo" class="radio-inline">
+																		<input
+																			type="radio"
+																			autocomplete="off"
+																			name="conciliarSiNo"
+																			id="conciliarNo"
+																		/>
+																		No
+																	</label>
+																</div>
+																<p class="help-block error hidden">Ingresá el dato</p>
+															</fieldset>
+														</div>
+														
 													</div>
 									
 													<!-- Si no quiere usar conciliar -->
@@ -148,62 +180,68 @@ layout: mi-argentina2
 														</button>
 													</div>
 												</div>
-												<div id="infoEntidad" class="hidden">
-													<div class="alert alert-warning">
-														<div class="m-b-1">
-															<small>
-																Nombre del proveedor (empresa o negocio) *
-															</small>
-															<p>
-																<strong>
-																	Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A
-																</strong>
-															</p>
-														</div>
-														<div class="m-b-1">
-															<small>
-																Número de CUIT del proveedor / empresa
-															</small>
-															<p>
-																<strong>
-																	30-67881435-7
-																</strong>
-															</p>
-														</div>
-														<div class="m-b-1">
-															<small>
-																Domicilio
-															</small>
-															<p>
-																<strong>
-																	Av. Independencia 169. Ciudad Autónoma de
-																	Buenos Aires
-																</strong>
-															</p>
-														</div>
-														<div class="m-b-1">
-															<small>
-																Código postal
-															</small>
-															<p>
-																<strong>
-																	1099
-																</strong>
-															</p>
+												<div class="row">
+													<div class="col-xs-12 col-lg-10">
+														<div id="infoEntidad" class="hidden">
+															<div class="alert alert-warning">
+																<div class="m-b-1">
+																	<small>
+																		Nombre del proveedor (empresa o negocio) *
+																	</small>
+																	<p>
+																		<strong>
+																			Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A
+																		</strong>
+																	</p>
+																</div>
+																<div class="m-b-1">
+																	<small>
+																		Número de CUIT del proveedor / empresa
+																	</small>
+																	<p>
+																		<strong>
+																			30-67881435-7
+																		</strong>
+																	</p>
+																</div>
+																<div class="m-y-1">
+																	<small>
+																		Domicilio
+																	</small>
+																	<p>
+																		<strong>
+																			Av. Independencia 169. Ciudad Autónoma de
+																			Buenos Aires
+																		</strong>
+																	</p>
+																</div>
+																<div class="m-b-1">
+																	<small>
+																		Código postal
+																	</small>
+																	<p>
+																		<strong>
+																			1099
+																		</strong>
+																	</p>
+																</div>
+															</div>
+															
+															<button
+																class="btn btn-info btn-block-xs"
+																type="button"
+																id="confirm"
+																onclick="confirmEnty()"
+															>Confirmar proveedor
+															</button>
 														</div>
 													</div>
-													
-													<button
-														class="btn btn-info btn-block-xs"
-														type="button"
-														id="confirm"
-														onclick="confirmEnty()"
-													>Confirmar proveedor
-													</button>
 												</div>
+												
+												
 												<button type="button" class="btn btn-success next-step pull-right m-t-1 hidden" id="toStep2">
 													Siguiente
-													<i class="fa fa-chevron-right"></i>
+													
 												</button>
 											</div>
 									
@@ -308,125 +346,244 @@ layout: mi-argentina2
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-xs-12 col-md-8 m-b-2">
-															<p>
-																<strong>
-																	Domicilio
-																</strong>	
-															</p>
-															<div class="form-group">
-																<label for="provincia">
-																	Provincia *
-																</label>
-																<select name="provincia" id="provincia" class="form-control" required>
-																	<option value="CABA" selected>Ciudad Autónoma de Buenos Aires</option>
-																</select>
-															</div>
-															<div class="form-group">
-																<label for="PartidoDpto">
-																	Partido o departamento *
-																</label>
-																<select name="PartidoDpto" id="PartidoDpto" class="form-control" required>
-																	<option value="CABA" selected>Ciudad Autónoma de Buenos Aires</option>
-																</select>
-															</div>
-															<div class="form-group">
-																<label for="Localidad">
-																	Localidad *
-																</label>
-																<select name="Localidad" id="localidad" class="form-control" required>
-																	<option value="CABA" selected>Ciudad Autónoma de Buenos Aires</option>
-																</select>
-															</div>
-															<div class="form-group">
-																<label for="cp">Código postal</label>
-																<input type="number" class="form-control" id="cp" required>
-															</div>
-															<div class="form-group">
-																<label for="calle">Calle *</label>
-																<input type="text" class="form-control" id="calle" required>
-															</div>
-															<div class="form-group">
-																<label for="nro">Número *</label>
-																<input type="number" class="form-control" id="nro" required>
-															</div>
-															<div class="form-group">
-																<label for="piso">Piso *</label>
-																<input type="text" class="form-control" id="piso" required>
-															</div>
-															<div class="form-group">
-																<label for="dpto">Departamento *</label>
-																<input type="text" class="form-control" id="dpto" required>
-															</div>
-														</div>
-														<div class="col-xs-12 col-md-8 m-b-2">
-															<p>
-																<strong>
-																	Datos de contacto
-																</strong>	
-															</p>
-
-															<small>
-																Tipo de documento
-															</small>
-															<p>
-																<strong>
-																	DNI
-																</strong>
-															</p>
-														</div>
-														<div class="col-xs-12 col-md-8 m-b-2">
-															<fieldset>
-																<legend>
-																	Teléfono
-																</legend>
-																<p class="control-label">Incluí el código de área de tu localidad</p>
-																<div class="row">
-																	<div class="col-xs-4">
-																		<div class="input-group">
-																			<label class="control-label sr-only" for="area-telephone">Código de área</label>
-																			<div class="input-group-addon">0</div>
-																			<input type="number" name="contact-data" id="area-telephone" class="form-control" onchange="validatePhone()" value="">
-																		</div>
-																	</div>
-																	<div class="col-xs-8 ">
-																		<div class="input-group">
-																			<label class="control-label sr-only" for="telephone-number">Número de teléfono</label>
-																			<div class="input-group-addon">15</div>
-																			<input type="number" id="telephone-number" class="form-control" onchange="validatePhone()" value="">
-																		</div>
-																	</div>
+														<div class="col-xs-12 col-md-8">
+															<div class="m-y-1">
+																<p>
+																	<strong>
+																		Domicilio
+																	</strong>	
+																</p>
+																<div class="form-group">
+																	<label for="provincia">
+																		Provincia *
+																	</label>
+																	<select name="provincia" id="provincia" class="form-control" required>
+																		<option value="" selected>Seleccioná una provincia</option>
+																		<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																	</select>
 																</div>
-															</fieldset>
-															<div class="m-t-2">
-																<button
-																	type="button"
-																	class="btn btn-link prev-step"
-																	
-																>
-																	Anterior
-																	<i class="fa fa-chevron-left"></i>
-																</button>
-																<button
-																	type="button"
-																	class="btn btn-success next-step"
-																>
-																	Siguiente
-																	<i class="fa fa-chevron-right"></i>
-																</button>
+																<div class="form-group">
+																	<label for="PartidoDpto">
+																		Partido o departamento *
+																	</label>
+																	<select name="PartidoDpto" id="PartidoDpto" class="form-control" required>
+																		<option value="" selected>Seleccioná un partido o departamento</option>
+																		<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label for="Localidad">
+																		Localidad *
+																	</label>
+																	<select name="Localidad" id="localidad" class="form-control" required>
+																			<option value="" selected>Seleccioná una localidad</option>
+																		<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label for="cp">Código postal</label>
+																	<input type="number" class="form-control" id="cp" required>
+																</div>
+																<div class="form-group">
+																	<label for="calle">Calle *</label>
+																	<input type="text" class="form-control" id="calle" required>
+																</div>
+																<div class="form-group">
+																	<label for="nro">Número *</label>
+																	<input type="number" class="form-control" id="nro" required>
+																</div>
+																<div class="form-group">
+																	<label for="piso">Piso *</label>
+																	<input type="text" class="form-control" id="piso" required>
+																</div>
+																<div class="form-group">
+																	<label for="dpto">Departamento *</label>
+																	<input type="text" class="form-control" id="dpto" required>
+																</div>
+															</div>
+															<div class="m-b-2">
+																<p>
+																	<strong>
+																		Datos de contacto
+																	</strong>	
+																</p>
+	
+																<small>
+																	Tipo de documento
+																</small>
+																<p>
+																	<strong>
+																		DNI
+																	</strong>
+																</p>
+															</div>
+															<div class="m-b-2">
+																<fieldset>
+																	<legend>
+																		Teléfono
+																		<p class="control-label">Incluí el código de área de tu localidad</p>
+																	</legend>
+																	<div class="row">
+																		<div class="col-xs-4">
+																			<div class="input-group">
+																				<label class="control-label sr-only" for="area-telephone">Código de área</label>
+																				<div class="input-group-addon">0</div>
+																				<input type="number" name="contact-data" id="area-telephone" class="form-control" onchange="validatePhone()" value="">
+																			</div>
+																		</div>
+																		<div class="col-xs-8 ">
+																			<div class="input-group">
+																				<label class="control-label sr-only" for="telephone-number">Número de teléfono</label>
+																				<div class="input-group-addon">15</div>
+																				<input type="number" id="telephone-number" class="form-control" onchange="validatePhone()" value="">
+																			</div>
+																		</div>
+																	</div>
+																</fieldset>
+																<div class="m-t-2">
+																	<button
+																		type="button"
+																		class="btn btn-link prev-step"
+																		
+																	>
+																		Anterior
+																		
+																	</button>
+																	<button
+																		type="button"
+																		class="btn btn-success next-step"
+																	>
+																		Siguiente
+																		
+																	</button>
+																</div>
 															</div>
 														</div>
 													</div>
 												</fieldset>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step-3" aria-labelledby="paso-3" hidden >
+												<p>
+													<strong>
+														Datos del reclamo
+													</strong>
+												</p>	
+												<div class="row">
+													<div class="col-xs-12 col-md-8">
+														<div class="form-group">
+															<label class="control-label" id="medio">
+																¿Por qué medio adquiriste el producto o el servicio? *
+															</label>
+															<select name="medio" id="medio" class="form-control">
+																<option value="presencial">Comercio / Presencialmente</option>
+																<option value="telefono">Teléfono</option>
+																<option value="internet">Internet / Web del proveedor / APP</option>
+																<option value="domicilio">Venta en domicilio</option>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="problema">
+																¿Cuál es el problema? *
+															</label>
+															<div class="well m-t-1 col-xs-12">
+																<ul>
+																	<li>
+																		Describí los hechos y motivos de tu reclamo en una línea de tiempo breve.
+																	</li>
+																	<li>
+																		Informá con claridad cuál es el producto o servicio que adquiriste.
+																	</li>
+																	<li>
+																		Explicá cuáles son los puntos donde el proveedor no habría cumplido con los términos convenidos.
+																	</li>
+																</ul>
+															</div>
+															
+															<textarea name=""  rows="5" maxlength="250" minlength="200" class="form-control" id="problema" placeholder="Por ejemplo: Adquirí en fecha “X” un celular en el comercio “X”, a la semana dejó de funcionar. Lo llevé al servicio técnico y no me dan respuesta. Al dejarlo, me dijeron que la reparación no demoraría más de 20 días y llevo 30 días esperando."></textarea>
+															<p id="contadorCaracteres" class="help-block text-right m-t-0">Caracteres restantes 250</p>
+														</div>
+														<div class="form-group">
+															<fieldset>
+																<legend class="sr-only">
+																	¿Cómo esperás que se resuelva?
+																</legend>
+																<label for="resolucion">
+																	¿Cómo esperás que se resuelva?
+																	<p class="help-block">Podés seleccionar más de una opción</p>
+																</label>
+																<div class="checkbox">
+																	<label for="cambio">
+																		<input id="cambio" name="resolucionProblema" type="checkbox">Cambio de producto
+																	</label>
+																</div>
+																<div class="checkbox">
+																	<label for="bonificacion">
+																		<input id="bonificacion" name="resolucionProblema" type="checkbox">Bonificación en el abono
+																	</label>
+																</div>
+																<div class="checkbox">
+																	<label for="anulacion">
+																		<input id="anulacion"  name="resolucionProblema" type="checkbox">Anulación del contrato
+																	</label>
+																</div>
+																<div class="checkbox">
+																	<label for="devolucion">
+																		<input id="devolucion"  name="resolucionProblema" type="checkbox">Devolución del dinero
+																	</label>
+																</div>
+																<div class="checkbox">
+																	<label for="otro">
+																		<input id="otro"  name="resolucionProblema" type="checkbox">Otro
+																	</label>
+																</div>
+															</fieldset>
+														</div>
+														<div class="form-group hidden" id="reclamoContainer">
+															<label for="reclamo">
+																	Explicá las pretensiones de tu reclamo
+															</label>
+															<textarea name=""  rows="5" maxlength="250" minlength="200" class="form-control" id="reclamo" placeholder=""></textarea>
+														</div>
+														<fieldset>
+															<legend>
+																	¿Dónde fue entregado el producto o se presta el servicio? *
+															</legend>
+															<div class="form-group">
+																<label for="provDelivery">
+																	Provincia *
+																</label>
+																<select name="provDelivery" id="provDelivery" class="form-control" required>
+																	<option value="" selected>Seleccioná una provincia</option>
+																	<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="partidoDptoDelivery">
+																	Partido o departamento *
+																</label>
+																<select name="PartidoDptoDelivery" id="partidoDptoDelivery" class="form-control" required>
+																	<option value="" selected>Seleccioná un partido o departamento</option>
+																	<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																</select>
+															</div>
+															<div class="form-group">
+																<label for="localidadDelivery">
+																	Localidad *
+																</label>
+																<select name="LocalidadDelivery" id="localidadDelivery" class="form-control" required>
+																	<option value="" selected>Seleccioná una localidad</option>
+																	<option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+																</select>
+															</div>
+														</fieldset>
+													</div>
+												</div>
 											</div>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-
-
-						
 						<a href="../tad/tad.html" role="button" class="btn btn-link">
 							cancelar
 						</a>
@@ -438,3 +595,5 @@ layout: mi-argentina2
 </section>
 <script src="../../js/steps.js"></script>
  <script src="paso1.js"></script>   
+ <script src="charactercounter.js"></script>
+ <script src="autocomplete.js"></script>
