@@ -59,14 +59,14 @@ let count = 1;
 	window.onload = function() {
 		containerone.innerHTML = newFormEntry
 		document.querySelector('#step-1').appendChild(containerone);
-		// showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
-		// showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
+		showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
+		showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
 
 		document.querySelectorAll('[name="datosProveedor"]').forEach(e => {
 			e.addEventListener('change', function(){
-				console.log(e)
-				var mostrar = e.dataset.show;
 				
+				var mostrar = e.dataset.show;
+
 				var elementoMostrar = document.getElementById(`nombreEntidad${count}`)
 				elementoMostrar.classList.remove('hidden')
 				var emInput = elementoMostrar.querySelector('input[type="text"')
@@ -83,8 +83,8 @@ let count = 1;
 		document.querySelectorAll(radioNames).forEach((r) => {
 			
 			r.addEventListener("click", function(event) {
-				console.log(event.target)
-				if ((event.target.id == value) && (event.target.checked) ) {
+				
+				if (event.target.id == value) {
 					document.querySelector(elementReveal).classList.remove("hidden");
 				} else {
 					document.querySelector(elementReveal).classList.add("hidden");
