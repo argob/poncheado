@@ -21,7 +21,7 @@ let count = 1;
           						<div class="radio-group" data-schema-key="datosProveedor">
 									<div class="radio">
 										<label for="entidad${count}">
-											<input type="radio" autocomplete="off" name="datosProveedor" id="entidad${count}"/>
+											<input type="radio" autocomplete="off" name="datosProveedor" id="entidad${count}" data-show="nombreEntidad${count}"/>
 												Por nombre de empresa o negocio
 										</label>
 									</div>
@@ -61,37 +61,24 @@ let count = 1;
 		document.querySelector('#step-1').appendChild(containerone);
 		// showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
 		// showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
-
-		document.querySelectorAll('[name="datosProveedor"]').forEach(e => {
-			e.addEventListener('change', function(){
-				console.log(e)
-				var mostrar = e.dataset.show;
-				
-				var elementoMostrar = document.getElementById(`nombreEntidad${count}`)
-				elementoMostrar.classList.remove('hidden')
-				var emInput = elementoMostrar.querySelector('input[type="text"')
-				emInput.value = '';
-				autocomplete(emInput, proveedores, elementoMostrar.querySelector('input[type="text"').id);
-
-			})
-
+		showElements(`[name="datosProveedor"]`, `nombreEntidad${count}`);
 		
-		})
 	};
-	function showElements(radioNames, value, elementReveal) {
+	function showElements(radioNames, elementReveal) {
 		
-		document.querySelectorAll(radioNames).forEach((r) => {
-			
-			r.addEventListener("click", function(event) {
-				console.log(event.target)
-				if ((event.target.id == value) && (event.target.checked) ) {
-					document.querySelector(elementReveal).classList.remove("hidden");
-				} else {
-					document.querySelector(elementReveal).classList.add("hidden");
-				}
-			});
-		});
-	}
+		document.querySelectorAll(radioNames).forEach(e => {
+			e.addEventListener('change', function(){
+				var mostrar = e.dataset.show
+				// var elementoMostrar = 
+				console.log(document.getElementById(elementReveal))
+				document.getElementById(elementReveal).classList.remove('hidden')
+				document.getElementById(elementReveal).value = ''
+				autocomplete(emInput, proveedores,	document.getElementById(elementReveal).id)
+		})
+	})
+}
+
+	
 	function hideElements(radioNames, value, elementReveal) {
 		document.querySelectorAll(radioNames).forEach((r) => {
 			r.addEventListener("click", function(event) {
@@ -126,7 +113,7 @@ let count = 1;
 
 	function addNewEnty() {
 		count++;
-		console.log(count)
+		
 		let newFormEntry2 = `<div id="step1-0${count}" class="col-xs-12 col-md-8">
 		<fieldset>
 		<legend>
@@ -292,6 +279,3 @@ let count = 1;
 	selectCaba('#provincia', '#PartidoDpto', '#localidad')
 	selectCaba('#provDelivery', '#partidoDptoDelivery', '#localidadDelivery')
 
-
-
-	
