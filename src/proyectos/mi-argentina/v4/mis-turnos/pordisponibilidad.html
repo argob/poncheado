@@ -1,0 +1,502 @@
+---
+layout: mi-argentina2
+---
+<link rel="stylesheet" href="../../../css/miargentina.css">
+<style>
+    [data-toggle="collapse"],
+    label[for]{
+        cursor: pointer;
+    }
+    /* agrego estilo para meter el stepnumber dentro del titulo de panel */
+    .flex-title{
+        display: flex;
+        align-items: center;
+    }
+    /* estilos de caja contenedora de horarios */
+    .cont-bordered{
+        border: 2px solid #DEE2E6;
+        border-radius: 4px;
+        padding: 15px 20px 0;
+    }
+    .horario{
+        border: 2px solid #DEE2E6;
+        border-radius: 4px;
+        padding: 5px;
+        display: block;
+    }
+    /* cambio en estilos de boton danger */
+    .btn-danger{
+        background: none;
+        border-color: #c62828;
+        color: #c62828;
+    }
+</style>
+<section class="p-y-0">
+    <div class="container-fluid">
+        <div class="row dashboard">
+            <div class="col-lg-3 col-sm-4 sidebar p-l-0  hidden-xs">
+
+                {% include mi-argentina/menu-1-2019_index.html %}
+
+            </div>
+
+            <div class="col-lg-9 col-sm-8">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div aria-label="breadcrumb">
+                            <ol class="breadcrumb p-l-0 p-y-0">
+                                <li class="breadcrumb-item">
+                                    <a href="../inicio/inicio.html">
+                                        Mi Argentina
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Mis turnos
+                                </li>
+                            </ol>
+                        </div>
+                        <h1>
+                            Mis Turnos
+                        </h1>
+                        <p>Si tenés que hacer un trámite, podés sacar turno en línea y ganar tiempo. Conocé los
+                            organismos del Estado Nacional que cuentan con este servicio.</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row main">
+                    <div class="col-md-8" id="main-content">
+                        <h2>Vacunarse contra la fiebre amarilla</h2>
+                        <a href="#" class="btn btn-default m-b-1"><i class="fa fa-crosshairs"></i>&nbsp; OBTENER MI UBICACIÓN</a>
+                        <div class="panels-row-miargentina">
+                            <div class="panel panel-default panel-borders">
+                                <div class="panel-heading" aria-expanded="true" role="tab">
+                                    <div class="row">
+                                        <div class="col-xs-9 flex-title">
+                                            <span class="round-tab m-r-1">
+                                                <span class="stepnumber" aria-hidden="true">1</span>
+                                            </span>
+                                            <h2 id="titulo-1">Elegí tu provincia, localidad y sede</h2>
+                                        </div>
+                                        <div class="col-xs-3 text-right hide" id="btn-edit-1">
+                                            <button class="btn btn-link m-b-0">Modificar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse in" role="tabpanel" id="collapsePanel1"
+                                    aria-expanded="true">
+                                    <hr class="m-t-0 m-b-0">
+                                    <div class="panel-body">
+                                        <div class="form-group item-form">
+                                            <div class="checkbox">
+                                                <label for="Option_1">
+                                                    <input id="Option_1" name="Option_1" type="checkbox" value="" checked>
+                                                    Ver solo sedes con turnos disponibles
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group item-form">
+                                            <label for="dato_8_20">Seleccioná tu provincia</label>
+                                            <select id="dato_8_20" name="dato_8_20" class="form-control">
+                                                <option value="" selected="">Seleccioná tu provincia</option>
+                                                <option value="opciones1">Opción 1</option>
+                                                <option value="opciones2">Opción 2</option>
+                                                <option value="opciones3">Opción 3</option>
+                                                <option value="opciones4">Opción 4</option>
+                                                <option value="opciones5">Opción 5</option>
+                                                <option value="opciones6">Opción 6</option>
+                                                <option value="opciones7">Opción 7</option>
+                                                <option value="opciones8">Opción 8</option>
+                                                <option value="opciones9">Opción 9</option>
+                                                <option value="opciones10">Opción 10</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group item-form">
+                                            <label for="dato_8_20">Seleccioná tu localidad más cercana</label>
+                                            <select id="dato_8_20" name="dato_8_20" class="form-control">
+                                                <option value="" selected="">Seleccioná tu localidad más cercana</option>
+                                                <option value="opciones1">Opción 1</option>
+                                                <option value="opciones2">Opción 2</option>
+                                                <option value="opciones3">Opción 3</option>
+                                                <option value="opciones4">Opción 4</option>
+                                                <option value="opciones5">Opción 5</option>
+                                                <option value="opciones6">Opción 6</option>
+                                                <option value="opciones7">Opción 7</option>
+                                                <option value="opciones8">Opción 8</option>
+                                                <option value="opciones9">Opción 9</option>
+                                                <option value="opciones10">Opción 10</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <h3 class="m-t-0">Sanidad de Fronteras</h3>
+                                            <p class="text-muted">Av. Pedro de Mendoza S/N y Blanes - Boca - Capital Federal</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion11" class="">
+                                                            <input type="radio" name="opciones" id="opcion11" value="opcion11" checked aria-checked="true">
+                                                            Lunes 26 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion21" class="">
+                                                            <input type="radio" name="opciones" id="opcion21" value="opcion21" checked aria-checked="true">
+                                                            Martes 27 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion31" class="">
+                                                            <input type="radio" name="opciones" id="opcion31" value="opcion31" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion31" class="">
+                                                            <input type="radio" name="opciones" id="opcion31" value="opcion31" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="m-t-0">
+                                        <div class="">
+                                            <h3 class="m-t-0">Hospital Muñiz</h3>
+                                            <p class="text-muted">Uspallata 2272 - Capital Federal</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion1" class="">
+                                                            <input type="radio" name="opciones" id="opcion1" value="opcion1" checked aria-checked="true">
+                                                            Lunes 26 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion2" class="">
+                                                            <input type="radio" name="opciones" id="opcion2" value="opcion2" checked aria-checked="true">
+                                                            Martes 27 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion3" class="">
+                                                            <input type="radio" name="opciones" id="opcion3" value="opcion3" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion3" class="">
+                                                            <input type="radio" name="opciones" id="opcion3" value="opcion3" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <a id="show-edit-1" class="btn btn-primary">PÓXIMO PASO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panels-row-miargentina" role="tablist">
+                            <div class="panel panel-default panel-borders">
+                                <div class="panel-heading"
+                                    aria-expanded="true" aria-controls="collapsePanel2" role="tab">
+                                    <div class="row">
+                                        <div class="col-xs-9 flex-title">
+                                            <span class="round-tab m-r-1">
+                                                <span class="stepnumber" aria-hidden="true">2</span>
+                                            </span>
+                                            <h2 id="titulo-2">Elegí una fecha para el turno</h2>
+                                        </div>
+                                        <div class="col-xs-3 text-right hide" id="btn-edit-2">
+                                            <button class="btn btn-link m-b-0">Modificar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse" role="tabpanel" id="collapsePanel2"
+                                    aria-expanded="true">
+                                    <hr class="m-t-0 m-b-0">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion1" class="">
+                                                            <input type="radio" name="opciones" id="opcion1" value="opcion1" checked aria-checked="true">
+                                                            Lunes 26 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion2" class="">
+                                                            <input type="radio" name="opciones" id="opcion2" value="opcion2" checked aria-checked="true">
+                                                            Martes 27 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion3" class="">
+                                                            <input type="radio" name="opciones" id="opcion3" value="opcion3" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion3" class="">
+                                                            <input type="radio" name="opciones" id="opcion3" value="opcion3" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion11" class="">
+                                                            <input type="radio" name="opciones" id="opcion11" value="opcion11" checked aria-checked="true">
+                                                            Lunes 26 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion21" class="">
+                                                            <input type="radio" name="opciones" id="opcion21" value="opcion21" checked aria-checked="true">
+                                                            Martes 27 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion31" class="">
+                                                            <input type="radio" name="opciones" id="opcion31" value="opcion31" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-lg-3">
+                                                <div class="m-b-1">
+                                                    <div class="radio">
+                                                        <label for="opcion31" class="">
+                                                            <input type="radio" name="opciones" id="opcion31" value="opcion31" checked aria-checked="true">
+                                                            Miércoles 28 de Mayo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <a id="show-edit-2" class="btn btn-primary">PÓXIMO PASO</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panels-row-miargentina">
+                            <div class="panel panel-default panel-borders">
+                                <div class="panel-heading" aria-expanded="true" role="tab">
+                                    <div class="row">
+                                        <div class="col-xs-9 flex-title">
+                                            <span class="round-tab m-r-1">
+                                                <span class="stepnumber" aria-hidden="true">2</span>
+                                            </span>
+                                            <h2 id="titulo-3">Elegí una horario de atención</h2>
+                                        </div>
+                                        <div class="col-xs-3 text-right hide" id="btn-edit-3">
+                                            <button class="btn btn-link m-b-0">Modificar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse" role="tabpanel" id="collapsePanel3"
+                                    aria-expanded="true">
+                                    <hr class="m-t-0 m-b-0">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-lg-6">
+                                                <div class="cont-bordered m-b-1">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-lg-4">
+                                                            <div class="m-b-1">
+                                                                <label for="horario1" class="horario">
+                                                                    <input type="radio" name="horario" id="horario1" value="horario1" checked aria-checked="true">
+                                                                    9:00
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-4">
+                                                            <div class="m-b-1">
+                                                                <label for="horario2" class="horario">
+                                                                    <input type="radio" name="horario" id="horario2" value="horario2" checked aria-checked="true">
+                                                                    9:30
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-4">
+                                                            <div class="m-b-1">
+                                                                <label for="horario3" class="horario">
+                                                                    <input type="radio" name="horario" id="horario3" value="horario3" checked aria-checked="true">
+                                                                    10:00
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-4">
+                                                            <div class="m-b-1">
+                                                                <label for="horario3" class="horario">
+                                                                    <input type="radio" name="horario" id="horario4" value="horario4" checked aria-checked="true">
+                                                                    10:30
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-4">
+                                                            <div class="m-b-1">
+                                                                <label for="horario3" class="horario">
+                                                                    <input type="radio" name="horario" id="horario5" value="horario6" checked aria-checked="true">
+                                                                    11:00
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <a id="show-edit-3" class="btn btn-primary">PÓXIMO PASO</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a id="reservar" href="confirmar.html" class="btn btn-success hide">RESERVAR</a>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row main-panels panels-row panels-row-miargentina">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default panel-nolink panel-border-gray">
+                                    <div class="panel-heading">
+                                        <h2>Mis próximos turnos</h2>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="panel-turno">
+                                            <p><strong><a class="item-panel" href="#">Vacunarse contra la fiebre amarilla</a></strong></p>
+                                            <p class="text-muted m-b-0">Fecha</p>
+                                            <p>Miércoles 12 de Junio</p>
+                                            <p class="text-muted m-b-0">Horario</p>
+                                            <p>13:30</p>
+                                            <p class="text-muted m-b-0">Punto de atención</p>
+                                            <p><strong>Sanidad de Fronteras.</strong><br>
+                                                    Av. Pedro de Mendoza S/N y Blanes</p>
+                                            <a href="#" class="btn btn-danger">CANCELAR TURNO</a>
+                                        </div>
+                                    </div>
+                                    <hr class="m-t-0 m-b-0">
+                                    <div class="panel-body">
+                                        <div class="panel-turno">
+                                            <p><strong><a class="item-panel" href="#">Vacunarse contra la fiebre amarilla</a></strong></p>
+                                            <p class="text-muted m-b-0">Fecha</p>
+                                            <p>Miércoles 12 de Junio</p>
+                                            <p class="text-muted m-b-0">Horario</p>
+                                            <p>13:30</p>
+                                            <p class="text-muted m-b-0">Punto de atención</p>
+                                            <p><strong>Sanidad de Fronteras.</strong><br>
+                                                    Av. Pedro de Mendoza S/N y Blanes</p>
+                                            <a href="#" class="btn btn-danger">CANCELAR TURNO</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="./../../js/alert-collapse.js"></script>
+<script src="./../../js/alert-close.js"></script>
+
+<script>
+$('#show-edit-1').click(function(){
+    $('#btn-edit-1').removeClass('hide');
+    $('#titulo-1').text('Miércoles 28 de Mayo');
+    $('#collapsePanel1').collapse("hide");
+    $('#collapsePanel2').collapse("show");
+});
+$('#btn-edit-1 button').click(function(){
+    $('#btn-edit-1, #reservar').addClass('hide');
+    $('#btn-edit-2, #btn-edit-3').removeClass('hide');
+    $('#titulo-1').text('Elegí una fecha para el turno');
+    $('#collapsePanel1').collapse("show");
+    $('#collapsePanel2, #collapsePanel3').collapse("hide");
+});
+$('#show-edit-2').click(function(){
+    $('#btn-edit-2').removeClass('hide');
+    $('#titulo-2').html('Sanidad de Fronteras <small>| Av. Pedro de Mendoza S/N y Blanes - Boca - Capital Federal</small>');
+    $('#collapsePanel2').collapse("hide");
+    $('#collapsePanel3').collapse("show");
+});
+$('#btn-edit-2 button').click(function(){
+    $('#btn-edit-2, #reservar').addClass('hide');
+    $('#btn-edit-1, #btn-edit-3').removeClass('hide');
+    $('#titulo-2').text('Elegí tu provincia, localidad y sede');
+    $('#collapsePanel2').collapse("show");
+    $('#collapsePanel1, #collapsePanel3').collapse("hide");
+});
+$('#show-edit-3').click(function(){
+    $('#btn-edit-3').removeClass('hide');
+    $('#titulo-3').text('12:30 h');
+    $('#collapsePanel3').collapse("hide");
+    $('#reservar').removeClass('hide');
+});
+$('#btn-edit-3 button').click(function(){
+    $('#btn-edit-3, #reservar').addClass('hide');
+    $('#btn-edit-1, #btn-edit-2').removeClass('hide');
+    $('#titulo-3').text('Elegí una horario de atención');
+    $('#collapsePanel3').collapse("show");
+    $('#collapsePanel1, #collapsePanel2').collapse("hide");
+});
+</script>
