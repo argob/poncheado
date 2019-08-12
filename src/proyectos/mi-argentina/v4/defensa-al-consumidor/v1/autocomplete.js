@@ -23,7 +23,7 @@ var proveedores =   [
 
 /************************AUTOCOMPLETE*****************************/
 
-function autocomplete(inp, arr, key, btn) {
+function autocomplete(inp, arr, key) {
   /*Tres argumentos, lo que escribe, el array con las opciones disponibles segun lo escrito, y la key del objeto que está llamando*/
   var currentFocus;
 
@@ -128,7 +128,7 @@ function autocomplete(inp, arr, key, btn) {
 	
 	document.addEventListener("click", function (e) {
 	    closeAllLists(e.target);
-	    console.log(e.target)
+	 
 	   
     })
 }

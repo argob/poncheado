@@ -26,7 +26,7 @@ let count = 1;
 										</label>
 									</div>
 									<div class="form-group group-container hidden" id="nombreEntidad${count}">
-										<label for="empresa">Buscar por nombre o empresa</label>
+										<label for="empresa"></label>
 										<div class="row">
 											<div class="col-xs-12">
 												<div class="autocomplete">
@@ -38,7 +38,7 @@ let count = 1;
 									</div>
 									<div class="radio">
 										<label for="cuit${count}">
-											<input type="radio" autocomplete="off" name="datosProveedor" id="cuit${count}" />
+											<input type="radio" autocomplete="off" name="datosProveedor" id="cuit${count}" data-show="numeroCuit${count}"/>
 												Por número de CUIT
 										</label>
 									</div>
@@ -59,24 +59,40 @@ let count = 1;
 	window.onload = function() {
 		containerone.innerHTML = newFormEntry
 		document.querySelector('#step-1').appendChild(containerone);
-		// showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
-		// showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
-		showElements(`[name="datosProveedor"]`, `nombreEntidad${count}`);
+		searchEnty(`[name="datosProveedor"]`, `nombreEntidad${count}`);
+		searchEnty(`[name="datosProveedor"]`,`numeroCuit${count}`);
 		
 	};
-	function showElements(radioNames, elementReveal) {
-		
+	function searchEnty(radioNames, elementReveal) {
 		document.querySelectorAll(radioNames).forEach(e => {
-			e.addEventListener('change', function(){
-				var mostrar = e.dataset.show
-				// var elementoMostrar = 
-				console.log(document.getElementById(elementReveal))
-				document.getElementById(elementReveal).classList.remove('hidden')
-				document.getElementById(elementReveal).value = ''
-				autocomplete(emInput, proveedores,	document.getElementById(elementReveal).id)
+			e.addEventListener("click", function(){
+				if(e.dataset.show == document.getElementById(elementReveal).id){
+					document.getElementById(elementReveal).classList.remove('hidden')
+				}else{
+					document.getElementById(elementReveal).classList.add('hidden')
+				}
+				if(document.getElementById(elementReveal).id == `nombreEntidad${count}`){
+					var emInput = document.getElementById(elementReveal).querySelector('input[type="text"]')
+					emInput.value = ''
+					console.log(emInput)
+					autocomplete(emInput, proveedores,	emInput.id)
+				}	
+			})
 		})
-	})
-}
+	}
+
+	function showElements(radioNames, value, elementReveal) {
+		document.querySelectorAll(radioNames).forEach((r) => {
+			
+			r.addEventListener("click", function(event) {
+				if (event.target.id == value) {
+					document.querySelector(elementReveal).classList.remove("hidden");
+				} else {
+					document.querySelector(elementReveal).classList.add("hidden");
+				}
+			});
+		});
+	}
 
 	
 	function hideElements(radioNames, value, elementReveal) {
@@ -97,28 +113,15 @@ let count = 1;
 		
 	}
 
-	function hideElement(elementEvent, e, element) {
-		document.querySelectorAll(elementEvent).forEach(r => {
-			r.addEventListener(e, function() {
-				document.querySelector(element).classList.remove("hidden");
-			});
-		});
-	
-	}
-	
 	function showHideElements(element, element2) {
 		element.classList.remove("hidden");
 		element2.classList.add("hidden");
 	}
 
 	function addNewEnty() {
-		count++;
+		
 		
 		let newFormEntry2 = `<div id="step1-0${count}" class="col-xs-12 col-md-8">
-		<fieldset>
-		<legend>
-		<p><strong>Datos del proveedor del producto o servicio</strong></p>
-		</legend>
 		
 		<p>
 			<strong>
@@ -151,11 +154,11 @@ let count = 1;
 					autocomplete="off"
 					name="datosProveedor"
 					id="entidad${count}"
-					/>
+					data-show="nombreEntidad${count}"/>
 					Por nombre de empresa o negocio
 				</label>
 				</div>
-				<div class="form-group group-container hidden" id="nombreEntidad${count}">
+				<div class="form-group group-container hidden" id="nombreEntidad${count}" >
 					<label for="empresa${count}">Buscar por nombre o empresa</label>
 					<div class="row">
 						<div class="col-xs-12">
@@ -173,6 +176,7 @@ let count = 1;
 					autocomplete="off"
 					name="datosProveedor"
 					id="cuit${count}"
+					data-show="numeroCuit${count}"
 					/>
 					Por número de CUIT
 				</label>
@@ -194,19 +198,18 @@ let count = 1;
 				</div>
 			</div>
 			</div>
-		</fieldset>
 		</fieldset></div>`
 	
 		let container = document.createElement('div');
 		container.setAttribute('id', `container${count}`)
 		container.innerHTML = newFormEntry2
-
 		document.querySelector('#addNewEnty').appendChild(container)
+		searchEnty(`[name="datosProveedor"]`, `nombreEntidad${count}`);
+		searchEnty(`[name="datosProveedor"]`,`numeroCuit${count}`);
 		
 		
 		
-		showElements(`[name="datosProveedor"]`, `entidad${count}`, `#nombreEntidad${count}`);
-		showElements(`[name="datosProveedor"]`, `cuit${count}`, `#numeroCuit${count}`);
+		
 
 		
 	}
@@ -214,41 +217,45 @@ let count = 1;
 	function confirmEnty() {
 		showHideElements(document.querySelector('#step1-1'), document.querySelector('#infoEntidad'))
 		let alert = `<p class="help-block">Proveedor ${count}</p>
-		<div class="row">
-			<div class="col-lg-10">
-				<div class="alert alert-success">
-					<small>
-						Nombre del proveedor (empresa o negocio) *
-					</small>
-					<p>
-						<strong>
-							Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A
-						</strong>
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<button class="btn btn-link btn-block-xs changeEnty"  type="button">
-			Modificar proveedor
-		</button>`
+						<div class="row">
+							<div class="col-lg-10">
+								<div class="alert alert-success">
+									<small>
+										Nombre del proveedor (empresa o negocio) *
+									</small>
+									<p>
+										<strong>
+											Movistar - TELEFÓNICA MÓVILES ARGENTINA S.A
+										</strong>
+									</p>
+								</div>
+							</div>
+						</div>
+						
+						<button class="btn btn-link btn-block-xs changeEnty"  type="button">
+							Modificar proveedor
+						</button>`
 		let alertContainer =  document.createElement('div');
 		alertContainer.setAttribute('id', `alert${count}`)
 		alertContainer.innerHTML = alert
 		document.querySelector('#alertEnty').appendChild(alertContainer)
-	
+		
 		alerts.push(alertContainer)
-		changeEnty()
+		count++;
+		changeEnty(document.querySelector(`#step1-01`), document.querySelector('#step1-1'))
+		if(!document.querySelector('#step1-1').classList.contains('hidden')){
+			showHideElements(document.querySelector('#deleteEnty'), document.querySelector('#modifyEnty'))
+		}
 		document.querySelector('#toStep2').classList.remove('hidden')
 		if(count >= 3){
 			document.querySelector('#addNewEnty').classList.add('hidden')
 		}
 	}
-	function changeEnty(){
+	function changeEnty(elementShow, elementHide){
 		document.querySelectorAll('.changeEnty').forEach(b => {
 			b.addEventListener("click", function(event){
 				event.preventDefault();
-				showHideElements(document.querySelector(`#step1-01`), document.querySelector('#step1-1'))
+				showHideElements(elementShow, elementHide)
 				this.parentElement.remove()
 				document.querySelector('#toStep2').classList.add('hidden')
 			})
@@ -264,6 +271,18 @@ let count = 1;
 
 	document.querySelector('#otro').addEventListener('click', function(){
 		document.querySelector('#reclamoContainer').classList.remove('hidden')
+	})
+
+	document.querySelector('#deleteEnty').addEventListener('click', function(){
+		document.querySelector('#infoEntidad').classList.add('hidden')
+		if(alerts.length > 1){
+			console.log(alerts.length)
+			count = count -1
+		}
+	})
+
+	document.querySelector('#addEntyBtn').addEventListener('click', function(){
+		addNewEnty()
 	})
 	
 	hideElements('[name="conciliarSiNo"]', "conciliarNo", "#conciliar");
