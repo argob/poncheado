@@ -206,8 +206,9 @@ function triggerModal(){
             document.querySelector('.container-fluid').appendChild(modalEnty)
             document.querySelector('.container-fluid').appendChild(modalEntyCuit)
             document.querySelectorAll('.searchEnty').forEach(input => {
-                if(input.value != ''){
-                    if(isNaN(input.value)){
+                let inputVal = parseInt(input.value)
+                if(inputVal != ''){
+                    if(isNaN(inputVal)){
                         btn.setAttribute('data-target', `#entyModal${count}`)
                      }else{
                         btn.setAttribute('data-target', `#entyModalCuit${count}`)
