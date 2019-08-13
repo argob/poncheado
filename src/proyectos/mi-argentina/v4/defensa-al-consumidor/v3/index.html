@@ -140,11 +140,12 @@ layout: mi-argentina
 
 <script>
 let count = 1
-let restCount = 3
+let restCount = 5
 let inputNew = document.createElement('div')
 let modalEnty = document.createElement('div')
 let modalEntyCuit = document.createElement('div')
-let alertSuccess = document.createElement('div')
+let alertSuccess
+let newEnty 
 
 
 window.onload = function(){
@@ -154,27 +155,47 @@ window.onload = function(){
     document.querySelector('.panel-body').appendChild(modalEnty)
     document.querySelector('.panel-body').appendChild(modalEntyCuit)
     showEntyAdded()
+    
  }
 function showEntyAdded(){
     document.querySelectorAll('.btnSelectEnty').forEach(btn => {
         btn.addEventListener('click', function(){
-            
             if(!document.querySelector(`#step1${count}`).classList.contains('hidden')){
-                document.querySelector(`#step1${count}`).classList.add('hidden')
-                document.querySelector('.container-fluid').removeChild(modalEnty)
-                document.querySelector('.container-fluid').removeChild(modalEntyCuit)
-                document.querySelector('.modal-backdrop').classList.add('hidden')
-                
-            }
-            newFormEnty()
+                    document.querySelector(`#step1${count}`).classList.add('hidden')
+                    document.querySelector('.container-fluid').removeChild(modalEnty)
+                    document.querySelector('.container-fluid').removeChild(modalEntyCuit)
+                    document.querySelector('.modal-backdrop').classList.add('hidden')
+                    
+                }
+            
+            alertSuccess = document.createElement('div')
+            alertSuccess.innerHTML = `<div class="alert alert-success" id="alert${count}">
+                                        <p class="m-b-1">
+                                            <strong>Proveedor ${count}</strong>
+                                        </p>
+                                        <small>
+                                                Nombre y razón social  del proveedor:
+                                        </small>
+                                        <p>
+                                            <strong>Movistar - Telefónica Móviles Argentina S.A.</strong>
+                                        </p>
+                                        <button type="button" class="btn btn-link">Borrar proveedor</button>
+                                    </div>`
+
             document.querySelector('.newAlert').appendChild(alertSuccess)
+            
             count++
             restCount--
+            if(count < 5){
+                newFormEnty()
+            }
+
         })
     })
+       
 }
 
-
+showEntyAdded()
 
 
 //busca proveedor
@@ -185,19 +206,21 @@ function triggerModal(){
             document.querySelector('.container-fluid').appendChild(modalEnty)
             document.querySelector('.container-fluid').appendChild(modalEntyCuit)
             document.querySelectorAll('.searchEnty').forEach(input => {
-                if(input.value != ''){
-                    if(isNaN(input.value)){
+                let inputVal = parseInt(input.value)
+                if(inputVal != ''){
+                    if(isNaN(inputVal)){
                         btn.setAttribute('data-target', `#entyModal${count}`)
                      }else{
                         btn.setAttribute('data-target', `#entyModalCuit${count}`)
                     }
                 }
             })
+          
                 
         })
 
     })
-}
+ }
 
 
 function createFormEnty(){
@@ -211,14 +234,25 @@ function createFormEnty(){
                             <input type="text"  class="form-control searchEnty" id="searchEnty${count}">
                             <button type="button" id="searchEntyBtn${count}" class="btn btn-success addEntyBtn m-t-2"  data-toggle="modal">Buscar proveedor</button>
                         </div>`
+                        document.querySelectorAll('.btn-success.addEntyBtn').forEach(btn => {
+                            btn.addEventListener('click', function(){
+                                if(document.querySelector(`#searchEnty${count}`).value != ''){
+                                    if(isNaN(document.querySelector(`#searchEnty${count}`).value)){
+                                        btn.setAttribute('data-target', `#entyModal${count}`)
+                                    }else{
+                                        btn.setAttribute('data-target', `#entyModalCuit${count}`)
+                                    }
+                                }   
+                            } ) 
+                        } )
                         
 }
 //Agrega nuevo proveedor
 function newFormEnty(){
-    let newEnty = document.createElement('div')
-    newEnty.innerHTML = `<hr>
+    newEnty = document.createElement('div')
+    newEnty.innerHTML = `<div><hr>
                         <p>Podés agregar hasta ${restCount} proveedores más.</p>
-                        <button type="button" class="btn btn-link addEntyBtn"  data-toggle="modal">Agregar proveedor</button>`
+                        <button type="button" class="btn btn-link addEntyBtn"  data-toggle="modal">Agregar proveedor</button></div>`
     document.querySelectorAll('.newFormEnty').forEach(n => {
         n.appendChild(newEnty)
     })
@@ -228,30 +262,26 @@ function newFormEnty(){
         btn.addEventListener('click', function(){
             document.querySelectorAll('.newFormEnty').forEach(n => {
                 createFormEnty()
-                n.parentNode.appendChild(inputNew)
-                n.parentNode.removeChild(n)
+                n.appendChild(inputNew)
+               
+                while (n.childNodes.length > 1) {
+                    n.removeChild(n.firstChild);
+                }
+                
                 
             })
-            document.querySelector('.newAlert').appendChild(alertSuccess)
+            
             triggerModal()
         })
-    })
 
+       
+
+})
 }
 
 
-alertSuccess.innerHTML = `<div class="alert alert-success" id="alert${count}">
-                            <p class="m-b-1">
-                                <strong>Proveedor ${count}</strong>
-                            </p>
-                            <small>
-                                    Nombre y razón social  del proveedor:
-                            </small>
-                            <p>
-                                <strong>Movistar - Telefónica Móviles Argentina S.A.</strong>
-                            </p>
-                            <button type="button" class="btn btn-link">Borrar proveedor</button>
-                        </div>`
+
+    
 
 modalEnty.innerHTML = `<div class="modal fade" id="entyModal${count}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
