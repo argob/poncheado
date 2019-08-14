@@ -164,9 +164,11 @@ function showEntyAdded(){
                     document.querySelector(`#step1${count}`).classList.add('hidden')
                     document.querySelector('.container-fluid').removeChild(modalEnty)
                     document.querySelector('.container-fluid').removeChild(modalEntyCuit)
-                    document.querySelector('.modal-backdrop').classList.add('hidden')
-                    
+                    document.querySelectorAll('.modal-backdrop').forEach(m => {
+                        m.classList.add('hidden')
+                    })
                 }
+                
             
             alertSuccess = document.createElement('div')
             alertSuccess.innerHTML = `<div class="alert alert-success" id="alert${count}">
@@ -202,21 +204,26 @@ showEntyAdded()
 function triggerModal(){
     document.querySelectorAll('.btn-success.addEntyBtn').forEach(btn => {
         btn.addEventListener('click', function(){
-            
+            console.log(count)
             document.querySelector('.container-fluid').appendChild(modalEnty)
             document.querySelector('.container-fluid').appendChild(modalEntyCuit)
-            document.querySelectorAll('.searchEnty').forEach(input => {
-                let inputVal = parseInt(input.value)
-                if(inputVal != ''){
-                    if(isNaN(inputVal)){
-                        btn.setAttribute('data-target', `#entyModal${count}`)
-                     }else{
-                        btn.setAttribute('data-target', `#entyModalCuit${count}`)
-                    }
+            let inputVal = parseInt(document.querySelector(`#searchEnty${count}`).value)
+            if(inputVal != ''){
+              
+                if(isNaN(inputVal)){
+                    modalEntyCuit.firstChild.classList.add('hidden')
+                    modalEnty.firstChild.classList.remove('hidden')
+                    modalEnty.firstChild.setAttribute('id', `entyModal${count}`)
+                    btn.removeAttribute('data-target', `#entyModalCuit${count}`)
+                    btn.setAttribute('data-target', `#entyModal${count}`)
+                    }else{
+                    modalEnty.firstChild.classList.add('hidden')
+                    modalEntyCuit.firstChild.classList.remove('hidden')
+                    modalEntyCuit.firstChild.setAttribute('id', `entyModalCuit${count}`)
+                    btn.removeAttribute('data-target', `#entyModal${count}`)
+                    btn.setAttribute('data-target', `#entyModalCuit${count}`)
                 }
-            })
-          
-                
+            }
         })
 
     })
@@ -234,17 +241,7 @@ function createFormEnty(){
                             <input type="text"  class="form-control searchEnty" id="searchEnty${count}">
                             <button type="button" id="searchEntyBtn${count}" class="btn btn-success addEntyBtn m-t-2"  data-toggle="modal">Buscar proveedor</button>
                         </div>`
-                        document.querySelectorAll('.btn-success.addEntyBtn').forEach(btn => {
-                            btn.addEventListener('click', function(){
-                                if(document.querySelector(`#searchEnty${count}`).value != ''){
-                                    if(isNaN(document.querySelector(`#searchEnty${count}`).value)){
-                                        btn.setAttribute('data-target', `#entyModal${count}`)
-                                    }else{
-                                        btn.setAttribute('data-target', `#entyModalCuit${count}`)
-                                    }
-                                }   
-                            } ) 
-                        } )
+                        triggerModal()
                         
 }
 //Agrega nuevo proveedor
@@ -263,15 +260,17 @@ function newFormEnty(){
             document.querySelectorAll('.newFormEnty').forEach(n => {
                 createFormEnty()
                 n.appendChild(inputNew)
-               
+
+                let btn = document.querySelector(`#searchEntyBtn${count}`)
+                btn.removeAttribute('data-target')
                 while (n.childNodes.length > 1) {
                     n.removeChild(n.firstChild);
                 }
                 
-                
+                triggerModal()
             })
             
-            triggerModal()
+            
         })
 
        
@@ -283,7 +282,7 @@ function newFormEnty(){
 
     
 
-modalEnty.innerHTML = `<div class="modal fade" id="entyModal${count}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+modalEnty.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -706,7 +705,7 @@ modalEnty.innerHTML = `<div class="modal fade" id="entyModal${count}" tabindex="
                                 </div>
                             </div>`
 
-modalEntyCuit.innerHTML = `<div class="modal fade" id="entyModalCuit${count}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+modalEntyCuit.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
