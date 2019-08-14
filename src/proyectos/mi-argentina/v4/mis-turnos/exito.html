@@ -99,7 +99,7 @@ layout: mi-argentina2
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a href="exito-cancelado.html" class="btn btn-danger btn-block">CANCELAR TURNO</a>
+                                        <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalCancelarTurno">CANCELAR TURNO</button>
                                     </div>
                                     <div class="col-md-6">
                                         <a href="#" class="btn btn-link btn-block">IMPRIMIR</a>
@@ -119,5 +119,49 @@ layout: mi-argentina2
         </div>
     </div>
 </section>
+<style>
+.modal {
+    text-align: center;
+}
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.modal-content{
+    border:0;
+    border-radius: 3px;
+}
+@media screen and (min-width: 768px) { 
+    .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+    }
+    .modal-sm {
+    width: 400px;
+    }
+}
+
+</style>
+
+<div id="modalCancelarTurno" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
+    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <h4 class="modal-title m-b-1" id="tituloModal">CANCELAR TURNO</h4>
+            <p class="m-b-0">¿Estás seguro que querés cancelar el turno?</p>
+            <p>Deberás iniciar el proceso nuevamente.</p>
+            <div class="row m-t-1">
+            <div class="col-xs-12">
+                <a href="exito-cancelado.html" class="btn btn-link text-danger">CANCELAR TURNO</a>
+                <button type="button" class="btn btn-link m-r-1" data-dismiss="modal">CERRAR</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 <script src="./../../js/alert-collapse.js"></script>
 <script src="./../../js/alert-close.js"></script>
