@@ -15,6 +15,15 @@ layout: mi-argentina2
         border-color: #c62828;
         color: #c62828;
     }
+
+    /* clase para pegar la alerta en el top */
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
 </style>
 <section class="p-y-0">
     <div class="container-fluid">
@@ -54,7 +63,8 @@ layout: mi-argentina2
                     <div class="col-md-8 col-lg-6" id="main-content">
                         <div class="row panels-row-miargentina">
                             <div class="col-md-12">
-                                <div class="alert alert-warning">
+                                <div id="stick-here"></div>
+                                <div id="stickThis" class="alert alert-warning">
                                     <div class="media">
                                         <div class="media-left media-middle">
                                             <i class="fa fa-clock-o fa-fw fa-2x"></i>
@@ -64,12 +74,9 @@ layout: mi-argentina2
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-border-primary">
-                                    <div class="panel-heading">
-                                        <h2>Estos son los datos de tu turno</h2>
-                                    </div>
-                                    <hr class="m-t-0 m-b-0">
+                                <div class="panel">
                                     <div class="panel-body">
+                                        <h2>Estos son los datos de tu turno</h2>
                                         <p class="m-b-0"><strong>Fecha</strong></p>
                                         <p>Miércoles 12 de enero de 2019</p>
                                         <p class="m-b-0"><strong>Horario</strong></p>
@@ -251,5 +258,22 @@ layout: mi-argentina2
     </div>
     </div>
 </div>
+<script>
+function sticktothetop() {
+    var window_top = $(window).scrollTop();
+    var top = $('#stick-here').offset().top;
+    if (window_top > top) {
+        $('#stickThis').addClass('fixed-top');
+        $('#stick-here').height($('#stickThis').outerHeight());
+    } else {
+        $('#stickThis').removeClass('fixed-top');
+        $('#stick-here').height(0);
+    }
+}
+$(function() {
+    $(window).scroll(sticktothetop);
+    sticktothetop();
+});
+</script>
 <script src="./../../js/alert-collapse.js"></script>
 <script src="./../../js/alert-close.js"></script>
