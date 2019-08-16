@@ -19,24 +19,42 @@ layout: mi-argentina2
         font-size: 1.3em;
     }
 
-    /* columnas dentro del flex-row*/
-    .flex-row{
+    /* columnas dentro del flex-cont*/
+    .flex-cont{
         display: flex;
         flex-wrap: wrap;
     }
-    .flex-row [class^=col]{
+    .flex-cont [class^=col]{
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
     }
     @media (min-width: 1200px){
-        .flex-row .col-lg-6 {
+        .flex-cont .col-lg-6 {
             -webkit-box-flex: 0;
             -ms-flex: 0 0 50%;
             flex: 0 0 50%;
             max-width: 50%;
         }
+    }
+
+    .search-group {
+        position: relative;
+        display: table;
+        border-collapse: separate;
+    }
+    .search-group-btn {
+        position: relative;
+        font-size: 0;
+        white-space: nowrap;
+    }
+    .search-group .form-control:first-child{
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .search-group .fa-search{
+        line-height: 1.42857143;
     }
 </style>
 <section class="p-y-0">
@@ -73,11 +91,13 @@ layout: mi-argentina2
                 <div class="row main">
                     <div class="col-md-8 section-main" id="main-content">
                         <h2>Buscá el trámite para el que quieras sacar turno</h2>
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="P. Ej. DNI, Vacuna, Certificado de discapacidad">
+                        <div class="form-group search-group">
+                            <input placeholder="P. Ej. DNI, Vacuna, Certificado de discapacidad" id="filtro" aria-label="Por ejemplo DNI, Vacuna, Certificado de discapacidad" class="form-control form-text" type="text" size="20" maxlength="255">
+                            <span class="input-group-btn">
+                                <button class="btn-primary fa fa-search btn m-b-0" aria-labelledby="filtro" type="submit" id="edit-submit"></button>
+                            </span>
                         </div>
-                        <div class="row flex-row">
+                        <div class="row flex-cont">
                             <div class="col-lg-6">
                                 <div class="m-b-1">
                                     <a href="seleccion.html" class=""><strong>Vacunarse contra la fiebre
@@ -158,7 +178,7 @@ layout: mi-argentina2
                                 <div class="panel-collapse collapse" role="tabpanel" id="collapsePanel1"
                                     aria-expanded="true">
                                     <div class="panel-body">
-                                        <div class="row flex-row">
+                                        <div class="row flex-cont">
                                             <div class="col-lg-6">
                                                 <div class="m-b-1">
                                                     <a href="seleccion.html" class=""><strong>Vacunarse contra la fiebre
@@ -203,7 +223,7 @@ layout: mi-argentina2
                                 <div class="panel-collapse collapse" role="tabpanel" id="collapsePanel2"
                                     aria-expanded="true">
                                     <div class="panel-body">
-                                        <div class="row flex-row">
+                                        <div class="row flex-cont">
                                             <div class="col-lg-6">
                                                 <div class="m-b-1">
                                                     <a href="#" class=""><strong>Vacunarse contra la fiebre
@@ -248,7 +268,7 @@ layout: mi-argentina2
                                 <div class="panel-collapse collapse" role="tabpanel" id="collapsePanel3"
                                     aria-expanded="true">
                                     <div class="panel-body">
-                                        <div class="row flex-row">
+                                        <div class="row flex-cont">
                                             <div class="col-lg-6">
                                                 <div class="m-b-1">
                                                     <a href="#" class=""><strong>Vacunarse contra la fiebre
@@ -398,7 +418,7 @@ layout: mi-argentina2
     <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-body">
-            <h4 class="modal-title m-b-1" id="tituloModal">CANCELAR TURNO</h4>
+            <h4 class="modal-title m-b-1" id="tituloModal">Cancelar turno</h4>
             <p class="m-b-0">¿Estás seguro que querés cancelar el turno?</p>
             <p>Deberás iniciar el proceso nuevamente.</p>
             <div class="row m-t-1">

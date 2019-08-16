@@ -39,6 +39,58 @@ layout: mi-argentina2
         border-color: #c62828;
         color: #c62828;
     }
+    /* columnas dentro del flex-cont*/
+    .flex-cont{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flex-cont [class^=col]{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .flex-cont .col-6{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    @media (min-width: 992px){
+        .flex-cont .col-md-6 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .flex-cont .col-md-4 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 33.33333333%;
+            flex: 0 0 33.33333333%;
+            max-width: 33.33333333%;
+        }
+    }
+    @media (min-width: 1200px){
+        .flex-cont .col-lg-6 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .flex-cont .col-lg-4 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 33.33333333%;
+            flex: 0 0 33.33333333%;
+            max-width: 33.33333333%;
+        }
+        .flex-cont .col-lg-3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+        
+    }
 </style>
 <section class="p-y-0">
     <div class="container-fluid">
@@ -93,8 +145,8 @@ layout: mi-argentina2
                                     aria-expanded="true">
                                     <hr class="m-t-0 m-b-0">
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-4 col-lg-3">
+                                        <div class="row flex-cont">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion1" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion1" value="opcion1">
@@ -102,7 +154,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion2" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion2" value="opcion2">
@@ -110,7 +162,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion3" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion3" value="opcion3">
@@ -118,7 +170,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion4" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion4" value="opcion4" >
@@ -126,7 +178,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion11" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion11" value="opcion11">
@@ -134,7 +186,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion22" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion22" value="opcion22" >
@@ -142,7 +194,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion33" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion33" value="opcion33" >
@@ -150,7 +202,7 @@ layout: mi-argentina2
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-lg-3">
+                                            <div class="col-md-6 col-lg-4">
                                                 <div class="m-b-1">
                                                     <label for="opcion44" class="radio-box">
                                                         <input type="radio" name="opciones" id="opcion44" value="opcion44" disabled>
@@ -306,56 +358,50 @@ layout: mi-argentina2
                                     aria-expanded="true">
                                     <hr class="m-t-0 m-b-0">
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="cont-bordered m-b-1">
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-lg-4">
-                                                            <div class="m-b-1">
-                                                                <label for="horario1" class="radio-box">
-                                                                    <input type="radio" name="horario" id="horario1" value="horario1">
-                                                                    9:00
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4">
-                                                            <div class="m-b-1">
-                                                                <label for="horario2" class="radio-box">
-                                                                    <input type="radio" name="horario" id="horario2" value="horario2">
-                                                                    9:30
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4">
-                                                            <div class="m-b-1">
-                                                                <label for="horario3" class="radio-box">
-                                                                    <input type="radio" name="horario" id="horario3" value="horario3">
-                                                                    10:00
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4">
-                                                            <div class="m-b-1">
-                                                                <label for="horario3" class="radio-box">
-                                                                    <input type="radio" name="horario" id="horario4" value="horario4">
-                                                                    10:30
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 col-lg-4">
-                                                            <div class="m-b-1">
-                                                                <label for="horario3" class="radio-box">
-                                                                    <input type="radio" name="horario" id="horario5" value="horario6">
-                                                                    11:00
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="">
-                                                    <a id="show-edit-3" class="btn btn-primary">PRÓXIMO PASO</a>
+                                        <div class="row flex-cont">
+                                            <div class="col-6 col-md-6 col-lg-4">
+                                                <div class="m-b-1">
+                                                    <label for="horario1" class="radio-box">
+                                                        <input type="radio" name="horario" id="horario1" value="horario1">
+                                                        9:00
+                                                    </label>
                                                 </div>
                                             </div>
+                                            <div class="col-6 col-md-6 col-lg-4">
+                                                <div class="m-b-1">
+                                                    <label for="horario2" class="radio-box">
+                                                        <input type="radio" name="horario" id="horario2" value="horario2">
+                                                        9:30
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-6 col-lg-4">
+                                                <div class="m-b-1">
+                                                    <label for="horario3" class="radio-box">
+                                                        <input type="radio" name="horario" id="horario3" value="horario3">
+                                                        10:00
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-6 col-lg-4">
+                                                <div class="m-b-1">
+                                                    <label for="horario3" class="radio-box">
+                                                        <input type="radio" name="horario" id="horario4" value="horario4">
+                                                        10:30
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-6 col-lg-4">
+                                                <div class="m-b-1">
+                                                    <label for="horario3" class="radio-box">
+                                                        <input type="radio" name="horario" id="horario5" value="horario6">
+                                                        11:00
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <a id="show-edit-3" class="btn btn-primary">PRÓXIMO PASO</a>
                                         </div>
                                     </div>
                                 </div>
@@ -440,7 +486,7 @@ layout: mi-argentina2
     <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
         <div class="modal-body">
-            <h4 class="modal-title m-b-1" id="tituloModal">CANCELAR TURNO</h4>
+            <h4 class="modal-title m-b-1" id="tituloModal">Cancelar turno</h4>
             <p class="m-b-0">¿Estás seguro que querés cancelar el turno?</p>
             <p>Deberás iniciar el proceso nuevamente.</p>
             <div class="row m-t-1">
