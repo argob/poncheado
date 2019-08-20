@@ -142,7 +142,7 @@ title: Desarrollo social
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/desarrollosocial">Desarrollo social</a></li>
-            <li><a href="/desarrollosocial/descargas">Descargas</a></li>
+            <!--<li><a href="/desarrollosocial/descargas">Descargas</a></li>-->
           </ul>
         </div>
       </div>
@@ -424,8 +424,14 @@ title: Desarrollo social
           //console.log(row);
           var index = markers.length;
 
+          var colorcito = row.gsx$marker.$t;
+          if(colorcito === 'azul'){
+            colorcito = 'azul_0';
+          }
+
               //marcador = "https://www.argentina.gob.ar/sites/default/files/" + row.gsx$marker.$t;
-              marcador = "markers/" + row.gsx$marker.$t + ".png";
+              
+              marcador = "https://www.argentina.gob.ar/sites/default/files/" + colorcito + ".png";
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
@@ -500,11 +506,16 @@ title: Desarrollo social
               var otrostelefonos = '<div class="m-t-1">' + row.gsx$otrostelefonos.$t + '</div>';
             }
 
-
+            if (row.gsx$titulo.$t ){
+              var asuntoTitulo = row.gsx$titulo.$t;
+              var asunto = '?subject=' + encodeURIComponent(asuntoTitulo);
+            } else {
+              var asunto = '';
+            }
 
 
             detalles[index] = new google.maps.InfoWindow({
-              content: categoria + titulo + articulador + provincia + localidad + email + sitioweb + direccion + telefono + otrostelefonos + '<div class="m-t-1"><a target="_blank" href="mailto:xxx@xxx.gob.ar?subject=Nombre%20del%20centro%20-%20Provincia">Cambiar información</a></div>',
+              content: categoria + titulo + articulador + provincia + localidad + email + sitioweb + direccion + telefono + otrostelefonos + '<div class="m-t-1"><a target="_blank" href="mailto:desarrollosocialtv@gmail.com'+ asunto +'">Sumar información</a></div>',
               maxWidth: 400
             })
 
@@ -546,7 +557,7 @@ title: Desarrollo social
 
         var markerCluster = new MarkerClusterer(map, markers, {
           //imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
-          imagePath: 'markers',
+          imagePath: 'https://www.argentina.gob.ar/sites/default/files/',
           gridSize: 50,
           minimumClusterSize: 2000,
           maxZoom: 19
