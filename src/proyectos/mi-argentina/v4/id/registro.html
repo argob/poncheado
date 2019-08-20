@@ -433,8 +433,15 @@ layout: mi-argentina-login
             <div class="row">
               <div class="col-md-10 form-group item-form">
                 <label for="email">Correo electrónico</label>
-                <input type="email" name="contact" class="form-control" id="email" required aria-required="true">
+                <input name="email" type="email" class="form-control" id="email" required aria-required="true">
                 <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-md-10 form-group item-form">
+                <label for="confirmaremail">Confirmar Correo Electrónico</label>
+                <input name="confirmaremail" type="email" class="form-control" id="confirmaremail" required aria-required="true">
+                <p class="help-block error hidden">Falta ingresar la confirmación del correo electrónico.</p>
               </div> 
             </div>
             <div class="row">
@@ -647,6 +654,14 @@ $('#btnCrearCuenta').on('click', function(e) {
     } else {
       $('#checkGenerales .help-block').addClass('hidden');
     }
+});
+
+
+$('input[name="email"]').on('copy paste cut drag drop', function() {
+  return false;
+});
+$('input[name="confirmaremail"]').on('copy paste cut drag drop', function() {
+  return false;
 });
 
     
