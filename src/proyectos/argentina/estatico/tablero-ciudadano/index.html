@@ -352,10 +352,9 @@ layout: argentina
 </script>
 <script>
     jQuery(function() {
-
         var templates = {
             tarjeta: '<div class="col-xs-12 col-sm-12 col-md-12"> <span class="fecha hidden">{inicioProyecto}</span> <span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3 class="nombre-proyecto">{nombre}</h3> </div><div class="panel-footer"> <div class="inter-flex"> <div class="inter auno"> <span>{avancePorcentajeInicial}</span> Avance </div><div class="inter ados"> <h4>{metas}</h4> </div><div class="inter atres"> <p>Organismo Responsable</p><h4>{area}</h4> </div></div></div></a></div>',
-            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <p class="text-primary">{lineamiento}</p><h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body p-x-2"> <p class="m-t-1">{descripcion}</p><h5 class="m-t-2">Impacto</h5> <p>{impacto}</p><h5 class="m-t-2">Público objetivo</h5> <div> {spanciudadano}{spancivil}{spanapn}{spangobiernos}</div> <h5 class="m-t-2">Organismo responsable</h5> <p>{area}</p><table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr></thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">Etapas del proyecto​</h5> <table class="table"> <thead> <tr> <th>Hitos</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr></thead> <tbody data-render="hitos"> </tbody> </table> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p></div></div></div></div>',
+            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <p class="text-primary">{lineamiento}</p><h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body p-x-2"> <p class="m-t-1">{descripcion}</p><h5 class="m-t-2">Impacto</h5> <p>{impacto}</p><h5 class="m-t-2">Público objetivo</h5> <div> {sciudadano}{scivil}{sapn}{sgobiernos}</div> <h5 class="m-t-2">Organismo responsable</h5> <p>{area}</p><table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr></thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">Etapas del proyecto​</h5> <table class="table"> <thead> <tr> <th>Hitos</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr></thead> <tbody data-render="hitos"> </tbody> </table> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p></div></div></div></div>',
             hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
             indicador: '<tr> <td><p>{nombre}</p></td><td><p>{metaAnual}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
         }
@@ -418,7 +417,7 @@ layout: argentina
                 jQuery.each(response.feed.entry, function(index, row) {
 
                     if (row.gsx$tipo.$t == "proyecto") {
-
+                        
                         proyectos.push({
                             index: index,
                             lineamiento: row.gsx$lineamiento.$t,
@@ -426,15 +425,13 @@ layout: argentina
                             descripcion: row.gsx$descripcion.$t,
                             impacto: row.gsx$impacto.$t,
                             ciudadano: row.gsx$ciudadano.$t,
+                            sciudadano: row.gsx$ciudadano.$t,
                             civil: row.gsx$civil.$t,
+                            scivil: row.gsx$civil.$t,
                             apn: row.gsx$apn.$t,
+                            sapn: row.gsx$apn.$t,
                             gobiernos: row.gsx$gobiernos.$t,
-                            /* agrego estos */
-                            spanciudadano: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$ciudadano.$t + '</span>',
-                            spancivil: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$civil.$t + '</span>',
-                            spanapn: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$apn.$t + '</span>',
-                            spangobiernos: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$gobiernos.$t + '</span>',
-                            /**/
+                            sgobiernos: row.gsx$gobiernos.$t,
                             innovacion: row.gsx$innovacion.$t,
                             participacion: row.gsx$participacion.$t,
                             eficiencia: row.gsx$eficiencia.$t,
@@ -505,9 +502,13 @@ layout: argentina
                             .replace(/{lineamiento}/gi, proyecto.lineamiento)
                             .replace(/{descripcion}/gi, proyecto.descripcion.substring(0, 100) + '...')
                             .replace(/{ciudadano}/gi, proyecto.ciudadano.replace("no", "").replace("si", "Ciudadanos"))
+                            .replace(/{sciudadano}/gi, proyecto.ciudadano.replace("no", "").replace("si", "<span class='label label-default' style='margin-right:5px;'>Ciudadanos</span>"))
                             .replace(/{civil}/gi, proyecto.civil.replace("no", "").replace("si", "Organizaciones de la Sociedad Civil"))
+                            .replace(/{scivil}/gi, proyecto.civil.replace("no", "").replace("si", "<span class='label label-default' style='margin-right:5px;'>Organizaciones de la Sociedad Civil</span>"))
                             .replace(/{apn}/gi, proyecto.apn.replace("no", "").replace("si", "Administración Pública"))
+                            .replace(/{sapn}/gi, proyecto.apn.replace("no", "").replace("si", "<span class='label label-default' style='margin-right:5px;'>Administración Pública</span>"))
                             .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no", "").replace("si", "Gobiernos Subnacionales"))
+                            .replace(/{sgobiernos}/gi, proyecto.gobiernos.replace("no", "").replace("si", "<span class='label label-default' style='margin-right:5px;'>Gobiernos Subnacionales</span>"))
                             .replace(/{metas}/gi, proyecto.indicadores[0].metaAnual)
                             .replace(/{area}/gi, proyecto.area)
                             .replace(/{inicioProyecto}/gi, fecha[2] + fecha[1] + fecha[0])
@@ -529,9 +530,13 @@ layout: argentina
                             .replace(/{descripcion}/gi, proyecto.descripcion)
                             .replace(/{estado}/gi, proyecto.estado)
                             .replace(/{ciudadano}/gi, proyecto.ciudadano.replace("no", "").replace("si", "Ciudadanos"))
+                            .replace(/{sciudadano}/gi, proyecto.ciudadano.replace("si", "<span class='label label-default'  style='margin-right:5px;'>Ciudadanos</span>"))
                             .replace(/{civil}/gi, proyecto.civil.replace("no", "").replace("si", "Organizaciones de la Sociedad Civil"))
+                            .replace(/{scivil}/gi, proyecto.civil.replace("no", "").replace("si", "<span class='label label-default'  style='margin-right:5px;'>Organizaciones de la Sociedad Civil</span>"))
                             .replace(/{apn}/gi, proyecto.apn.replace("no", "").replace("si", "Administración Pública"))
+                            .replace(/{sapn}/gi, proyecto.apn.replace("no", "").replace("si", "<span class='label label-default'  style='margin-right:5px;'>Administración Pública</span>"))
                             .replace(/{gobiernos}/gi, proyecto.gobiernos.replace("no", "").replace("si", "Gobiernos Subnacionales"))
+                            .replace(/{sgobiernos}/gi, proyecto.gobiernos.replace("no", "").replace("si", "<span class='label label-default'  style='margin-right:5px;'>Gobiernos Subnacionales</span>"))
                             .replace(/{link}/gi, proyecto.link)
                             .replace(/{area}/gi, proyecto.area)
                             .replace(/{impacto}/gi, proyecto.impacto)
