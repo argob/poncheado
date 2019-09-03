@@ -110,12 +110,29 @@ layout: argentina
     .panel:hover .inter-flex *{
         color: #fff;
     }
+    #tipo-proyectos .panel:not(.active):focus{background: #fff;color:#333!important;}
+    #tipo-proyectos .panel:not(.active):focus .text-secondary,
+    #tipo-proyectos .panel:not(.active):focus .text-muted{color:#707070!important;}
+    #tipo-proyectos .panel:not(.active):focus i.text-secondary{color:#2897D4!important; }
+    #tipo-proyectos .panel:not(.active):focus .progress{background-color: #E5EAEB;}
+    #tipo-proyectos .panel:not(.active):focus .progress-bar{background-color: #707070;}
+    #tipo-proyectos .panel:not(.active):focus .big small{color: rgba(112, 112, 112, .5);}
+    
+    #tipo-proyectos .panel:not(.active):active{background: #0072bb;color:#fff!important;}
+    #tipo-proyectos .panel:not(.active):active .text-secondary,
+    #tipo-proyectos .panel:not(.active):active i.text-secondary,
+    #tipo-proyectos .panel:not(.active):active .text-muted{color:#fff!important;}
+    #tipo-proyectos .panel:not(.active):active .progress{background-color: rgba(255, 255, 255,.4);}
+    #tipo-proyectos .panel:not(.active):active .progress-bar{background-color: #fff;}
+    #tipo-proyectos .panel:not(.active):active .big small{color: rgba(255, 255, 255,.4);}
+    
     .panel.active{background: #0072bb;color:#fff!important;}
     .panel.active .text-secondary,
     .panel.active .text-muted{color:#fff!important;}
     .panel.active .progress{background-color: rgba(255, 255, 255,.4);}
     .panel.active .progress-bar{background-color: #fff;}
     .panel.active .big small{color: rgba(255, 255, 255,.4);}
+
     .panel .panel-footer.state-loading{height: 100%;min-height: 150px;}
     .panel .panel-footer.state-loading:after{background: none;}
 
@@ -338,7 +355,7 @@ layout: argentina
 
         var templates = {
             tarjeta: '<div class="col-xs-12 col-sm-12 col-md-12"> <span class="fecha hidden">{inicioProyecto}</span> <span class="duracion hidden">({duracionProyecto})</span> <a href="#proyecto-{index}" data-toggle="modal" class="panel panel-default"> <div class="panel-body"> <h3 class="nombre-proyecto">{nombre}</h3> </div><div class="panel-footer"> <div class="inter-flex"> <div class="inter auno"> <span>{avancePorcentajeInicial}</span> Avance </div><div class="inter ados"> <h4>{metas}</h4> </div><div class="inter atres"> <p>Organismo Responsable</p><h4>{area}</h4> </div></div></div></a></div>',
-            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <p class="text-primary">{lineamiento}</p><h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body p-x-2"> <p class="m-t-1">{descripcion}</p><h5 class="m-t-2">Impacto</h5> <p>{impacto}</p><h5 class="m-t-2">Público objetivo</h5> <div> {ciudadano}{civil}{apn}{gobiernos}</div> <h5 class="m-t-2">Organismo responsable</h5> <p>{area}</p><table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr></thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">Etapas del proyecto​</h5> <table class="table"> <thead> <tr> <th>Hitos</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr></thead> <tbody data-render="hitos"> </tbody> </table> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p></div></div></div></div>',
+            modal: '<div id="proyecto-{index}" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button> <p class="text-primary">{lineamiento}</p><h4 class="modal-title">{proyecto}</h4> </div><div class="modal-body p-x-2"> <p class="m-t-1">{descripcion}</p><h5 class="m-t-2">Impacto</h5> <p>{impacto}</p><h5 class="m-t-2">Público objetivo</h5> <div> {spanciudadano}{spancivil}{spanapn}{spangobiernos}</div> <h5 class="m-t-2">Organismo responsable</h5> <p>{area}</p><table class="table"> <thead> <tr> <th>Indicador</th> <th>Meta Anual</th> <th>Avance</th> </tr></thead> <tbody data-render="indicadores"> </tbody> </table> <h5 class="m-t-3">Etapas del proyecto​</h5> <table class="table"> <thead> <tr> <th>Hitos</th> <th>Inicio</th> <th>Fin</th> <th style="width:130px;">Estado</th> </tr></thead> <tbody data-render="hitos"> </tbody> </table> <p class="text-center m-t-3 m-b-1"> <a href="{link}" target="_blank" class="btn btn-primary btn-lg">Conocé más del proyecto</a> </p></div></div></div></div>',
             hito: '<tr> <td class="titulo"> <p>{nombre}</p></td> <td><p>{inicio}</p></td> <td><p>{fin}</p></td> <td><p><strong>{estado}</strong></p></td> </tr>',
             indicador: '<tr> <td><p>{nombre}</p></td><td><p>{metaAnual}</p></td><td><p>{avancePorcentaje}</p></td></tr>'
         }
@@ -390,7 +407,7 @@ layout: argentina
                         <p class="text-muted msj-exito">Avance proyectos de ${title}</p>
                         `);
 
-                        if(done > 100){
+                        if(done > 99){
                             jQuery("#tipo-proyectos .panel[data-tipoproyectos="+ index +"] .msj-exito").html('¡Metas cumplidas!<br><i class="fa fa-star" aria-hidden="true"></i>');
                         }
 
@@ -408,10 +425,16 @@ layout: argentina
                             nombre: row.gsx$nombre.$t,
                             descripcion: row.gsx$descripcion.$t,
                             impacto: row.gsx$impacto.$t,
-                            ciudadano: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$ciudadano.$t + '</span>',
-                            civil: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$civil.$t + '</span>',
-                            apn: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$apn.$t + '</span>',
-                            gobiernos: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$gobiernos.$t + '</span>',
+                            ciudadano: row.gsx$ciudadano.$t,
+                            civil: row.gsx$civil.$t,
+                            apn: row.gsx$apn.$t,
+                            gobiernos: row.gsx$gobiernos.$t,
+                            /* agrego estos */
+                            spanciudadano: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$ciudadano.$t + '</span>',
+                            spancivil: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$civil.$t + '</span>',
+                            spanapn: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$apn.$t + '</span>',
+                            spangobiernos: '<span class="label label-default" style="margin-right:5px;">' + row.gsx$gobiernos.$t + '</span>',
+                            /**/
                             innovacion: row.gsx$innovacion.$t,
                             participacion: row.gsx$participacion.$t,
                             eficiencia: row.gsx$eficiencia.$t,
@@ -568,13 +591,20 @@ layout: argentina
         var alertavacia = '<div class="col-xs-12"><div class="alert alert-info"><p>No se encontraron resultados. Intente cambiando el criterio para filtrar.</p></div></div>';
 
         jQuery("#tipo-proyectos .panel").on("click", function() {
-            config.tipo = jQuery(this).data('tipoproyectos');
+            //config.tipo = jQuery(this).data('tipoproyectos');
+            if (jQuery(this).hasClass('active')) {
+                jQuery(this).removeClass('active');
+                config.tipo = 'todos';
+            } else {
+                jQuery("#tipo-proyectos .panel").removeClass('active');
+                jQuery(this).addClass('active');
+                config.tipo = jQuery(this).data('tipoproyectos');
+            }
+
             render.tarjetas();
             if (jQuery('[data-render=tarjetas]').is(':empty')){
                 jQuery('[data-render=tarjetas]').html(alertavacia);
             }
-            jQuery("#tipo-proyectos .panel").removeClass('active');
-            jQuery(this).addClass('active');
         });
 
         jQuery("#alcance [data-filtro]").bind("click", function() {
