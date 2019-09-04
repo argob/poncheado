@@ -96,8 +96,39 @@ layout: mi-argentina
                                                     <p>
                                                         <strong>Datos del proveedor del producto o servicio</strong>
                                                     </p>
-                                                    <div id="step1a" class="col-xs-12 col-md-8">
-                                                        
+                                                    <div class="row">
+                                                        <div id="step1a" class="col-xs-12 col-md-8">
+                                                                <div class="alert alert-success" id="alert1">
+                                                                    <p class="m-b-1">
+                                                                        <strong>Proveedor 1</strong>
+                                                                    </p>
+                                                                    <small>
+                                                                            Nombre y razón social  del proveedor:
+                                                                    </small>
+                                                                    <p>
+                                                                        <strong>Movistar - Telefónica Móviles Argentina S.A.</strong>
+                                                                    </p>
+                                                                    <button type="button" class="btn btn-link">Borrar proveedor</button>
+                                                                </div>
+                                                                
+                                                                <div id="step1${count}">
+                                                                    Buscá al proveedor para agregar sus datos.
+                                                                    <span class="help-block">
+                                                                        Esta información la podés sacar de tu factura o
+                                                                        ticket.
+                                                                    </span>
+                                                                    <label for="searchEnty${count}">Ingresá el nombre o el CUIT del proveedor (empresa o negocio)? *</label>
+                                                                    <input type="text"  class="form-control searchEnty" id="searchEnty${count}">
+                                                                    <button type="button" id="searchEntyBtn${count}" class="btn btn-success addEntyBtn m-t-2"  data-toggle="modal">Buscar proveedor</button>
+                                                                </div>
+                                                                
+                                                                <div>
+                                                                    <hr>
+                                                                    <p>Podés agregar hasta 3 proveedores más.</p>
+                                                                    <button type="button" class="btn btn-link addEntyBtn"  data-toggle="modal">Agregar proveedor</button>
+                                                                </div>
+                                                            
+                                                        </div>
                                                     </div>
 
                                         
@@ -138,151 +169,14 @@ layout: mi-argentina
     </div>
 </section>
 
-<script>
-let count = 1
-let restCount = 5
-let inputNew = document.createElement('div')
-let modalEnty = document.createElement('div')
-let modalEntyCuit = document.createElement('div')
-let alertSuccess
-let newEnty 
-
-
-window.onload = function(){
-    createFormEnty()
-    document.querySelector('#step1a').appendChild(inputNew)
-    triggerModal()
-    document.querySelector('.panel-body').appendChild(modalEnty)
-    document.querySelector('.panel-body').appendChild(modalEntyCuit)
-    showEntyAdded()
-    
- }
-function showEntyAdded(){
-    document.querySelectorAll('.btnSelectEnty').forEach(btn => {
-        btn.addEventListener('click', function(){
-            if(!document.querySelector(`#step1${count}`).classList.contains('hidden')){
-                    document.querySelector(`#step1${count}`).classList.add('hidden')
-                    document.querySelector('.container-fluid').removeChild(modalEnty)
-                    document.querySelector('.container-fluid').removeChild(modalEntyCuit)
-                    document.querySelectorAll('.modal-backdrop').forEach(m => {
-                        m.classList.add('hidden')
-                    })
-                }
-                
-            
-            alertSuccess = document.createElement('div')
-            alertSuccess.innerHTML = `<div class="alert alert-success" id="alert${count}">
-                                        <p class="m-b-1">
-                                            <strong>Proveedor ${count}</strong>
-                                        </p>
-                                        <small>
-                                                Nombre y razón social  del proveedor:
-                                        </small>
-                                        <p>
-                                            <strong>Movistar - Telefónica Móviles Argentina S.A.</strong>
-                                        </p>
-                                        <button type="button" class="btn btn-link">Borrar proveedor</button>
-                                    </div>`
-
-            document.querySelector('.newAlert').appendChild(alertSuccess)
-            
-            count++
-            restCount--
-            if(count < 5){
-                newFormEnty()
-            }
-
-        })
-    })
-       
-}
-
-showEntyAdded()
-
-
-//busca proveedor
-function triggerModal(){
-    document.querySelectorAll('.btn-success.addEntyBtn').forEach(btn => {
-        btn.addEventListener('click', function(){
-            console.log(count)
-            document.querySelector('.container-fluid').appendChild(modalEnty)
-            document.querySelector('.container-fluid').appendChild(modalEntyCuit)
-            let inputVal = parseInt(document.querySelector(`#searchEnty${count}`).value)
-            if(inputVal != ''){
-              
-                if(isNaN(inputVal)){
-                    modalEntyCuit.firstChild.classList.add('hidden')
-                    modalEnty.firstChild.classList.remove('hidden')
-                    modalEnty.firstChild.setAttribute('id', `entyModal${count}`)
-                    btn.removeAttribute('data-target', `#entyModalCuit${count}`)
-                    btn.setAttribute('data-target', `#entyModal${count}`)
-                    }else{
-                    modalEnty.firstChild.classList.add('hidden')
-                    modalEntyCuit.firstChild.classList.remove('hidden')
-                    modalEntyCuit.firstChild.setAttribute('id', `entyModalCuit${count}`)
-                    btn.removeAttribute('data-target', `#entyModal${count}`)
-                    btn.setAttribute('data-target', `#entyModalCuit${count}`)
-                }
-            }
-        })
-
-    })
- }
-
-
-function createFormEnty(){
-    inputNew.innerHTML = `<div id="step1${count}">
-                            Buscá al proveedor para agregar sus datos.
-                            <span class="help-block">
-                                Esta información la podés sacar de tu factura o
-                                ticket.
-                            </span>
-                            <label for="searchEnty${count}">Ingresá el nombre o el CUIT del proveedor (empresa o negocio)? *</label>
-                            <input type="text"  class="form-control searchEnty" id="searchEnty${count}">
-                            <button type="button" id="searchEntyBtn${count}" class="btn btn-success addEntyBtn m-t-2"  data-toggle="modal">Buscar proveedor</button>
-                        </div>`
-                        triggerModal()
-                        
-}
-//Agrega nuevo proveedor
-function newFormEnty(){
-    newEnty = document.createElement('div')
-    newEnty.innerHTML = `<div><hr>
-                        <p>Podés agregar hasta ${restCount} proveedores más.</p>
-                        <button type="button" class="btn btn-link addEntyBtn"  data-toggle="modal">Agregar proveedor</button></div>`
-    document.querySelectorAll('.newFormEnty').forEach(n => {
-        n.appendChild(newEnty)
-    })
- 
- 
-    document.querySelectorAll('.btn-link.addEntyBtn').forEach(btn => {
-        btn.addEventListener('click', function(){
-            document.querySelectorAll('.newFormEnty').forEach(n => {
-                createFormEnty()
-                n.appendChild(inputNew)
-
-                let btn = document.querySelector(`#searchEntyBtn${count}`)
-                btn.removeAttribute('data-target')
-                while (n.childNodes.length > 1) {
-                    n.removeChild(n.firstChild);
-                }
-                
-                triggerModal()
-            })
-            
-            
-        })
-
-       
-
-})
-}
 
 
 
     
 
-modalEnty.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -703,9 +597,9 @@ modalEnty.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria
                                     
                                 </div>
                                 </div>
-                            </div>`
-
-modalEntyCuit.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                            </div>
+                            
+                            <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -747,6 +641,4 @@ modalEntyCuit.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" 
                                     </div>
                                 </div>
                             </div>
-                        </div>`
-
-</script>
+                        </div>
