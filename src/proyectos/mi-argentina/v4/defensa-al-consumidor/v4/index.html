@@ -16,6 +16,15 @@ layout: mi-argentina
         display: flex;
         align-items: flex-end;
     }
+
+    .round-tab {
+        cursor: default;
+        user-select: none; /* supported by Chrome and Opera */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+    }
 </style>
 <link rel="stylesheet" href="../../../css/miargentina.css">
 <section class="p-y-0">
@@ -59,35 +68,14 @@ layout: mi-argentina
                                         <ul class="nav nav-tabs" role="tablist">
 
                                             <li role="presentation" class="active">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-1" href="#step-1" data-toggle="tab" aria-controls="step-1"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 1</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">1</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">1</span>
                                             </li>
 
                                             <li role="presentation" class="disabled">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-2" href="#step-2" data-toggle="tab" aria-controls="step-2"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 2</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">2</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">2</span>
                                             </li>
                                             <li role="presentation" class="disabled">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-3" href="#step-3" data-toggle="tab" aria-controls="step-3"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 3</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">3</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">3</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -99,8 +87,8 @@ layout: mi-argentina
                                         <div class="tab-content" role="tablist">
                                             <div class="tab-pane active" role="tabpanel" id="step-1"
                                                 aria-labelledby="paso-1">
-                                                <p><strong>Datos del proveedor del producto o servicio</strong></p>
-                                                <div class="alert alert-success m-t-1">
+                                                <p class="h3"><strong>Datos del proveedor del producto o servicio</strong></p>
+                                                <div class="alert alert-success m-t-2">
                                                     <p class="m-b-1">
                                                         <strong>Proveedor 1</strong>
                                                     </p>
@@ -115,7 +103,7 @@ layout: mi-argentina
                                                         proveedor</button>
                                                 </div>
                                                 <hr>
-                                                <div class="alert alert-success m-t-1">
+                                                <div class="alert alert-success m-t-2">
                                                     <p class="m-b-1">
                                                         <strong>Proveedor 1</strong>
                                                     </p>
@@ -130,7 +118,7 @@ layout: mi-argentina
                                                         proveedor</button>
                                                 </div>
 
-                                                <div class="m-t-1">
+                                                <div class="m-t-2">
                                                     ¡La empresa a la cual deseas reclamar se encuentra adherida al nuevo sistema Concili.ar!
                                                     <span class="help-block">
                                                             Plataforma 100% On-line. Plazo máximo de resolución:10 días. Conocer más sobre <a href="www.Concili.ar" target="_blank">Concili.ar</a>
@@ -151,7 +139,7 @@ layout: mi-argentina
                                                         </div>
                                                     </fieldset>
                                                 </div>
-                                                <div class="m-t-1">
+                                                <div class="m-t-2">
                                                     Buscá al proveedor para agregar sus datos.
                                                     <span class="help-block">
                                                         Esta información la podés sacar de tu factura o
@@ -177,8 +165,7 @@ layout: mi-argentina
                                                     data-toggle="modal">Agregar proveedor</button>
                                                 <hr>
                                                 <button type="button"
-                                                class="btn btn-success" onclick="location.href='paso-2.html'"
-                                                data-toggle="modal" data-target="#modal-txt">Siguiente</button>
+                                                class="btn btn-success" onclick="location.href='paso-2.html'">Siguiente</button>
 
                                             </div>
 

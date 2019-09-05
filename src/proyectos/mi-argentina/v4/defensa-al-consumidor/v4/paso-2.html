@@ -7,14 +7,25 @@ layout: mi-argentina
         transform: translateY(-40%);
         height: 1000px;
     }
-    .enty-select{
+
+    .enty-select {
         border-bottom: 1px solid #DEE2E6;
         padding-bottom: 10px;
         margin-bottom: 20px;
     }
+
     .enty-info-select {
         display: flex;
         align-items: flex-end;
+    }
+
+    .round-tab {
+        cursor: default;
+        user-select: none; /* supported by Chrome and Opera */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
     }
 </style>
 <link rel="stylesheet" href="../../../css/miargentina.css">
@@ -59,51 +70,285 @@ layout: mi-argentina
                                         <ul class="nav nav-tabs" role="tablist">
 
                                             <li role="presentation" class="disabled">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-1" href="#step-1" data-toggle="tab" aria-controls="step-1"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 1</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">1</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">1</span>
                                             </li>
 
                                             <li role="presentation" class="active">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-2" href="#step-2" data-toggle="tab" aria-controls="step-2"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 2</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">2</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">2</span>
                                             </li>
                                             <li role="presentation" class="disabled">
-                                                <!-- agregar class "check" para cambiar el número del paso por el icono cuando el paso esté completo-->
-                                                <a id="paso-3" href="#step-3" data-toggle="tab" aria-controls="step-3"
-                                                    role="tab" title="Completá los siguientes datos">
-                                                    <span class="round-tab"><span class="sr-only">Paso 3</span>
-                                                        <i class="fa fa-check"></i><span class="stepnumber"
-                                                            aria-hidden="true">3</span>
-                                                    </span>
-                                                </a>
+                                                    <span class="round-tab">3</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="panel-body">
                                     <form id="DefensaAlConsumidor" role="form">
-                                        <div id="errores" rol="alert" aria-live="assertive"
-                                            class="alert alert-danger sr-only"></div>
                                         <div class="tab-content" role="tablist">
                                             <div class="tab-pane" role="tabpanel" id="step-1" hidden
                                                 aria-labelledby="paso-1">
                                             </div>
 
-                                            <div class="tab-pane active" role="tabpanel" id="step-2" aria-labelledby="paso-2"
-                                                >
-                                                Activo
+                                            <div class="tab-pane active" role="tabpanel" id="step-2"
+                                                aria-labelledby="paso-2">
+                                                <p class="h3"><strong>Datos de la persona que hace el reclamo</strong>
+                                                </p>
+                                                <div class="m-t-2">
+                                                    <fieldset>
+                                                        <label>¿Sos el titular del producto o servicio? *</label>
+                                                        <div class="form-group item-form">
+                                                            <label for="opSi" class="radio-inline">
+                                                                <input type="radio" name="soyTitular" id="opSi"
+                                                                    value="Si" required="" aria-required="true">
+                                                                Si
+                                                            </label>
+                                                            <label for="opNo" class="radio-inline">
+                                                                <input type="radio" name="soyTitular" id="opNo"
+                                                                    value="No" required="" aria-required="true">
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <label>¿Sos quien usa el producto o servicio? *</label>
+                                                        <span class="help-block m-b-1">
+                                                            Si la respuesta es “NO”, podrías ser el representante del
+                                                            titular o usuario. Para poder actuar como representante
+                                                            deberás acreditar tu condición con un poder.
+                                                        </span>
+                                                        <div class="form-group item-form">
+                                                            <label for="opSi1" class="radio-inline">
+                                                                <input type="radio" name="usaProd" id="opSi1" value="Si"
+                                                                    required="" aria-required="true">
+                                                                Si
+                                                            </label>
+                                                            <label for="opNo1" class="radio-inline">
+                                                                <input type="radio" name="usaProd" id="opNo1" value="No"
+                                                                    required="" aria-required="true">
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8">
+                                                            <label for="titular">Ingresá el nombre y apellido del
+                                                                titular del producto o servicio</label>
+                                                            <div class="form-group item-form">
+                                                                <input type="text" class="form-control" id="titular">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4">Completá los datos del titular del producto o servicio
+                                                    </p>
+                                                    <div id="errores" aria-live="polite" class="alert alert-danger m-t-2" >
+                                                        <h2>Se han producido los siguientes errores:</h2>
+                                                        <ol style="padding:0 20px;">
+                                                            <li>Ingresá tu nombre</li>
+                                                            <li>Ingresá tu apellido</li>
+                                                        </ol>
+                                                    </div>
+                                                    <div class="row m-t-2">
+                                                        <div class="col-md-10 col-lg-8 form-group has-error has-feedback">
+                                                            <label for="nombre">Nombre *</label>
+                                                            <input type="text" class="form-control" id="nombre">
+                                                            <p class="help-block error">Ingresá tu nombre</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group has-error has-feedback">
+                                                            <label for="apellido">Apellido *</label>
+                                                            <input type="text" class="form-control" id="apellido">
+                                                            <p class="help-block error">Ingresá tu apellido</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="top">Tipo de documento *</label>
+                                                            <select name="" id="top" class="form-control">
+                                                                <option value="">DNI</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="dni">Número de documento *</label>
+                                                            <input type="number" class="form-control" id="dni">
+                                                        </div>
+                                                    </div>
+                                                    <fieldset>
+                                                        <label>Sexo *</label>
+                                                        <span class="help-block m-b-1">
+                                                            Completá este dato según lo que figura en tu documento
+                                                        </span>
+                                                        <div class="form-group item-form">
+                                                            <label for="femenino" class="radio-inline">
+                                                                <input type="radio" name="sexo" id="femenino" value="Si"
+                                                                    required="" aria-required="true">
+                                                                Femenino
+                                                            </label>
+                                                            <label for="masculino" class="radio-inline">
+                                                                <input type="radio" name="sexo" id="masculino "
+                                                                    value="No" required="" aria-required="true">
+                                                                Masculino
+                                                            </label>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="row">
+                                                        <div class="col-xs-6 col-md-5 col-lg-4 form-group">
+                                                            <label for="nacimiento">Fecha de nacimiento *</label>
+                                                            <input type="date" class="form-control" id="nacimiento"
+                                                                    value="dd-mm-aaaa" min="1950-01-01"
+                                                                    max="2019-09-01">
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Datos personales</p>
+                                                    <div class="row m-t-2">
+                                                        <div class="col-md-10 col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Tipo de documento
+                                                                    </span>
+                                                                    <p><b>DNI</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Número de documento
+                                                                    </span>
+                                                                    <p><b>24666222</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Nombre
+                                                                    </span>
+                                                                    <p><b>María Juana</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Apellido
+                                                                    </span>
+                                                                    <p><b>Fernandez</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Sexo
+                                                                    </span>
+                                                                    <p><b>Femenino</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Fecha de nacimiento
+                                                                    </span>
+                                                                    <p><b>10/04/1986</b></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Domicilio</p>
+                                                    <div class="row m-t-2">
+                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                            <label for="prov">Provincia *</label>
+                                                            <select name="" id="prov" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                            <label for="partido">Partido o departamento *</label>
+                                                            <select name="" id="partido" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                            <label for="localidad">Localidad *</label>
+                                                            <select name="" id="localidad" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 ">
+                                                            <label for="dp">Código postal *</label>
+                                                            <span class="help-block m-b-1">
+                                                                <a href="#">Consultá tu código postal</a>
+                                                            </span>
+                                                            <div class="form-group item-form">
+                                                                <input type="text" class="form-control" id="dp">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="calle">Calle *</label>
+                                                            <input type="text" class="form-control" id="calle">
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="numero">Número
+                                                                <small><em>(opcional)</em></small></label>
+                                                            <input type="number" class="form-control" id="numero">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="piso">Piso
+                                                                <small><em>(opcional)</em></small></label>
+                                                                <input type="text" class="form-control" id="piso">
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="depto">Departamento
+                                                                <small><em>(opcional)</em></small></label>
+                                                                <input type="text" class="form-control" id="depto">
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Datos de contacto</p>
+                                                    <span class="help-block m-b-1">
+                                                        Completá al menos una manera para comunicarnos.
+                                                    </span>
+                                                    <div class="form-group m-t-2">
+                                                        <span class="help-block m-b-0">
+                                                            Correo electónico
+                                                        </span>
+                                                        <p>juanafernandez@gmail.com</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                            <label for="email">Correo electónico *</label>
+                                                            <input type="email" class="form-control" id="email">
+                                                        </div>
+                                                    </div>
+                                                    <fieldset>
+                                                        <legend>Teléfono</legend>
+                                                        <div class="row">
+                                                            <div class="col-xs-4 col-lg-3">
+                                                                <label for="prefijo"><small>Prefijo</small></label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"
+                                                                        id="prefijo">0</span>
+                                                                    <input type="number" class="form-control"
+                                                                        aria-describedby="prefijo">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-6 col-lg-5 form-group">
+                                                                <label for="telefono"><small>Número</small></label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="telefono">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <button type="button" class="btn btn-link"
+                                                        onclick="location.href='index.html'">Anterior</button>
+                                                    <button type="button"
+                                                        class="btn btn-success m-l-1"
+                                                        onclick="location.href='paso-3.html'">Siguiente</button>
+
+                                                </div>
 
                                             </div>
                                             <div class="tab-pane" role="tabpanel" id="step-3" aria-labelledby="paso-3"
@@ -115,17 +360,9 @@ layout: mi-argentina
                                 </div>
                             </div>
                         </div>
-                        <a href="index.html" role="button" class="btn btn-link">
-                            cancelar
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
-
-
