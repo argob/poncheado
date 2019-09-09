@@ -1,18 +1,20 @@
 --- 
 layout: mi-argentina
 ---
+
+
 <style>
-#entyModal{
-    top: 40%;
-    transform: translateY(-40%);
-    height: 1000px;
-}
-.enty-info-select{
-    display: flex;
-    align-items: center;
-}
+    #entyModal{
+        top: 40%;
+        transform: translateY(-40%);
+        height: 1000px;
+    }
+    .enty-info-select{
+        display: flex;
+        align-items: center;
+    }
+   
 </style>
-<link rel="stylesheet" href="../../../css/miargentina.css">
 <section class="p-y-0">
     <div class="container-fluid">
         <div class="row dashboard">
@@ -139,7 +141,7 @@ layout: mi-argentina
 </section>
 
 <script>
-let count = 1
+let count = 0
 let restCount = 5
 let inputNew = document.createElement('div')
 let modalEnty = document.createElement('div')
@@ -154,20 +156,21 @@ window.onload = function(){
     triggerModal()
     document.querySelector('.panel-body').appendChild(modalEnty)
     document.querySelector('.panel-body').appendChild(modalEntyCuit)
-    showEntyAdded()
+    
     
  }
 function showEntyAdded(){
     document.querySelectorAll('.btnSelectEnty').forEach(btn => {
         btn.addEventListener('click', function(){
-            if(!document.querySelector(`#step1${count}`).classList.contains('hidden')){
-                    document.querySelector(`#step1${count}`).classList.add('hidden')
-                    document.querySelector('.container-fluid').removeChild(modalEnty)
-                    document.querySelector('.container-fluid').removeChild(modalEntyCuit)
-                    document.querySelectorAll('.modal-backdrop').forEach(m => {
-                        m.classList.add('hidden')
-                    })
-                }
+            
+            console.log(count)
+            document.querySelector(`#step1${count}`).classList.add('hidden')
+            
+            document.querySelector('.container-fluid').removeChild(modalEnty)
+            
+            document.querySelectorAll('.modal-backdrop').forEach(m => {
+                m.classList.add('hidden')
+            })
                 
             
             alertSuccess = document.createElement('div')
@@ -186,15 +189,34 @@ function showEntyAdded(){
 
             document.querySelector('.newAlert').appendChild(alertSuccess)
             
-            count++
-            restCount--
+            
             if(count < 5){
                 newFormEnty()
             }
 
         })
+         
     })
-       
+   
+}
+
+function showDetail(){
+    document.querySelectorAll('.btnSelectEntyPrev').forEach(btn => {
+        btn.addEventListener('click', function(){
+            
+             modalEntyCuit.firstChild.classList.remove('hidden')
+             modalEnty.firstChild.classList.add('hidden')
+             modalEnty.firstChild.classList.remove('modal')
+             modalEnty.appendChild(modalEntyCuit)
+             modalEnty.querySelector('.modal').classList.add('modalOver', 'in')
+             modalEnty.querySelector('.modal').classList.remove('hidden')
+             modalEnty.querySelector('.modal').style.display = 'block'
+
+        })
+    })
+    showEntyAdded()
+    count++
+    restCount-- 
 }
 
 showEntyAdded()
@@ -204,12 +226,20 @@ showEntyAdded()
 function triggerModal(){
     document.querySelectorAll('.btn-success.addEntyBtn').forEach(btn => {
         btn.addEventListener('click', function(){
-            console.log(count)
+            if(document.querySelector(`#entyModal${count}`)){
+                document.querySelector(`#entyModal${count}`).parentNode.removeChild(document.querySelector(`#entyModal${count}`))
+            }
+
+            if(document.querySelector(`#entyModalCuit${count}`)){
+                document.querySelector(`#entyModalCuit${count}`).parentNode.removeChild(document.querySelector(`#entyModalCuit${count}`))
+            }
+            
+            // 
+            // document.querySelector('.container-fluid').removeChild(modalEntyCuit)
             document.querySelector('.container-fluid').appendChild(modalEnty)
             document.querySelector('.container-fluid').appendChild(modalEntyCuit)
             let inputVal = parseInt(document.querySelector(`#searchEnty${count}`).value)
             if(inputVal != ''){
-              
                 if(isNaN(inputVal)){
                     modalEntyCuit.firstChild.classList.add('hidden')
                     modalEnty.firstChild.classList.remove('hidden')
@@ -224,9 +254,11 @@ function triggerModal(){
                     btn.setAttribute('data-target', `#entyModalCuit${count}`)
                 }
             }
+            showDetail()
         })
 
     })
+    
  }
 
 
@@ -282,428 +314,432 @@ function newFormEnty(){
 
     
 
-modalEnty.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+modalEnty.innerHTML = `<div class="modal fade modalOver"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h3 class="modal-title m-b-0" id="myModalLabel">Proveedores encontrados</h3>
-                                    </div>
+                                    <div class="modal-heading">
+                                        <h4 class="modal-title m-b-0 m-l-1 m-t-1" id="myModalLabel">Proveedores encontrados</h4>
+                                        </div>
                                     <div class="modal-body">
-                                        <ul class="list-group m-x-0" id="first-result">
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar
-                                                                </strong>
-                                                            </p>
+                                        <div class="panels-row-miargentina">
+					                        <div class="panel panel-default">
+                                                
+                                                <div class="panel-body">
+                                                    <ul class="list-group m-x-0" id="first-result">
+                                                        <li class="list-group-item">
+                                                            <div class="row  enty-info-select">
+                                                                <div class="col-md-8">
+                                                                    <div class="m-b-1">
+                                                                        <small>Nombre:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                Movistar
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="m-b-1">
+                                                                        <small>Razón social:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row  enty-info-select">
+                                                                <div class="col-md-8">
+                                                                    <div class="m-b-1">
+                                                                        <small>Nombre:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                Movistar
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="m-b-1">
+                                                                        <small>Razón social:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row  enty-info-select">
+                                                                <div class="col-md-8">
+                                                                    <div class="m-b-1">
+                                                                        <small>Nombre:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                Movistar
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="m-b-1">
+                                                                        <small>Razón social:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row  enty-info-select">
+                                                                <div class="col-md-8">
+                                                                    <div class="m-b-1">
+                                                                        <small>Nombre:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                Movistar
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="m-b-1">
+                                                                        <small>Razón social:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row  enty-info-select">
+                                                                <div class="col-md-8">
+                                                                    <div class="m-b-1">
+                                                                        <small>Nombre:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                Movistar
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="m-b-1">
+                                                                        <small>Razón social:</small> 
+                                                                        <p>
+                                                                            <strong>
+                                                                                TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                            </strong>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                </ul>
+                                                <ul class="list-group m-x-0 hidden" id="second-result">
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Telefónica - Movistar 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Telefónica - Movistar 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Telefónica - Movistar 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Telefónica - Movistar 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Telefónica - Movistar 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-group m-x-0 hidden" id="third-result">
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Movistar - Tuenti
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Movistar - Tuenti 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Movistar - Tuenti 
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Movistar - Tuenti
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="row  enty-info-select">
+                                                            <div class="col-md-8">
+                                                                <div class="m-b-1">
+                                                                    <small>Nombre:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            Movistar - Tuenti
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="m-b-1">
+                                                                    <small>Razón social:</small> 
+                                                                    <p>
+                                                                        <strong>
+                                                                            TELEFÓNICA MÓVILES ARGENTINA S.A
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="btn btn-primary btnSelectEntyPrev">Seleccionar</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-group m-x-0 hidden" id="second-result">
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Telefónica - Movistar 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Telefónica - Movistar 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Telefónica - Movistar 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Telefónica - Movistar 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Telefónica - Movistar 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-group m-x-0 hidden" id="third-result">
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar - Tuenti
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar - Tuenti 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar - Tuenti 
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar - Tuenti
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row  enty-info-select">
-                                                    <div class="col-md-8">
-                                                        <div class="m-b-1">
-                                                            <small>Nombre:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    Movistar - Tuenti
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="m-b-1">
-                                                            <small>Razón social:</small> 
-                                                            <p>
-                                                                <strong>
-                                                                    TELEFÓNICA MÓVILES ARGENTINA S.A
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="btn btn-primary btnSelectEnty">Seleccionar</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <nav aria-label="Page navigation" class="text-center">
-                                            <ul class="pagination m-y-0">
-                                                <li>
-                                                <a href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                                </li>
-                                                <li><a href="#" onclick="
-                                                    document.querySelector('#first-result').classList.remove('hidden')
-                                                    document.querySelector('#second-result').classList.add('hidden')
-                                                    document.querySelector('#third-result').classList.add('hidden')
-                                                ">1</a></li>
-                                                <li><a href="#" onclick="
-                                                document.querySelector('#second-result').classList.remove('hidden')
-                                                document.querySelector('#first-result').classList.add('hidden')
-                                                document.querySelector('#third-result').classList.add('hidden')">2</a></li>
-                                                <li><a href="#" onclick="
-                                                document.querySelector('#third-result').classList.remove('hidden') 
-                                                document.querySelector('#second-result').classList.add('hidden') 
-                                                document.querySelector('#first-result').classList.add('hidden')">3</a></li>
-                                                <li>
-                                                <a href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                                    </li>
+                                                </ul>
+                                                <nav aria-label="Page navigation" class="text-center">
+                                                    <ul class="pagination m-y-0">
+                                                        <li>
+                                                        <a href="#" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                        </li>
+                                                        <li><a href="#" onclick="
+                                                            document.querySelector('#first-result').classList.remove('hidden')
+                                                            document.querySelector('#second-result').classList.add('hidden')
+                                                            document.querySelector('#third-result').classList.add('hidden')
+                                                        ">1</a></li>
+                                                        <li><a href="#" onclick="
+                                                        document.querySelector('#second-result').classList.remove('hidden')
+                                                        document.querySelector('#first-result').classList.add('hidden')
+                                                        document.querySelector('#third-result').classList.add('hidden')">2</a></li>
+                                                        <li><a href="#" onclick="
+                                                        document.querySelector('#third-result').classList.remove('hidden') 
+                                                        document.querySelector('#second-result').classList.add('hidden') 
+                                                        document.querySelector('#first-result').classList.add('hidden')">3</a></li>
+                                                        <li>
+                                                        <a href="#" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                                <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                                </div>
-                            </div>`
+                            </div>
+                        </div>`
 
 modalEntyCuit.innerHTML = `<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                             <div class="modal-dialog">
