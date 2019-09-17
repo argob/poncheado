@@ -1,0 +1,59 @@
+---
+layout: argentina
+---
+
+
+<link href="https://www.argentina.gob.ar/sites/default/files/ponchotable/ponchotable-1.1.css" rel="stylesheet" />
+
+
+
+<section>
+    <div class="container">
+            <h3 class="text-center">Trámites y Servicios</h3>
+        <div class="col-sm-4" id="ponchoTableFiltroCont" style="display:none">
+            <div class="form-group"><label for="ponchoTableFiltro" id="tituloFiltro">Filtro</label>
+                <select class="form-control" id="ponchoTableFiltro" name="ponchoTableFiltro">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-8" id="ponchoTableSearchCont" style="display:none">
+            <div class="form-group">
+                <label for="ponchoTableSearch">Buscar</label> <input class="form-control" id="ponchoTableSearch"
+                    type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 m-b-4">
+                <table class="table tabla-condensed table-striped" id="ponchoTable">
+                    <caption></caption>
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/showdown.js"></script>
+<script src="https://www.argentina.gob.ar/sites/default/files/ponchotable/datatables.min.js"></script>
+<script src="https://www.argentina.gob.ar/sites/default/files/poncho/dist/js/poncho.min.js"></script>
+
+
+<!-- -->
+
+
+<script>
+(function($){
+var ponchoTableOpciones = {
+	"idSpread"		: 	"1MAr5k7lYNeKt0acKGiOIK4aJQ9Bt4M6jGDYNQ75-gWY",//recordar publicar Spreadsheet
+	"hojaNumero"	: 	3,//default: 1
+	"tituloTabla"	: "Tabla con datos",//Título corto para accesibilidad
+	"ordenColumna"	: 1,//siendo 1 la primera columna
+	"ordenTipo"		: 	"asc",//"asc": es de A a Z y de menor a mayor, "desc": es de Z a A y mayor a menor
+	"ocultarColumnas": [0], // Comienza en 0 para la primera columna
+};
+ponchoTable(ponchoTableOpciones);
+})(jQuery);
+</script>
