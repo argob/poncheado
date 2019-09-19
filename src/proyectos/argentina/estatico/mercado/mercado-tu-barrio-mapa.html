@@ -108,7 +108,7 @@ title: El Mercado en tu Barrio
 
     var mapCenter = {lat: -41.2148693, lng: -66.3996161};
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: 5,
       center: mapCenter,
       scrollwheel: true,
       streetViewControl: false
@@ -155,7 +155,7 @@ title: El Mercado en tu Barrio
 
             var index = markers.length;
 
-            marcador = "https://www.argentina.gob.ar/sites/default/files/market_close.png";
+            marcador = "https://www.argentina.gob.ar/sites/default/files/market_open.png";
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
@@ -191,7 +191,7 @@ title: El Mercado en tu Barrio
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
           gridSize: 50,
-          minimumClusterSize: 2,
+          minimumClusterSize: 1000,
           maxZoom: 19
         });
 
