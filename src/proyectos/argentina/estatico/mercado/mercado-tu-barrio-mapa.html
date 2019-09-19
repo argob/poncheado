@@ -148,13 +148,14 @@ title: El Mercado en tu Barrio
 
         var rows = response.feed.entry;
 
+        
         var marcador;
 
         rows.forEach(function(row, key){
 
             var index = markers.length;
 
-            marcador = "https://www.argentina.gob.ar/sites/default/files/marker.png";
+            marcador = "https://www.argentina.gob.ar/sites/default/files/market_close.png";
 
             markers[index] = new google.maps.Marker({
               position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
