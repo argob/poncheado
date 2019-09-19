@@ -179,6 +179,8 @@ title: El Mercado en tu Barrio
 
             markers[index].addListener('click', function() {
               closeWindows();
+              map.setZoom(15);
+              map.setCenter(markers[key].getPosition());
               detalles[index].open(map, markers[index]);
 
             });
@@ -189,7 +191,7 @@ title: El Mercado en tu Barrio
         var markerCluster = new MarkerClusterer(map, markers, {
           imagePath: 'http://www.argentina.gob.ar/sites/default/files/m',
           gridSize: 50,
-          minimumClusterSize: 300,
+          minimumClusterSize: 2,
           maxZoom: 19
         });
 
