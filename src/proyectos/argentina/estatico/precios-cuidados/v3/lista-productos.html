@@ -112,7 +112,7 @@ layout: argentina
 							<strong>Buscá por marca, tipo de alimento o unidad</strong>
 						</label>
 						<div class="input-group">
-							<input id="inputSearch" class="form-control fuzzy-search" placeholder="" />
+							<input id="inputSearch" class="form-control" placeholder="" />
 							<span class="input-group-btn">
 								<span class="input-group-btn"> <button class="btn-primary btn form-submit" type="submit" id="editSubmit" name="op" value="<i class=&quot;fa fa-search&quot;></i>"> <i class="fa fa-search"></i> </button> </span>
 							</span>
@@ -376,10 +376,12 @@ layout: argentina
 	 var valorBuscado = $(this).val();
 	 //listaNueva.search(valorBuscado); //propio de List.js
 
-	var nuevoValor = accentFold(valorBuscado); 
-	console.log(nuevoValor);
+	//var nuevoValor = accentFold(valorBuscado); 
+	//console.log(nuevoValor);
 	 //listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, 'descripcion'))
-	 listaNueva.search(nuevoValor, ['descripcion', 'categoria', 'proveedor', 'ean']);
+	 //listaNueva.search(nuevoValor, ['descripcion', 'categoria', 'proveedor', 'ean']);
+
+	 listaNueva.filter(getAccentInsensitiveFilter("descripcion", valorBuscado))
 /*
 	 listaNueva.filter(getAccentInsensitiveFilter(valorBuscado, function(item) {
 		if (item.values() == 'descripcion') {
@@ -473,6 +475,36 @@ function accentFold(inStr) {
 
  });
 
+
+   // FUNCION REMOVER ACENTO
+   var removeAccents = (function () {
+     var letters1 = "äáàâăëéèêĕíöóòôŏüúùûŭÄÁÀÂĂËÉÈÊĔÍÖÓÒÔŎÜÚÙÛŬßșȘ",
+         letters2 = "aaaaaeeeeeiooooouuuuuAAAAAEEEEEIOOOOOUUUUUssS",
+         patternLetters = new RegExp("[" + letters1 + "]", "g"),
+         lookupLetters = {}, letterTranslator;
+
+     letters1.split("").forEach(function (letter, i) {
+         lookupLetters[letter] = letters2[i];
+     });
+
+     letterTranslator = function(match) {
+         return lookupLetters[match] || match;
+     };
+
+     return function removeAccents(input) {
+         return input.replace(patternLetters, letterTranslator);
+     };
+  })();
+
+  // FILTRO ACENTOS PARA LIST.JS
+  function getAccentInsensitiveFilter(property, search) {
+     search = removeAccents(search).toLowerCase();
+
+     return function (item) {
+         var value = removeAccents(item.values()[property] || "").toLowerCase();
+         return value.indexOf(search) > -1;
+     };
+  }
 
 
  });
