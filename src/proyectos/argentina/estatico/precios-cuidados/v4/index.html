@@ -214,7 +214,6 @@ function initDataTable() {
 
 
     var searchType = jQuery.fn.DataTable.ext.type.search;
-    console.log(jQuery.fn.DataTable.ext.type.search);
     searchType.string = function (data) {
       return !data ?
         '' :
@@ -295,9 +294,6 @@ function initDataTable() {
       var zona = document.getElementById("selectZona");
 
       zona.addEventListener("change", function(event) {
-          console.log($(this).children('option:selected').data('ubicacion'));
-          
-          console.log(event.target.value);
           switch ( event.target.value ) {
           case 'amba':
               ocultas = [5,6,7,8];
