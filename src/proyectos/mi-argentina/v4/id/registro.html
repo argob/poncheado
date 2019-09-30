@@ -449,8 +449,13 @@ layout: mi-argentina-login
                 <label for="password">Creá una contraseña para Mi Argentina</label>
                 <p class="help-block" id="help-password">Usá al menos 6 caracteres</p>
                 <div class="form-group item-form">
-                  <input id="password" name="password" type="password" class="form-control" minlength="6" required>
-                  <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()" alt="Mostrar contraseña"></span>
+                  <input id="password" name="password" type="password" class="form-control" minlength="6" aria-describedby="mostrar" aria-required="true" required >
+
+                  <div class="checkbox">
+                    <label for="opcion" id="mostrar">
+                      <input id="opcion" name="mostrar" type="checkbox" value="">Mostrar la contraseña
+                    </label>
+                  </div>
                   <p class="help-block error hidden">Usá al menos 6 caracteres</p>
                   <p class="help-block error hidden">Ingresá tu contraseña</p>
                 </div>
@@ -665,5 +670,50 @@ $('input[name="confirmaremail"]').on('copy paste cut drag drop', function() {
 });
 
     
+</script>
+<script>
+    let mostrar = document.getElementById('mostrar');
+    //let prueba = document.getElementById('opcion');
+    mostrar.addEventListener("click", (e) =>{
+    e.preventDefault();
+    let clave = document.getElementById('password');
+    
+    if(clave.type === 'password'){
+      clave.setAttribute("type", "text");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" checked value="">Ocultar la contraseña';
+      document.getElementById('password').focus();
+      //prueba.checked = true;
+      //document.getElementById('option').checked = true;
+
+      //mostrar.textContent = "Ocultar la contraseña";
+      //mostrar.appendChild(prueba);
+    }else{
+      clave.setAttribute("type", "password");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" value="">Mostrar la contraseña';
+      document.getElementById('mostrar').focus();
+      //prueba.checked = false;
+      //document.getElementById('option').checked = false
+
+      //mostrar.textContent = "Mostrar la contraseña";
+      //mostrar.appendChild(prueba);
+      
+    }
+    });
+    console.log(prueba.outerHTML);
+    console.log(mostrar.outerHTML);
+      /* 
+        clave.type = 'text';
+        document.getElementById('eye-password').classList.remove("fa-eye-slash");
+        document.getElementById('eye-password').classList.add("fa-eye");
+        }else{
+
+        clave.type = 'password';
+        document.getElementById('eye-password').classList.remove("fa-eye");
+        document.getElementById('eye-password').classList.add("fa-eye-slash");
+        }*/
+    
+
+    
+      
 </script>
 
