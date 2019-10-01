@@ -1,0 +1,356 @@
+---
+layout: argentina
+---
+<script>
+    jQuery.migrateMute = true;
+    jQuery.migrateTrace = false;
+    </script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_uqNWfakHPL8LsoHNp4LDW3ClUu3R40Lf7p1gv6u7l8o.js"></script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_sE6k_qzLQV1VocE4eyEUGgn-CK-oFrewuj1Kkx9dnp8.js"></script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_i_XqNJ1IeO-0x629_GQOcniwSHXHHMOykRTDqt4pGwo.js"></script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_8ttSiWfIQRTeNXYm9cb6LhPx3rmzmyjRo6zpQPMuS0M.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/css/components.css" type="text/css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/gh/datosgobar/series-tiempo-ar-explorer@ts_components_2.6.1/dist/js/components.js'></script>
+
+
+<style>
+    .row {
+        display: flex;
+        justify-content: space-around;
+        margin: auto;
+    }
+    .center-block {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .full-width {
+        width: 100%;
+    }
+    .card {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card.full {
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        background: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+
+
+    </style>
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-P68ZXT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P68ZXT');
+    </script>
+
+    <div class="container mn-t">
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="h3 section-title">Indicadores nacionales</h2>
+            </div>
+        </div>
+        <div class="row panels-row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="center-block" id='hdv'></div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="center-block" id='hdt'> </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="center-block full-width" style="height: 380px;" id='hdv-hdt'></div>
+            </div>
+        </div>
+        
+
+<section>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="h3 section-title">Indicadores por provincia</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <select name="hdp-selector" id="hdp-selector-id" class="form-control">
+                    <option value="snic_hdv_06,snic_hdt_06-ba" selected>Buenos Aires</option>
+                    <option value="snic_hdv_10,snic_hdt_10-cat">Catamarca</option>
+                    <option value="snic_hdv_22,snic_hdt_22-chaco">Chaco</option>
+                    <option value="snic_hdv_26,snic_hdt_26-chubut">Chubut</option>
+                    <option value="snic_hdv_02,snic_hdt_02-caba">Ciudad Autónoma de Buenos Aires</option>
+                    <option value="snic_hdv_14,snic_hdt_14-cba">Córdoba</option>
+                    <option value="snic_hdv_18,snic_hdt_18-ctes">Corrientes</option>
+                    <option value="snic_hdv_30,snic_hdt_30-er">Entre Ríos</option>
+                    <option value="snic_hdv_34,snic_hdt_34-form">Formosa</option>
+                    <option value="snic_hdv_38,snic_hdt_38-jujuy">Jujuy</option>
+                    <option value="snic_hdv_42,snic_hdt_42-lp">La Pampa</option>
+                    <option value="snic_hdv_46,snic_hdt_46-lr">La Rioja</option>
+                    <option value="snic_hdv_50,snic_hdt_50-mza">Mendoza</option>
+                    <option value="snic_hdv_54,snic_hdt_54-mis">Misiones</option>
+                    <option value="snic_hdv_58,snic_hdt_58-neu">Neuquén</option>
+                    <option value="snic_hdv_62,snic_hdt_62-rn">Río Negro</option>
+                    <option value="snic_hdv_66,snic_hdt_66-salta">Salta</option>
+                    <option value="snic_hdv_70,snic_hdt_70-sj">San Juan</option>
+                    <option value="snic_hdv_74,snic_hdt_74-sl">San Luis</option>
+                    <option value="snic_hdv_78,snic_hdt_78-scruz">Santa Cruz</option>
+                    <option value="snic_hdv_82,snic_hdt_82-sf">Santa Fe</option>
+                    <option value="snic_hdv_86,snic_hdt_86-sgo">Santiago del Estero</option>
+                    <option value="snic_hdv_94,snic_hdt_94-tdf">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
+                    <option value="snic_hdv_90,snic_hdt_90-tuc">Tucumán</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-ba'></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-cat' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-chaco' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-chubut' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-caba' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-cba' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-ctes' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-er' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-form' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-jujuy' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-lp' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-lr' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-mza' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-mis' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-neu' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-rn' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-salta' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-sj' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-sl' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-scruz' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-sf' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-sgo' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-tdf' hidden></div>
+        </div>
+        <div class="row">
+            <div style="width: 100%;" class="col serie-div" id='homicidios-dolosos-provincias-tuc' hidden></div>
+        </div>
+        
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="col-xs-12 text-center"> <a href="https://estadisticascriminales.minseg.gob.ar/" class="btn btn-primary">Ir a micrositio de Estadísticas Criminales</a></div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script type="text/javascript">
+    // COLORES SUGERIDOS "#0072BB","#2E7D33","#C62828","#F9A822","#6A1B99", "#EC407A","#C2185B","#6A1B99","#039BE5","#6EA100"
+    // componentes de series de tiempo
+    function hideSeriesDivs() {
+        $(".serie-div").each(function() {
+            $(this).hide();
+        });
+    }
+    function showSerieDiv(targetDivId, serieIds) {
+        var hdv = serieIds.split(',')[0] + ""
+        var hdt = serieIds.split(',')[1] + ""
+        var chartTypes = {}
+        chartTypes[hdt] = "column"
+        var seriesAxis = {}
+        seriesAxis[hdv] = "left"
+        seriesAxis[hdt] = "right"
+        var decimalTooltips = {}
+        decimalTooltips[hdv] = 0
+        decimalTooltips[hdt] = 1
+        TSComponents.Graphic.render(targetDivId, {
+            graphicUrl: "https://apis.datos.gob.ar/series/api/series?ids=" + serieIds,
+            chartTypes: chartTypes,
+            seriesAxis: seriesAxis,
+            decimalTooltips: decimalTooltips
+        });
+        $("#" + targetDivId).show();        
+    }
+    $(document).ready(function() {
+        TSComponents.Card.render('hdv', {
+            serieId: "snic_hdv_arg",
+            title: "Homicidios (ARG)",
+            decimals: 0
+        });
+        TSComponents.Card.render('hdt', {
+            serieId: "snic_hdt_arg",
+            title: "Tasa de homicidios (ARG)",
+            color: "#2E7D33",
+            decimals: 1
+        });
+        TSComponents.Graphic.render('hdv-hdt', {
+            graphicUrl: "https://apis.datos.gob.ar/series/api/series?ids=snic_hdv_arg,snic_hdt_arg",
+            datePickerEnabled: false,
+            displayUnits: false,
+            zoom: false,
+            navigator: true,
+            title: "Evolución de víctimas de homicidios en Argentina",
+            chartTypes: {
+                "snic_hdt_arg": "column"
+            },
+            seriesAxis: {
+                "snic_hdv_arg": "left",
+                "snic_hdt_arg": "right"
+            },
+            legendLabel: {
+                "snic_hdv_arg": "Homicidios (ARG)",
+                "snic_hdt_arg": "Tasa de homicidios (ARG)",
+            },
+            decimalTooltips: {
+            	"snic_hdv_arg": 0,
+                "snic_hdt_arg": 1
+            }
+        });
+        TSComponents.Graphic.render('homicidios-dolosos-provincias-ba', {
+            graphicUrl: "https://apis.datos.gob.ar/series/api/series?ids=snic_hdv_06,snic_hdt_06",
+            chartTypes: {
+                "snic_hdt_06": "column"
+            },
+            seriesAxis: {
+                "snic_hdv_06": "left",
+                "snic_hdt_06": "right"
+            },
+            decimalTooltips: {
+            	"snic_hdv_06": 0,
+                "snic_hdt_06": 1
+            }
+        });
+        $("#hdp-selector-id").on("change", function() {
+            var selector = $(this);
+            var values = selector.val().split('-');
+            var serieIds = values[0];
+            var serieName = values[1];
+            hideSeriesDivs();
+            var targetDivId = 'homicidios-dolosos-provincias-' + serieName;
+            showSerieDiv(targetDivId, serieIds);
+        });
+    });
+    </script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_yI4XDRIca1vpVutY_HYJvsqEnjRmmpr-WgeRS0xBbPQ.js"></script>
+    <script src="https://www.argentina.gob.ar/sites/default/files/js/js_L50O_PWoAuMOxVjnzZCkNSSmI0kFwhZsO1_KS8WnGKw.js"></script>
+
+<script id="f5_cspm">
+(function() {
+    var f5_cspm = {
+        f5_p: 'HBCCPMALJMHKMKBHMIBCABEBJIDGKGOPOLJMFPGCPCOKBFLILMHILALNPHNICHAPENIGJIBJAIEBHEAMBACCDGELBFDAMAIHAAIOJOBHCMNGCBNNAAAHCJFCGLDPAADP',
+        setCharAt: function(str, index, chr) { if (index > str.length - 1) return str; return str.substr(0, index) + chr + str.substr(index + 1); },
+        get_byte: function(str, i) {
+            var s = (i / 16) | 0;
+            i = (i & 15);
+            s = s * 32;
+            return ((str.charCodeAt(i + 16 + s) - 65) << 4) | (str.charCodeAt(i + s) - 65);
+        },
+        set_byte: function(str, i, b) {
+            var s = (i / 16) | 0;
+            i = (i & 15);
+            s = s * 32;
+            str = f5_cspm.setCharAt(str, (i + 16 + s), String.fromCharCode((b >> 4) + 65));
+            str = f5_cspm.setCharAt(str, (i + s), String.fromCharCode((b & 15) + 65));
+            return str;
+        },
+        set_latency: function(str, latency) {
+            latency = latency & 0xffff;
+            str = f5_cspm.set_byte(str, 48, (latency >> 8));
+            str = f5_cspm.set_byte(str, 49, (latency & 0xff));
+            str = f5_cspm.set_byte(str, 43, 2);
+            return str;
+        },
+        wait_perf_data: function() {
+            try {
+                var wp = window.performance.timing;
+                if (wp.loadEventEnd > 0) {
+                    var res = wp.loadEventEnd - wp.navigationStart;
+                    if (res < 60001) {
+                        var cookie_val = f5_cspm.set_latency(f5_cspm.f5_p, res);
+                        window.document.cookie = 'f5avr2095360558aaaaaaaaaaaaaaaa=' + encodeURIComponent(cookie_val) + ';path=/';
+                    }
+                    return;
+                }
+            } catch (err) { return; }
+            setTimeout(f5_cspm.wait_perf_data, 100);
+            return;
+        },
+        go: function() {
+            var chunk = window.document.cookie.split(/\s*;\s*/);
+            for (var i = 0; i < chunk.length; ++i) {
+                var pair = chunk[i].split(/\s*=\s*/);
+                if (pair[0] == 'f5_cspm' && pair[1] == '1234') {
+                    var d = new Date();
+                    d.setTime(d.getTime() - 1000);
+                    window.document.cookie = 'f5_cspm=;expires=' + d.toUTCString() + ';path=/;';
+                    setTimeout(f5_cspm.wait_perf_data, 100);
+                }
+            }
+        }
+    }
+    f5_cspm.go();
+}());
+</script>
