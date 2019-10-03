@@ -465,13 +465,13 @@ layout: mi-argentina-login
               </div>
             </div>
             <div class="row">
-              <div class="col-md-10">
-                <p>Para crear tu cuenta es necesario que aceptes los términos y condiciones de Mi Argentina</p>
+              <div class="col-md-10 well" >
+                
+                
                 <fieldset>
-                  <legend>
-                    <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" target="_blank">Términos y condiciones generales</a>
-                  </legend>
-                  <div class="form-group item-form">
+                  <legend><h5>Términos y condiciones</h5></legend>
+                  <p>Para crear tu cuenta es necesario que aceptes los <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" target="_blank">Términos y condiciones generales</a> de Mi Argentina</p>
+                  <div class="form-group item-form m-t-2">
                     <div class="checkbox" id="checkGenerales">
                       <label for="aceptoTerminos" class="radio-inline">
                         <input type="checkbox" name="tyc" id="aceptoTerminos" checked="checked" value required aria-required="true" >
@@ -480,13 +480,10 @@ layout: mi-argentina-login
                       <p class="help-block error hidden text-danger" style="padding-left: 15px;">Tenés que aceptar los términos y condiciones generales</p>
                     </div>
                   </div>
-                </fieldset>
-                <p><strong>Mi Argentina</strong> puede mostrarte información sobre Salud y Discapacidad en la sección <strong>Mi Salud</strong>. Si querés visualizarla, podés aceptar los términos y condiciones de esta sección.</p>
-                <fieldset>
-                  <legend>
-                    <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" target="_blank">Términos y condiciones de Salud</a>
-                  </legend>
-                  <div class="form-group item-form">
+                
+                <p><strong>Mi Argentina</strong> puede mostrarte información sobre Salud y Discapacidad. Si querés visualizarla, aceptá los <a href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" target="_blank">Términos y condiciones de la sección Salud</a></p>
+                
+                  <div class="form-group item-form m-y-2">
                     <div class="checkbox">
                       <label for="aceptoTerminosSalud" class="radio-inline">
                         <input type="checkbox" name="tycs" id="aceptoTerminosSalud" value >
@@ -677,7 +674,7 @@ $('input[name="confirmaremail"]').on('copy paste cut drag drop', function() {
 
 <script>
     let mostrar = document.getElementById('mostrar');
-    //let prueba = document.getElementById('opcion');
+
     mostrar.addEventListener("click", (e) =>{
     e.preventDefault();
     let clave = document.getElementById('password');
@@ -686,35 +683,18 @@ $('input[name="confirmaremail"]').on('copy paste cut drag drop', function() {
       clave.setAttribute("type", "text");
       mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" checked value="">Ocultar la contraseña';
       document.getElementById('password').focus();
-      //prueba.checked = true;
-      //document.getElementById('option').checked = true;
 
-      //mostrar.textContent = "Ocultar la contraseña";
-      //mostrar.appendChild(prueba);
     }else{
       clave.setAttribute("type", "password");
       mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" value="">Mostrar la contraseña';
       document.getElementById('mostrar').focus();
-      //prueba.checked = false;
-      //document.getElementById('option').checked = false
 
-      //mostrar.textContent = "Mostrar la contraseña";
-      //mostrar.appendChild(prueba);
       
     }
     });
     console.log(prueba.outerHTML);
     console.log(mostrar.outerHTML);
-      /* 
-        clave.type = 'text';
-        document.getElementById('eye-password').classList.remove("fa-eye-slash");
-        document.getElementById('eye-password').classList.add("fa-eye");
-        }else{
 
-        clave.type = 'password';
-        document.getElementById('eye-password').classList.remove("fa-eye");
-        document.getElementById('eye-password').classList.add("fa-eye-slash");
-        }*/
     
 
     
