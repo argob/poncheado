@@ -21,11 +21,16 @@ layout: mi-argentina
 
     .round-tab {
         cursor: default;
-        user-select: none; /* supported by Chrome and Opera */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+        /* supported by Chrome and Opera */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
     }
 </style>
 <link rel="stylesheet" href="../../../css/miargentina.css">
@@ -70,14 +75,14 @@ layout: mi-argentina
                                         <ul class="nav nav-tabs" role="tablist">
 
                                             <li role="presentation" class="active">
-                                                    <span class="round-tab">1</span>
+                                                <span class="round-tab">1</span>
                                             </li>
 
                                             <li role="presentation" class="active">
-                                                    <span class="round-tab">2</span>
+                                                <span class="round-tab">2</span>
                                             </li>
                                             <li role="presentation" class="disabled">
-                                                    <span class="round-tab">3</span>
+                                                <span class="round-tab">3</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -107,6 +112,7 @@ layout: mi-argentina
                                                                     value="No" required="" aria-required="true">
                                                                 No
                                                             </label>
+                                                            <p class="help-block error hidden">Ingresá si sos el titular del producto o servicio</p>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
@@ -127,6 +133,7 @@ layout: mi-argentina
                                                                     required="" aria-required="true">
                                                                 No
                                                             </label>
+                                                            <p class="help-block error hidden">Ingresá si sos quien usa el producto o servicio</p>
                                                         </div>
                                                     </fieldset>
                                                     <div class="row">
@@ -140,37 +147,37 @@ layout: mi-argentina
                                                     </div>
                                                     <p class="h4">Completá los datos del titular del producto o servicio
                                                     </p>
-                                                    <div id="errores" aria-live="polite" class="alert alert-danger m-t-2" >
-                                                        <h2>Se han producido los siguientes errores:</h2>
-                                                        <ol style="padding:0 20px;">
-                                                            <li>Ingresá tu nombre</li>
-                                                            <li>Ingresá tu apellido</li>
-                                                        </ol>
+                                                    <div id="errores" aria-live="polite"
+                                                        class="alert alert-danger m-t-2" style="display:none;">
                                                     </div>
                                                     <div class="row m-t-2">
-                                                        <div class="col-md-10 col-lg-8 form-group has-error has-feedback">
+                                                        <div
+                                                            class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="nombre">Nombre *</label>
                                                             <input type="text" class="form-control" id="nombre">
-                                                            <p class="help-block error">Ingresá tu nombre</p>
+                                                            <p class="help-block error hidden">Ingresá tu nombre</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-10 col-lg-8 form-group has-error has-feedback">
+                                                        <div
+                                                            class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="apellido">Apellido *</label>
                                                             <input type="text" class="form-control" id="apellido">
-                                                            <p class="help-block error">Ingresá tu apellido</p>
+                                                            <p class="help-block error hidden">Ingresá tu apellido</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
                                                             <label for="top">Tipo de documento *</label>
                                                             <select name="" id="top" class="form-control">
                                                                 <option value="">DNI</option>
                                                             </select>
+                                                            <p class="help-block error hidden">Ingresá tipo de documento</p>
                                                         </div>
-                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
                                                             <label for="dni">Número de documento *</label>
                                                             <input type="number" class="form-control" id="dni">
+                                                            <p class="help-block error hidden">Ingresá número de documento</p>
                                                         </div>
                                                     </div>
                                                     <fieldset>
@@ -189,14 +196,15 @@ layout: mi-argentina
                                                                     value="No" required="" aria-required="true">
                                                                 Masculino
                                                             </label>
+                                                            <p class="help-block error hidden">Ingresá tu sexo</p>
                                                         </div>
                                                     </fieldset>
                                                     <div class="row">
-                                                        <div class="col-xs-12 col-md-5 col-lg-4 form-group">
+                                                        <div class="col-xs-12 col-md-5 col-lg-4 form-group item-form">
                                                             <label for="nacimiento">Fecha de nacimiento *</label>
                                                             <input type="date" class="form-control" id="nacimiento"
-                                                                    value="dd-mm-aaaa" min="1950-01-01"
-                                                                    max="2019-09-01">
+                                                                value="dd-mm-aaaa" min="1950-01-01" max="2019-09-01">
+                                                            <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
                                                         </div>
                                                     </div>
                                                     <p class="h4 m-t-2">Datos personales</p>
@@ -244,33 +252,36 @@ layout: mi-argentina
                                                     </div>
                                                     <p class="h4 m-t-2">Domicilio</p>
                                                     <div class="row m-t-2">
-                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="prov">Provincia *</label>
                                                             <select name="" id="prov" class="form-control">
                                                                 <option value="" selected disabled hidden>
                                                                     Seleccionar</option>
                                                                 <option value="">Buenos Aires</option>
                                                             </select>
+                                                            <p class="help-block error hidden">Ingresá tu provincia</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="partido">Partido o departamento *</label>
                                                             <select name="" id="partido" class="form-control">
                                                                 <option value="" selected disabled hidden>
                                                                     Seleccionar</option>
                                                                 <option value="">Buenos Aires</option>
                                                             </select>
+                                                            <p class="help-block error hidden">Ingresá tu partido o departamento</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="localidad">Localidad *</label>
                                                             <select name="" id="localidad" class="form-control">
                                                                 <option value="" selected disabled hidden>
                                                                     Seleccionar</option>
                                                                 <option value="">Buenos Aires</option>
                                                             </select>
+                                                            <p class="help-block error hidden">Ingresá tu localidad</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -281,30 +292,33 @@ layout: mi-argentina
                                                             </span>
                                                             <div class="form-group item-form">
                                                                 <input type="text" class="form-control" id="dp">
+                                                                <p class="help-block error hidden">Ingresá tu código postal</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
                                                             <label for="calle">Calle *</label>
                                                             <input type="text" class="form-control" id="calle">
+                                                            <p class="help-block error hidden">Ingresá tu calle</p>
                                                         </div>
                                                         <div class="col-md-5 col-lg-4 form-group">
                                                             <label for="numero">Número
                                                                 <small><em>(opcional)</em></small></label>
                                                             <input type="number" class="form-control" id="numero">
+                                                            <p class="help-block error hidden">Ingresá tu número</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-5 col-lg-4 form-group">
                                                             <label for="piso">Piso
                                                                 <small><em>(opcional)</em></small></label>
-                                                                <input type="text" class="form-control" id="piso">
+                                                            <input type="text" class="form-control" id="piso">
                                                         </div>
                                                         <div class="col-md-5 col-lg-4 form-group">
                                                             <label for="depto">Departamento
                                                                 <small><em>(opcional)</em></small></label>
-                                                                <input type="text" class="form-control" id="depto">
+                                                            <input type="text" class="form-control" id="depto">
                                                         </div>
                                                     </div>
                                                     <p class="h4 m-t-2">Datos de contacto</p>
@@ -318,9 +332,10 @@ layout: mi-argentina
                                                         <p>juanafernandez@gmail.com</p>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-10 col-lg-8 form-group">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
                                                             <label for="email">Correo electónico *</label>
                                                             <input type="email" class="form-control" id="email">
+                                                            <p class="help-block error hidden">Ingresá tu correo electrónico</p>
                                                         </div>
                                                     </div>
                                                     <fieldset>
@@ -337,16 +352,26 @@ layout: mi-argentina
                                                             </div>
                                                             <div class="col-xs-12 col-md-6 col-lg-5 form-group">
                                                                 <label for="telefono"><small>Número</small></label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="telefono">
+                                                                <input type="number" class="form-control" id="telefono">
                                                             </div>
                                                         </div>
                                                     </fieldset>
                                                     <button type="button" class="btn btn-link m-r-1"
                                                         onclick="location.href='index.html'">Anterior</button>
-                                                    <button type="button"
-                                                        class="btn btn-success"
+                                                    <button type="button" class="btn btn-success"
                                                         onclick="location.href='paso-3.html'">Siguiente</button>
+                                                    <fieldset>
+                                                        <div class="radio">
+                                                            <label for="se" class="rc-label">
+                                                            <input type="radio" name="error" id="se" value="SE" class="sinError" checked="">
+                                                            Sin mensajes de error
+                                                        </label>
+                                                        <label for="ce" class="rc-label m-l-1">
+                                                            <input type="radio" name="error" id="ce" value="CE" class="conError">
+                                                            Con mensajes de error
+                                                        </label>
+                                                        </div>  
+                                                    </fieldset>
 
                                                 </div>
 
@@ -366,3 +391,37 @@ layout: mi-argentina
         </div>
     </div>
 </section>
+
+<script>
+    $(function () {
+
+        $('input.conError:radio').change(function () {
+            if ($(this).is(":checked")) {
+                $('.error').removeClass("hidden");
+                $('.item-form').addClass('has-error has-feedback');
+                mostrarErrores();
+                $("#errores").show();
+            }
+        });
+        $('input.sinError:radio').change(function () {
+            if ($(this).is(":checked")) {
+                $('.error').addClass("hidden");
+                $('.item-form').removeClass('has-error has-feedback');
+                $("#errores").hide();
+            }
+        });
+
+    });
+
+    function mostrarErrores() {
+        $("#errores").html("");
+        $("#errores").html("<h2>Se han producido los siguientes errores:</h2><ol style='padding:0 20px;'></ol>");
+        var cantidadErrores = 0;
+
+        $(".has-error").each(function () {
+            var mensajeError = $(this).find(".help-block.error").html();
+            $("#errores ol").append("<li>" + mensajeError + "</li>");
+            cantidadErrores++;
+        });
+    }
+</script>
