@@ -93,7 +93,7 @@
             
         </div>
     </header>
-    <nav class="container-fluid hidden-lg">
+    <nav id="menuMobile" class="container-fluid hidden-lg p-r-0 p-l-0">
         (nav mobile) (oculto en desktop)
         <div class="page-sidebar m-b-2 hidden menutoggle  dashboard-sidebar">
                 <ul class="nav nav-pills nav-stacked nav-dashboard p-r-0 col-xs-12" >
@@ -249,7 +249,7 @@
     </nav>
     <main role="main">
         <div class="row dashboard m-r-0">
-            <div class="col-md-3 sidebar hidden-xs p-l-0">
+            <div class="sidebar hidden-xs p-l-0">
 
                 <nav class="page-sidebar m-b-2 dashboard-sidebar">
                     <ul class="nav nav-pills nav-stacked nav-dashboard m-t-2 p-r-0 col-xs-12">
@@ -431,7 +431,7 @@
 
             </div>
         
-            <div class="col-md-9">
+            <div class="col-md-12">
                 {{ content }}
             </div>
         </div>
@@ -450,7 +450,17 @@
         </div>
     </footer>
 
-
+    <script>
+      window.onload = function(){
+        document.querySelector('.inicio').addEventListener("click", function (){
+    
+             document.getElementById('menuMobile').classList.toggle('forMenuMobile')
+             document.querySelector('.dashboard-sidebar').classList.toggle('hidden')
+             
+         })
+      }
+          
+        </script>
 
 </body>
 </html>
