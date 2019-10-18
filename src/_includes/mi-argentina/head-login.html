@@ -40,5 +40,60 @@
       <script src="{{ "/node_modules/html5shiv/html5shiv.js" | prepend: site.baseurl }}"></script>
       <script src="{{ "/node_modules/respond.js/respond.min.js" | prepend: site.baseurl }}"></script>
   <![endif]-->  
+  <style>
+    section {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    section.row.well {
+      padding-left: 0;
+      padding-right: 0;
+      
+   }
+/* adaptar boton mi cuenta navegacion desktop */
+
+@media screen and (min-width: 768px) {
+	.btn.btn-link.dropdown-toggle {
+    font-size: 16px;
+    margin-right: 16px;
+	}
+   /* margen izquierdo  */
+   .btn.btn-link.dropdown-toggle span{
+    margin-left: 1rem;
+  }
+
+  /* otra solucion miargentina.css eliminar max-width: 260px;*/
+  .dashboard-sidebar {
+    width: 100% !important;
+  }
+  /* borde azul a sidebar item active */
+  .dashboard-sidebar ul li.active > a {
+    border-left: 6px solid #0072bb !important;
+  }
   
+  /* terminos y condiciones espaciado interno y alineado a la derecha */
+  .footer .first-footer-item {
+    padding: 0.6rem;
+    text-align: right;
+  }
+}
+/* adaptar boton mi cuenta navegacion mobile */
+@media screen and (max-width: 490px) {
+	.navbar.navbar-top .navbar-nav>.btn {
+		margin-top: 0 !important;
+	}
+	.btn.btn-link.dropdown-toggle {
+    font-size: 11px;
+    margin-right: 10px;
+    
+  }
+  
+  header .btn {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+}
+  </style>
 </head>
