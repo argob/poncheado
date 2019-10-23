@@ -1,0 +1,23 @@
+---
+layout: argentina
+---
+    
+    <link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
+
+    <div id="map" style="height: 100vh;"></div>
+
+    <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+    
+    <script>
+            //<![CDATA[
+            var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+            
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            
+            var hash = L.hash(map);
+            //]]>
+    </script>
+
+    

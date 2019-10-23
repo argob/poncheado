@@ -1,0 +1,77 @@
+---
+layout: argentina
+---
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+  
+
+   <div id="mapid" style="height: 400px;"></div>
+
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+   
+   
+    
+   <script>
+    /* Definimos el Mapa y con el metodo setView(coordenada, zoom) es para inicializar el mapa en una coordenada */
+	var mymap = L.map('mapid').setView([-34.608063, -58.430786], 13);
+
+    /* Define la capa del mapa */
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+    /* Definumos un marcador L = libreria leaflet, marker(coordenada) metodo con el parametro de la coordenada a mostrar y addTo() agregar al mapa con el parametro referencia del mapa
+	var marker = L.marker([-34.608063, -58.430786]).addTo(mymap)
+    .bindPopup('<b>Hola Argentina.gob.ar</b><br />Ministerio de Modernizacion.<br /><img src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" alt="argentina">').openPopup();
+    */
+    
+
+    /* Saldias muestra la forma pero no donde deberia ¿? 
+    var polygon = L.polygon([[[-58.400264867999965,-34.57409396399993],[-58.399603182999954,-34.57445431499997],[-58.399639675999936,-34.574613502999966],[-58.39919605772944,-34.5749032723526],[-58.39910414299993,-34.57474032299996],[-58.397795591999966,-34.57538637899995],[-58.397866851999936,-34.57562861599996],[-58.39926466829909,-34.57535585196753],[-58.399344861352596,-34.57530576339125],[-58.39929547700261,-34.575151393849],[-58.39985265991788,-34.57491860730917],[-58.40003105496771,-34.5748015378808],[-58.400463808594175,-34.57449260072944],[-58.40109316599995,-34.57388884399995],[-58.40158882399999,-34.57328235899996],[-58.40146570799993,-34.57319687599994],[-58.40083978699994,-34.57376604499996],[-58.400264867999965,-34.57409396399993]]]).addTo(mymap);
+
+    mymap.fitBounds(polygon.getBounds());*/
+
+
+</script>
+
+<script>
+        $(document).ready(function() {
+        console.log("ready!");
+        
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "1VtE9TUZjCOSRqs3V8l9cnTAde-Fbtqy_uGa134myuNM";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/2/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            var entry = data.feed.entry;
+            var amount = entry.length;
+        
+            var i;
+            for (i = 0; i < amount; i++) {
+        
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+                var nombre = data.feed.entry[i]['gsx$nombre']['$t'];
+                var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+                //var time = data.feed.entry[i]['gsx$time']['$t'];
+                //var tel = data.feed.entry[i]['gsx$tel']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(mymap);
+                marker.bindPopup('<h4>' + nombre + '</h4><br><b>direccion:</b> ' + dir);
+            }
+
+        })
+        });
+        </script>
+
+
