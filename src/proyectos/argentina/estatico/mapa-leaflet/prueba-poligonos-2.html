@@ -19,7 +19,7 @@ $.getJSON("barrios-populares_0.json",function(data){
 
         var datalayer = L.geoJson(data ,{
         onEachFeature: function(feature, featureLayer) {
-                featureLayer.bindPopup(feature.properties.Sheet_Num + "<div style='max-width:300px;'><h4><small>Id: "+ id +"</small></h4><h4>"+ nombre +"</h4><p>"+localidad+", "+partido+", "+provincia+".</p></div>");
+                featureLayer.bindPopup(feature.properties.Sheet_Num + "<div style='max-width:300px;'><h4><small>Id: "+ feature.properties.id +"</small></h4><h4>"+ feature.properties.nombre +"</h4><p>"+feature.properties.localidad+", "+feature.properties.partido+", "+feature.properties.provincia+".</p></div>");
 }
 }).addTo(map);
 map.fitBounds(datalayer.getBounds());
