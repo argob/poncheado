@@ -1,7 +1,5 @@
----
-layout: argentina
----
 
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
@@ -18,9 +16,35 @@ layout: argentina
 
 $.getJSON("barrios-populares_0.json",function(data){
 // add GeoJSON layer to the map once the file is loaded
-var datalayer = L.geoJson(data ,{
-onEachFeature: function(feature, featureLayer) {
-featureLayer.bindPopup(feature.properties.NAME_1);
+var rows = data.features;
+
+ var geojson = '{"type": "FeatureCollection", "features": [';
+
+ rows.forEach(function(row, key){
+ // console.log(row);
+ geojson += '{"type": "Feature", "id": '+key+', "properties": {"id": "'+ row.properties.id_renabap +'", "nombre": "'+ row.properties.nombre_bar.replace(/"/gi, '') +'", "localidad": "'+ row.properties.localidad +'", "partido": "'+ row.properties.departamen +'", "provincia": "'+ row.properties.provincia +'"}, "geometry": '+ JSON.stringify(row.geometry) + '},';
+ });
+ 
+
+ geojson = geojson.slice(0, -1);
+ geojson += ']}';
+
+ console.log(geojson)
+
+ 
+ map.data.addGeoJson( JSON.parse(geojson) );
+ 
+ map.data.setStyle({
+ fillColor: '#0695d6',
+ fillOpacity: 0.4,
+ strokeColor: '#0695d6',
+ strokeWeight: 2
+ });
+
+
+        var datalayer = L.geoJson(data ,{
+        onEachFeature: function(feature, featureLayer) {
+                featureLayer.bindPopup(feature.properties.NAME_1);
 }
 }).addTo(map);
 map.fitBounds(datalayer.getBounds());
