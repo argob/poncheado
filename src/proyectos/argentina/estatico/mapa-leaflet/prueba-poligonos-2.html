@@ -17,15 +17,6 @@
 $.getJSON("barrios-populares_0.json",function(data){
 // add GeoJSON layer to the map once the file is loaded
 var rows = data.features;
- 
- map.data.setStyle({
- fillColor: '#0695d6',
- fillOpacity: 0.4,
- strokeColor: '#0695d6',
- strokeWeight: 2
- });
-
-
         var datalayer = L.geoJson(data ,{
         onEachFeature: function(feature, featureLayer) {
                 featureLayer.bindPopup(feature.properties.NAME_1);
