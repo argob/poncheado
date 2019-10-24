@@ -1,33 +1,29 @@
+---
+layout: argentina
+---
 
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" rel="stylesheet" />
 
-<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
-<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-</head>
-<body>
-<div id="map" style="width: 100%; height: 100%;"></div>
-<script>
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" />
+
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script><script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script></p><div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px; position: relative;" tabindex="0">&nbsp;</div><script>
 	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
-                  
-            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
-                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+
+ L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+ attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+ }).addTo(map);
 
 
-$.getJSON("barrios-populares_0.json",function(data){
+jQuery.getJSON("sites/default/files/barrios-populares_0.json",function(data){
 // add GeoJSON layer to the map once the file is loaded
-
-        var datalayer = L.geoJson(data ,{
-        onEachFeature: function(feature, featureLayer) {
-                featureLayer.bindPopup(feature.properties.Sheet_Num + "<div style='max-width:300px;'><h4><small>Id: "+ feature.properties.id +"</small></h4><h4>"+ feature.properties.nombre +"</h4><p>"+feature.properties.localidad+", "+feature.properties.partido+", "+feature.properties.provincia+".</p></div>");
-}
-}).addTo(map);
-map.fitBounds(datalayer.getBounds());
+ var datalayer = L.geoJson(data ,{
+ onEachFeature: function(feature, featureLayer) {
+ featureLayer.bindPopup("<div style='max-width:300px;'><h4><small>Id: " + feature.properties.id_renabap + "</small></h4><h4>" + feature.properties.nombre_bar + "</h4><p>"+feature.properties.departamen+", "+feature.properties.localidad + ", "+ feature.properties.provincia + ".</p></div>");
+ }
+ }).addTo(map);
+ map.fitBounds(datalayer.getBounds());
 });
-
-
-
-
 </script>
 
 
