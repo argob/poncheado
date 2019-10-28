@@ -1,12 +1,33 @@
-
+---
+layout: argentina
+---
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
 
-<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css">
 
-<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css">
+
 <script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<style>
+	.header-mapa {
+		
+		background: rgba(0, 0, 0, 0.7);
+		color: #fff;
+		font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		
+		padding: 1rem 0;
+		
+	}
+</style>
+<div class="header-mapa">
+	<div class="container">
+		<h4 class="m-y-0">Centros de donación de médula ósea </h4>
+	</div>
+	
+</div>
 <!-- Centros de donación de médula ósea tiene un jumbotron -->
 <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px; position: relative;" tabindex="0"></div>
 <script>
@@ -16,6 +37,7 @@
  attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
  }).addTo(map);
 
+ var markers = L.markerClusterGroup();
 
  // ID de la Google Spreadsheet Medula Osea
  var spreadsheetID = "1AJHZAaRn-SQyWqN9QCsBRInkxiOWmISstcX313cMTiE";
@@ -25,30 +47,32 @@
  var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
  
  jQuery.getJSON(url, function(data) {
- console.log(data);
- var entry = data.feed.entry;
- var amount = entry.length;
- console.log(amount);
- var i;
- for (i = 0; i < amount; i++) {
- 
- var lat = data.feed.entry[i]['gsx$latitud']['$t'];
- var lon = data.feed.entry[i]['gsx$longitud']['$t'];
- var institucion = data.feed.entry[i]['gsx$institucion']['$t'];
-var horario = data.feed.entry[i]['gsx$horario']['$t'];
-var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
-var dir = data.feed.entry[i]['gsx$direccion']['$t'];
-var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
-var referente = data.feed.entry[i]['gsx$referente']['$t'];
+	console.log(data);
+	var entry = data.feed.entry;
+	var amount = entry.length;
+	console.log(amount);
+	var i;
+	for (i = 0; i < amount; i++) {
+	
+		var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+		var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+		var institucion = data.feed.entry[i]['gsx$institucion']['$t'];
+		var horario = data.feed.entry[i]['gsx$horario']['$t'];
+		var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
+		var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+		var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+		var referente = data.feed.entry[i]['gsx$referente']['$t'];
 
- 
- var marker = L.marker([lat, lon]).addTo(map);
- marker.bindPopup('<h4>' + institucion + '</h4>' + '<p><b>Horario: </b>' + horario + '</p>' + '<p><b>Teléfono: </b>' + telefono + '</p>' + '<p><b>Direccion: </b>' + dir + '</p>' + '<p><b>Provincia: </b>' + provincia + '</p>' + '<p><b>Referente: </b>' + referente + '</p>');
- }
+		
+		var marker = L.marker([lat, lon]);
+		marker.bindPopup('<h4>' + institucion + '</h4>' + '<p><b>Horario: </b>' + horario + '</p>' + '<p><b>Teléfono: </b>' + telefono + '</p>' + '<p><b>Direccion: </b>' + dir + '</p>' + '<p><b>Provincia: </b>' + provincia + '</p>' + '<p><b>Referente: </b>' + referente + '</p>');
+		markers.addLayer(marker);
+	
+	}
 
  });
 
-
+ map.addLayer(markers);
 
 
 </script>

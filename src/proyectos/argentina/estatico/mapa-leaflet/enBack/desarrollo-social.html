@@ -1,12 +1,34 @@
 
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<link crossorigin="" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" rel="stylesheet" />
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
 
-<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css">
 
-<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet" />
-<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css">
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+
+<style>
+	.header-mapa {
+		
+		background: rgba(0, 0, 0, 0.7);
+		color: #fff;
+		font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		
+		padding: 1rem 0;
+		
+	}
+  </style>
+  <div class="header-mapa">
+	<div class="container">
+		<h4 class="m-y-0">Centros de desarrollo social</h4>
+  
+	</div>
+	
+  </div>
+
 <!-- Inicio / Ministerio de Salud / Donar sangre / Dónde donar sangre tiene un jumbotron mas boton centrar mapa -->
 <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px; position: relative;" tabindex="0"></div>
 <script>
@@ -17,40 +39,46 @@
  }).addTo(map);
 
 
+var markers = L.markerClusterGroup();
+
+
  // ID de la Google Spreadsheet Desarrollo Social
- var spreadsheetID = "1gBBlBkU2nMio5MV_qadALPZSRR-SSLQ6zWPNRNTj5ms";
- // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
-
- 
- var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
- 
- jQuery.getJSON(url, function(data) {
- console.log(data);
- var entry = data.feed.entry;
- var amount = entry.length;
- console.log(amount);
- var i;
- for (i = 0; i < amount; i++) {
- 
-var lat = data.feed.entry[i]['gsx$latitud']['$t'];
-var lon = data.feed.entry[i]['gsx$longitud']['$t'];
-var titulo = data.feed.entry[i]['gsx$titulo']['$t'];
-var categoria = data.feed.entry[i]['gsx$categoria']['$t'];
-var articulador = data.feed.entry[i]['gsx$articulador']['$t'];
-
-var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
-var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
-var dir = data.feed.entry[i]['gsx$direccion']['$t'];
-var email = data.feed.entry[i]['gsx$email']['$t'];
-
- 
- var marker = L.marker([lat, lon]).addTo(map);
- marker.bindPopup('<p>' + categoria +'</p>' + '<h4>' + titulo + '</h4>' + '<p>' + articulador + '</p>' + '<p>' + provincia + '</p>' + '<p>' + localidad + '</p>' + '<p>' + email + '</p>' + '<p>' + dir + '</p>' + '<p><a target="_blank" href="mailto:desarrollosocialtv@gmail.com?subject="' + titulo + '">Sumar información</a></p>');
- }
-
- });
+var spreadsheetID = "1gBBlBkU2nMio5MV_qadALPZSRR-SSLQ6zWPNRNTj5ms";
+// Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
 
 
+var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+
+jQuery.getJSON(url, function(data) {
+	console.log(data);
+	var entry = data.feed.entry;
+	var amount = entry.length;
+	console.log(amount);
+	var i;
+	for (i = 0; i < amount; i++) {
+
+		var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+		var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+		var titulo = data.feed.entry[i]['gsx$titulo']['$t'];
+		var categoria = data.feed.entry[i]['gsx$categoria']['$t'];
+		var articulador = data.feed.entry[i]['gsx$articulador']['$t'];
+
+		var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+		var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
+		var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+		var email = data.feed.entry[i]['gsx$email']['$t'];
+
+
+		var marker = L.marker([lat, lon]);
+		marker.bindPopup('<p>' + categoria +'</p>' + '<h4>' + titulo + '</h4>' + '<p>' + articulador + '</p>' + '<p>' + provincia + '</p>' + '<p>' + localidad + '</p>' + '<p>' + email + '</p>' + '<p>' + dir + '</p>' + '<p><a target="_blank" href="mailto:desarrollosocialtv@gmail.com?subject="' + titulo + '">Sumar información</a></p>');
+		markers.addLayer(marker);
+
+
+	}
+
+});
+
+map.addLayer(markers);
 
 
 </script>
