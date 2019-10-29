@@ -58,6 +58,18 @@ layout: argentina
 			
 			}
 		}
+
+		/* iconos y parrafo */
+		.portaIconoLista, .portaInfoLista {
+			display: inline-block;
+		}
+		.portaIconoLista {
+			width: 40px;
+		}
+
+		.portaInfoLista p {
+			font-size: 0.8rem;
+		}
 	</style>
 	
 	<div class="header-mapa">
@@ -119,8 +131,16 @@ jQuery.getJSON(url, function(data) {
       //var tel = data.feed.entry[i]['gsx$tel']['$t'];
 
       var marker = L.marker([lat, lon]);
-      marker.bindPopup('<h4>' + titulo + '</h4>' + '<p>' + descripcion + '</p>' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p><p><b>Provincia:</b> ' + provincia + '</p><p><b>Beneficiarios:</b> ' + beneficiarios + '</p><p><b>Estado:</b> ' + estado + '</p>');
+	  // specify popup options 
+	  var customOptions =
+        {
+        'maxWidth': '320',
+        'className' : 'custom'
+        }
+      //marker.bindPopup('<h4 class="h5 text-primary">' + titulo + '</h4>' + '<small>' + descripcion + '</small>' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p><p><b>Provincia:</b> ' + provincia + '</p><p><b>Beneficiarios:</b> ' + beneficiarios + '</p><p><b>Estado:</b> ' + estado + '</p>');
       markers.addLayer(marker);
+	  marker.bindPopup('<h4 class="h5 text-primary">' + titulo + '</h4>' + '<small>' + descripcion + '</small>' + '<div class="m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista">' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista">' + '<p><b>Provincia:</b>' + provincia + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista">' + '<p><b>Beneficiarios:</b> ' + beneficiarios + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista">' + '<p><b>Estado:</b> ' + estado + '</p></div></div>', customOptions);	
+	  // + '<div class="m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista">' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista">' + '<p><b>Provincia:</b>' + provincia + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista">' + '<p><b>Beneficiarios:</b> ' + beneficiarios + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista">' + '<p><b>Estado:</b> ' + estado + '</p></div></div>'
 
    }
 
