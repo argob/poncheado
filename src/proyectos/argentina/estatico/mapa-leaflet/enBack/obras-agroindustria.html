@@ -67,6 +67,10 @@ layout: argentina
 			width: 40px;
 		}
 
+		.portaIconoLista p {
+    		text-align: center;
+		}
+
 		.portaInfoLista p {
 			font-size: 0.8rem;
 		}
@@ -99,6 +103,8 @@ L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
 attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+
+
 var markers = L.markerClusterGroup();
 
 
@@ -126,12 +132,22 @@ jQuery.getJSON(url, function(data) {
       var beneficiarios = data.feed.entry[i]['gsx$beneficiarios']['$t'];
 
       var estado = data.feed.entry[i]['gsx$estado']['$t'];
-      
-      //var time = data.feed.entry[i]['gsx$time']['$t'];
-      //var tel = data.feed.entry[i]['gsx$tel']['$t'];
 
-      var marker = L.marker([lat, lon]);
-	  // specify popup options 
+
+      var archivo = data.feed.entry[i]['gsx$marker']['$t'];
+	  var myIcon = L.icon({
+		//
+		iconUrl: 'https://www.argentina.gob.ar/sites/default/files/agro-' + archivo,
+		iconSize: [38, 38],
+		iconAnchor: [22, 41],
+		popupAnchor: [-3, -40]//,
+		//shadowUrl: 'https://cdn.icon-icons.com/icons2/1283/PNG/128/1497620001-jd22_85165.png',
+		//shadowSize: [68, 95],
+		//shadowAnchor: [22, 94]
+		});
+
+      var marker = L.marker([lat, lon], {icon: myIcon});
+	  // Especificar opciones popup info 
 	  var customOptions =
         {
         'maxWidth': '320',
@@ -139,8 +155,8 @@ jQuery.getJSON(url, function(data) {
         }
       //marker.bindPopup('<h4 class="h5 text-primary">' + titulo + '</h4>' + '<small>' + descripcion + '</small>' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p><p><b>Provincia:</b> ' + provincia + '</p><p><b>Beneficiarios:</b> ' + beneficiarios + '</p><p><b>Estado:</b> ' + estado + '</p>');
       markers.addLayer(marker);
-	  marker.bindPopup('<h4 class="h5 text-primary">' + titulo + '</h4>' + '<small>' + descripcion + '</small>' + '<div class="m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista">' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista">' + '<p><b>Provincia:</b>' + provincia + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista">' + '<p><b>Beneficiarios:</b> ' + beneficiarios + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista">' + '<p><b>Estado:</b> ' + estado + '</p></div></div>', customOptions);	
-	  // + '<div class="m-t-1"><div class="portaIconoLista"><p><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista">' + '<p><b>Departamento / Localidad:</b> ' + localidad + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista">' + '<p><b>Provincia:</b>' + provincia + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista">' + '<p><b>Beneficiarios:</b> ' + beneficiarios + '</p></div></div>' + '<div><div class="portaIconoLista"><p><i class="fa fa-cog"></i></p></div><div class="portaInfoLista">' + '<p><b>Estado:</b> ' + estado + '</p></div></div>'
+	  marker.bindPopup('<h4 class="h5 text-primary">' + titulo + '</h4>' + '<small>' + descripcion + '</small>' + '<div class="m-t-1"><div class="portaIconoLista"><p class="m-y-0"><i class="fa fa-map-marker"></i></p></div><div class="portaInfoLista">' + '<p class="m-y-0"><b>Departamento / Localidad:</b> ' + localidad + '</p></div></div>' + '<div><div class="portaIconoLista"><p class="m-y-0"><i class="fa icono-arg-barrio"></i></p></div><div class="portaInfoLista">' + '<p class="m-y-0"><b>Provincia:</b>' + provincia + '</p></div></div>' + '<div><div class="portaIconoLista"><p class="m-y-0"><i class="fa icono-arg-genero"></i></p></div><div class="portaInfoLista">' + '<p class="m-y-0"><b>Beneficiarios:</b> ' + beneficiarios + '</p></div></div>' + '<div><div class="portaIconoLista"><p class="m-y-0"><i class="fa fa-cog"></i></p></div><div class="portaInfoLista">' + '<p class="m-y-0"><b>Estado:</b> ' + estado + '</p></div></div>', customOptions);	
+
 
    }
 

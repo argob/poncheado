@@ -57,7 +57,7 @@ jQuery.getJSON(url, function(data) {
         var boton = data.feed.entry[i]['gsx$boton']['$t'];
 
         var marker = L.marker([lat, lon]);
-        marker.bindPopup('<small>' + tipo + '</small><h4>' + nombre + '</h4>' + '<img style="width: 100%;color: #fff;" src="' + foto + '">' + '<p>' + descripcion + '</p><p><b>Dirección: </b> ' + dir + ' - ' + provincia + ' - ' +  localidad + '</p>' + '<hr>' +  '<a class="btn btn-success btn-sm" href="' + boton + '">Ver más</a>');
+        marker.bindPopup('<small class="text-primary"><strong>' + tipo + '</strong></small><h4>' + nombre + '</h4>' + '<img style="width: 100%;color: #fff;" src="' + foto + '">' + '<p>' + descripcion + '</p><p><b>Dirección: </b> ' + dir + ' - ' + provincia + ' - ' +  localidad + '</p>' + '<hr class="m-y-1">' +  '<a class="btn btn-success btn-sm text-white" href="' + boton + '">Ver más</a>');
 
         markers.addLayer(marker);
 

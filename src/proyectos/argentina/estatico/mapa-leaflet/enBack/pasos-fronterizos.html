@@ -1,3 +1,6 @@
+---
+layout: argentina
+---
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
 
@@ -40,8 +43,9 @@
             var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
             var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
             var email = data.feed.entry[i]['gsx$email']['$t'];
+            var urlboton = data.feed.entry[i]['gsx$boton']['$t'];
             var marker = L.marker([lat, lon]);
-            marker.bindPopup('<h4>' + nombre + '</h4>' + '<p>' + provincia + '</p>');
+            marker.bindPopup('<h4 class="m-t-0">' + nombre + '</h4>' + '<small>' + provincia + '</small>' + '<hr class="m-y-1">' + '<a href="' + urlboton + '" target="_blank" class="btn btn-success btn-sm text-white">VER MAS</a>');
             markers.addLayer(marker);
 
         // marker.bindPopup('<small>' + tipo + '</small><h4>' + nombre + '</h4>' + '<p><b>Descripción: </b> ' + descripcion + '</p><p><b>Dirección: </b> ' + dir + ' - ' + localidad + ' - ' + provincia + '</p><p><b>Teléfono: </b> ' + telefono + '</p><p><b>Email: </b> ' + email + '</p>');
