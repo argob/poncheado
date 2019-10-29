@@ -65,14 +65,19 @@ jQuery.getJSON(url, function(data) {
         if(data.feed.entry[i]['gsx$email']['$t'].length > 0 ){
             var email = data.feed.entry[i]['gsx$email']['$t'];
             email = '<div><i class="fa fa-envelope m-r-1"></i> ' + email + '</div>';
+        }else{
+            var email = data.feed.entry[i]['gsx$email']['$t'];
         }
         //<i class="icono-arg-mail-1"></i>
         if(data.feed.entry[i]['gsx$telefono']['$t'].length > 0 ){
             var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
             telefono = '<div><i class="fa fa-phone m-r-1"></i> ' + telefono + '</div>';
+        }else{
+            var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
         }
         console.log(data.feed.entry[i]['gsx$telefono']['$t'].length);
-
+        console.log(typeof data.feed.entry[i]['gsx$telefono']['$t'] );
+        console.log(data.feed.entry[i]['gsx$telefono']['$t'] );
         var marker = L.marker([lat, lon]);
         marker.bindPopup('<small class="text-primary"><strong>' + tipo + '</strong></small><h4>' + nombre + '</h4>' + '<img style="width: 100%;color: #fff;" src="' + foto + '">' + '<p>' + descripcion + '</p><div><i class="fa fa-map-marker m-r-1"></i> ' + dir + ' - ' + provincia + ' - ' +  localidad + '</div>' + telefono + email + '<hr class="m-y-1">' +  '<a class="btn btn-success btn-sm text-white" href="' + boton + '">Ver más</a>');
 
