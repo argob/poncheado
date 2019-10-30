@@ -13,9 +13,33 @@
 <!-- iframe en el mapa tiene un jumbotron -->
 <div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px;position: relative;" tabindex="0"></div>
 
+<script>
 
+var map = L.map('map', {
+        center: [39.73, -104.99],
+        zoom: 10,
+        layers: [capa, marker]
+    });
+
+    var capa = L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+    var marker = L.layerGroup([littleton, denver, aurora, golden]);
+
+var overlays = {
+    "Marker": marker,
+    "Roads": roadsLayer
+};
+L.control.layers(baseLayers, overlays).addTo(map);
+</script>
 <script type="text/javascript">
-    var map = new L.Map('leaflet', {
+    /*var map = new L.Map('leaflet', {
 center: [0, 0],
 zoom: 0,
 layers: [
@@ -38,7 +62,7 @@ new L.Marker([-25, -25])
 var layerControl = new L.Control.Layers(null, {
 'Group 1': layerGroup1,
 'Group 2': layerGroup2
-}).addTo(map);
+}).addTo(map);*/
 </script>
 <script>
         
@@ -58,12 +82,7 @@ attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyr
 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap<\/a> contributors'
 });
 
-    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-    denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-    aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-    golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
 
-    var cities = L.layerGroup([littleton, denver, aurora, golden]);
 
     var baseMaps = {
         "Grayscale": capa,
