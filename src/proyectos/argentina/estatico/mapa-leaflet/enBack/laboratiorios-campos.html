@@ -1,10 +1,6 @@
 ---
 layout: argentina
 ---
-
-
-
-
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
 
@@ -35,13 +31,13 @@ var markers = L.markerClusterGroup();
 
 var azul = L.divIcon({className: 'icono-arg-aeropuerto fa-2x text-primary'});
 
-// ID de la Google Spreadsheet DNM-2
+// ID de la Google Spreadsheet laboratiorios y Campos Mapa
 //1MKp_cwcQIbG3VDDjXmAHtKqzXuDA454fab7gRYz8iqE
-var spreadsheetID = "1MKp_cwcQIbG3VDDjXmAHtKqzXuDA454fab7gRYz8iqE";
+//// var spreadsheetID = "1i_brEIpNg5wuT8pG0MB_ilz_wCV8eb9hnoynJ3KQXo0";
 // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
 
-
-var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+// var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+var url = "laboratorios-campos.json";
 
 jQuery.getJSON(url, function(data) {
     console.log(data);
@@ -61,7 +57,7 @@ jQuery.getJSON(url, function(data) {
         var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
         var dir = data.feed.entry[i]['gsx$direccion']['$t'];
         
-        var foto = data.feed.entry[i]['gsx$foto']['$t'];
+        
         var boton = data.feed.entry[i]['gsx$boton']['$t'];
         if(data.feed.entry[i]['gsx$email']['$t'].length > 0 ){
             var email = data.feed.entry[i]['gsx$email']['$t'];
@@ -94,11 +90,11 @@ jQuery.getJSON(url, function(data) {
             var marker = L.marker([lat, lon]);
         }
         
-        ///console.log(data.feed.entry[i]['gsx$telefono']['$t'].length);
+        //console.log(data.feed.entry[i]['gsx$telefono']['$t'].length);
         //console.log(typeof data.feed.entry[i]['gsx$telefono']['$t'] );
         //console.log(data.feed.entry[i]['gsx$telefono']['$t'] );
         
-        marker.bindPopup('<small class="text-primary"><strong>' + tipo + '</strong></small><h4>' + nombre + '</h4>' + '<img style="width: 100%;color: #fff;" src="' + foto + '">' + '<p>' + descripcion + '</p><div><i class="fa fa-map-marker m-r-1"></i> ' + dir + ' - ' + provincia + ' - ' +  localidad + '</div>' + telefono + email + '<hr class="m-y-1">' +  '<a class="btn btn-success btn-sm text-white" href="' + boton + '">Ver más</a>');
+        marker.bindPopup('<small class="text-primary"><strong>' + tipo + '</strong></small><h4>' + nombre + '</h4>' + '<p>' + descripcion + '</p><div><i class="fa fa-map-marker m-r-1"></i> ' + dir + ' - ' + provincia + ' - ' +  localidad + '</div>' + telefono + email + '<hr class="m-y-1">' +  '<a class="btn btn-success btn-sm text-white" href="' + boton + '">Ver más</a>');
 
         markers.addLayer(marker);
 
