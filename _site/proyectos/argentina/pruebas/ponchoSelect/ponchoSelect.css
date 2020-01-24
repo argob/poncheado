@@ -1,0 +1,45 @@
+
+        [hidden] {
+            display: none !important;
+        }
+        .pc {
+            /* pc is positioning context */ 
+            position: relative;
+            width: 100%;
+        }
+
+        .pc [role="status"] {
+            position: absolute;
+            top: 0.3em;
+            right: 1.5em;
+            font-size: 0.8em;
+            color: #777;
+        }
+        .pc ul[role="listbox"] {
+            
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            top: 5.0em;
+            left: 0;
+            background-color: #fff;
+            border: solid 1px #ccc;
+            width: 100%; /* of pc */
+            box-sizing: border-box;
+        }
+        .pc li[role="option"] {
+            display: block;
+            margin: 0;
+            padding: 0.3em 0.5em;
+            list-style: none;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .pc li[role="option"]:hover {
+            color: #000;
+            background-color: #ccc;
+        }
+        [aria-selected="true"] {
+            color: #fff;
+            background-color: #666;
+        }

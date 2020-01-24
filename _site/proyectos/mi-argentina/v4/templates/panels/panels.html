@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/v4/templates/panels/panels.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <div class="container">
+
+	<div class="col-md-8">
+		<h1>Sección Paneles</h1>
+
+		<!--PANEL CLOSE-->
+		<h2>Panel</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading" >
+					<div class="row">
+						<div class="col-xs-10 col-md-11">
+							<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div class="panel-body" aria-expanded="true" >
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h3><a href="">Antigripal</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<h2>Panel close</h2>
+		<div class="panels-row-miargentina pclose">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading" >
+					<div class="row">
+						<div class="col-xs-10 col-md-11">
+							<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+						</div>
+						<div class="col-xs-2 col-md-1">
+							<div class="text-right btn-close">
+								<i class="fa fa-close"></i>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="panel-body"  aria-expanded="true" >
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h3><a href="">Antigripal</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--PANEL COLLAPSE-->
+		<h2>Panel collapse</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading" >
+					<div class="row">
+						<div class="col-xs-10 col-md-11">
+							<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+						</div>
+						<div class="col-xs-2 col-md-1 text-right">
+							<a href="#collapsePanel3" class="collapsed btn-collapse" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapsePanel"> 
+								<i class="fa fa-chevron-up"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel-collapse collapse in" role="tabpanel" id="collapsePanel3" aria-labelledby="collapsePanel" aria-expanded="true">
+					<div class="panel-body">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<h3><a href="">Antigripal</a></h3>
+								<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+							</li>
+							<li class="list-group-item">
+								<h3><a href="">Fiebre amarilla</a></h3>
+								<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<a href="">Para más información llamá a INCUCAI al 0800-555-4628.</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--PANEL BACK1-->
+		<h2>Panel back</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-3 col-xs-4 btn-volver">
+                        	<a id="volver" href="#" class="btn btn-link btn-sm m-b-0"><i class="fa fa-arrow-left"></i> Volver</a>
+                        </div>
+                        <div class="col-md-9 col-xs-8 ">
+							<h2>Datos básicos</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h3><a href="">Antigripal</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--PANEL MEDIA-->
+		<h2>Panel icon</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-9">
+							<h2>Estas son las vacunas que te aplicaste</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="media">
+								<div class="media-left hidden-xs">
+				                  <i class="fa fa-university fa-fw fa-2x text-muted "></i>
+				                </div>
+								<div class="media-body">
+									<h3><a href="">Antigripal</a></h3>
+									<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>	
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="media">
+								<div class="media-left hidden-xs">
+				                  <i class="fa fa-id-card fa-fw fa-2x text-muted "></i>
+				                </div>
+								<div class="media-body">
+									<h3><a href="">Fiebre amarilla</a></h3>
+									<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>	
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="media">
+								<div class="media-left hidden-xs">
+				                  <i class="fa icono-arg-vacunas fa-fw fa-2x text-muted "></i>
+				                </div>
+								<div class="media-body">
+									<h3><a href="">Fiebre amarilla</a></h3>
+									<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>	
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!--panel sin borde-->
+
+		<h2>PANEL SIN BORDE</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading" >
+					<div class="row">
+						<div class="col-xs-10 col-md-11">
+							<h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div class="panel-body" aria-expanded="true" >
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h3><a href="">Antigripal</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+
+						<li class="list-group-item no-border-list-item p-b-0">
+							<h3>Esto es un título ejemplo</h3>
+							<ul class="list-group">
+								<li class="list-group-item">
+									<div class="media">
+										<div class="media-left hidden-xs">
+						                  <i class="fa icono-arg-vacunas fa-fw fa-2x text-muted "></i>
+						                </div>
+										<div class="media-body">
+											<h3><a href="">Fiebre amarilla</a></h3>
+											<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>	
+										</div>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<h3><a href="">Antigripal</a></h3>
+									<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+								</li>
+								<li class="list-group-item">
+									<h3><a href="">Antigripal</a></h3>
+									<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+								</li>
+							</ul>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+						<li class="list-group-item">
+							<h3><a href="">Fiebre amarilla</a></h3>
+							<p class="text-muted m-b-0">Última aplicación el 12/05/2018 en Establecimiento Holly Molly - Temperley</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+
+
+		<!--PANEL DOS COL-->
+		<h2>Panel 2 column</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-9">
+							<h2>Vencimientos</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="panel-content-padding">
+						<p class="text-muted">Estas son las fechas de vencimiento que configuraste para recibir :</p>
+						<div class="row">
+							<div class="m-b-1">
+								<div class="col-md-8">
+									<a href="">AFIP - Casas particulares</a>
+								</div>
+								<div class="col-md-4">
+									<p>12/12/2018</p>
+								</div>
+							</div>
+							<div class="m-b-1">
+								<div class="col-md-8">
+									<a href="">AFIP - Autónomos</a>
+								</div>
+								<div class="col-md-4 ">
+									<p>12/12/2018</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<!--PANEL PESTAÑA-->
+		<h2>Panel tab</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-9">
+							<h2>Vencimientos</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="panel-content-padding">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+						  <li class="nav-item active">
+						    <a class="nav-item active" id="tab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"  aria-expanded="true">Home</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" id="tab2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Profile</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" id="tab3" data-toggle="tab" href="#tab3" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+						  </li>
+						</ul>
+						<div class="tab-content m-y-2" id="myTabContent" >
+						  <div class="tab-pane show active in" id="tab1" role="tabpanel" aria-labelledby="tab1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque eius animi, quia rem, </div>
+						  <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">saepe blanditiis minima alias tempora cupiditate assumenda quisquam eveniet temporibus officiis velit</div>
+						  <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3"> doloremque facilis porro quidem qui.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--PANEL VARIAS COL-->
+	
+	<div class="col-md-11">
+		<h2>Panel table</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-12">
+							<div class="media">
+								<div class="media-left hidden-xs"><i class="fa fa-credit-card-alt text-muted"></i></div>
+								<div class="media-body">
+									<h2>Avisos de credenciales</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="panel-content-padding">
+						<table class="table table-condensed panel-table">
+							<tbody>
+						      <tr>
+						        <td>Licencia Nacional de Conducir</td>
+						        <td>Vence el 02/02/2018</td>
+						        <td><i class="fa fa-exclamation-circle text-warning"></i> Próximo a vence</td>
+						        <td><a href="">¿Cómo renovar?</a></td>
+						      </tr>
+						      <tr>
+						       	<td>Licencia Nacional de Conducir</td>
+						        <td>Vence el 02/02/2018</td>
+						        <td><i class="fa fa-exclamation-circle text-warning"></i> Próximo a vence</td>
+						        <td><a href="">¿Cómo renovar?</a></td>
+						      </tr>
+						      <tr>
+						        <td>Licencia Nacional de Conducir</td>
+						        <td>Vence el 02/02/2018</td>
+						        <td><i class="fa fa-exclamation-circle text-warning"></i> Próximo a vence</td>
+						        <td><a href="">¿Cómo renovar?</a></td>
+						      </tr>
+						    </tbody>
+						</table>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--PANEL CREDENCIAL-->
+	
+	<div class="col-md-8">
+		<h2>Panel credencial</h2>
+		<div class="row panels-row panels-row-miargentina">
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="panel panel-default panel-nolink panel-border-success panel-credenciales">
+		        	<div class="panel-heading">
+		            	<h2>DNI 34.303.273</h2>
+		          	</div>
+		          	<div class="panel-body">
+		            	<div class="row">
+		            		<div class="col-md-8" id="main-content">
+		                		<small>Fecha de vencimiento</small>
+		                		<p><b>24/05/2033</b></p>
+		                		<p class="text-capitalize"><i class="fa fa-check-circle text-success"></i><b> Vigente</b></p>
+		                	</div>
+		            		<div class="col-lg-4">
+		            	 		 <div id="qrDNI" class="qrsmall">
+		  							<img src="../img/QR.png" alt="" style="max-width: 130px;">
+		  						</div>
+		            		</div>
+		            	</div>
+		            	<div class="row">
+		            		<div class="col-md-12">
+		                		<img src="../img/logos/mininterior.svg" style="max-width: 100%;" class="m-y-1" height="30">
+		            		</div>
+		            	</div>
+		          	</div>
+		          	<div class="panel-footer">
+		            	<p><a href="http://10.1.126.98:3000/credenciales/documento-nacional-de-indentidad">Ver más información</a></p>
+		          	</div>
+		          
+		        </div>
+		      
+		    </div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<h2>Panel credencial vencida</h2>
+		<div class="row panels-row panels-row-miargentina">
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="panel panel-default panel-nolink panel-border-danger panel-credenciales p-y-0">
+		        	<div class="panel-heading">
+		            	<h2>Licencia de conducir</h2>
+		          	</div>
+		          	<div class="panel-body">
+		          		<div class="credential-danger-state">
+		          			<p class="text-danger text-center m-y-0">Vencida</p>
+			            	<p class="text-center">Venció el 11/12/2018</p>
+			            	<a href=""><p class="text-center">¿Cómo renovarla?</p></a>	
+		          		</div>
+		          	</div>
+		        </div>
+		      
+		    </div>
+		</div>
+	</div>
+
+	
+	<!--PANEL CUD-->
+	
+	<div class="col-md-8">
+		<h2>Panel cud</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-9">
+							<h2>Certificado Único de Discapacidad</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="media">
+								<div class="media-left hidden-xs"><i class="icono-arg-cud fa-fw fa-2x text-muted"></i></div>
+								<div class="media-body">
+					                <h3><a href="">Detalle de mi CUD</a></h3>
+					                <label>Fecha vencimiento</label>
+					                <p><b>18/01/2022</b></p>
+					                <p><i class="fa fa-check-circle text-success"></i><b> Vigente</b></p>
+					            </div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="m-t-1">
+								<p>Estos son los trámites que podés hacer con tu CUD :</p>
+								<a href="" class="btn btn-success">Renová tu certificado</a>
+								<a href="" class="btn btn-link">Reservá pasajes</a>
+								<a href="" class="btn btn-link">Turnos para símbolo automotor</a>
+							</div>
+							
+						</li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<p>Conocé todos los <a href="https://www.argentina.gob.ar/tramites-y-prestaciones-para-personas-con-discapacidad" target="_blank">derechos de las personas con discapacidad</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!--PANEL FORM-->
+		<h2>Panel form</h2>
+	    <div class="panels-row-miargentina pclose">
+	      <div class="panel panel-default panel-border-primary panel-nolink">
+	        <div class="panel-heading">
+	          <div class="row">
+	            <div class="col-xs-10 col-md-11">
+	              <h2>Estas son las vacunas que te aplicaste y fueron registradas en el sistema nacional de vacunas NOMIVAC</h2>
+	            </div>
+	            <div class="col-xs-2 col-md-1">
+	              <div class="text-right btn-close">
+	                <i class="fa fa-close"></i>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="panel-body">
+	          <div class="panel-content-padding">
+	            <div class="form-group row">
+	              <div class="col-sm-8">
+	                <label class="control-label" for="id-tramite">Nro. de trámite que figura en el DNI <small>(Obligatorio)</small></label>
+	                <input class="form-control" type="number" name="id-tramite" maxlength="12" autocomplete="off" required>
+	                
+	              </div>
+
+	              <div class="p-t-1 col-xs-12">
+	                <a class="btn btn-successp-x-1" href="">GUARDAR Y DESCARGAR</a>
+	                <a class="btn btn-linkp-x-1" href="">CANCELAR</a>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	    <h2>Panel form con foto</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8 col-md-9">
+							<h2>Form</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+		          <div class="panel-content-padding">
+		          	<div class="row">
+			            <div class="form-group ">
+			              <div class="col-sm-6">
+			                <label class="control-label" for="id-tramite">Nro. de trámite que figura en el DNI <small>(Obligatorio)</small></label>
+			                <input class="form-control" type="number" name="id-tramite" maxlength="12" autocomplete="off" required>
+			              
+			              </div>
+
+			              <div class="col-xs-10 col-sm-6">
+			                <img src="../img/dni_id.png" alt="id-tramite" class="col-xs-12 p-x-0 m-t-1 max-w-img">
+			                <small class="col-xs-12 p-x-0 p-t-1">(*) En algunos DNI el nro. de trámite se ve al dorso</small>
+			              </div>
+			              <div class="p-t-1 col-xs-12">
+			                <a class="btn btn-successp-x-1" href="">GUARDAR Y DESCARGAR</a>
+			                <a class="btn btn-linkp-x-1" href="">CANCELAR</a>
+			              </div>
+			            </div>
+		            </div>
+		          </div>
+		        </div>
+				<div class="panel-footer">
+					<p>Conocé todos los <a href="https://www.argentina.gob.ar/tramites-y-prestaciones-para-personas-con-discapacidad" target="_blank">derechos de las personas con discapacidad</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--PANEL BACK1-->
+		<h2>Panel detalle</h2>
+		<div class="panels-row-miargentina">
+			<div class="panel panel-default panel-border-primary panel-nolink">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-3 btn-volver">
+                        	<a id="volver" href="#" class="btn btn-link btn-sm m-b-0"><i class="fa fa-arrow-left"></i> Volver</a>
+                        </div>
+                        <div class="col-md-8 col-md-9">
+							<h2>Detalles</h2>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="panel-content-padding">
+                            <div class="col-md-6">
+                                <div class="m-b-1">
+                                    <small>Fecha de aplicación</small>
+                                    <p><strong>22/03/2018</strong> </p> 
+                                </div>
+                                <div class="m-b-1">
+                                    <small>Incorporada al Calendario Nacional</small>
+                                    <p><strong>Si</strong></p> 
+                                </div>
+                                <div class="m-b-1">
+                                    <small>Lugar de aplicación</small>
+                                    <p><strong>Establecimiento Holly Molly</strong></p> 
+                                </div>
+
+                                <div class="m-b-1">
+                                    <small>Departamento</small>
+                                    <p><strong>Lomas de Zamora</strong></p> 
+                                </div>
+                               
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="m-b-1">
+                                    <small>Nombre de la dosis</small>
+                                    <p><strong>Dosis anual</strong> </p> 
+                                </div>
+                                <div class="m-b-1">
+                                    <small>Esquema</small>
+                                    <p><strong>Regular 9 a 64 Años con F de Riesgo</strong></p> 
+                                </div>
+                                <div class="m-b-1">
+                                    <small>Localidad</small>
+                                    <p><strong>Temperley</strong></p> 
+                                </div>
+
+                                <div class="m-b-1">
+                                    <small>Provincia</small>
+                                    <p><strong>Provincia de Buenos Aires</strong></p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+				</div>
+				<div class="panel-footer">
+					<p>Conocé todos los <a href="https://www.argentina.gob.ar/tramites-y-prestaciones-para-personas-con-discapacidad" target="_blank">derechos de las personas con discapacidad</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+		
+</div>
+
+	
+
+
+
+
+<script src="../../js/alert-close.js"></script>
+
+<script src="../../js/alert-collapse.js"></script>
+
+
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

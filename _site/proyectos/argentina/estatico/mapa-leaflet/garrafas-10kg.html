@@ -1,0 +1,57 @@
+<!-- 15seJ5ji-bBONXKAi9rEEdR8Xh4ug7fnofYUwYaCV1Tw -->
+
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "15seJ5ji-bBONXKAi9rEEdR8Xh4ug7fnofYUwYaCV1Tw";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            var entry = data.feed.entry;
+            var amount = entry.length;
+
+            /* Cantida de elementos */
+            console.log(amount);
+            
+            var i;
+            for (i = 0; i < amount; i++) {
+        
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+                var razonsocial = data.feed.entry[i]['gsx$razonsocial']['$t'];
+                var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
+                var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+                var lunesaviernes = data.feed.entry[i]['gsx$lunesaviernes']['$t'];
+                var sabado = data.feed.entry[i]['gsx$sabado']['$t'];
+                var direccion = data.feed.entry[i]['gsx$direccion']['$t'];
+                var link = data.feed.entry[i]['gsx$link']['$t'];
+                //var time = data.feed.entry[i]['gsx$time']['$t'];
+                //var tel = data.feed.entry[i]['gsx$tel']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(map);
+                marker.bindPopup('<h4>' + razonsocial + '</h4>' + localidad + ', ' + provincia + '<br><b>Lunes a Viernes:</b> ' + lunesaviernes + '<br><b>Sabado:</b> ' + sabado + '<br><b>Direccion:</b> ' + direccion + '<br><a href="'+ link + '">Ver Provincia</a>');
+            }
+
+        });
+
+
+
+
+</script>
+

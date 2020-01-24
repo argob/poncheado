@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/vacunas/index-old.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+@page {
+    size: A4 landscape;
+    /*margin:0;*/
+  }
+
+  
+@media print {
+   html, body[size="A4"] {
+  /*margin:0!important;*/
+  -webkit-print-color-adjust: exact!important;
+    height: 210mm!important;
+    width: 297mm!important;
+   
+  }
+  section{
+    padding:0px!important; 
+    margin:0px!important;
+  }
+  
+   
+  .screen-only, header{
+    display: none!important;
+   }
+
+  .container{
+    width: 100%;
+  }
+  #planilla-completa{ 
+    width: 100%!important;
+    color: black!important;
+    font-family: 'Arial', 'times'!important;
+    font-weight: bolder!important;
+    font-size: 11px!important;
+  }
+}
+table{
+  font-size: 12px;
+}
+.referencias p{
+  font-size: 12px;
+}
+p.big{ 
+    font-size: 30px;
+}
+</style>
+<div class="container" id="planilla-completa" size="A4">
+
+ <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li><a href="">Salud</a></li>
+    <li class="active">Calendario de vacunación del ciudadano</li>
+  </ol>
+
+
+
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Calendario Nacional de Vacunación</h1>
+        <div class="row">
+          <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+        </div>
+        <hr>  
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive text-center">
+          <table class="table table-bordered table-hover table-condensed">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Recién nacido</th>
+                <th>2 meses</th>
+                <th>4 meses</th>
+                <th>6 meses</th>
+                <th>12 meses</th>
+                <th>18 meses</th>
+                <th>24 meses</th>
+                <th>5-6 años</th>
+                <th>11 años</th>
+                <th>A partir de los 15 años</th>
+                <th>Embarazada</th>
+                <th>Puerperio</th>
+                <th>Personal de salud</th>
+                <th>Cada 10 años</th>
+                <th>15 a 18 meses</th>
+                <th>15 meses</th>
+                <th>3 meses</th>
+                <th>5 meses</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hepatitis B</td>
+                <td>1er Dosis 29-08-1990</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2da Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3er Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2da Dosis</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>3er Dosis</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>BCG</td>
+                <td>Unica Dosis 29-08-1990</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Neumococo Conjugad a VCN 13</td>
+                <td></td>
+                <td>1er Dosis 28-10-1990</td>
+                <td>2da Dosis 27-12-1990</td>
+                <td></td>
+                <td>Refuerzo 24-08-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Quintuple</td>
+                <td></td>
+                <td>1er Dosis 28-10-1990</td>
+                <td>2da Dosis 27-12-1990</td>
+                <td>3er Dosis 25-02-1991</td>
+                <td>Refuerzo 20-02-1992</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Cuádruple Bacteriana</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 20-02-1992</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>OPV Sabín</td>
+                <td></td>
+                <td>1ra dosis 28-10-1990</td>
+                <td>2da dosis 27-12-1990</td>
+                <td>3ra dosis 25-02-1991</td>
+                <td></td>
+                <td>1er Refuerzo 20-02-1992</td>
+                <td></td>
+                <td>2do Refuerzo 28-08-1995</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Triple Bacteriana Celular</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 28-08-1995</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Triple Viral</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Dosis cero 25-02-1991</td>
+                <td>1er Dosis 24-08-1991</td>
+                <td></td>
+                <td></td>
+                <td>2da Dosis 28-08-1995</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Hepatitis A</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 24-08-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Triple Bacteriana Acelular</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 26-08-2001</td>
+                <td></td>
+                <td>Refuerzo</td>
+                <td></td>
+                <td>Refuerzo</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Doble Viral</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Unica Dosis</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>VPH Bivalente</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>VPH Bivalente</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2da Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Fiebre Amarilla</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 20-02-1992</td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Fiebre Hemorrágica Argentina</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Unica Dosis 25-08-2005</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Doble Bacteriana</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1ra Dosis</td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Doble Bacteriana</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo</td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Neumococo Polisacarida 23 Valente</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 18-08-1992</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Antigripal</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 25-02-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Dosis Anual</td>
+                <td>Dosis Anual</td>
+                <td>Dosis Anual</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>IPV SALK</td>
+                <td></td>
+                <td>3er Dosis 28-10-1990</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Antimenin&shy;gocócica Tetravalente Conjugada  </td>
+                <td></td>
+                <td>1er Dosis 28-10-1990</td>
+                <td>2da Dosis 27-12-1990</td>
+                <td>3er Dosis 25-02-1991</td>
+                <td>Refuerzo 24-08-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 22-11-1991</td>
+                <td>1er Dosis 27-11-1990</td>
+                <td>2da Dosis 26-01-1991</td>
+              </tr>
+              <tr>
+                <td>Rotavirus Pentavalente</td>
+                <td></td>
+                <td>1er Dosis 28-10-1990</td>
+                <td>2da Dosis 27-12-1990</td>
+                <td>3er Dosis 25-02-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Quintuple Acelular</td>
+                <td></td>
+                <td>1er Dosis 28-10-1990</td>
+                <td>2da Dosis 27-12-1990</td>
+                <td>3er Dosis 25-02-1991</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Cuadruple Acelular DPaT e IPV</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Refuerzo 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>VPH Cuadrival ente</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1er Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>VPH Cuadrival ente</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>2da Dosis 26-08-2001</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12"><hr></div>
+      <div class="col-sm-3 referencias">
+        <p>(1) BCG: Tuberculosis (formas invasivas).</p>
+        <p>(2) HB: Hepatitis B.</p>
+        <p>(3) Previene la Meningitis, Neumonía y Sepsis por Neumococo.</p>
+        <p>(4) DTP-HB-Hib: (Pentavalente) Difteria, Tétanos, Tos Convulsa, Hep B, Haemophilus Influenzae b.</p>
+        <p>(5) IPV: (Salk) Poliovirus inactivada.</p>
+        <p>(6) OPV: (Sabin) Poliovirus oral.</p>
+        <p>(7) Rotavirus.</p>
+        <p>(8) Meningococo.</p>
+        <p>(9) Antigripal.</p>
+        <p>(10) HA: Hepatitis A.</p>
+        <p>(11) SRP: (Triple viral) Sarampión, Rubeóla, Paperas.</p>
+        <p>(12) Varicela.</p>
+      </div>
+      <div class="col-sm-3 referencias">
+        <p>(13) DTP-Hib: (Cuádruple) Difteria, Tétanos, Tos Convulsa, Haemophilus influenzae b.</p>
+        <p>(14) DTP: (Triple Bacteriana Celular) Difteria, Tétanos, Tos Convulsa. </p>
+        <p>(15) dTpa: (Triple Bacteriana Acelular) Difteria, Tétanos, Tos Convulsa.</p>
+        <p> (16) VPH: Virus Papiloma Humano.</p>
+        <p> (17) dT (Doble Bacterinana) Difteria, Tétanos.</p>
+        <p>(18) SR: (Doble Viral) Sarampión, Rubeóla.</p>
+        <p>(19) FA: (Fiebre Amarilla).</p>
+        <p>(20) FHA: (Fiebre Hemorrágica Argentina).</p>
+        <hr>
+        <p>(A) Antes de egresar de la maternidad.</p>
+        <p>(B) En los primeras 12 horas de vida.</p>
+      </div>
+      <div class="col-sm-3 referencias">
+        <p>(C) Vacunación Universal. Si no hubiera recibido el esquema completo, deberá completarlo. En caso de tener que iniciar: aplicar 1' dosis, 2' dosis al mes de la primera y 3' dosis a los seis meses de la primera.</p>
+        <p>(D) La 1' dosis debe administrarse antes de las catorce semanas y seis días o tres meses y medio.</p>
+        <p>(E) La 2' dosis debe administrarse antes de las venticuatro semanas o los seis meses de vida.</p>
+        <p>(F) Deberán recibir en la primovacunación 2 dosis de la vacuna separadas al menos por cuatro semanas.</p>
+        <p>(G) En cada embarazo deberán recibir la vacuna antigripal en cualquier trimestre de la gestación.</p>
+        <p>(H) Puérperas deberán recibir vacuna antigripal si no la hubiesen recibido durante el embarazo, antes del egreso de la maternidad y hasta un máximo de diez días después del parto.</p>
+      </div>
+      <div class="col-sm-3 referencias">
+        <p>(I) Si no hubiera recibido dos dosis de triple viral o una dosis de triple viral + 1 dosis de doble viral, después del año de vida para los nacidos después de 1965.</p>
+        <p>(J) Aplicar dTpa en cada embarazo independientemente del tiempo desde la dosis previa. Aplicar a partir de la semana 20 de gestacion.</p>
+        <p>(K) Personal de salud que asista menores de 12 meses. Revacunar cada 5 años.</p>
+        <p>(L) Residentes en zonas de riesgo.</p>
+        <p>(M) Residentes en zona de riesgo único refuerzo a los diez años de la primera dosis.</p>
+        <p>(N) Residentes o trabajadores con riesgo ocupacional en zona de riesgo y que no hayan recibido anteriormente la vacuna.</p>
+        <p>(Ñ) 2 dosis separadas por intervalo mínimo de 6 meses.</p>
+      </div>
+      <div class="col-sm-12"><hr></div>
+      <div class="col-sm-3">
+        <p>Para más información:</p>
+        <p class="big">0-800-222-1002</p>
+        <a href="https://salud.gob.ar">salud.gob.ar</a>
+      </div>
+      <div class="col-sm-3">
+        <img class="" src="cobertura-universal.png" alt="" width="">
+      </div>
+      <div class="col-sm-3">
+        <img class="" src="ministerio-salud.png" alt="" width="">
+      </div>
+      <div class="col-sm-3">
+        <img class="" src="qr-img.png" alt="código qr" width="100">
+      </div>
+      <!--<div class="col-sm-12"><hr></div>
+      <div class="col-sm-6">
+        <img class="" src="qr-img.png" alt="código qr" width="100">
+      </div>
+      <div class="col-sm-6 text-left text-sm-right">
+        <img class="" src="salud-presidencia.png" alt="Presidencia de la Nación" width="300">
+      </div>-->
+    </div>
+
+  </section>
+
+
+
+</div>
+
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

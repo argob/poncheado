@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta property="og:url" content="https://estadisticascriminales.minseg.gob.ar" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Estadísticas criminales en la República Argentina" />
+  <meta property="og:description" content="Ministerio de Seguridad de la Nación" />
+  <meta property="og:image" content="https://estadisticascriminales.minseg.gob.ar/img/estadisticas-fb.png" />
+
+  <title>Estadísticas Criminales</title>
+
+  <link rel="stylesheet" href="css/style.min.css"/>
+
+  <link rel="shortcut icon" href="img/favicon.ico" />
+
+</head>
+
+<body>
+
+  <!-- LOADER -->
+  <div>
+    <div style="height: 100vh" class="flex-center" id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div id="content" class="animate fadeIn">
+
+      <div class="container vertical-align">
+        <header id="navbar" role="banner" class="navbar navbar-default">
+          <div class="row">
+            <div class=" col-md-8">
+              <div class="col-md-6">
+                <a class="logo navbar-btn pull-left" href="https://www.argentina.gob.ar/seguridad"  title="Ministerio de Seguridad">
+                  <img class="img-logo" src="img/logo.png" alt="Inicio" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text-xs-center p-a-1 m-t-2 title">
+              <h3 style="margin-bottom: 0px;">Estadísticas Criminales de la República Argentina</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 hidden-sm-down">
+            <div class="card p-a-1 m-t-1">
+              <div class="localizacion m-t-1" style="height: 100%;">
+                <div id="map-column">
+                  <!--<div id="map-container" data-bind="css: { disabled: !rateSelected() }">-->
+                  <div id="map-container">
+                    <div id="back-action" data-bind="visible: (rateSelected() && rateLocationId() != 0) " onclick="estadisticas.mapViewModel.resetZoom()">
+                      <div class="btn btn-default">Volver</div>
+                    </div>
+                    <div class="pais-container"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card text-xs-center p-a-1 m-t-2">
+              <h3>Descargar Informes</h3>
+              <hr>
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-estadistcas" aria-expanded="false"
+                    aria-controls="informe-estadistcas">
+                    <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingOne">
+                      Estadísticas Criminales en la República Argentina
+                    </div>
+                  </a>
+                  <div id="informe-estadistcas" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <ul class="m-y-1">
+                        <a href="reports/Informe estadisticas criminales Republica Argentina 2015.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2015</li>
+                          </a>
+                          <a href="reports/Informe estadisticas criminales Republica Argentina 2016.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2016</li>
+                          </a>
+                          <a href="reports/Informe estadisticas criminales Republica Argentina 2017.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2017</li>
+                          </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-snic" aria-expanded="false"
+                    aria-controls="informe-snic">
+                    <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingTwo">
+                      Informes del Sistema Nacional de Información Criminal
+                    </div>
+                  </a>
+                  <div id="informe-snic" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      <ul class="m-y-1">
+                        <a href="reports/Informe SNIC 2015.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2015</li>
+                          </a>
+                          <a href="reports/Informe SNIC 2016.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2016</li>
+                          </a>
+                          <a href="reports/Informe SNIC 2017.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2017</li>
+                          </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-victimizacion" aria-expanded="false"
+                    aria-controls="informe-victimizacion">
+                    <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingTwo">
+                       Encuesta Nacional de Victimización 2017
+                    </div>
+                  </a>
+                  <div id="informe-victimizacion" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      <ul class="m-y-1">
+                        <a href="reports/env2017.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2017</li>
+                          </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#justicia" aria-expanded="false"
+                    aria-controls="informe-estadistcas">
+                    <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingOne">
+                    SNIC - Ministerio de Justicia
+                    </div>
+                  </a>
+                  <div id="justicia" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <ul class="m-y-1">
+                        <a href="http://www.jus.gob.ar/media/1124692/SnicARGENTINA2002.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2002</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1124842/SnicARGENTINA2003.PDF" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2003</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1124992/SnicARGENTINA2004.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2004</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1125162/SnicARGENTINA2005.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2005</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1125322/SnicARGENTINA2006.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2006</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1125482/SnicARGENTINA2007.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2007</li>
+                          </a>
+                          <a href="http://www.jus.gob.ar/media/1125632/SnicARGENTINA2008.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2008</li>
+                          </a>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card text-xs-center p-a-1 m-t-2">
+              <h3>Descargar Bases de datos</h3>
+              <hr>
+                <div class="panel-body">
+                  <ul class="m-y-1">
+                    <a href="datos/snic-pais-2014-2015-2016_2017.csv" target="_blank" class="reporte">
+                      <li class="title m-y-1 p-y-1">Datos país</li>
+                    </a>
+                    <a href="datos/snic-provincias-2014-2015-2016_2017.csv" target="_blank" class="reporte">
+                      <li class="title m-y-1 p-y-1">Datos provincias</li>
+                    </a>
+                  </ul>
+                </div>
+            </div>
+            <!--nuevo menu de datos.gob.ar -->
+            <div class="card text-xs-center p-a-1 m-t-2">
+              <h3>Portal datos.gob.ar</h3>
+              <hr>
+                <div class="panel-body">
+                  <ul class="m-y-1">
+                    <a href="http://www.datos.gob.ar" target="_blank" class="reporte">
+                      <li class="title m-y-1 p-y-1">Ingresar al portal </li>
+                    </a>
+
+                  </ul>
+                </div>
+            </div>
+<!-- fin nuevo menu -->
+          </div>
+
+
+
+          <div class="col-sm-12 col-md-7 m-t-1">
+            <div class="card p-a-1">
+              <nav id="nav-change-rate">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <h4 ><!-- ko text: rateName --><!-- /ko --> <div class="btn btn-default btn-sm waves-effect waves-light" data-bind="visible: rateSelected">Cambiar</div></h4>
+                  </button>
+                <div class="collapse navbar-collapse in" id="navbarNavDropdown">
+                  <!--Accordion wrapper-->
+                  <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true" data-bind="foreach: category">
+                    <!--First panel-->
+                    <div class="panel panel-default">
+                      <!--Panel heading-->
+                      <div class="panel-heading" role="tab" data-bind="attr: { id: '#heading-' + $index() }">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-bind="attr: { href: '#Category' + $index() }, click: $root.getCategory"
+                          aria-expanded="false" aria-controls="collapseOne">
+                          <h4 class="panel-title" data-bind="text: name, css: 'category-color-' + $index() ">
+
+                          </h4>
+                        </a>
+                      </div>
+                      <!--Panel body-->
+                      <div data-bind="attr: { id: 'Category' + $index() }" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <ul class="collapse-ul z-depth-0" data-bind="foreach: rates">
+                          <li class="collapse-li" data-bind="click: $root.getRate">
+                            <a href="#" data-bind="text: name"></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!--/.First panel-->
+                  </div>
+                  <!--/.Accordion wrapper-->
+                </div>
+              </nav>
+
+              <!-- <p class="text-xs-center" data-bind="text: rateDescription"> -->
+              </p>
+              <hr>
+              <div class="row p-y-1" data-bind="visible: rateSelected()">
+                <div lass="tab-pane active" id="panel-no-data" role="tabpanel" data-bind="visible: !hasData()">
+                  <h3 class="text-xs-center">Sin datos disponibles</h3>
+                </div>
+                <div class="col-xs-6 text-xs-center" style="margin: auto;  bottom: 0">
+                  <div class="datoPrincipal" style="margin: auto;">
+                    <!-- Nav tabs -->
+                    <!-- <ul class="nav nav-tabs"role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Provincia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Partido</a>
+                        </li>
+                    </ul> -->
+                    <!-- Tab panels -->
+                    <div class="tab-content p-t-1">
+                      <!--Panel 1-->
+                      <div class="tab-pane active" id="panel1" role="tabpanel" data-bind="visible: hasData">
+                        <h4><span class="subrayado" data-bind="visible: rateLocation, text: rateLocation">País</span></h4>
+                        <h3 class="font-weight-bold m-y-1" data-bind="text: rateValue"></h3>
+                        <p class="unidad" data-bind="text: unit() + '. Año ' + currentYear()"></p>
+                        <a style="color: #0094d4" data-bind="visible: canChangeUnit, click: changeCurrentRateUnit">
+                          <i class="fa fa-exchange" aria-hidden="true"></i>
+                          <!-- ko text: changeUnitText -->
+                          <!-- /ko -->
+                        </a>
+                      </div>
+                      <!--Panel 2-->
+                      <!-- <div class="tab-pane" id="panel2" role="tabpanel">
+                          <h3 class="font-weight-bold m-y-2">91</h3>
+                          <p class="unidad">hechos delictivos</p>
+                          <p class="">
+                            cada 100.000 habitantes.
+                          </p>
+                        </div> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-6" data-bind="visible: hasData">
+                  <div class="datoSecundario">
+                    <div id="line-chart"></div>
+                  </div>
+                  <div id="line-chart-disclaimer">
+                    <!-- ko text: lineChartText -->
+                    <!-- /ko -->
+                  </div>
+                </div>
+              </div>
+              <hr data-bind="visible: hasData">
+              <div class="row p-a-1" data-bind="visible: hasData">
+                <h5 class="text-xs-center p-b-1" data-bind="text: barChartTitle">Comparación</h5>
+                <div class="col-md-10 col-md-offset-1 m-t-1">
+                  <div class="imagen p-y-1">
+                    <div id="bar-chart"></div>
+                  </div>
+                </div>
+                <div class="col-md-10 col-md-offset-1 m-t-1" data-bind="text: inhabitantsText">
+                </div>
+                <div class="col-md-10 col-md-offset-1 m-t-1" data-bind="visible: !isLocationPopulated()">
+                  Para los departamentos de menos de 50.000 habitantes no se presentan las tasas por 100.000 habitantes: en una población pequeña,
+                  la evolución de las tasas, en particular las relativas a los homicidios, puede parecer más impactante a
+                  primera vista de lo que es en realidad. Pequeños aumentos en términos absolutos pueden producir grandes
+                  aumentos en términos relativos. En esos casos, conviene considerar en primera instancia las cantidades.
+                </div>
+              </div>
+              <hr data-bind="visible: hasData">
+              <h6 class="text-xs-center" data-bind="visible: hasData">Fuente:
+                <span data-bind="text: rateSource"></span>
+              </h6>
+            </div>
+          </div>
+
+
+          <!--mobile menu-->
+          <div class="col-xs-12 hidden-md-up" data-bind="visible: hasData">
+            <div class="card p-a-1">
+              <h4 class="text-xs-center">Filtrar por locación</h4>
+              <div class="localizacion m-t-3">
+                <div class="md-form">
+                    Provincia: <select class="form-control select-locaciones" data-bind="options:rateLocationChoices,
+                                            optionsText: 'name',
+                                            optionsValue: 'id',
+                                            optionsCaption: 'Seleccionar Provincia',
+                                            value:selectRateProvince","></select>
+                </div>
+                <div class="md-form m-t-3" data-bind="visible : rateRegionChoices().length > 0">
+                    Departamento: <select class="form-control select-locaciones" data-bind="options:rateRegionChoices,
+                                            optionsText: 'name',
+                                            optionsValue: 'id',
+                                            optionsCaption: 'Seleccionar Departamento',
+                                            value:selectRateRegion"></select>
+                </div>
+                <div class="flex-center">
+                  <button type="button" class="btn btn-primary" onclick="estadisticas.viewModel.onSelectClick()">Aplicar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 hidden-md-up" >
+            <div class="card text-xs-center p-a-1 m-t-2">
+                <h3>Descargar Informes</h3>
+                <hr>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-estadisticas-mobile" aria-expanded="false"
+                      aria-controls="informe-estadisticas-mobile">
+                      <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingOne">
+                        Estadísticas Criminales en la República Argentina
+                      </div>
+                    </a>
+                    <div id="informe-estadisticas-mobile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <ul class="m-y-1">
+                          <a href="reports/Informe estadisticas criminales Republica Argentina 2015.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2015</li>
+                          </a>
+                          <a href="reports/Informe estadisticas criminales Republica Argentina 2016.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2016</li>
+                          </a>
+                          <a href="reports/Informe estadisticas criminales Republica Argentina 2017.pdf" target="_blank" class="reporte">
+                            <li class="m-y-1 p-y-1">2017</li>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-snic-mobile" aria-expanded="false"
+                      aria-controls="informe-snic-mobile">
+                      <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingTwo">
+                        Informes del Sistema Nacional de Información Criminal
+                      </div>
+                    </a>
+                    <div id="informe-snic-mobile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        <ul class="m-y-1">
+                          <a href="reports/Informe SNIC 2015.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2015</li>
+                          </a>
+                          <a href="reports/Informe SNIC 2016.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2016</li>
+                          </a>
+                          <a href="reports/Informe SNIC 2017.pdf" class="reporte" target="_blank">
+                            <li class="m-y-1 p-y-1">2017</li>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#informe-victimizacion-mobile" aria-expanded="false"
+                      aria-controls="informe-victimizacion-mobile">
+                      <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingTwo">
+                         Encuesta Nacional de Victimización 2017
+                      </div>
+                    </a>
+                    <div id="informe-victimizacion-mobile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        <ul class="m-y-1">
+                          <a href="reports/env2017.pdf" class="reporte" target="_blank">
+                              <li class="m-y-1 p-y-1">2017</li>
+                            </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#justicia-mobile" aria-expanded="false"
+                      aria-controls="informe-estadistcas">
+                      <div class="panel-heading title m-t-1 p-y-1" role="tab" id="headingOne">
+                      SNIC - Ministerio de Justicia
+                      </div>
+                    </a>
+                    <div id="justicia-mobile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <ul class="m-y-1">
+                          <a href="http://www.jus.gob.ar/media/1124692/SnicARGENTINA2002.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2002</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1124842/SnicARGENTINA2003.PDF" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2003</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1124992/SnicARGENTINA2004.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2004</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1125162/SnicARGENTINA2005.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2005</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1125322/SnicARGENTINA2006.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2006</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1125482/SnicARGENTINA2007.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2007</li>
+                            </a>
+                            <a href="http://www.jus.gob.ar/media/1125632/SnicARGENTINA2008.pdf" target="_blank" class="reporte">
+                              <li class="m-y-1 p-y-1">2008</li>
+                            </a>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 hidden-md-up" >
+              <div class="card text-xs-center p-a-1 m-t-2">
+                  <h3>Descargar Bases de datos</h3>
+                  <hr>
+                    <div class="panel-body">
+                      <ul class="m-y-1">
+                        <a href="datos/snic-pais-2014-2015-2016_2017.csv" target="_blank" class="reporte">
+                          <li class="title m-y-1 p-y-1">Datos país</li>
+                        </a>
+                        <a href="datos/snic-provincias-2014-2015-2016_2017.csv" target="_blank" class="reporte">
+                          <li class="title m-y-1 p-y-1">Datos provincias</li>
+                        </a>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+<!-- nuevo menu -->
+
+<div class="col-xs-12 hidden-md-up" >
+  <div class="card text-xs-center p-a-1 m-t-2">
+      <h3>Portal datos.gob.ar</h3>
+      <hr>
+        <div class="panel-body">
+          <ul class="m-y-1">
+            <a href="http://datos.gob.ar" target="_blank" class="reporte">
+              <li class="title m-y-1 p-y-1">Ingresar</li>
+            </a>
+          </ul>
+        </div>
+    </div>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="informacion-inicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <!--<p>
+                      La reconstrucción de las estadísticas criminales para los años 2014 y 2015 permitió identificar problemas respecto a la calidad y cobertura del Sistema Nacional de Información Criminal.
+                    </p>
+                    <p>
+                      Para profundizar ese diagnóstico preliminar y empezar a trabajar en la elaboración de un plan de mejoras, se está implementando las acciones siguientes:
+                    </p>-->
+                  <!--  <ol>-->
+                      <!--<li>
+                        El Banco Interamericano de Desarrollo (BID) estuvo analizando de manera pormenorizada los sistemas de información en seguridad de las 24 Jurisdicciones y de las Fuerzas Federales y su articulación con el Sistema Nacional de Información Criminal.
+                      </li>-->
+                    <!--  <li>-->
+                      <!--  El Centro de Excelencia para la Información Estadística de Gobierno, Seguridad Pública, Victimización y Justicia de la Oficina de las Naciones Unidas contra la Droga y el Crimen (UNODC) realizó una evaluación de calidad del Sistema Nacional de Información Crimina que culminó con la entrega del siguiente certificado:
+                      --><p><img class="img-center" src="img/evaluacion-calidad-estadistica.jpg"/></p>
+                      <!--  El Centro de Excelencia entregó también un plan de mejoras que se está llevando a cabo y que traerá aparejado una reevaluación de la calidad estadística del Sistema Nacional de Información Criminal para agosto 2018.-->
+                      <!--</li>-->
+                  <!--  </ol>-->
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Aceptar</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<div class="modal fade" id="informacion-mendoza" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <p>
+                      Según el Informe del Banco Interamericano de Desarrollo (BID) acerca de los sistemas de información en seguridad de la República Argentina, "la Provincia de Mendoza posee un sistema con sólidas herramientas de análisis y procesamiento" (BID, 2017, página 337).
+                    </p>
+                    <p>
+                      Hasta tanto no se finalice el proceso de evaluación del Sistema Nacional de Información Criminal por parte de la Oficina de las Naciones Unidas contra la Droga y el Delito (UNODC) y se implemente las recomendaciones del plan de mejoras, la comparación de los datos de las diferentes jurisdicciones presenta inconsistencias en términos metodológicos.
+                    </p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Aceptar</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+
+
+
+  <script src="js/app.min.js"></script>
+
+</body>
+
+</html>

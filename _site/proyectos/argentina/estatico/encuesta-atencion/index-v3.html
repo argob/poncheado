@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/encuesta-atencion/index-v3.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+    /* JT */
+    
+    .jumbotron {
+        background-size: inherit;
+        background-color: #0695D6;
+    }
+    /* form */
+    
+    
+    .panel-body {
+        padding: 30px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+
+    /* botones */
+    
+    .portaSig {
+        text-align: right;
+    }
+
+</style>
+
+ 
+<section class="jumbotron" style="background-image: url('img/trama-opinion.png');">
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2>Encuesta de atención</h2>
+                    <p>Si realizaste un trámite te invitamos a responder unas pocas preguntas para ayudarnos a mejorar los servicios que te ofrecemos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+
+
+
+            <form>
+
+
+<!-- ACÁ ARRANCA EL PANEL QUE VA CAMBIANDO -->
+
+        <!-- PREGUNTA 1 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3">
+
+                  <small class="text-muted">Pregunta 1 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                            <span class="sr-only">10% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3>Indicá el medio por el cual realizaste el trámite</h3>
+
+                                    <label class="m-t-1 m-l-1" for="Presencial">
+                                      <input id="Presencial" type="radio" name="medio" value="Presencial" class="habilitarSiguiente" />
+                                      Presencial
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Telefónico">
+                                      <input id="Telefónico" type="radio" name="medio" value="Telefónico" class="habilitarSiguiente" />
+                                      Telefónico
+                                    </label>  
+
+                                    <label class="m-t-1 m-l-1" for="Correo electrónico">
+                                      <input id="Correo electrónico" type="radio" name="medio" value="Correo electrónico" class="habilitarSiguiente" />
+                                      Correo electrónico
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-6">
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 1 -->
+
+        <!-- PREGUNTA 2 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 2 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                            <span class="sr-only">20% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3>Indicá la provincia y localidad donde realizaste el trámite</h3>
+
+                                    <div class="form-group">
+                                      <label class="control-label">Provincia</label>
+                                      <select class="form-control habilitaPregunta2" id="provincia">
+                                        <option value="" disabled selected>Elegir...</option>
+                                        <option value="Buenos Aires">Buenos Aires</option>
+                                        <option value="Jujuy">Jujuy</option>
+                                        <option value="Chaco">Chaco</option>
+                                        <option value="Mendoza">Mendoza</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="control-label">Localidad</label>
+                                      <select class="form-control habilitaPregunta2" id="localidad">
+                                        <option value="" disabled selected>Elegir...</option>
+                                        <option value="Tandil">Tandil</option>
+                                        <option value="La Plata">La Plata</option>
+                                        <option value="Luján">Luján</option>
+                                        <option value="Campana">Campana</option>
+                                      </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 2 -->
+
+        <!-- PREGUNTA 3 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 3 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                            <span class="sr-only">30% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h3>Indicá el organismo y el trámite que realizaste</h3>
+
+                                    <div class="form-group m-t-1">
+                                      <label class="control-label">Organismo</label>
+                                      <select class="form-control habilitaPregunta3" id="organismo">
+                                        <option value="" disabled selected>Elegir...</option>
+                                        <option value="AFIP">AFIP</option>
+                                        <option value="ANSES">ANSES</option>
+                                        <option value="ReNaPer">ReNaPer</option>
+                                        <option value="SENASA">SENASA</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group m-t-1">
+                                      <label class="control-label">Trámite</label>
+                                      <select class="form-control habilitaPregunta3" id="tramite">
+                                        <option value="" disabled selected>Elegir...</option>
+                                        <option value="DNI">DNI</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                        <option value="CETA - Certificado de Transferencia de Automóvil">CETA - Certificado de Transferencia de Automóvil</option>
+                                      </select>
+                                    </div> 
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 3 -->
+
+        <!-- PREGUNTA 4 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 4 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                            <span class="sr-only">40% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3>En general, ¿qué te pareció la atención que te brindaron durante el trámite?</h3>
+
+                                    <label for="Muy mala" class="m-t-1 m-l-1">
+                                      <input id="Muy mala" type="radio" name="atencion" value="Muy mala" class="habilitarSiguiente" />
+                                      Muy mala
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Mala">
+                                      <input id="Mala" type="radio" name="atencion" value="Mala" class="habilitarSiguiente" />
+                                      Mala
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Regular">
+                                      <input id="Regular" type="radio" name="atencion" value="Regular" class="habilitarSiguiente" />
+                                      Regular
+                                    </label>  
+
+                                    <label class="m-t-1 m-l-1" for="Buena">
+                                      <input id="Buena" type="radio" name="atencion" value="Buena" class="habilitarSiguiente" />
+                                      Buena
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Muy buena">
+                                      <input id="Muy buena" type="radio" name="atencion" value="Muy buena" class="habilitarSiguiente" />
+                                      Muy buena
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 4 -->
+
+        <!-- PREGUNTA 5 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 5 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                            <span class="sr-only">50% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3>¿Cuánto tiempo esperaste hasta que te atendieron?</h3>
+
+                                    <label for="más de 20" class="m-t-1 m-l-1">
+                                      <input id="más de 20" type="radio" name="espera" value="más de 20" class="habilitarSiguiente" />
+                                      Más de 20 minutos de espera
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="entre 20 y 15">
+                                      <input id="entre 20 y 15" type="radio" name="espera" value="entre 20 y 15" class="habilitarSiguiente" />
+                                      Entre 20 y 15 minutos de espera
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="entre 15 y 10">
+                                      <input id="entre 15 y 10" type="radio" name="espera" value="entre 15 y 10" class="habilitarSiguiente" />
+                                      Entre 15 y 10 minutos de espera
+                                    </label>  
+
+                                    <label class="m-t-1 m-l-1" for="entre 10 y 5">
+                                      <input id="entre 10 y 5" type="radio" name="espera" value="entre 10 y 5" class="habilitarSiguiente" />
+                                      Entre 10 y 5 minutos de espera
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="menos de 5">
+                                      <input id="menos de 5" type="radio" name="espera" value="menos de 5" class="habilitarSiguiente" />
+                                      Menos de 5 minutos de espera
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 5 -->
+
+        <!-- PREGUNTA 6 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 6 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            <span class="sr-only">60% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3>A partir de que te atendieron, ¿cuánto tiempo tardó en realizarse el trámite?</h3>
+
+                                    <label for="trámite más de 20" class="m-t-1 m-l-1">
+                                      <input id="trámite más de 20" type="radio" name="tiempotramite" value="trámite más de 20" class="habilitarSiguiente" />
+                                      Más de 20 minutos
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="trámite entre 20 y 15">
+                                      <input id="trámite entre 20 y 15" type="radio" name="tiempotramite" value="trámite entre 20 y 15" class="habilitarSiguiente" />
+                                      Entre 20 y 15 minutos
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="trámite entre 15 y 10">
+                                      <input id="trámite entre 15 y 10" type="radio" name="tiempotramite" value="trámite entre 15 y 10" class="habilitarSiguiente" />
+                                      Entre 15 y 10 minutos
+                                    </label>  
+
+                                    <label class="m-t-1 m-l-1" for="trámite entre 10 y 5">
+                                      <input id="trámite entre 10 y 5" type="radio" name="tiempotramite" value="trámite entre 10 y 5" class="habilitarSiguiente" />
+                                      Entre 10 y 5 minutos
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="trámite menos de 5">
+                                      <input id="trámite menos de 5" type="radio" name="tiempotramite" value="trámite menos de 5" class="habilitarSiguiente" />
+                                      Menos de 5 minutos
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 6 -->
+
+        <!-- PREGUNTA 7 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 7 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                            <span class="sr-only">70% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3>¿Qué tan útil te resultó la atención que te brindaron?</h3>
+
+                                    <label for="Inútil" class="m-t-1 m-l-1">
+                                      <input id="Inútil" type="radio" name="utilidad" value="Inútil" class="habilitarSiguiente" />
+                                      Inútil
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Poco útil">
+                                      <input id="Poco útil" type="radio" name="utilidad" value="Poco útil" class="habilitarSiguiente" />
+                                      Poco útil
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="atencionRegular">
+                                      <input id="atencionRegular" type="radio" name="utilidad" value="Regular" class="habilitarSiguiente" />
+                                      Regular
+                                    </label>  
+
+                                    <label class="m-t-1 m-l-1" for="Útil">
+                                      <input id="Útil" type="radio" name="utilidad" value="Útil" class="habilitarSiguiente" />
+                                      Útil
+                                    </label>
+
+                                    <label class="m-t-1 m-l-1" for="Muy útil">
+                                      <input id="Muy útil" type="radio" name="utilidad" value="Muy útil" class="habilitarSiguiente" />
+                                      Muy útil
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md disabled sig" href="#">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 7 -->
+
+                <!-- PREGUNTA 8 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 8 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+                            <span class="sr-only">80% completado</span>
+                        </div>
+                    </div>
+                    
+                    <p class="m-t-2"><b class="muestraOrganismo"></b></p>
+                    <p class="text-muted muestraLocalidad"></p>
+                    <small class="text-primary muestraTramite"></small>
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3 class="m-b-1">¿Querés contar qué pasó o algún detalle sobre la atención del trámite? <span class="text-muted">(opcional)</span></h3>
+
+                                    <textarea class="form-control m-b-2" style="resize: none" rows="5" id="comment" placeholder="Dejanos tu comentario"></textarea>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md" href="#" id="noValidar" ">Siguiente</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 8 -->
+
+        <!-- PREGUNTA 9 -->
+
+                <div class="preguntas col-md-6 col-md-offset-3 hidden">
+
+                  <small class="text-muted">Pregunta 9 de 9</small>
+                    <div class="progress m-b-0 m-t-05">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                            <span class="sr-only">90% completado</span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="panel panel-default m-t-2">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body form-group">
+                                    <h3 class="m-b-1">¿Conocés la guía de trámites de Argentina.gob.ar?</h3>
+
+                                    <label class="m-t-1" for="Sí">
+                                      <input id="Sí" type="radio" name="tramites" value="Sí" />
+                                      Sí
+                                    </label>
+
+                                    <label class="m-t-1" for="No">
+                                      <input id="No" type="radio" name="tramites" value="No" />
+                                      No
+                                    </label>  
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <a class="btn btn-link btn-md ant" href="#">Anterior</a>
+                      </div>
+                      <div class="col-xs-6 portaSig">
+                        <a class="btn btn-success btn-md" href="enviado.html">Finalizar</a>
+                      </div>
+                    </div>
+
+                </div>
+
+        <!-- / PREGUNTA 9 -->
+
+
+
+<!-- ACÁ TERMINA EL PANEL QUE VA CAMBIANDO -->
+
+                
+
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<script>
+
+  // Define variables
+
+  var preguntas = document.getElementsByClassName("preguntas"); 
+  var ant = document.getElementsByClassName("ant");
+  var sig = document.getElementsByClassName("sig");
+
+  var preguntaActual = 0;
+
+  // agrega eventos a los botones de "anterior"
+
+    for (let i = 0; i < ant.length; i++){
+      ant[i].addEventListener("click", anterior);
+      ant[i].addEventListener("click", checkearPanel);
+    }
+
+
+  // agrega eventos a los botones de "siguiente"
+
+    for (let i = 0; i < sig.length; i++){
+      sig[i].addEventListener("click", siguiente);
+    }
+
+
+  // levanta botones para habilitar botón de siguiente
+
+  var habilitaSiguiente = document.getElementsByClassName("habilitarSiguiente");
+
+  for (let i = 0; i < habilitaSiguiente.length; i++){
+    habilitaSiguiente[i].addEventListener("click", FhabilitaSiguiente);
+  }
+
+  // va levantando cada pregunta y le agrega la función a un evento change
+
+    var habilitaPregunta2 = document.getElementsByClassName("habilitaPregunta2");
+
+    for (let i = 0; i < habilitaPregunta2.length; i++){
+      habilitaPregunta2[i].addEventListener("change", FhabilitaPregunta2);
+    }
+
+    var habilitaPregunta3 = document.getElementsByClassName("habilitaPregunta3");
+
+    for (let i = 0; i < habilitaPregunta3.length; i++){
+      habilitaPregunta3[i].addEventListener("change", FhabilitaPregunta3);
+    }
+
+    // levanta campos de la pregunta 2 para guardarlos
+
+    var organismo = document.getElementById("organismo");
+    var provincia = document.getElementById("provincia");
+    var localidad = document.getElementById("localidad");
+    organismo.addEventListener("change", guardaOrganismo);
+    provincia.addEventListener("change", guardaProvincia);
+    localidad.addEventListener("change", guardaLocalidad);
+
+    // levanta campos de la pregunta 3 para guardarlos
+
+    var tramite = document.getElementById("tramite");
+    tramite.addEventListener("change", guardaTramite);
+
+
+    // levanta pregunta que no valida
+
+    var noValidar = document.getElementById("noValidar");
+    noValidar.addEventListener("click", noValida);
+
+
+  // Va cambiando el valor de preguntaActual cada vez que se hace click en anterior
+
+  function anterior(){
+    preguntaActual -= 1;
+    FhabilitaSiguiente();
+    }
+
+
+  // Cuando hacemos click en siguiente:
+
+    function siguiente(){
+      preguntaActual += 1;
+      checkearPanel();
+      deshabilitaSiguiente();
+      checkearInfo();
+    }
+
+  // Cuando hacemos click en siguiente del que no se valida:
+
+    function noValida(){
+    preguntaActual += 1;
+    checkearPanel();
+  }
+
+  // Hace aparecer el panel que corresponda cada vez que se cambia de pregunta
+
+  function checkearPanel(){
+    for(var i = 0; i < preguntas.length; i++) {
+      preguntas[i].classList.add('hidden');
+    }
+    preguntas[preguntaActual].classList.remove('hidden');
+  }
+
+
+  //Acá arrancan las validaciones para habilitar (o no) el botón de siguiente:
+
+  // Saca la clase disabled del botón siguiente
+  function FhabilitaSiguiente(){
+    for(var i = 0; i < sig.length; i++) {
+      sig[i].classList.remove('disabled');
+    }
+  }
+
+  // Agrega la clase disabled al botón siguiente
+  function deshabilitaSiguiente(){
+    for(var i = 0; i < sig.length; i++) {
+      sig[i].classList.add('disabled');
+    }
+  }
+
+
+
+  // Saca la clase disabled cuando se seleccionan TODOS los campos de la pregunta 2
+
+  function FhabilitaPregunta2(){
+    var selectsPregunta2 = preguntas[1].getElementsByTagName("select");
+    var pasa = 0;
+
+
+    for(var i = 0; i < selectsPregunta2.length; i++) {
+      if(selectsPregunta2[i].value != ""){
+        pasa += 1;
+      }
+    }
+
+    if (pasa == 2){
+      FhabilitaSiguiente();
+    }
+
+  }
+
+    // Saca la clase disabled cuando se selecciona el campo de la pregunta 3
+
+  function FhabilitaPregunta3(){
+    var selectsPregunta3 = preguntas[2].getElementsByTagName("select");
+    var pasa = 0;
+
+       for(var i = 0; i < selectsPregunta3.length; i++) {
+      if(selectsPregunta3[i].value != ""){
+        pasa += 1;
+      }
+    }
+
+    if (pasa == 2){
+      FhabilitaSiguiente();
+    }
+
+  }
+
+
+  // Acá arrancan las funciones que guardan valores para mostrarse después
+
+  var organismo = "";
+
+  function guardaOrganismo(){
+    organismo = document.getElementById("organismo").value;
+  }
+
+  var localidad = "";
+
+  function guardaLocalidad(){
+    localidad = document.getElementById("localidad").value;
+  }
+
+  var provincia = "";
+
+  function guardaProvincia(){
+    provincia = document.getElementById("provincia").value;
+  }
+
+  var tramite = "";
+
+  function guardaTramite(){
+    tramite = document.getElementById("tramite").value;
+  }
+
+  
+  // Acá arranca la movida de DOM para levantar la info que fuimos levantando
+
+  var muestraOrganismo = document.getElementsByClassName("muestraOrganismo");
+  var muestraLocalidad = document.getElementsByClassName("muestraLocalidad");
+  var muestraTramite = document.getElementsByClassName("muestraTramite");
+
+  function checkearInfo(){
+    
+    for(var i = 0; i < muestraOrganismo.length; i++) {
+      muestraOrganismo[i].innerHTML = organismo;
+      muestraLocalidad[i].innerHTML = localidad + " - " + provincia;
+    }
+
+    for(var i = 0; i < muestraTramite.length; i++) {
+      muestraTramite[i].innerHTML = tramite;
+    }
+
+
+
+  }
+
+// Hace que haga un scroll hacia arriba cuando vamos avanzando en el wizard
+
+  $(function() {
+    $('.portaSig a').on('click', function(event) {
+            $('html,body').animate({
+              scrollTop: '0px'
+            }, 1000);
+            return false;
+    });
+  });
+
+
+
+</script>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

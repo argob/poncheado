@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/tabla-dinamica/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style>
+    @media only screen and (max-width: 768px) {
+       table, 
+       thead, 
+       tbody, 
+       th, 
+       td, 
+       tr { 
+            display: block; 
+        }
+
+       thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td{
+            border: none;
+            border-bottom: 1px solid #eee; 
+            position: relative;
+            padding-left: 50%!important; 
+            white-space: normal;
+            text-align:left;
+            word-break: break-all!important;
+        }
+        .table > tbody > tr > td{
+            padding-left: 50%!important;  
+        }
+        td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+        }
+        td:before { content: attr(data-title); }
+        }
+        
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="datatables.min.css">
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <h1>Tablas accesibles</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium veritatis mollitia adipisci ducimus nesciunt quo est voluptatem possimus, incidunt inventore sequi dolores neque eius, earum nemo doloribus temporibus! Fuga, iste!</p>
+            <div class="form-group">
+                <label for="dataTableSearch">ID SPREADSHEET</label>
+                <input type="text" class="form-control input-sm" id="idSpreadsheet" value="1omPgp2uA16lXOp0jAVTkVXtbzfUm-FCK5FTcwAjkCHY">
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label for="dataTableSearch">Buscar</label>
+                <input type="text" class="form-control" id="dataTableSearch">
+            </div>
+        </div>
+
+        <div class="col-md-12 m-b-4">
+            <table class="table tabla-condensed" id="dataTable">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+<script src="datatables.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var idSpread = "15wo8vZ6uDbttUsJ8Hk0tId3vAcPSzSr6kg6DgvshizQ";
+
+    $("#idSpreadsheet").on("change",function(){
+      //Inicializar poncho table
+      idSpread = $(this).val();
+      ponchoTable(idSpread);  
+    })
+
+    ponchoTable(idSpread);
+
+
+    function ponchoTable(idSpread){
+      var listado = [];
+      var filteredTitle = [];
+      var filteredTitleGsx = [];
+      var titulos = '';
+      var th = [];
+      var lista = '';      
+
+      if ( $.fn.DataTable.isDataTable('#dataTable') ) {
+        $('#dataTable').DataTable().destroy();
+      }
+
+      jQuery.getJSON('https://spreadsheets.google.com/feeds/list/'+idSpread+'/1/public/values?alt=json',
+
+        function(data) {
+            listado = data['feed']['entry'];
+
+            //TITULOS
+            $.each(Object.keys(listado[0]), function(index, key) {
+                if (key.substr(0, 4) == 'gsx$') {
+                    filteredTitle.push(listado[0][key]["$t"]);
+                    filteredTitleGsx.push(key);
+                    titulos += '<th>' + listado[0][key]["$t"] + '</th>';
+                    th.push(listado[0][key]["$t"]);
+                   
+
+                }
+              
+            })
+
+            //Agregar titulos al thead de la tabla
+            $('#dataTable thead tr').empty();
+            $('#dataTable thead tr').append(titulos);
+
+
+            //CONTENIDO FILAS
+            $.each(listado, function(row, value) {
+                
+                if(row > 0){
+                lista += '<tr>';
+                  $.each(filteredTitleGsx, function(index, title) {
+                    var tdEmpty = '';
+                      if (title.substr(0, 4) == 'gsx$') {
+                         
+                          filas = listado[row][filteredTitleGsx[index]].$t;
+                          
+                          //Detectar si es bono
+                          if(title.includes("btn-") && filas != "" ){
+                            nameBtn = title.substr(8, title.length-8).replace("-"," ");
+                            filas = '<a class="btn btn-primary btn-sm" target="_blank" href="'+filas+'">'+nameBtn+'</a>'
+                          }
+
+                          if(filas == ''){
+                            tdEmpty = 'hidden-xs';
+                          }
+
+                          var converter = new showdown.Converter(),
+                          filas = converter.makeHtml(filas);
+
+                          lista += '<td class="'+ tdEmpty +'" data-title="'+ th[index] +'">' + filas + '</td>';
+
+                      }
+
+                     
+                  })
+                lista += '</tr>';
+                }
+
+            })
+
+            //Agregar contenido al body de la Tabla
+            $('#dataTable tbody').empty();
+            $('#dataTable tbody').append(lista);
+
+            initDataTable();
+        }
+    )
+
+    /*function formatTitle(keyFiltered) {
+        var titleLowerCase = keyFiltered.substr(4, keyFiltered.length - 4);
+        return titleLowerCase[0].toUpperCase() + titleLowerCase.slice(1);
+    }*/
+
+    function initDataTable() {
+        var tabla = $("#dataTable").DataTable({
+            "lengthChange": false,
+            "autoWidth" : false,
+            "info": false,
+            
+
+
+
+             "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                    "paginate": {
+                        "first": 'Ir a la primera página',
+                        "previous": 'Ir a la página anterior',
+                        "next": 'Ir a la página siguiente',
+                        "last": 'Ir a la última página'
+                    }
+                }
+            }
+        });
+
+  
+
+        
+
+        //BUSCADOR
+        $("#dataTable_filter").parent().parent().remove();
+        $('#dataTableSearch').on('keyup', function() {
+            tabla.search(this.value).draw();
+        });
+
+
+        //EXPAND ALL
+        tabla.rows().every(function(){
+            // If row has details collapsed
+             if(!this.child.isShown()){
+            // Expand row details
+            tabla.settings()[0].responsive._detailsDisplay(this, false);
+          }
+        });
+
+
+
+
+    }
+  }
+});
+</script>
+
+
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

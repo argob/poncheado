@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/oficina-anticorrupcion/obsequios2.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+              <div id="listadoObsequios">
+          <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Organismo o entidad</label>
+            <select id="tipo-organismo" class="form-control">
+              <option data-tipoorganismo="todos" value="todos">Todos</option>
+              <option data-tipoorganismo="ANAC" value="ANAC">ANAC</option>
+              <option data-tipoorganismo="AABE" value="AABE">AABE</option>
+              <option data-tipoorganismo="Ministerio de Agroindustria" value="Ministerio de Agroindustria">Ministerio de Agroindustria</option>
+              <option data-tipoorganismo="Vialidad Nacional" value="Vialidad Nacional">Vialidad Nacional</option>
+              <option data-tipoorganismo="INAES" value="INAES">INAES</option>
+              <option data-tipoorganismo="Correo Oficial de la República Argentina S.A." value="Correo Oficial de la República Argentina S.A.">Correo Oficial de la República Argentina S.A.</option>
+              <option data-tipoorganismo="S.E Casa de Moneda " value="S.E Casa de Moneda ">S.E Casa de Moneda </option>
+              <option data-tipoorganismo="ENARGAS" value="ENARGAS">ENARGAS</option>
+              <option data-tipoorganismo="Ministerio de Energía y Minería" value="Ministerio de Energía y Minería">Ministerio de Energía y Minería</option>
+              <option data-tipoorganismo="BICE" value="BICE">BICE</option>
+              <option data-tipoorganismo="ENARSA" value="ENARSA">ENARSA</option>
+              <option data-tipoorganismo="Ministerio de Relaciones Exteriores y Culto" value="Ministerio de Relaciones Exteriores y Culto">Ministerio de Relaciones Exteriores y Culto</option>
+              <option data-tipoorganismo="SOFSE" value="SOFSE">SOFSE</option>
+              <option data-tipoorganismo="Ministerio de Modernización" value="Ministerio de Modernización">Ministerio de Modernización</option>
+              <option data-tipoorganismo="INTERCARGO" value="INTERCARGO">INTERCARGO</option>
+            </select>
+          </div>
+        </div>  
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Año</label>
+            <select id="tipo-anio" class="form-control">
+              <option data-anio="todos" value="todos">Todos</option>
+              <option data-anio="2016" value="2016">2016</option>
+              <option data-anio="2017" value="2017">2017</option>
+              <option data-anio="2018" value="2018">2018</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Vínculo</label>
+            <select id="tipo-vinculo" class="form-control">
+              <option data-tipovinculo="todos" value="todos">Todos</option>
+              <option data-tipovinculo="Parentesco (inc. a del artículo 1 del Decreto N° 202/17)" value="Parentesco (inc. a del artículo 1 del Decreto N° 202/17)">Parentesco (inc. a del artículo 1 del Decreto N° 202/17)</option>
+              <option data-tipovinculo="Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)" value="Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)">Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)</option>
+              <option data-tipovinculo="Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)" value="Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)">Parentesco (inc. a del artículo 1 del Decreto N° 202/17) y  Amistad pública (inc. f del artículo 1 del Decreto N° 202/17)</option>
+              
+            </select>
+          </div>
+        </div>
+
+            <div class="table-responsive col-md-12">
+              <table class="table table-spaced table-hover">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">Organismo <br>o Entidad</th>
+                    <th>Año</th>
+                    <th style="width: 300px;">Caratula del<br> expediente</th>
+                    <th style="width: 300px;">Vínculo</th>
+                    <th>Tipo de proceso</th>
+
+                  </tr>
+                </thead> 
+                <tbody class="list" id="show-data"></tbody>
+              </table>
+
+              <nav class="text-center">
+                <ul class="pagination"></ul>
+              </nav>  
+            </div>           
+          </div>
+
+        </div>
+
+
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+
+
+<script type="text/javascript">
+  (function($) {
+  $(document).ready(function () {
+
+    var filtro = "todos";
+    var filtro2 = "todos";
+    var filtro3 = "todos";
+
+
+    jQuery.getJSON(
+    'https://spreadsheets.google.com/feeds/list/1RhF6zLAwo64wF4Jro_TcxrrLv3CeOnqxBAtMMZx3ycI/1/public/values?alt=json',
+    function (data) {
+
+          window.listadoObsequios = data.feed.entry;
+          filtrarContenido(filtro, filtro2, filtro3);
+      });
+
+          function filtrarContenido(filtro, filtro2, filtro3){
+          var showData = $('#show-data');
+         
+          var html = '';
+
+          $.each( listadoObsequios, function( key, item ) {
+
+           if( (item.gsx$organismooentidad.$t == filtro || filtro == "todos") && (item.gsx$anio.$t == filtro2 || filtro2 == "todos") && (item.gsx$vinculo.$t == filtro3 || filtro3 == "todos" )){
+
+            html += '<tr>';
+            html += ' <td class="organismooentidad">'+ item.gsx$organismooentidad.$t + '</td>';
+            html += ' <td class="anio">'+ item.gsx$anio.$t + '</td>';
+            html += ' <td class="caratula"> <a href="'+ item.gsx$consultarexpediente.$t +'">'+ item.gsx$caratula.$t +'</a></td>';
+            html += ' <td class="vinculo">'+ item.gsx$vinculo.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Persona Declarante: </strong></p>'+ item.gsx$personadeclarante.$t +'</td>';
+            html += ' <td class="tipodeproceso">'+ item.gsx$tipodeproceso.$t +  '<br> <p class="m-t-1 m-b-0"><strong>Informa la adopción de un mecanismo extra de transparencia: </strong></p>'+ item.gsx$transparencia.$t +'</td>';
+            html += '</tr>';
+           }
+
+          });
+
+          showData.empty();
+          showData.append(html);
+
+          var listOptions = {
+            valueNames: [ 'nombre', 'descripcion', 'filtro', 'columna1', 'columna2' ],
+            page: 20,
+            plugins: [ ListPagination({}) ]
+            
+           };
+
+          var ejemplosList = new List('listadoObsequios', listOptions);  
+
+
+        }
+
+
+   
+    $("#tipo-organismo, #tipo-anio, #tipo-vinculo").on("change", function() {
+       filtro = $( "#tipo-organismo option:selected" ).data('tipoorganismo');
+       filtro2 = $( "#tipo-anio option:selected" ).data('anio');
+       filtro3 = $( "#tipo-vinculo option:selected" ).data('tipovinculo');
+       filtrarContenido(filtro, filtro2, filtro3);
+    });
+
+  });
+  })(jQuery);
+  
+</script>
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<section>
+	<div class="container">
+		<div class="panel-pane pane-listado">
+			<div class="pane-content">
+			
+				<div id="list-data" class="col-md-12 m-t-3 p-x-0">
+					<div class="row panels-row">
+						<div class="col-xs-12 col-sm-3">
+							<a href="/caba-para-tres-hermanos-ref-8112018" class="panel panel-default">
+								<div class="panel-body">
+									<h3>Santiago del Estero - Licitación Pública Nacional N° 64/2018 - Ruta Nacional Nº 16</h3>
+								</div>
+							</a>
+							<p><strong>Publicada</strong></p>
+						</div>
+						<div class="col-xs-12 col-sm-3">
+							<a href="/chaco-para-dos-adolescentes-ref-1112018" class="panel panel-default">
+								<div class="panel-body">
+									<h3>Chaco - Licitación Pública Nacional N° 62/2018 -PROCESO Nº 46/18-0044-LPU18 - Ruta 0</h3>
+								</div>
+							</a>
+							<p><strong>No Publicada</strong></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+<script>
+	document.getElementById('pruebaloca').id = 'list-data'
+	var bidding = {
+		$el: jQuery('#list-data'),
+		list: [],
+		districts: [],
+		states: [],
+		districts_list: [],
+		states_list: [],
+		districts_relation: [],
+		states_relation: [],
+		sorted_districts: [],
+		sorted_states: []
+	}
+
+	bidding.$el.find('.row > div').each(function(){
+		bidding.list.push(jQuery(this));
+		var distrit = jQuery(this).find('h3').text().split(' - ')[0];
+		var state = jQuery(this).find('strong').text();
+		var tmp_distrit;
+		var tmp_state;
+
+		if(bidding.districts.indexOf( distrit ) < 0){//si no encuentra ningun distrito en el arreglo
+			bidding.districts.push(distrit);//manda los que haya acá
+			bidding.sorted_districts.push(distrit);//y acá
+			tmp_distrit = bidding.districts.length; //tmp me dice cuantos hay
+		}else{
+			tmp_distrit = bidding.districts.indexOf( distrit ) + 1; //el numero donde encuentra distrit y le suma uno
+			
+		}
+
+		if(bidding.states.indexOf(state) < 0){
+			bidding.states.push(state);
+			bidding.sorted_states.push(state);
+			tmp_state = bidding.states.length;
+		}else{
+			tmp_state = bidding.states.indexOf(state) + 1;
+		}
+		bidding.districts_relation.push( tmp_distrit ); //el numero donde encuentra un distrit
+		bidding.states_relation.push(tmp_distrit);
+	});
+
+	var render_devs = function(province){
+		bidding.container.html('');
+		jQuery.each(bidding.list, function(key, element){
+			if((province == 0 || bidding.districts_relation[key] == province) || (province == 0 || bidding.states_relation[key] == province)){ //si no hay ningun distrito
+				bidding.container.append(element);
+			}
+
+		});
+		
+	}
+
+
+
+
+	bidding.$el.html('').append(`<div class="row panels-row list"></div>
+									<nav class="text-center">
+										<ul class="pagination"></ul>
+									</nav>`);
+	bidding.container = bidding.$el.find('.row');
+
+	render_devs(0);
+
+	bidding.$el.before(`<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="form-label"><strong>Filtrá por distrito</strong></label>
+										<select class="form-control" id="filter-district"></select>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="form-label"><strong>Filtrá por estado</strong></label>
+										<select class="form-control" id="filter-state"> </select>
+									</div>
+								</div>
+							</div>`);
+	
+
+	bidding.sorted_districts.sort()
+	bidding.sorted_districts.unshift('Todos los distritos'); //antes de las provincias me agrega todas las provincias
+	bidding.sorted_states.sort()
+	bidding.sorted_states.unshift('Todos los estado');
+
+	jQuery.each(bidding.sorted_districts, function(key, province){
+		bidding.districts_list.push({
+			name: province,
+			index: bidding.districts.indexOf(province) + 1
+		})
+		
+
+	});
+
+	jQuery.each(bidding.sorted_states, function(key, state){
+		bidding.states_list.push({
+			name: state,
+			index: bidding.states.indexOf(state) + 1
+
+		})
+	
+	})
+		
+	var listOptions = {
+            
+            page: 10,
+            plugins: [ ListPagination({}) ]
+            
+           };
+        var listaNueva = new List('list-data', listOptions); 
+
+
+
+	jQuery.each(bidding.districts_list, function(key, province){
+		jQuery('#filter-district').append( '<option value="'+ province.index +'">'+ province.name +'</option>' );
+	});
+
+	jQuery.each(bidding.states_list, function(key, state){
+		jQuery('#filter-state').append( '<option value="'+ state.index +'">'+ state.name +'</option>' );
+	});
+
+	jQuery('#filter-district').on('change', function(){
+
+		render_devs( this.value )
+		
+	})
+
+	jQuery('#filter-state').on('change', function(){
+
+		render_devs( this.value )
+		
+	})
+
+</script>

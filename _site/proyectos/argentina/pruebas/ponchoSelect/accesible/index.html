@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="accessible-autocomplete.min.js"></script>
+	<link rel="stylesheet" href="accessible-autocomplete.min.css" />
+</head>
+<body>
+<select id="last-location">
+  <option value=""></option>
+  <option value="uno">uno</option>
+  <option value="dos">dos</option>
+</select>
+<!--<select id="passport-location" style="display: none;">
+  <option value=""></option>
+</select>-->
+<script type="text/javascript">
+/*accessibleAutocomplete.enhanceSelectElement({
+  selectElement: document.querySelectorAll('.location-picker')
+})*/
+
+      var selectEl = document.querySelector('#last-location');
+      accessibleAutocomplete.enhanceSelectElement({
+        autoselect: true,
+        minLength: 2,
+        showAllValues: true,
+        confirmOnBlur: false,
+        displayMenu: 'overlay',
+        selectElement: selectEl,
+        onConfirm: (val) => {
+		    //
+      		var selectAlSel = document.querySelector('#passport-location-select');
+		    /*if(selectAl){
+				selectAl.innerHTML = '';
+				selectAl.parentNode.removeChild(selectAl);
+			}*/
+		    if(selectAlSel){
+				var silbi = selectAlSel.previousSibling;
+				silbi.parentNode.removeChild(silbi);
+				selectAlSel.parentNode.removeChild(selectAlSel);
+		    }
+			var selecter = document.createElement('select');
+			selecter.setAttribute("id", "passport-location");
+			insertAfter(selecter, selectEl);
+			if(selecter != null){
+				//console.log(selecter);
+				//selecter.remove();
+			}
+      		var selectAl = document.querySelector('#passport-location');
+			if(val == 'uno'){
+				for(var i = 0, l = uno.length; i < l; i++){
+				  var suno = uno[i];
+				  selectAl.options.add( new Option(suno.text, suno.value, suno.selected) );
+				}
+			} else if(val == 'dos') {
+				for(var j = 0, l = dos.length; j < l; j++){
+				  var sdos = dos[j];
+				  selectAl.options.add( new Option(sdos.text, sdos.value, sdos.selected) );
+				}
+			}
+		    accessibleAutocomplete.enhanceSelectElement({
+		        minLength: 2,
+        		showAllValues: true,
+		    	selectElement: selectAl,
+		    	onConfirm: (leo) => {
+		    		//console.log(val+leo);
+		    	}
+		    })
+		    console.log(val);
+		}
+      })
+
+      /*accessibleAutocomplete.enhanceSelectElement({
+        minLength: 2,
+        selectElement: selectAl
+      })*/
+
+	var uno =
+	[
+	  {
+	    "text"  : "",
+	    "value" : ""
+	  },
+	  {
+	    "text"  : "Option 1",
+	    "value" : "Value 1"
+	  },
+	  {
+	    "text"     : "Option 2",
+	    "value"    : "Value 2",
+	    "selected" : true
+	  },
+	  {
+	    "text"  : "Option 3",
+	    "value" : "Value 3"
+	  }
+	];
+	var dos =
+	[
+	  {
+	    "text"  : "",
+	    "value" : ""
+	  },
+	  {
+	    "text"  : "otra Option 1",
+	    "value" : "Value 1"
+	  },
+	  {
+	    "text"     : "otra Option 2",
+	    "value"    : "Value 2",
+	    "selected" : true
+	  },
+	  {
+	    "text"  : "otra Option 3",
+	    "value" : "Value 3"
+	  }
+	];
+
+
+	function insertAfter(el, referenceNode) {
+	    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+	}
+	//selectEl.addEventListener("change", cambiaOpciones);
+	/*function cambiaOpciones(){
+		selectAl.innerHTML = '';
+		if(selectEl.value == 'uno'){
+			for(var i = 0, l = uno.length; i < l; i++){
+			  var suno = uno[i];
+			  selectAl.options.add( new Option(suno.text, suno.value, suno.selected) );
+			}
+		} else {
+			for(var j = 0, l = dos.length; j < l; j++){
+			  var sdos = dos[j];
+			  selectAl.options.add( new Option(sdos.text, sdos.value, sdos.selected) );
+			}
+		}
+	    accessibleAutocomplete.enhanceSelectElement({
+	        minLength: 2,
+	    	selectElement: selectAl
+	    })
+
+	}*/
+</script>
+</body>
+</html>

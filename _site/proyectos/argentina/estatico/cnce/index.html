@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/cnce/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('img/.png');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h2>Solicitudes de investigación con apertura</h2>
+          <p class="margin-0">En esta sección se podrá obtener un listado de las Investigaciones de Dumping, Subvenciones y Salvaguardias con Resolución de Apertura, llevadas a cabo en esta CNCE desde 1995 hasta la actualidad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+  <section>
+      <div class="row">
+        <div class="col-md-12">    
+            <h3 class="text-center">Elegí tu modalidad de convocatoria</h3>
+            <div class="btn-group btn-group-justified margin-60">
+                <a data-modalidad="todas" class="btn btn-default active">Todas</a>
+                <a data-modalidad="Maestría" class="btn btn-default">Maestrías</a>
+                <a data-modalidad="Estadías Cortas" class="btn btn-default">Curso corto de especialización</a>
+                <a data-modalidad="Empresas" class="btn btn-default">Empresas y pymes</a>
+                <a data-modalidad="Instituciones" class="btn btn-default">Instituciones cti</a>
+                <a data-modalidad="Doctorados" class="btn btn-default">Estancia corta doctoral</a>
+
+            </div>
+        </div>
+      </div>
+
+
+
+
+
+    <h3 class="text-center">Buscá una Solicitud</h3>
+    <div id="convocatorias">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">    
+          <div class="form-group">
+            <input class="form-control search" placeholder="Filtrá las solicitudes">
+          </div>
+        </div>
+      </div>
+      <table class="table table-spaced">
+        <thead>
+          <tr>
+            <th><a class="sort" data-sort="expediente">Expediente <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="practica">Practica <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="producto">Producto <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="origen">origen <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="apertura">apertura <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="nombre">Nombre <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="instituciones">Instituciones <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="areaTematica">Area Temática <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="paises">Paises <span class="caret"></span></a></th>
+            <th style="width: 100px;"><a class="sort" data-sort="modalidad">Modalidad <span class="caret"></span></a></th>
+          </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script src="/node_modules/list.js/dist/list.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1ADJOF7fcuJ3h8AdPbvNdkzXnWQjytkDlFTLY2xEQ_7U/1/public/values?alt=json', function (data) {
+        window.convocatorias = data.feed.entry;
+        showConvocatorias('todas');
+        console.log(data);
+
+    });
+
+    window.showConvocatorias = function(modalidad){
+        var showData = $('#show-data');
+        //console.log(modalidad); 
+        var html = '';
+        $.each( convocatorias, function( key, item ) {
+
+            if(modalidad == 'todas' || modalidad == item.gsx$modalidad.$t){
+                console.log(modalidad); 
+            console.log(item.gsx$modalidad.$t);
+            console.log(item.gsx$fechafin.$t);
+
+            var fechaInicio = item.gsx$fechainicio.$t;
+            var fechaFin = item.gsx$fechafin.$t;
+
+            if(fechaInicio == '') {
+                fechaInicio = "Sin definir";
+            }    
+            if(fechaFin == '') {
+                fechaFin = "Sin definir";
+            }    
+
+            console.log(fechaFin);
+
+                //console.log("testeo"+item.gsx$expediente.$t);
+            html += '<tr>';
+            html += ' <td class="expediente">'+ item.gsx$expediente.$t + '</td>';
+            html += ' <td class="practica">'+ item.gsx$practica.$t + '</td>';
+            html += ' <td class="producto">'+ item.gsx$producto.$t + '</td>';
+            html += ' <td class="origen">'+ item.gsx$origen.$t + '</td>';
+            html += ' <td class="apertura">'+ item.gsx$apertura.$t + '</td>';
+            html += ' <td class="apertura"> <h6 class="apertura"><a href="'+ item.gsx$aperturalink.$t + '">'+ item.gsx$apertura.$t + '</a></h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
+
+            html += ' <td class="nombre"> <h6 class="nombre"><a href="'+ item.gsx$link.$t + '">'+ item.gsx$nombre.$t + '</a></h6><p class="margin-0 fechainicio"><small>Fecha de inicio: ' + fechaInicio + '</small></p><p class="margin-0 fechafin"><small>Fecha de fin: ' + fechaFin + '</small></p></td>';
+            html += ' <td class="instituciones">'+ item.gsx$instituciones.$t + '</td>';
+            html += ' <td class="areaTematica">'+ item.gsx$áreatemática.$t + '</td>';
+            html += ' <td class="paises">'+ item.gsx$paises.$t + '</td>';
+            html += ' <td class="modalidad">'+ item.gsx$modalidad.$t + '</td>';
+            html += '</tr>';    
+            }
+            
+    
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {valueNames: [ 'expediente', 'practica', 'producto', 'origen', 'apertura', 'nombre', 'instituciones', 'areaTematica', 'paises', 'modalidad' ] };
+        var convocatoriasList = new List('convocatorias', listOptions);
+    }
+
+    $(".btn-group a").on("click", function() {
+      $(this).addClass('active').siblings().removeClass('active'); 
+      var modalidad = $(this).data("modalidad");
+      showConvocatorias(modalidad);
+    }); 
+
+});
+})(jQuery);
+
+</script>
+
+<style>
+</style>
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

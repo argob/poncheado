@@ -1,0 +1,52 @@
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" rel="stylesheet" />
+
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet" />
+
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<!-- Inicio / Ministerio de Producción y Trabajo / Productos Esenciales /Mapa de comercios tiene un jumbotron -->
+<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px; position: relative;" tabindex="0"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+ L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+ attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+ }).addTo(map);
+
+
+ // ID de la Google Spreadsheet Productos Esenciales
+ var spreadsheetID = "1cqMvaUJxvsF-zTWaLD-NNi0g7LFKD0IAs01PWP4gl-s";
+ // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+
+ // id 4 no existe solo hoja 1
+ var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+ 
+ jQuery.getJSON(url, function(data) {
+ console.log(data);
+ var entry = data.feed.entry;
+ var amount = entry.length;
+ console.log(amount);
+ var i;
+ for (i = 0; i < amount; i++) {
+ 
+ var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+ var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+ //var nombrecomercio = data.feed.entry[i]['gsx$nombrecomercio']['$t'];
+ //var provincia = data.feed.entry[i]['gsx$municipio']['$t'];
+ //var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
+ //var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+
+ 
+ var marker = L.marker([lat, lon]).addTo(map);
+ //marker.bindPopup('<h4>' + nombrecomercio + '</h4>' + '<p>' + provincia + ' ' + localidad +'</p>' + '<p>' + dir + '</p>');
+ }
+
+ });
+
+
+
+
+</script>

@@ -1,0 +1,56 @@
+<!-- 1gDUaA7UVYxMNmY4Gww150S8yYBdVBfMvAGovHHQ5FfM -->
+
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "1gDUaA7UVYxMNmY4Gww150S8yYBdVBfMvAGovHHQ5FfM";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            var entry = data.feed.entry;
+            var amount = entry.length;
+
+            /* Cantida de elementos */
+            console.log(amount);
+            
+            var i;
+            for (i = 0; i < amount; i++) {
+        
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+                var lugar = data.feed.entry[i]['gsx$lugar']['$t'];
+                var barrio = data.feed.entry[i]['gsx$barrio']['$t'];
+                var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
+                var tipodeferia = data.feed.entry[i]['gsx$tipodeferia']['$t'];
+                var fecha = data.feed.entry[i]['gsx$fecha']['$t'];
+                var horario = data.feed.entry[i]['gsx$horario']['$t'];
+                //var time = data.feed.entry[i]['gsx$time']['$t'];
+                //var tel = data.feed.entry[i]['gsx$tel']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(map);
+                marker.bindPopup('<h4>' + lugar + '</h4><b>Barrio:</b> ' + barrio + '<br><b>Localidad:</b> ' + localidad + '<br><b>Tipo de Feria:</b> ' + tipodeferia + '<br><b>Fecha:</b> ' + fecha + '<br><b>Horario:</b> ' + horario);
+            }
+
+        });
+
+
+
+
+</script>
+

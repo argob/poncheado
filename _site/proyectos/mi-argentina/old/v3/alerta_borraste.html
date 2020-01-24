@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/old/v3/alerta_borraste.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <section class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      
+      <div class="alert alert-warning">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-exclamation-circle fa-fw fa-4x p-y-1"></i>
+          </div>
+          <div class="media-body m-y-0 p-y-1">
+            <p>Borraste tu cuenta de Mi Argentina. Recordá que podés volver a registrarte cuando quieras.</p>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="h2">Ingresá a tu cuenta de Mi Argentina</h1>
+
+      <div class="well p-x-3 p-y-2">
+        <form method="get" action="login_2.html">
+          <div class="form-group">
+            <label class="control-label lead" for="id_number">Cuil o pasaporte extranjero</label>
+            <input id="id_number" class="form-control input-lg" type="text" name="id_number">
+          </div>
+          <div class="form-group m-b-0">
+            <button type="submit" class="btn btn-success">Continuar &nbsp; <i class="fa fa-arrow-right"></i></button>
+          </div>
+        </form>
+      </div>
+      <p><a href="#">Quiero registrarme</a></p>
+      <p><a href="#">No recuerdo mi contraseña</a></p>
+      <p><a href="#">Términos y condiciones</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(function(){
+    var next = false;
+    $('.well button').on('click', function(event){
+      if(!next){
+        $('#id_number').focus().attr('aria-describedby', 'id_number_error').after('<span id="id_number_error" class="help-block">El número de CUIL o pasaporte no es válido, por favor intentá de nuevo.</span>');
+        $('#id_number').parent().addClass('has-error');
+        next = true;
+        return false;
+      }
+    });
+  });
+</script>
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

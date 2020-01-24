@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PonchoMaps v1</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="poncho.min.css">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="PonchoMaps.css">
+  
+</head>
+<body>
+
+
+<!-- 
+<header id="map-header">
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#map-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden-xs" href="/">
+            <img alt="Argentina.gob.ar" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" height="50" width="300px">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <div class="navbar-brand visible-xs-inline-block"> Centros de salud</div>
+
+        </div>  
+        <div class="collapse navbar-collapse" id="map-navbar-collapse" style="position: relative; z-index: 3000;">
+          <div class="visible-xs">
+            <a href="/">
+              <img alt="Argentina.gob.ar" class="img-responsive" src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274">
+            </a>
+            <hr class="margin-20">
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://www.argentina.gob.ar/salud">Secretaría de Salud</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+    <section class="jumbotron">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 hidden-xs">
+            <h4>Centros de salud</h4>
+                  
+          </div>        
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+</header>
+ -->
+
+   
+<div class="state-loading" id="map-container">
+  <div id="map"></div>
+</div>
+  
+</body>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpciOhYt4ZQ4AHhrMiAtLNUqY5i3BQR_4">
+    </script>
+
+    <!-- <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc">
+    </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+    <script src="poncho.js"></script>
+    <script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
+
+    <script>
+
+    //Opciones a setear por el usuario
+    opt = {
+      "idSpreadheet" : "1XGNfjQJm2HyW_582v13_OkIjey1zdpzqLN7l_22o_bM",
+      "hojaNumero" : 1,
+      "agrupar" : "si",//Agrupar los puntos cercanos. Las opciones son "si" o "no"
+      "textoBoton" : "Ver más",
+      "tipoMapa" : "roadmap"//"roadmap" : mapa con calles y rutas ; "satellite": mapa satelital ; "hybrid" es terreno con calles y rutas
+    };
+
+    ponchoMaps(opt)
+
+ 
+    </script>
+</html>

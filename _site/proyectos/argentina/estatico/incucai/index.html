@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/incucai/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('/sites/default/files/.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/salud">Salud</a></li>
+            <li class="active">Incucai</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+          <h1>De la donación al trasplante</h1>
+          <p>Donar órganos es donar vida. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+ 
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1>De la donación al trasplante</h1>
+          <p class="lead m-b-4">Conocé el procedimiento de la donación de órganos</strong>.</p>            
+
+          <div class="steps clearfix">
+            <div class="step">
+              <div>
+                <div class="circle">1</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Inicio del proceso para la donación de órganos</h5>  
+                  <p class="m-t-0">Cuando un paciente fallece en una unidad de terapia intensiva de un hospital en cualquier parte del país, el médico a cargo es quien inicia el proceso de donación de órganos y tejidos. Se pone en contacto con el organismo provincial o el INCUCAI para trabajar de manera conjunta. </p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso1.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">2</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Certificación de la muerte </h5>  
+                  <p class="m-t-0">Se verifican los signos clínicos de muerte, se corrobora inactividad encefálica y se certifica la muerte bajo criterios neurológicos.</p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso2.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">3</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Tratamiento de los órganos </h5>  
+                  <p class="m-t-0">Por medios artificiales se mantienen oxigenados los órganos y se realizan estudios de laboratorio que garantizan las condiciones óptimas para ser trasplantados.</p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso3.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">4</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">La voluntad</h5>  
+                  <p class="m-t-0">Para saber si el fallecido dejó constancia expresa de su voluntad de donar los órganos se consulta en el Registro Nacional de Expresiones de Voluntad para la Donación. </p>
+                  <p class="m-t-0">SIEMPRE SE RESPETA LA VOLUNTAD EXPRESADA POR EL FALLECIDO, YA SEA QUE LO HAYA HECHO EN FORMA ESCRITA O VERBAL. DE NO HABER EXPRESADO SU VOLUNTAD, SE LO CONSIDERA DONANTE. </p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso4.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">5</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Búsqueda de receptores </h5>  
+                  <p class="m-t-0">Con las características biológicas y el grupo sanguíneo del donante, desde el INCUCAI o los organismos provinciales, se inicia la búsqueda de los posibles receptores a través de un sistema informático denominado SINTRA. </p>
+                  <p class="m-t-0">Se toma en cuenta el grado de urgencia de los receptores, la compatibilidad biológica entre donante y receptor y la antigüedad en lista de espera.  </p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso5.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">6</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Asignación y ablación  </h5>  
+                  <p class="m-t-0">Cumplidos todos los pasos, se traslada al donante al quirófano para proceder a la ablación de los órganos, a cargo de los cirujanos asignados para ese fin. </p>
+                  <p class="m-t-0">Paralelamente los equipos de trasplante preparan a sus pacientes para la intervención quirúrgica. </p>
+                  <p class="m-t-0">Luego, el cuerpo del fallecido es entregado a la familia en perfectas condiciones, sin alterar su apariencia. </p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso6.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">7</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0">Traslado de órganos y tejidos  </h5>  
+                  <p class="m-t-0">El traslado de órganos y tejidos se realiza con equipos que garantizan su total asepsia. Según el órgano, puede conservarse de 4 a 36 horas hasta su implante.</p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso7.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">8</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h5 class="m-t-0"> El trasplante </h5>  
+                  <p class="m-t-0">Finalmente los médicos realizan el trasplante a pacientes que estaban inscriptos en lista de espera.</p>
+                  <p class="m-t-0">El órgano donado es trasplantado sin que influya la condición social o económica del receptor. Los pacientes sin cobertura social cuentan con programas provinciales que garantizan el acceso al trasplante y a la medicación inmunosupresora. Las obras sociales y sistemas de medicina prepaga están obligados a cubrir los gastos de los estudios médicos y el trasplante. </p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <img src="https://www.argentina.gob.ar/sites/default/files/paso8.png" class="m-y-2 center-block img-responsive img-rounded">
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+            </div>
+        </div>
+    
+      </div> 
+    </div> 
+  </section>    
+
+  <section class="bg-gray">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="row panels-row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="panel panel-default" href="/RCP/preguntas">
+                  <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <i class="fa fa-user-md text-primary fa-fw fa-3x text-tomate"></i>
+                      </div>
+                      <div class="media-body">
+                        <h3>Historia del Trasplante</h3>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="panel panel-default" href="/botiquin">
+                  <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <i class="fa icono-arg-dialogo fa-fw fa-3x text-tomate"></i>
+                      </div>
+                      <div class="media-body">
+                        <h3>De la donacion al transplante</h3>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>        
+  
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

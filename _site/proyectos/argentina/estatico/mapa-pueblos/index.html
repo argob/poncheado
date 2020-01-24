@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+
+      #map {
+       height: 750px;
+       width: 100%;
+     }
+
+       /*
+      #map {
+       height: 750px;
+       width: 300px;
+       overflow: hidden;
+       float: left;
+       border: thin solid #333;
+       }
+
+      #capture {
+       height: 360px;
+       width: 480px;
+       overflow: hidden;
+       float: left;
+       background-color: #ECECFB;
+       border: thin solid #333;
+       border-left: none;
+       }
+
+       */
+
+    </style>
+  </head>
+  <section>
+    <!-- <div id="map"></div>
+    <div id="capture"></div> -->
+
+    <iframe src="https://www.google.com/maps/d/embed?mid=1p3hSPu_eFQkRA3fYK4J3OzmxvRU" id="map"></iframe>
+  </section>
+    <script>
+
+
+
+    /*
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: new google.maps.LatLng(-39.5790493,-68.1736212),
+          mapTypeId: 'roadmap'
+        });
+
+        infoWindow = new google.maps.InfoWindow({
+          content: ""
+        });
+
+        // map.data.loadGeoJson('/sites/default/files/pueblos.geojson');
+        map.data.loadGeoJson('pueblos.geojson');
+
+        map.data.setStyle({
+          fillColor: '#0695D6',
+          strokeColor: '#0695D6',
+          strokeWeight: 2
+        });
+
+
+        //listen for click events
+      map.data.addListener('click', function(event) {
+        //show an infowindow on click   
+        infoWindow.setContent('<div style="line-height:1.35;overflow:hidden;white-space:nowrap;"> Pueblo: '+
+                      event.feature.f.Pueblo  + "</div>");
+        var anchor = new google.maps.MVCObject();
+        anchor.set("position",event.latLng);
+        infoWindow.open(map,anchor);
+      });
+      }
+
+    */
+
+
+    /*
+
+    var map;
+      var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-19.257753, 146.823688),
+          zoom: 2,
+          mapTypeId: 'terrain'
+        });
+
+        var kmlLayer = new google.maps.KmlLayer(src, {
+          suppressInfoWindows: true,
+          preserveViewport: false,
+          map: map
+        });
+        kmlLayer.addListener('click', function(event) {
+          var content = event.featureData.infoWindowHtml;
+          var testimonial = document.getElementById('capture');
+          testimonial.innerHTML = content;
+        });
+      }
+
+      */
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&region=AR&callback=initMap"></script>
+  
+</html>

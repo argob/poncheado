@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/infoleg/buscar-normativa.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/jumbo-infoleg.png');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li><a href="">Ministerio de Justicia y Derechos Humanos </a></li>
+            <li class="active"><span>Información legislativa</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Información legislativa</h1>
+          <p>Base de datos legislativos del Ministerio de Justicia y Derechos Humanos de la Nación</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section class="bg-gray section-sm">
+  <ul class="nav nav-icons nav-icons-selected">
+    <li class="active">
+      <a href="buscar-normativa.html"><i class="fa fa-search bg-primary"></i>
+        <span>Buscar normativas</span>
+      </a>
+    </li>
+    <li>
+      <a href="busqueda-avanzada.html"><i class="fa fa-cogs bg-primary"></i>
+        <span>Búsqueda avanzada</span>
+      </a>
+    </li>
+    <li>
+      <a href="busqueda-boletin-oficial.html"><i class="fa fa-file-text bg-primary"></i>
+        <span>Búsqueda por Boletín Oficial</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+	<div class="container">
+
+      <div class="row">
+          <form>
+            <div class="col-md-offset-2 col-md-3">
+              <div class="form-group">
+                <label for="">Tipo de norma</label>
+                <select id="tipo-norma" class="form-control">
+                    <option selected="selected" value=""></option>
+                    <option value="1">Ley</option> 
+                    <option value="2">Decreto</option> 
+                    <option value="8">Decisión Administrativa</option> 
+                    <option value="3">Resolución</option> 
+                    <option value="4">Disposición</option> 
+                    <option value="12">Acordada</option> 
+                    <option value="11">Acta</option> 
+                    <option value="27">Actuacion</option> 
+                    <option value="17">Acuerdo</option> 
+                    <option value="5">Circular</option> 
+                    <option value="6">Comunicación</option> 
+                    <option value="13">Comunicado</option> 
+                    <option value="20">Convenio</option> 
+                    <option value="14">Decisión</option> 
+                    <option value="7">Decreto/Ley</option> 
+                    <option value="15">Directiva</option> 
+                    <option value="10">Instrucción</option> 
+                    <option value="23">Interpretación</option> 
+                    <option value="24">Laudo</option> 
+                    <option value="18">Memorandum</option> 
+                    <option value="21">Misión</option> 
+                    <option value="16">Nota</option> 
+                    <option value="9">Nota Externa</option> 
+                    <option value="19">Protocolo</option> 
+                    <option value="28">Providencia</option> 
+                    <option value="22">Recomendación</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="">Número</label>
+                <input class="form-control" type="number" placeholder="Número">
+              </div>
+            </div>              
+            <div class="col-md-1">
+              <div class="form-group">
+                <label for="">Año</label>
+                <input class="form-control" type="number" placeholder="Año">
+              </div>
+            </div>  
+            <div class="col-md-2">
+              <div class="form-group">
+                <button class="btn btn-primary btn-block m-t-2" type="button">Buscar</button>
+              </div>
+            </div>
+          </form>      
+      </div>
+
+      <div class="m-t-4 m-b-2"><strong>2910</strong>  normas encontradas en <strong>59</strong> páginas.  </div>
+      <div id="normas">
+        <table class="table table-spaced table-align-middle table-striped table-mobile">
+          <thead>
+            <tr>
+              <th><a class="sort" data-sort="numero">Número / Dependencia <span class="caret"></span></a></th>
+              <th style="width: 180px;"><a class="sort" data-sort="fecha">Fecha publicación <span class="caret"></span></a></th>
+              <th><a class="sort" data-sort="descripcion">Descripción <span class="caret"></span></a></th>
+            </tr>
+          </thead>
+          <tbody class="list">
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">LEY N° 27260</a></h6>
+                  <p>HONORABLE CONGRESO DE LA NACION ARGENTINA</p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">22/06/2016</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>REPARACION HISTORICA PARA JUBILADOS Y PENSIONADOS</h6>
+                  <p>
+                    PROGRAMA NACIONAL - CREACION <br>
+                    <em>CREASE EL PROGRAMA NACIONAL DE REPARACION HISTORICA PARA JUBILADOS Y PENSIONADOS, CON EL OBJETO DE IMPLEMENTAR ACUERDOS ...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Decreto 276 / 2015</a></h6>
+                  <p>PODER EJECUTIVO NACIONAL (P.E.N.)</p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">02/01/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>COMBUSTIBLES</h6>
+                  <p>
+                    PRORROGAS<br>
+                    <em>PRORROGASE HASTA EL 30 DE ABRIL DE 2016 LA VIGENCIA DEL TRATAMIENTO DISPUESTO PARA EL BIODIESEL COMBUSTIBLE Y EL BIODIES...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Resolución 2244 / 2015</a></h6>
+                  <p>CONSEJO DE SEGURIDAD DE LAS NACIONES UNIDAS  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">15/02/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>CONSEJO DE SEGURIDAD DE LAS NACIONES UNIDAS</h6>
+                  <p>
+                    EMBARGO DE ARMAS RELATIVO A SOMALIA <br>
+                    <em>REAFIRMA EL EMBARGO DE ARMAS RELATIVO A SOMALIA, IMPUESTO POR EL PARRAFO 5 DE LA RESOLUCION 733 (1992), DETALLADO EN LOS...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Resolución 406 / 2015</a></h6>
+                  <p>INST.NAC. CENTRAL UNICO COORD. ABLACION E IMPLANTE  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">24/03/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>INSTITUTO NACIONAL CENTRAL UNICO COORDINADOR DE ABLACION E IMPLANTE</h6>
+                  <p>
+                    “NORMAS PARA LA HABILITACION DE ESTABLECIMIENTOS Y AUTORIZACION DE EQUIPOS DE PROFESIONALES <br>
+                    <em>APRUEBENSE LAS “NORMAS PARA LA HABILITACION DE...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Disposición 917 / 2016</a></h6>
+                  <p>SERVICIO NACIONAL DE REHABILITACION  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">28/04/2016</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>MINISTERIO DE SALUD</h6>
+                  <p>
+                    INSTITUCION CENTRO EDUCATIVO TERAPEUTICO "MI SENDA" DE CARRANPI S.R.L. <br>
+                    <em>RECATEGORIZASE A LA INSTITUCION CENTRO EDUCATIVO TERAPEUTICO “MI SENDA” DE CARRANPI S.R.L., C.U.I.T. ... </em>
+                  </p>
+                </td>
+              </tr>    
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Decreto 276 / 2015</a></h6>
+                  <p>PODER EJECUTIVO NACIONAL (P.E.N.)</p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">02/01/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>COMBUSTIBLES</h6>
+                  <p>
+                    PRORROGAS<br>
+                    <em>PRORROGASE HASTA EL 30 DE ABRIL DE 2016 LA VIGENCIA DEL TRATAMIENTO DISPUESTO PARA EL BIODIESEL COMBUSTIBLE Y EL BIODIES...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Resolución 2244 / 2015</a></h6>
+                  <p>CONSEJO DE SEGURIDAD DE LAS NACIONES UNIDAS  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">15/02/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>CONSEJO DE SEGURIDAD DE LAS NACIONES UNIDAS</h6>
+                  <p>
+                    EMBARGO DE ARMAS RELATIVO A SOMALIA <br>
+                    <em>REAFIRMA EL EMBARGO DE ARMAS RELATIVO A SOMALIA, IMPUESTO POR EL PARRAFO 5 DE LA RESOLUCION 733 (1992), DETALLADO EN LOS...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Resolución 406 / 2015</a></h6>
+                  <p>INST.NAC. CENTRAL UNICO COORD. ABLACION E IMPLANTE  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">24/03/2015</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>INSTITUTO NACIONAL CENTRAL UNICO COORDINADOR DE ABLACION E IMPLANTE</h6>
+                  <p>
+                    “NORMAS PARA LA HABILITACION DE ESTABLECIMIENTOS Y AUTORIZACION DE EQUIPOS DE PROFESIONALES <br>
+                    <em>APRUEBENSE LAS “NORMAS PARA LA HABILITACION DE...</em>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="numero"> 
+                  <span class="td-label">Número / Dependencia</span>
+                  <h6> <a href="pagina-detalle-caratula.html">Disposición 917 / 2016</a></h6>
+                  <p>SERVICIO NACIONAL DE REHABILITACION  </p>
+                </td>
+                <td class="fecha">
+                  <span class="td-label">Fecha publicación</span>
+                  <a href="busqueda-boletin-oficial.html">28/04/2016</a>
+                </td>
+                <td class="descripcion">
+                  <span class="td-label">Descripción</span>
+                  <h6>MINISTERIO DE SALUD</h6>
+                  <p>
+                    INSTITUCION CENTRO EDUCATIVO TERAPEUTICO "MI SENDA" DE CARRANPI S.R.L. <br>
+                    <em>RECATEGORIZASE A LA INSTITUCION CENTRO EDUCATIVO TERAPEUTICO “MI SENDA” DE CARRANPI S.R.L., C.U.I.T. ... </em>
+                  </p>
+                </td>
+              </tr>    
+          </tbody>
+        </table>
+        <nav class="text-center">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">9</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>        
+      </div>
+
+
+
+	</div>
+</section>
+
+<script src="/node_modules/list.js/dist/list.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+  var options = {
+    valueNames: [ 'numero', 'fecha', 'descripcion' ]
+  };
+
+  var dataList = new List('normas', options);
+
+
+});
+})(jQuery);
+
+
+
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

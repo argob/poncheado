@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/old/v3/dashboard_prueba_2.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <style type="text/css">
+
+    .jumbotron-info{
+      background-color: rgba(0, 124, 173, 0.7)!important;
+    }
+    
+    .jumbotron-miargentina .jumbotron_bar .breadcrumb li a,
+    .jumbotron-miargentina .jumbotron_bar .breadcrumb li span {
+        font-size: 20px;
+    }
+    
+    .jumbotron-miargentina h1,
+    .jumbotron-miargentina .h1 {
+        margin-top: 22px;
+        font-size: 25px;
+        font-weight: 500;
+        display: inline-block;
+        margin-left: -34px;
+    }
+
+    .jumbotron-miargentina h1 span{
+        font-size: 16px;
+    }
+    
+    .jumbotron-miargentina p {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .jumbotron{
+      background-color: #007cad;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .jumbotron-miargentina .btn-link {
+        color: #007cad!important;
+    }
+    
+    
+    .image-cropper {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+    
+    .image-cropper img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+    }
+
+    .mi-perfil{
+      margin-top: 20px;
+    }
+
+
+  @media (min-width: 768px) and (max-width: 995px){
+
+    .jumbotron-miargentina h1, 
+    .jumbotron-miargentina .h1{
+      margin: 15px 0 5px 0;
+      font-size: 25px!important;
+    }
+
+  .jumbotron-miargentina .mi-perfil{
+    text-align: left;
+    margin: 10px 0 15px 0;
+    padding-left: 0;
+  }
+
+  }
+
+
+
+  @media (max-width: 767px){
+
+    .jumbotron-miargentina h1, 
+    .jumbotron-miargentina .h1{
+      margin: 0 0 5px 0;
+      font-size: 25px!important;
+    }
+
+  .jumbotron-miargentina .mi-perfil{
+    text-align: left;
+    margin: 10px 0 15px 0;
+    padding-left: 0;
+  }
+    
+    
+  }
+
+
+</style>
+
+<section class="jumbotron jumbotron-miargentina">
+  <div class="container">
+    <div class="row">
+
+        <div class="col-md-12 jumbotron-info">
+            <div class="jumbotron_bar jumbotron-bar-transparent p-y-0">
+              <div class="container">
+                <div class="row">
+                    <div class="col-sm-1 col-md-1 p-y-1 foto-user">
+                        <div class="image-cropper">
+                            <img src="img/placeholder.jpg">
+                        </div>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-9">
+                        <h1>María Paula Garibaldi <i class="fa fa-check-circle" aria-hidden="true"></i> <span class="m-l-2">CUIL 27123456789</span></h1>
+                    </div>
+
+                    <div class="visible-xs visible-sm col-sm-11">
+                      <h1>María Paula Garibaldi <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    </h1>
+                    <div class="visible-xs visible-sm col-sm-12 p-l-0">
+                      <span>CUIL 27123456789</span></h1>
+                    </div>
+                    <div class="col-sm-12 col-md-2 text-right mi-perfil p-r-0 dropdown">
+                      <button class="btn btn-link btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-gear"></i> Mi perfil</button>
+                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#"><i class="fa fa-cog"></i> Mis datos personales</a></li>
+                        <li><a href="#"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style type="text/css">
+
+    .panels-row > div .panel {
+      width: 100%;
+      border: 1px solid #ccc;
+    }
+
+    .panel-border-primary {
+        border-top: 8px solid rgba(0, 124, 173, 0.7)!important;
+    }
+
+    .text-primary{
+      color: #007cad;
+    }
+
+    .panel-border-left-success {
+        border-left: 8px solid rgba(4, 132, 59, 0.7)!important;
+    }
+
+    .text-success{
+      color: #04843b;
+    }
+
+    .panel-border-arandano {
+    border-top: 8px solid rgba(189, 30, 97, 0.7)!important;
+    }
+
+    .text-arandano{
+      color: #bd1e61;
+    }
+
+    .panel-border-lima {
+    border-top: 8px solid rgba(178, 191, 0, 0.7)!important;
+    }
+
+    .text-lima{
+      color: #b2bf00;
+    }
+
+    .panel-border-gray {
+    border-top: 8px solid rgba(153, 153, 153, 0.7)!important;
+    }
+
+    .text-gray{
+      color: #999999;
+    }
+
+    .panel.col-md-6{
+      width: 48%;
+    }
+    
+    .panel-default > .panel-heading {
+      min-height: 0!important;
+      background-color: transparent;
+      border-bottom: 1px solid #ccc;
+      color: #111 !important;
+    }
+
+    .panel-default > .panel-heading-imagen{
+      padding: 0;
+    }
+
+    .panel-heading-imagen{
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    .panel-nolink {
+    box-shadow: none;
+}
+
+  @media (min-width: 991px){
+
+    .col-md-6 .panel-body{
+      height: 210px;
+    }
+
+  }
+
+  @media (min-width: 768px) and (max-width: 990px){
+
+    .col-md-6 .panel-body{
+      height: 250px;
+    }
+
+  }
+
+  .panel-heading .media-left,
+  .panel-heading .media-right{
+    padding-top: 7px;
+  }
+
+  .media-left, .media-right, .media-body{
+    display: table-cell!important;  
+  }
+  
+
+  .panel h2, .panel .h2 {
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+
+  .panel h3, .panel .h3 {
+    font-size: 1.1em;
+  }
+
+  .panel .panel-body p {
+    font-size: 1em;
+  }
+
+  .foot {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .btn-lima{
+    border-radius: 4px;
+    color: #b2bf00;
+    background-color: #e9e9e9;
+  }
+
+  .btn-success{
+    background-color: #04843b;
+  }
+
+</style>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-4">
+
+                <style type="text/css">
+  
+  .menu-miargentina i{
+    margin-right: 20px;
+  }
+
+  .menu-miargentina .menu-miargentina li.active > a,
+  .menu-miargentina .menu-miargentina li.active > a:hover, 
+  .menu-miargentina .menu-miargentina li.active > a:focus {
+    background-color: #ebebeb;
+  }
+
+  .menu-miargentina .nav-pills li.active > a,
+  .menu-miargentina .nav-pills li.active > a:hover,
+  .menu-miargentina .nav-pills li.active > a:focus {
+    background-color: #ebebeb;
+    color: #606060;
+}
+
+.menu-miargentina .nav-pills li > a:visited {
+    color: #606060;
+}
+
+  .menu-miargentina .nav-pills li > a{
+    font-size: 16px;
+  }
+
+  .menu-miargentina .categoria{
+    text-transform: uppercase;
+  }
+
+  .menu-miargentina .submenu li{
+    list-style: none;
+    padding-left: 70px;
+  }
+
+  .page-sidebar .nav-pills li ul li a:before {
+    content: none;
+  }
+
+  .menu-miargentina .nav-pills li > a {
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-weight: 400;
+}
+
+  .menu-miargentina .label {
+    border-radius: 1.25em;
+    padding: 3px 17px;
+    opacity: 0.7;
+}
+
+  .div-menu{
+      border-right: 1px solid #ccc;
+  }
+
+</style>
+
+<nav class="page-sidebar m-b-2 menu-miargentina">
+  <ul class="nav nav-pills nav-stacked">
+
+    <div class="hidden-xs hidden-sm div-menu">
+      <label class="categoria text-muted">Menú principal</label>
+      <li class="active"><a href="dashboard.html"><i class="fa fa-home"></i>Inicio</a></li>
+      <li ><a href="credenciales.html"><i class="icono-arg-dni"></i>Mis credenciales</a></li>
+      <li ><a href="turnos.html"><i class="icono-arg-calendario"></i>Turnos</a></li>
+      <li ><a href="tramites.html"><i class="icono-arg-apostilla"></i>Trámites <span class="label label-primary m-l-1">¡Nuevo!</span></a></li>
+      <li ><a href="notificaciones.html"><i class="fa fa-bell"></i>Notificaciones</a></li>
+
+      <hr class="m-y-1">
+
+      <label class="categoria text-muted">Perfiles</label>
+
+      <li ><a href="trabajador.html"><i class="icono-arg-empleo-2"></i>Trabajador</a>
+        <ul class="submenu">
+          <li ><a href="trabajador-historial.html">Historial de trabajo</a></li>
+          <li ><a href="trabajador-prestaciones.html">Prestaciones</a></li>
+          <li ><a href="trabajador-obrasocial.html">Obra Social</a></li>
+          <li ><a href="trabajador-busqueda.html">Búsqueda de trabajo</a></li>
+        </ul>
+
+      </li>
+      <li ><a href="conductor.html"><i class="icono-arg-auto"></i>Conductor</a></li>
+      <li ><a href="consumidor.html"><i class="icono-arg-carrito"></i>Consumidor</a></li>
+      <li ><a href="jubilado.html"><i class="icono-arg-jubilado"></i>Jubilado o Pensionado</a></li>
+      <li ><a href="familia.html"><i class="icono-arg-hogar-y-familia"></i>Pareja y Familia</a></li>
+      <li ><a href="capacitacion.html"><i class="icono-arg-graduada"></i>Capacitación</a></li>
+      <li ><a href="salud.html"><i class="icono-arg-maletin-medico-1"></i>Salud</a></li>
+      <li ><a href="discapacidad.html"><i class="icono-arg-discapacidad"></i>Discapacidad</a></li>
+        
+    </div>
+    
+    <div class="visible-xs visible-sm">
+      <li class="btn-title m-y-0"><a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-bars"></i> &nbsp; Menú</a></li>
+      <div class="collapse" id="collapseExample">
+        <hr class="m-y-1">
+        <div class="row">
+          <div class="col-sm-6">
+
+            <li><a href="dashboard.html"><i class="fa fa-home"></i>Inicio</a></li>
+            <li><a href="credenciales.html"><i class="icono-arg-dni"></i>Mis credenciales</a></li>
+            <li><a href="turnos.html"><i class="icono-arg-calendario"></i>Turnos</a></li>
+            <li><a href="tramites.html"><i class="icono-arg-apostilla"></i>Trámites</a></li>
+            <li><a href="notificaciones.html"><i class="fa fa-bell"></i>Notificaciones</a></li>
+
+            <hr class="hidden-sm">
+          </div>
+          <div class="col-sm-6">
+            
+            <li><a href="trabajador.html"><i class="icono-arg-empleo-2"></i>Trabajador</a>
+              <ul class="submenu">
+                <li><a href="trabajador-historial.html">Historial de trabajo</a></li>
+                <li><a href="trabajador-prestaciones.html">Prestaciones</a></li>
+                <li><a href="trabajador-obrasocial.html">Obra Social</a></li>
+                <li><a href="trabajador-busqueda.html">Búsqueda de trabajo</a></li>
+              </ul>
+            </li>
+            <li><a href="conductor.html"><i class="icono-arg-auto"></i>Conductor</a></li>
+            <li><a href="consumidor.html"><i class="icono-arg-carrito"></i>Consumidor</a></li>
+            <li><a href="jubilado.html"><i class="icono-arg-jubilado"></i>Jubilado o Pensionado</a></li>
+            <li><a href="familia.html"><i class="icono-arg-hogar-y-familia"></i>Pareja y Familia</a></li>
+            <li><a href="capacitacion.html"><i class="icono-arg-graduada"></i>Capacitación</a></li>
+            <li><a href="salud.html"><i class="icono-arg-maletin-medico-1"></i>Salud</a></li>
+            <li><a href="discapacidad.html"><i class="icono-arg-discapacidad"></i>Discapacidad</a></li>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </ul>
+</nav>
+
+            </aside>
+            <div class="col-md-8">
+
+                <div class="row panels-row">
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-border-primary panel-nolink">
+
+                            <div class="panel-heading">
+
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h2>Mis credenciales</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-primary"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <p>No hace falta que lleves tus licencias, cédulas y credenciales para los controles de seguridad o trámites del estado. Ahora podés encontrarlas en esta sección de Mi Argentina. Solamente tenés que mostrar la aplicación y tu DNI.</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <div class="panel panel-default panel-border-arandano panel-nolink">
+
+                            <div class="panel-heading">
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="icono-arg-vacunas text-arandano"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h2>Mis vacunas</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-arandano"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <h3>Vacuna anual <span class="text-arandano">(aplicada 0 de 1)</span></h3>
+                                <p>Es recomendable que esta vacuna se aplique entre marzo y junio</p>
+
+                            </div>
+
+                            <div class="panel-footer text-right">
+
+                                <a href="#" class="text-uppercase text-arandano">Ver más</a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default panel-border-lima panel-nolink">
+
+                            <div class="panel-heading">
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="icono-arg-social text-lima"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h2>Mi Seguridad Social</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-lima"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="panel-body">
+
+                            </div>
+
+
+                            <div class="panel-footer text-right">
+
+                                <a class="btn btn-lima btn-sm m-b-0" href="#">Ingresar</a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-border-primary panel-nolink">
+
+                            <div class="panel-heading">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="icono-arg-consulta text-primary"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h2>Mis consultas</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-primary"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <p><a href="#">Beneficios ANSES</a></p>
+
+                                <p>Estas son las fechas de cobro de los beneficios asociados con tu CUIL:</p>
+                                <ul>
+                                    <li>Asignación por hijo - 11/10/2017</li>
+                                    <li>Ayuda escolar - 12/10/2017</li>
+                                    <li>Prestación para trabajadores - 21/10/2017</li>
+                                </ul>
+
+                            </div>
+
+                            <div class="panel-footer">
+
+                                <a class="btn btn-link btn-sm" href="#"><i class="fa fa-gear"></i> Configurar consultas</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-default panel-nolink">
+
+                            <div class="panel-heading panel-heading-imagen" style="background-image:url('img/placeholder_2.jpg');">
+                            </div>
+
+                            <div class="panel-body">
+                                <h2>Vacunas</h2>
+                                <h3>Vacuna anual <span class="text-danger">(aplicada 0 de 1)</span></h3>
+                                <p>Es recomendable que esta vacuna se aplique entre marzo y junio</p>
+                            </div>
+
+                            <div class="panel-footer">
+                                <a class="btn btn-link btn-sm" href="#">Ver mis vacunas</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-default panel-nolink">
+
+                            <div class="panel-heading panel-heading-imagen" style="background-image:url('img/placeholder_2.jpg');">
+                            </div>
+
+                            <div class="panel-body">
+                                <h2>Mis cursos</h2>
+                                <p>Estos son los cursos que estas realizando actualmente.</p>
+                            </div>
+
+                            <div class="panel-footer">
+                                <a class="btn btn-link btn-sm" href="#">Ver mis cursos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-border-left-success panel-nolink">
+
+                            <div class="panel-heading">
+
+                              <div class="media">
+                                    <div class="media-body">
+                                        <h2>Datos de contacto</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-success"></i></a>
+                                    </div>
+                                </div>
+
+                                
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <p class="m-b-2">Aún no has confirmado tu dirección de correo electrónico.</p>
+
+                                <a class="btn btn-success btn-sm m-r-2" href="#">Confirmar correo electrónico</a>
+                                <a class="btn btn-link btn-sm" href="#">Reenviar correo electrónico</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-border-primary panel-nolink">
+                          
+                            <div class="panel-body">
+
+                                <div class="text-center">
+                                    <a href="#">
+                                        <i class="fa fa-plus-circle fa-2x"></i>
+                                        <p class="m-t-1">Añadir información</p>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-border-gray panel-nolink">
+
+                            <div class="panel-heading">
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <i class="fa fa-bell text-gray"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h2>Mis notificaciones</h2>
+                                    </div>
+                                    <div class="media-right">
+                                        <a href="#"><i class="fa fa-ellipsis-v text-gray"></i></a>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del ítem</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Certificado Unico de Discapacidad</td>
+                                            <td><span class="label label-warning text-uppercase">Próximo a vencer</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Licencia de Conducir</td>
+                                            <td><span class="label label-danger text-uppercase">Vencida</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DNI</td>
+                                            <td><span class="label label-success text-uppercase">Vence el 18/07/2032</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pasaporte</td>
+                                            <td><span class="label label-success text-uppercase">Vence el 18/07/2032</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+<script type="text/javascript">
+  
+var portaMarca = document.getElementsByClassName("navbar-brand");
+
+portaMarca[0].innerHTML = '<img alt="Brand" src="/proyectos/argentina/img/miargentina_prueba.png" height="50"><h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>';
+
+</script>
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/primeros-auxilios/asfixia.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+
+  <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li class="active">Asfixia por atragantamiento</li>
+  </ol>
+
+  <section>
+      <article class="content_format row">
+        <div class="col-md-8 col-md-offset-2">
+
+          <h1>Asfixia por atragantamiento</h1>
+          <div class="row">
+            <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+          </div>
+          <hr>
+
+            <p>A una persona se le puede quedar atorado en la garganta un elemento (alimento u objeto), lo que puede impedir que le llegue oxígeno a los pulmones. </p>
+            <p>El atragantamiento le puede suceder a personas de diferentes edades. Es habitual en los más chiquitos, que se llevan a la boca objetos que encuentran en cualquier parte. Pero también le puede suceder a adolescentes y adultos por ingerir bocados muy grandes o un hueso por accidente. </p>
+            <p>Ante una situación así, debemos proceder de inmediato para evitar que la persona se asfixie.</p>
+
+            <div class="alert alert-warning">
+              <div class="media">
+                  <div class="media-left">
+                      <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                  </div>
+                  <div class="media-body">
+                      <h4>LO IMPORTANTE ES ACTUAR CON RAPIDEZ</h4>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+
+            <h3>¿Qué podés hacer? </h3>
+            <p>
+              Si la persona no puede escupir el objeto o alimento que se le atoró, vas a tener que practicar la <strong>maniobra de Heimlich</strong>.
+            </p>
+            
+            <h4>Bebés </h4>
+            <ul>
+              <li>Si el chiquito balbucea, llora, habla o tose, significa que le pasa aire por la garganta. Probablemente tiene una obstrucción parcial.</li> 
+              <li>Dejá que el chiquito tosa naturalmente. No le golpees la espalda ni le des agua, porque se puede mover el objeto y complicar la obstrucción.</li> 
+              <li>Si no Expulsa el objeto, hacele la maniobra de Heimlich.</li> 
+            </ul>
+
+            <h4>Maniobra de Heimlich en bebés</h4>
+
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="/sites/default/files/1_heimlich_bebes1.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>      
+              <div class="col-md-4">
+                 <img src="/sites/default/files/1_heimlich_bebes2.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+              <div class="col-md-4">
+                 <img src="/sites/default/files/1_heimlich_bebes3.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+            </div>          
+
+            <h4>Maniobra de Heimlich en niños, adolescentes y adultos </h4>
+
+            <p>
+              Cuando una persona se atraganta y no puede respirar, generalmente se lleva las manos al cuello y se le enrojecen el rostro y el cuello. <br>Procedé del siguiente modo:
+            </p>
+
+            <ol>
+              <li>Abrazá a la persona por la espalda y por debajo de sus brazos.</li> 
+              <li>Poné una de tus manos en puño cerrado cuatro dedos encima de su ombligo, en la línea media del estómago</li> 
+              <li>Coloca tu otra mano sobre el puño.</li> 
+              <li>Reclina tu cuerpo un poco hacia delante</li> 
+              <li>Hacé presión sobre el abdomen en sentido hacia atrás y arriba.</li> 
+            </ol>
+
+            <p class=text-tomate><strong>Continuá la maniobra hasta que salga el objeto que obstruye.</strong></p>
+
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="/sites/default/files/2_heimlich_adultos1.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>      
+              <div class="col-md-4">
+                 <img src="/sites/default/files/2_heimlich_adultos2.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+              <div class="col-md-4">
+                 <img src="/sites/default/files/2_heimlich_adultos3.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+              <div class="col-md-4">
+                 <img src="/sites/default/files/2_heimlich_adultos4.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+              <div class="col-md-4">
+                 <img src="/sites/default/files/2_heimlich_adultos5.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+            </div>          
+
+            <h4>Maniobra de Heimlich sentado </h4>
+
+            <p>
+              Cuando una persona se atraganta y no puede respirar, generalmente se lleva las manos al cuello y se le enrojecen el rostro y el cuello. <br>Procedé del siguiente modo:
+            </p>
+
+            <ul>
+              <li>Sentá a la persona en una silla y ubicate por detrás, con tu cuerpo a la altura del suyo.</li> 
+              <li>Abrazá a la persona por la espalda y por debajo de sus brazos.</li> 
+              <li>Poné una de tus manos en puño cerrado cuatro dedos encima de su ombligo, en la línea media del estómago, y coloca tu otra mano sobre el puño.<br>Hace presión con tu puño sobre su abdomen, hacia atrás.</li> 
+              <li>Repetí el movimiento hasta 5 veces.</li> 
+            </ul>
+
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="/sites/default/files/2_heimlich_adultos_sentado1.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>      
+              <div class="col-md-4">
+                 <img src="/sites/default/files/2_heimlich_adultos_sentado2.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>
+            </div>          
+
+            <h4>¿Qué podés hacer si te atragantás estando solo o estás con gente que no sabe qué hacer?</h4>
+
+            <p>
+              Cuando una persona se atraganta y no puede respirar, generalmente se lleva las manos al cuello y se le enrojecen el rostro y el cuello. <br>Procedé del siguiente modo:
+            </p>
+
+            <ul>
+              <li>Agarrá una silla y ubicate por detrás.</li> 
+              <li>Reclinate hacia delante, hasta apoyar tu abdomen en el respaldo. Tenés que apoyarlo entre el ombligo y el esternón.</li> 
+              <li>Hacé presión muy fuerte sobre el respaldo para que salga el objeto o alimento atorado.</li> 
+            </ul>
+
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="/sites/default/files/2_heimlich_adultos_auto.png" class="center-block img-responsive img-rounded m-b-2">
+              </div>      
+            </div>          
+
+            <h4>¿Qué podés hacer si la persona atorada se desmaya?</h4>
+
+            <ul>
+              <li>Recostá a la persona boca arriba.</li> 
+              <li>Hacé 5 compresiones sobre la boca del estómago.</li> 
+              <li>Evaluá si responde y respira.</li> 
+              <li>Si sigue atorada, repetí todo de vuelta.</li> 
+              <li>Si hiciste tres veces las 5 compresiones, la persona no responde y su rostro se pone azulado, comenzá a hacerle <a href="">RCP</a>.</li> 
+            </ul>
+
+            <h3>Prevení el riesgo de atragantamiento</h3>
+
+            <h4>En niños</h4>
+
+            <ul>
+              <li>Evitá que los chicos jueguen con juegos de piezas pequeñas. Los juguetes vienen con indicaciones sobre la edad adecuada del niño para que lo use con menos riesgos.</li>
+              <li>Mantené bolitas, piedras, tachuelas, globos y otros objetos pequeños fuera del alcance de los chicos, especialmente de los menores de 3 años.</li>
+              <li>Evitá que los chicos corran, jueguen o caminen con comida o juguetes en la boca.</li>
+              <li>Evitá que los niños menores de 4 años coman alimentos que se atoran fácilmente, como salchichas, nueces, caramelos duros o pegajosos, pochoclo y maníes.</li>
+            </ul>
+
+            <h4>En adultos</h4>
+
+            <ul>
+              <li>Llevate a la boca los alimentos en porciones chicas, y masticá la comida en forma lenta y cuidadosa, sobre todo si usás dentadura postiza.</li> 
+              <li>Evitá reírte y hablar mientras masticás y tragás.</li> 
+            </ul>
+
+
+
+        </div>
+
+
+      </article>      
+  </section>
+
+</div>
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

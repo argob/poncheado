@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/licencia-conducir/clases-y-vigencia.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+	<section>
+		<h3 class="text-center">Clases y vigencia de la Licencia de conducir</h3>
+    	<div class="row">
+				
+		<table class="table table-spaced table-bordered m-t-2">
+			<thead>
+				<tr>
+    				<th>Clases</th>
+    				<th>Vehículos comprendidos</th>
+    				<th colspan="2">Subclases</th>
+    				<th>Descripción</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<tr>
+    				<td rowspan="5">A</td>
+    				<td rowspan="5">Para ciclomotores, motocicletas y triciclos motorizados. Cuando se trate de motocicletas de más de 150 c.c de cilindrada, se debe haber tenido previamente por dos años habilitación para motos de menos potencia, excepto los mayores de 21 años.</td>
+    				<td colspan="2">A.1<br></td>
+    				<td>Ciclomotores hasta 50 c.c.</td>
+  				</tr>
+  				<tr>
+    				<td rowspan="2">A.2</td>
+    				<td>A.2.1</td>
+    				<td>Motocicletas (incluidos ciclomotores y triciclos) de hasta 150 c.c. de cilindrada. Se debe acreditar habilitación previa de 2 años para ciclomotor. (Menores de 21 años).</td>
+  				</tr>
+  				<tr>
+    				<td>A.2.2</td>
+    				<td>Motocicletas (incluidos ciclomotores y triciclos) de hasta 150 c.c. de cilindrada. Se debe acreditar habilitación previa de 2 años para ciclomotor. (Menores de 21 años).</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">A.3</td>
+    				<td>Motocicletas (incluidos ciclomotores y triciclos) de más de 300 c.c. de cilindrada.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">A.4</td>
+    				<td>Motocicletas (incluidos ciclomotores y triciclos) de cualquier cilindrada contemplada en los puntos precedentes de la presente clase, que sean utilizados para el transporte de toda actividad comercial e industrial.</td>
+  				</tr>
+  				<tr>
+    				<td rowspan="2">B</td>
+    				<td rowspan="2">Para automóviles y camionetas con acoplado de hasta 750 kilogramos de peso o casa rodante.</td>
+    				<td colspan="2">B.1</td>
+    				<td>Automóviles, utilitarios, camionetas y casas rodantes motorizadas hasta 3.500 kg. de peso total.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">B.2</td>
+    				<td>Automóviles y camionetas hasta 3.500 kg. de peso con un acoplado de hasta 750 kg. o casa rodante no motorizada (incluye B1).</td>
+  				</tr>
+  				<tr>
+    				<td>C</td>
+    				<td>Para camiones con acoplado y los comprendidos en la Clase B.</td>
+    				<td colspan="2">C</td>
+    				<td>Camiones sin acoplado ni semiacoplado y casas rodantes motorizadas de más de 3.500 kg. de peso y los automotores comprendidos en la Clase B.1.</td>
+  				</tr>
+  				<tr>
+    				<td rowspan="3">D</td>
+    				<td rowspan="3">Para los destinados al servicio del transporte de pasajeros, emergencia, seguridad y los de la Clase B o C, según el caso.</td>
+    				<td colspan="2">D.1</td>
+    				<td>Automotores del servicio de transporte de pasajeros de hasta 8 plazas y los comprendidos en la clase B.1.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">D.2</td>
+    				<td>Vehículos del servicio de transporte de más de 8 pasajeros y los de las clases B, C,y D.1.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">D.3</td>
+    				<td>Servicios de urgencia, emergencia y similares.</td>
+  				</tr>
+  				<tr>
+    				<td rowspan="3">E</td>
+    				<td rowspan="3">Para los destinados al servicio del transporte de pasajeros, emergencia, seguridad y los de la Clase B o C, según el caso.</td>
+    				<td colspan="2">E.1</td>
+    				<td>Camiones articulados y/o con acoplado y los vehículos comprendidos en las Clases B y C.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">E.2</td>
+    				<td>Maquinaria especial no agrícola.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">E.3</td>
+    				<td>Vehículos afectados al transporte de cargas peligrosas.</td>
+  				</tr>
+  				<tr>
+    				<td>F</td>
+   				<td>Para automotores especialmente adaptados para discapacitados.</td>
+    				<td colspan="2">F</td>
+    				<td>Automotores incluidos en las Clases B y profesionales, según el caso, con la descripción de la adaptación que corresponda a la discapacidad de su titular. Los conductores que aspiren a obtener esta licencia, deberán concurrir con el vehículo que posea las adaptaciones y/o equipamiento especial necesario y compatible con su discapacidad.</td>
+  				</tr>
+  				<tr>
+    				<td rowspan="2">G</td>
+    				<td rowspan="2">Para tractores agrícolas y maquinaria especial agrícola.</td>
+    				<td colspan="2">G.1</td>
+    				<td>Tractores agrícolas.</td>
+  				</tr>
+  				<tr>
+    				<td colspan="2">G.2</td>
+    				<td></td>
+  				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-spaced table-bordered m-t-2">
+			<thead>
+				<tr>
+    				<th>Clases</th>
+    				<th>Subclases</th>
+    				<th>Edad</th>
+    				<th>Vigencia máxima</th>
+  				</tr>
+  			</thead>
+			<tbody>
+  				<tr>
+    				<td rowspan="17">A</td>
+    				<td rowspan="5">A.1</td>
+    				<td>16 a 17</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td>18 a 20</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a 70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="4">A.2.1</td>
+    				<td>18 a 20</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a 70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="4">A.2.2</td>
+    				<td>20</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a 70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="3">A.3</td>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a 70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td>A.4</td>
+    				<td>18 a 65</td>
+    				<td>2 años</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="5">B</td>
+    				<td rowspan="5">B.1 - B.2</td>
+    				<td>17</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td>18 a 20</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a 70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="2">C, D, E</td>
+    				<td rowspan="2">C - D.1, D.2, D.3 - E.1, E.2, E.3 </td>
+    				<td>21 A 45</td>
+    				<td>2 años</td>
+  				</tr>
+  			<tr>
+    				<td>46 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td colspan="4">F</td>
+  				</tr>
+  			<tr>
+    				<td rowspan="5">G</td>
+    				<td rowspan="5">G.1, G.2</td>
+    				<td>17</td>
+    				<td>1 año</td>
+  				</tr>
+  			<tr>
+    				<td>18 a 20</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>21 a 65</td>
+    				<td>5 años</td>
+  				</tr>
+  			<tr>
+    				<td>66 a70</td>
+    				<td>3 años</td>
+  				</tr>
+  			<tr>
+    				<td>71 en adelante</td>
+    				<td>1 año</td>
+  				</tr>
+		</tbody>
+	</table>
+
+
+	<table class="table table-spaced table-bordered m-t-2">
+  		<thead>
+  			<tr>
+    			<th></th>
+    			<th></th>
+    			<th>Conductor particular</th>
+    			<th>Conductor profesional</th>
+  			</tr>
+  		<tbody>
+  			<tr>
+    			<td rowspan="6">Requisitos o documentación a reunir</td>
+    			<td>Original y copia de DNI</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td>Leer</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td>Escribir</td>
+    			<td></td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td>Certificado de antecedentes penales (solo clase D)</td>
+    			<td></td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td>Autorización del representante legal (si es menor de edad)</td>
+    			<td>X</td>
+    			<td></td>
+  			</tr>
+  			<tr>
+    			<td>Boleta de pago CENAT</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td>Etapas a cumplimentar</td>
+    			<td>Curso teórico práctico</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td></td>
+    			<td>Examen psicofísico</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td></td>
+    			<td>Examen teórico</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td></td>
+    			<td>Examen de detección de fallas mecánicas</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+  			<tr>
+    			<td></td>
+    			<td>Examen práctico de idoneidad conductiva</td>
+    			<td>X</td>
+    			<td>X</td>
+  			</tr>
+		</tbody>
+	</table>
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/primeros-auxilios/rpc-adultos.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+  <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li class="active"> RCP en Adultos</li>
+  </ol>
+</div>  
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1>RCP en Adultos</h1>
+          <div class="row">
+            <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+          </div>
+          <hr>
+
+              <div class="alert alert-warning m-t-1 m-b-3">
+                  <div class="media">
+                      <div class="media-left">
+                          <i class="fa fa-info-circle fa-fw fa-4x"></i>
+                      </div>
+                      <div class="media-body">
+                          <p class="margin-0"><strong>No te acerques si la escena no es segura.</strong></p>
+                          <p class="margin-0"><strong>Esperá que llegue el servicio de emergencias.</strong></p>
+                      </div>
+                  </div>
+              </div>              
+
+          <h4 class="m-b-2">Pasos a seguir</h4>  
+
+          <div class="steps clearfix">
+            <div class="step">
+              <div>
+                <div class="circle">1</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Evaluá el estado de conciencia de la víctima.</h4>
+                  <p>Movela suavemente de los hombros y preguntale en voz alta ¿me escuchás? ¿Te sentís bien?</p>
+                  <p><strong>Si no responde, no respira, jadea o respira con dificultad continuá con los siguientes pasos.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">2</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Llamá al número de emergencias o pedí a otra persona que lo haga.</h4>
+                  <p>Comunicate con:</p>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3 text-center">
+                    <div class="row numbers text-center">
+                      <div class="col-sm-6">
+                          <h2><i class="fa fa-phone text-tomate"></i> 107</h2>
+                      </div>
+                      <div class="col-sm-6">
+                          <h2><i class="fa fa-phone text-tomate"></i> 911</h2>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                 <p class="m-b-3 text-center">Averiguá cuál es el número de emergencias médicas de tu localidad y &nbsp;tenelo siempre a mano</p> 
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">3</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Iniciá la maniobra de reanimación cardiopulmonar (RPC)</h4>
+                  <img src="/sites/default/files/2_heimlich_adultos_grafico3.png" class="m-y-4 center-block img-responsive img-rounded">
+                  <ol>
+                    <li>Comprimí hacia abajo hasta hundir el tórax entre 5 a 6 cm.</li>
+                    <li>Mantené siempre los brazos extendidos.</li>
+                    <li>Apoyá el talón de una mano en el centro inferior del esternón. Colocá el talón de la otra mano sobre la primera y entrelaza tus dedos.</li>
+                    <li>Zona donde se deben realizar las compresiones.</li>
+                  </ol> 
+                  <div class="alert alert-warning  m-t-1 m-b-3">
+                      <div class="media">
+                          <div class="media-left">
+                              <i class="fa fa-info-circle fa-fw fa-4x"></i>
+                          </div>
+                          <div class="media-body">
+                              <p class="margin-0"><strong>Realizá 30 compresiones ininterrumpidas.</strong></p>
+                              <p class="margin-0"><strong>Repetí 5 ciclos</strong></p>
+                              <p class="margin-0"><strong>Tenés que hacer entre 100 y 120 compresiones por minuto.</strong></p>
+                          </div>
+                      </div>
+                  </div> 
+                                                  
+                </div>
+              </div>
+            </div> 
+            <div class="step">
+              <div>
+                <div class="circle">4</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Reevaluá el estado de las personas </h4>
+                  <p>Si no recupera la conciencia continuá con las compresiones hasta que llegue el equipo de emergencias.</p>
+                  <p>Si la persona recupera la conciencia, colocala de costado (o en posición de seguridad) hasta que llegue el equipo de emergencias.</p>
+                  <p>Esta posición deja libre las vías respiratorias y evita una posible aspiración de vómito por parte de la víctima.</p>
+                  <div class="alert alert-warning  m-t-1">
+                      <div class="media">
+                          <div class="media-left">
+                              <i class="fa fa-info-circle fa-fw fa-4x"></i>
+                          </div>
+                          <div class="media-body">
+                              <p class="margin-0"><strong>Uso del Desfibrilador Externo Automático (DEA)</strong></p>
+                              <p class="margin-0"><strong>Si contás con este equipo encendelo y seguí sus instrucciones.</strong></p>
+                          </div>
+                      </div>
+                  </div> 
+                </div>
+              </div>
+            </div> 
+        </div>
+    
+      </div> 
+    </div> 
+  </section>    
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+          <hr class="m-y-4">
+          <div class="well">
+           <h4 class="m-b-2">Cómo hacer compresiones</h4>
+            <p>Si la víctima no se mueve, no responde y no respira correctamente comenzá a comprimir el tórax desde el centro del esternón ; 30 veces, a un ritmo de entre 100 y 120 compresiones por minuto. El esternón debe descender al menos 5 cm.</p>  
+            <ol>
+              <li>Arrodíllate al costado del tórax de la víctima (cualquier lado) y colocá el talón de una de tus manos sobre el centro del tórax, en el esternón. </li>
+              <li>Poné tu otra mano encima de la anterior, asegurándote de no tocar las costillas de la víctima con tus dedos (mantenelos levantados y entrecruzados). Sólo el talón de la mano inferior apoya sobre el esternón.</li>
+              <li>Hacé avanzar tus hombros de manera que queden directamente encima del esternón de la víctima. Mantené tus brazos rectos y usá el peso de tu cuerpo para transmitir la presión sobre tus manos. </li>
+              <li>A continuación liberá por completo la compresión sobre el esternón sin retirar las manos para permitir que el tórax vuelva a su posición de reposo y el corazón se llene con sangre. </li>
+            </ol>             
+            <p><strong>Entre compresiones mantené el entrecruzamiento de las manos sin retirarlas del esternón. Las fases de compresión y relajación deben tener igual duración.</strong></p>  
+
+           </div>
+        </div>
+        <div class="col-md-12">
+            <h4 class="m-b-2 text-center">Cuándo hacer RCP</h4>
+            <div class="row panels-row">
+              <div class="col-md-6">
+                <div class="well">
+                    <h4 class="m-b-2">Paro Cardíaco</h4>
+                    <ul class="list-unstyled">
+                      <li>Señales de ataque cardíaco</li>
+                      <li>Sensación de opresión,</li>
+                      <li>Dolor del pecho PERSISTENTE que se extiende hacia los hombros, cuello, mandíbula y brazos.</li>
+                      <li>Malestar torácico acompañado de vahídos, desvanecimiento, sudoración, náuseas o falta de aire.</li>
+                      <li>Si advierte uno o varios de ellos, busque ayuda de inmediato.</li>
+                    </ul>             
+                 </div>              
+              </div>      
+              <div class="col-md-6">
+                <div class="well">
+                    <h4 class="m-b-2">Atragantamiento</h4>
+                    <ul class="list-unstyled">
+                      <li>La señal universal de atragantamiento es tomarse el cuello con ambas manos.</li>
+                      <li>Si la víctima tiene dificultad para respirar o pierde el conocimiento: llame a emergencias y comience la RCP</li>
+                    </ul>             
+                 </div>               
+              </div>
+            </div>  
+        </div>        
+      </div> 
+    </div> 
+  </section>   
+
+  <section class="bg-gray">
+  <div class="container">
+        <div class="row panels-row">
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/RCP/preguntas">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-question-circle-o fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Preguntas Frecuentes</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/botiquin">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-suitcase fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Botiquin de primeros auxilios</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/primerosauxilios/posicion">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-user fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Posición de recuperación</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" target="_blank" href="/sites/default/files/manual_1ros_auxilios_web.pdf">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-file-text-o fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Descargá el manual (PDF)</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>        
+  
+  </div>
+</section>        
+  
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

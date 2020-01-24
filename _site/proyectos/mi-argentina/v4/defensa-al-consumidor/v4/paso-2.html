@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/v4/defensa-al-consumidor/v4/paso-2.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <style>
+    #entyModal {
+        top: 40%;
+        transform: translateY(-40%);
+        height: 1000px;
+    }
+
+    .enty-select {
+        border-bottom: 1px solid #DEE2E6;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .enty-info-select {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .round-tab {
+        cursor: default;
+        user-select: none;
+        /* supported by Chrome and Opera */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+    }
+</style>
+<link rel="stylesheet" href="../../../css/miargentina.css">
+<section class="p-y-0">
+    <div class="container-fluid">
+        <div class="row dashboard">
+            <div class="col-lg-3 col-sm-4 sidebar p-l-0 hidden-xs">
+                
+<nav class="page-sidebar m-b-2 dashboard-sidebar">
+  <ul class="nav nav-pills nav-stacked nav-dashboard m-t-2 p-r-0 col-xs-12">
+    <h1 class="m-t-1 title-dashboard visible-xs">
+      Bienvenida María Paula
+    </h1>
+    <li class="col-xs-6 col-sm-12 p-x-0">
+      <a href="inicio.html">
+        <div class="media  hidden-xs">
+          <div class="media-left">
+            <i class="icono-arg-casa-negativo" aria-hidden="true"></i>
+          </div>
+          <div class="media-body">
+            <p class="m-b-0">Inicio</p>
+          </div>
+        </div>
+        
+      </a>
+    </li>
+    <li class="col-xs-6 col-sm-12 p-x-0">
+      <a href="credenciales.html">
+        <div class="media hidden-xs">
+          <div class="media-left">
+            <i class="icono-arg-credenciales-negativo" aria-label="Mis credenciales" aria-hidden="true"></i>
+          </div>
+          <div class="media-body">
+            <p class="m-b-0">Mis credenciales</p>
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li class="col-xs-6 col-sm-12 p-x-0">
+      <a href="turnos.html">
+        <div class="media hidden-xs">
+          <div class="media-left">
+            <i class="icono-arg-turno-negativo" aria-label="Mis turnos" aria-hidden="true"></i>
+          </div>
+          <div class="media-body">
+            <p class="m-b-0">Mis turnos</p>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="tramites.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-tramite-negativo" aria-label="Mis trámites" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mis trámites</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="turnos.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-cobros-negativo"  aria-label="Mis cobros" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mis cobros</p>
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="turnos.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-vencimiento-negativo"  aria-label="Mis vencimientos" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mis vencimientos</p>
+            </div>
+          </div>
+          
+        </a>
+      </li>
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="turnos.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-anses-negativo" aria-label="Mi ANSES" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mi ANSES</p>
+            </div>
+          </div>
+          
+        </a>
+      </li>
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="transporte.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-automotor-negativo" aria-label="Mis vehículos" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mis vehículos</p>
+            </div>
+          </div>
+          
+        </a>
+      </li>
+
+
+      
+     <!--  <li ><a href="segsoc_portada.html">Mi seguridad social</a></li> -->
+      <li class="col-xs-6 col-sm-12 p-x-0 active">
+        <a href="salud.html"> 
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-cruz-medicina-negativo" aria-label="Mi salud" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mi salud</p>
+            </div>
+          </div>
+         
+        </a>
+      </li>
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="educacion.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-diploma-negativo"  aria-label="Mi formación" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mi formación</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="mi-provincia.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-mapa-2-negativo" aria-label="Mi provincia" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Mi provincia</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- <li ><a href="discapacidad_sin_carga_USV.html">Transporte</a></li> -->
+      <li class="col-xs-6 col-sm-12 p-x-0">
+        <a href="discapacidad.html">
+          <div class="media hidden-xs">
+            <div class="media-left">
+              <i class="icono-arg-discapacidad-2-negativo" aria-label="Discapacidad" aria-hidden="true"></i>
+            </div>
+            <div class="media-body">
+              <p class="m-b-0">Discapacidad</p>
+            </div>
+          </div>
+        </a>
+      </li>
+
+  </ul>
+</nav>
+
+
+
+            </div>
+            <div class="col-lg-9 col-sm-8 m-y-2">
+                <div class="row">
+                    <div class="col-xs-12 m-b-1">
+                        <div aria-label="breadcrumb">
+                            <ol class="breadcrumb p-l-0 p-y-0">
+                                <li class="breadcrumb-item">
+                                    <a href="../inicio/inicio.html">
+                                        Mi Argentina
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Mis trámites
+                                </li>
+                            </ol>
+                        </div>
+                        <h1 class="title-dashboard m-t-0">
+                            Reclamo ante Defensa del Consumidor
+                        </h1>
+                        <hr class="m-y-2" />
+                        <p class="help-block">
+                            Los datos que tienen un asterisco * son obligatorios.
+                        </p>
+                    </div>
+                </div>
+                <!--panel por pasos-->
+                <div class="row">
+                    <div class="col-md-8" id="main-content">
+                        <div class="panels-row-miargentina" aria-live="polite">
+                            <div class="panel panel-default panel-border-success panel-nolink">
+                                <div class="panel-heading">
+                                    <div class="wizard-head">
+                                        <div class="connecting-line"></div>
+                                        <ul class="nav nav-tabs" role="tablist">
+
+                                            <li role="presentation" class="active">
+                                                <span class="round-tab">1</span>
+                                            </li>
+
+                                            <li role="presentation" class="active">
+                                                <span class="round-tab">2</span>
+                                            </li>
+                                            <li role="presentation" class="disabled">
+                                                <span class="round-tab">3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <form id="DefensaAlConsumidor" role="form">
+                                        <div class="tab-content" role="tablist">
+                                            <div class="tab-pane" role="tabpanel" id="step-1" hidden
+                                                aria-labelledby="paso-1"> 
+                                            </div>
+
+                                            <div class="tab-pane active" role="tabpanel" id="step-2"
+                                                aria-labelledby="paso-2">
+                                                <p class="h3"><strong>Datos de la persona que hace el reclamo</strong>
+                                                </p>
+                                                <div class="m-t-2">
+                                                    <fieldset>
+                                                        <legend>
+                                                            <label>¿Sos el titular del producto o servicio? *</label>
+                                                        </legend>
+                                                        <div class="form-group item-form">
+                                                            <label for="opSi" class="radio-inline">
+                                                            <input type="radio" name="soyTitular" id="opSi" value="Si" required aria-required="true">
+                                                            Si
+                                                            </label>
+                                                            <label for="opNo" class="radio-inline">
+                                                            <input type="radio" name="soyTitular" id="opNo" value="No" required aria-required="true">
+                                                            No
+                                                            </label>       
+                                                            <p class="help-block error hidden">Ingresá si sos el titular del producto o servicio</p> 
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <legend>
+                                                            <label>¿Sos quien usa el producto o servicio? *</label>
+                                                        </legend>
+                                                        <span class="help-block m-b-1">
+                                                            Si la respuesta es “NO”, podrías ser el representante del
+                                                            titular o usuario. Para poder actuar como representante
+                                                            deberás acreditar tu condición con un poder.
+                                                        </span>
+                                                        <div class="form-group item-form">
+                                                            <label for="opSi1" class="radio-inline">
+                                                            <input type="radio" name="usaProd" id="opSi1" value="Si" required aria-required="true">
+                                                            Si
+                                                            </label>
+                                                            <label for="opNo1" class="radio-inline">
+                                                            <input type="radio" name="usaProd" id="opNo1" value="No" required aria-required="true">
+                                                            No
+                                                            </label>       
+                                                            <p class="help-block error hidden">Ingresá si sos quien usa el producto o servicio</p> 
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8">
+                                                            <label for="titular">Ingresá el nombre y apellido del
+                                                                titular del producto o servicio</label>
+                                                            <div class="form-group item-form">
+                                                                <input type="text" class="form-control" id="titular">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4">Completá los datos del titular del producto o servicio
+                                                    </p>
+                                                    <div id="errores" aria-live="polite"
+                                                        class="alert alert-danger m-t-2" style="display:none;">
+                                                    </div>
+                                                    <div class="row m-t-2">
+                                                        <div
+                                                            class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="nombre">Nombre *</label>
+                                                            <input type="text" class="form-control" id="nombre">
+                                                            <p class="help-block error hidden">Ingresá tu nombre</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div
+                                                            class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="apellido">Apellido *</label>
+                                                            <input type="text" class="form-control" id="apellido">
+                                                            <p class="help-block error hidden">Ingresá tu apellido</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
+                                                            <label for="top">Tipo de documento *</label>
+                                                            <select name="" id="top" class="form-control">
+                                                                <option value="">DNI</option>
+                                                            </select>
+                                                            <p class="help-block error hidden">Ingresá tipo de documento</p>
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
+                                                            <label for="dni">Número de documento *</label>
+                                                            <input type="number" class="form-control" id="dni">
+                                                            <p class="help-block error hidden">Ingresá número de documento</p>
+                                                        </div>
+                                                    </div>
+                                                    <fieldset>
+                                                        <legend>
+                                                            <label>Sexo *</label>
+                                                        </legend>
+                                                        <span class="help-block m-b-1">
+                                                            Completá este dato según lo que figura en tu documento
+                                                        </span>
+                                                        <div class="form-group item-form">
+                                                            <label for="femenino" class="radio-inline">
+                                                            <input type="radio" name="sexo" id="femenino" value="Femenino" required aria-required="true">
+                                                            Femenino
+                                                            </label>
+                                                            <label for="masculino" class="radio-inline">
+                                                            <input type="radio" name="sexo" id="masculino" value="Masculino" required aria-required="true">
+                                                            Masculino
+                                                            </label>       
+                                                            <p class="help-block error hidden">Ingresá tu sexo</p>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-5 col-lg-4 form-group item-form">
+                                                            <label for="nacimiento">Fecha de nacimiento *</label>
+                                                            <input type="date" class="form-control" id="nacimiento"
+                                                                value="dd-mm-aaaa" min="1950-01-01" max="2019-09-01">
+                                                            <p class="help-block error hidden">Ingresá tu fecha de nacimiento</p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Datos personales</p>
+                                                    <div class="row m-t-2">
+                                                        <div class="col-md-10 col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Tipo de documento
+                                                                    </span>
+                                                                    <p><b>DNI</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Número de documento
+                                                                    </span>
+                                                                    <p><b>24666222</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Nombre
+                                                                    </span>
+                                                                    <p><b>María Juana</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Apellido
+                                                                    </span>
+                                                                    <p><b>Fernandez</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Sexo
+                                                                    </span>
+                                                                    <p><b>Femenino</b></p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <span class="help-block m-b-0">
+                                                                        Fecha de nacimiento
+                                                                    </span>
+                                                                    <p><b>10/04/1986</b></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Domicilio</p>
+                                                    <div class="row m-t-2">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="prov">Provincia *</label>
+                                                            <select name="" id="prov" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                            <p class="help-block error hidden">Ingresá tu provincia</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="partido">Partido o departamento *</label>
+                                                            <select name="" id="partido" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                            <p class="help-block error hidden">Ingresá tu partido o departamento</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="localidad">Localidad *</label>
+                                                            <select name="" id="localidad" class="form-control">
+                                                                <option value="" selected disabled hidden>
+                                                                    Seleccionar</option>
+                                                                <option value="">Buenos Aires</option>
+                                                            </select>
+                                                            <p class="help-block error hidden">Ingresá tu localidad</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 ">
+                                                            <label for="dp">Código postal *</label>
+                                                            <span class="help-block m-b-1">
+                                                                <a href="#" target="_blank" rel="external">Consultá tu código postal</a>
+                                                            </span>
+                                                            <div class="form-group item-form">
+                                                                <input type="text" class="form-control" id="dp">
+                                                                <p class="help-block error hidden">Ingresá tu código postal</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group item-form">
+                                                            <label for="calle">Calle *</label>
+                                                            <input type="text" class="form-control" id="calle">
+                                                            <p class="help-block error hidden">Ingresá tu calle</p>
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="numero">Número
+                                                                <small><em>(opcional)</em></small></label>
+                                                            <input type="number" class="form-control" id="numero">
+                                                            <p class="help-block error hidden">Ingresá tu número</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="piso">Piso
+                                                                <small><em>(opcional)</em></small></label>
+                                                            <input type="text" class="form-control" id="piso">
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-4 form-group">
+                                                            <label for="depto">Departamento
+                                                                <small><em>(opcional)</em></small></label>
+                                                            <input type="text" class="form-control" id="depto">
+                                                        </div>
+                                                    </div>
+                                                    <p class="h4 m-t-2">Datos de contacto</p>
+                                                    <span class="help-block m-b-1">
+                                                        Completá al menos una manera para comunicarnos.
+                                                    </span>
+                                                    <div class="form-group m-t-2">
+                                                        <span class="help-block m-b-0">
+                                                            Correo electónico
+                                                        </span>
+                                                        <p>juanafernandez@gmail.com</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-8 form-group item-form">
+                                                            <label for="email">Correo electónico *</label>
+                                                            <input type="email" class="form-control" id="email">
+                                                            <p class="help-block error hidden">Ingresá tu correo electrónico</p>
+                                                        </div>
+                                                    </div>
+                                                    <fieldset>
+                                                        <legend>Teléfono</legend>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-md-4 col-lg-3">
+                                                                <label for="prefijo"><small>Prefijo</small></label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">0</span>
+                                                                    <input type="number" class="form-control"
+                                                                        id="prefijo">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-6 col-lg-5 form-group">
+                                                                <label for="telefono"><small>Número</small></label>
+                                                                <input type="number" class="form-control" id="telefono">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <button type="button" class="btn btn-link m-r-1"
+                                                        onclick="location.href='index.html'">Anterior</button>
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="location.href='paso-3.html'">Siguiente</button>
+                                                    <fieldset>
+                                                        <div class="radio">
+                                                            <label for="se" class="rc-label">
+                                                            <input type="radio" name="error" id="se" value="SE" class="sinError" checked="">
+                                                            Sin mensajes de error
+                                                        </label>
+                                                        <label for="ce" class="rc-label m-l-1">
+                                                            <input type="radio" name="error" id="ce" value="CE" class="conError">
+                                                            Con mensajes de error
+                                                        </label>
+                                                        </div>  
+                                                    </fieldset>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="tab-pane" role="tabpanel" id="step-3" aria-labelledby="paso-3"
+                                                hidden>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(function () {
+
+        $('input.conError:radio').change(function () {
+            if ($(this).is(":checked")) {
+                $('.error').removeClass("hidden");
+                $('.item-form').addClass('has-error has-feedback');
+                mostrarErrores();
+                $("#errores").show();
+            }
+        });
+        $('input.sinError:radio').change(function () {
+            if ($(this).is(":checked")) {
+                $('.error').addClass("hidden");
+                $('.item-form').removeClass('has-error has-feedback');
+                $("#errores").hide();
+            }
+        });
+
+    });
+
+    function mostrarErrores() {
+        $("#errores").html("");
+        $("#errores").html("<h2>Se han producido los siguientes errores:</h2><ol style='padding:0 20px;'></ol>");
+        var cantidadErrores = 0;
+
+        $(".has-error").each(function () {
+            var mensajeError = $(this).find(".help-block.error").html();
+            $("#errores ol").append("<li>" + mensajeError + "</li>");
+            cantidadErrores++;
+        });
+    }
+</script>
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

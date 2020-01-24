@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/mujeres/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+    .btn-mujeres{
+            background-color: #873299;
+            color: #fff;
+    }
+
+</style>
+
+<section class="jumbotron" style="background-image: url('/sites/default/files/jumbotron_144-01.jpg');">
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                    <h1>Atención para mujeres en situación de violencia</h1>
+                    <p class="lead">Si vivís situaciones de violencia o conocés a alguien que esté en esa situación llamá al 144 o buscá algún centro de atención cercano.</p>
+                    <a href="https://www.argentina.gob.ar/aplicaciones/linea-144" class="btn btn-mujeres text-center">Descargá la aplicación movil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+</section>
+
+<section>
+
+    <div class="container">
+
+        <div class="row panels-row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default" href="tel:144">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-5">
+                                <i class="fa fa-phone fa-fw fa-3x text-uva"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Llamá la línea 144</h3>
+                                <p>Atiende las 24 horas, de manera gratuita y desde todo el país.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default" href="https://www.argentina.gob.ar/aplicaciones/linea-144">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-5">
+                                <i class="fa fa-mobile-phone fa-fw fa-3x text-uva"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Aplicación móvil 144</h3>
+                                <p>Hacé la encuesta para detectar signos de violencia en una relación.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default" href="https://www.argentina.gob.ar/mapamujeres">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-5">
+                                <i class="fa fa-map fa-fw fa-3x text-uva"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Mapa de centros de atención</h3>
+                                <p>Encontrá lugares cercanos donde pueden contenerte y asesorarte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center">¿Sabías que...? </h3>
+                <div class="row numbers">
+                    <div class="col-md-6">
+                        <h4 class="h3 text-uva">8 de cada 10</h4>
+                        <h5 class="text-muted">llamadas  a la línea 144 son por violencia doméstica.</h5>
+                        <div class="credits">
+                            <p class="m-t-0 text-muted">Fuente: Informe mensual (Enero 2018) del Observatorio Nacional de Violencia contra las Mujeres del INAM.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="h3 text-uva">En 8 de cada 10 casos</h4>
+                        <h5 class="text-muted">las personas sufren violencia por parte de su pareja o ex pareja.</h5>
+                        <div class="credits">
+                            <p class="m-t-0 text-muted">Fuente: Informe mensual (Enero 2018) de Observatorio Nacional de Violencia contra las Mujeres del INAM.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="text-center m-y-3">¿Qué es la violencia contra las mujeres? </h3>
+                <p>Se basa en la <strong>desigualdad de poder entre hombres y mujeres</strong> y tiene como resultado un <strong>daño físico, sexual o psicológico.</strong></p>
+                <p>Incluye formas más sutiles o naturalizadas como la <strong>desigualdad de trato</strong> y oportunidades, el <strong>control sobre la vida de las mujeres</strong>, hasta formas más extremas como el <strong>femicidio y la trata de personas</strong>.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="p-t-0">
+    <div class="container">
+        <div class="col-md-8">
+            <h3 class="m-b-3 text-center">Situaciones de violencia de género </h3>
+            <div class="row panels-row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-disabled">
+                        <div style="background-image:url('/sites/default/files/imagenes_violencia_psicologica.jpg');" class="panel-heading panel-heading-md"></div>
+                        <div class="panel-body">
+                            <h3>Psicológica </h3>
+                            <ul class="text-muted p-l-2">
+                                <li class="m-b-0">Te cela</li>
+                                <li class="m-b-0">Te controla</li>
+                                <li class="m-b-0">Te revisa el celular </li>
+                                <li class="m-b-0">Te insulta o te humilla</li>
+                                <li class="m-b-0">Te descalifica</li>
+                                <li class="m-b-0">Te aísla </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-disabled">
+                        <div style="background-image:url('/sites/default/files/imagenes_violencia_sexual.jpg');" class="panel-heading panel-heading-md"></div>
+                        <div class="panel-body">
+                            <h3>Sexual </h3>
+                            <ul class="text-muted p-l-2">
+                                <li class="m-b-0">Se niega a usar preservativo </li>
+                                <li class="m-b-0">Te obliga a tener sexo</li>
+                                <li class="m-b-0">Te exige hacer cosas que no querés</li>
+                                <li class="m-b-0">Te viola</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-disabled">
+                        <div style="background-image:url('/sites/default/files/imagenes_violencia_fisica.jpg');" class="panel-heading panel-heading-md"></div>
+                        <div class="panel-body">
+                            <h3>Física </h3>
+                            <ul class="text-muted p-l-2">
+                                <li class="m-b-0">Te empuja</li>
+                                <li class="m-b-0">Te patea</li>
+                                <li class="m-b-0">Te pega</li>
+                                <li class="m-b-0">Te arroja objetos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-disabled">
+                        <div style="background-image:url('/sites/default/files/imagenes_violencia_economica.jpg');" class="panel-heading panel-heading-md"></div>
+                        <div class="panel-body">
+                            <h3>Económica </h3>
+                            <ul class="text-muted p-l-2">
+                                <li class="m-b-0">Te priva de dinero a vos o a tus hijos</li>
+                                <li class="m-b-0">Se queda con tus ingresos</li>
+                                <li class="m-b-0">Te impide ganar tu dinero</li>
+                                <li class="m-b-0">Te oculta la existencia de bienes </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="content_format m-t-4">
+                    <h3 class="m-y-3">Primeros signos de maltrato en la pareja </h3>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Te ridiculiza</strong>, te hace sentir inferior, torpe o inútil.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Te aísla</strong>, te impide relacionarte con familiares o amistades, se pone celoso o provoca una pelea.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Te amenaza</strong>, humilla, grita o insulta. Te hace sentir culpable.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Amenaza con hacerte daño</strong> a vos o a tu familia.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Te dan miedo</strong> su mirada o sus gestos.</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-arrow-right fa-2x text-uva"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="lead"><strong>Te controla</strong> el dinero, tu forma de vestir, revisa tu celular y tus redes sociales. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h3 class="text-center m-b-2">Tené en cuenta que la violencia se presenta como un círculo que no termina</h3>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <img src="/sites/default/files/circulo_de_la_violencia-01_1.jpg" class="img-responsive img-rounded m-b-1">
+                    </div>
+                </div>
+                <div class="m-t-2">
+                    <p>A los momentos en que es más sutil, le siguen otros en que es más visible, como gritos o golpes. Después, <strong>casi siempre después te piden perdón</strong> y te prometen que van a cambiar. </p>
+                    <p class="margin-0"><strong>Pero esto va a seguir pasando,</strong> la violencia se va agravando y puede llegar a situaciones que <strong>ponen en riesgo tu vida.</strong> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>¿Qué puedo hacer? <span>&nbsp;Contalo… ¡No estás sola!</span></h3>
+            </div>
+        </div>
+        <div class="row panels-row">
+            <div class="col-xs-12 col-sm-4">
+                <div class="alert alert-info">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-phone fa-fw fa-4x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4><a href="tel:144">Llamá al 144 </a></h4>
+                            <p class="margin-0">Para recibir contención y asesoramiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="alert alert-info">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-phone fa-fw fa-4x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4><a href="tel:911">Llamá al 911 </a></h4>
+                            <p class="margin-0">En situaciones de emergencia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="alert alert-info">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-map-marker fa-fw fa-4x"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4><a href="https://www.argentina.gob.ar/mapamujeres">Mapa de centros de atención </a></h4>
+                            <p class="margin-0">Encontrá lugares cercanos donde pueden atenderte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-t-0 p-b-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <p class="lead">
+                            <a href="http://www.cnm.gov.ar/" target="_blank">
+                                <img src="/sites/default/files/logocnm.png" height="70" alt="Consejo Nacional de las Mujeres">
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p class="lead">
+                            <a href="http://www.cnm.gob.ar/pnacerrviomuj.php" target="_blank">Plan Nacional de Acción para la Prevención, Asistencia y Erradicación de la Violencia contra las mujeres</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

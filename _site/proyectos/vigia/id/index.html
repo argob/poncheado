@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/vigia/id/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li><a href="">Argentina</a></li>
+        <li><a href="">Mediciones</a></li>
+        <li class="active">ID</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<h1>Usuarios de Argentina.gob.ar</h1>
+
+<!--  -->
+
+<p class="lead m-b-0">Información de los ciudadanos que se registraron en <a href="https://www.argentina.gob.ar">Argentina.gob.ar</a>.</p>
+<p class="text-muted">Última actualización <span data-render="updated"></span> hs.</p>
+
+<h3 class="m-t-4">Usuarios registrados desde el inicio</h3>
+<div class="row numbers">
+  <div class="col-sm-6 col-md-4">
+    <h2 data-render="citizensTotal">-</h2>
+    <h4>Total de ciudadanos</h4>
+  </div>
+  <div class="col-sm-6 col-md-4" style="padding-top: 24px;">
+    <h3 class="text-gray"><span data-render="validatedTotalPercent">-</span>% <small>(<span data-render="validatedTotal">-</span>)</small></h3>
+    <h4>Emails validados</h4>
+  </div>
+  <div class="col-sm-6 col-md-4" style="padding-top: 24px;">
+    <h3 class="text-gray" data-render="deletedTotal">-</h3>
+    <h4>Cuentas borradas</h4>
+  </div>
+</div>
+
+<hr class="hr-lg">
+
+<h3>Usuarios registrados hoy</h3>
+<div class="row numbers">
+  <div class="col-sm-6 col-md-4">
+    <h2 data-render="citizensToday">-</h2>
+    <h4>Total de ciudadanos</h4>
+  </div>
+  <div class="col-sm-6 col-md-4" style="padding-top: 24px;">
+    <h3 class="text-gray"  data-render="validatedToday">-</h3>
+    <h4>Emails validados</h4>
+  </div>
+  <div class="col-sm-6 col-md-4" style="padding-top: 24px;">
+    <h3 class="text-gray" data-render="deletedToday">-</h3>
+    <h4>Cuentas borradas</h4>
+  </div>
+</div>
+
+<hr class="hr-lg">
+<h2>Ciudadanos por mes</h2>
+<p>Cantidad de ciudadanos que se registran por mes.</p>
+<div class="chart" id="chart-month"></div>
+
+<hr class="hr-lg">
+<h2>Ciudadanos por día</h2>
+<p>Cantidad de ciudadanos que se registran y validan su cuenta por día.</p>
+<div class="chart" id="chart-day"></div>
+
+<hr class="hr-lg">
+<div class="credits">
+  <p>
+    <strong>Total de ciudadanos / Usuarios registrados</strong>: Personas que crearon su cuenta en argentina.gob.ar.<br>
+    <strong>Emails validados</strong>: Usuarios que validaron su casilla de correo electrónico.<br>
+    <strong>Cuentas borradas</strong>: Usuarios que eliminaron su perfil de Argentina.gob.ar.
+  </p>
+</div>
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/es.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']});
+
+var data = {};
+var chart = {};
+
+var ponchoColors = [
+  '#006aa9',
+
+  '#ffce00',
+  '#51a42b',
+  '#009dda',
+  '#873299',
+  '#bd1e61',
+  '#ea1d76',
+  '#ff4338',
+  '#cfde00',
+  
+  '#ca1767',
+  '#e55535',
+  '#ef9116',
+  '#82bc00',
+]
+
+var options = {
+  area: {
+    curveType: 'function',
+    backgroundColor: '#f9f9f9',
+    colors: ponchoColors,
+    lineWidth: 2,
+    areaOpacity: 0.2,
+    fontName: 'Roboto',
+    fontSize: 14,
+    isStacked: true,
+    chartArea: {
+      left:'10%',
+      top: '10%',
+      width:'80%',
+      height:'65%'
+    },
+    hAxis: {
+      gridlines: {
+        color: '#fff',
+      }
+    },
+    vAxis: {
+      baselineColor: '#BBB',
+      format: 'short',
+      minValue: 0,
+      gridlines: {
+        color: '#ECECEC'
+      }
+    },
+    legend: {
+      position: 'bottom'
+    }
+  },
+
+  bar: {
+    backgroundColor: '#f9f9f9',
+    colors: ponchoColors,
+    fontName: 'Roboto',
+    fontSize: 14,
+    chartArea: {
+      left:'10%',
+      top: '10%',
+      width:'85%',
+      height:'65%'
+    },
+    legend: {
+      position: 'bottom'
+    },
+    hAxis: {
+      gridlines: {
+        color: '#fff',
+      }
+    },
+    vAxis: {
+      baselineColor: '#BBB',
+      format: 'short',
+      minValue: 0,
+      gridlines: {
+        color: '#ECECEC'
+      }
+    }
+  },
+
+  line: {
+    backgroundColor: '#f9f9f9',
+    colors: ponchoColors,
+    lineWidth: 2,
+    fontName: 'Roboto',
+    fontSize: 14,
+    chartArea: {
+      left:'10%',
+      top: '10%',
+      width:'80%',
+      height:'65%'
+    },
+    legend: {
+      position: 'bottom'
+    },
+    hAxis: {
+      gridlines: {
+        color: '#fff',
+      }
+    },
+    vAxis: {
+      baselineColor: '#BBB',
+      format: 'short',
+      minValue: 0,
+      gridlines: {
+        color: '#ECECEC'
+      }
+    },
+    interpolateNulls: true
+  },
+
+  pie: {
+    backgroundColor: '#f9f9f9',
+    colors: [
+      '#006aa9',
+      '#007EC7',
+      '#008EE1',
+      '#009EFA',
+      '#14A9FF',
+      '#2EB3FF',
+      '#47BCFF',
+      '#61C5FF'
+    ],
+    fontName: 'Roboto',
+    fontSize: 14,
+    chartArea: {
+      left:'0%',
+      top: '10%',
+      width:'95%',
+      height:'65%'
+    },
+    pieSliceTextStyle: {
+      fontSize: 12
+    }
+  },
+
+  combo: {
+    backgroundColor: '#f9f9f9',
+    colors: ponchoColors,
+    fontName: 'Roboto',
+    fontSize: 14,
+    chartArea: {
+      left:'10%',
+      top: '10%',
+      width:'85%',
+      height:'65%'
+    },
+    legend: {
+      position: 'bottom'
+    },
+    hAxis: {
+      gridlines: {
+        color: '#fff',
+      }
+    },
+    vAxis: {
+      baselineColor: '#BBB',
+      format: 'short',
+      minValue: 0,
+      gridlines: {
+        color: '#ECECEC'
+      }
+    },
+    seriesType: 'bars',
+    series: {0: {type: 'line'}},
+    curveType: 'function'
+  }
+};
+
+var api = {
+  prod: "https://id.argentina.gob.ar/api/"
+}
+
+window.raw = {
+  load: function(file){
+    return jQuery.ajax({
+      url: api.prod + file,
+      dataType: 'jsonp',
+      success: function(response){
+        raw[file] = response;
+      },
+      error: function(response){
+        render.error('Momentáneamente los datos no están disponibles.');
+      }
+    });
+  }
+};
+
+var reload = function(){
+  jQuery.when.apply($, [
+    raw.load('analytics'),
+    raw.load('totalusersbymonth'),
+    raw.load('totalusersbyday')
+  ]).then(function(){
+    render.data();
+  });
+}
+
+reload();
+var interval = setInterval(reload, 60000)
+  
+var render = {
+  text: function(selector, text){
+      jQuery('[data-render='+ selector +']').text(text);
+  },
+  number: function(selector, number, options){
+
+      if(options == undefined){ options = {}; };
+      if(options.color == undefined){ options.color = false; };
+      if(options.pre == undefined){ options.pre = ''; };
+      if(options.post == undefined){ options.post = ''; };
+
+      if(options.color != false && number > 0){
+          jQuery('[data-render='+ selector +']').addClass('text-success');
+      }else if(options.color != false && number < 0){
+          jQuery('[data-render='+ selector +']').addClass('text-danger');
+      }
+
+
+      if(number > 1000 || number < -1000){
+        number = ("" + number).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "." });
+
+      }else{
+          number = number.toFixed(1);
+
+          if(number % 1 != 0){
+            number = number.replace('.', ',');
+          }else{
+            number = number.split('.')[0];
+          }
+      }
+      jQuery('[data-render='+ selector +']').text(options.pre + number + options.post);
+
+  },
+  error: function(){
+    console.log('Uhh loco, falló todo! \n\n  (╯°□°）╯︵ ┻━┻')
+  },
+  data: function(){
+
+    render.text('updated', moment().format('H:mm'));
+
+    render.number('citizensTotal', raw.analytics.results.total_registered_users);
+    render.number('validatedTotal', raw.analytics.results.total_active_users);
+    render.number('validatedTotalPercent', (raw.analytics.results.total_active_users * 100 / raw.analytics.results.total_registered_users) );
+    render.number('deletedTotal', raw.analytics.results.total_deleted_users);
+
+    render.number('citizensToday', raw.analytics.results.total_registered_today);
+    render.number('validatedToday', raw.analytics.results.total_active_today);
+    render.number('validatedTodayPercent', (raw.analytics.results.total_active_today * 100 / raw.analytics.results.total_registered_today) );
+    render.number('deletedToday', raw.analytics.results.total_deleted_today);
+
+    // Charts
+
+    google.charts.setOnLoadCallback(function(){
+
+
+      chart.month = new google.visualization.ComboChart(document.getElementById('chart-month'));
+      data.month = new google.visualization.DataTable();
+      data.month.addColumn('string', 'Mes');
+      data.month.addColumn('number', 'Acumulado');
+      data.month.addColumn('number', 'Usuarios registrados');
+
+      var totalBefore = 0;
+      var pepito = [];
+
+      raw.totalusersbymonth.results.reverse();
+      raw.totalusersbymonth.results.forEach(function(month, index){
+
+        totalBefore += month[1];
+
+        var beforth = moment().add(index - raw.totalusersbymonth.results.length, 'months').format('MMM YYYY');
+
+        pepito[0] = [beforth, totalBefore, month[1]];
+        data.month.addRows(pepito);
+
+      });
+
+      pepito[0] = [moment().format('MMM YYYY'), raw.analytics.results.total_registered_users, raw.analytics.results.total_registered_users - totalBefore];
+      data.month.addRows(pepito);
+
+      options.combo.colors[1] = '#33b560';
+      chart.month.draw(data.month, options.combo);
+
+
+      chart.day = new google.visualization.LineChart(document.getElementById('chart-day'));
+      data.day = new google.visualization.DataTable();
+      data.day.addColumn('string', 'Día');
+      data.day.addColumn('number', 'Usuarios registrados');
+      data.day.addColumn('number', 'Emails validados');
+
+      raw.totalusersbyday.users_by_day.forEach(function(day, index){
+
+        var beforth = moment().add(index - raw.totalusersbyday.users_by_day.length, 'days').format('DD/MM');
+
+        pepito[0] = [beforth, day, raw.totalusersbyday.active_by_day[index] ];
+        data.day.addRows(pepito);
+
+      });
+
+      options.line.colors[1] = '#33b560';
+      chart.day.draw(data.day, options.line);
+
+    });
+
+  }
+}
+
+</script>
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+  </body>
+</html>

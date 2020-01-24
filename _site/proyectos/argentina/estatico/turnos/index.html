@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Turnos</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/sites/default/files/css/css_LJKBU1OXxsdR2wnorpBYP0zxWlMucvPakrDWiK2l1KE.css">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="steps steps-horizontal text-center row">
+          <div class="col-xs-4 col-sm-3 col-md-4 step">
+              <div>
+                  <div class="circle bg-cielo">1</div>
+                  <div class="line">&nbsp;</div>
+              </div>
+              <div>
+                  <div class="description p-b-1">
+                      <h4 class="h5 m-t-0">Elegí un trámite</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xs-4 col-sm-3 col-md-4 step">
+              <div>
+                  <div class="circle bg-cielo">2</div>
+                  <div class="line">&nbsp;</div>
+              </div>
+              <div>
+                  <div class="description p-b-1">
+                      <h4 class="h5 m-t-0">Elegí el día y <br class="visible-lg">completá tus datos</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xs-4 col-sm-3 col-md-4 step">
+              <div>
+                  <div class="circle bg-cielo">3</div>
+                  <div class="line">&nbsp;</div>
+              </div>
+              <div>
+                  <div class="description p-b-1">
+                      <h4 class="h5 m-t-0">Hacé el seguimiento con <br class="visible-lg"><a href="https://mi.argentina.gob.ar/turnos" target="_blank">Mi Argentina</a></h4>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div id="vue" style="width: 100%;">
+        <h2 class="text-center m-t-4 h1">Buscá el trámite</h2>
+        <div id="proyectos">
+          <div class="row">
+            <div class="col-md-6">    
+              <div class="form-group">
+                <label>Buscá por nombre del trámite</label>
+                <input class="form-control search" v-model="filter.search" v-on:keyup="config.page = 0">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Filtrar por organismo</label>
+                <select id="tipo-proyectos" class="form-control" v-model="filter.agency" v-on:change="config.page = 0">
+                  <option value="all" selected>Todos</option>
+                  <option v-for="(agency, index) in agencies" v-bind:value="index">{{ agency }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <table class="table table-spaced">
+            <thead>
+              <tr>
+                <th>Trámite</th>
+                <th>Organismo</th>
+                <!-- <th></th> -->
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr is="services" v-for="service in filteredServices" v-bind:service="service"></tr>
+            </tbody>
+          </table>
+
+          <template v-if="pagination.length > 1">
+            <nav class="text-center" aria-label="Page navigation">
+              <ul class="pagination">
+                <li v-for="page in pagination" v-bind:class="page.active"><a href="#" v-on:click.prevent="selectPage(page.number)">{{ page.number + 1 }}</a></li>
+              </ul>
+            </nav>
+          </template>
+
+
+        </div>
+      </div>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script>
+
+        window.data = {
+          config: {
+            page: 0,
+            limit: 15
+          },
+          filter: {
+            search: '',
+            agency: 'all',
+            count: 0
+          },
+          services: [],
+          agencies: []
+        }
+
+
+        Vue.component('services',{
+          props: ['service'],  
+          template:`
+          <tr>
+            <td><strong>{{ service.nombre }}</strong></td>
+            <td>{{ service.organismo }}</td>
+            <!--<td>{{ service.excepcional ? 'Extranjeros' : 'Argentinos' }}</td>-->
+            <td>
+              <a class="btn btn-sm btn-success" v-bind:href="'https://turnos.argentina.gob.ar/turnos/seleccionTurno/' + service.id" style="width: 140px;"> Sacar turno </a>
+            </td>
+          </tr>`
+        });
+
+        var Vm = new Vue({
+          el: '#vue',
+          data: data,
+          computed: {
+            filteredServices: function(){
+              var services = [];
+
+              jQuery.each(data.services, function(index, service){
+                if( (data.filter.agency == 'all' || service.organismo == data.agencies[data.filter.agency]) && (data.filter.search == '' || service.nombre.toLowerCase().indexOf(data.filter.search.toLowerCase()) > -1)){
+                  services.push(service);
+                }
+              });
+
+              var count = services.length;
+              services = services.slice(data.config.page * data.config.limit, (data.config.page + 1) * data.config.limit);
+
+              Vue.set(data.config, 'count', count)
+
+              return services;
+            },
+            pagination: function(){
+              var pagination = []
+              var pages = Math.ceil(data.config.count / data.config.limit);
+
+              for(n = 0; n < pages; n++){
+                pagination.push({
+                  number: n,
+                  active: n == data.config.page ? 'active' : ''
+                })
+              }
+              return pagination;
+            }
+          },
+          methods: {
+            selectPage : function(page){
+              Vue.set(data.config, 'page', page)
+            }
+          }
+        });
+
+        jQuery(function(){
+          jQuery.ajax({
+            url: 'https://turnos-api.argentina.gob.ar/api/v1.0/tramites?offset=0&limit=100',
+            data: 'json',
+            success: function(response){
+
+              response.result.sort(function (a, b) {
+                if (a.organismo >= b.organismo) {
+                  return 1;
+                }else{
+                  return -1;
+                }
+              });
+
+              Vue.set(data, 'services', response.result)
+
+              jQuery.each(response.result, function(index, service){
+                if(data.agencies.indexOf(service.organismo) == -1){
+                  data.agencies.push(service.organismo);
+                }
+              })
+            }
+          });
+        });
+         
+      </script>
+
+
+    </div>
+  </body>
+</html>
+
+

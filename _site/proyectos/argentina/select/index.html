@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select Prueba</title>
+    <meta name="description"
+        content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+    <meta name="author" content="Presidencia de la Nación">
+    <link rel="shortcut icon" href="http://argob.github.io/poncho/favicon.ico">
+    <!-- Nav and address bar color -->
+    <meta name="theme-color" content="#0072b8">
+    <meta name="msapplication-navbutton-color" content="#0072b8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css">
+    <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/argob-poncho/dist/icono-arg.css">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/argob/poncho/master/dist/css/argentina.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://argob.github.io/poncho/js/html5shiv.js"></script>
+    <script src="http://argob.github.io/poncho/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <header><nav class="navbar navbar-top navbar-default" role="navigation">
+        <div class="container">
+            <div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"
+                        aria-label="Argentina.gob.ar Presidencia de la Nación">
+                        <img alt="Argentina.gob.ar" src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg" height="50">
+                    </a>
+                    <a class="btn btn-link btn-login visible-xs" href="#"><i
+                            class="icono-arg-mi-argentina fa-fw"></i></a>
+                    <a class="btn btn-primary btn-login visible-xs" href="#"
+                        onclick="$('.navbar.navbar-top').addClass('state-search');"><span
+                            class="fa fa-search fa-fw"></span></a>
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');"
+                        class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+                    <li>
+                        <div class="input-group">
+    
+                            <input id="buscar" type="text" class="form-control"
+                                aria-label="Buscar trámites, servicios o áreas"
+                                placeholder="Buscar trámites, servicios o áreas ...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i
+                                        class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </li>
+                    <a href="#" class="dropdown-toggle btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina"
+                        data-toggle="dropdown">
+                        <i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+                </ul>
+            </div>
+        </div>
+    </nav></header>
+
+    <main role="main">
+        <div class="container">
+            <div class="row m-y-4">
+                <div class="col-md-8 col-md-offset-2">
+                    <form action="">
+
+                        <div class="row">
+                            <div class="col-md-8 form-group item-form">
+                                <label for="address_state">Provincia</label>
+                                <select class="form-control" id="address_state" name="address_state">
+                                    <option value="" selected="">Seleccioná una provincia</option>
+                                    <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires
+                                    </option>
+                                    <option value="Buenos Aires">Buenos Aires</option>
+                                    <option value="Catamarca">Catamarca</option>
+                                    <option value="Chaco">Chaco</option>
+                                    <option value="Chubut">Chubut</option>
+                                    <option value="Córdoba">Córdoba</option>
+                                    <option value="Corrientes">Corrientes</option>
+                                    <option value="Entre Ríos">Entre Ríos</option>
+                                    <option value="Formosa">Formosa</option>
+                                    <option value="Jujuy">Jujuy</option>
+                                    <option value="La Pampa">La Pampa</option>
+                                    <option value="La Rioja">La Rioja</option>
+                                    <option value="Mendoza">Mendoza</option>
+                                    <option value="Misiones">Misiones</option>
+                                    <option value="Neuquén">Neuquén</option>
+                                    <option value="Río Negro">Río Negro</option>
+                                    <option value="Salta">Salta</option>
+                                    <option value="San Juan">San Juan</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Santa Fe">Santa Fe</option>
+                                    <option value="Santiago del Estero">Santiago del Estero</option>
+                                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                    <option value="Tucumán">Tucumán</option>
+                                </select>
+                                <p class="help-block error hidden">Ingresá una provincia</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 form-group item-form">
+                                <label for="municipio">Municipio</label>
+                                <select class="form-control" name="municipio" id="municipio">
+                                    <option value="" selected="">Seleccioná un Municipio</option>
+                                    <option value="CABAM">CABA MUNICIPIO</option>
+
+                                </select>
+                                <p class="help-block error hidden">Ingresá un Municipio</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 form-group item-form">
+                                <label for="localidad">Localidad</label>
+                                <select class="form-control" name="localidad" id="localidad">
+                                    <option value="" selected="">Seleccioná una localidad</option>
+
+                                    <option value="CABAL">CABA LOCALIDAD</option>
+
+                                </select>
+                                <p class="help-block error hidden">Ingresá una localidad</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <section>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a href="https://creativecommons.org/licenses/by/4.0/deed.es"
+                                target="_blank">Los contenidos de Argentina.gob.ar están licenciados bajo Creative
+                                Commons Atribución 4.0 Internacional</a></p>
+                        </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <div id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu nav">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <div id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </section>
+        </div>
+    </footer>
+
+    <script>
+    var provincias = document.getElementById('address_state');
+
+provincias.addEventListener("click", function() {
+    
+});
+
+provincias.addEventListener("change", function() {
+    if(provincias.value == "Ciudad Autónoma de Buenos Aires")
+    {
+        seleccionarItem();
+    }
+    console.log(provincias.value);
+});
+
+function seleccionarItem() {
+    
+    var municipio = document.getElementById('municipio');
+    var optionsm = municipio.querySelectorAll("option");
+    var count = optionsm.length;
+    //alert(count);
+    if(count <= 2)
+    {
+        municipio.selectedIndex= count - 1;
+    }
+    
+    var localidad = document.getElementById('localidad');
+
+    var optionsl = localidad.querySelectorAll("option");
+    var count = optionsl.length;
+    //alert(count);
+    if(count <= 2)
+    {
+        localidad.selectedIndex= count - 1;
+    }
+    
+}
+    </script>
+<script>
+    /*
+var provincias = document.getElementById('address_state');
+
+provincias.addEventListener("click", function() {
+    var options = provincias.querySelectorAll("option");
+    var count = options.length;
+    
+    if(count === 1)
+    {
+        seleccionarItem();
+    }
+});
+
+provincias.addEventListener("change", function() {
+    if(provincias.value == "Ciudad Autónoma de Buenos Aires")
+    {
+        seleccionarItem();
+    }
+    console.log(provincias.value);
+});
+
+function seleccionarItem() {
+    var municipio = document.getElementById('municipio');
+    for(var i=1;i<municipio.length;i++)
+	{
+		if(municipio.options[i].value=='CABAM')
+		{
+			// seleccionamos el valor que coincide
+			municipio.selectedIndex=i;
+		}
+	}
+    var localidad = document.getElementById('localidad');
+    for(var i=1;i<localidad.length;i++)
+	{
+		if(localidad.options[i].value=='CABAL')
+		{
+			// seleccionamos el valor que coincide
+			localidad.selectedIndex=i;
+		}else{
+
+            var option = document.createElement("option");
+            option.value = "Capital Federal";
+            option.innerHTML = "Capital Federal";
+            
+    
+            localidad.appendChild(option);
+            localidad.selectedIndex= localidad.length - 1;
+            break;
+        }
+	}
+    
+    // para inyectar otro Option a un select con javascript
+    
+    
+    municipio.selectedIndex=4;
+}*/
+</script>
+
+    <script>
+/*
+var activities = document.getElementById('address_state');
+
+activities.addEventListener("click", function() {
+    var options = activities.querySelectorAll("option");
+    var count = options.length;
+    if(typeof(count) === "undefined" || count < 2)
+    {
+        addActivityItem();
+    }
+});
+
+activities.addEventListener("change", function() {
+    if(activities.value == "addNew")
+    {
+        addActivityItem();
+    }
+    console.log(activities.value);
+});
+
+function addActivityItem() {
+    var select = document.getElementById('municipio');
+    for(var i=1;i<select.length;i++)
+	{
+		if(select.options[i].value=='CABA')
+		{
+			// seleccionamos el valor que coincide
+			select.selectedIndex=i;
+		}
+	}
+    
+    
+    var option = document.createElement("option");
+    option.value = "test";
+    option.innerHTML = "test";
+    
+    select.appendChild(option);
+    select.selectedIndex=4;
+}*/
+</script>
+</body>
+
+</html>

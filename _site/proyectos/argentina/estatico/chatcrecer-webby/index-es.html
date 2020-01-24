@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/chatcrecer-webby/index-es.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+    #availableTable {
+        width: 100%;
+    }
+    
+    #availableTable td {
+        border-bottom: 1px solid #CCC;
+        padding: 15px 10px 15px 10px;
+    }
+    
+    #availableTable tr:last-child td {
+        border: none;
+    }
+    
+    #assistant p {
+        margin-bottom: 30px;
+    }
+</style>
+<section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/lactancia-crecer.jpg?itok=S9JAH16k');">
+    <div class="jumbotron_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="https://www.argentina.gob.ar/salud">Secretaria de Salud</a></li>
+                        <li class="active">Chat Crecer</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+                    <h2 class="m-b-2"><img src="https://www.argentina.gob.ar/sites/default/files/chatcrecer-logo.png" alt="Chat Crecer" width="400" height="73"></h2>
+                    <p>Asistente virtual para el embarazo y la primera infancia.
+                        <br />Ganador de Webby Award 2019.</p>
+                    <p class="text-center m-t-2">
+                        <a class="btn btn-primary btn-lg" href="https://www.messenger.com/t/chatcrecer" target="_blank"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/facebook_messenger_icon.png" /> Chatear ahora </a>
+                    </p>
+                    <a class="m-t-2" href="https://www.argentina.gob.ar/chatcrecerwebby" >Ver página en inglés</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay">&nbsp;</div>
+</section>
+<section class="bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel-pane pane-texto">
+                    <div class="pane-content">
+                        <div class="text-center m-b-2"><img src="https://back.argentina.gob.ar/sites/default/files/bw_win_2019.png"></div>
+                        <div class="text-center m-b-1">
+                            <h2>Chat Crecer ganó un Webby Award</h2></div>
+                        <p class="text-center">Estamos orgullosos de anunciar que Chat Crecer ganó un premio Webby en la categoría de Salud en Redes Sociales.</p>
+                        <div class="text-center m-t-2">
+                            <a class="btn btn-primary" href="https://www.webbyawards.com/winners/2019/social/general-social/health-fitness/" target="_blank">Acerca del Webby Award</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 text-center m-b-2">
+            <h2>¿Qué piensan los usuarios y médicos sobre el asistente virtual?</h2></div>
+        <div class="row">
+            <div class="col-sm-4"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/crecer_con_salud_1.jpg" width="100%" />
+                <blockquote>
+                    <p>&ldquo;Me gusta porque puedo hablar con ella cuando me siento sola.&rdquo;</p><small>Rosana (usuaria)</small></blockquote>
+            </div>
+            <div class="col-sm-4"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/crecer_con_salud_2.jpg" width="100%" />
+                <blockquote>
+                    <p>&ldquo;Veo a las madres muy entusiasmadas con el chat, y la información es muy útil.&rdquo;</p><small>Magdalena (psicóloga)</small></blockquote>
+            </div>
+            <div class="col-sm-4"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/crecer_con_salud_3.jpg" width="100%" />
+                <blockquote>
+                    <p>&ldquo;Me ayudó a descubrir hospitales en mi barrio que no conocía.&rdquo;</p><small>Belén (usuaria)</small></blockquote>
+            </div>
+            <div class="col-sm-12 text-center m-t-2">
+                <a class="btn btn-primary" href="https://www.messenger.com/t/chatcrecer" target="_blank"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/facebook_messenger_icon.png" /> Conocé al asistente virtual </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel-pane pane-texto">
+                    <div class="pane-content">
+                        <div class="text-center m-b-3">
+                            <h2>Resumen</h2></div>
+                        <p>Se ha demostrado que los controles prenatales adecuados (5 o más durante el embarazo) y oportunos (primer control dentro de las primeras 13 semanas de gestación) reducen la mortalidad materna e infantil.</p>
+                        <p>En Argentina, <strong>más del 30% de las mujeres</strong> no cumplen con los controles prenatales y <strong>casi 1 de cada 10</strong> tienen su primer contacto con el sistema de salud en el momento del parto.</p>
+                        <p><strong>Chat Crecer</strong> es un asistente virtual (bot) basado en Facebook Messenger que trabaja fuera del sistema de salud, identificando y reclutando a mujeres embarazadas donde están. El bot está diseñado para acompañar a las mujeres durante el embarazo y el primer año del bebé con información personalizada y recordatorios de asistencia a los controles pre y post natales.</p>
+                        <p><strong>Acceso simple y escalable</strong> (no requiere adaptación geográfica o costo adicional), es un puente entre la accesibilidad a los servicios de salud para una población que está lejos de él.</p>
+                        <br />
+                        <div class="text-center m-b-3">
+                            <h2>Visión general</h2></div>
+                        <p>La reducción en tres cuartas partes de la proporción de mortalidad materna (RMM) en 2015 fue <strong>el quinto de los Objetivos de Desarrollo del Milenio.</strong> Argentina asumió este compromiso; para cumplirlo, la RMM de 2015 debería haber alcanzado 1.3 x 10.000 nacidos vivos. Sin embargo, la proporción para ese año fue 3 veces mayor que la deseada.</p>
+                        <p>La tasa de mortalidad infantil en Argentina también es más alta de lo esperado, alcanzando 9.7 por 1,000 nacidos vivos durante 2016. <strong>El 70% de estos casos de mortalidad infantil son prevenibles.</strong></p>
+                        <p>Una de las estrategias más exitosas para reducir la morbilidad y la mortalidad de las mujeres embarazadas y sus bebés es tener <strong>al menos 5 controles prenatales, siendo el primero dentro de las 13 semanas de gestación.</strong></p>
+                        <div class="text-center m-t-2">
+                            <a class="btn btn-primary" href="https://www.messenger.com/t/chatcrecer" target="_blank"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/facebook_messenger_icon.png" /> Probá Chat Crecer </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="text-center m-b-3">
+            <h2>Chat Crecer tiene como objetivo</h2></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div><i class="fa fa-check-square-o fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Aumentar el número de revisiones prenatales en las mujeres que lo usan.</p>
+            </div>
+            <div class="col-sm-4">
+                <div><i class="fa fa-calendar fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Reducir la ausencia a los chequeos abordando los miedos y miedos del embarazo.</p>
+            </div>
+            <div class="col-sm-4">
+                <div><i class="fa fa-hand-rock-o fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Capacitar a las mujeres con información sobre el trabajo respetado y las prácticas estándar.</p>
+            </div>
+        </div>
+        <div class="row m-t-2">
+            <div class="col-sm-4">
+                <div><i class="fa fa-female fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Promover la lactancia materna.</p>
+            </div>
+            <div class="col-sm-4">
+                <div><i class="fa fa-user-md fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Proporcionar información oficial personalizada sobre el embarazo, el primer año del bebé y la atención médica.</p>
+            </div>
+            <div class="col-sm-4">
+                <div><i class="fa fa-group fa-4x m-b-2" style="color:#929292"></i></div>
+                <p>Simplificar el acceso a prestaciones sociales vinculadas al embarazo.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center m-b-3 m-t-4">
+                <h2>Plataformas disponibles</h2></div>
+            <div class="col-sm-6 col-sm-offset-3">
+                <table cellspacing="0" cellpadding="0" id="availableTable">
+                    <tbody>
+                        <tr>
+                            <td width="100px"><i class="fa fa-user fa-2x" style="color:#929292"></i></td>
+                            <td>Facebook Messenger</td>
+                            <td width="150px" class="text-success"><b>Lanzado</b><i class="fa fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td width="100px"><i class="fa fa-whatsapp fa-2x" style="color:#929292"></i></td>
+                            <td>Whatsapp</td>
+                            <td width="150px">2019</td>
+                        </tr>
+                        <tr>
+                            <td width="100px"><i class="fa fa-desktop fa-2x" style="color:#929292"></i></td>
+                            <td>Web</td>
+                            <td width="150px">2019</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel-pane pane-texto">
+                    <div class="pane-content">
+                        <div class="text-center m-b-3">
+                            <h2>Primera etapa de implementación</h2></div>
+                        <p>La primera etapa de implementación es <strong>Pilar, provincia de Buenos Aires,</strong> que tiene <strong>4,000 partos por año</strong> y una <strong>tasa de mortalidad infantil de 11 por 1,000 nacidos vivos.</strong> Estamos inscribiendo a una población de mujeres embarazadas para ver la evolución y adopción del bot.</p>
+                        <p>La implementación de campo está a cargo de un equipo de 10 estudiantes universitarios que actúan como profesores de alfabetización digital que encuentran a mujeres embarazadas en las salas de espera de atención primaria, en comedores escolares o eventos sociales. Obstetras durante los controles promueven el uso del bot. Al mismo tiempo, se llevan a cabo pruebas de usabilidad y análisis de la plataforma (temas consultados, preguntas formuladas) que permiten implementar mejoras en el contenido y el rendimiento de la herramienta.</p>
+                        <p>Desde el 11 de julio de 2018 y hasta ahora, se contactó a <strong>3427 mujeres embarazadas</strong> y <strong>1160 madres</strong> de bebés menores de 1 año. De estos, <strong>1640</strong> están utilizando la plataforma.</p>
+                        <p>En las siguientes semanas, junto con el equipo epidemiológico del Ministerio de Salud de Argentina, evaluaremos en una muestra de <strong>800 mujeres</strong> el impacto sanitario de la herramienta, midiendo la prevalencia de mujeres con control prenatal adecuado. Si el resultado obtenido de la primera etapa de implementación muestra un impacto positivo, continuará hasta la etapa de expansión, implementando el bot en todo el país.</p>
+                        <div class="text-center m-b-3 m-t-3">
+                            <h2>Resultados y consecuencias</h2></div>
+                        <p>Se diseñó un estudio de intervención no aleatorizado con dos estrategias de comparación.</p>
+                        <p>Uno son los controles históricos informados en un sistema de gestión de la salud (sistema de información perinatal) empleado por los servicios de salud pública.</p>
+                        <p>El otro tipo de comparación es simultánea entre las mujeres que son o no son usuarios del bot. Para esta comparación, existe una base de datos local de maternidad donde se registra el número de controles y características del parto, a los que se agregará, para los fines de este estudio, la cuestión del alta de la madre, si ella usó o no usó el asistente virtual.</p>
+                        <p>Las variables a comparar incluyen, entre otras.</p>
+                        <ul>
+                            <li>Porcentaje de madres <strong>sin control.</strong></li>
+                            <li>Porcentaje de madres <strong>con consulta prenatal insuficiente</strong> (&lt; 5)</li>
+                            <li>Porcentaje de madres <strong>con reclutamiento temprano</strong> (1er control &lt; semanas de embarazo)</li>
+                        </ul>
+                        <p>Al mismo tiempo, estamos realizando entrevistas para medir la satisfacción de nuestros usuarios con el chat. Hemos entrevistado a 288 usuarios hasta ahora y nuestro chat tiene una <strong>puntuación de promotor neto (NPS) de 77.78.</strong></p>
+                        <div class="text-center m-t-2">
+                            <a class="btn btn-primary" href="https://www.messenger.com/t/chatcrecer" target="_blank"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/facebook_messenger_icon.png" /> Probá Chat Crecer </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h2 class="text-center m-b-3">El equipo del asistente virtual</h2>
+            <p>En la subsecretaría de gobierno digital somos un equipo multidisciplinario de desarrolladores, diseñadores e investigadores. Trabajamos desarrollando el asistente virtual acompañado por el ministerio de salud, y estamos realizando la prueba piloto en Pilar gracias a la dirección de la inclusión digital.</p>
+            <div class="row panels-row m-t-2">
+                <div class="col-sm-6">
+                    <a href="https://www.argentina.gob.ar/gobiernodigital" class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div>
+                                        <h3>Subsecretaría de Gobierno Digital</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="https://www.argentina.gob.ar/salud" class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div>
+                                        <h3>Ministerio de Salud y Desarrollo Social</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="m-b-3 text-center m-b-3">Algunos miembros del equipo</h2>
+                <div class="m-t-2" id="assistant">
+                    <div class="col-sm-3"><b>Diana Fariña</b>
+                        <p>Directora Nacional de Maternidad y Primera Infancia.</p><b>Ana Quiroga</b>
+                        <p>Coordinadora de Maternidad e Infancia Temprana</p><b>Gastón Perazzo</b>
+                        <p>Investigador de UX</p><b>María Alejandra Boymorto</b>
+                        <p>Analista funcional</p><b>Fernanda Salmerón</b>
+                        <p>Investigadora de UX</p><b>Diana Saimovici</b>
+                        <p>Diseñadora e investigadora de experiencia de usuario</p><b>Ailín Accinti</b>
+                        <p>Directora de Servicios Ciudadanos</p><b>Pablo Roccella</b>
+                        <p>Coordinador de UX</p>
+                    </div>
+                    <div class="col-sm-3"><b>Florencia Rolandi</b>
+                        <p>Jefa de Proyecto y Asesora de Salud</p><b>Dolores Bulló</b>
+                        <p>Project Manager</p><b>Daniel Abadie</b>
+                        <p>Subsecretario de Gobierno Digital</p><b>Ludmila Bova</b>
+                        <p>Project Manager</p><b>Ivana Scheller</b>
+                        <p>Directora del Hospital Materno "Comodoro Meisner".</p><b>Hebe Dominguez</b>
+                        <p>Obstétrica</p><b>Johanna Alberini Blanco</b>
+                        <p>Investigadora</p>
+                    </div>
+                    <div class="col-sm-3"><b>Andrés Ibarra</b>
+                        <p>Secretario de Modernizacion</p><b>Adolfo Rubinstein</b>
+                        <p>Secretario de Salud</p><b>Débora Herrera</b>
+                        <p>Ilustradora y diseñadora gráfica</p><b>Felipe Ferrari</b>
+                        <p>Tutor de alfabetización digital</p><b>Felipe González Álzaga</b>
+                        <p>Tutor de alfabetización digital</p><b>Fidel Francese</b>
+                        <p>Tutor de alfabetización digital</p><b>Jéssica González</b>
+                        <p>Tutora de alfabetización digital</p>
+                    </div>
+                    <div class="col-sm-3"><b>Nicolás Moreira</b>
+                        <p>Tutor de alfabetización digital</p><b>Santiago Da Rocha</b>
+                        <p>Tutor de alfabetización digital</p><b>Santiago Lenzi Pra</b>
+                        <p>Tutor de alfabetización digital</p><b>Sofía García Pini</b>
+                        <p>Tutora de alfabetización digital</p><b>Sofía Suárez</b>
+                        <p>Tutora de alfabetización digital</p><b>Carla Samaniego</b>
+                        <p>Tutora de alfabetización digital</p><b>Susana Rodriguez</b>
+                        <p>Investigadora</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 text-center m-t-2">
+                    <a class="btn btn-primary" href="https://www.messenger.com/t/chatcrecer" target="_blank"><img alt="" src="https://www.argentina.gob.ar/sites/default/files/facebook_messenger_icon.png" /> Conocé al asistente virtual </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

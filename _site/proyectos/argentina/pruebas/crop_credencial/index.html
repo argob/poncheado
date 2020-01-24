@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cropeo credencial</title>
+	<link rel="stylesheet" href="cropper.min.css">
+	<style>
+
+img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+
+canvas{
+	border:2px solid red;
+}
+
+
+	</style>
+</head>
+<body>
+	<h1>CROPEO MASTER OF THE UNIVERSE</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus porro, quis earum possimus dolorem amet molestiae quaerat. Odit quibusdam id repudiandae aliquid autem ex aperiam! Animi similique odio, magnam sed.</p>
+	<hr>
+	
+<div style="display:none">
+	<img id="imagen" src="cud.png" alt="">
+</div>
+
+<div id="resultado" width="600px"></div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="cropper.js"></script>
+
+
+
+<script>
+$(function(){
+
+var imagen = $('#imagen');
+
+//SETEO LOS DATOS DE LAS CREDENCIALES
+var credenciales = [{
+	"x":46,
+	"y":33,
+	"width":894,
+	"height":1205
+},
+{
+	"x":150,
+	"y":1272,
+	"width":389,
+	"height":271
+},
+{
+	"x":544,
+	"y":1272,
+	"width":389,
+	"height":271
+}];
+
+//INICIALIZO CROPPER
+var cropper = imagen.cropper({ready : function(){ 
+	//RECORRO LAS 3 CREDENCIALES
+	for (var i = 0; i < 3; i++) {
+		//SETEO LAS COORDENADAS DE CADA CREDENCIAL 
+		imagen.cropper("setData",credenciales[i]);
+
+		//CROPEO
+		var croppedImageDataURL = imagen.cropper('getCroppedCanvas'); 
+
+		//AGREGO LAS IMAGENES EN CONTENEDEDOR DESTINO
+		$('#resultado').append(croppedImageDataURL)
+	}	
+
+}});
+
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/casos-de-vida/tus-resultados.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('https://www.argentina.gob.ar/imagenes/principal');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>¿Qué servicios me brinda el Estado?</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">¿Qué servicios me brinda el Estado?</h1>
+      <p class="lead">Conocé los beneficios y programas relacionados a tus datos personales e intereses.</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Tus resultados</h2>
+    <p>Estos son los programas y beneficios que podrías recibir en base a las preguntas que respondiste</p>
+
+
+
+
+
+    <div id="wizard-personal" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según tus datos personales</h3>
+      <div id="wizard-personal-items" class="row panels-row m-y-2"></div>
+    </div>
+
+    <div id="wizard-interest" class="hidden">
+      <h3 class="text-muted h4 m-t-2">Según información que buscás</h3>
+      <div id="wizard-interest-items" class="row panels-row m-y-2"></div>
+    </div>
+
+    <div id="wizard-message" class="m-y-3 hidden">
+      <h3 class="text-muted h4 m-t-2">No encontramos servicios para vos</h3>
+      <p>Probá cambiando la configuración del formulario.</p>
+    </div>
+
+    <div class="m-y-3">
+      <a id="edit-form" class="btn btn-primary m-r-1" href="/quemebrinda">Cambiar respuestas</a>
+      <a id="wipe-form" class="btn btn-link" href="/quemebrinda">Volver a comenzar</a>
+    </div>
+
+    <script>
+
+      var contents = [
+        {
+          name: 'Tarifa Social',
+          description: 'Solicitar tarifa social en los servicios públicos.',
+          url: '/tarifasocial',
+          icon: 'fa-user',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '> 59',
+            empleo: 'no',
+            hijo_menor: 'si',
+            discapacidad: 'si',
+            discapaciodad_acargo: 'si'
+          }
+        },
+        {
+          name: 'Personas con discapacidad',
+          description: 'Servicios para atención de la salud, asignaciones familiares, viajar gratis y más trámites.',
+          url: 'https://www.argentina.gob.ar/discapacidad',
+          icon: 'fa-wheelchair',
+          nacionalidad: 'todas',
+          tipo: 'personal',
+          conditions: {
+            discapaciodad: 'si',
+            discapaciodad_acargo: 'si'
+          }
+        },
+        {
+          name: 'Jubilación ordinaria o por vejez',
+          description: 'Podés iniciarla con 120 días corridos de anticipación a la fecha en que cumplís la edad requerida.',
+          url: '/jubilacion-ordinaria-o-por-vejez',
+          icon: 'icono-arg-tramite-jubilacion',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Prestación por edad avanzada',
+          description: 'Si tenés 70 o más años y no podés acreditar los años de servicios exigidos, podés solicitarla.',
+          url: '/prestacion-por-edad-avanzada',
+          icon: 'icono-arg-tramite-jubilacion',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Me quiero jubilar',
+          description: 'Si querés jubilarte o sacar una pensión entrá al trámite que necesitás según tu situación.',
+          url: '/tema/adultosmayores/iniciarjubilacionpension',
+          icon: 'icono-arg-tramite-jubilacion',
+          nacionalidad: 'argentino',
+          tipo: 'personal',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Reparación Histórica',
+          description: 'Si sos jubilado o pensionado, podés consultar si estás incluido en el Programa de Reparación Histórica.',
+          url: '/consultar-si-estas-incluido-en-la-reparacion-historica-de-jubilados-y-pensionados',
+          icon: 'icono-arg-jubilado',
+          nacionalidad: 'argentino',
+          tipo: 'personal', // ++
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Soy jubilado o pensionado',
+          description: 'Buscá tus cobros, beneficios, información útil y trámites relacionados.',
+          url: '/tema/adultosmayores/soyjubiladopensionado',
+          icon: 'icono-arg-jubilado',
+          nacionalidad: 'argentino',
+          tipo: 'personal',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Soy empleado en relación de dependencia',
+          description: 'Beneficios y derechos que te corresponden si trabajás blanco.',
+          url: '/tema/trabajar/soy-empleado',
+          icon: 'icono-arg-apostilla',
+          nacionalidad: 'todas',
+          tipo: 'personal',
+          conditions: {
+            empleo: 'si'
+          }
+        },
+        {
+          name: 'Soy monotributista',
+          description: 'Pasos y trámites para ingresar al régimen de monotributo.',
+          url: '/tema/trabajar/monotributo',
+          icon: 'icono-arg-factura',
+          nacionalidad: 'todas',
+          tipo: 'personal',
+          conditions: {
+            empleo: 'si'
+          }
+        },
+        {
+          name: 'Estudiar (extranjeros)',
+          description: 'Para venir a estudiar a Argentina te recomendamos seguir los siguientes pasos.',
+          url: '/tema/extranjeros/estudiar-en-argentina',
+          icon: 'fa-book',
+          nacionalidad: 'extranjero',
+          tipo: 'personal',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
+        },
+        {
+          name: 'Trabajar (extranjeros)',
+          description: 'Si venís a la Argentina a trabajar te recomendamos seguir los siguientes pasos.',
+          url: '/tema/extranjeros/trabajar-en-argentina',
+          icon: 'fa-suitcase',
+          nacionalidad: 'extranjero',
+          tipo: 'personal',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
+        },
+        {
+          name: 'Obtener la ciudadanía',
+          description: 'Si sos extranjero podés obtener la nacionalidad argentina de 2 maneras diferentes.',
+          url: '/tema/extranjeros/ciudadania',
+          icon: 'icono-arg-calidad-cert',
+          nacionalidad: 'extranjero',
+          tipo: 'personal',
+          conditions: {
+            nacionalidad: 'extranjero'
+          }
+        },
+        {
+          name: 'Busco trabajo',
+          description: 'Servicios que te brindan ayuda económica, capacitación y asistencia en la búsqueda.',
+          url: '/tema/trabajar/buscar-trabajo',
+          icon: 'fa-newspaper-o',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_trabajo: 'si',
+            empleo: 'no'
+          }
+        },
+        {
+          name: 'Me quiero capacitar',
+          description: 'Herramientas que potencien tus habilidades y mejoren tus oportunidades laborales.',
+          url: '/tema/trabajar/me-quiero-capacitar',
+          icon: 'icono-arg-capacitacion',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_capacitacion: 'si',
+            empleo: 'no'  
+          }
+        },
+        {
+          name: 'Soy emprendedor',
+          description: 'Herramientas para crear, desarrollar o consolidar tu proyecto.',
+          url: '/tema/emprender/soy-emprendedor',
+          icon: 'fa-briefcase',
+          nacionalidad: 'argentino',
+          tipo: 'interes',
+          conditions: {
+            interes_emprender: 'si'
+          }
+        },
+        {
+          name: 'Necesito capacitación para emprender',
+          description: 'Te asistimos en la búsqueda de herramientas que te permitan explorar nuevos horizontes.',
+          url: '/tema/emprender/capacitacion',
+          icon: 'icono-arg-capacitacion',
+          nacionalidad: 'argentino',
+          tipo: 'interes',
+          conditions: {
+            interes_emprender: 'si'
+          }
+        },
+        {
+          name: 'PROGRESAR',
+          description: 'Acceder al Programa de Respaldo a Estudiantes de Argentina.',
+          url: '/programa-de-respaldo-estudiantes-de-argentina-progresar',
+          icon: 'fa-list-ol',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '< 25',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
+        },
+        {
+          name: 'Niveles educativos',
+          description: 'Información para conocer e inscribirte en los diferentes niveles educativos.',
+          url: '/tema/estudiar/niveles',
+          icon: 'fa-list-ol',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
+        },
+        {
+          name: 'Modalidades educativas',
+          description: 'Conocé cuáles son las modalidades educativas por las que vos o tu hijo pueden optar.',
+          url: '/tema/estudiar/modalidades',
+          icon: 'fa-graduation-cap',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '< 60',
+            hijo_menor: 'si',
+            interes_estudiar: 'si'
+          }
+        },
+        {
+          name: 'Beneficios, programas y becas',
+          description: 'Te contamos cuáles son los programas y beneficios a los que podés acceder.',
+          url: '/tema/estudiar/programas-y-becas',
+          icon: 'icono-arg-interes-cultural',
+          nacionalidad: 'argentino',
+          tipo: 'interes',
+          conditions: {
+            edad: '< 60',
+            hijos: 'si',
+            hijo_menor: 'si',
+            hijo_mayor: 'si',
+            interes_estudiar: 'si'
+          }
+        },
+        {
+          name: 'Cuido mi salud (adultos mayores)',
+          description: 'Consejos, servicios y trámites de cobertura médica que ayuden a mejorar tu calidad de vida.',
+          url: '/tema/adultosmayores/cuido-mi-salud',
+          icon: 'icono-arg-medicina',
+          nacionalidad: 'argentino',
+          tipo: 'interes',
+          conditions: {
+            edad: '> 57',
+            interes_mayores: 'si'
+          }
+        },
+        {
+          name: 'Asignación por Embarazo',
+          description: 'Obtener la Asignación por Embarazo, ésta es una prestación monetaria, no retributiva.',
+          url: '/asignacion-por-embarazo-para-proteccion-social',
+          icon: 'icono-arg-embarazo',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Embarazo',
+          description: 'Consejos, beneficios y servicios que te acompañan y asisten durante este momento de tu vida.',
+          url: '/tema/tenerunhijo/embarazo',
+          icon: 'icono-arg-embarazo',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Asignación Universal por Hijo',
+          description: 'Obtener la Asignación Universal por Hijo para Protección Social.',
+          url: '/asignacion-universal-por-hijo-para-proteccion-social',
+          icon: 'icono-arg-chupete',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++ 
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Nacimiento de un bebé',
+          description: 'Informate sobre la documentación y los beneficios que te corresponden.',
+          url: '/tema/tenerunhijo/nacimiento',
+          icon: 'icono-arg-chupete',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '< 60',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Adopción',
+          description: 'Te contamos los pasos a seguir para lograrlo.',
+          url: '/tema/tenerunhijo/adoptar',
+          icon: 'fa-child',
+          conditions: {
+            tipo: 'interes',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Vacunas',
+          description: 'Calendario de vacunas para cada etapa de la vida, desde el nacimiento hasta la tercera edad.',
+          url: '/tema/cuidarlasalud/vacunas',
+          icon: 'icono-arg-vacunas',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '> 0',
+            hijos: 'si',
+            interes_hijo: 'si'
+          }
+        },
+        {
+          name: 'Pausa activa',
+          description: 'Ejercicios para cortar con la rutina, evitar dolores posturales y mejorar tu calidad de vida.',
+          url: '/tema/cuidarlasalud/tupausaactiva',
+          icon: 'icono-arg-marcador-temporal',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '> 0',
+            interes_salud: 'si'
+          }
+        },
+        {
+          name: 'Vivir en Positivo',
+          description: 'Qué es, cómo se transmite, tratamientos y derechos que protegen a las personas con VIH.',
+          url: '/vivirenpositivo',
+          icon: 'fa-users',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_salud: 'si'
+          }
+        },
+        {
+          name: 'Procrear ',
+          description: 'ProCreAr busca que las familias argentinas tengan la felicidad y la tranquilidad de acceder a su primera casa propia.',
+          url: '/procrear',
+          icon: 'icono-arg-vivienda',
+          nacionalidad: 'todas',
+          tipo: 'interes', // ++
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
+        },
+        {
+          name: 'Acceder a una vivienda ',
+          description: 'Información sobre créditos, programas de vivienda y derechos de inquilinos o propietarios.',
+          url: '/tema/hogar/acceder-a-vivienda',
+          icon: 'icono-arg-vivienda',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            edad: '> 18',
+            interes_vivienda: 'si'
+          }
+        },
+        {
+          name: 'Compra o venta de un auto',
+          description: 'Información para comprar, registrar, permutar, asegurar o vender un auto.',
+          url: '/vehiculos',
+          icon: 'icono-arg-auto',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_auto: 'si'
+          }
+        },
+        {
+          name: 'Abuso Infantil',
+          description: 'Te orientamos y te damos contención.',
+          url: '/abusosexualinfantil',
+          icon: 'fa-child',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_violencia: 'si'
+          }
+        },
+        {
+          name: 'Trata',
+          description: 'La Trata no se ve a simple vista. Informate para prevenir y denunciar.',
+          url: '/denuncialatrata',
+          icon: 'fa-exchange',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_violencia: 'si'
+          }
+        },
+        {
+          name: 'Mujeres en situación de violencia',
+          description: 'Atención a las víctimas de abusos o maltratos domésticos.',
+          url: '/atencionmujeres',
+          icon: 'fa-female',
+          nacionalidad: 'todas',
+          tipo: 'interes',
+          conditions: {
+            interes_violencia: 'si'
+          }
+        }
+      ];
+      
+      var templates = {
+        item: '<div class="col-xs-12 col-sm-6 col-md-4"> <a class="panel panel-default" href="{url}"> <div class="panel-body"> <div class="media"> <div class="media-left padding-20"> <i class="fa {icon} fa-fw fa-2x text-primary"></i> </div> <div class="media-body"> <h3>{title}</h3> <p class="text-muted">{description}</p> </div> </div> </div> </a> </div>'
+      };
+
+      var form_data;
+      var data = {};
+
+      // Leo si hay algo guardado
+
+      if(typeof(Storage) !== "undefined") {
+        if( localStorage.getItem("wizard-form") != undefined ){
+
+          form_data = JSON.parse( localStorage.getItem("wizard-form"))
+
+          jQuery.each(form_data, function(key, item){
+            data[item.name] = item.value;
+          });
+
+          var item_blank = true;
+
+          jQuery.each(contents, function(key, content){
+
+            var show = false;
+            var nacionalidad = false;
+
+            if(content.nacionalidad == 'todas' || content.nacionalidad == data.nacionalidad){
+              nacionalidad = true;
+            }
+
+            jQuery.each(content.conditions, function(condition, value){
+              if(condition == 'edad'){
+                new_condition = value.split(' ');
+
+                if(new_condition[0] == '<' && data[condition] < new_condition[1] ){
+                  show = true;
+                }
+
+                if(new_condition[0] == '>' && data[condition] > new_condition[1] ){
+                  show = true;
+                }
+
+              }else if( data[condition] == value ){
+                show = true;
+              }
+            });
+
+            // console.log(show+' - '+data.nacionalidad+' | '+content.nacionalidad+' = '+content.name);
+
+            if(show && nacionalidad){
+
+              item_blank = false;
+
+              var html = templates.item;
+
+              html = html.replace(/{url}/gi, content.url)
+                .replace(/{icon}/gi, content.icon)
+                .replace(/{title}/gi, content.name)
+                .replace(/{description}/gi, content.description);
+
+              // if(content.tipo == 'personal'){
+                jQuery('#wizard-personal').removeClass('hidden');
+                jQuery('#wizard-personal-items').append( html );
+              // }else{
+              //   jQuery('#wizard-interest').removeClass('hidden');
+              //   jQuery('#wizard-interest-items').append( html );
+              // }
+            }
+
+
+          });
+          
+          // console.log(item_blank);
+
+          if(item_blank){
+            jQuery('#wizard-message').removeClass('hidden');
+          }
+            
+        }else{
+          // console.log('Todavía no guardaste nada');
+          window.location.replace('/quemebrinda');
+        }
+
+      } else {
+        console.log('No tenés soporte :(');
+      }
+
+      jQuery('#edit-form').on('click', function(event){
+        event.preventDefault();
+        ga('send', 'event', 'Formulario', 'wizServicios_modificar');
+        window.location.href = '/quemebrinda';
+      });
+
+      jQuery('#wipe-form').on('click', function(event){
+        event.preventDefault();
+        localStorage.removeItem('wizard-form');
+        ga('send', 'event', 'Formulario', 'wizServicios_limpiar');
+        window.location.href = '/quemebrinda';
+      });
+
+
+    </script>
+
+
+    
+
+  </div>
+</section>
+
+
+
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/cortes-programados/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('img/electrico.jpg');">
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+          <h1>¿Qué significa que el Sistema Eléctrico Nacional está en emergencia?  </h1>
+          <p class="lead">Durante muchos años, no se invirtió lo suficiente como para que el sistema energético acompañe el crecimiento de la población y del consumo. Así, nuestro país pasó de autoabastecerse y hasta exportar hidrocarburos a ser un país importador. Las políticas que tomó el gobierno anterior llevaron al sistema al borde del colapso.</p>
+          <p class="text-center">
+            <a href="consulta-cortes.html" class="btn btn-success btn-lg">Consultá si hay cortes programados en tu zona</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+<main role="main">
+  <div class="container">
+    <section>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 content_format">
+
+          <h2>¿Qué es un corte programado? </h2>
+
+          <p>Durante los meses de verano las altas temperaturas generan picos de consumo que producen cortes de electricidad. Los cortes programados rotativos tienen por objetivo aliviar esta situación. Se realizan por zonas y en horarios determinados para que cada hogar puede organizarse y prever si tendrá una interrupción del servicio.<p>   
+
+          <h2>¿Cuál es el estado actual del sistema? </h2>
+
+          <p>Actualmente los argentinos consumimos más electricidad de la que generamos. Estamos al límite de producción. Además, las estaciones transformadoras y subestaciones que componen la red de distribución están al borde del colapso y requieren mantenimientos.<p>     
+          
+
+          <h2>¿Por qué estamos en emergencia? </h2>
+
+          <p>Frente a esta crisis, el Ministerio de Energía y Minería declaró en diciembre de 2015 la emergencia eléctrica por dos años. Con esta medida, vamos a poder contar con las herramientas necesarias para fomentar la inversión y mejorar la calidad del servicio, con el objetivo de poner fin a los cortes de luz.<p>                            
+
+          <p class="text-center m-b-4"><a href="https://www.minem.gob.ar/usoresponsable/electricidad.html" target="_blank" class="btn btn-success btn-lg">Podés ayudar a reducir el consumo de energía</a></p>
+
+
+        <!--  <h2 class="h1 text-center">Estado actual de la red energética </h2>
+          <br>
+          <div class="row">
+            <div class="col-sm-3 text-center">
+              <i class=" h1 icon text-secondary text-center"><strong><i class="fa fa-battery-full fa-2x"></i></strong></i>
+            </div>
+            <div class="col-sm-9">
+              <h3 class="h2 m-t-0">Generación</h3>
+
+              <p>El sistema está al límite y abastece con lo justo la demanda actual. Eso significa que, ante un accidente o falla inesperada, podría haber problemas en esta etapa. Además, la Central Nuclear Embalse entrará el 1° de enero en mantenimiento a largo plazo (un año y medio como mínimo), por lo que la oferta de electricidad quedará aún más justa.</p>
+
+            </div>
+          </div>
+
+          <div class="row m-t-3">
+            <div class="col-sm-3 text-center">
+              <i class="h1 icon text-secondary text-center"><strong><i class="fa fa-code-fork fa-3x"></i></strong></i>
+            </div>
+            <div class="col-sm-9">
+              <h3 class="h2 m-t-0">Distribución</h3>
+              <p>Es la parte del sistema que lleva el suministro a los hogares y empresas argentinas. Varios años de falta de inversiones y de planificación han llevado al sistema a sufrir tensiones tanto en verano como en invierno, especialmente en Capital y Gran Buenos Aires.</p>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </section>
+    <!--<section>
+        <div class="row row-extra">
+          <article class="col-md-8 col-md-offset-2">
+            <section class="text-center">
+              <h2 class="h1 m-t-0">Todos podemos ayudar</h2>
+              <p>Estamos tomando las medidas necesarias para adecuar la calidad y seguridad del suministro energético. Mientras tanto, te dejamos algunas sugerencias sobre cómo usar la energía en tu hogar o lugar de trabajo:</p>
+            </section>
+          </article>
+        </div>
+        <div class="row numbers text-center spaced">
+          <div class="col-sm-4">
+            <h1 class="icon text-secondary"><strong><i class="fa fa-sun-o"></i></strong></h1>
+            <h4>Luz Natural</h4>
+            <p>Aprovechá la luz natural y elegí colores claros en las paredes y techos, esto te permite ahorrar energía.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Aprovech%C3%A1%20la%20luz%20natural%20y%20eleg%C3%AD%20colores%20de%20pintura%20claros%20en%20paredes%20y%20techos.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+          <div class="col-sm-4">-->
+            <!-- <h1 class="icon text-secondary"><strong>24º</strong></h1> -->
+        <!--    <h1 class="icon flake text-secondary"><strong><i class="fa fa-snowflake-o"></i></strong></h1>
+            <h4>Aire Acondicionado</h4>
+            <p>Configurá el aire acondicionado en 24º y regulá la temperatura de la heladera para evitar que genere más frío del necesario.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Us%C3%A1%20el%20aire%20acondicionado%20en%2024%C2%BA%20y%20regul%C3%A1%20la%20temperatura%20de%20la%20heladera.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+          <div class="col-sm-4">
+            <h1 class="icon text-secondary"><strong><i class="fa fa-lightbulb-o"></i></strong></h1>
+            <h4>Lámparas</h4>
+            <p>Utilizá lámparas de bajo consumo en lugares donde se usen más de una hora al día, esto ahorra un 80% de electricidad.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Utiliz%C3%A1%20l%C3%A1mparas%20de%20bajo%20consumo%20en%20lugares%20donde%20se%20usen%20m%C3%A1s%20de%20una%20hora%20al%20d%C3%ADa.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+        </div>
+        <div class="hidden-xs"><br><br></div>
+        <div class="row numbers text-center spaced">
+          <div class="col-sm-4">
+            <h1 class="icon text-secondary"><strong><i class="fa fa-power-off"></i></strong></h1>
+            <h4>Electrodomésticos</h4>
+            <p>Desenchufá los cargadores y electrodomésticos cuando no se usen porque siguen consumiendo energía.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Desenchuf%C3%A1%20los%20cargadores%20y%20electrodom%C3%A9sticos%20cuando%20no%20se%20usen.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+          <div class="col-sm-4">
+            <h1 class="icon text-secondary"><strong><i class="fa fa-home"></i></strong></h1>
+            <h4>Aislación térmica</h4>
+            <p>Cerrá las ventanas y cortinas cuando está el aire acondicionado prendido para evitar que se pierda el frio.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Cerr%C3%A1%20las%20ventanas%20y%20cortinas%20cuando%20est%C3%A1%20el%20aire%20acondicionado%20prendido.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+          <div class="col-sm-4">
+            <h1 class="icon text-secondary"><strong><i class="fa fa-shopping-basket"></i></strong></h1>
+            <h4>Lavadero</h4>
+            <p>Utilizá los lavarropas, secarropas y lavavajillas con la carga llena para optimizar el gasto.</p>
+            <p><br><a href="javascript: window.open('https://twitter.com/share?text=Utiliz%C3%A1%20los%20lavarropas%2C%20secarropas%20y%20lavavajillas%20con%20la%20carga%20llena%20para%20optimizar%20el%20gasto.&amp;url=http://www.argentina.gob.ar/energia&amp;hashtags=EmergenciaElectrica', 'pop', 'width=600, height=260, scrollbars=no');" class="btn btn-primary btn-sm"><i class="fa fa-twitter fa-2x media-middle"></i> &nbsp; Compartir</a></p>
+          </div>
+        </div>
+    </section> -->  
+
+
+<section> 
+  <div class="container content_format"> 
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+
+        <div class="row m-t-2 m-b-3">
+          <div class="col-md-12">
+              <img src="/sites/default/files/logoenre_0.png" alt="ENRE">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <hr>
+          <div class="section-actions is_area social-share">
+            <p>Compartir en <br> redes sociales</p>
+            <ul class="list-inline">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>     
+  </div>
+</main>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

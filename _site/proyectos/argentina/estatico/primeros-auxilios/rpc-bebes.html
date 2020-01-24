@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/primeros-auxilios/rpc-bebes.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+  <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li class="active"> RCP en bebés y niños</li>
+  </ol>
+</div>  
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1>RCP en bebés y niños</h1>
+          <div class="row">
+            <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+          </div>
+          <hr>
+          <p>El paro cardíaco en bebés y niños está más relacionado a <strong>enfermedades respiratorias</strong> y accidentes domésticos (atragantamientos, ahogamiento en poca profundidad, electrocucion caidas, etc ) que a causas cardíacas. Por lo que es fundamental <strong>asegurar la respiración</strong> haciendo compresiones y ventilación.</p>
+          <p>Si sospechás que la causa es respiratoria, comenzá por la <strong>ventilación</strong>. Si no sabés o no querés hacer las insuflaciones, comenzá la <strong>RCP</strong> continua e ininterrumpida, hasta que llegue ayuda entrenada. </p>
+          <div class="alert alert-danger m-t-1 m-b-3">
+              <div class="media">
+                  <div class="media-left">
+                      <i class="fa fa-phone fa-fw fa-4x"></i>
+                  </div>
+                  <div class="media-body">
+                      <p class="margin-0">Recordá averiguar cuál es el número de emergencias médicas de tu localidad y tenelo siempre a mano.</p>
+                  </div>
+              </div>
+          </div>              
+
+          <h4 class="m-b-2">¿Qué hacer?</h4>  
+
+          <div class="steps clearfix">
+            <div class="step">
+              <div>
+                <div class="circle">1</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <h4 class="h5 m-t-0">Evalualo: Observá si hay respiración. </h4>
+                      <p><strong>Poné</strong> el oído cerca de la nariz y boca del bebé.</p>
+                      <p>Fijate si hay movimiento del pecho.</p>
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/2_heimlich_bebes1.jpg" class="m-b-4 center-block img-responsive img-rounded">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">2</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Colocá al bebé con cuidado boca arriba sobre una superficie rígida, o sosteniéndolo firmemente usando su brazo o pierna.</h4>
+                </div>
+                <div class="alert alert-warning m-t-1 m-b-3">
+                   <p>Si un Bebés o niño <strong>no reacciona</strong>, pedile a un tercero que <strong>llame a emergencias</strong> y solicite una traer un DEA e <strong>iniciá la RCP</strong>. </p>
+                   <p>Si estás solo, hacé dos (2) minutos de RCP, llamá a emergencias y continuá con las maniobras hasta la llegada de la ayuda médica. </p>
+                   <p><strong>Comprimí y ventilá hasta que el bebé o el niño se mueva, corresponda desfibrilarla o llegue ayuda médica.</strong> </p>
+                </div>              
+              </div>
+            </div>
+            <div class="step">
+              <div>
+                <div class="circle">3</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                   <h4 class="h5 m-t-0">Si no respira o no respira normalmente (jadeo)</h4>
+                  <div class="row">
+                    <div class="col-md-6">  
+                       <p>Cubrí firmemente con tu boca la boca y nariz del bebé. </p>
+                       <p><strong>Aplicá 2 INSUFLACIONES de 1 SEGUNDO cada una apenas soplando</strong> que eleven el pecho del bebé. </p>
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/rcpbebes4.jpg" class="m-b-4 center-block img-responsive img-rounded">
+                    </div>
+                  </div>
+
+                <div class="alert alert-warning  m-t-1 m-b-3">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-info-circle fa-fw fa-4x"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="margin-0">Realizá 30 compresiones ininterrumpidas.</p>
+                            <p class="margin-0">Repetí 5 ciclos</p>
+                            <p class="margin-0">Tenés que hacer entre 100 y 120 compresiones por minuto.</p>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+              </div>
+            </div> 
+            <div class="step">
+              <div>
+                <div class="circle">4</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Comenzá con RCP: </h4>
+                  <p>Hay dos formas de realizar compresiones en bebés.</p>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <h5>Técnica A </h5>
+                      <p>Colocá los dedos índice y medio en el centro del esternón, entre los pezones, sin presionar en el extremo del esternón.</p>
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/rcpbebes6.jpg" class="m-b-4 center-block img-responsive img-rounded">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">  
+                      <p>Aplicá presión hacia abajo, comprimiendo 4 cm de profundidad. Continuá con el paso 5.</p>
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/rcpbebes5.jpg" class="m-b-4 center-block img-responsive img-rounded">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">  
+                      <h5>Técnica B </h5>
+                      <p>Con ambas manos tomá al bebé del pecho y presioná con los pulgares en el centro del esternón.</p>
+                      <p>Continuá con el paso 5.</p>
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/2_rep_bebes2.jpg" class="m-t-4 m-b-2 center-block img-responsive img-rounded">
+                    </div>
+                    <div class="col-md-6">  
+                      <img src="/sites/default/files/rcpbebes3.jpg" class="m-t-4 m-b-2 center-block img-responsive img-rounded">
+                    </div>
+                    <p class="text-center">RECORTAR FOTO A LOS BRAZOS. HACER ZOOM AL CUERPO DEL VIDEO</p>
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div> 
+            <div class="step">
+              <div>
+                <div class="circle">5</div>
+                <div class="line"></div>
+              </div>
+              <div>
+                <div class="description p-b-1">
+                  <h4 class="h5 m-t-0">Continuá realizando RCP hasta que llegue la ayuda médica</h4>
+                   <p><strong>Hacé</strong> 30 COMPRESIONES + 2 INSUFLACIONES y luego repetí 5 VECES o 2 MINUTOS de RCP. </p>
+                   <p>Si aún no presenta respiración normal, tos o algún movimiento repetí el ciclo hasta que se recupere o llegue la ayuda médica. </p>
+                    <div class="alert alert-warning  m-t-1">
+                       <p>Si comienza a respirar por sí mismo, colocalo en posición de recuperación (lateral), evaluandolo permanentemente hasta que llegue la ayuda .</p>
+                    </div> 
+                </div>
+              </div>
+            </div> 
+
+        </div>
+    
+      </div> 
+    </div> 
+  </section>    
+  <section class="content_format">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+          <hr class="m-y-4">
+          <div class="well">
+           <h4 class="m-b-2">Apertura de Vía Aérea. (Respiracion boca a boca)</h4>
+           <h5>Bebés.</h5>
+            <ol>
+              <li> Incliná la cabeza del bebé, no demasiado hacia atrás ya que una inclinación exagerada, puede cerrarla vía del aire en lugar de abrirla.</li>
+              <li>Si el Bebé no respira, no oprimas la nariz con sus dedos. Cubrile boca y nariz con tu boca y ventilá 2 veces (1 segundo por cada ventilación).</li>
+            </ol>             
+            <p>Soplá un volumen pequeño con una presión suave para que el tórax se eleve visiblemente.</p>  
+           <h5>Niños</h5>
+            <ol>
+              <li>Incliná con tus manos la frente hacia atrás y elevá el mentón.</li>
+              <li>Luego tapá ambas fosas nasales del niño con tus dedos índice y pulgar.</li>
+              <li>Mediante unión boca a boca o con un pañuelo interpuesto (protector de barrera) soplá 2 veces una bocanada de tu aire de un segundo de duración cada una (sin tomar demasiado aire en tus pulmones). </li>
+            </ol>             
+           </div>
+           <hr class="m-y-4"> 
+            <h4 class="m-b-2">Niños pequeños</h4>
+            <ul class="list-unstyled">
+              <li>Realizá la compresión con el talón de una mano. Hacé descender el esternón como mínimo 5cm a una frecuencia de entre 100  y 120 compresiones por minuto.</li>
+              <li>Si el niño es más grande (mayor de 12 años o de complexión grande), usá las dos manos, igual que en el adulto.</li>
+            </ul>             
+        </div>
+      </div> 
+    </div> 
+  </section>   
+
+  <section class="bg-gray">
+  <div class="container">
+        <div class="row panels-row">
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/RCP/preguntas">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-question-circle-o fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Preguntas Frecuentes</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/botiquin">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-suitcase fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Botiquin de primeros auxilios</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" href="/primerosauxilios/posicion">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-user fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Posición de recuperación</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <a class="panel panel-default" target="_blank" href="/sites/default/files/manual_1ros_auxilios_web.pdf">
+              <div class="panel-body">
+                <div class="media">
+                  <div class="media-left padding-20">
+                    <i class="fa fa-file-text-o fa-fw fa-3x text-tomate"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3>Descargá el manual (PDF)</h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>        
+  
+  </div>
+</section>        
+  
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

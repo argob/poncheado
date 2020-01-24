@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/desarme/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('/sites/default/files/jumbo-desarme.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Argentina</a></li>
+            <li class="active"><span>DESARME</span></li>
+          </ol>          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1><span class="sr-only">DESARME</span><img src="/sites/default/files/desarme-logo-blanco.png" alt="" width="250"></h1>
+          <p class="lead">Programa nacional de entrega voluntaria de armas de fuego</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section> 
+  <div class="container">
+    <div class="row">
+      <article class="col-md-8 col-md-offset-2">
+          <p>El Programa Nacional de Entrega Voluntaria tiene como objetivo reducir el circulante de armas en la sociedad mediante la entrega anónima de armas de fuego y municiones a cambio de un incentivo económico. Las armas recibidas son inutilizadas en forma inmediata en presencia de la persona que realiza la entrega, y luego son destruidas en un horno de alta temperatura.</p>
+      </article>    
+    </div>
+  </div>
+</section>
+
+<section> 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="alert alert-warning">
+          <div class="media">
+              <div class="media-left media-middle">
+                <i class="fa fa-map-marker fa-fw fa-4x"></i>
+              </div>
+              <div class="media-body media-middle"><h5 class="m-t-0"><a href="/desarme/centros-de-recepcion">Conocé los centros de recepción de entrega voluntaria</a></h5>
+                <p class="margin-0">Consultá información por provincia, horarios de atención y datos de contacto</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="container">
+    <div class="col-md-12">
+      <h3 class="m-b-1">PASOS DE LA ENTREGA ANÓNIMA Y VOLUNTARIA DE ARMAS </h3>
+      <div class="row panels-row">
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/1-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 1</h3>
+              <h3>Llevá tu arma descargada a un centro de recepción  </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/2-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 2</h3>
+              <h3>El operador confirmará que el arma está descargada.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/3-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 3</h3>
+              <h3>Identificación del arma y registro fotográfico. </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/4-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 4</h3>
+              <h3>Acta electrónica que asigna el incentivo económico  </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/5-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 5</h3>
+              <h3>El sistema asigna un código que asocia arma, acta e incentivo. </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/6-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 6</h3>
+              <h3>El arma se inutiliza en el momento con una prensa hidráulica.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/7-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 7</h3>
+              <h3>Entrega de acta y cupón de pago. </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="panel panel-default panel-disabled">
+            <div style="background-image:url('/sites/default/files/8-desarme.jpg');" class="panel-heading panel-heading-md"></div>
+            <div class="panel-body">
+              <p class="lead text-muted">Paso 8</h3>
+              <h3>Cobrá tu cupón de incentivo en centros de pago habilitados.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <p class="text-center margin-60">
+          <a href="" class="btn btn-primary btn-lg btn-block">PREGUNTAS FRECUENTES</a>
+        </p>
+      </div>
+    </div>
+  </div>  
+</section>
+
+
+<section class="bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="content_format">
+          <h3>Recomendaciones de seguridad </h3>
+          <p class="lead m-b-3">para la manipulación de armas de fuego durante el Programa de Entrega Voluntaria de armas de fuego.</p>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Si no sos Legítimo Usuario de armas de fuego contactá a alguien que sí lo sea para que pueda verificar si está descargada o pueda descargarla en forma segura.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Si no estás familiarizado con el uso de armas de fuego no intentes manipularla para evitar descargas accidentales que pongan en riesgo tu vida o la de terceros.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Siempre manipulá un arma como si estuviese cargada: dirigí la boca del cañón hacia una zona segura donde no haya personas, animales, zona de tránsito vehicular o peatonal.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Antes de entregar el arma a otra persona verificá que esté descargada.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Nunca prestes un arma de fuego a una persona que no esté familiarizada con su manejo.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Mantené siempre el dedo fuera gatillo.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Siempre guardá las armas descargadas, con el mecanismo de disparo desmontado, las municiones por separado y fuera del alcance de los niños y de personas no idóneas.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">Al momento de transportar un arma, recordá que debe estar descargada, en su correspondiente caja o funda y con las municiones por separado.</p>
+            </div>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <i class="fa fa-arrow-right fa-2x text-success"></i>
+            </div>
+            <div class="media-body">
+              <p class="lead">No consumas bebidas alcohólicas y/o estupefacientes antes ni durante la manipulación de un arma de fuego.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="m-b-3 text-center">Una iniciativa de:</h3>
+      </div>         
+    </div>  
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <p class="lead">
+              <a href="http://www.anmac.gob.ar/" target="_blank">
+                <img src="/sites/default/files/logo-anmac.png" height="70" alt="">
+              </a> 
+            </p>
+          </div>
+          <div class="col-md-6 text-center">
+            <p>
+              <a href="http://www.jus.gob.ar/" target="_blank">
+                <img src="/sites/default/files/logo_min_justicia.png" height="70" alt="">
+              </a>        
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <section>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <div class="section-actions is_area social-share">
+          <p>Compartir en <br> redes sociales</p>
+          <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/donacion-sangre/old_" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+    /* JT */
+    
+    .jumbotron {
+        background-size: inherit;
+        background-color: #EC4043;
+    }
+    
+    .bg-danger {
+        color: white;
+        margin: auto!important;
+        background-color: #EC4043!important;
+    }
+    
+    .text-danger {
+        color: #EC4043!important;
+    }
+    
+    .btn-danger {
+        background-color: #EC4043!important;
+    }
+    
+    .docs-colores span {
+        padding-top: 24px!important;
+        height: 90px!important;
+        width: 90px!important;
+        border-radius: 90px!important;
+    }
+
+
+    .bg-danger:hover, a.panel:focus {
+      opacity: 0.8;
+    }
+    
+    small {
+        color: black!important;
+    }
+    
+    .corazones i {
+        font-size: 1.8em;
+    }
+
+    .doni{
+      font-size: 1.4em!important;
+    }
+    
+    .grande {
+        font-size: 4em;
+        font-weight: 600;
+        line-height: 1.1em;
+    }
+    
+    #menu {
+        padding-left: 0!important;
+    }
+    
+    #menu li {
+        list-style: none;
+        display: inline-block;
+    }
+    
+    #menu a {
+        text-decoration: none;
+    }
+    
+    #menu i {
+        font-size: 2.6em;
+    }
+    
+
+    a.panel:hover, a.panel:focus {
+    background: #EC4043!important;
+    }
+
+
+    .alert-warning{
+      border-color: black!important;
+      background-color: transparent!important;
+
+    }
+        /*FOOTER*/
+
+    .panelFooter{
+    margin-bottom: 0!important;
+
+}
+
+    /* DRU */
+
+    .docs-colores span {
+    display: inline-block;
+    width: 110px;
+    height: 110px;
+    padding-top: 45px;
+    margin: 0 20px 20px 0;
+    text-align: center;
+    border-radius: 110px;
+
+}
+  
+
+</style>
+
+
+<section class="jumbotron" style="background-image: url('img/patternm-sangre.png');">
+    <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li class="active">Donación de Sangre</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2>Hacete donante de sangre</h2>
+                    <p>Ayudanos a que nunca falte, con tu donación podés salvar hasta 4 vidas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-y-0">
+    <div class="container">
+        <div class="row docs-colores text-center">
+            <div class="col-md-10 col-md-offset-1">
+                <ul id="menu" class="row">
+                    <li class="col-md-2 text-center col-md-offset-2">
+                        <a href="porque.html"><span class="bg-danger"><i class="fa fa-question"></i></span><p class="m-t-1"><b><small>Por qué donar</small></b></p></a>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <a href="quienes.html"><span class="bg-danger"><i class="fa fa-users"></i></span><p class="m-t-1"><b><small>Quiénes pueden</small></b></p></a>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <a href="como.html"><span class="bg-danger"><i class="fa fa-heart"></i></span><p class="m-t-1"><b><small>Cómo hacerlo</small></b></p></a>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <a href="donde.html"><span class="bg-danger"><i class="fa fa-map-marker"></i></span><p class="m-t-1"><b><small>Dónde donar</small></b></p></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="bg-gray">
+    <div class="container">
+        <div class="row">
+
+            <h2 class="h3 text-center">¿Tenés unos minutos?</h2>
+            <p class="text-center m-b-3"><i>Acercate a donar sangre</i></p>
+
+            <div class="m-t-1 col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-3 text-center m-b-3">
+                <p class="h3 m-y-0 m-y-0 corazones"><span class="text-danger h5">1</span><i class="fa fa-2x fa-child doni"></i> DONANTE</p>
+                <p class="h1 m-y-0 m-y-0 text-danger grande">SALVA</p>
+                <p class="h4 m-y-0 m-y-0 corazones"><span class="text-danger h4">4</span> <i class="fa fa-heart-o"></i><i class="fa fa-heart-o"></i><i class="fa fa-heart-o"></i><i class="fa fa-heart-o"></i></p>
+                <p class="h1 m-y-0 m-y-0 grande">VIDAS</p>
+            </div>
+
+            <div class="col-md-3 m-t-1 text-center">
+                <img src="img/gotita_1.png" alt="gotita recordándote que donar sangre salva vidas" style="width: 300px">
+            </div>
+
+            <div class="col-md-6">
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row text-center">
+
+            <div class="row m-t-2">
+
+                <div class="col-md-4">
+                    <i class="text-danger fa-3x fa fa-clock-o"></i>
+                    <h3 class="h4">Fácil</h3>
+                    <p>Sin preparación previa.
+                        <br> No tenés que estar en ayunas.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="text-danger fa-3x fa fa-medkit"></i>
+                    <h3 class="h4">Seguro</h3>
+                    <p>Material descartable.
+                        <br> No afecta tu salud.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="text-danger fa-3x fa fa-heart"></i>
+                    <h3 class="h4">Útil</h3>
+                    <p>Salvás vidas.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="bg-gray">
+        <div class="container">
+
+            <div class="row panels-row">
+
+                <div class="col-xs-12 col-md-8 col-md-offset-2 m-t-3">
+                    <div class="panel panel-default panel-disabled">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="img/gotita_manos.png" style="width: 150px;" alt="gotita pasa de una mana a otra">
+                                </div>
+                                <div class="media-body">
+                                    <h2>Enterate si podrías ser donante</h2>
+                                    <p class="text-muted">Respondé algunas preguntas y averiguá si estás en condiciones de ser donante.</p>
+                                    <a type="button" class="btn btn-danger btn-sm m-t-1 text-center" href="wizard.html">Comenzá el test</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+
+                <div class="col-md-6 col-md-offset-3 alert alert-warning m-t-2 m-b-3">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="fa fa-exclamation-circle fa-fw fa-3x text-danger"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="margin-0">Recordá que la atención de una persona en un centro de salud nunca puede estar condicionada por el aporte de donantes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>    
+    </div>
+    
+</section>
+
+<section class=" m-t-2">
+    <div class="container">
+        <div class="row panels-row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="donaciondesangre/donde.html">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-map-marker fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Centros de atención</h3>
+                                <p>Encontrá el más cercano a tu domicilio.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/manifestar-la-voluntad-de-donacion-de-organos-y-tejidos">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-heartbeat fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>¿Querés ayudar más?</h3>
+                                <p>Doná tus órganos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="faq.html">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-question fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Preguntas frecuentes</h3>
+                                <p>Aclará tus dudas sobre la donación de sangre.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

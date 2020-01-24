@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/defensa-consumidor/asociaciones/asociaciones.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+
+  <ol class="breadcrumb">
+    <li>
+    <a href="">Argentina</a></li>
+    <li><a href="">Ministerio de Modernización</a></li>
+    <li><a href="/produccion/consumidor">Dirección Nacional de Defensa del Consumidor</a></li>
+    <li class="active">Registro Nacional de Asociaciones de Consumidores</li>
+  </ol>
+
+  <section>
+    <article class="content_format row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <h1>Registro Nacional de Asociaciones de Consumidores</h1>
+        <div class="row">
+          <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+        </div>
+        <hr>
+
+        <p>Las Asociaciones de Consumidores son un importante actor de la sociedad civil, que complementa la labor del Estado en la defensa de los derechos de los ciudadanos.</p>
+
+        <p>El Consejo Consultivo de los Consumidores es un organismo permanente asesor y consultor de las autoridades de la Secretaría de Comercio en temas relacionados con defensa del consumidor. Lo integran las autoridades del organismo y las Asociaciones de Consumidores inscriptas en el Registro Nacional de Asociaciones de Consumidor, que depende de la Dirección Nacional de Defensa del Consumidor.</p>
+
+
+      </div>
+
+      
+
+
+      <div class="col-md-12">
+
+        <div>
+        <h4 class="padding-60 margin-20">Registro Nacional de Asociaciones de Consumidores</h4>
+        
+        <div class="row panels-row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>PROTECCIÓN A LOS CONSUMIDORES Y USUARIOS DE LA REPÚBLICA ARGENTINA - PROCURAR (RNAC N° 01)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Enrique Millán <br>
+                    Dirección: Azcuénaga 1324 - 5° 10 – CABA - CP (1126)<br>
+                    Teléfono: 4825-0009<br>
+                    E-mail: info@procurar.org.ar<br>
+                    Pág. Web: www.procurar.org.ar<br>
+                    PJ N°  000850/01<br>
+                    CUIT N° 30-70780023-9<br>
+                    Resolución SC N° 392 – E/2016  - 5 de diciembre de 2016<br>
+                  </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL DE USUARIOS BANCARIOS ARGENTINOS -  ACUBA (RNAC Nº 02)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Gerónimo Rossi <br>
+                    Dirección: 12 de Octubre 3223 4° B  – Mar del Plata – CP (7600)<br>
+                    Teléfono: 0223 628 1371<br>
+                    E-mail: acuba_mdp@hotmail.com<br>
+                    Pág. Web: www.acuba.org.ar<br>
+                    PJ N° 30.428<br>
+                    CUIT N° 30-70961756-3<br>
+                    Resolución SC N° 369 – E/2016  - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>UNIÓN DE CONSUMIDORES DE ARGENTINA “UCA” (RNAC Nº 03) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Gustavo Crosetti <br>
+                    Dirección: Tucumán 1429 – 4° A - CABA – CP (1055)<br>
+                    Teléfono: 4371 4255 <br>
+                    E-mail: info@ucargentina.org.ar <br>
+                    Pág. Web: www.ucargentina.org.ar<br>
+                    PJ Nº 001054/96 IGJ<br>
+                    CUIT Nº 30-69322398-5<br>
+                    Resolución SC N° 373 – E/2016 - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>PROTECTORA ASOCIACIÓN DE DEFENSA DEL CONSUMIDOR (RNAC Nº 04)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Nerina Jimena Oses<br>
+                    Dirección: 25 de Mayo 750 PB G - Ciudad de Mendoza – CP (5500)<br>
+                    Telefono: 0261 425 5181<br>
+                    E-mail: contacto@protectora.org.ar / vadillo.mario@yahoo.com<br>
+                    Pág. Web: www.protectora.org.ar<br>
+                    PJ Nº 1007/99<br>
+                    CUIT Nº 30-71092021-0<br>
+                    Resolución SC Nº 371 – E/2016 – 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CONSUMIDORES LIBRES COOP LIMITADA DE PROVISIÓN DE SERVICIOS DE ACCION COMUNITARIA  (RNAC N° 05)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Ana Barrios <br>
+                    Dirección: Bartolomé Mitre 1895  3° E – CABA <br>
+                    Teléfono: 4373-1109<br>
+                    E-mail: consumidores_libres@yahoo.com.ar<br>
+                    Pág. Web: www.consumidoreslibres.org.ar<br>
+                    PJ N° 490/1995<br>
+                    CUIT N° 30-68349002-0<br>
+                    Resolución SC N° 44 - E/2017 – 18 de enero de 2017 <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION PROCONSUMER PROTECCIÓN CONSUMIDORES DEL MERCOSUR - SUSCRIPTORES DE PLANES DE AHORRO  (RNAC N° 06)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Ricardo Nasio<br>
+                    Dirección: Viamonte 885 -2º - CABA CP (1053)<br>
+                    Teléfono: 4322 4092/4394 0694/4394 0597<br>
+                    E-mail: proconsumer@proconsumer.org.ar  <br>
+                    Pág. Web: www.proconsumer.org.ar<br>
+                    PJ Nº 000632/94 IGJ<br>
+                    CUIT Nº 30-67986352-1<br>
+                    Resolución SC N° 372 – E/2016 - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>UNION DE USUARIOS Y CONSUMIDORES (RNAC N° 0006)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Alberto Muñoz <br>
+                    Dirección: Paraná 326 1° 6 - CABA – CP (1017) <br>
+                    Teléfono:  4371 8050/4372 1556<br>
+                    E-mail: launion@usuarios.org.ar <br>
+                    PJ N° 000836/95 IGJ<br>
+                    CUIT Nº 30-68833923-1<br>
+                    Resolución SC e I N° 161 - 24 de junio de 1996 -<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL POR LOS CONSUMIDORES Y EL MEDIO AMBIENTE “ACYMA” (RNAC N° 07)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Juan Manuel Sierra Landucci<br>
+                    Dirección: Libertad 434 – 6° 63 - CABA<br>
+                    Teléfono: 4384-1228 <br>
+                    E-mail: info@acyma.org.ar<br>
+                    Pág. Web: www.acyma.org.ar<br>
+                    PJ N° 79<br>
+                    CUIT: 30-71195379-1<br>
+                    Resolución SC N° 390 – E/2016 - 5 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE CONSUMIDORES Y USUARIOS DE LA ARGENTINA – ACUDA (RNAC N° 08)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Ricardo Espinosa <br>
+                    Dirección: Ramón Falcón 6380 – 1° E – CABA<br>
+                    Teléfono: 46420095<br>
+                    E-mail: consumidoresacudan@gmail.com <br>
+                    Pág. Web: www.acuda.org.ar<br>
+                    IGJ N° 1313/2012<br>
+                    CUIT N° 30-71204446-9<br>
+                    Resolución SC N° 370 – E/2016 – 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>PADEC - PREVENCIÓN, ASESORAMIENTO Y DEFENSA DEL CONSUMIDOR (RNAC N° 09)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Isabel Novosad <br>
+                    Dirección: Viamonte 1636 – Piso 7° B – CABA - CP (1055)<br>
+                    Telefono: 4371 2109<br>
+                    E-mail: padec@padec.org.ar<br>
+                    Pág. Web: www.padec.org.ar<br>
+                    PJ Nº 287/02 IGJ<br>
+                    CUIT Nº 30-70794523-7<br>
+                    Resolución SC Nº 361 – E/2016 – 30 de noviembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>USUARIOS Y CONSUMIDORES EN DEFENSA DE SUS DERECHOS (RNAC Nº 10)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Ricardo Vago<br>
+                    Dirección: Saavedra 87 e/Pirovano y Zeballos – Moreno –PBA <br>
+                    Teléfono: 0237 4638551 <br>
+                    E-mail: a.civiluyc@gmail.com / endefensadesusderechos2@hotmail.com<br>
+                    Pág. Web: www.usuarioyconsumidor.org.ar<br>
+                    PJ Nº 372/02 IGJ<br>
+                    CUIT Nº 30-70821828-2<br>
+                    Resolución SC Nº 365 – E/2016  - 01 de diciembre de 2016 <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>DEUCO DEFENSA USUARIOS Y CONSUMIDORES (RNAC Nº 11)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Pedro Bussetti<br>
+                    Dirección: Yerbal 2250 – Local 6  Y - CABA<br>
+                    Teléfono: 4634-2223<br>
+                    E-mail: ongdeuco@gmail.com / pedrobussetti@gmail.com <br>
+                    Pág. Web: www.deuco.org.ar<br>
+                    PJ Nº 000360/98 IGJ<br>
+                    CUIT Nº 30-70710345-7<br>
+                    Resolución SC N° 366 – E/2016 - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>COMITE DEL CONSUMIDOR –CODELCO- (RNAC N° 12)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Francisco Durand Casali.<br>
+                    Dirección: Caseros 744 1° 17 y 18 - Salta - CP (4400)<br>
+                    Telefono: 0387 4317101<br>
+                    E-mail: codelco@codelco.org.ar<br>
+                    Pág. Web: www.codelco.org.ar<br>
+                    PJ Nº 0409/94<br>
+                    CUIT Nº 30-68126038-9<br>
+                    Resolución SC N° 385 - 5 de diciembre de 2016 –<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CENTRO DE EDUCACIÓN AL CONSUMIDOR “CEC” (RNAC 12)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Susana Gladys Andrada<br>
+                    Dirección: Florida 142 – 8° J - CP (1005) CABA<br>
+                    Teléfono:  4326-4298<br>
+                    E-mail: cec@educacionconsumidor.org.ar<br>
+                    PJ Nº 000350/97 IGJ<br>
+                    CUIT Nº 30-69374498-5<br>
+                    Disposición DNCI N° 278 - 13 de abril de 2000 -<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL LIGA DE CONSUMIDORES -  LIDECO - (RNAC Nº 13)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Oscar Rodríguez<br>
+                    Dirección: Junín 698 - Venado Tuerto - Santa Fé CP (2600)<br>
+                    Teléfono: 0346 2463419 CABA: 4921 1475 <br>
+                    E-mail: liga@powervt.com.ar / ligaba282@yahoo.com.ar<br>
+                    Pág. Web: www.lideco.org.ar<br>
+                    PJ Nº 000402/99 IGPJ<br>
+                    CUIT Nº 30-70715949-5<br>
+                    Resolución SC N° 386 – E/2016 - 5 de diciembre de 2016<br>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CON SUMO CUIDADO (RNAC N° 14)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Mónica Martorana<br>
+                    Dirección: Junín 948 – 1° 4 – Corrientes Capital<br>
+                    Teléfono: 0379 155 05 04 89<br>
+                    E-mail: con_sumo_cuidado@hotmail.com<br>
+                    Pág. Web: www.consumocuidado.org.ar<br>
+                    PJ Resolución N° 28/2014<br>
+                    CUIT N° 30-71447187-9<br>
+                    Resolución SC N° 374 – E/2016 – 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>RED ARGENTINA DE CONSUMIDORES  (RNAC Nº 15)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Christian Rodolfo Galindo <br>
+                    Dirección: Urquiza 1611 Planta Alta – Rosario Santa Fé – CP (2000)<br>
+                    Telefono: 0341 155014988<br>
+                    E-mail: redarconsumidores@gmail.com<br>
+                    Pág. Web: www.racon.org.ar<br>
+                    PJ Nº 2196/06<br>
+                    CUIT Nº 30709887730<br>
+                    Resolución SC Nº 362 – E/2016 – 30 de noviembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CENTRO DE ORIENTACIÓN, DEFENSA Y EDUCACIÓN DEL CONSUMIDOR - C.O.D.E.C. (Nº 16)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Lic. Ariel Kuiyan<br>
+                    Dirección: Fondo de la legua 425- 1º – Boulogne – Provincia de Buenos Aires<br>
+                    Teléfono: 20466600 <br>
+                    E-mail: info@codec.org.ar<br>
+                    Pag. Web: www.codec.org.ar<br>
+                    PJ Nº 2783/07<br>
+                    CUIT Nº 30-71138318-9<br>
+                    Resolución SC Nº 363 – E/2016 – 30 de noviembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CONSUMIDORES Y USUARIOS Y RECURSOS HÍDRICOS Y SANEAMIENTO-CUREHS (RNAC N° 17)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Laura Sofía Teres<br>
+                    Dirección: Guillermo Hudson 2554 – Parque Barón – Lomas de Zamora (PBA)<br>
+                    Telefono: 4282-8469<br>
+                    E-mail: curehs@gmail.com<br>
+                    Pág. Web: www.curehs.org.ar<br>
+                    PJ N° 38655<br>
+                    CUIT N° 30-71367530-6<br>
+                    Resolución SC N° 402– 2 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CONSUMIDORES FINANCIEROS, ASOCIACIÓN CIVIL PARA SU DEFENSA (RNAC N° 18)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Luis María González <br>
+                    Dirección: Avda. Roque Sáenz Peña 1124 8° B - CABA - CP (1035)<br>
+                    Telefono: 4382 7250 / <br>
+                    E-mail: consumidoresfinancieros@yahoo.com.ar <br>
+                    Pág. Web: www.consufinancieros.org.ar<br>
+                    PJ N° 657 IGJ<br>
+                    CUIT N° 30-70882936-2<br>
+                    Resolución SC N° 367 – E/2016 - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION POR LA DEFENSA DE USUARIOS Y CONSUMIDORES (RNAC Nº 19)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Claudio Alberto Defilippi <br>
+                    Dirección: Avda. Julio A. Roca 590 - 7° B – CABA – CP (1431)<br>
+                    Telefono: 4032 2615<br>
+                    E-mail: info@aduc.org.ar<br>
+                    Pág. Web: www.aduc.org.ar<br>
+                    PJ Nº 0001247/2005 <br>
+                    CUIT Nº 30-70961799-7<br>
+                    Resolución SC Nº 388 – E/2016 – 5 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE DEFENSA DE DERECHOS DE USUARIOS Y CONSUMIDORES – ADDUC (RNAC Nº 20)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Osvaldo Bassano<br>
+                    Dirección: 25 de Mayo 287 PB 3 - Temperley<br>
+                    Teléfono: 4243 2715<br>
+                    E-mail: adduc3@gmail.com<br>
+                    Pág. Web: www.adduc.org.ar<br>
+                    PJ Nº 27.136 DPPJ (Bs. As.)<br>
+                    CUIT Nº 30-70886753-1<br>
+                    Resolución SC N° 368 – E/2016 - 01 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION CIVIL DE USUARIOS Y CONSUMIDORES UNIDOS – UCU (RNAC N° 21)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Adrián Bengolea <br>
+                    Dirección: Belgrano 163 BIS – San Nicolás – Provincia de Buenos Aires <br>
+                    Teléfono: 0336 4457314<br>
+                    E-mail: info@ucu.org.ar<br>
+                    Pág. Web: www.ucu.org.ar<br>
+                    PJ N° 3623/2009<br>
+                    CUIT N° 33-71086048-9<br>
+                    Resolución SC N° 401-E/2016 – 2 de diciembre de 2016<br>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE DEFENSA DE USUARIOS Y CONSUMIDORES DEL NORTE DE LA PROVINCIA DE BUENOS AIRES - ADUNORBA (RNAC N° 22)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Jorge Roales<br>
+                    Dirección: Magallanes 334 (2700) Pergamino – Provincia de Buenos Aires<br>
+                    Telefono: 02477 442500/445182<br>
+                    E-mail: adunorba@yahoo.com.ar <br>
+                    Pág. Web: www.adunorba.org,ar<br>
+                    PJ N° 21.109/2000<br>
+                    CUIT N° 30-70731750-3<br>
+                    Resolución SC N° 384 – E/2016 – 5 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL “CONSUMIDORES EN ACCIÓN” (RNAC N° 23)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Lucas Marisi<br>
+                    Dirección: Larrea 782/84 – Piso 1 – CABA<br>
+                    Teléfono: 4665 4649/4961 3348<br>
+                    E-mail: consuaccion@gmail.com<br>
+                    Pág. Web: www.consumidoresenaccion.org.ar<br>
+                    PJ N° 257/2012 (IGJ)<br>
+                    CUIT N° 30-71223183-8<br>
+                    Resolución SC N° 391 – E/2016 – 5 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE DEFENSA DEL ASEGURADO CONSUMIDORES Y USUARIOS (ADACU) ASOCIACIÓN CIVIL (RNAC N° 24)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Eduardo J. Baeza<br>
+                    Dirección: Carlos Pellegrini 27 8° M - CABA<br>
+                    Teléfono: 4345-0222<br>
+                    E-mail: informes@ada.org.ar / consultas@ada.org.ar / ada@ada.org.ar<br>
+                    Pág. Web: www.ada.org.ar<br>
+                    PJ N° 607/2012<br>
+                    CUIT N° 30-70982017-2<br>
+                    Resolución SC N° 389 – E/2016 - 5 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CONSUMIDORES ARGENTINOS (RNAC N° 25)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Sergio Procelli<br>
+                    Dirección: Guido 2466 – Mar del Plata<br>
+                    E-mail: consumidores@consumidoresarg.org.ar / mdp@consumidoresarg.org.ar<br>
+                    Pág. Web: www.consumidoresar.org.ar<br>
+                    PJ Nº 000473/96 IGJ<br>
+                    CUIT Nº 30-69128422-7<br>
+                    Resolución SC N° 403 - 7 de diciembre de 2016 –<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL POR LA IGUALDAD Y LA JUSTICIA (RNAC N° 25)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Dalile Antúnez<br>
+                    Dirección: Av. De Mayo 1161 5° 9 – CABA – CP (1085)<br>
+                    Teléfono 4381 2371<br>
+                    E-mail: info@acij.org.ar / comunicación@acij.org.ar <br>
+                    PJ Nº 231/2003 IGJ<br>
+                    CUIT Nº 30-70827694-0<br>
+                    Disposición DNCI Nº 574 – 8 de Junio de 2006 - <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN CIVIL CRUZADA CÍVICA PARA LA DEFENSA DE CONSUMIDORES Y USUARIOS DE SERVICIOS PÚBLICOS (RNAC N° 26) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Mariano Gendra Gigena<br>
+                    Dirección: Suipacha 280 5° - CABA – CP (1008)<br>
+                    Teléfono: 4115 0980<br>
+                    E-mail: capital@cruzadacivica.org.ar<br>
+                    Pág. Web: www.cruzadacivica.org.ar<br>
+                    PJ Nº 00527/93 IGJ<br>
+                    CUIT Nº 30- 69563030-8<br>
+                    Resolución SC N° 479 - E/2016 – 28 de diciembre de 2016 – <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE DEFENSA DEL CONSUMIDOR DE SANTIAGO DEL ESTERO-ADECSE (RNAC N° 27)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Jorge Alexandro <br>
+                    Dirección: Rioja 40 – Santiago del Estero <br>
+                    Teléfono: 0385- 4253342<br>
+                    E-mail: adecse04@hotmail.com<br>
+                    Pág. Web: www.adecse.org.ar<br>
+                    PJ N° 102/2004<br>
+                    CUIT N° 30-71421260-1<br>
+                    Resolución SC N° 475- E/2016 – 28 de diciembre de 2016<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION DE CONSUMIDORES Y USUARIOS DE LA ARGENTINA ADECUA (RNAC N° 28) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Sandra González<br>
+                    Dirección: Callao 420 - 8º B- CABA - CP (1022)<br>
+                    Teléfono: 4374 5420<br>
+                    E-mail: reclamos@adecua.org.ar <br>
+                    Pág Web: www.adecua.org.ar<br>
+                    PJ Nº 001214/95 <br>
+                    CUIT Nº 33-68308944-9<br>
+                    Resolución SC N° 67 - E/2017 – 27 de enero de 2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION COORDINADORA DE USUARIOS, CONSUMIDORES Y CONTRIBUYENTES - ACUCC (RNAC N°29)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Ana María Godoy<br>
+                    Dirección: Palma de Mallorca 4064 – Quilmes Oeste – CP (1879)<br>
+                    Telefono: 4200 9929 / 3650 1877 <br>
+                    E-mail: acucc1@speedy.com.ar / acucc@gmail.com <br>
+                    Pág. Web: www.acucc.org.ar<br>
+                    PJ N° Mat. 17970<br>
+                    CUIT N° 30-70287523-0<br>
+                    Resolución SC N°65 - E/2017 – 27 de enero de 2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>FEDERACION DE MUTUALES PARA LA DEFENSA ORGANIZADA DEL CONSUMO (RNAC Nº 29)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Inés Bienati <br>
+                    Dirección: Bogotá 2463 – CABA <br>
+                    E-mail: femudeco@yahoo.com.ar<br>
+                    Inaes Nº 44<br>
+                    CUIT Nº 30-69376005-0<br>
+                    Disposición DNCI Nº 725 – 2 de noviembre de 2006<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE USUARIOS Y CONSUMIDORES DE LA PROVINCIA DE CORRIENTES (A.U.C) (RNAC N°30) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Nelson Veas Oyarzo<br>
+                    Dirección: Jujuy 1481 – Corrientes<br>
+                    Teléfono: 0379-4467970<br>
+                    E-mail: aucch@live.com.ar<br>
+                    Pág. Web: www.aucch.org.ar<br>
+                    CUIT N° 30-70909880-9<br>
+                    Resolución SC N° 64 - E/2017 – 27 de enero de 2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ACCION DEL CONSUMIDOR - ADELCO- (RNAC N° 31)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Claudia Collado <br>
+                    Dirección: Tucumán 1673 5° 10 - CABA –<br>
+                    Telefono: 3535-2294/95<br>
+                    E-mail: info@adelco.org <br>
+                    Pág. Web: www.adelco.org.ar<br>
+                    P.J. Nº 000350/82 IGJ<br>
+                    CUIT Nº 30-60567949-4<br>
+                    Resolución SC N° 69 - E/2017 – 27 de enero de 2017  <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE CONSUMIDORES DEL NOA – ACONOA (RNAC N° 32)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Germán Muller <br>
+                    Dirección: 9 de Julio 536  4° – Tucumán <br>
+                    Telefono: 0381- 4205454<br>
+                    E-mail: info@aconoa.org<br>
+                    Pág Web: www.aconoa.org.ar<br>
+                    PJ N° 151/2013 <br>
+                    CUIT N° 30-70897218-1<br>
+                    Resolución SC N° 68 - E/2017 – 27 de enero de 2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACION DE DEFENSA DE CONSUMIDORES ENTERRIANOS –ADECEN (RNAC N° 33) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Oscar Vargas <br>
+                    Dirección: Francisco de Miranda 740 – Paraná Entre Ríos <br>
+                    Teléfono: 0343- 6225004<br>
+                    E-mail: adecen2004@gmail.com<br>
+                    Pág. Web: www.adecen.org.ar<br>
+                    PJ N° 241/2004<br>
+                    CUIT N° 30-71324730-4<br>
+                    Resolución SC N° 84 – E/2017 – 6 de febrero de 2017 <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>MOVIMIENTO EN DEFENSA DE LOS DERECHOS DE LOS CONSUMIDORES, USUARIOS Y DEL MEDIO AMBIENTE – MODECUMA (RNAC N° 34) </strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Miguel Ángel Fortuna <br>
+                    Dirección: Av. De Mayo 560 - 5º 43 – CABA <br>
+                    Teléfono: 4342 9911<br>
+                    E-mail: modecuma@gmail.com <br>
+                    PJ Nº 989/07<br>
+                    CUIT Nº 33-71059450-9<br>
+                    Resolución SC N° 123-E/2017 – 23 de febrero de 2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CENTRO DE ESTUDIOS SOCIALES Y ACCIÓN COMUNITARIA (RNAC Nº 34)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Juan Marcos Aviano <br>
+                    Dirección: Balcarce 1793 – Rosario - Santa Fé – CP (2000)<br>
+                    Teléfono: 0341 4855301/09<br>
+                    E-mail: consumidor@cesyac.org.ar<br>
+                    PJ Nº 086/2006<br>
+                    CUIT Nº 30-70954959-2<br>
+                    Disposición DNCI Nº 40 – 27 de febrero de 2009 -<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>CONSUMIDORES ALERTA ASOCIACIÓN CIVIL – CONSAL (RNAC N° 51)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: María de los Ángeles Vecchiarelli<br>
+                    Dirección: Fragata Sarmiento 46  CABA<br>
+                    Teléfono (011) 20541499<br>
+                    E-mail: consal@consal.org.ar<br>
+                    PJ N° 3033/2011<br>
+                    CUIT N° 30-71237780-8<br>
+                    Disposición DC N° 007 – 3 de Marzo de 2015  <br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3><strong>ASOCIACIÓN DE DEFENSA AL CONSUMIDOR Y USUARIOS – ADECU (RNAC Nº 35)</strong></h3>
+                <hr class="m-y-1">
+                <p class="text-muted">
+                    Presidente: Carmen Mercedes Soto<br>
+                    Dirección: Jorge Washington 1540, Resistencia-Chaco<br>
+                    Teléfono: 3624851204/3624235394<br>
+                    E-mail: adecuchaco@gmail.com<br>
+                    CUIT N°: 30-70897218-1<br>
+                    Resolución: SC N°: 231-E/2017<br>  
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        </div>        
+
+      </div><!--.col-md-12-->
+
+
+
+
+    </article>
+  </section>
+</div>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

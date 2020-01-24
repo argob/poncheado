@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://geveinte.herokuapp.com/sitio/countdown.html -->
+<html lang="es"><!--<![endif]-->
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>G20</title>
+  <meta name="description" content="Sitio oficial del G20 en Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/sitio/index-v3.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="G20">
+  <meta property="og:description" content="Sitio oficial del G20 en Argentina.">
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="G20">
+  <meta name="twitter:description" content="Sitio oficial del G20 en Argentina.">
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg">
+
+  <link href="/vendor/poncho/dist/css/roboto-fontface.css" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/node_modules/chosen-js/chosen.css" rel="stylesheet"> 
+  <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet">
+  <!--<link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">-->
+  <link href="css/estiloG20.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+
+<style>
+
+/* Sticky Footer */
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 60px; /* Margin bottom by footer height */
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 190px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    z-index: -1;
+  }
+
+</style>
+
+
+    
+<script src="/node_modules/jquery/dist/jquery.min.js"></script><script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script><script src="/node_modules/chosen-js/chosen.jquery.js"></script></head>
+
+
+
+
+
+
+<body id="bodyCountdown" class="sticky-footer">
+
+    <section id="countdownG20">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                              <h1 class="tituloCountdown">G20</h1>
+                        </div>  
+                        <div class="col-md-12">
+                          <p class="descripcionCountdown">El sitio oficial de la presidencia argentina del G20 estará disponible en poco tiempo:</p>
+                          <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                              <hr>
+                            </div>  
+                          </div>
+                          
+                          <p class="descripcionCountdown">The official website of the Argentine G20 Presidency will be available soon:</p>
+                        </div>
+                        
+                                               
+
+                        <div class="col-md-12">
+                        <div id="countdown" class="m-y-4 text-center">
+                          <div><div id="hours">00</div><i>horas<hr class="hrCountdown"> <span class="text-muted">hours</span></i></div>
+                          <div><div id="minutes">00</div><i>minutos<hr class="hrCountdown"> <span class="text-muted">minutes</span></i></div>
+                          <div><div id="seconds">00</div><i>segundos<hr class="hrCountdown"> <span class="text-muted">seconds</span></i></div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+<footer class="footer">
+  <div class="footerMain">
+  </div>  
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script type="text/javascript">
+    /*
+    var hoy = new Date();
+    var G20 = new Date("12/01/2017");
+
+    var faltanHTML = document.getElementById("faltan");
+
+    var timeDiff = Math.abs(G20.getTime() - hoy.getTime());
+    var faltan = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    var dias;
+
+    if (faltan == 1){
+        dias = " día";
+    } else{
+        dias = " días";
+    }
+
+
+    faltanHTML.innerHTML = faltan + dias;
+    */
+
+    //Countdown
+    window.onload = function(e){
+
+    var $countdown = $('#countdown'),
+        eventTime = moment('30-11-2017 12:00:00', 'DD-MM-YYYY HH:mm:ss').unix(),
+        currentTime = moment().unix(),
+        diffTime = eventTime - currentTime,
+        duration = moment.duration(diffTime * 1000, 'milliseconds'),
+        interval = 1000;
+
+    // if time to countdown
+    if(diffTime > 0) {
+
+        // Show countdown
+        // $countdown.show();
+
+         
+        var $h = $("#hours");
+            $m = $("#minutes");
+            $s = $("#seconds");
+
+        setInterval(function(){
+
+            duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
+            var h = moment.duration(duration).hours(),
+                m = moment.duration(duration).minutes(),
+                s = moment.duration(duration).seconds();
+
+            h = $.trim(h).length === 1 ? '0' + h : h;
+            m = $.trim(m).length === 1 ? '0' + m : m;
+            s = $.trim(s).length === 1 ? '0' + s : s;
+
+            // show how many hours, minutes and seconds are left
+            $h.text(h);
+            $m.text(m);
+            $s.text(s);
+
+        }, interval);
+
+    }
+
+};
+
+
+</script>
+</body></html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/donacion-sangre/old_como.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+       <style type="text/css">
+    /* JT */
+    
+    .jumbotron {
+        background-size: inherit;
+        background-color: #EC4043;
+    }
+    
+    .bg-danger {
+        color: white;
+        margin: auto!important;
+        background-color: #EC4043!important;
+    }
+    
+    .text-danger {
+        color: #EC4043!important;
+    }
+    
+    .btn-danger {
+        background-color: #EC4043!important;
+    }
+    
+    .btn-danger:hover,
+    .btn-danger:focus {
+        opacity: 0.8;
+    }
+    /* BOTONERA */
+    
+    .docs-colores span {
+        padding-top: 24px!important;
+        height: 90px!important;
+        width: 90px!important;
+        border-radius: 90px!important;
+    }
+    
+    small {
+        color: black!important;
+    }
+    
+    #menu {
+        padding-left: 0!important;
+    }
+    
+    #menu li {
+        list-style: none;
+        display: inline-block;
+    }
+    
+    #menu a {
+        text-decoration: none;
+    }
+    
+    #menu i {
+        font-size: 2.6em;
+    }
+    
+    .bg-active {
+        color: #EC4043!important;
+        background-color: white!important;
+        margin: auto!important;
+    }
+    
+    .bg-danger:hover,
+    a.panel:focus {
+        opacity: 0.8;
+    }
+    /*OTROS*/
+    
+    .link {
+        color: #EC4043!important;
+    }
+    
+    .alert-warning {
+        border-color: black!important;
+        background-color: transparent!important;
+    }
+    /*LISTA*/
+    
+    .flechitas {
+        padding-left: 0!important;
+    }
+
+    .flechitas li{
+        padding: 5px 0;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+
+    .listitas{
+      padding-left: 60px!important;
+    }
+
+    .listitas li{
+      list-style: disc!important;
+    }
+
+    /*FOOTER*/
+    
+    .panelFooter {
+        margin-bottom: 0!important;
+    }
+    
+    a.panel:hover,
+    a.panel:focus {
+        background-color: #EC4043!important;
+    }
+    
+    .link {
+        color: #EC4043!important;
+    }
+
+        /* DRU */
+
+    .docs-colores span {
+    display: inline-block;
+    width: 110px;
+    height: 110px;
+    padding-top: 45px;
+    margin: 0 20px 20px 0;
+    text-align: center;
+    border-radius: 110px;
+
+}
+
+</style>
+
+
+<section class="jumbotron" style="background-image: url('img/patternm-sangre.png');">
+    <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="index.html">Donación de Sangre</a></li>
+            <li class="active">Cómo donar</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="jumbotron_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2>Cómo donar?</h2>
+                    <p> Recomendaciones para que tu donación sea segura y confortable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-y-0">
+    <div class="container">
+        <div class="row docs-colores text-center">
+            <div class="col-md-10 col-md-offset-1">
+                <ul id="menu" class="row">
+                    <li class="col-md-2 text-center col-md-offset-2">
+                        <a href="porque.html"><span class="bg-danger"><i class="fa fa-question"></i></span><p class="m-t-1"><b><small>Por qué donar</small></b></p></a>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <a href="quienes.html"><span class="bg-danger"><i class="fa fa-users"></i></span><p class="m-t-1"><b><small>Quiénes pueden</small></b></p></a>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <span class="bg-active"><i class="fa fa-heart"></i></span>
+                        <p class="m-t-1"><b><small>Cómo hacerlo</small></b></p>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <a href="donde.html"><span class="bg-danger"><i class="fa fa-map-marker"></i></span><p class="m-t-1"><b><small>Dónde donar</small></b></p></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-y-0 bg-gray">
+    <div class="container">
+        <div class="row docs-colores text-center">
+            <div class="col-md-10 col-md-offset-1">
+                <img src="img/gotita_recordatorio.png" alt="gotita recordándote que donar sangre salva vidas" style="width: 300px">
+                <h3 class="h4">Pasos a seguir para donar sangre:</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container p-t-2 p-b-0">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="steps clearfix">
+                    <div class="step">
+                        <div>
+                            <div class="circle bg-danger">1</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="description p-b-1">
+                                <h3 class="h5 m-t-0">Antes de donar, informate</h3>
+                                <p>Si estás decidido a donar sangre tené en cuenta algunas consideraciones y requisitos para hacerlo.</p>
+                                <ul class="flechitas">
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Estar <b>descansada/o</b>, habiendo dormido por lo menos 6 horas.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Sentirte en <b>buenas condiciones</b> (no tener síntomas de malestar general, fiebre, resfrío o tos).</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Debés <b>desayunar o almorzar</b> de forma habitual y tomar líquidos en abundancia (no alcohólicos).</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Buscá el <a class="link" href="donde.html">centro de donación</a> más cercano y consultá el horario.</li>
+                                </ul>
+
+                                <div class="alert alert-warning m-y-3">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <p class="margin-0">Recordá que <b>NO</b> tenés que ir en ayunas</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <div>
+                            <div class="circle bg-danger">2</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="description p-b-1">
+                                <h3 class="h5 m-t-0">Concurrí al centro de donación con tu DNI</h3>
+                                <ul class="flechitas">
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Tené tu <b>DNI</b> a mano porque deberás presentarlo.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> <b>Información pre-donación</b>: el personal del centro te va a explicar los <a class="link" href="#estudios">estudios</a> que se le harán a tu sangre. En caso de estar en desacuerdo con esos estudios tenés derecho de auto excluirte y no donar.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> <b>Calificación clínica</b>: el personal de salud te entrevistará para ver si estás en condiciones de donar. Toda la información que brindes es confidencial. Se verifica tu peso, temperatura, pulso y presión arterial, y se toman muestras de tu sangre para controlar que tus glóbulos rojos estén bien. 
+</li>
+                                </ul>
+
+                                <div class="alert alert-warning m-y-3">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="h5">Tené en cuenta</h4>
+                                            <p class="margin-0">Aunque no puedas donar sangre, siempre podés colaborar difundiendo entre tus amigos y familia la importancia de ser donantes voluntarios y habituales de sangre.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="step">
+                        <div>
+                            <div class="circle bg-danger">3</div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="p-b-3">
+                            <div class="description p-b-1">
+                                <h3 class="h5 m-t-0">Extracción</h3>
+                                <ul class="flechitas">
+                                    <li><i class="fa fa-arrow-right text-danger"></i> La extracción dura entre <b>7 y 10 minutos</b>.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> <b>Se realiza en un ambiente seguro y con material descartable.</b></li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Se extrae sólo <b>una unidad de sangre</b> (alrededor de 450 ml) que se divide en varias muestras en pequeños tubos para los posteriores análisis.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="step m-b-3">
+                        <div>
+                            <div class="circle bg-danger">4</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="description p-b-1">
+                                <h3 class="h5 m-t-0">Después de donar:</h3>
+                                <ul class="flechitas">
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Se te brindará un refrigerio, a fin de recuperar líquidos y azúcar. <b>Es importante que lo tomes antes de irte del centro de donación.</b></li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i>Si no te sentís bien, avisá al personal del Centro y no abandones el lugar.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Te van a entregar un <b>certificado de donación</b> y un formulario de <a href="#autoexclusion" class="link">“Autoexclusión confidencial”</a> para que  expreses tu voluntad de  eliminar la unidad de sangre que donaste si considerás que por alguna razón no es segura.</li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> <b>Durante las 6 horas siguientes:</b></li>
+                                    <li>
+                                        <ul class="listitas">
+                                            <li>No hagas esfuerzos ni cargues peso con el brazo para evitar hematomas.</li>
+                                            <li>No hagas cambios bruscos de posición, ya que podrías tener sensación de mareo.
+                                                <br>Si esto ocurre, acostate boca arriba y levantá ligeramente las piernas.</li>
+                                            <li>No tomes alcohol.</li>
+                                            <li>No fumes (sobre todo en las 2 primeras horas).</li>
+                                            <li>Bebé abundante líquido (agua, jugos, leche).</li>
+                                            <li>No realices esfuerzos físicos.</li>
+                                            <li>No te expongas al sol o a temperaturas elevadas de forma prolongada.</li>
+                                        </ul>
+                                    </li>
+                                    <li><i class="fa fa-arrow-right text-danger"></i> Si a las pocas horas de haber donado sangre sentís que estás iniciando un proceso gripal, comunicate con el centro de donación e informales acerca de tus síntomas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container" id="autoexclusion">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <hr>
+                <h3 class="h4">Autoexclusión confidencial</h3>
+                <p>Si después de la extracción decidís autoexcluirte por alguna razón, tu sangre se descarta pero las muestras serán estudiadas y, de ser necesario, se te contactará para confirmar tus estudios.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="p-t-0">
+    <div class="container" id="estudios">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <hr>
+                <h3 class="h4">La sangre donada luego se estudia</h3>
+                <p>La sangre que dona una persona nunca se transfunde directamente al paciente.</p>
+                <p>A cada muestra de sangre donada se le realizan los siguientes estudios de laboratorio:</p>
+                <ul class="listitas">
+                    <li>Clasificación de grupo y factor sanguíneo y anticuerpos.</li>
+                    <li>Pruebas para la detección de ITT (Infecciones Transmisibles por Transfusión). 
+                    <br>Son obligatorias para nuestro país: Hepatitis B, Hepatitis C, VIH/Sida, Chagas, Sífilis, HTLV y Brucelosis.</li>
+                </ul>
+                <p>Mediante estos estudios se asegura que la sangre sea <b>apta para la transfusión</b>.</p>
+
+                <h4 class="h5">Período “ventana”</h4>
+                <p>En el caso de las enfermedades virales (Hepatitis B, Hepatitis C, VIH/Sida) existe un período variable entre el ingreso del virus al organismo y la posibilidad de detectarlo mediante un estudio. A este periodo se lo denomina <b>“período ventana”</b>.</p>
+                <p>Cada enfermedad tiene un período ventana diferente que puede variar entre algunos días hasta algunos meses.</p>
+                <p>Por eso, si sos donante de sangre, es importante que en la entrevista previa a la donación, informes al personal de salud cualquier situación de posible riesgo que hayas podido tener en relación a alguna de estas infecciones.</p>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="p-t-0">
+    <div class="container">
+        <div class="alert alert-warning m-y-3">
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="h5">El Centro te debe informar:</h4>
+                        <ul class="listitas">
+                            <li>Que tenés derecho a aclarar todas tus dudas y recibir información comprensible.</li>
+                            <li>Las razones por las que no debés donar sangre, si ello supone un riesgo para tu salud o la del receptor.</li>
+                            <li>La posibilidad de cambiar de opinión y retirarte sin donar.</li>
+                            <li>La necesidad de avisar al Centro si, después de donar, recordás alguna información importante o iniciás un problema de salud (fiebre, estado gripal, etc.).</li>
+                            <li>Cuáles son los análisis obligatorios que se realizan a toda la sangre donada.</li>
+                            <li>Que podés ser convocado al Centro para hacerte exámenes complementarios si tus estudios así lo requieren.</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="bg-gray m-t-2">
+    <div class="container">
+        <div class="row panels-row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="donde.html">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-map-marker fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Centros de atención</h3>
+                                <p>Encontrá el más cercano a tu domicilio.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="https://www.argentina.gob.ar/manifestar-la-voluntad-de-donacion-de-organos-y-tejidos">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-heartbeat fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>¿Querés ayudar más?</h3>
+                                <p>Doná tus órganos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <a class="panel panel-default panelFooter" href="faq.html">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left padding-20">
+                                <i class="fa fa-question fa-fw fa-3x text-danger"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3>Preguntas frecuentes</h3>
+                                <p>Aclará tus dudas sobre la donación de sangre.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

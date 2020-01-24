@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa de centros de donación</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/mapa/incucai/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Mapa de centros de donación" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mapa de centros de donación" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+header,
+ body > .bg-primary {
+ display: none;
+ }
+ #map-header {
+ display: block;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ z-index: 10;
+ }
+ .jumbotron {
+ min-height: 0;
+ background: none;
+ }
+ .jumbotron .jumbotron_bar .container * {
+ margin: 0;
+ }
+ #map-container {
+ height:100vh;
+ }
+ #map {
+ height:100%;
+ }
+ #map .gm-style-iw strong {
+ font-weight: 400;
+ }
+ .main-footer {
+ display: none;
+ }
+ #mobile-footer {
+ position: fixed;
+ width: 100%;
+ bottom: 0;
+ left: 0;
+ z-index: 10;
+ padding: 0px 53px 14px 15px;
+ }
+ #mobile-footer .row {
+ margin-right: -7.5px;
+ margin-left: -7.5px;
+ }
+ #mobile-footer .row > div {
+ padding-right: 7.5px;
+ padding-left: 7.5px;
+ }
+ #mobile-footer a {
+ box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+ }</style>
+<header id="map-header">
+    <nav class="navbar navbar-top navbar-default" role="navigation">
+        <div class="container">
+            <div>
+                <div class="navbar-header"><button class="navbar-toggle" data-target="#map-navbar-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button>
+                    <a class="navbar-brand hidden-xs" href="/"><img alt="Argentina.gob.ar" height="50" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" style="height: 50px;" /> </a>
+                    <h1 class="sr-only"><a class="navbar-brand hidden-xs" href="/">Argentina.gob.ar <small>Presidencia de la Nación</small></a></h1>
+                    <div class="navbar-brand visible-xs-inline-block"><small>Centros de atención</small></div>
+                </div>
+                <div class="collapse navbar-collapse" id="map-navbar-collapse">
+                    <div class="visible-xs">
+                        <a href="/"><img alt="Argentina.gob.ar" class="img-responsive" src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo.svg" width="274" /> </a>
+                        <hr class="margin-20" />
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/donarmedulaosea">Donar médula ósea</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="jumbotron hidden-xs">
+        <div class="jumbotron_bar">
+            <div class="container">
+                <h4>Centros de donación de médula ósea</h4>
+            </div>
+        </div>
+        <div class="overlay">&nbsp;</div>
+    </section>
+</header>
+<div class="visible-xs" id="mobile-footer">
+    <div class="row">
+        <div class="col-xs-12"><a class="btn btn-primary btn-block" href="/donarmedulaosea">Donar médula ósea</a></div>
+    </div>
+</div>
+<div class="state-loading" id="map-container">
+    <div id="map">&nbsp;</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<script>
+
+ var initMap = function() {
+
+ // Setup map
+
+ var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+ var map = new google.maps.Map(document.getElementById('map'), {
+ zoom: 4,
+ center: mapCenter,
+ scrollwheel: true,
+ streetViewControl: false
+ });
+
+ // Show markers loaded from spreadsheet
+
+ var markers = [];
+ var detalles = [];
+
+ $.ajax({
+ url: 'https://spreadsheets.google.com/feeds/list/1AJHZAaRn-SQyWqN9QCsBRInkxiOWmISstcX313cMTiE/1/public/values?alt=json',
+ data: 'json',
+ success: function(response){
+
+ var rows = response.feed.entry;
+
+        rows.forEach(function(row, key){
+
+          // if(row.gsx$visible.$t == '1'){
+
+            var index = markers.length;
+            markers[index] = new google.maps.Marker({
+              position: {lat: parseFloat(row.gsx$latitud.$t.replace(',', '.')), lng: parseFloat(row.gsx$longitud.$t.replace(',', '.'))},
+              // map: map,
+              title: row.gsx$institucion.$t,
+			 icon: {
+			 url: 'https://www.argentina.gob.ar/sites/default/files/marker.png',
+			 size: new google.maps.Size(20, 20),
+			 origin: new google.maps.Point(0, 0),
+			 anchor: new google.maps.Point(10, 10)
+			 }
+
+            });
+
+            detalles[index] = new google.maps.InfoWindow({
+              content: '<h2 class="h5">'+ row.gsx$institucion.$t +'</h5><p><strong>Horario</strong>: '+ row.gsx$horario.$t +'<br><strong>Teléfono</strong>: '+ row.gsx$telefono.$t +'<br><strong>Dirección</strong>: '+ row.gsx$direccion.$t +'<br><strong>Provincia</strong>: '+ row.gsx$provincia.$t + '<br><strong>Referente</strong>: '+ row.gsx$referente.$t + '</p>',
+              maxWidth: 400
+            })
+
+            markers[index].addListener('click', function() {
+              closeWindows();
+              detalles[index].open(map, markers[index]);
+            });
+
+          // }
+        })
+
+         var markerCluster = new MarkerClusterer(map, markers, {
+ 			imagePath: 'https://www.argentina.gob.ar/sites/default/files/m',
+ 			gridSize: 50,
+ 			minimumClusterSize: 3,
+ 			maxZoom: 19
+ 		});
+
+
+        $('#map-container').removeClass('state-loading');
+
+      },
+      error: function(){
+        console.log('error');
+      }
+    });
+
+    // Helper clases
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+
+    // Geolocation
+    window.setGeolocation = function(){
+
+
+      if (navigator.geolocation) {
+        $('.localize').addClass('state-loading disabled');
+
+        if(window.pos == undefined){
+
+          navigator.geolocation.getCurrentPosition(function(position) {
+            window.pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            map.setZoom(15);
+            map.setCenter(pos);
+
+            $('.localize').removeClass('state-loading disabled');
+            $('.navbar-collapse').removeClass('in');
+
+          }, function() {
+            $('.localize').removeClass('state-loading disabled');
+          });
+          
+        }else{
+          $('.localize').removeClass('state-loading disabled');
+          map.setZoom(15);
+          map.setCenter(window.pos);
+          $('.navbar-collapse').removeClass('in');
+        }
+
+      } else {
+        $('.localize').addClass('disabled');
+        // Browser doesn't support Geolocation
+        // handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    setGeolocation();
+  }
+
+</script>
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/mapas/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnjrx-mfaup3A-TQS4DyL0ngfxEqDDBqc&signed_in=true&region=AR&region=AR&callback=initMap"></script>
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

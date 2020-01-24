@@ -1,0 +1,47 @@
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "1VtE9TUZjCOSRqs3V8l9cnTAde-Fbtqy_uGa134myuNM";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/2/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            var entry = data.feed.entry;
+            var amount = entry.length;
+        
+            var i;
+            for (i = 0; i < amount; i++) {
+        
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+                var nombre = data.feed.entry[i]['gsx$nombre']['$t'];
+                var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+                //var time = data.feed.entry[i]['gsx$time']['$t'];
+                //var tel = data.feed.entry[i]['gsx$tel']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(map);
+                marker.bindPopup('<h4>' + nombre + '</h4><br><b>direccion:</b> ' + dir);
+            }
+
+        });
+
+
+
+
+</script>
+

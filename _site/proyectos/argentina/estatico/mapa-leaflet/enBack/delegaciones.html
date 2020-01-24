@@ -1,0 +1,61 @@
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css">
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css">
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<!-- Delegaciones de IAF tiene un jumbotron -->
+<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height:800px;position: relative;" tabindex="0"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var markers = L.markerClusterGroup();
+
+
+ // ID de la Google Spreadsheet Medula Osea
+	var spreadsheetID = "1IR56tunlvT7D2Da9MS8H7lhC57IT_wpOzwVZ2LN_cGg";
+ // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+
+
+var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+
+jQuery.getJSON(url, function(data) {
+	console.log(data);
+	var entry = data.feed.entry;
+	var amount = entry.length;
+	console.log(amount);
+	var i;
+	for (i = 0; i < amount; i++) {
+
+		var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+		var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+		var nombre = data.feed.entry[i]['gsx$nombre']['$t'];
+		var tipo = data.feed.entry[i]['gsx$tipo']['$t'];
+		var descripcion = data.feed.entry[i]['gsx$descripcion']['$t'];
+		var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+		var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
+
+
+
+		var marker = L.marker([lat, lon]);
+		marker.bindPopup('<small>'+ tipo +'</small><h4>' + nombre + '</h4>' + '<p>' + descripcion + '</p>' + '<p><b>Teléfono: </b>' + telefono + '</p>' + '<p><b>Direccion: </b>' + dir + '</p>');
+		markers.addLayer(marker);
+		
+	}
+
+});
+
+map.addLayer(markers);
+
+
+
+</script>

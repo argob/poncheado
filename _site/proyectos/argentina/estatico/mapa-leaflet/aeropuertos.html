@@ -1,0 +1,57 @@
+<!-- 1Gie9jZXk_eX-pXZIcI_d2Zsgoi1_YAvbcqdX06zZTWo -->
+
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "1Gie9jZXk_eX-pXZIcI_d2Zsgoi1_YAvbcqdX06zZTWo";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            console.log(data.feed.entry);
+
+            var entry = data.feed.entry;
+            var amount = entry.length;
+        
+            var i;
+            for (i = 0; i < amount; i++) {
+                console.log(data.feed.entry[i]['gsx$latitud']['$t']);
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+                var aeropuerto = data.feed.entry[i]['gsx$aeropuerto']['$t'];
+
+                var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+                var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+
+                var concesionado = data.feed.entry[i]['gsx$concesionado']['$t'];
+                var explotador = data.feed.entry[i]['gsx$explotador']['$t'];
+
+                var pistas = data.feed.entry[i]['gsx$pistas']['$t'];
+                var codigodeidentificacion = data.feed.entry[i]['gsx$codigodeidentificacion']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(map);
+                marker.bindPopup('<h4>' + aeropuerto + '</h4><p><b>Ubicación:</b> ' + dir + ', ' + provincia + '</p>' + '<p><b>Concesionado:</b> ' + concesionado + '</p>' + '<p><b>Explotador:</b> ' + explotador + '</p>' + '<p><b>Pistas:</b> ' + pistas + '</p>' + '<p><b>Codigo de Identificación:</b> ' + explotador );
+            }
+            
+        });
+
+
+
+
+</script>
+

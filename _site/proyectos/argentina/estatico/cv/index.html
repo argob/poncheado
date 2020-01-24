@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/cv/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('img/cv.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li class="active">Formulario para postulantes a la APN</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Trabajá con nosotros</h1>
+          <p>Cargá algunos datos personales y tu CV para que te tengamos en cuenta para trabajar en la Administración Pública Nacional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div class="container">
+
+  <section>
+    <article class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <!-- <h1>Trabajá con nosotros</h1>
+        <div class="row">
+          <div class="section-actions col-md-7 social-share">
+  <p>Compartir en <br> redes sociales</p>
+  <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter "></i></a></li>
+    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+  </ul>
+</div>
+
+        </div>
+        <hr>
+
+        <p>Cargá algunos datos personales y tu CV para que te tengamos en cuenta para trabajar en la Administración Pública Nacional.</p> -->
+
+        <form action="gracias.html">
+          <h2>Datos personales</h2>
+          <p>Agregá tu información personal para ser parte de nuestra base de datos.</p>
+
+          <div class="alert alert-success">
+            <div class="media">
+              <div class="media-body">
+                <h5 class="m-y-0">Completá <span class="hidden-md">tus datos </span>automáticamente</h5>
+                <p class="m-b-0">Si estás registrado en <strong>Mi Argentina</strong>, evitá llenar tus datos básicos.</p>
+              </div>
+              <div class="media-right hidden-xs">
+                <a class="btn btn-success m-b-0">Ingresar</a>
+              </div>
+            </div>
+            <div class="visible-xs text-center m-t-1">
+              <a class="btn btn-success">Completar mis datos</a>
+            </div>
+          </div>
+
+          <div class="alert alert-success">
+            <div class="media">
+              <div class="media-body">
+                <h5 class="m-y-0">Completá <span class="hidden-md">tus datos </span>automáticamente</h5>
+                <p class="m-b-0">Hola Nicolás, querés que completemos tus datos básicos?</p>
+              </div>
+              <div class="media-right hidden-xs">
+                <a class="btn btn-success m-b-0">Comlpetar</a>
+              </div>
+            </div>
+            <div class="visible-xs text-center m-t-1">
+              <a class="btn btn-success">Completar mis datos</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-1">Apellido</label>
+            <input id="input-1" class="form-control" type="text" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-2">Nombre</label>
+            <input id="input-2" class="form-control" type="text" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-3">Segundo nombre</label>
+            <input id="input-3" class="form-control" type="text" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">País de nacimiento</label>
+            <div class="btn-group btn-group-justified" data-toggle="buttons">
+              <label class="btn btn-default">
+                <input type="radio" name="pais" value="argentina"> Argentina
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="pais" value="otro" data-toogle-collapse="#collapse-pais"> Otro país
+              </label>
+            </div>
+          </div>
+
+          <div class="collapse" id="collapse-pais">
+            <div class="form-group">
+              <label class="control-label" for="input-4">¿Qué país?</label>
+              <input id="input-4" class="form-control" type="text" placeholder="">
+              <small class="text-muted">Recordá que necesitás tener ciudadanía argentina o visa de trabajo para poder postularte</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Género</label>
+            <div class="btn-group btn-group-justified" data-toggle="buttons">
+              <label class="btn btn-default ">
+                <input type="radio" name="genero" value="F"> Femenino
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="genero" value="M"> Masculino
+              </label>
+            </div>
+          </div>
+
+          <div class="form-item form-item-fecha-nacimiento form-type-date form-group">
+            <label class="control-label" for="edit-fecha-nacimiento"> Fecha de Nacimiento </label>
+            <div id="edit-fecha-nacimiento" class="form-inline">
+              <div class="form-item form-item-fecha-nacimiento-month form-type-select form-group">
+                <label class="control-label element-invisible" for="edit-fecha-nacimiento-month">Mes </label>
+                <select class="form-control form-select" id="edit-fecha-nacimiento-month" name="fecha_nacimiento[month]">
+                  <option value="1">Ene</option>
+                  <option value="2">Feb</option>
+                  <option value="3">Mar</option>
+                  <option value="4">Abr</option>
+                  <option value="5">Mayo</option>
+                  <option value="6">Jun</option>
+                  <option value="7" selected="selected">Jul</option>
+                  <option value="8">Ago</option>
+                  <option value="9">Sep</option>
+                  <option value="10">Oct</option>
+                  <option value="11">Nov</option>
+                  <option value="12">Dic</option>
+                </select>
+              </div>
+              <div class="form-item form-item-fecha-nacimiento-day form-type-select form-group">
+                <label class="control-label element-invisible" for="edit-fecha-nacimiento-day">Día </label>
+                <select class="form-control form-select" id="edit-fecha-nacimiento-day" name="fecha_nacimiento[day]">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7" selected="selected">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div>
+              <div class="form-item form-item-fecha-nacimiento-year form-type-select form-group">
+                <label class="control-label element-invisible" for="edit-fecha-nacimiento-year">Año </label>
+                <select class="form-control form-select" id="edit-fecha-nacimiento-year" name="fecha_nacimiento[year]">
+                  <option value="1900">1900</option>
+                  <option value="1901">1901</option>
+                  <option value="1902">1902</option>
+                  <option value="1903">1903</option>
+                  <option value="1904">1904</option>
+                  <option value="1905">1905</option>
+                  <option value="1906">1906</option>
+                  <option value="1907">1907</option>
+                  <option value="1908">1908</option>
+                  <option value="1909">1909</option>
+                  <option value="1910">1910</option>
+                  <option value="1911">1911</option>
+                  <option value="1912">1912</option>
+                  <option value="1913">1913</option>
+                  <option value="1914">1914</option>
+                  <option value="1915">1915</option>
+                  <option value="1916">1916</option>
+                  <option value="1917">1917</option>
+                  <option value="1918">1918</option>
+                  <option value="1919">1919</option>
+                  <option value="1920">1920</option>
+                  <option value="1921">1921</option>
+                  <option value="1922">1922</option>
+                  <option value="1923">1923</option>
+                  <option value="1924">1924</option>
+                  <option value="1925">1925</option>
+                  <option value="1926">1926</option>
+                  <option value="1927">1927</option>
+                  <option value="1928">1928</option>
+                  <option value="1929">1929</option>
+                  <option value="1930">1930</option>
+                  <option value="1931">1931</option>
+                  <option value="1932">1932</option>
+                  <option value="1933">1933</option>
+                  <option value="1934">1934</option>
+                  <option value="1935">1935</option>
+                  <option value="1936">1936</option>
+                  <option value="1937">1937</option>
+                  <option value="1938">1938</option>
+                  <option value="1939">1939</option>
+                  <option value="1940">1940</option>
+                  <option value="1941">1941</option>
+                  <option value="1942">1942</option>
+                  <option value="1943">1943</option>
+                  <option value="1944">1944</option>
+                  <option value="1945">1945</option>
+                  <option value="1946">1946</option>
+                  <option value="1947">1947</option>
+                  <option value="1948">1948</option>
+                  <option value="1949">1949</option>
+                  <option value="1950">1950</option>
+                  <option value="1951">1951</option>
+                  <option value="1952">1952</option>
+                  <option value="1953">1953</option>
+                  <option value="1954">1954</option>
+                  <option value="1955">1955</option>
+                  <option value="1956">1956</option>
+                  <option value="1957">1957</option>
+                  <option value="1958">1958</option>
+                  <option value="1959">1959</option>
+                  <option value="1960">1960</option>
+                  <option value="1961">1961</option>
+                  <option value="1962">1962</option>
+                  <option value="1963">1963</option>
+                  <option value="1964">1964</option>
+                  <option value="1965">1965</option>
+                  <option value="1966">1966</option>
+                  <option value="1967">1967</option>
+                  <option value="1968">1968</option>
+                  <option value="1969">1969</option>
+                  <option value="1970">1970</option>
+                  <option value="1971">1971</option>
+                  <option value="1972">1972</option>
+                  <option value="1973">1973</option>
+                  <option value="1974">1974</option>
+                  <option value="1975">1975</option>
+                  <option value="1976">1976</option>
+                  <option value="1977">1977</option>
+                  <option value="1978">1978</option>
+                  <option value="1979">1979</option>
+                  <option value="1980">1980</option>
+                  <option value="1981">1981</option>
+                  <option value="1982">1982</option>
+                  <option value="1983">1983</option>
+                  <option value="1984">1984</option>
+                  <option value="1985">1985</option>
+                  <option value="1986">1986</option>
+                  <option value="1987">1987</option>
+                  <option value="1988">1988</option>
+                  <option value="1989">1989</option>
+                  <option value="1990">1990</option>
+                  <option value="1991">1991</option>
+                  <option value="1992">1992</option>
+                  <option value="1993">1993</option>
+                  <option value="1994">1994</option>
+                  <option value="1995">1995</option>
+                  <option value="1996">1996</option>
+                  <option value="1997">1997</option>
+                  <option value="1998">1998</option>
+                  <option value="1999">1999</option>
+                  <option value="2000">2000</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016" selected="selected">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                  <option value="2031">2031</option>
+                  <option value="2032">2032</option>
+                  <option value="2033">2033</option>
+                  <option value="2034">2034</option>
+                  <option value="2035">2035</option>
+                  <option value="2036">2036</option>
+                  <option value="2037">2037</option>
+                  <option value="2038">2038</option>
+                  <option value="2039">2039</option>
+                  <option value="2040">2040</option>
+                  <option value="2041">2041</option>
+                  <option value="2042">2042</option>
+                  <option value="2043">2043</option>
+                  <option value="2044">2044</option>
+                  <option value="2045">2045</option>
+                  <option value="2046">2046</option>
+                  <option value="2047">2047</option>
+                  <option value="2048">2048</option>
+                  <option value="2049">2049</option>
+                  <option value="2050">2050</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-5">DNI</label>
+            <input id="input-5" class="form-control" type="number" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-6">Fecha de Nacimiento</label>
+            <input id="input-6" class="form-control" type="date" placeholder="">
+          </div>
+
+          <h2>Formación profesional</h2>
+          <p>Agregá tu formación profesional, idiomas y software que manejás.</p>
+
+          <div class="form-group">
+            <label class="control-label" for="input-7">Nivel de Estudio</label>
+            <select class="form-control" id="input-7">
+              <option value="primeria">Primeria</option>
+              <option value="secundaria">Secundaria</option>
+              <option value="terciario">Terciario</option>
+              <option value="especialización">Especialización</option>
+              <option value="universitario">Universitario</option>
+              <option value="postgrado">Postgrado</option>
+              <option value="maestría">Maestría</option>
+              <option value="mba">MBA</option>
+              <option value="doctorado">Doctorado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-8">Estado</label>
+            <select class="form-control" id="input-8">
+              <option value="completo">Completo</option>
+              <option value="curso">En curso</option>
+              <option value="incompleto">Incompleto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-9">Título obtenido</label>
+            <input id="input-9" class="form-control" type="text" placeholder="">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-8b">Área de Estudio</label>
+            <select class="form-control" id="input-8b">
+              <option value="1">Actuario</option>
+              <option value="2">Acuicultura</option>
+              <option value="3">Adm. Agropecuaria</option>
+              <option value="4">Adm. de Empresas</option>
+              <option value="5">Adm. Y Gestión Pública</option>
+              <option value="6">Agrimensor</option>
+              <option value="7">Analisis de Sistemas</option>
+              <option value="8">Antropologia</option>
+              <option value="9">Arqueología</option>
+              <option value="10">Arquitectura</option>
+              <option value="11">Astronomía</option>
+              <option value="12">Bacteriología</option>
+              <option value="13">Bellas Artes</option>
+              <option value="14">Bibliotecología</option>
+              <option value="15">Biofísica</option>
+              <option value="16">Bioingenieria</option>
+              <option value="17">Biología</option>
+              <option value="18">Bioquímica</option>
+              <option value="19">Cartografía</option>
+              <option value="20">Ceremonial y Protocolo</option>
+              <option value="21">Ciencias de la Educación</option>
+              <option value="22">Ciencias Físicas</option>
+              <option value="23">Ciencias Políticas</option>
+              <option value="24">Comercio Internacional/Exterior</option>
+              <option value="25">Computación</option>
+              <option value="26">Comunicación Audiovisual</option>
+              <option value="27">Comunicación Social</option>
+              <option value="28">Contabilidad/Auditoria</option>
+              <option value="29">Derecho</option>
+              <option value="30">Derecho esp. Administrativo</option>
+              <option value="31">Derecho esp. Ambiental</option>
+              <option value="32">Derecho esp. Civil</option>
+              <option value="33">Derecho esp. Administrativo</option>
+              <option value="34">Derecho esp. Laboral</option>
+              <option value="35">Derecho esp. Penal</option>
+              <option value="36">Derecho esp. Societario</option>
+              <option value="37">Derecho esp. Tributario</option>
+              <option value="38">Dibujo Técnico</option>
+              <option value="39">Diseño de Imagen y Sonido</option>
+              <option value="40">Diseño de Vestuario/Téxtil/Moda</option>
+              <option value="41">Diseño Gráfico</option>
+              <option value="42">Diseño Industrial</option>
+              <option value="43">Diseño Multimedial</option>
+              <option value="44">Diseño Web</option>
+              <option value="45">Ecología</option>
+              <option value="46">Economía</option>
+              <option value="47">Editor</option>
+              <option value="48">Educación</option>
+              <option value="49">Educación Física</option>
+              <option value="50">Enfermeria</option>
+              <option value="51">Enología</option>
+              <option value="52">Escribanía</option>
+              <option value="53">Farmacia</option>
+              <option value="54">Filosofía</option>
+              <option value="55">Finanzas</option>
+              <option value="56">Fisioterapia</option>
+              <option value="57">Fonoaudiología</option>
+              <option value="58">Fotografía</option>
+              <option value="59">Gastronomía/Cocina</option>
+              <option value="60">Geofísica</option>
+              <option value="61">Geografía</option>
+              <option value="62">Geología/Geomensura/Topografía</option>
+              <option value="63">Higiene y Seguridad en el Trabajo</option>
+              <option value="64">Histopatología</option>
+              <option value="65">Historia</option>
+              <option value="66">Hotelería</option>
+              <option value="67">Ing. Aeroespacial</option>
+              <option value="68">Ing. Aeronautica</option>
+              <option value="69">Ing. Agronoma/Agropecuaria</option>
+              <option value="70">Ing. Alimentos</option>
+              <option value="71">Ing. Ambiental</option>
+              <option value="72">Ing. Civil</option>
+              <option value="73">Ing. Electrica</option>
+              <option value="74">Ing. Electromecánica</option>
+              <option value="75">Ing. Electrónica</option>
+              <option value="76">Ing. en Minería</option>
+              <option value="77">Ing. Forestal</option>
+              <option value="78">Ing. Hidraulica</option>
+              <option value="79">Ing. Industrial</option>
+              <option value="80">Ing. Informática/Sistemas</option>
+              <option value="81">Ing. Matematica</option>
+              <option value="82">Ing. Materiales</option>
+              <option value="83">Ing. Mecánica/Metalurgica</option>
+              <option value="84">Ing. Mecatrónica</option>
+              <option value="85">Ing. Naval</option>
+              <option value="86">Ing. Nuclear</option>
+              <option value="87">Ing. Pesquera/Cultivos Marinos</option>
+              <option value="88">Ing. Petroleo</option>
+              <option value="89">Ing. Quimica</option>
+              <option value="90">Ing. Recursos Hidricos</option>
+              <option value="91">Ing. Sonido</option>
+              <option value="92">Ing. Telecomunicaciones</option>
+              <option value="93">Ing. Textil</option>
+              <option value="94">Intérprete</option>
+              <option value="95">Kinesiología</option>
+              <option value="96">Letras</option>
+              <option value="97">Literatura</option>
+              <option value="98">Marketing/Comercialización</option>
+              <option value="99">Martillero Público/Tasador/Corredor</option>
+              <option value="100">Matemáticas</option>
+              <option value="101">Medicina</option>
+              <option value="102">Medio Ambiente</option>
+              <option value="103">Microbiología</option>
+              <option value="104">Música</option>
+              <option value="105">Negociación</option>
+              <option value="106">Nutrición</option>
+              <option value="107">Oceanografía</option>
+              <option value="108">Odontología</option>
+              <option value="109">Organización de Eventos</option>
+              <option value="110">Organización Industrial</option>
+              <option value="111">Paisajismo</option>
+              <option value="112">Periodismo</option>
+              <option value="113">Programación</option>
+              <option value="114">Psicología</option>
+              <option value="115">Psicopedagogía</option>
+              <option value="116">Publicidad</option>
+              <option value="117">Química</option>
+              <option value="118">Químico Farmaceútico</option>
+              <option value="119">Recursos Humanos/Relaciones Laborales</option>
+              <option value="120">Redes</option>
+              <option value="121">Relaciones Institucionales</option>
+              <option value="122">Relaciones Internacionales</option>
+              <option value="123">Relaciones Públicas</option>
+              <option value="124">Secretariado</option>
+              <option value="125">Seguridad</option>
+              <option value="126">Seguridad Industrial</option>
+              <option value="127">Sistemas de Información</option>
+              <option value="128">Sistemas/Tecnología</option>
+              <option value="129">Sociología</option>
+              <option value="130">Tecn. Electricidad</option>
+              <option value="131">Tecn. Electronica</option>
+              <option value="132">Tecn. Mecanica</option>
+              <option value="133">Tecn. Optico</option>
+              <option value="134">Tecn. Telecomunicaciones</option>
+              <option value="135">Técnico</option>
+              <option value="136">Tecnología de Alimentos</option>
+              <option value="137">Terapia Ocupacional</option>
+              <option value="138">Trabajo Social</option>
+              <option value="139">Traducción</option>
+              <option value="140">Transporte</option>
+              <option value="141">Turismo</option>
+              <option value="142">Veterinaria</option>
+            </select>
+          </div>
+
+          <h2>Perfil laboral</h2>
+          <p>Agregá tu perfil profesional y los deseos que tenés para tu postulación.</p>
+
+          <div class="form-group">
+            <label class="control-label" for="input-10">Años de experiencia laboral</label>
+            <select class="form-control" id="input-10">
+              <option value="0">0 - 1 año</option>
+              <option value="1">2 - 3 años</option>
+              <option value="2">4 - 8 años</option>
+              <option value="3">9 - 15 años</option>
+              <option value="4">16 - 30 años</option>
+              <option value="5">más de 30 años</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="input-11">Tipos de trabajo que te interesan</label>
+            <input id="input-11" class="form-control" type="text" placeholder="">
+          </div>
+
+          <div class="form-group ">
+            <label class="control-label">¿Trabajaste en el sector público?</label>
+            <div class="btn-group btn-group-justified" data-toggle="buttons">
+              <label class="btn btn-default ">
+                <input type="radio" name="trabajo_publico" value="no"> No trabajé
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="trabajo_publico" value="si" data-toogle-collapse="#collapse-sector-publico"> Si trabajé
+              </label>
+            </div>
+          </div>
+
+          <div class="collapse clearfix" id="collapse-sector-publico">
+            <div class="form-group">
+              <label class="control-label" for="input-12">¿En donde?</label>
+              <input id="input-12" class="form-control" type="text" placeholder="">
+            </div>
+          </div>
+
+
+
+          <div class="form-wrapper form-group" id="edit-columna-centro3">
+            <div id="edit-tipos-de-trabajo" class="form-wrapper form-group">
+              <h4>Trabajos que te interesan</h4>
+            </div>
+
+            <div class="collapsible collapsed form-wrapper collapse-processed" id="edit-postulaciones-preferenciales-fieldset">
+              <a href="javacript: return fasle;" class="btn btn-link" data-toggle="collapse" data-target="#edit-postulaciones-preferenciales-fieldset > .collapse">
+                Postulaciones Preferenciales según temáticas de interés
+              </a>
+              <fieldset class="collapse">
+                <div class="form-item form-item-postulaciones-preferenciales form-type-checkboxes form-group">
+                  <p class="padding-20">Selecciona según cada Ministerio la temática o especialidad, en que preferentemente deseas postularse para conformar su equipo de gestión. Podes elegir hasta 3 opciones </p>
+                  <div id="edit-postulaciones-preferenciales" class="form-checkboxes">
+                    <div class="form-item form-item-postulaciones-preferenciales-minsiterio-de-agroindustria form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-minsiterio-de-agroindustria">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-minsiterio-de-agroindustria" name="postulaciones_preferenciales[minsiterio_de_agroindustria]" value="minsiterio_de_agroindustria" class="form-checkbox">Ministerio de Agroindustria
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable" name="postulaciones_preferenciales[ministerio_de_ambiente_y_desarrollo_sustentable]" value="ministerio_de_ambiente_y_desarrollo_sustentable" class="form-checkbox">Ministerio de Ambiente y Desarrollo Sustentable
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovación form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovacin">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovacin" name="postulaciones_preferenciales[ministerio_de_ciencia_tecnologia_e_innovación]" value="ministerio_de_ciencia_tecnologia_e_innovación" class="form-checkbox">Ministerio de Ciencia, Tecnología e Innovación
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-miniterio-de-comunicaciones form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-miniterio-de-comunicaciones">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-miniterio-de-comunicaciones" name="postulaciones_preferenciales[miniterio_de_comunicaciones]" value="miniterio_de_comunicaciones" class="form-checkbox">Ministerio de Couminaciónes
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-minsitrerio-de-cultura form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-minsitrerio-de-cultura">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-minsitrerio-de-cultura" name="postulaciones_preferenciales[minsitrerio_de_cultura]" value="minsitrerio_de_cultura" class="form-checkbox">Ministerio de Cultura
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-defensa form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-defensa">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-defensa" name="postulaciones_preferenciales[ministerio_de_defensa]" value="ministerio_de_defensa" class="form-checkbox">Ministerio de Defensa
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-desarrollo-social form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-desarrollo-social">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-desarrollo-social" name="postulaciones_preferenciales[ministerio_de_desarrollo_social]" value="ministerio_de_desarrollo_social" class="form-checkbox">Ministerio de Desarrollo Social
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-educacion-y-deporte form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-educacion-y-deporte">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-educacion-y-deporte" name="postulaciones_preferenciales[ministerio_de_educacion_y_deporte]" value="ministerio_de_educacion_y_deporte" class="form-checkbox">Ministerio de Educación y Deporte
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-energia-y-mineria form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-energia-y-mineria">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-energia-y-mineria" name="postulaciones_preferenciales[ministerio_de_energia_y_mineria]" value="ministerio_de_energia_y_mineria" class="form-checkbox">Ministerio de Energía y Minería
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas" name="postulaciones_preferenciales[ministerio_de_hacienda_y_finanazas_publicas]" value="ministerio_de_hacienda_y_finanazas_publicas" class="form-checkbox">Ministerio de Hacienda y Finanzas Públicas
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos" name="postulaciones_preferenciales[ministerio_de_justicia_y_derechos_humanos]" value="ministerio_de_justicia_y_derechos_humanos" class="form-checkbox">Ministerio de Justicia y Derechos Humanos
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-modernizacion form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-modernizacion">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-modernizacion" name="postulaciones_preferenciales[ministerio_de_modernizacion]" value="ministerio_de_modernizacion" class="form-checkbox">Ministerio de Modernización
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-produccion form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-produccion">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-produccion" name="postulaciones_preferenciales[ministerio_de_produccion]" value="ministerio_de_produccion" class="form-checkbox">Ministerio de Producción
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto" name="postulaciones_preferenciales[ministerio_de_relaciones_exteriores_y_culto]" value="ministerio_de_relaciones_exteriores_y_culto" class="form-checkbox">Ministerio de Relaciones Exteriores  y Culto
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-salud form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-salud">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-salud" name="postulaciones_preferenciales[ministerio_de_salud]" value="ministerio_de_salud" class="form-checkbox">Ministerio de Salud
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de" name="postulaciones_preferenciales[ministerio_de]" value="ministerio_de" class="form-checkbox">Ministerio de Seguridad
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social" name="postulaciones_preferenciales[ministerio_de_trabajo_empleo_y_seguridad_social]" value="ministerio_de_trabajo_empleo_y_seguridad_social" class="form-checkbox">Ministerio de Trabajo, Empleo y Seguridad Social
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-transporte form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-transporte">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-transporte" name="postulaciones_preferenciales[ministerio_de_transporte]" value="ministerio_de_transporte" class="form-checkbox">Ministerio de Transporte
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-de-turismo form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-turismo">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-turismo" name="postulaciones_preferenciales[ministerio_de_turismo]" value="ministerio_de_turismo" class="form-checkbox">Ministerio de Turísmo
+                      </label>
+                    </div>
+                    <div class="form-item form-item-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas form-type-checkbox checkbox">
+                      <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas">
+                        <input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas" name="postulaciones_preferenciales[ministerio_del_interior_vivienda_y_obras_publicas]" value="ministerio_del_interior_vivienda_y_obras_publicas" class="form-checkbox">Ministerio del Interior, Vivienda y Obras Públicas
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="collapsible collapsed form-wrapper collapse-processed" id="edit-postulaciones-comunes-a-apn">
+              <a href="javacript: return fasle;" class="btn btn-link" data-toggle="collapse" data-target="#edit-postulaciones-comunes-a-apn > .collapse">
+                Postulaciones Preferenciales según roles comunes a toda la APN</a>
+              </legend>
+              <fieldset class="collapse">
+                <div class="">
+                  <div class="form-item form-item-roles-asuntos-legales form-type-checkboxes form-group">
+                    <p class="padding-20">En la Adminsitración Pública hay roles, funciones y tareas comunés a todas sus áreas que son fundamentales para su funicionamiento interno. Sin ser excluyente de lo anteriormente cargado, y por el contrario complementario,te invitamos a seleccionar aquellas más acordes idoneidad y experiencia profesional.</p>
+                    <label class="control-label" for="edit-roles-asuntos-legales">Roles del Área de Asuntos Legales</label>
+                    <div id="edit-roles-asuntos-legales" class="form-checkboxes">
+                      <div class="form-item form-item-roles-asuntos-legales-asuntos-juridicos form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-asuntos-legales-asuntos-juridicos">
+                          <input type="checkbox" id="edit-roles-asuntos-legales-asuntos-juridicos" name="roles_asuntos_legales[asuntos_juridicos]" value="asuntos_juridicos" class="form-checkbox">Asuntos Jurídicos
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-asuntos-legales-asuntos-judiciales form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-asuntos-legales-asuntos-judiciales">
+                          <input type="checkbox" id="edit-roles-asuntos-legales-asuntos-judiciales" name="roles_asuntos_legales[asuntos_judiciales]" value="asuntos_judiciales" class="form-checkbox">Asuntos Judiciales
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-del-area-administrativa-contable form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-del-area-administrativa-contable">Roles del Área Administrativa Contable
+                    </label>
+                    <div id="edit-roles-del-area-administrativa-contable" class="form-checkboxes">
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-finanzas form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-finanzas">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-finanzas" name="roles_del_area_administrativa_contable[finanzas]" value="finanzas" class="form-checkbox">Finanzas
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-presupuesto form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-presupuesto">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-presupuesto" name="roles_del_area_administrativa_contable[presupuesto]" value="presupuesto" class="form-checkbox">Presupuesto
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-contable form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-contable">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-contable" name="roles_del_area_administrativa_contable[contable]" value="contable" class="form-checkbox">Contable
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-tesoreria form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-tesoreria">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-tesoreria" name="roles_del_area_administrativa_contable[tesoreria]" value="tesoreria" class="form-checkbox">Tesorería
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-planeamiento-y-control-de-gestion form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-planeamiento-y-control-de-gestion">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-planeamiento-y-control-de-gestion" name="roles_del_area_administrativa_contable[planeamiento_y_control_de_gestion]" value="planeamiento_y_control_de_gestion" class="form-checkbox">Planeamiento y Control de Gestión
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-del-area-administrativa-contable-compras-y-contrataciones form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-del-area-administrativa-contable-compras-y-contrataciones">
+                          <input type="checkbox" id="edit-roles-del-area-administrativa-contable-compras-y-contrataciones" name="roles_del_area_administrativa_contable[compras_y_contrataciones]" value="compras_y_contrataciones" class="form-checkbox">Compras y Contrataciones
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-institucionales-y-comunicacion form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-institucionales-y-comunicacion">Roles del Área de Institucionales y Comunicación
+                    </label>
+                    <div id="edit-roles-institucionales-y-comunicacion" class="form-checkboxes">
+                      <div class="form-item form-item-roles-institucionales-y-comunicacion-eventos-ceremonial-y-protocolos form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-institucionales-y-comunicacion-eventos-ceremonial-y-protocolos">
+                          <input type="checkbox" id="edit-roles-institucionales-y-comunicacion-eventos-ceremonial-y-protocolos" name="roles_institucionales_y_comunicacion[eventos_ceremonial_y_protocolos]" value="eventos_ceremonial_y_protocolos" class="form-checkbox">Eventos,Ceremonial y Protocólo
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-institucionales-y-comunicacion-comunicacion-interna form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-institucionales-y-comunicacion-comunicacion-interna">
+                          <input type="checkbox" id="edit-roles-institucionales-y-comunicacion-comunicacion-interna" name="roles_institucionales_y_comunicacion[comunicacion_interna]" value="comunicacion_interna" class="form-checkbox">Comunicación Interna
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-institucionales-y-comunicacion-comunicacion-externa form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-institucionales-y-comunicacion-comunicacion-externa">
+                          <input type="checkbox" id="edit-roles-institucionales-y-comunicacion-comunicacion-externa" name="roles_institucionales_y_comunicacion[comunicacion_externa]" value="comunicacion_externa" class="form-checkbox">Comunicación Externa
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-institucionales-y-comunicacion-cooperacion-internacional-y-convenios form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-institucionales-y-comunicacion-cooperacion-internacional-y-convenios">
+                          <input type="checkbox" id="edit-roles-institucionales-y-comunicacion-cooperacion-internacional-y-convenios" name="roles_institucionales_y_comunicacion[cooperacion_internacional_y_convenios]" value="cooperacion_internacional_y_convenios" class="form-checkbox">Cooperación Internacional y Convenios
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-recursos-humanos form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-recursos-humanos">Roles del Área de Recursos Humanos
+                    </label>
+                    <div id="edit-roles-recursos-humanos" class="form-checkboxes">
+                      <div class="form-item form-item-roles-recursos-humanos-administracion-personal form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-recursos-humanos-administracion-personal">
+                          <input type="checkbox" id="edit-roles-recursos-humanos-administracion-personal" name="roles_recursos_humanos[administracion_personal]" value="administracion_personal" class="form-checkbox">Administración de Personal
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-recursos-humanos-capacitacion-y-desarrollo form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-recursos-humanos-capacitacion-y-desarrollo">
+                          <input type="checkbox" id="edit-roles-recursos-humanos-capacitacion-y-desarrollo" name="roles_recursos_humanos[capacitacion_y_desarrollo]" value="capacitacion_y_desarrollo" class="form-checkbox">Capacitación y Desarrollo
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-recursos-humanos-seleccion-de-personal form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-recursos-humanos-seleccion-de-personal">
+                          <input type="checkbox" id="edit-roles-recursos-humanos-seleccion-de-personal" name="roles_recursos_humanos[seleccion_de_personal]" value="seleccion_de_personal" class="form-checkbox">Selección de Personal y Evaluación de Desempeño
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-de-secretarias-recepcionistas form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-de-secretarias-recepcionistas">Roles de Secretarias / Recepcionistas
+                    </label>
+                    <div id="edit-roles-de-secretarias-recepcionistas" class="form-checkboxes">
+                      <div class="form-item form-item-roles-de-secretarias-recepcionistas-secretaria-privada form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-de-secretarias-recepcionistas-secretaria-privada">
+                          <input type="checkbox" id="edit-roles-de-secretarias-recepcionistas-secretaria-privada" name="roles_de_secretarias_recepcionistas[secretaria_privada]" value="secretaria_privada" class="form-checkbox">Secretaría Privada
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-de-secretarias-recepcionistas-recepcionistas form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-de-secretarias-recepcionistas-recepcionistas">
+                          <input type="checkbox" id="edit-roles-de-secretarias-recepcionistas-recepcionistas" name="roles_de_secretarias_recepcionistas[recepcionistas]" value="recepcionistas" class="form-checkbox">Recepcionistas
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-de-secretarias-recepcionistas-telefonista form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-de-secretarias-recepcionistas-telefonista">
+                          <input type="checkbox" id="edit-roles-de-secretarias-recepcionistas-telefonista" name="roles_de_secretarias_recepcionistas[telefonista]" value="telefonista" class="form-checkbox">Telefonista
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-servicios-generales form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-servicios-generales">Roles del Área de Servicios Generales
+                    </label>
+                    <div id="edit-roles-servicios-generales" class="form-checkboxes">
+                      <div class="form-item form-item-roles-servicios-generales-mantenimiento form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-mantenimiento">
+                          <input type="checkbox" id="edit-roles-servicios-generales-mantenimiento" name="roles_servicios_generales[mantenimiento]" value="mantenimiento" class="form-checkbox">Mantenimiento
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-patrimonio form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-patrimonio">
+                          <input type="checkbox" id="edit-roles-servicios-generales-patrimonio" name="roles_servicios_generales[patrimonio]" value="patrimonio" class="form-checkbox">Patrimonio
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-mesa-de-entradas form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-mesa-de-entradas">
+                          <input type="checkbox" id="edit-roles-servicios-generales-mesa-de-entradas" name="roles_servicios_generales[mesa_de_entradas]" value="mesa_de_entradas" class="form-checkbox">Mesa de Entradas
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-cedeteria form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-cedeteria">
+                          <input type="checkbox" id="edit-roles-servicios-generales-cedeteria" name="roles_servicios_generales[cedeteria]" value="cedeteria" class="form-checkbox">Cadeteria
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-gestion-edilicia form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-gestion-edilicia">
+                          <input type="checkbox" id="edit-roles-servicios-generales-gestion-edilicia" name="roles_servicios_generales[gestion_edilicia]" value="gestion_edilicia" class="form-checkbox">Gestión Edilicia
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-seguridad form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-seguridad">
+                          <input type="checkbox" id="edit-roles-servicios-generales-seguridad" name="roles_servicios_generales[seguridad]" value="seguridad" class="form-checkbox">Seguridad
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-servicios-generales-chofer form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-servicios-generales-chofer">
+                          <input type="checkbox" id="edit-roles-servicios-generales-chofer" name="roles_servicios_generales[chofer]" value="chofer" class="form-checkbox">Chofer
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-sistemas form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-sistemas">Roles del Área Sistemas
+                    </label>
+                    <div id="edit-roles-sistemas" class="form-checkboxes">
+                      <div class="form-item form-item-roles-sistemas-administracion-base-de-datos form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-administracion-base-de-datos">
+                          <input type="checkbox" id="edit-roles-sistemas-administracion-base-de-datos" name="roles_sistemas[administracion_base_de_datos]" value="administracion_base_de_datos" class="form-checkbox">Administración Base de Datos
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-analisis-funcional form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-analisis-funcional">
+                          <input type="checkbox" id="edit-roles-sistemas-analisis-funcional" name="roles_sistemas[analisis_funcional]" value="analisis_funcional" class="form-checkbox">Análisis Funcional
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-data-warehousing form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-data-warehousing">
+                          <input type="checkbox" id="edit-roles-sistemas-data-warehousing" name="roles_sistemas[data_warehousing]" value="data_warehousing" class="form-checkbox">Data Warehousing
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-insfraestructura form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-insfraestructura">
+                          <input type="checkbox" id="edit-roles-sistemas-insfraestructura" name="roles_sistemas[insfraestructura]" value="insfraestructura" class="form-checkbox">Infraestructura
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-programacion form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-programacion">
+                          <input type="checkbox" id="edit-roles-sistemas-programacion" name="roles_sistemas[programacion]" value="programacion" class="form-checkbox">Programación
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-redes form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-redes">
+                          <input type="checkbox" id="edit-roles-sistemas-redes" name="roles_sistemas[redes]" value="redes" class="form-checkbox">Redes
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-seguridad-informatica form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-seguridad-informatica">
+                          <input type="checkbox" id="edit-roles-sistemas-seguridad-informatica" name="roles_sistemas[seguridad_informatica]" value="seguridad_informatica" class="form-checkbox">Seguridad Informática
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-soporte-tecnico form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-soporte-tecnico">
+                          <input type="checkbox" id="edit-roles-sistemas-soporte-tecnico" name="roles_sistemas[soporte_tecnico]" value="soporte_tecnico" class="form-checkbox">Soporte Técnico
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-testing form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-testing">
+                          <input type="checkbox" id="edit-roles-sistemas-testing" name="roles_sistemas[testing]" value="testing" class="form-checkbox">Testing/QA/QC
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-sistemas-capacitador-informatico form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-sistemas-capacitador-informatico">
+                          <input type="checkbox" id="edit-roles-sistemas-capacitador-informatico" name="roles_sistemas[capacitador_informatico]" value="capacitador_informatico" class="form-checkbox">Capacitador Informático (e-learning)
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-item form-item-roles-auditoria form-type-checkboxes form-group">
+                    <label class="control-label" for="edit-roles-auditoria">Roles del Área de Auditoria
+                    </label>
+                    <div id="edit-roles-auditoria" class="form-checkboxes">
+                      <div class="form-item form-item-roles-auditoria-auditoria-contable form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-auditoria-auditoria-contable">
+                          <input type="checkbox" id="edit-roles-auditoria-auditoria-contable" name="roles_auditoria[auditoria_contable]" value="auditoria_contable" class="form-checkbox">Auditoria Contable
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-auditoria-auditoria-legal form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-auditoria-auditoria-legal">
+                          <input type="checkbox" id="edit-roles-auditoria-auditoria-legal" name="roles_auditoria[auditoria_legal]" value="auditoria_legal" class="form-checkbox">Auditoria Legal
+                        </label>
+                      </div>
+                      <div class="form-item form-item-roles-auditoria-auditoria-de-sistemas form-type-checkbox checkbox">
+                        <label class="control-label" for="edit-roles-auditoria-auditoria-de-sistemas">
+                          <input type="checkbox" id="edit-roles-auditoria-auditoria-de-sistemas" name="roles_auditoria[auditoria_de_sistemas]" value="auditoria_de_sistemas" class="form-checkbox">Auditoria de Sistemas
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+          <fieldset class="collapsible collapsed panel panel-default form-wrapper collapse-processed" id="edit-postulaciones-preferenciales-fieldset">
+                    <legend class="panel-heading">
+                <a href="#" class="panel-title fieldset-legend" data-toggle="collapse" data-target="#edit-postulaciones-preferenciales-fieldset > .collapse"><span class="fieldset-legend-prefix element-invisible">Mostrar</span>Postulaciones Preferenciales según temáticas de interés</a>
+              </legend>
+                    <div class="panel-collapse collapse fade">
+              <div class="panel-body">
+                  <div class="form-item form-item-postulaciones-preferenciales form-type-checkboxes form-group"> <label class="control-label" for="edit-postulaciones-preferenciales">Selecciona según cada Ministerio la temática o especialidad, en que preferentemente deseas postularse para conformar su equipo de gestión.
+          Podes elegir hasta 3 opciones </label>
+          <div id="edit-postulaciones-preferenciales" class="form-checkboxes"><div class="form-item form-item-postulaciones-preferenciales-minsiterio-de-agroindustria form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-minsiterio-de-agroindustria"><input type="checkbox" id="edit-postulaciones-preferenciales-minsiterio-de-agroindustria" name="postulaciones_preferenciales[minsiterio_de_agroindustria]" value="minsiterio_de_agroindustria" class="form-checkbox">Ministerio de Agroindustria </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-ambiente-y-desarrollo-sustentable" name="postulaciones_preferenciales[ministerio_de_ambiente_y_desarrollo_sustentable]" value="ministerio_de_ambiente_y_desarrollo_sustentable" class="form-checkbox">Ministerio de Ambiente y Desarrollo Sustentable </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovación form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovacin"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-ciencia-tecnologia-e-innovacin" name="postulaciones_preferenciales[ministerio_de_ciencia_tecnologia_e_innovación]" value="ministerio_de_ciencia_tecnologia_e_innovación" class="form-checkbox">Ministerio de Ciencia, Tecnología e Innovación </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-miniterio-de-comunicaciones form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-miniterio-de-comunicaciones"><input type="checkbox" id="edit-postulaciones-preferenciales-miniterio-de-comunicaciones" name="postulaciones_preferenciales[miniterio_de_comunicaciones]" value="miniterio_de_comunicaciones" class="form-checkbox">Ministerio de Couminaciónes </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-minsitrerio-de-cultura form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-minsitrerio-de-cultura"><input type="checkbox" id="edit-postulaciones-preferenciales-minsitrerio-de-cultura" name="postulaciones_preferenciales[minsitrerio_de_cultura]" value="minsitrerio_de_cultura" class="form-checkbox">Ministerio de Cultura </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-defensa form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-defensa"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-defensa" name="postulaciones_preferenciales[ministerio_de_defensa]" value="ministerio_de_defensa" class="form-checkbox">Ministerio de Defensa </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-desarrollo-social form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-desarrollo-social"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-desarrollo-social" name="postulaciones_preferenciales[ministerio_de_desarrollo_social]" value="ministerio_de_desarrollo_social" class="form-checkbox">Ministerio de Desarrollo Social </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-educacion-y-deporte form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-educacion-y-deporte"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-educacion-y-deporte" name="postulaciones_preferenciales[ministerio_de_educacion_y_deporte]" value="ministerio_de_educacion_y_deporte" class="form-checkbox">Ministerio de Educación y Deporte </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-energia-y-mineria form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-energia-y-mineria"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-energia-y-mineria" name="postulaciones_preferenciales[ministerio_de_energia_y_mineria]" value="ministerio_de_energia_y_mineria" class="form-checkbox">Ministerio de Energía y Minería </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-hacienda-y-finanazas-publicas" name="postulaciones_preferenciales[ministerio_de_hacienda_y_finanazas_publicas]" value="ministerio_de_hacienda_y_finanazas_publicas" class="form-checkbox">Ministerio de Hacienda y Finanzas Públicas </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-justicia-y-derechos-humanos" name="postulaciones_preferenciales[ministerio_de_justicia_y_derechos_humanos]" value="ministerio_de_justicia_y_derechos_humanos" class="form-checkbox">Ministerio de Justicia y Derechos Humanos </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-modernizacion form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-modernizacion"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-modernizacion" name="postulaciones_preferenciales[ministerio_de_modernizacion]" value="ministerio_de_modernizacion" class="form-checkbox">Ministerio de Modernización </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-produccion form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-produccion"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-produccion" name="postulaciones_preferenciales[ministerio_de_produccion]" value="ministerio_de_produccion" class="form-checkbox">Ministerio de Producción </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-relaciones-exteriores-y-culto" name="postulaciones_preferenciales[ministerio_de_relaciones_exteriores_y_culto]" value="ministerio_de_relaciones_exteriores_y_culto" class="form-checkbox">Ministerio de Relaciones Exteriores  y Culto </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-salud form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-salud"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-salud" name="postulaciones_preferenciales[ministerio_de_salud]" value="ministerio_de_salud" class="form-checkbox">Ministerio de Salud </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de" name="postulaciones_preferenciales[ministerio_de]" value="ministerio_de" class="form-checkbox">Ministerio de Seguridad </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-trabajo-empleo-y-seguridad-social" name="postulaciones_preferenciales[ministerio_de_trabajo_empleo_y_seguridad_social]" value="ministerio_de_trabajo_empleo_y_seguridad_social" class="form-checkbox">Ministerio de Trabajo, Empleo y Seguridad Social </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-transporte form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-transporte"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-transporte" name="postulaciones_preferenciales[ministerio_de_transporte]" value="ministerio_de_transporte" class="form-checkbox">Ministerio de Transporte </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-de-turismo form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-de-turismo"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-de-turismo" name="postulaciones_preferenciales[ministerio_de_turismo]" value="ministerio_de_turismo" class="form-checkbox">Ministerio de Turísmo </label>
+          </div><div class="form-item form-item-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas form-type-checkbox checkbox"> <label class="control-label" for="edit-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas"><input type="checkbox" id="edit-postulaciones-preferenciales-ministerio-del-interior-vivienda-y-obras-publicas" name="postulaciones_preferenciales[ministerio_del_interior_vivienda_y_obras_publicas]" value="ministerio_del_interior_vivienda_y_obras_publicas" class="form-checkbox">Ministerio del Interior, Vivienda y Obras Públicas </label>
+          </div></div></div>  </div>
+              </div>
+            <span class="summary"></span></fieldset>            
+
+
+
+          <h2>Curriculum Vitae</h2>
+          <p>Si querés podés agregar en archivo adjunto tu currículum vitae para completar datos que consideres no están contemplados en esta postulación.</p>
+
+          <div class="form-group hidden">
+            <label class="control-label" for="exampleInputFile">Adjuntar archivo:</label><br>
+            <label for="exampleInputFile" class="btn btn-default"><i class="fa fa-upload"></i> &nbsp; Subir el archivo</label>
+            <input type="file" id="exampleInputFile" class="inputfile">
+          </div>
+
+          <div style="display: block;">
+            <div id="edit-response-document-ajax-wrapper">
+              <div class="form-item form-item-response-document form-type-managed-file form-group">
+                <label class="control-label" for="edit-response-document-upload">Adjuntar archivo: </label>
+                <div id="edit-response-document-upload" class="form-managed-file input-group">
+                  <input type="hidden" name="response_document[fid]" value="0">
+                  <input class="form-control form-file" type="file" id="edit-response-document-upload--2" name="files[response_document]" size="22">
+                  <span class="input-group-btn">
+                    <button class="btn-primary btn form-submit ajax-processed" type="submit" id="edit-response-document-upload-button--2" name="response_document_upload_button" value="Subir al servidor">Subir al servidor</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <span class="ajax-new-content" style="display: inline;">
+            </span>
+          </div>
+
+          <div class="row padding-40 margin-40">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+              <button type="submit" class="btn btn-success btn-lg btn-block">Enviar mis datos</button>
+            </div>
+          </div>
+
+          <script>
+            $('[data-toogle-collapse]').each(function(key,item){
+              var value = $(item).val();
+              var target = $(item).data('toogle-collapse');
+              $('input[name='+ $(item).attr('name') +']').on('change', function(){
+                if($(this).val() == value){
+                  $(target).collapse('show');
+                }else{
+                  $(target).collapse('hide');
+                }
+              });
+            });
+          </script>
+
+        </form>
+      </div>
+    </article>
+  </section>
+</div>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

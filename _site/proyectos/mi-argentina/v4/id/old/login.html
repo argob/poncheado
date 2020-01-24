@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/proyectos/mi-argentina/v5/img/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/v4/id/old/login.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  
+  <link href="/css/poncho.min.css" rel="stylesheet">
+  <link href="/css/icono-arg.css" rel="stylesheet">
+ <link href="/css/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="body-login">
+    <!-- logo y boton mi cuenta -->
+<div class="navbar navbar-top " role="navigation"  aria-labelledby="Mi Argentina">
+  <div class="nav navbar-nav navbar-header">
+    <a href="../inicio/inicio.html" class="">
+      <img alt="Mi Argentina" title="Mi Argentina" src="/proyectos/argentina/img/miargentina.svg">
+      <h1 class="sr-only" aria-hidden="true">Mi Argentina</h1>
+    </a>
+  </div>
+</div>
+
+    <main role="main">
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+<section class="container-fluid p-t-0">
+  <div class="row bg-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 m-b-2 m-t-2">
+          <form method="get" action="">
+            <fieldset>
+              <legend>
+                <h1 class="hidden">Bienvenido</h1>
+                <h2>¿No tenés cuenta?</h2>
+              </legend>
+              <a href="" class="btn btn-primary">Creá tu cuenta de mi argentina</a>
+            </fieldset>
+            
+            
+          </form>
+          
+        </div>
+      </div>
+       
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 m-t-2">
+          <form method="get" action="">
+            <fieldset>
+                <legend>
+                  <h2>Ingresá a tu cuenta</h2>
+                </legend>
+                <div class="row">
+                  <div class="col-xs-12 form-group item-form">
+                    <label for="cuil">CUIL</label>
+                    <input type="number" class="form-control" id="cuil" required="" aria-required="true">
+                    <p class="help-block error hidden">Ingresá tu CUIL <br>El CUIL tiene un formato no válido</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <label for="password_confirmacion">Contraseña</label>
+                    <div class="form-group item-form">
+                      <input id="password_confirmacion" name="password_confirmacion" type="password" class="form-control" maxlength="15" ">
+                      <span  class="fa fa-fw fa-eye-slash input-icon" id="eye-password" onclick="viewpassword()"></span>
+                      <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-8">
+                      <div class="g-recaptcha" data-sitekey="6LfpXVYUAAAAAM2xFK4e5nCKZsW4yc_3MW7gu4tV"></div>
+                  </div>
+                </div>
+                <div class="row m-t-2">
+                  <div class="col-md-8">
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                  </div>
+                </div>
+            </fieldset>
+          </form>
+          <p class="m-t-2 m-b-1">O ingresá con tu cuenta de Facebook o Google<span class="sr-only">Facebook o Google</span></p>
+          <div class="m-b-0">
+            <a href="#" class="btn btn-link m-r-1"><i class="fa fa-facebook"></i> &nbsp; Facebook</a>
+            <a href="#" class="btn btn-link text-danger"><i class="fa fa-google"></i> &nbsp; Google</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3 m-b-3">
+          <hr>
+          <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        </div>
+      </div>
+      
+      
+    </div> 
+  </div>
+</section>
+
+<script>
+  function viewpassword(){
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      document.getElementById('eye-password').classList.remove("fa-eye-slash")
+      document.getElementById('eye-password').classList.add("fa-eye")
+    }else{
+      clave.type = 'password'
+      document.getElementById('eye-password').classList.remove("fa-eye")
+      document.getElementById('eye-password').classList.add("fa-eye-slash")
+    }
+    
+  }
+</script>
+
+    </main>
+     <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-xs-12" style="">
+                        <a href="#">Términos y condiciones</a>
+                    </div>
+                </div>
+                <div class="row m-t-2">
+                    <div class="col-sm-6">
+                        <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="/proyectos/mi-argentina/v4/img/logo-ssgd.svg">
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="image-responsive" alt="Presidencia de la Nación" src="/proyectos/mi-argentina/v4/img/logo-presidencia.svg">
+                    </div>
+                </div>
+                
+            </div> 
+            
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

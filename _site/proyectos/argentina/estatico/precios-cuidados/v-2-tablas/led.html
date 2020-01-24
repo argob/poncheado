@@ -1,0 +1,190 @@
+
+<style type="text/css">
+#map {
+ height: 600px;
+ width: 100%;
+ }
+
+ .item{
+ height: 310px;
+ }
+
+ .pie{
+ position: absolute;
+ bottom: 55px;
+ width: 90%;
+ }
+
+ .izq{
+ height: 30px;
+ padding-top: 6px;
+ }
+
+ .izq span{
+ font-size: 13px;
+ vertical-align: middle;
+ height: 30px;
+ }
+ p{
+ font-weight: 400;
+ }
+ .categoria-lf{
+ text-transform: lowercase;
+ font-size: 15px;
+ }
+ .categoria-lf::first-letter{
+
+ text-transform: uppercase; 
+ }
+ .th-min{
+ min-width: 250px;
+ }
+
+ .logo{
+ max-width: 380px!important;
+ }
+
+  .ean-btn, .ean-btn:hover, .ean-btn:visited, .ean-btn:focus, .ean-btn:active {
+          border: 0px!important;
+          color: #333333;
+          background-color: #F9F9F9 !important;
+      }
+      
+      .popover {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+      .popover-content {
+      height: 100px;
+      overflow: auto;
+    }
+
+</style>
+<div class="container"><div><h3 class="text-center m-y-3">Buscá los productos del nuevo rubro lámparas LED</h3></div><div id="listadoProducto"><div class="row"><div class="col-md-3"><div class="form-group"><label for=""><strong>Zona</strong></label> <select class="form-control" id="zonaId"><option data-zona="amba" selected="selected" value="amba">AMBA</option><option data-zona="pba" value="pba">Buenos Aires</option><option data-zona="centrocuyolitoral" value="centrocuyolitoral">Centro y Cuyo</option><option data-zona="noanea" value="noanea">Noreste y Noroeste</option><option data-zona="patagonia" value="patagonia">Patagonia</option></select></div></div><div class="col-md-9"><div class="form-group"><label for=""><strong>Buscá por descripción, proveedor o EAN</strong></label> <input class="form-control search" placeholder="" /></div></div><div class="table-responsive col-md-12"><table class="table table-spaced table-hover"><thead><tr><th>Producto</th><th>Proveedor</th><th class="th-min">EAN 
+                    <button
+                      class="ean-btn message" 
+                      type="button"
+                      rel="popover" 
+                      data-container="body" 
+                      data-toggle="popover" 
+                      data-html="true" 
+                      data-placement="bottom" 
+                      data-content="<div>
+                                      <strong>European Article Number:</strong> 
+                                      <p class='small'>El número de EAN es el que aparece abajo de los códigos de barras de cada producto. Te sirve en el caso de tener que hacer un reclamo sobre un producto específico.</p>
+                                    </div>
+                                    <div class='m-x-2'>
+                                      <img src='https://www.argentina.gob.ar/sites/default/files/cbarras.jpg' alt='' class='img-responsive'>
+                                    </div>"
+                      >
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </button>
+                  </th><th style="width: 120px;">Precio</th></tr></thead><tbody class="list" id="show-data"></tbody></table><nav class="text-center"><ul class="pagination"></ul></nav></div></div></div>
+<div class="row panels-row"><div class="col-xs-12 col-sm-offset-2 col-sm-4 "> <a class="panel panel-default" href="/precios-cuidados"><div class="panel-body"><div class="media"><div class="media-body media-middle"><h3>Precios cuidados</h3></div></div></div> </a></div><div class="col-xs-12 col-sm-4 "> <a class="panel panel-default" href="https://www.argentina.gob.ar/pasatealed"><div class="panel-body"><div class="media"><div class="media-body"><h3>Pasate a LED</h3></div></div></div> </a></div></div>
+<div class="row"><div class="col-xs-12 col-sm-offset-3 col-sm-6 m-b-2"> <a class="panel panel-default" href="tel:08006661518"><div class="panel-body"><div class="media"><div class="media-left padding-5"> <i class="fa fa-phone fa-fw fa-3x text-success"></i></div><div class="media-body"><h3>0800-666-1518</h3><p class="text-muted">Comunicate para informar la falta de un producto</p></div></div></div> </a></div></div><script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script><script type="text/javascript">
+
+(function($) {
+$(document).ready(function () {
+
+ 
+ var zona = "amba"
+ var precio='';
+ var listadoProducto = "";
+ 
+
+ jQuery.getJSON('https://spreadsheets.google.com/feeds/list/16jDkYEdiaZjdIPa15rjbBXdJXBXpjzzA0p6ykwQMnQo/1/public/values?alt=json',
+ 
+
+ function (data) {
+ listadoProducto = data['feed']['entry'];
+ filtrarContenido(zona);
+
+ }
+
+ );
+
+ function filtrarContenido(zona){
+
+ var lista = '';
+
+
+ 
+ $.each(listadoProducto, function( key, item ) {
+
+ if(zona == "amba"){
+ precio = item.gsx$amba.$t;
+ }
+
+ if(zona == "pba"){
+ precio = item.gsx$pba.$t;
+ }
+
+ if(zona == "centrocuyolitoral"){
+ precio = item.gsx$centrocuyolitoral.$t;
+ }
+
+ if(zona == "noanea"){
+ precio = item.gsx$noanea.$t;
+ }
+
+ if(zona == "patagonia"){
+ precio = item.gsx$patagonia.$t;
+ }
+ 
+ if( zona == 'amba' || zona == 'pba' || zona == 'centrocuyolitoral' || zona == "noanea" || zona == "patagonia"){
+
+ lista += '<tr>';
+ lista += ' <td class="descripcion"> <p>'+ item.gsx$descripcion.$t +'</p>';
+ lista += ' <td class="proveedor"> <p>'+ item.gsx$proveedor.$t + '</p></td>';
+ lista += ' <td class="ean"> <p>'+ item.gsx$ean.$t +'</p></td>';
+ lista += ' <td class"precio"> <p class="text-success"> <strong>'+ precio +'</strong></p></td>';
+ lista += '</tr>';
+ }
+
+ }
+ );
+
+ $('#show-data').empty();
+ $('#show-data').append(lista);
+
+
+
+
+ var listOptions = {
+ valueNames: ['descripcion','proveedor','ean'],
+ page: 10,
+ plugins: [ ListPagination({}) ]
+ 
+ };
+
+ var listaNueva = new List('listadoProducto', listOptions); 
+
+ 
+
+
+ 
+
+ $('.search').on("keyup", function(){
+ var valorBuscado = $(".search").val();
+ listaNueva.search(valorBuscado);//propio de List.js
+ });
+
+
+ }
+
+
+ $("#zonaId").on("change", function() {
+ zona = $("#zonaId option:selected" ).data('zona');
+ 
+ filtrarContenido(zona);
+ });
+
+$('[data-toggle="popover"]').popover()
+
+ });
+ })(jQuery);
+
+ 
+ 
+</script></div><p>&nbsp;</p>

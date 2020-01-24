@@ -1,0 +1,61 @@
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css">
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.Default.css">
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/MarkerCluster.css">
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.markercluster.js"></script>
+<!-- Inicio / Ministerio de Justicia y Derechos Humanos / Afianzar la Justicia / Centros de Acceso a Justicia / Mapa de CAJ en todo el país tiene un jumbotron  -->
+<div class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="map" style="height: 800px;position: relative;" tabindex="0"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var markers = L.markerClusterGroup();
+
+
+// ID de la Google Spreadsheet Mercado Tu Barrio
+var spreadsheetID = "1Obxg_KIli3sc0k1tiL6D1yTTkZFhTb2YMvsFq05R75Y";
+// Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+
+
+var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+
+jQuery.getJSON(url, function(data) {
+console.log(data);
+var entry = data.feed.entry;
+var amount = entry.length;
+console.log(amount);
+var i;
+for (i = 0; i < amount; i++) {
+
+   var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+               var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+               var nombre = data.feed.entry[i]['gsx$nombre']['$t'];
+               var tipo = data.feed.entry[i]['gsx$tipo']['$t'];
+               var descripcion = data.feed.entry[i]['gsx$descripcion']['$t'];
+
+               var localidad = data.feed.entry[i]['gsx$localidad']['$t'];
+               var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+
+               var email = data.feed.entry[i]['gsx$email']['$t'];
+
+               var marker = L.marker([lat, lon]);
+               marker.bindPopup('<small>' + tipo + '</small><h4>' + nombre + '</h4>' + '<p>' + descripcion + '</p><p><b>Dirección: </b> ' + provincia + '</p>' + '<p><b>Email: </b> ' + email + '</p>');
+               markers.addLayer(marker);
+               
+}
+
+});
+
+map.addLayer(markers);
+
+
+</script>

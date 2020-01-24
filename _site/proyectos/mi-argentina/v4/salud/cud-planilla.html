@@ -1,0 +1,1050 @@
+
+<head>
+	<meta charset="UTF-8" />
+
+	<style type='text/css'>
+		@page {
+			size: legal portrait;
+			margin: 0;
+		}
+
+
+		@media print {
+
+			html,
+			body[size=legal] {
+				color-adjust: exact;
+				-webkit-print-color-adjust: exact;
+				-moz-print-color-adjust: exact;
+				-ms-print-color-adjust: exact;
+				width: 203, 2mm;
+				height: 355, 6mm;
+
+			}
+
+
+			.screen-only {
+				display: none;
+			}
+
+			#segundaPlanilla {
+				page-break-before: always;
+			}
+		}
+
+		@media screen {
+			#planilla-completa {
+				max-width: 1200px;
+				margin: auto;
+			}
+		}
+
+		#planilla-completa {
+			width: 100%;
+			color: black;
+			font-family: 'Arial', 'times';
+			text-transform: uppercase;
+			font-weight: bolder;
+			font-size: 13px;
+		}
+
+
+		.planilla-header {
+			height: 100px;
+			background-color: black;
+		}
+
+
+		.planilla h2 {
+			text-align: center;
+			letter-spacing: 2px;
+			font-size: 16px;
+		}
+
+		.planilla-header h2 {
+			color: white;
+			padding: 5px;
+			text-align: center;
+			letter-spacing: 2px;
+			font-size: 19px;
+		}
+
+		td {
+			width: 100%;
+			border: 1px solid #000;
+		}
+
+		.titulos {
+			text-align: center;
+
+			/* ... the rest of the rules ... */
+		}
+
+		p.titulos {
+			font-size: 14px;
+		}
+
+		p {
+			padding: 0px 10px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+
+		.grey-fill {
+			background-color: #cccbcb;
+			-moz-background-color: #cccbcb;
+			-webkit-background-color: #cccbcb;
+		}
+
+		.light-grey-fill {
+			background-color: #eaeaea;
+			-moz-background-color: #eaeaea;
+			-webkit-background-color: #eaeaea;
+
+		}
+
+	
+	</style>
+
+</head>
+
+<div class="container" id="planilla-completa" size="legal" >
+	<h1  aria-live="assertive" tabindex="0" role="alertdialog">Planilla para solicitar el CUD</h1>
+	<table class="planilla" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td style="border:0px;">
+				<table style="width: 100% " cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 50%; border:0px;">
+							<img src="https://back.argentina.gob.ar/sites/default/files/presidencia.png" alt=""
+								style="width: 95%;">
+						</td>
+
+						<td style="width: 50%; border: 0px;">
+							<table style="width: 100%; border: 0px;" cellspacing="0" cellpadding="0">
+								<tr>
+									<td style="border:0px; ">
+										<p style="text-align: right">Turno ................................. ......./......./.......</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="border: 0px;">
+
+										<p style="text-align: right">Hora ............................................................</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 40px; ">
+				<h2>Solicitud de certificado único de discapacidad</h2>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="border:0px;">
+				<p style="font-weight: normal; padding: 0px;">La Evaluación por parte de la Junta Evaluadora
+					Interdisciplinaria es presencial.</p>
+				<p style="font-weight: normal; padding: 0px;">La presente reviste carácter de DECLARACIÓN JURADA</p>
+				<p style="font-weight: normal; padding: 10px 0px 0px 0px; font-weight: bolder; text-align: left;">
+					Completar según corresponda</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+
+		<tr class="grey-fill">
+			<td>
+				<p>Apellido/s</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top:0px;">
+				<p id="lastname"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Nombre/s</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top:0px;">
+				<p id='firstname'></p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Fecha de Nacimiento</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="birthday"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Género</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="gender"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="grey-fill"
+							style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;">
+							<p>Documento de identidad</p>
+						</td>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="kindofdoc"></p>
+						</td>
+						<td style="width: 50%; border: 0px;">
+							<table style="width: 100%; border: 0px;" cellspacing="0" cellpadding="0">
+								<tr>
+									<td style="border:0px; ">
+										<p id="expedido"></p>
+									</td>
+								</tr>
+								<tr>
+									<td
+										style="border-left: 0px; border-right: 0px; border-bottom: 0px; border-top-style: dotted;">
+
+										<p>País</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Nro. Documento</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="nroDoc"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>CUIL</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="cuil"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Nacionalidad</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="nacionalidad"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Tipo</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="tiponac"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Tipo de residencia</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="tiporesidencia"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Fecha de vencimiento</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="fechavencimiento"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Domicilio</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top: 0px;">
+				<p id="domicilio"></p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Provincia</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="provincia"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Departamento</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="departamento"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Localidad</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top: 0px;">
+				<p id="localidad"></p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Cod. Postal</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="cpostal"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Teléfono</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="telefono"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Email</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top: 0px;">
+				<p id="email"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Estado civil</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top: 0px;">
+				<p id="estadocivil"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 50%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Adquirió vehículo a través de ley 19.279</p>
+						</td>
+						<td style="width: 15%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="ley19.279"></p>
+						</td>
+						<td style="width: 15%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>fecha</p>
+						</td>
+						<td
+							style="width: 20%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="fecha"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 80%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Posee símbolo internacional de acceso</p>
+						</td>
+						<td
+							style="width: 20%; border-left: 0px; border-right: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="simbolo"></p>
+						</td>
+
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 90%; border-left: 0px; border-bottom: 0px; border-top: 0px;">
+							<p style="font-size: 11px;">En caso de cumplir con todos los requisitos exigidos por el
+								ordenamiento legal de asignaciones familiares: ¿La persona con discapacidad estaría
+								interesada en percibir las asignaciones familiares vinculadas a la discapacidad a las
+								que pudiese tener derecho?</p>
+						</td>
+						<td
+							style="width: 10%; border-left: 0px; border-right: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="percibirasig"></p>
+						</td>
+
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 10px; border:0px;"></td>
+		</tr>
+
+		<tr>
+			<td style="border-bottom: 0px;">
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 15%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Lugar</p>
+						</td>
+						<td
+							style="width: 40%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p></p>
+						</td>
+
+						<td style="width: 20%; border-bottom: 0px; border-top: 0px;" class="grey-fill">
+							<p>Fecha</p>
+						</td>
+						<td
+							style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td
+							style="width: 50%;  border-left: 0px; border-bottom: 0px; border-top: 0px; padding-top:60px; padding-bottom: 10px;">
+
+							<hr style="border-bottom-style: dotted; border-top: 0px;  width: 80%; " />
+						</td>
+						<td
+							style="width: 50%;  border-left: 0px;border-right: 0px; border-bottom: 0px; border-top: 0px; padding-top:60px; padding-bottom: 10px;">
+							<hr style="border-bottom-style: dotted; border-top: 0px;  width: 80%; " />
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="grey-fill" style="border-top: 0px;">
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 50%;  border-left: 0px; border-bottom: 0px; border-top: 0px;">
+
+							<p style="text-align: center; font-size:11px;">Firma del interesado/a Madre - Padre - Tutor
+								- Guardador/a - Curador/a - Apoyo</p>
+						</td>
+						<td
+							style="width: 50%;  border-left: 0px;border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p style="text-align: center;">Aclaración de firma</p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+
+
+	</table>
+
+	<table class="planilla" cellspacing="0" cellpadding="0" width="100%" id="segundaPlanilla">
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td class="planilla-header">
+				<h2>Completar solo en caso de que el solicitante no sea la persona a evaluar</h2>
+			</td>
+		</tr>
+		<tr class="light-grey-fill">
+			<td style="border:0px;">
+				<p class="titulos">Para el caso de personas a evaluar mayores de edad</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p id="rol"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr class="light-grey-fill">
+			<td style="border:0px;">
+				<p class="titulos">Para el caso de personas a evaluar menores de edad</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Madre, padre o tutor</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top:0px;">
+				<p id="parent"></p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Apellido/s</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top:0px;">
+				<p id="lname"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Nombre/s</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top:0px;">
+				<p id="fname"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="grey-fill"
+							style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;">
+							<p>Documento de identidad</p>
+						</td>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="doc"></p>
+						</td>
+						<td style="width: 50%; border: 0px;">
+							<table style="width: 100%; border: 0px;" cellspacing="0" cellpadding="0">
+								<tr>
+									<td style="border:0px; ">
+										<p id="country"></p>
+									</td>
+								</tr>
+								<tr>
+									<td
+										style="border-left: 0px; border-right: 0px; border-bottom: 0px; border-top-style: dotted;">
+
+										<p>País</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Nro. Documento</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="numeroDoc"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Nacionalidad</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="nacionality"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr class="grey-fill">
+			<td>
+				<p>Domicilio</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-top: 0px;">
+				<p id="address"></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Cod. Postal</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="cp"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Localidad</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="loc"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Provincia</p>
+						</td>
+						<td style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="province"></p>
+						</td>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Nro. de Teléfono</p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="nrotel"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td style="background-color: #000;">
+				<p style="color: #fff; text-align: center; line-height: 1.6;">En caso de Tutor/a, Guardador/a,
+					Curador/a, o Apoyo completar la siguiente información:</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-top: 0px;" class="grey-fill">
+							<p>Designación</p>
+						</td>
+						<td style="width: 25%; border-left: 0px; border-right: 0px; border-top: 0px;" class="grey-fill">
+							<p>Fecha</p>
+
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 23%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="designation"></p>
+						</td>
+						<td
+							style="width: 27%; border-left: 0px; border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p id="fecha"></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Juzgado</p>
+						</td>
+						<td
+							style="width: 75%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p id="juzgado"></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 20%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Secretaría</p>
+						</td>
+						<td style="width: 30%; border-left: 0px;  border-bottom: 0px; border-top: 0px;">
+							<p id="secretaria"></p>
+						</td>
+						<td style="width: 20%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Dpto. Judicial</p>
+						</td>
+						<td
+							style="width: 30%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p id="dpto"></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Fiscalía</p>
+						</td>
+						<td
+							style="width: 75%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p id="fiscalia"></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 25%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Defensoría</p>
+						</td>
+						<td
+							style="width: 75%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p id="defensoria"></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 20px; border:0px;"></td>
+		</tr>
+		<tr>
+			<td style="border-bottom: 0px;">
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 15%; border-left: 0px; border-bottom: 0px; border-top: 0px;"
+							class="grey-fill">
+							<p>Lugar</p>
+						</td>
+						<td
+							style="width: 40%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p></p>
+						</td>
+
+						<td style="width: 20%; border-bottom: 0px; border-top: 0px;" class="grey-fill">
+							<p>Fecha</p>
+						</td>
+						<td
+							style="width: 25%; border-left: 0px;  border-bottom: 0px; border-top: 0px; border-right: 0px;">
+							<p></p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td
+							style="width: 50%;  border-left: 0px; border-bottom: 0px; border-top: 0px; padding-top:60px; padding-bottom: 10px;">
+
+							<hr style="border-bottom-style: dotted; border-top: 0px;  width: 80%; " />
+						</td>
+						<td
+							style="width: 50%;  border-left: 0px;border-right: 0px; border-bottom: 0px; border-top: 0px; padding-top:60px; padding-bottom: 10px;">
+							<hr style="border-bottom-style: dotted; border-top: 0px;  width: 80%; " />
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="grey-fill" style="border-top: 0px;">
+				<table style="width: 100%" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width: 50%;  border-left: 0px; border-bottom: 0px; border-top: 0px;">
+
+							<p style="text-align: center; font-size:11px;">Firma del interesado/a Madre - Padre - Tutor
+								- Guardador/a - Curador/a - Apoyo</p>
+						</td>
+						<td
+							style="width: 50%;  border-left: 0px;border-right: 0px; border-bottom: 0px; border-top: 0px;">
+							<p style="text-align: center;">Aclaración de firma</p>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+
+
+
+	</table>
+
+	<a class="btn screen-only" href="cud-wizard-form-planilla.html"
+		style="border: 0;font-size: 16px;font-weight: 500;margin-bottom: 10px; padding: 16px 25px;text-transform: uppercase; vertical-align: top;white-space: initial;word-break: initial;text-decoration: none;color: #0072bb;background-color: #fff; border: 3px solid #DEE2E6 !important; border-radius: 4px; color: #0072bb; margin-right: 20px; cursor: pointer; margin-top: 18px; display: inline-block;">Modificar
+		planilla</a>
+	<button onclick="window.print();" class="screen-only"
+		style="margin-top:20px;border: 0;font-size: 16px;font-weight: 500;margin-bottom: 10px; padding: 16px 25px;text-transform: uppercase; vertical-align: top;white-space: initial;word-break: initial;text-decoration: none; background-color: #2e7d33; border-radius: 4px; color: white;">Imprimir
+	</button>
+</div>
+
+
+<script>
+
+	var data;
+
+	function setData_firstPaper() {
+		data = JSON.parse(localStorage.getItem('usuario'))
+		d = data[0]
+
+		document.getElementById('cpostal').innerHTML = `${d.cp}`;
+		document.getElementById('lastname').innerHTML = `${d.lname}`;
+		document.getElementById('firstname').innerHTML = `${d.fname}`;
+		document.getElementById('birthday').innerHTML = `${d.birth}`;
+		document.getElementById('gender').innerHTML = `${d.gender}`;
+		document.getElementById('kindofdoc').innerHTML = `${d.kindDoc}`;
+		document.getElementById('expedido').innerHTML = `${d.docExpedido}`;
+		document.getElementById('nroDoc').innerHTML = `${d.ndoc}`;
+		document.getElementById('cuil').innerHTML = `${d.cuil}`;
+		document.getElementById('nacionalidad').innerHTML = `${d.nac}`;
+		document.getElementById('tiponac').innerHTML = `${d.tipoNac}`;
+		document.getElementById('tiporesidencia').innerHTML = `${d.residence_}`;
+		document.getElementById('domicilio').innerHTML = `${d.adress_ + ' ' + d.address_street_number_ + ' ' + d.address_floor_number_ + 'º ' + d.address_apartment_number_}`;
+		document.getElementById('telefono').innerHTML = `${d.phone_area + d.phone}`;
+		document.getElementById('email').innerHTML = `${d.email}`;
+		document.getElementById('estadocivil').innerHTML = `${d.estadoCivil}`;
+		document.getElementById('provincia').innerHTML = `${d.province_}`;
+		document.getElementById('ley19.279').innerHTML = `${d.option19279}`;
+		document.getElementById('fecha').innerHTML = `${d.date_19279}`;
+		document.getElementById('simbolo').innerHTML = `${d.simbolo}`;
+		document.getElementById('percibirasig').innerHTML = `${d.asginacion}`;
+		document.getElementById('fechavencimiento').innerHTML = `${d.vencimiento}`
+		document.getElementById('localidad').innerHTML = `${d.localidad}`
+		document.getElementById('departamento').innerHTML = `${d.depto}`
+
+		console.log(d)
+
+	}
+	setData_firstPaper()
+
+	function setData_secondPaper() {
+		data2 = JSON.parse(localStorage.getItem('nouser'))
+		d = data2[0]
+
+		//persona que acompaña
+
+		document.getElementById('rol').innerHTML = `${d.rol}`;
+		document.getElementById('parent').innerHTML = `${d.parent}`;
+		document.getElementById('lname').innerHTML = `${d.lastname_notevaluate}`;
+		document.getElementById('fname').innerHTML = `${d.firstname_notevaluate}`;
+		document.getElementById('doc').innerHTML = `${d.doc_notevaluate}`;
+		document.getElementById('country').innerHTML = `${d.expedido_notevaluate}`;
+		document.getElementById('numeroDoc').innerHTML = `${d.numDoc_notevaluate}`;
+
+		document.getElementById('nacionality').innerHTML = `${d.nacionality_notevaluate}`;
+		document.getElementById('address').innerHTML = `${d.adress__notevaluate + ' ' + d.address_street_number__notevaluate + ' ' + d.address_floor_number__notevaluate + 'º ' + d.address_apartment_number__notevaluate}`;
+		document.getElementById('province').innerHTML = `${d.province_notevaluate}`;
+		document.getElementById('loc').innerHTML = `${d.locality_notevaluate}`
+
+		document.getElementById('cp').innerHTML = `${d.address_postalcode_notevaluate}`;
+		document.getElementById('designation').innerHTML = `${d.designation_notevaluate}`;
+
+		document.getElementById('nrotel').innerHTML = `${d.codeareatel_notevaluate + d.tel_notevaluate}`;
+		document.getElementById('juzgado').innerHTML = `${d.juzgado_notevaluate}`;
+
+
+		document.getElementById('secretaria').innerHTML = `${d.secretary_notevaluate}`;
+		document.getElementById('dpto').innerHTML = `${d.dptoJud_notevaluate}`;
+		document.getElementById('fiscalia').innerHTML = `${d.fiscaly_notevaluate}`;
+		document.getElementById('defensoria').innerHTML = `${d.defensory_notevaluate}`;
+
+
+
+
+
+		console.log()
+
+
+	}
+
+
+	setData_secondPaper()
+
+</script>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/tramites/presentar-ddjj.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <div class="container">
+  <ol class="breadcrumb">
+    <li><a href="">Argentina</a></li>
+    <li><a href="">Servicios</a></li>
+    <li><a href="">Documentación</a></li>
+    <li class="active">Presentar la Declaración Jurada</li>
+  </ol>
+  <section>
+  <div class="row">
+    <div class="col-md-8">
+      <article>
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="margin-20">Presentar la Declaración Jurada</h1>
+              <p class="lead">Según el nivel jerárquico en el que te desempeñes en la función pública o según la naturaleza de la función que ocupes (y sea ésta temporal o permanente, remunerada u honoraria), podrías llegar a estar obligado a presentar tu Declaración Jurada. Este trámite te explica cómo y en qué caso hacerlo.  </p>
+              <div>
+                <span class="ribbon ribbon-success"><i class="fa fa-desktop text-success"></i> Parcialmente digital</span>
+                <span class="ribbon ribbon-warning"><i class="fa fa-usd text-success"></i> Gratuito</span>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row content_format">
+            <div class="col-md-12">
+              <p>
+                Recordá que deben presentar su Declaración Jurada (DDJJ) desde el Presidente de la Nación hasta los funcionarios con cargo de Director Nacional o equivalente. Más allá de la jerarquía del cargo, también estás obligado a presentarla si sos:
+              </p>
+              <ul>
+                <li>funcionario o empleado público integrante de comisiones de compras y contrataciones,</li>
+                <li>responsable de otorgar habilitaciones administrativas para el ejercicio de cualquier actividad o de controlar su funcionamiento,</li>
+                <li>encargado de controlar o fiscalizar ingresos públicos.</li>
+              </ul>
+              <p>
+                El área de Personal, RRHH o Administración de jurisdicciones y organismos de la Administración Pública Nacional determinarán si estás alcanzado por esta obligación.
+              </p>
+
+
+              <h5>¿Cómo hago para presentarla? </h5>
+              <h4>Seguí estos tres pasos: </h4>
+              <ol>
+                <li><strong>Ingresá al sistema</strong>
+                  <p class="padding-10">Ingresá al sitio web de la <a href="http://www.afip.gob.ar/home/index.html" target="_blank"> Administración Federal de Ingresos Públicos</a> (AFIP) registrándote como usuario con Clave Fiscal de nivel 2 y completá la información en la aplicación "Declaración Jurada Patrimonial Integral - F 1245".</p>
+                  <p>Si presentás los formularios de Declaración Jurada correspondientes al Impuesto a las Ganancias y sobre los Bienes Personales, el programa capturará la información de esas declaraciones juradas impositivas. Asimismo, si estás casado, conviviendo o tenés hijos menores no emancipados, deberás confeccionar e imprimir el <a href="http://www.anticorrupcion.gov.ar/F1246_AFIP.asp" target="_blank"> Formulario AFIP-1246</a>. </p>
+                </li>
+                <li><strong>Imprimí la documentación</strong>
+                  <p class="padding-10">Para confeccionar el Anexo Reservado a entregar, imprimí los formularios completos suministrados por el sistema y colocalos en un sobre con este <a href="http://www.anticorrupcion.gov.ar/docs/SOBRE_RES1695_13.docx" target="_blank"> modelo de solapa</a>. </p>
+                </li>
+                <li><strong>Entregá la documentación</strong>
+                  <p class="padding-10">Firmá toda la documentación (inclusive el sobre) y entrégalo en el área de Recursos Humanos del organismo o jurisdicción en la que te desempeñás junto a las dos copias de la constancia de presentación de la DDJJ, llamada “Presentación de DJ por Internet - Acuse de Recibo”.</p>
+                  <p>Finalmente, la información pública correspondiente a las declaraciones juradas será publicada por la Oficina Anticorrupción. </p>
+                </li>
+              </ol>
+
+              <h4>¿Cuándo debo presentarla? </h4>
+
+              <p>
+                Tenés que hacerlo según este cronograma:
+              </p>
+
+              <ul>
+                <li>una Declaración Jurada dentro de los 30 días hábiles de asumir en el cargo (Declaración Jurada de Alta);</li>
+                <li>una Declaración Jurada Anual, cuyo vencimiento opera en la fecha que cada año determina la autoridad de aplicación;</li>
+                <li>una Declaración Jurada cuando cesás en el cargo, dentro de los 30 días hábiles de la fecha en que se produjo (Declaración Jurada de Baja).</li>
+              </ul>
+
+            </div>
+          </div>
+
+
+      </article>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-warning">
+              <div class="media">
+                  <div class="media-left">
+                      <i class="fa fa-arrow-circle-o-right fa-fw fa-4x"></i>
+                  </div>
+                  <div class="media-body">
+                      <h4>¿Tenés dudas? </h4>
+                      <p class="margin-0">Te sugerimos la lectura de las <a href="">Preguntas Frecuentes</a> </p>
+                  </div>
+              </div>
+          </div>
+          <div class="alert alert-info">
+              <div class="media">
+                  <div class="media-left">
+                      <i class="fa fa-phone fa-fw fa-4x"></i>
+                  </div>
+                  <div class="media-body">
+                      <h4>Consultas</h4>
+                      <h5>Mesa de Ayuda de la Unidad de Control y Seguimiento de Declaraciones Juradas </h5>
+                      <p class="margin-0">25 de Mayo 350, 8° "A", CABA.</p>
+                      <p class="margin-0">Teléfono: (011) 5300-4095</p>
+                      <p class="margin-0">E-mail: <a href="mailto:ayuda@ddjjonline.gov.ar">ayuda@ddjjonline.gov.ar</a> </p>
+                      <h5>AFIP </h5>
+                      <p class="margin-0">Teléfono: 0810-999-2347</p>
+                      <p class="margin-0">E- mail: <a href="mailto:mayuda@afip.gob.ar">mayuda@afip.gob.ar</a></p>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+          <hr>
+    </div>
+    <div class="col-md-4">
+      <h3>Trámites relacionados</h3>
+        <ul class="list-inline">
+          <li>
+            <h5><a href="consultar-incompatibilidades.html">Consultar sobre incompatibilidades </a></h5>
+          </li>
+          <li>
+            <h5><a href="consultar-conflicto-intereses.html">Consultar sobre conflicto de intereses  </a></h5>
+          </li>
+        </ul>
+    </div>
+  </div>
+  </section>
+</div>
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

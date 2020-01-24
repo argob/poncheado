@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/mi-argentina/old/v2/notificaciones-switch.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="/dist/icono-arg.css" rel="stylesheet">
+ <link href="/dist/miargentina.css" rel="stylesheet">
+ 
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+  
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<body class="sticky-footer">
+    <header>
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/">
+            <img alt="Brand" src="/proyectos/argentina/img/miargentina.svg" width="300">
+            <h1 class="sr-only">Argentina.gob.ar <small>Presidencia de la Nación</small></h1>
+          </a>
+          <a class="btn btn-primary btn-login visible-xs" href="/proyectos/mi-argentina/v3/dashboard.html"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><label class="sr-only">Buscar</label><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              <label class="sr-only">Buscar trámite</label>
+              <input id="busqueda" type="text" class="form-control" placeholder="Buscar Trámite">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar" type="button"><label class="sr-only">Buscar</label><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-primary hidden-xs" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi perfil</a>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('busqueda');
+  var buscar = document.getElementById('buscar');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+</script>
+    <main role="main">
+      <section class="jumbotron" style="background-image: url('https://mi.argentina.gob.ar/img/landing-miargentina.png');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li><a href="">Mi Argentina</a></li>
+            <li class="active"><span>Notificaciones</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Nicolás Rougier</h1>
+          <p>Este es tu perfil de Mi Argentina, donde podés consultar varios trámites y servicios de forma automática y en un sólo lugar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<section class="bg-gray section-sm">
+  <div class="cotainer">
+    <ul class="nav nav-icons nav-icons-selected">
+      <li>
+        <a href="dashboard.html">
+          <i class="fa fa-user bg-success"></i>
+          <span>Inicio</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.argentina.gob.ar/turnos">
+          <i class="fa fa-calendar-check-o bg-verdin"></i>
+          <span>Turnos</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.argentina.gob.ar/servicios">
+          <i class="fa fa-list-ol bg-uva"></i>
+          <span>Servicios</span>
+        </a>
+      </li>
+      <li class="active">
+        <a href="#">
+          <i class="fa fa-bell bg-arandano"></i>
+          <span>Notificaciones</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tramitesadistancia.gob.ar">
+          <i class="fa fa-file-o bg-cielo"></i>
+          <span>Trámites a distancia</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://servicioscorp.anses.gob.ar/clavelogon/logon.aspx?system=mianses">
+          <i class="fa fa-user bg-primary"></i>
+          <span>Mi ANSES</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="container">
+  <section>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <section>
+
+          <h2>Notificaciones personalizadas</h2>
+          <p class="text-muted m-b-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur minus inventore deleniti. Totam vel facere veniam consequatur unde assumenda, magnam incidunt eligendi repellat commodi ea libero perspiciatis, dolor, magni vitae.</p>
+
+          <table class="table table-striped table-align-middle">
+            <thead class="hidden-xs">
+              <tr>
+                <th class="row row-flex">
+                  <div class="col-xs-12 col-sm-3">Temática</div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Correo Electrónico</div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Mensaje de text (SMS) <span class="fa fa-question-circle" title="Teléfono actual: 15 12345678. Servicio gratuito."  data-toggle="tooltip" data-placement="top"></span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Aplicación <a class="fa fa-question-circle" title="Notificaciones en tu teléfono a travez de la aplicación Argentina.gob.ar"  data-toggle="tooltip" data-placement="top" href="http://www.argentina.gob.ar/app"></a></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Servicios</h4> <span class="hidden-xs">Servicios</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Turnos</h4> <span class="hidden-xs">Turnos</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <hr class="m-b-4">
+          
+          <h4>Novedades e información importante</h4>
+          <p class="text-muted m-b-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur minus inventore deleniti. Totam vel facere veniam consequatur unde assumenda, magnam incidunt eligendi repellat commodi ea libero perspiciatis, dolor, magni vitae.</p>
+
+          <table class="table table-striped table-align-middle">
+            <thead class="hidden-xs">
+              <tr>
+                <th class="row row-flex">
+                  <div class="col-xs-12 col-sm-3">Temática</div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Correo Electrónico</div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Mensaje de text (SMS) <span class="fa fa-question-circle" title="Teléfono actual: 15 12345678. Servicio gratuito."  data-toggle="tooltip" data-placement="top"></span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">Aplicación <a class="fa fa-question-circle" title="Notificaciones en tu teléfono a travez de la aplicación Argentina.gob.ar"  data-toggle="tooltip" data-placement="top" href="http://www.argentina.gob.ar/app"></a></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Salud</h4> <span class="hidden-xs">Salud</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Economía</h4> <span class="hidden-xs">Economía</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Trabajo</h4> <span class="hidden-xs">Trabajo</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Vivienda</h4> <span class="hidden-xs">Vivienda</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Seguridad</h4> <span class="hidden-xs">Seguridad</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Educación y deportes</h4> <span class="hidden-xs">Educación y deportes</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Cultura</h4> <span class="hidden-xs">Cultura</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Industria</h4> <span class="hidden-xs">Industria</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Agricultura y ganadería</h4> <span class="hidden-xs">Agricultura y ganadería</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Infraestructura y medio ambiente</h4> <span class="hidden-xs">Infraestructura y medio ambiente</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Ciencia y tecnología</h4> <span class="hidden-xs">Ciencia y tecnología</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="row row-flex">
+                  <div class="col-xs-12 col-sm-3"><h4 class="visible-xs m-b-0">Emprendedurismo</h4> <span class="hidden-xs">Emprendedurismo</span></div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI" checked>
+                    <p class="visible-xs m-t-1">Correo Electrónico:</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Mensaje de text (SMS):</p> 
+                  </div>
+                  <div class="col-xs-12 col-sm-3 text-sm-right">
+                    <input id="switch-state" type="checkbox" data-on-color="success" data-off-text="NO" data-on-text="SI">
+                    <p class="visible-xs m-t-1">Aplicación:</p>  <span class="visible-xs p-t-2"></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<link href="/node_modules/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet">
+<script src="/node_modules/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
+<script>
+  $("[type='checkbox']").bootstrapSwitch();
+</script>
+
+
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+
+
+    </main>
+     <footer class="main-footer">
+    <div class="container-fluid">
+        <div class="row footer center-block">
+            <div class="col-xs-12 col-sm-4 first-footer-item">
+                <a href="#">Términos y condiciones</a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Subsecretaría de Gobierno Digital" src="../img/logo-ssgd.svg">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <img class="image-responsive" alt="Presidencia de la Nación" src="../img/logo-presidencia.svg">
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+    
+</body>
+</html>

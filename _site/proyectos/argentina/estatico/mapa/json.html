@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/mapa/json.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron hidden" style="background-image: url('img/obra.jpg');">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="">Argentina</a></li>
+            <li class="active">Denuncia de obra pública</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <h1>Denuncia de obra pública</h1>
+          <p>Las obras públicas prometidas que no se cumplen son un hecho de corrupción. Ayudanos a denunciarlas!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+<div id="map" style="height: 700px;"></div>
+<script>
+  var cities = [
+    {"ciudad": "Junín", "provincia": " Buenos Aires", "lat": -34.58855, "lng": -60.949554 },
+    {"ciudad": "Pinamar", "provincia": " Buenos Aires", "lat": -37.114566, "lng": -56.860705 },
+    {"ciudad": "Tandil", "provincia": " Buenos Aires", "lat": -37.3288, "lng": -59.136717 },
+    {"ciudad": "Huillapima", "provincia": " Catamarca", "lat": -28.725886, "lng": -65.978039 },
+    {"ciudad": "Pomán", "provincia": " Catamarca", "lat": -28.39966, "lng": -66.217346 },
+    {"ciudad": "Fray Mamerto Esquiú", "provincia": " Catamarca", "lat": -28.285005, "lng": -65.737175 },
+    {"ciudad": "Comuna 4", "provincia": " CABA", "lat": -34.644379, "lng": -58.388805 },
+    {"ciudad": "Comuna 8", "provincia": " CABA", "lat": -34.674032, "lng": -58.457291 },
+    {"ciudad": "Comuna 9", "provincia": " CABA", "lat": -34.653968, "lng": -58.491549 },
+    {"ciudad": "Alcira Gigena", "provincia": " Córdoba", "lat": -32.758419, "lng": -64.336275 },
+    {"ciudad": "Malagueño", "provincia": " Córdoba", "lat": -31.460932, "lng": -64.351769 },
+    {"ciudad": "Salsipuedes", "provincia": " Córdoba", "lat": -31.136896, "lng": -64.296433 },
+    {"ciudad": "Ita Ibaté", "provincia": " Corrientes", "lat": -27.427957, "lng": -57.33857 },
+    {"ciudad": "Bella Vista", "provincia": " Corrientes", "lat": -28.506619, "lng": -59.042255 },
+    {"ciudad": "Paso de los Libres", "provincia": " Corrientes", "lat": -29.71371, "lng": -57.08556 },
+    {"ciudad": "Villa Ángela", "provincia": " Chaco", "lat": -27.575827, "lng": -60.713688 },
+    {"ciudad": "Juan José Castelli", "provincia": " Chaco", "lat": -25.949711, "lng": -60.617062 },
+    {"ciudad": "Charata", "provincia": " Chaco", "lat": -27.21799, "lng": -61.187362 },
+    {"ciudad": "Esquel", "provincia": " Chubut", "lat": -42.909528, "lng": -71.314312 },
+    {"ciudad": "Puerto Madryn", "provincia": " Chubut", "lat": -42.769448, "lng": -65.031718 },
+    {"ciudad": "Trelew", "provincia": " Chubut", "lat": -43.249302, "lng": -65.307635 },
+    {"ciudad": "Concepción del Uruguay", "provincia": " Entre Ríos", "lat": -32.484535, "lng": -58.232142 },
+    {"ciudad": "Santa Elena", "provincia": " Entre Ríos", "lat": -30.946289, "lng": -59.785377 },
+    {"ciudad": "Feliciano", "provincia": " Entre Ríos", "lat": -30.334367, "lng": -58.645837 },
+    {"ciudad": "Villa 213", "provincia": " Formosa", "lat": -26.189323, "lng": -59.361296 },
+    {"ciudad": "Herradura", "provincia": " Formosa", "lat": -26.488646, "lng": -58.311958 },
+    {"ciudad": "El Espinillo", "provincia": " Formosa", "lat": -24.980347, "lng": -58.551847 },
+    {"ciudad": "Yuto", "provincia": " Jujuy", "lat": -23.642765, "lng": -64.4719 },
+    {"ciudad": "Monterrico", "provincia": " Jujuy", "lat": -24.442982, "lng": -65.166348 },
+    {"ciudad": "Maimará", "provincia": " Jujuy", "lat": -23.624559, "lng": -65.408725 },
+    {"ciudad": "General San Martín", "provincia": " La Pampa", "lat": -37.978827, "lng": -63.603535 },
+    {"ciudad": "La Adela", "provincia": " La Pampa", "lat": -38.985128, "lng": -64.090875 },
+    {"ciudad": "Winifreda", "provincia": " La Pampa", "lat": -36.224763, "lng": -64.235452 },
+    {"ciudad": "Arauco", "provincia": " La Rioja", "lat": -28.565867, "lng": -66.799438 },
+    {"ciudad": "Sanagasta", "provincia": " La Rioja", "lat": -29.265251, "lng": -67.01739 },
+    {"ciudad": "Independencia", "provincia": " La Rioja", "lat": -29.427021, "lng": -66.845134 },
+    {"ciudad": "Godoy Cruz", "provincia": " Mendoza", "lat": -32.913867, "lng": -68.850044 },
+    {"ciudad": "Las Heras", "provincia": " Mendoza", "lat": -32.850297, "lng": -68.840594 },
+    {"ciudad": "Guaymallén", "provincia": " Mendoza", "lat": -32.885004, "lng": -68.739345 },
+    {"ciudad": "Santa Ana", "provincia": " Misiones", "lat": -27.369248, "lng": -55.581745 },
+    {"ciudad": "Aluminé", "provincia": " Neuquén", "lat": -39.236609, "lng": -70.919594 },
+    {"ciudad": "Plaza Huincul", "provincia": " Neuquén", "lat": -38.930812, "lng": -69.20344 },
+    {"ciudad": "Chos Malal", "provincia": " Neuquén", "lat": -37.378772, "lng": -70.271777 },
+    {"ciudad": "Lamarque", "provincia": " Río Negro", "lat": -39.425442, "lng": -65.702079 },
+    {"ciudad": "Choele Choel", "provincia": " Río Negro", "lat": -39.289321, "lng": -65.662309 },
+    {"ciudad": "El Bolsón ", "provincia": " Río Negro", "lat": -41.964923, "lng": -71.535339 },
+    {"ciudad": "Pocito", "provincia": " San Juan", "lat": -31.68333, "lng": -68.583351 },
+    {"ciudad": "Rivadavia", "provincia": " San Juan", "lat": -31.529482, "lng": -68.594056 },
+    {"ciudad": "Chimbas", "provincia": " San Juan", "lat": -31.496596, "lng": -68.531762 },
+    {"ciudad": "Nueva Galia", "provincia": " San Luis", "lat": -35.113919, "lng": -65.256257 },
+    {"ciudad": "San Martín", "provincia": " San Luis", "lat": -32.577778, "lng": -65.675 },
+    {"ciudad": "San Francisco", "provincia": " San Luis", "lat": -33.280826, "lng": -66.309011 },
+    {"ciudad": "Río Turbio", "provincia": " Santa Cruz", "lat": -51.535965, "lng": -72.337986 },
+    {"ciudad": "Puerto Deseado", "provincia": " Santa Cruz", "lat": -47.751565, "lng": -65.901377 },
+    {"ciudad": "Gobernador Gregores", "provincia": " Santa Cruz", "lat": -48.750905, "lng": -70.248502 },
+    {"ciudad": "Perito Moreno", "provincia": " Santa Cruz", "lat": -46.591247, "lng": -70.926047 },
+    {"ciudad": "Casilda", "provincia": " Santa Fe", "lat": -33.044522, "lng": -61.165021 },
+    {"ciudad": "Sunchales", "provincia": " Santa Fe", "lat": -30.945171, "lng": -61.560735 },
+    {"ciudad": "Villa Gobernador Gálvez", "provincia": " Santa Fe", "lat": -33.02552, "lng": -60.633761 },
+    {"ciudad": "Frías", "provincia": " Santiago del Estero", "lat": -28.637554, "lng": -65.12876 },
+    {"ciudad": "Sumampa", "provincia": " Santiago del Estero", "lat": -29.380936, "lng": -63.472556 },
+    {"ciudad": "Los Juries", "provincia": " Santiago del Estero", "lat": -28.465531, "lng": -62.108579 },
+    {"ciudad": "Rosario de Lerma", "provincia": " Salta", "lat": -24.98291, "lng": -65.582901 },
+    {"ciudad": "La Merced", "provincia": " Salta", "lat": -24.966664, "lng": -65.489532 },
+    {"ciudad": "Las Lajitas", "provincia": " Salta", "lat": -24.727338, "lng": -64.195685 },
+    {"ciudad": "Río Grande", "provincia": " Tierra del Fuego", "lat": -53.786037, "lng": -67.700224 },
+    {"ciudad": "Tolhuin", "provincia": " Tierra del Fuego", "lat": -54.510889, "lng": -67.19299 },
+    {"ciudad": "Ushuaia", "provincia": " Tierra del Fuego", "lat": -54.801912, "lng": -68.302951 },
+    {"ciudad": "Las Talitas", "provincia": " Tucumán", "lat": -26.775833, "lng": -65.200556 },
+    {"ciudad": "Simoca", "provincia": " Tucumán", "lat": -27.263036, "lng": -65.357826 },
+    {"ciudad": "Famaillá", "provincia": " Tucumán", "lat": -27.056055, "lng": -65.402168 }
+  ];
+
+  var initMap = function() {
+
+    // Setup map
+    var mapCenter = {lat: -41.2148693, lng: -66.3996161};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: mapCenter
+    });
+
+    // Show markers loaded from spreadsheet
+    var markers = [];
+    var detalles = [];
+
+    cities.forEach(function(city, key){
+        var index = markers.length;
+
+        console.log(city.lat, city.lat);
+        markers[index] = new google.maps.Marker({
+          position: {lat: parseFloat(city.lat), lng: parseFloat(city.lng)},
+          map: map,
+          title: city.ciudad
+        });
+
+        detalles[index] = new google.maps.InfoWindow({
+          content: '<h5>'+ city.ciudad +', <small>'+ city.provincia +'</small></h5>',
+          maxWidth: 400
+        })
+
+        markers[index].addListener('click', function() {
+          closeWindows();
+          detalles[index].open(map, markers[index]);
+        });
+    })
+
+    var closeWindows = function(){
+      for(i = 0; i < detalles.length; i++){
+        detalles[i].close();
+      }
+    }
+  }
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7QiqZwOu8TbwtitMp-vDDishkTvc0_X8&signed_in=true&region=AR&callback=initMap"></script>
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

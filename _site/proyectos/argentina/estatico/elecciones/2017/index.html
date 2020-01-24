@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/elecciones/2017/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <section class="jumbotron" style="background-image:url(https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/elecciones_2017_landing.png?itok=Dzgsy4KO);">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/interior">Ministerio del Interior, Obras Públicas y Vivienda</a></li>
+            <li><a href="/elecciones2017">Elecciones legislativas 2017</a></li>
+            <li class="active"><span>Agrupaciones políticas participantes</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron_body">
+    <div class="container text-center">
+      <h1 class="h2 m-b-0">Agrupaciones políticas participantes</h1>
+      <p class="lead">Listados de las agrupaciones políticas que participarán en las próximas Elecciones Legislativas 2017.</p>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
+
+
+<div class="container">
+ <section>
+
+    <div id="data">
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="">Filtrá por Provincia</label>
+            <select id="tipo-distrito" class="form-control">
+              <option data-tipodistrito="todos" value="todos">Todos</option>
+              <option data-tipodistrito="CIUDAD DE BUENOS AIRES" value="CIUDAD DE BUENOS AIRES">CIUDAD DE BUENOS AIRES</option>
+              <option data-tipodistrito="BUENOS AIRES" value="BUENOS AIRES">BUENOS AIRES</option>
+              <option data-tipodistrito="CATAMARCA" value="CATAMARCA">CATAMARCA</option>
+              <option data-tipodistrito="CORDOBA" value="CORDOBA">CORDOBA</option>
+              <option data-tipodistrito="CORRIENTES" value="CORRIENTES">CORRIENTES</option>
+              <option data-tipodistrito="CHACO" value="CHACO">CHACO</option>
+              <option data-tipodistrito="CHUBUT" value="CHUBUT">CHUBUT</option>
+              <option data-tipodistrito="ENTRE RIOS" value="ENTRE RIOS">ENTRE RIOS</option>
+              <option data-tipodistrito="FORMOSA" value="FORMOSA">FORMOSA</option>
+              <option data-tipodistrito="JUJUY" value="JUJUY">JUJUY</option>
+              <option data-tipodistrito="LA PAMPA" value="LA PAMPA">LA PAMPA</option>
+              <option data-tipodistrito="LA RIOJA" value="LA RIOJA">LA RIOJA</option>
+              <option data-tipodistrito="MENDOZA" value="MENDOZA">MENDOZA</option>
+              <option data-tipodistrito="MISIONES" value="MISIONES">MISIONES</option>
+              <option data-tipodistrito="NEUQUEN" value="NEUQUEN">NEUQUEN</option>
+              <option data-tipodistrito="RIO NEGRO" value="RIO NEGRO">RIO NEGRO</option>
+              <option data-tipodistrito="SALTA" value="SALTA">SALTA</option>
+              <option data-tipodistrito="SAN JUAN" value="SAN JUAN">SAN JUAN</option>
+              <option data-tipodistrito="SAN LUIS" value="SAN LUIS">SAN LUIS</option>
+              <option data-tipodistrito="SANTA CRUZ" value="SANTA CRUZ">SANTA CRUZ</option>
+              <option data-tipodistrito="SANTA FE" value="SANTA FE">SANTA FE</option>
+              <option data-tipodistrito="SANTIAGO DEL ESTERO" value="SANTIAGO DEL ESTERO">SANTIAGO DEL ESTERO</option>
+              <option data-tipodistrito="TUCUMAN" value="TUCUMAN">TUCUMAN</option>
+              <option data-tipodistrito="TIERRA DEL FUEGO" value="TIERRA DEL FUEGO">TIERRA DEL FUEGO</option> 
+
+            </select>
+          </div>
+        </div>    
+
+        <div class="col-md-8">    
+          <div class="form-group">
+            <label for="">Buscá por concepto</label>
+            <input class="form-control search" placeholder="">
+          </div>
+        </div>
+      
+      </div>
+
+      <table class="table table-spaced table-align-middle">
+        <thead>
+          <tr>
+            <th style="width: 150px;"><a class="sort" data-sort="distrito">Distrito <span class="caret"></span></a></th>
+            <th style="width: 150px;"><a class="sort" data-sort="nroagrup">Nro. AGRUP. <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="agrupacion">Nombre agrupación <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="categoria">Categoría <span class="caret"></span></a></th>
+            <th style="width: 150px;"><a class="sort" data-sort="numero">Número <span class="caret"></span></a></th>
+            <th><a class="sort" data-sort="candidatos">Candidatos <span class="caret"></span></a></th> </tr>
+        </thead>
+        <tbody class="list" id="show-data">
+        </tbody>
+      </table>
+      <nav class="text-center">
+        <ul class="pagination"></ul>
+      </nav>        
+       <div id="alerta" class="alert alert-warning col-md-4 no-result">
+        <div class="media">
+          <div class="media-left media-middle">
+            <i class="fa fa-warning fa-fw fa-2x"></i>
+          </div>
+          <div class="media-body">
+            <p>No hay resultados para mostrar</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+</div>
+
+
+
+<!--<script src="/node_modules/list.js/dist/list.min.js"></script>-->
+<!--<script src="/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>-->
+<script src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/js/listjs/list.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
+
+<script>
+
+(function($) {
+$(document).ready(function () {
+
+    $('body').tooltip({
+    selector: '[data-toggle="tooltip"]'
+    });
+
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1cJOcqOCaNDitE4sv8uI7TSnQIANpd3z1xt1c8lBSikM/1/public/values?alt=json', function (data) {
+        window.data = data.feed.entry;
+        showdata("todos");
+        console.log(data);
+    });
+
+    window.showdata = function(unidad){
+        var showData = $('#show-data');
+
+        var html = '';
+
+
+        $.each( data, function( key, item ) {
+
+
+           if( item.gsx$distrito.$t == unidad ){
+
+            html += '<tr>';
+            html += ' <td class="distrito"> <h6>'+ item.gsx$distrito.$t + '</h6></td>';
+            html += ' <td class="nroagrup">'+ item.gsx$nroagrup.$t + '</td>';
+            html += ' <td class="agrupacion">'+ item.gsx$nombreagrupacion.$t + '</td>';
+            html += ' <td class="categoria">'+ item.gsx$categoria.$t + '</td>';
+            html += ' <td class="numero">'+ item.gsx$numero.$t + '</td>';
+            html += ' <td class="candidatos">'+ item.gsx$candidatos.$t + '</td>';
+            html += '</tr>';
+          }
+           else if  (unidad == "todos") {
+
+            html += '<tr>';
+            html += ' <td class="distrito"> <h6>'+ item.gsx$distrito.$t + '</h6></td>';
+            html += ' <td class="nroagrup">'+ item.gsx$nroagrup.$t + '</td>';
+            html += ' <td class="agrupacion">'+ item.gsx$nombreagrupacion.$t + '</td>';
+            html += ' <td class="categoria">'+ item.gsx$categoria.$t + '</td>';
+            html += ' <td class="numero">'+ item.gsx$numero.$t + '</td>';
+            html += ' <td class="candidatos">'+ item.gsx$candidatos.$t + '</td>';
+            html += '</tr>';
+          }
+
+
+        });
+
+        showData.empty();
+        showData.append(html);
+
+        var listOptions = {
+          valueNames: [ 'distrito', 'nroagrup', 'agrupacion', 'categoria', 'numero', 'candidatos' ],
+          page: 20,
+          plugins: [ ListPagination({}) ]
+          
+         };
+
+        var dataList = new List('data', listOptions);  
+
+        jQuery('.search').on("keyup",function(){
+            var valueSearch = jQuery(".search").val();
+            dataList.search(valueSearch);
+        });
+
+        $('.no-result').hide()
+        
+        dataList.on('updated', function(list) {
+          if (list.matchingItems.length > 0) {
+            $('.no-result').hide()
+          } else {
+            $('.no-result').show()
+          }
+        })                
+
+    }
+
+    $("#tipo-distrito").on("change", function() {
+      var unidad = $( "#tipo-distrito option:selected" ).data('tipodistrito');
+      showdata(unidad);
+
+    });
+
+    
+
+});
+})(jQuery);
+
+</script>
+
+
+
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

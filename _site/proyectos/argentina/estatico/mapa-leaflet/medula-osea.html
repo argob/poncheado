@@ -1,0 +1,61 @@
+<!--1AJHZAaRn-SQyWqN9QCsBRInkxiOWmISstcX313cMTiE-->
+
+
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://gis.argentina.gob.ar/js/leaflet/leaflet.css" />
+<script src="https://gis.argentina.gob.ar/js/leaflet/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script>
+	var map = L.map('map').setView([-40.44, -63.59], 4); // centrado en Argentina -->
+
+            L.tileLayer('https://gis.argentina.gob.ar/osm/{z}/{x}/{y}.png', {
+                attribution: '&copy; Contribuidores <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+        // ID de la Google Spreadsheet Barrios Populares
+        var spreadsheetID = "1AJHZAaRn-SQyWqN9QCsBRInkxiOWmISstcX313cMTiE";
+        // Asegúrese de que sea público o esté configurado para que cualquier persona con enlace pueda ver
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/1/public/values?alt=json";
+        
+        $.getJSON(url, function(data) {
+            console.log(data);
+            console.log(data.feed.entry);
+            
+            var entry = data.feed.entry;
+            var amount = entry.length;
+            /* Cantida de elementos */
+            console.log(amount);
+            var i;
+            for (i = 0; i < amount; i++) {
+
+                //-34.068.602 latitud formato no permitido
+                console.log(data.feed.entry[i]['gsx$latitud']['$t']);
+
+                var lat = data.feed.entry[i]['gsx$latitud']['$t'];
+                var lon = data.feed.entry[i]['gsx$longitud']['$t'];
+
+                var institucion = data.feed.entry[i]['gsx$institucion']['$t'];
+                var horario = data.feed.entry[i]['gsx$horario']['$t'];
+                var telefono = data.feed.entry[i]['gsx$telefono']['$t'];
+                var dir = data.feed.entry[i]['gsx$direccion']['$t'];
+                var provincia = data.feed.entry[i]['gsx$provincia']['$t'];
+                var nombre = data.feed.entry[i]['gsx$referente']['$t'];
+                
+                //var time = data.feed.entry[i]['gsx$time']['$t'];
+                //var tel = data.feed.entry[i]['gsx$tel']['$t'];
+        
+                var marker = L.marker([lat, lon]).addTo(map);
+                marker.bindPopup('<h4>' + nombre + '</h4><br><b>direccion:</b> ' + dir);
+            }
+            
+        });
+
+
+
+
+</script>
+

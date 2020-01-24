@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html lang="es"class="iem7"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="es" class="ie6 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="es" class="ie7 lt-ie8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="es" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="es"><!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Pruebas</title>
+  <meta name="description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina.">
+  <meta name="author" content="Presidencia de la Nación">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Nav and address bar color -->
+  <meta name="theme-color" content="#0072b8">
+  <meta name="msapplication-navbutton-color" content="#0072b8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+  <meta property="og:url" content="http://localhost:4000/proyectos/argentina/estatico/aplicaciones/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Banco de Pruebas" />
+  <meta property="og:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
+  <meta property="og:locale" content="es_AR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Banco de Pruebas" />
+  <meta name="twitter:description" content="Base de html y css para la creación de sitios pertenecientes a la Administración Pública Nacional de la República Argentina." />
+  <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <link href="/vendor/poncho/dist/css/droid-serif.css" rel="stylesheet">
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!--<link href="/node_modules/chosen-js/chosen.css" rel="stylesheet">-->
+  <link href="/node_modules/flag-icon-css/css/flag-icon.css" rel="stylesheet"> 
+  <!-- <link href="/vendor/poncho/dist/css/poncho.css" rel="stylesheet">
+  <link href="/vendor/iconos/dist/css/icono-arg.css" rel="stylesheet"> -->
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/poncho.min.css" rel="stylesheet">
+  <link href="http://argob.github.io/poncho/node_modules/argob-poncho/dist/css/icono-arg.css" rel="stylesheet">
+  <link href="/css/argentina.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="/node_modules/html5shiv/html5shiv.js"></script>
+      <script src="/node_modules/respond.js/respond.min.js"></script>
+  <![endif]-->  
+    
+</head>
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/node_modules/chosen-js/chosen.jquery.js"></script>-->
+
+  <body>
+
+    
+<header>
+
+
+  <nav class="navbar navbar-top navbar-default" role="navigation">
+    <div class="container">
+      <div>
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación">
+            <img alt="Argentina.gob.ar" src="/proyectos/argentina/img/argentinagob.svg" height="50">
+          </a>
+          <a class="btn btn-success btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><span class="fa fa-user fa-fw"></span></a>
+          <a class="btn btn-primary btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
+        </div>
+
+        <!--<ul class="nav navbar-nav navbar-right hidden-xs">
+          <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <li>
+            <div class="input-group">
+              
+              <input id="buscar" type="text" class="form-control" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar trámites, servicios o áreas ...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" id="buscar-btn" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </li>              
+          <a href="#" class="dropdown-toggle btn btn-success hidden-xs" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"><i class="fa fa-user"></i> &nbsp; Mi Argentina</a>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right hidden-xs"> <a
+            onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+            class="btn btn-link visible-xs"> <i class="fa fa-times"></i> </a>
+          <div id="cd-login"> <a id="cd-login" href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs"
+              aria-label="Ingresar a Mi Argentina"> <i class="icono-arg-mi-argentina"></i>Mi Argentina</a></div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<script type="text/javascript">
+
+  var busqueda = document.getElementById('buscar');
+  var buscar = document.getElementById('buscar-btn');
+  buscar.onclick = function () {
+    var buscado = busqueda.value;
+    location.href = "http://www.argentina.gob.ar/buscar/" + buscado;
+  };
+  
+  //PONCHO LABS
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var lab = url.searchParams.get("lab");
+  
+  
+  if(lab == ""){
+    $("head").append('<link href="/proyectos/argentina/pruebas/poncho_lab.css" rel="stylesheet">');
+  }
+</script>
+
+    <main role="main">
+      <style type="text/css">
+
+  .jumbotron_bar{
+    background: rgba(0, 0, 0, 0.6)!important;
+  }
+
+  #barrita{
+    background-color: white;
+    height: 4px;
+    margin-bottom: 20px;
+  }
+
+  .breadcrumb{
+    text-shadow: none!important;
+  }
+
+  p{
+    font-weight: 400;
+  }
+
+  img{
+    width: 60%;
+  }
+
+  .panel{
+    margin-bottom: 0!important;
+  }
+
+
+h1{
+      
+      text-shadow: none!important;
+      text-transform: uppercase!important;
+    }
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (max-width: 991px) {
+    .jumbotron{
+        background-image: url('img/trama1.png');
+        background-color: #0695d6;
+        background-repeat: repeat;
+    background-size: inherit;
+    }
+
+    .overlay{
+      opacity: 0.4;
+    }
+
+    .jumbotron_body{
+      padding-top: 0!important;
+      height: 550px;
+    }
+
+    #contjumbo{
+      padding-top: 200px;
+          height: 100%;
+    }
+
+  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (max-width: 1199px) {
+    .jumbotron{
+        background-image: url('img/trama1.png');
+        background-color: #0695d6;
+        background-repeat: repeat;
+    background-size: inherit;
+    }
+
+    .overlay{
+      opacity: 0.4;
+    }
+
+    .jumbotron_body{
+      padding-top: 0!important;
+      height: 550px;
+    }
+
+    #contjumbo{
+          padding-top: 150px;
+          padding-left: 2vw;
+          padding-right: 2vw;
+          height: 100%;
+    }
+
+
+  }
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    #imagenJT{
+        background-image: url('img/fondo-v2.jpg');
+        height: 550px;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    #contcontjumbo{
+      padding-left: 300px;
+    }
+
+
+
+    /*.overlay{
+          background: rgba(20, 115, 140, 0.5)!important;
+          opacity: 0.6!important;
+    }*/
+
+    #barrita{
+      background-color: #0695d6;
+    }
+
+    h1{
+      color: #0695d6!important;
+    }
+
+    .jumbotron_body{
+      padding-bottom: 0!important;
+      margin: 0;
+      padding-top: 0!important;
+      height: 600px;
+    }
+
+    #contjumbo{
+          padding: 200px 4.9vw 30px 10vw!important;
+          background-color: white;
+          height: 100%;
+    }
+
+    .jumbotron_body p{
+      text-shadow: none;
+      font-weight: 400;
+    }
+
+    #contcontjumbo{
+          padding: 0!important;
+          height: 550px;
+    }
+
+    #contjumbo p{
+      margin-bottom: 0;
+      text-shadow: none;
+      color: black;
+    }
+
+    .desc{
+      font-size: 1em;
+      color: black;
+    }
+
+}
+
+</style>
+
+<section class="jumbotron">
+  
+  <div class="jumbotron_body">
+  <div class="jumbotron_bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ol class="breadcrumb pull-left">
+            <li><a href="/">Inicio</a></li>
+            <li class="active">Aplicaciones Móviles</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6" id="contcontjumbo">
+          <div id="contjumbo">
+           <h1>Aplicaciones Móviles</h1>
+           <div id="barrita"></div>
+           <p>Estas son las aplicaciones móviles del Estado argentino.</p>
+          </div>
+        </div>
+        <div class="col-md-6" id="imagenJT"></div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="overlay"></div>-->
+</section>
+
+
+<section class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+        
+        <div class="row panels-row">
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" target="_blank" href="app.html">
+              <div class="panel panel-default panel-disabled">
+                <div style="background-image:url('img/argentina_app.png');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Argentina.gob.ar</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" target="_blank" href="fronteras-argentinas.html">
+              <div class="panel panel-default panel-disabled">
+                <div style="background-image:url('img/fronteras_app.png');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Fronteras</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <a class="panel panel-default" target="_blank" href="mi-monotributo.html">
+              <div class="panel panel-default panel-disabled">
+                <div style="background-image:url('img/monotributista.png');" class="panel-heading"></div>
+                <div class="panel-body">
+                  <h3>Mi Monotributo</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+
+
+
+  </div>
+
+    <div class="col-md-12 m-t-2">
+      <div class="row row-flex">
+      
+                
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="mi-anses-aplicacion.html" target="_blank">
+            <img src="img/iconos/anses.jpg">
+            <h3 class="h6 p-t-1">Mi ANSES</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div><div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="radio-nacional-argentina-0.html" target="_blank">
+            <img src="img/iconos/radionacional.png">
+            <h3 class="h6 p-t-1">Radio Nacional Argentina</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div><div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="trenes-en-directo.html" target="_blank">
+            <img src="img/iconos/trenes.png">
+            <h3 class="h6 p-t-1">Trenes en Directo</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div><div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="calculo-salarial-castrabajo.html" target="_blank">
+            <img src="img/iconos/calculo.png">
+            <h3 class="h6 p-t-1">Cálculo Salarial: CAS.Trabajo</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="infodoc-min-agroindustria.html" target="_blank">
+            <img src="img/iconos/infodoc.png">
+            <h3 class="h6 p-t-1">InfoDoc Min. Agroindustria</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="sistema-inspector-mobile.html" target="_blank">
+            <img src="img/iconos/sim.png">
+            <h3 class="h6 p-t-1">Sistema Inspector Mobile</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="sif-movil-min-agroindustria.html" target="_blank">
+            <img src="img/iconos/sif.png">
+            <h3 class="h6 p-t-1">SIF Móvil Min. Agroindustria</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="sisa-mobile.html" target="_blank">
+            <img src="img/iconos/sisa.png">
+            <h3 class="h6 p-t-1">SISA Mobile</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="consumo-protegido.html" target="_blank">
+            <img src="img/iconos/consumo.png">
+            <h3 class="h6 p-t-1">Consumo Protegido</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="cedula-automotor.html" target="_blank">
+            <img src="img/iconos/cedulaauto.png">
+            <h3 class="h6 p-t-1">Cédula Automotor</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="educar-noticias.html" target="_blank">
+            <img src="img/iconos/educar.png">
+            <h3 class="h6 p-t-1">educ.ar Noticias</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="argentina-turismo.html" target="_blank">
+            <img src="img/iconos/turismo.png">
+            <h3 class="h6 p-t-1">Argentina Turismo</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="remediar.html" target="_blank">
+            <img src="img/iconos/remediar.png">
+            <h3 class="h6 p-t-1">Remediar</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="radio-igualdad-cultural.html" target="_blank">
+            <img src="img/iconos/radioigualdad.png">
+            <h3 class="h6 p-t-1">Radio Igualdad Cultural</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="cda.html" target="_blank">
+            <img src="img/iconos/cda.png">
+            <h3 class="h6 p-t-1">CDA</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="biblioteca-digital.html" target="_blank">
+            <img src="img/iconos/biblioteca.png">
+            <h3 class="h6 p-t-1">Biblioteca Digital</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="alertamos.html" target="_blank">
+            <img src="img/iconos/alertamos.png">
+            <h3 class="h6 p-t-1">Alertamos</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="facturador-movil.html" target="_blank">
+            <img src="img/iconos/facturador.png">
+            <h3 class="h6 p-t-1">Facturador Móvil</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="afip-movil.html" target="_blank">
+            <img src="img/iconos/afip.jpg">
+            <h3 class="h6 p-t-1">AFIP Móvil</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="sne-movil.html" target="_blank">
+            <img src="img/iconos/sne.png">
+            <h3 class="h6 p-t-1">SNE Móvil</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+        <div class="hidden m-t-1 p-y-1 p-x-1 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+          <a href="proemplear.html" target="_blank">
+            <img src="img/iconos/proemplear.png">
+            <h3 class="h6 p-t-1">PROEMPLEAR</h3>
+            <p class="desc">Esta es la descripción corta de la app.</p>
+          </a>
+        </div>
+
+
+      </div>
+      
+
+     
+    </div>
+  </div>
+
+</section>
+    </main>
+    
+<footer class="main-footer">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-sm-6 col-sm-12">
+                    <section class="block block-block clearfix"> <img class="image-responsive"
+                            src="http://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob.svg"
+                            alt="Argentina.gob.ar - Presidencia de la Nación">
+                        <p class="text-muted small m-b-2"> <a
+                                href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Los
+                                contenidos de Argentina.gob.ar están licenciados bajo Creative Commons Atribución 4.0 Internacional</a></p>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer2">
+                        <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                            <ul class="menu ">
+                                <li class="first leaf"><a href="/servicios">Trámites y servicios</a></li>
+                                <li class="leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                                <li class="leaf"><a href="/organismos">Organismos del Estado</a></li>
+                                <li class="leaf"><a href="http://mapadelestado.jefatura.gob.ar/">Mapa del Estado</a>
+                                </li>
+                                <li class="last leaf"><a href="/normativa">Leyes argentinas</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="region region-footer3">
+                        <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                            <ul class="menu">
+                                <li class="first leaf"><a href="/acerca">Acerca de este sitio</a></li>
+                                <li class="leaf"><a href="/terminos-y-condiciones">Términos y condiciones</a></li>
+                                <li class="last leaf"><a href="/ayuda">Ayuda</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+    
+  </body>
+</html>

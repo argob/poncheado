@@ -1,0 +1,23 @@
+<div class="container">
+
+	<div id="nombre"></div>
+	
+</div>
+
+
+<script>
+
+	var data;
+
+	function setData(){
+		data = JSON.parse(localStorage.getItem('usuario'))
+		data.forEach(d => {
+			
+			var h2 = document.createElement('h2')
+			h2.innerHTML = `${d.fname +' ' +d.lname }`
+			document.getElementById('nombre').appendChild(h2)
+		})
+	}
+
+	setData()
+</script>
