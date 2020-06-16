@@ -27,3 +27,4 @@ En **Sublime Text** recomendamos tener los siguientes packages, disponibles en e
 
 - **Editorconfig** *(Para asegurar consistencia en el formato de archivos)*
 - **Sass** *(Para colores de los archivos scss)*
+AGREGO UN TEST HL
