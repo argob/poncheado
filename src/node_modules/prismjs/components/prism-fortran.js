@@ -4,7 +4,7 @@ Prism.languages.fortran = {
 		alias: 'number'
 	},
 	'string': {
-		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:\s*!.+(?:\r\n?|\n))?|(?!\1).)*(?:\1|&)/,
+		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:[ \t]*!.*(?:\r\n?|\n)|(?![ \t]*!))|(?!\1).)*(?:\1|&)/,
 		inside: {
 			'comment': {
 				pattern: /(&(?:\r\n?|\n)\s*)!.*/,
@@ -12,9 +12,12 @@ Prism.languages.fortran = {
 			}
 		}
 	},
-	'comment': /!.*/,
+	'comment': {
+		pattern: /!.*/,
+		greedy: true
+	},
 	'boolean': /\.(?:TRUE|FALSE)\.(?:_\w+)?/i,
-	'number': /(?:\b|[+-])(?:\d+(?:\.\d*)?|\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
+	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
 	'keyword': [
 		// Types
 		/\b(?:INTEGER|REAL|DOUBLE ?PRECISION|COMPLEX|CHARACTER|LOGICAL)\b/i,
@@ -26,7 +29,7 @@ Prism.languages.fortran = {
 		/\b(?:ASSIGNMENT|DEFAULT|ELEMENTAL|ELSE|ELSEWHERE|ELSEIF|ENTRY|IN|INCLUDE|INOUT|KIND|NULL|ONLY|OPERATOR|OUT|PURE|RECURSIVE|RESULT|SEQUENCE|STAT|THEN|USE)\b/i
 	],
 	'operator': [
-		/\*\*|\/\/|=>|[=\/]=|[<>]=?|::|[+\-*=%]|\.(?:EQ|NE|LT|LE|GT|GE|NOT|AND|OR|EQV|NEQV)\.|\.[A-Z]+\./i,
+		/\*\*|\/\/|=>|[=\/]=|[<>]=?|::|[+\-*=%]|\.[A-Z]+\./i,
 		{
 			// Use lookbehind to prevent confusion with (/ /)
 			pattern: /(^|(?!\().)\/(?!\))/,
