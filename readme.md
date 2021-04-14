@@ -6,7 +6,7 @@ Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/pon
 
 ## Instalación y requisitos
 
-Para el desarrollo de poncho usamos Jekyll ya que ayudaa generar templates y compilar los archivos de sass.
+Para el desarrollo de poncho usamos Jekyll ya que ayuda a generar templates y compilar los archivos de sass.
 Para poder correr el proyecto es necesario tener instalado Ruby y la gema de [Bundler](http://bundler.io/): *(Si lo requiere, usar sudo)*
 
     gem install bundler
@@ -21,7 +21,7 @@ Para correr el proyecto, ejecutar el siguiente comando en su carpeta:
 
     jekyll serve
 
-Esto inicia un servidor de jekyll que se puede ver en **http://localhost:4000/**, el cual regenera los archivos automáticamente al hacer modificaciones en el proyecto.
+Esto inicia un servidor de Jekyll que se puede ver en **http://localhost:4000/**, el cual regenera los archivos automáticamente al hacer modificaciones en el proyecto.
 
 En **Sublime Text** recomendamos tener los siguientes packages, disponibles en el package controller:
 
