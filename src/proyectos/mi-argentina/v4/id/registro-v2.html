@@ -7,13 +7,13 @@ layout: mi-argentina-login
     <div class="container">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-        <h1>Creá tu cuenta</h1>
+        <h2>Creá tu cuenta</h2>
         <hr class="m-y-1">
         <div id="errores" aria-live="polite" class="alert alert-danger" style="display:none"></div>
         <form method="get" action="success1.html" id="formR" autocomplete="off">
           <fieldset>
-            <legend>
-              <p class="lead">Ingresá los siguientes datos:</p>
+            <legend class="lead">
+             Ingresá los siguientes datos:
             </legend>
             <div class="row">
               <div class="col-sm-12 form-group item-form">
@@ -39,7 +39,7 @@ layout: mi-argentina-login
             <div class="row" >
               <div class="col-md-6 form-group item-form">
                 <label for="dni" id="documentLabel">Número de DNI</label>
-                <input type="number" class="form-control" id="dni" name="nroDoc" required  aria-required="true" minlength="6" data-alerta="Ingresá número de DNI">
+                <input type="number" class="form-control" id="dni" name="nroDoc" required  aria-required="true" data-alerta="Ingresá número de DNI">
               </div>
             </div>
             <div class="row">
@@ -51,11 +51,11 @@ layout: mi-argentina-login
                   <p class="help-block" id="genter">Como aparece en tu DNI</p>
                   <div class="item-form">
                     <label for="f" class="radio-inline">
-                      <input type="radio" name="sexo" id="f" value="F" required aria-required="true" >
+                      <input type="radio" name="sexo" id="f" value="F" required  >
                       Femenino
                     </label>
                     <label for="m" class="radio-inline">
-                      <input type="radio" name="sexo" id="m" value="M" required aria-required="true">
+                      <input type="radio" name="sexo" id="m" value="M" required >
                       Masculino
                     </label>
                     <p class="help-block error hidden">Ingresá tu sexo</p>
@@ -67,21 +67,21 @@ layout: mi-argentina-login
               <div class="row">
                 <div class="col-md-10 form-group item-form">
                   <label for="firstname">Nombres</label>
-                  <input type="text" name="fullname" class="form-control" id="firstname" aria-required="true">
+                  <input type="text" name="fullname" class="form-control" id="firstname" >
                   <p class="help-block has-error hidden">Ingresá tu nombre</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-10 form-group item-form">
                   <label for="lastname">Apellidos</label>
-                  <input type="text" name="fullname" class="form-control" id="lastname" aria-required="true" data-alerta="Ingresá tu apellido">
+                  <input type="text" name="fullname" class="form-control" id="lastname" data-alerta="Ingresá tu apellido">
                   <p class="help-block error hidden">Ingresá tu apellido</p>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6 item-form">
                   <label for="birthday">Fecha de nacimiento</label>
-                  <input type="date" class="form-control" id="birthday" aria-required="true" min="01/01/1900" max="01/01/2001">
+                  <input type="date" class="form-control" id="birthday" >
                   <p class="help-block error hidden">Ingresá la fecha</p>
                 </div>
               </div>
@@ -96,7 +96,7 @@ layout: mi-argentina-login
                   <div class="content-dni-tramite hidden bg-white" id="content-dni-tramite">
                     <div class="arrow-tramite"></div>
                     <div class='col-xs-12 p-x-0'>
-                      <span class='close' aria-label="Cerrar"  onclick="pophidde()">&times;</span>
+                      <span class='close' onclick="pophidde()">&times;</span>
                     </div>
                     <div>
                       <p>El número de trámite de tu DNI se encuentra en el frente en la parte inferior.</p>
@@ -108,7 +108,7 @@ layout: mi-argentina-login
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group  item-form">
-                        <input type="number" class="form-control" id="nro-tramite" required min="0" aria-required="true">
+                        <input type="number" class="form-control" id="nro-tramite" required min="0" >
 
                       </div>
                     </div>
@@ -378,7 +378,7 @@ layout: mi-argentina-login
             <div class="row" id ="province-field">
               <div class="col-md-10 form-group item-form" >
                 <label for="address_state">Provincia</label>
-                  <select class="form-control" id="address_state" name="address" disable="false">
+                  <select class="form-control" id="address_state" name="address" >
                     <option value="provincia">Seleccioná una provincia</option>
                     <option value="Ciudad Autónoma de buenos Aires" selected>Ciudad Autónoma de Buenos Aires</option>
                     <option value="Buenos Aires">Buenos Aires</option>
@@ -410,7 +410,7 @@ layout: mi-argentina-login
             <div class="row" id ="municipality-field">
               <div class="col-md-10 form-group item-form">
                 <label for="municipality">Municipio</label>
-                <select class="form-control" name="address" id="municipality" disable="false">
+                <select class="form-control" name="address" id="municipality">
                   <option value="municipio 1" selected="">Municipio 1</option>
                     <option value="municipio 2">Municipio 2</option>
                     <option value="municipio 3">Municipio 3</option>
@@ -421,7 +421,7 @@ layout: mi-argentina-login
             <div class="row" id="location-field">
               <div class="col-md-10 form-group item-form">
                 <label for="location">Localidad</label>
-                  <select class="form-control" name="address" id="location" disable="false">
+                  <select class="form-control" name="address" id="location" >
                      
                       <option value="Localidad 1" selected="">Localidad 1</option>
                       <option value="Localidad 2">Localidad 2</option>
@@ -523,32 +523,7 @@ layout: mi-argentina-login
   </div>
   
 </section>
-<style>
-.modal {
-  text-align: center;
-}
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-.modal-content{
-  border:0;
-  border-radius: 3px;
-}
-@media screen and (min-width: 768px) { 
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
-  .modal-sm {
-    width: 335px;
-  }
-}
 
-</style>
 <div id="modalSalud" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
