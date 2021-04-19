@@ -32,7 +32,7 @@ layout: mi-argentina-login
           
           <div 
               id="errores" 
-              rol='alert' 
+              role='alert' 
               aria-live='assertive' 
               class="alert alert-danger sr-only">
           </div>
@@ -57,9 +57,7 @@ layout: mi-argentina-login
                       id="id_type" 
                       required>
                     <option 
-                        value="CUIL" 
-                        
-                        elected>
+                        value="CUIL" selected="selected" >
                       CUIL
                     </option>
                     <option 
@@ -115,7 +113,7 @@ layout: mi-argentina-login
           <div class="form-group item-form">
             <fieldset>
               <legend>
-                <label id="gender" for="gender">
+                <label id="gender">
                   Sexo (según tu documento)
                 </label>
               </legend>
@@ -127,7 +125,7 @@ layout: mi-argentina-login
                   <input 
                       type="radio" 
                       name="gender" 
-                      id="gender" 
+                      
                       value="F"
                       > 
                   Femenino
@@ -135,8 +133,7 @@ layout: mi-argentina-login
                 <label class="btn btn-default">
                   <input 
                       type="radio" 
-                      name="gender" 
-                      id="gender" 
+                      name="gender"
                       value="M"
                       >
                   Masculino
@@ -165,7 +162,7 @@ layout: mi-argentina-login
                 class="form-control chosen-select" 
                 name="country" 
                 id="country">
-              <option value=""></option>
+              <option value="">Seleccione país de residencia</option>
               
               
                 <option value="AFG">
@@ -1143,7 +1140,7 @@ layout: mi-argentina-login
           <div class="form-group item-form only-arg" style="display:none">
             <label for="state">Provincia</label>
             <select class="form-control" name="state" id="state">
-              <option value=""></option>
+              <option value="">Seleccione la provincia</option>
               
               
                 <option value="6">Buenos Aires</option>
@@ -1201,7 +1198,7 @@ layout: mi-argentina-login
           <div class="form-group item-form only-arg" style="display:none">
             <label for="district">Municipio</label>
             <select class="form-control" name="district" id="district">
-              <option value=""></option>
+              <option value="">Seleccione el municipio</option>
               
               
                 <option value="6007">Adolfo Alsina</option>
@@ -2232,7 +2229,7 @@ layout: mi-argentina-login
           <div class="form-group item-form only-arg" style="display:none">
             <label for="locality">Localidad</label>
             <select class="form-control" name="locality" id="locality">
-              <option value=""></option>
+              <option value="">Seleccione la localidad</option>
               
             </select>
           </div>
@@ -2302,7 +2299,7 @@ layout: mi-argentina-login
                     <div class="checkbox">
                       <label for="id_general" class="radio-inline">
                         
-                          <input type="checkbox" name="general">
+                          <input id="id_general" type="checkbox" name="general">
                         
                         Acepto términos y condiciones generales.
                       </label>
@@ -2324,7 +2321,7 @@ layout: mi-argentina-login
                     <div class="checkbox">
                       <label for="id_health" class="radio-inline">
                         
-                          <input type="checkbox" name="health">
+                          <input id="id_health" type="checkbox" name="health">
                         
                         Acepto ver información sobre Mi Salud.
                       </label>
@@ -2333,7 +2330,7 @@ layout: mi-argentina-login
                     <div class="checkbox">
                       <label for="id_disability" class="radio-inline">
                         
-                          <input type="checkbox" name="disability">
+                          <input id="id_disability" type="checkbox" name="disability">
                         
                         Acepto ver información sobre Discapacidad.
                       </label>
@@ -2367,7 +2364,7 @@ layout: mi-argentina-login
 </div>
 
 <div 
-    id="modalSalud" 
+    
     class="modal fade" 
     tabindex="-1" 
     role="dialog" 
@@ -2375,7 +2372,7 @@ layout: mi-argentina-login
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <h4 class="modal-title sr-only" id="tituloModal">
+        <h4 class="modal-title sr-only">
           Términos y condiciones
         </h4>
         <p>No aceptaste los Términos y Condiciones de salud.</p>
@@ -2922,32 +2919,7 @@ layout: mi-argentina-login
   </div>
   
 </section>-->
-<style>
-.modal {
-  text-align: center;
-}
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-.modal-content{
-  border:0;
-  border-radius: 3px;
-}
-@media screen and (min-width: 768px) { 
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
-  .modal-sm {
-    width: 335px;
-  }
-}
 
-</style>
 <div id="modalSalud" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
