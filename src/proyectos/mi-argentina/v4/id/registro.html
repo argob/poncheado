@@ -10,9 +10,9 @@ layout: mi-argentina-login
     <div class="panel panel-default" style="border: none!important">
       <div class="panel-body">
         
-        <h1>Creá tu cuenta</h1>
+        <h2>Creá tu cuenta</h2>
         <hr class="m-y-1">
-        <p>Por favor completá estos datos para continuar.</p>
+        <p>Por favor completá estos datos para continuar. Los campos con * son obligatorios.</p>
         <p>
           <a
               href="/ingresar/?next=/">
@@ -39,12 +39,12 @@ layout: mi-argentina-login
 
           <fieldset>
             <label>
-              Identificación (CUIL o pasaporte extranjero)
+              Identificación (CUIL o pasaporte extranjero) *
             </label>
             <div class="row">
 
               <!-- tipo -->
-              <div class="col-xs-4 col-sm-3">
+              <div class="col-xs-4 col-sm-4">
                 <div class="form-group">
                   <label for="id_type" class="sr-only">
                     Tipo de documento
@@ -56,13 +56,14 @@ layout: mi-argentina-login
                       name="id_type" 
                       id="id_type" 
                       required>
+					  <option value="" selected="selected">Seleccioná</option>
                     <option 
-                        value=""  >
+                        value="cuil"  >
                       CUIL
                     </option>
                     <option 
                         value="PASS" >
-                      Pasaporte
+                      Pasaporte extranjero
                     </option>
                   </select>
                   
@@ -70,12 +71,12 @@ layout: mi-argentina-login
               </div>
               <!-- / tipo -->
 
-              <div class="col-xs-8 col-sm-9 item-form">
+              <div class="col-xs-8 col-sm-8 item-form">
                 <div class="form-group">
                   <label for="id_number" class="sr-only">
                     Número de documento
                   </label>
-                  <input 
+                  <input placeholder="Ingresá tu CUIL o pasaporte"
                       id="id_number" 
                       class="form-control" 
                       type="text" 
@@ -90,8 +91,8 @@ layout: mi-argentina-login
             </div>
           </fieldset>
           <div class="form-group item-form">
-            <label for="first_name">Nombre</label>
-            <input 
+            <label for="first_name">Nombre *</label>
+            <input placeholder="Ingresá tu nombre"
                 id="first_name" 
                 class="form-control" 
                 type="text" 
@@ -100,8 +101,8 @@ layout: mi-argentina-login
                 >
           </div>
           <div class="form-group item-form">
-            <label for="last_name">Apellido</label>
-            <input 
+            <label for="last_name">Apellido *</label>
+            <input placeholder="Ingresá tu apellido"
                 id="last_name" 
                 class="form-control" 
                 type="text" 
@@ -114,7 +115,7 @@ layout: mi-argentina-login
             <fieldset>
               <legend>
                 <label id="gender">
-                  Sexo (según tu documento)
+                  Sexo (según tu documento) *
                 </label>
               </legend>
 
@@ -143,7 +144,7 @@ layout: mi-argentina-login
             </fieldset>
           </div>
           <div class="form-group item-form">
-            <label for="birthdate">Fecha de Nacimiento</label>
+            <label for="birthdate">Fecha de nacimiento *</label>
             <input 
                 id="birthdate" 
                 class="form-control" 
@@ -157,12 +158,12 @@ layout: mi-argentina-login
           </div>
 
           <div class="form-group item-form">
-            <label for="country">País de Residencia</label>
+            <label for="country">País de residencia *</label>
             <select 
                 class="form-control chosen-select" 
                 name="country" 
                 id="country">
-              <option value="">Seleccione país de residencia</option>
+              <option value="">Seleccioná país de residencia</option>
               
               
                 <option value="AFG">
@@ -2235,18 +2236,19 @@ layout: mi-argentina-login
           </div>
 
           <div class="form-group item-form">
-            <label for="email">Correo Electrónico</label>
+            <label for="email">Correo electrónico *</label>
             <input 
                 autocomplete="off" 
                 id="email" 
                 class="form-control" 
                 type="email" 
                 name="email"
-                value="">
+                value=""><p class="help-block">
+        Ejemplo: juana@email.com    </p>
           </div>
           <div class="form-group item-form">
             <label  for="email-confirmation">
-              Confirmar Correo Electrónico
+              Confirmar Correo electrónico *
             </label>
             <input 
                 autocomplete="off" 
@@ -2254,16 +2256,17 @@ layout: mi-argentina-login
                 class="form-control" 
                 type="email" 
                 name="email_confirmation"
-                value="">
+                value=""><p class="help-block">
+        Ejemplo: juana@email.com    </p>
           </div>
           <div class="form-group item-form">
             <label for="password">
-              Creá una contraseña para Mi Argentina
+              Creá una contraseña para Mi Argentina *
             </label>
             <div class="help-block" id="help-password">
               Usá al menos 8 caracteres
             </div>
-            <input 
+            <input placeholder="Ingresá tu contraseña"
                 autocomplete="off"
                 id="password"
                 class="form-control"
@@ -2290,7 +2293,9 @@ layout: mi-argentina-login
                     Para crear tu cuenta es necesario que aceptes los 
                     <a 
                         href="https://www.argentina.gob.ar/mi/terminos-y-condiciones" 
-                        target="_blank">
+                        target="_blank" rel="noopener" title="Link a argentina.gob.ar términos y condiciones (abre en una pestaña nueva)"
+					   
+					   >
                       Términos y condiciones generales
                     </a> de Mi Argentina
                   </p>
@@ -2311,7 +2316,7 @@ layout: mi-argentina-login
                     sobre Salud y Discapacidad en la sección <strong>Mi Salud
                     </strong>. Si querés visualizarla, podés aceptar los 
                     <a 
-                        href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" 
+                        href="https://www.argentina.gob.ar/mi/terminos-y-condiciones/terminos-y-condiciones-salud" rel="noopener" title="Link a argentina.gob.ar términos y condiciones de salud (abre en una pestaña nueva)" 
                         target="_blank">
                       Términos y condiciones de Salud
                     </a>.
