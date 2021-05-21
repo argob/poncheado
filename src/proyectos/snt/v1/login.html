@@ -1,0 +1,169 @@
+---
+layout: snt-login
+---
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<div class="login-container body-login">
+  <section class="container-fluid" style="background-color:#fff!important">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+            <h2 class="sr-only">Ingresá o creá tu cuenta del Sistema Nacional de Turnos</h2>
+            <h2 aria-hidden="true">Ingresá a tu cuenta del Sistema Nacional de turnos (SNT)</h2>
+            <form method="get">
+              
+              <div class="row">
+                <div class="col-xs-12 form-group item-form">
+                  <label for="usuario"><strong>Usuario *</strong></label>
+              <input autofocus="" class="form-control ng-untouched ng-dirty ng-valid" formcontrolname="usuario" id="usuario" placeholder="Ingresá tu usuario" type="text">
+                </div>
+                
+                <div class="col-xs-12 form-group item-form">
+                    <label for="password">Contraseña*</label>
+                    
+                    <div class="form-group item-form m-b-0">
+                      <input id="password" name="password" type="password" class="form-control" minlength="6" placeholder="Ingresá tu contraseña"
+                         aria-describedby="mostrar" aria-required="true" required >
+    
+                      <div class="checkbox">
+                        <label for="opcion" id="mostrar">
+                          <input id="opcion" name="mostrar" type="checkbox"  value="">Mostrar la contraseña 
+                        </label>
+                      </div>
+                      <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+                </div> 
+              </div>
+              
+              <div class="row m-t-2">
+                <div class="col-md-8">
+                  <button type="button" class="btn btn-success validator">Ingresar</button>
+                </div>
+              </div>
+              <p class="m-t-2 m-b-0">
+                O ingresá con 
+                <a href="https://id.argentina.gob.ar/" target="_blank" rel="noopener noreferrer" title="Link a Mi Argentina (abre en una pestaña nueva)">Mi Argentina</a><span class="sr-only">Mi Argentina</span>
+            </p>
+               
+            </form>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </section>
+
+
+</div>
+  
+
+<script>
+ var errorElements = []
+    var elementError ;
+    document.querySelector('.validator').addEventListener('click', function(){
+        
+        document.querySelectorAll('.form-control').forEach(i => {
+
+            if(i.value == ''){
+                errorElements.push(i)
+
+             }
+
+        })
+         console.log(errorElements)
+         errorElements.forEach(e => {
+            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
+            e.closest('.item-form').classList.add('has-error')
+
+
+        })
+        
+        elementError = errorElements[0].closest('.item-form').querySelector('.form-control') 
+        
+        if(elementError.value == ''){
+            elementError.setAttribute('aria-label', errorElements[0].textContent)
+            //elementError.focus()
+          }
+
+
+        })
+   /* document.addEventListener("keypress", function(e){
+        
+        e.target.nextElementSibling.classList.add('hidden')
+        e.target.parentNode.parentNode.classList.remove('has-error')
+        e.target.parentNode.classList.remove('has-error')
+
+    })
+*/
+        
+
+function mostrarErrores(){
+  document.querySelector('#errores').innerHTML = ''
+  document.querySelector('#errores').innerHTML = '<h3>Se han producido los siguientes errores:</h3><ol></ol>'
+  let cantidadDeErrores = 0
+  document.querySelectorAll('.has-error').forEach(error => {
+    let mensajeError = error.querySelector(".help-block.error").textContent;
+    let li;
+    li.innerHTML = `<li>${mensajeError}</li>`
+    error.querySelector('input').appendChild(li)
+  })
+
+}
+
+
+  function viewpassword(){
+    var eye =  document.getElementById('eye-password')
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      eye.classList.remove("fa-eye-slash")
+      eye.classList.add("fa-eye")
+      eye.querySelector('span').innerHTML ='Mostrar contraseña' 
+
+    }else{
+      clave.type = 'password'
+      eye.classList.remove("fa-eye")
+      eye.classList.add("fa-eye-slash")
+
+      eye.querySelector('span').innerHTML ='Ocultar contraseña' 
+      
+      
+    }
+    
+  }
+</script>
+
+
+<script>
+    let mostrar = document.getElementById('mostrar');
+
+    mostrar.addEventListener("click", (e) =>{
+    e.preventDefault();
+    let clave = document.getElementById('password');
+    
+    if(clave.type === 'password'){
+      clave.setAttribute("type", "text");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" checked value="">Ocultar la contraseña';
+      document.getElementById('password').focus();
+
+    }else{
+      clave.setAttribute("type", "password");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" value="">Mostrar la contraseña';
+      document.getElementById('mostrar').focus();
+
+      
+    }
+    });
+    console.log(prueba.outerHTML);
+    console.log(mostrar.outerHTML);
+
+    
+
+    
+      
+</script>
