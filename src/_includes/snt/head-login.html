@@ -3,8 +3,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>-->
-	<title>Sistema Nacional de Turnos (SNT)</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+	<!-- <title>Sistema Nacional de Turnos (SNT)</title> -->
+  <!-- <title>{{page.title}}</title>-->
+  <!-- <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">-->
   <meta name="author" content="Presidencia de la Nación">
 
 	<link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.baseurl }}">
@@ -14,15 +15,15 @@
   <meta name="msapplication-navbutton-color" content="#0072b8">
   <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
 
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" />
+  <!-- <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" /> -->
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+  <!-- <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" /> -->
+  <!-- <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" /> -->
   <meta property="og:image" content="/ejemplos/img/jumbotron.jpg" />
-  <meta property="og:locale" content="es_AR" />
+  <!-- <meta property="og:locale" content="es_AR" /> -->
 
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+  <!-- <meta name="twitter:card" content="summary" /> -->
+  <!-- <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" /> -->
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
   <meta name="twitter:image" content="/ejemplos/img/jumbotron.jpg" />
 
@@ -31,12 +32,15 @@
   <link href="{{ "/node_modules/bootstrap/dist/css/bootstrap.css" | prepend: site.baseurl }}" rel="stylesheet">
   <link href="{{ "/node_modules/font-awesome/css/font-awesome.min.css" | prepend: site.baseurl }}" rel="stylesheet">
   
-  <link href="/vendor/poncho/dist/css/icono-arg.css" rel="stylesheet">
-  <link href="/vendor/poncho/dist/css/poncho.min.css" rel="stylesheet">
- <!-- <link href="/vendor/poncho/dist/css/miargentina.css" rel="stylesheet">-->
-    <link href="/proyectos/mi-argentina/css/estilos.css" rel="stylesheet">
-   <script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/node_modules/bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+  <link href="{{ "/vendor/poncho/dist/css/icono-arg.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <link href="{{ "/vendor/poncho/dist/css/poncho.min.css" | prepend: site.baseurl }}" rel="stylesheet">
+  <!-- <link href="/vendor/poncho/dist/css/miargentina.css" rel="stylesheet">-->
+  
+  
+  <link href="/proyectos/mi-argentina/css/estilos.css" rel="stylesheet">
+  <script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/node_modules/bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -44,4 +48,6 @@
       <script src="{{ "/node_modules/respond.js/respond.min.js" | prepend: site.baseurl }}"></script>
   <![endif]-->  
 
+
+    {% seo %}
 </head>
