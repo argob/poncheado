@@ -6,14 +6,17 @@
 	<!-- <title>Sistema Nacional de Turnos (SNT)</title> -->
   <!-- <title>{{page.title}}</title>-->
   <!-- <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">-->
-  <meta name="author" content="Presidencia de la Nación">
+  <!-- <meta name="author" content="Presidencia de la Nación"> -->
 
 	<link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.baseurl }}">
+  <link rel="apple-touch-icon" href="{{ "/proyectos/argentina/img/icon-192x192.png" | prepend: site.baseurl }}">
+
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Nav and address bar color -->
-  <meta name="theme-color" content="#0072b8">
-  <meta name="msapplication-navbutton-color" content="#0072b8">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+  <meta name="theme-color" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
+  <meta name="msapplication-navbutton-color" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
+  <meta name="apple-mobile-web-app-status-bar-style" content="{% if page.color %}{{ page.color }}{% else %}{{ site.color }}{% endif %}">
 
   <!-- <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}" /> -->
   <meta property="og:type" content="article" />
@@ -40,14 +43,29 @@
   <link href="/proyectos/mi-argentina/css/estilos.css" rel="stylesheet">
   <script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl }}"></script>
   <script src="{{ "/node_modules/bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
       <script src="{{ "/node_modules/html5shiv/html5shiv.js" | prepend: site.baseurl }}"></script>
       <script src="{{ "/node_modules/respond.js/respond.min.js" | prepend: site.baseurl }}"></script>
   <![endif]-->  
-
+  <script >
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log("An active service worker found, no need to register");
+      } else {
+          // Register the service worker
+        navigator.serviceWorker.register("{{ site.baseurl }}/serviceworker.js", {scope: "/"})
+            .then(function (registration) {
+                  console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+        navigator.serviceWorker.ready.then(function(registration) {
+            console.log('Service Worker Ready');
+        });
+      }
+    }
+  </script>
 
     {% seo %}
 </head>
