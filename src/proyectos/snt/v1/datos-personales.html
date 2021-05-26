@@ -1,0 +1,130 @@
+---
+title: Autenticación | SNT
+layout: snt/snt-interior
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+<link rel="stylesheet" href="../css/snt.css">
+<section>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-8">
+			
+			<form>
+				<fieldset>
+				
+						<h2>Mi perfil</h2>
+				
+					
+					<div class="media clearfix"><div class="alert alert-warning"><p><strong>Importante:</strong> Para seguir operando en el SNT es necesario que ingreses tu <abbr title="Código Único de Identificación Laboral">CUIL</abbr>.</p></div></div>
+					<p class="text-right  small p-b-1">(*) Campos obligatorios</p>
+					<div class="panels-row-miargentina" >
+					
+						<div class="panel panel-default  panel-nolink">
+							<fieldset>
+								<legend class="panel-heading h2 legendMiargentina">
+									
+									Datos personales
+								</legend>
+								
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-12  item-form">
+											<fieldset>
+										<label for="cuil" class="">Número de CUIL* </label>
+												<input class="form-control m-b-1" placeholder="Ingresá los 11 dígitos de tu número de CUIL" data-error-msg="CUIL no válido." required="required" min="0" max="99999999999" name="cuil" type="number" id="cuil">
+												<p class="help-block error hidden">
+													Ingresá tu CUIL <br>El CUIL tiene un formato no válido
+						            			</p><p class="help-block">
+        Sin guiones ni puntos. Ej.: 23301234569    </p>
+						            		</fieldset>
+										</div>
+
+									
+										<div class="col-md-12 form-group item-form m-t-1">
+											<label for="firstname">Nombre</label>
+											<input type="text" name="personal-info" id="firstname" class="form-control" placeholder="Juana" disabled >
+											
+										</div>
+										<div class="col-md-12 form-group item-form">
+											<label for="lastname">Apellido</label>
+											<input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="López" disabled>
+										
+										</div>
+									
+										
+								        
+								        
+									    
+								    	<div class="col-md-6 form-group item-form">
+								    		<fieldset>
+								    			<legend>
+								    				<label for="dni" class="m-b-2">Tipo y Número de Documento</label>
+								    			</legend>
+								    			<div class="row">
+													<div class="col-xs-4 col-sm-3">
+														<input type="text" class="form-control text-muted" id="kind-doc" name="personal-info" value="DNI" disabled >
+													</div>
+													<div class="col-xs-8 col-sm-9">
+														<input type="number" class="form-control text-muted" id="dni" name="personal-info" required="" value="21566321"  disabled>
+													</div>
+												</div>
+												
+				            				</fieldset>
+										</div>
+									    
+									</div>
+									
+									
+
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="form-group">
+							                    <button type="submit" class="btn btn-success">Guardar los cambios</button>
+							                </div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+
+					</div>
+					
+				</fieldset>
+			</form>
+			
+		</div>
+	</div>
+</section>
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+	
+	
+</script>
