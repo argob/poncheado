@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 # ruby '2.3.3'
 
-gem 'bundler'
+gem "bundler", ">= 2.2.16"
 gem "jekyll"
 gem "jekyll-assets"
 gem "jekyll-seo-tag"
