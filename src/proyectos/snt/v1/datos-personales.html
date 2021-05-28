@@ -43,6 +43,9 @@ color: "#0072b8"
 													Ingresá tu CUIL <br>El CUIL tiene un formato no válido
 						            			</p><p class="help-block">
         Sin guiones ni puntos. Ej.: 23301234569    </p>
+												<!--<p><a href="#" title="" class="btn btn-link btn-sm">Validar CUIL</a></p>
+												-->
+												
 						            		</fieldset>
 										</div>
 
@@ -125,6 +128,32 @@ color: "#0072b8"
 				elementOption.children.forEach(elementChild => {
 					element.value = elementChild.value
 				})*/
+				
+				
+				const verifyCuit = (cuit) => {
+  if (cuit.length !== 11) {
+    return false;
+  }
+
+  let acumulado = 0;
+  let digitos = cuit.split('');
+  let digito = parseInt(digitos.pop());
+
+  for (let i = 0; i < digitos.length; i++) {
+    acumulado += digitos[9 - i] * (2 + (i % 6));
+  }
+
+  let verif = 11 - (acumulado % 11);
+  if (verif === 11) {
+    verif = 0;
+  } else if (verif === 10) {
+    verif = 9;
+  }
+
+  return digito === verif;
+};
+
+export { verifyCuit };
 				
 			}
 		})
