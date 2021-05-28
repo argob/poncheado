@@ -15,6 +15,11 @@ Una vez instalado bundler, sobre la raíz del proyecto correr:
 
     bundle install
 
+Por último, es necesario cargar las librerías requeridas por el proyecto
+
+    cd src/
+    nmp update
+
 ## Puesta en marcha
 
 Para correr el proyecto, ejecutar el siguiente comando en su carpeta:
