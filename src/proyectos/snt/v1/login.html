@@ -32,7 +32,7 @@ color: "#0072b8"
     
                       <div class="checkbox item-form radio m-y-2">
                         <label for="opcion" id="mostrar" class="radio-inline">
-                          <input id="opcion" name="mostrar" type="radio" aria-required="true" value="">Mostrar la contraseña 
+                          <input id="opcion" name="mostrar" type="radio"class="form-radio"  aria-required="true" value="">Mostrar la contraseña 
                         </label>
                       </div>
                       <p class="help-block error hidden">La contraseña ingresada no es correcta</p>
@@ -152,12 +152,12 @@ function mostrarErrores(){
     
     if(clave.type === 'password'){
       clave.setAttribute("type", "text");
-      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" checked value="">Ocultar la contraseña';
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" checked value="">Ocultar la contraseña';
       document.getElementById('password').focus();
 
     }else{
       clave.setAttribute("type", "password");
-      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="checkbox" value="">Mostrar la contraseña';
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" value="">Mostrar la contraseña';
       document.getElementById('mostrar').focus();
 
       
