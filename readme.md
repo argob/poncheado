@@ -18,7 +18,7 @@ Una vez instalado bundler, sobre la raíz del proyecto correr:
 Por último, es necesario cargar las librerías requeridas por el proyecto
 
     cd src/
-    nmp update
+    npm update
 
 ## Puesta en marcha
 
