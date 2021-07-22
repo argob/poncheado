@@ -1,0 +1,137 @@
+---
+title: Autenticación | SNT
+layout: snt/snt-interior-menu
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+
+<link rel="stylesheet" href="../css/snt.css">
+<section class="m-t-0 p-t-0 ">
+	<div class="container">
+		<div class="row m-b-2"><div class="col-md-12">
+		<ol class="breadcrumb">
+   				 <li><a href="">Sistema Nacional de Turnos</a></li><li><a href="">Usuarios</a></li>
+    				<li class="active">Listado de Usuarios</li>
+  		</ol>
+		</div></div>
+
+  		<article class="content_format col-md-10 col-md-push-1">
+
+       				 <div>
+       				 	<h1 class="h3 m-t-1 p-t-0" style="display:inline-block ">Listado de usuarios<ol></ol></h1> 
+       				 	<button type="button" class="btn btn-sm btn-success m-t-1 pull-right"><i class="fa fa-plus"></i> Nuevo usuario</button>
+       		
+       					<!-- <button type="button" class="btn btn-sm btn-primary f-right"><i class="fa fa-plus"></i> Editar</button>
+       					<button type="button" class="btn btn-sm btn-danger f-right"><i class="fa fa-plus"></i> Crear</button>-->
+
+       				<hr class="m-t-0">
+       				</div>
+
+       				<div>
+       					<div class="row">
+       						
+						       	 <div  class="col-md-8">
+						            <div class="form-group">
+						                <input class="form-control"  name="organismo" placeholder="Ingresá el nombre o CUIL del usuario" type="text">
+						            </div>
+						        </div>
+						        <div  class="form-group">
+						            <div  class="pull-left">
+						                <button   class="btn btn-default" type="button" disabled="">Limpiar</button>
+						            </div>
+						            <div  class="pull-left">
+						                <button  class="btn btn-primary" type="submit" disabled="">Buscar</button>
+						            </div>
+						        </div>
+    					</div>
+
+
+    					<div class="row">
+    						<div class="col-md-12">
+
+
+    							<table  class="table table-striped">
+    <thead >
+        <tr >
+            <th >Usuario</th>
+            <th >Organismo</th>
+            <th >Rol</th>
+            <th >Estado</th>
+			<th >Acciones</th>
+        </tr>
+    </thead>
+    <tbody >
+        <!----><tr >
+            <td >Badini María Rosa</td>
+            <td ><a >RENAPER</a></td>
+            <td ><button type="button" class="btn btn-link btn-sm">Resp. de Área</button></td>
+		<td ><button type="button" class="b-0" data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 -  11:20hs"><i class="fa fa-check-circle text-success fa-2x"></i></button>
+			
+			
+		
+		
+		</td>
+           <td class="acciones">
+            <div class="btn-group">
+                <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle btn-sm m-t-0 p-t-0 p-b-0" data-toggle="dropdown" type="button">
+                    Acciones <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+<li ><a href="null">Ver</a></li><li><a class="" href="null">Editar</a></li>                    <li><a class="m-b-0" href="null">Deshabilitar</a></li>
+                   
+
+                </ul>
+            </div>
+        </td>
+        </tr>
+		
+    </tbody>
+</table>
+    						
+    					</div>	</div>
+
+    					<div class="row"><div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8"><div class="dataTables_paginate paging_simple_numbers" id="ponchoTable_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="ponchoTable_previous"><a href="#" aria-label="Ir a la página anterior" data-dt-idx="0" tabindex="0">&lt;</a></li><li class="paginate_button active"><a href="#"  data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#"  data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#"  data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#"  data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="ponchoTable_next"><a href="#" aria-label="Ir a la página siguiente" data-dt-idx="7" tabindex="0">&gt;</a></li></ul></div></div></div>
+       				</div>
+       			
+
+     	 </article>
+     	</div>
+</section>
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+</script>
+
+<script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
