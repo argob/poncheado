@@ -6,6 +6,11 @@ Para usar Poncho en un sitio, ver [la documentación](http://argob.github.io/pon
 
 ## Instalación y requisitos
 
+Una vez clonado el repositorio debemos descargar los requerimientos de la librerias de Poncho
+
+    git submodule init
+    git submodule update
+
 Para el desarrollo de poncho usamos Jekyll ya que ayuda a generar templates y compilar los archivos de sass.
 Para poder correr el proyecto es necesario tener instalado Ruby y la gema de [Bundler](http://bundler.io/): *(Si lo requiere, usar sudo)*
 
