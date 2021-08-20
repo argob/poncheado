@@ -5,8 +5,7 @@ canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
 author: "Subsecretaría de Gobierno Abierto y País Digital"
 color: "#0072b8"
 ---
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+	
 
 <link rel="stylesheet" href="../css/snt.css">
 <section class="box-campania">
@@ -235,6 +234,10 @@ border-radius: 6px;">
   
   </div>
 </section>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 <script>
 	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
 	var elements
@@ -288,6 +291,103 @@ border-radius: 6px;">
          });
 	
 	</script>
+
+<script>
+  $(function(){
+
+    var tabla =  $(".dataTables").DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : false,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-12 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    var oTable = $('#tableFiltro').DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : true,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-12 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    $("#tableFiltro_filter").addClass("hidden");
+          $('#ponchoTableSearch').keyup(function(){
+            oTable.search($(this).val()).draw() ;
+          })
+
+  });
+
+
+
+</script>
+
 
 <script type="text/javascript">
         $(function () {
