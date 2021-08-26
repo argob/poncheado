@@ -2,9 +2,36 @@
         <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
             <div class="container">
                 <div>
-                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="{{ "/proyectos/argentina/img/argentinagob-2.svg" | prepend: site.baseurl }}" height="50"> </a> <a class="btn btn-mi-argentina btn-login visible-xs" href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>                        </div>
+                    <div class="navbar-header"> <a class="navbar-brand" href="/proyectos/argentina/" aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar" src="{{ "/proyectos/argentina/img/argentinagob-2.svg" | prepend: site.baseurl }}" height="50"> </a> 
+						
+						<nav class="dropdown nav navbar-right navbar-right-mobile navbar-right-header nav-menu"><button class="btn btn-mi-argentina btn-login visible-xs"   aria-label="Ingresar a mi cuenta" data-toggle="dropdown"><i class="icono-arg-mi-argentina fa-fw"></i></button> 
+							<div class="dropdown-menu dropdown-micuenta"   role="dialog" aria-modal=true>
+            <ul>
+              <li>
+                <p>
+                  <strong>Juana López</strong>
+                </p>
+				</li>
+              <li class="menu-division">
+                <a href="datos-personales.html">Mi perfil</a>
+              </li>
+		     <li class="menu menu-division">
+                <a href="#" class="logout">Cerrar la sesión</a>
+              </li>
+            </ul>
+            <button class="btn btn-link no-border-shadow dropdown-toggle sr-only" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Cerrar menú mi cuenta</span>
+              <i class="fa fa-chevron-up text-muted text-center visible-xs" aria-hidden="true"></i>
+            </button>
+							</div>
+
+          </nav>
+						<a class="btn bg-white btn-login visible-xs" href="#" onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>     
+					</div>
                     <div class="nav navbar-nav navbar-right hidden-xs">
                         <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');" class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
+						
+						
                         <div style="float: left">
                             <div class="input-group">
                                 <input id="buscar" type="text" class="form-control input-search" aria-label="Buscar trámites, servicios o áreas" placeholder="Buscar organismo, área o trámite ..." style="border:none!important">
@@ -12,7 +39,37 @@
               <button class="btn bg-white" type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
               </span> </div>
                         </div>
-                        <a href="#" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+						
+						
+                        <div class="nav navbar-nav navbar-right hidden-xs">
+                        	
+                        <div style="float: left">
+                           
+                        </div>
+						
+						<nav class="dropdown nav navbar-nav navbar-right navbar-right-mobile navbar-right-header nav-menu">
+                       <button class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white" aria-label="Ingresar a mi cuenta" data-toggle="dropdown"> Mi cuenta <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+						<div class="dropdown-menu dropdown-micuenta"  role="dialog" aria-modal=true>
+            <ul>
+              <li>
+                <p>
+                  <strong>Juana López</strong>
+                </p>
+				</li>
+              <li class="menu-division">
+                <a href="datos-personales.html">Mi perfil</a>
+              </li>
+		     <li class="menu menu-division">
+                <a href="https://mi.argentina.gob.ar/salir" class="logout">Cerrar la sesión</a>
+              </li>
+            </ul>
+            <button class="btn btn-link no-border-shadow dropdown-toggle sr-only" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Cerrar menú mi cuenta</span>
+              <i class="fa fa-chevron-up text-muted text-center visible-xs" aria-hidden="true"></i>
+            </button>
+							</div></nav>
+						
+                    </div>
                     </div>
                 </div>
             </div>
