@@ -16,9 +16,10 @@ color: "#0072b8"
           <li><a href="bienvenida-admin.html" data-toggle="tooltip" data-placement="bottom" title="Sistema Nacional de Turnos">SNT</a></li>
 			
 		
+			<li><a href="usuarios_admin.html">Usuarios habilitados</a></li>
+         
 			
-			
-          <li class="active">Trámites</li>
+          <li class="active">Crear usuario</li>
         </ol>
       </div>
     </div>
@@ -151,7 +152,104 @@ color: "#0072b8"
         </ol>
       </div>
     </div>-->
-	  <div class="media title-snt"><div class="media-body"><h2 class="h3 ">Usuarios habilitados</h2></div><div class="media-right snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-primary">Crear usuario</a></div></div>
+	  <div class="media title-snt"><div class="media-body"><h2 class="h3 ">Crear usuarios</h2></div><div class="media-right snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-primary">Buscar usuario</a></div></div>
+	  
+	 
+	   <div class="form-group col-md-12">
+		  <label>Organismo</label>
+		  <div class="input-group">
+                                <input id="buscar" type="text" class="form-control input-search" aria-label="" placeholder="Ingresá el nombre del organismo">
+                                <span class="input-group-btn">
+              <button class="btn" type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+		</div>
+	 
+	  
+	  <div class="row">
+  <div class="form-group item-form col-md-12 m-b-0">
+    <div class="col-md-4">
+      <div class="form-group item-form">
+        <label for="pcia">Seleccióná el Rol de usuario</label>
+        <select id="pcia" name="pcia" class="form-control">
+			   <option value="" >Administrador general</option>
+          <option value="" selected="">Responsable de organismo</option>
+          <option value="">Responsable de área</option>
+			<option value="">Responsable de Punto de atención</option>
+			<option value="">Agente</option>
+			<option value="">Auxiliar</option>
+        </select>
+        <p class="help-block error hidden">Área</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+        <label for="localidad">Seleccioná el área</label>
+        <select id="localidad" name="localidad" class="form-control">
+          <option value="" selected="">XXXXX</option>
+         
+        </select>
+        <p class="help-block error hidden">Elegí una localidad</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+        <label for="pcia">Seleccioná el Punto de Atención</label>
+        <select id="pcia" name="tipodoc" class="form-control">
+          <option value="" selected="">Buenos Aires</option>
+          <option value="">Caba</option>
+        </select>
+        <p class="help-block error hidden">Elegí un punto de atención</p>
+      </div>
+    </div>
+  </div>
+</div>
+	  <hr>
+	  <h4>Datos del usuario</h4>
+	  <p>Datos correspondientes para ese nombre de usuario</p>
+	  
+	  
+	  	  <div class="row">
+  <div class="form-group item-form col-md-12 m-b-0">
+    <div class="col-md-4">
+
+		
+	
+      <label for="cuil">Número de CUIL </label>
+    
+      <input type="number" class="form-control disabled" id="cuil" required="" aria-required="true" aria-invalid="false" title="Ingresa tu CUIL" placeholder="276477904">
+	
+   
+		
+		
+		
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+        <label for="localidad">Nombre y apellido</label>
+        <input id="localidad" name="localidad" class="form-control disabled" placeholder="Bacel Mariana Soledad" aria-label="disabled">
+        
+         
+        </input>
+        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+       <label for="email">Dirección de correo electrónico (*)</label>
+      <input type="email" name="email" class="form-control" id="email" required="" aria-required="true" placeholder="Ingresá el correo electrónico o email.">
+		<p class="help-block">
+        Ejemplo: juana01@email.com    </p>
+      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+         
+        </input>
+  
+      </div>
+    </div>
+  </div>
+</div>
+	  
+	  <div class="row"> <div class="col-md-12"> <a class="btn-link btn next-step" href="usuarios_admin.html">Anterior</a> <a class="btn-success btn next-step" href="usuarios_admin.html">Crear usuario</a> </div></div>
+	  <!--
 	  
 	  
 	  <div class="form-group">
@@ -162,6 +260,10 @@ color: "#0072b8"
               <button class="btn" type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
               </span> </div>
 		</div>
+	  
+	  
+	  
+	  
 		  <div class="snt-filtros">
 			  <div class=" panel panel-default panel-borders">
 			  <div class="panel-heading collapsed" data-toggle="collapse" data-target="#Transporte-4" aria-expanded="false" aria-controls="Transporte-4"  style="min-height: 52px!important">
@@ -192,25 +294,22 @@ color: "#0072b8"
 	  
 	  <table class="table dataTables">
   <thead>
-    <th>Nombre de usuario</th>
-    <th>Organismo</th>
-	  <th>Área</th>
-    <th>Rol</th>
+    <th>ID</th>
+    <th>Trámites</th>
+    <th>Organismo (abrev.)</th>
 	  <th>Estado</th>
-    
+    <th>Área</th>
+    <th>Trámites asociados</th>
 	  <th>Acciones</th>
   </thead>
   <tbody>
     <tr>
-      <td>Bacel Mariana Soledad</td>
-      <td><a  data-toggle="tooltip" data-placement="bottom" title="Registro Nacional de las Personas">RENAPER</a></td>
-      <td><a  data-toggle="tooltip" data-placement="bottom" title="XXX">XXX</a></td>
-		<td><button type="button" class="btn btn-default btn-sm btn-tag">Agente</button></td>
-    
-		<td><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Pendiente" class="btn btn-default btn-sm ">
-			<i class="fa fa-check-circle" title="prueba"></i></button></td></td>
-		  
-		  
+      <td>128</td>
+      <td>Certificado de Discapacidad</td>
+      <td><a  data-toggle="tooltip" data-placement="bottom" title="Municipalidad de San Isidro">MSI</a></td>
+		<td><button type="button" class="btn btn-default btn-sm btn-tag">Habilitado</button></td>
+      <td class="text-center">2</td>
+			<td class="text-center">15</td>
   		<td style="position: relative!important">
 			<a class="snt-title-collapse btn btn-primary btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="color: white!important;">Acciones <i class="fa fa-angle-down"></i></a>
 		 	<div class="panel-pane pane-atajos panel-collapse collapse"  id="collapse3" style="position: absolute; background-color: white; top: 38px; border: 1px solid #ededed; -webkit-border-radius: 6px;
@@ -219,13 +318,13 @@ border-radius: 6px;">
 			<ul class="" style="list-style: none!important; padding-left: 0px; padding: 12px">
 				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="#">Ver</a></li>
 				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="#">Editar</a></li>
-				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="tomar-turno.html">Nuevo rol</a></li>
-				<li><a href="#">Deshabilitar</a></li>
+				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="tomar-turno.html">Tomar turno</a></li>
+				<li><a href="#">Eliminar</a></li>
 			</ul>
 			</div>
 			
 		</td>
-    </tr>
+    </tr>-->
    <!-- <tr>
       <td>343</td>
       <td>Certificado de discapacidad</td>
