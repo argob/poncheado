@@ -1,0 +1,110 @@
+---
+title: Organismo ANSV | SNT
+layout: snt/snt-interior
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+<link rel="stylesheet" href="../css/snt.css">
+<section class="box-campania">
+  <div class="container">
+
+ {% include snt/breadcrumbs.html %}
+
+  {% include snt/menu-organismo-ansv.html %}
+  </div>
+</section>
+<section>
+<div class="container">
+<div class="row">
+<div class="col-md-3 form-group item-form">
+  <label for="estadoCivil">Año</label>
+  <select id="estadoCivil" name="estadoCivil" class="form-control">
+   <option value="" selected="">Seleccioná un año</option>
+   <option value="">2021</option>
+   <option value="">2020</option>
+   <option value="">2019</option>
+   <option value="">2018</option>
+ </select>
+ <p class="help-block error hidden">Ingresá tu estado civil</p>
+</div>
+<div class="col-md-6 form-group item-form">
+  <label for="estadoCivil">Período</label>
+  <select id="estadoCivil" name="estadoCivil" class="form-control">
+   <option value="" selected="">Seleccioná un período</option>
+   <option value="">Enero</option>
+   <option value="">Febrero</option>
+   <option value="">Marzo</option>
+   <option value="">Abril</option>
+   <option value="">Mayo</option>
+   <option value="">Junio</option>
+ </select>
+ <p class="help-block error hidden">Ingresá tu estado civil</p>
+</div>
+</div>
+    <h2 class="h3 title-snt">Estadísticas de Uso</h2>
+
+    <img src="{{ "/proyectos/snt/img/img_estadisticas.png" | prepend: site.baseurl }}" style="width: 100%">
+
+
+</div>
+	
+
+</section>
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+	
+	
+</script> 
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
+	<script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
