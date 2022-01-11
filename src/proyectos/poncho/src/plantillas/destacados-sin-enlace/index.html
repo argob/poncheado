@@ -1,0 +1,85 @@
+---
+nombre_grupo: Plantillas
+title: Paneles
+layout: default
+---
+
+    <div class="container">
+
+    <div class="row">
+        <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+
+        <div class="col-sm-9">
+
+            <section>
+                <article class="row">
+                    <div class="col-sm-12">
+                        <h2 class="h1">Destacados sin enlace</h2>
+                        <hr>
+
+                        <div class="col-md-12">
+
+                            <div class="row panels-row">
+          
+                                <div class="col-sm-6">
+                                    <a class="panel panel-default" href="destacados-iconos.html">
+                                      <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-1.png)">
+                                      </div> -->
+                                      <div class="panel-body">
+                                        <div class="media-body">
+                                          <h3>Íconos</h3>
+                                          <p>Sirven para mostrar conceptos como principios, valores, funcionalidades y otros atributos.</p>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <a class="panel panel-default" href="destacados-numeros.html">
+                                      <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-2.png)">
+                                      </div> -->
+                                      <div class="panel-body">
+                                        <div class="media-body">
+                                          <h3>Números</h3>
+                                          <p>Sirven para mostrar cifras estadísticas.</p>
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <a class="panel panel-default" href="destacados-imagenes.html">
+                                        <!-- <div class="panel-heading" style="background-image: url(../../../poncho/img/dt-3.png)">
+                                        </div> -->
+                                        <div class="panel-body">
+                                          <div class="media-body">
+                                            <h3>Imágenes</h3>
+                                            <p>Sirven para mostrar información con imagen y texto.</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </div>
+                            </div>
+          
+          
+                          </div>
+                           
+
+                    </div>
+
+                </article>
+            </section>
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <script>
+      $(function(){
+        $("#menuLateral").load("../../includes/plantillas_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+      });
+    </script>
+
