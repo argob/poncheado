@@ -10,11 +10,14 @@
               <span class="icon-bar"></span>
             </button>
             <a href="" class="navbar-brand">
-              <img alt="Poncho" src="img/poncho.gif" height="50">
+              <img alt="Poncho" src="{{ '/img/poncho.gif' | prepend: page.category }}"  height="50">
               <h1>Poncho</h1>
             </a>
           </div>
-          <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="{{ page.nombre_grupo }}"></div>
+          <div class="collapse navbar-collapse" id="main-navbar-collapse" data-seccion="{{ page.nombre_grupo }}">
+            <!--BARRA DE NAVEGACION-->
+            {% include poncho_new/navbar.html %}
+          </div>
         </div>
       </div>
     </nav>
