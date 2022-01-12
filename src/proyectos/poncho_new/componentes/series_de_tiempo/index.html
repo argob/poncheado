@@ -1,12 +1,14 @@
 ---
 nombre_grupo: Componentes
 title: Series de Tiempo
-layout: default
+layout: poncho_new/default
 ---
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-3" id="menuLateral" data-seccion="8"></div>
+                <div class="col-sm-3" id="menuLateral" data-seccion="8">
+                    {% include poncho_new/componentes_menu.html %}
+                </div>
                 <div class="col-sm-9">
                     <section>
                         <article class="row">
@@ -625,15 +627,21 @@ window.onload = function() {
         })
     }
     </script>
+    <!-- <script type="text/javascript">
+  $(function(){
+    $("#menuLateral").load("../../includes/componentes_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+     })
+</script>
+-->
     <script>
     $(function() {
         jQuery(function($) {
             $.syntax({ theme: 'bright' });
         });
-        $("#menuLateral").load("../../includes/componentes_menu.html", function() {
-            var seccion = $("#menuLateral").data("seccion");
-            $("#menuLateral ul li a[data-seccion=" + seccion + "]").parent().addClass("active");
-        });
+        
         var tabla = $(".dataTables").DataTable({
             "lengthChange": false,
             "autoWidth": false,
