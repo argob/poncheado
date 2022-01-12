@@ -1,13 +1,15 @@
 ---
 nombre_grupo: Componentes
 title: Pestañas
-layout: default
+layout: poncho_new/default
 ---
 
     <div class="container">
 
 <div class="row">
-      <div class="col-sm-3" id="menuLateral" data-seccion="7"></div>
+      <div class="col-sm-3" id="menuLateral" data-seccion="7">
+        {% include poncho_new/componentes_menu.html %}
+      </div>
 
       <div class="col-sm-9">
 
@@ -205,7 +207,15 @@ layout: default
 
     </div>
 
-
+<!-- <script type="text/javascript">
+  $(function(){
+    $("#menuLateral").load("../../includes/componentes_menu.html",function(){
+          var seccion = $("#menuLateral").data("seccion");
+          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
+        });
+     })
+</script>
+-->
 
     <script>
       $(function(){
@@ -214,10 +224,7 @@ layout: default
           $.syntax({theme: 'bright'});
         });
 
-        $("#menuLateral").load("../../includes/componentes_menu.html",function(){
-          var seccion = $("#menuLateral").data("seccion");
-          $("#menuLateral ul li a[data-seccion="+seccion+"]").parent().addClass("active");
-        });
+        
 
         var tabla =  $(".dataTables").DataTable({
             "lengthChange": false,
