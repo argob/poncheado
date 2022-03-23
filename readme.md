@@ -29,7 +29,7 @@ Por último, es necesario cargar las librerías requeridas por el proyecto
 
 Para correr el proyecto, ejecutar el siguiente comando en su carpeta:
 
-    jekyll serve
+    bundle exec jekyll serve
 
 Esto inicia un servidor de Jekyll que se puede ver en **http://localhost:4000/**, el cual regenera los archivos automáticamente al hacer modificaciones en el proyecto.
 
