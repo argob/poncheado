@@ -27,11 +27,9 @@ a:hover{
     background-color:none!important;
 }
 
-.btn {
-    -webkit-border-radius: $border-radius-uno;
--moz-border-radius: $border-radius-uno;
-border-radius: $border-radius-uno;
-}
+
+//* Header *//
+
 .cr-header { 
     background-color: $color-main;
     padding-top: ($spacer * 1.6);
@@ -59,19 +57,99 @@ border-radius: $border-radius-uno;
 .cr-nav { 
     color: $color-black;
     
+    .navbar-nav{
+        margin-bottom: 6px;
+    }
+
     .nav-item{
-        padding-right: 50px;
+        padding-right: 25px;
+        padding-left: 25px;
         .nav-link { 
             color: $color-black!important;
+            
+        }
+        .nav-link:hover{
+            border-bottom: 6px solid #333;
+            margin-bottom: -6px;
+            text-decoration: none!important;
+                       // box-shadow:0px 0px 0px 10px red inset; 
         }
 
     }
     .nav-item:last-child {
         padding-right: 0px;
     }
+    .nav-item:first-child {
+        padding-left: 0px;
+    }
+}
+.navbar {
+    ul {
+        li{
+            .dropdown-menu {
+                background-color: $color-black-grey!important;
+                -webkit-border-bottom-right-radius: $border-radius-uno!important;
+                -webkit-border-bottom-left-radius: $border-radius-uno!important;
+                -moz-border-radius-bottomright: $border-radius-uno!important;
+                -moz-border-radius-bottomleft: $border-radius-uno!important;
+                border-bottom-right-radius:  $border-radius-uno!important;
+                border-bottom-left-radius:  $border-radius-uno!important;
+                -webkit-border-top-left-radius: 0px;
+                -webkit-border-top-right-radius: 0px;
+                -moz-border-radius-topleft: 0px;
+                -moz-border-radius-topright: 0px;
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+            }
+        }
+    } 
+
 }
 
 .navbar-toggler-icon { color: $color-black-grey;}
+
+
+
+
+//* Botones*//
+.btn {
+    -webkit-border-radius: $border-radius-uno;
+-moz-border-radius: $border-radius-uno;
+border-radius: $border-radius-uno;
+border: none!important;
+}
+.btn:hover{
+    border: none!important;
+    border-radius: $border-radius-uno!important;
+}
+
+.btn:focus{
+    border: none!important;
+    border-radius: $border-radius-uno!important;
+}
+
+.btn-idioma {
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+
+//*  Dropdown menu *//
+.dropdown-menu {
+    margin-top: calc(var(--bs-dropdown-spacer) + 4px)!important ;
+    background-color: $color-black-grey!important;
+    -webkit-border-bottom-right-radius: $border-radius-uno!important;
+-webkit-border-bottom-left-radius: $border-radius-uno!important;
+-moz-border-radius-bottomright: $border-radius-uno!important;
+-moz-border-radius-bottomleft: $border-radius-uno!important;
+border-bottom-right-radius:  $border-radius-uno!important;
+border-bottom-left-radius:  $border-radius-uno!important;
+}
+
+
+
 
 
 .footerCasaRosada {
@@ -123,5 +201,9 @@ border-radius: $border-radius-uno;
 @media (min-width:992px){
     .cr-nav {
         margin-top: ($spacer * 3.3)!important;
+    }
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        left: 50%;
+    transform: translate(-50%, 0%);
     }
 }
