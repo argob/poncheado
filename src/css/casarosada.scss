@@ -22,6 +22,7 @@ $color-black-grey:#333;
 $spacer: 1em;
 
 $border-radius-uno: 4px ;
+$border-radius-dos: 10px ;
 
 a:hover{
     background-color:none!important;
@@ -88,12 +89,12 @@ a:hover{
         li{
             .dropdown-menu {
                 background-color: $color-black-grey!important;
-                -webkit-border-bottom-right-radius: $border-radius-uno!important;
-                -webkit-border-bottom-left-radius: $border-radius-uno!important;
-                -moz-border-radius-bottomright: $border-radius-uno!important;
-                -moz-border-radius-bottomleft: $border-radius-uno!important;
-                border-bottom-right-radius:  $border-radius-uno!important;
-                border-bottom-left-radius:  $border-radius-uno!important;
+                -webkit-border-bottom-right-radius: $border-radius-dos!important;
+                -webkit-border-bottom-left-radius: $border-radius-dos!important;
+                -moz-border-radius-bottomright: $border-radius-dos!important;
+                -moz-border-radius-bottomleft: $border-radius-dos!important;
+                border-bottom-right-radius:  $border-radius-dos!important;
+                border-bottom-left-radius:  $border-radius-dos!important;
                 -webkit-border-top-left-radius: 0px;
                 -webkit-border-top-right-radius: 0px;
                 -moz-border-radius-topleft: 0px;
@@ -199,11 +200,17 @@ border-bottom-left-radius:  $border-radius-uno!important;
 }
 
 @media (min-width:992px){
+   
+    .navbar-nav .dropdown-menu {
+        left: 50%;
+    transform: translate(-50%, 0%);
+    border: none;
+    }
+}
+
+@media (min-width:1200px){
     .cr-nav {
         margin-top: ($spacer * 3.3)!important;
     }
-    .navbar-expand-lg .navbar-nav .dropdown-menu {
-        left: 50%;
-    transform: translate(-50%, 0%);
-    }
+
 }
