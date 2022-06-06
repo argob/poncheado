@@ -96,16 +96,13 @@ a:hover{
 -moz-border-radius: $border-radius-uno;
 border-radius: $border-radius-uno;
 border: none!important;
-}
-.btn:hover{
+
+    &:hover, &:focus {
     border: none!important;
     border-radius: $border-radius-uno!important;
+    }
 }
 
-.btn:focus{
-    border: none!important;
-    border-radius: $border-radius-uno!important;
-}
 
 .btn-idioma {
     padding: 5px 12px;
@@ -118,7 +115,12 @@ border: none!important;
     width: fit-content;
     align-items: flex-end;
     color: #fff;
-}
+
+    &:hover, &:focus {
+        color: #fff;
+    }
+}   
+
 
 
 //*  Dropdown menu *//
@@ -145,10 +147,18 @@ li{
 
 
 //*Dropdown idioma*//
-.dropdown-idioma{
-    left: 50%;
-    transform: translate(-50%, 0%);
+.dropdown-idiomas{
+    //left: 50%;
+    //transform: translate(-50%, 0%);
     background-color: $color-black-grey;
+
+    li{
+        border-bottom: none!important;
+
+        a{
+            color: white;
+        }
+    }
 }
 
 
