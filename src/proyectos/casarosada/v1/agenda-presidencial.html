@@ -11,7 +11,7 @@ color: "#0072b8"
 <div class="container-fluid breadcrumb mt-0 pt-0">
 <div class="container">
 <div class="row">
-<nav class="col-12" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+<nav class="col-12"  aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item d-none d-sm-block"><a href="#">Inicio</a></li>
     <li class="breadcrumb-item"><a href="#">Actividad presidencial</a></li>
@@ -104,8 +104,15 @@ color: "#0072b8"
 
 
 <style>
-		
-	
+.breadcrumb-item:after {
+    float: right;
+    padding-right:var(--bs-breadcrumb-item-padding-x);
+    color: var(--bs-breadcrumb-divider-color);
+    content: var(--bs-breadcrumb-divider, ">")!important;
+	--bs-breadcrumb-item-padding-x: 0.9rem;
+
+}
+
 	/*.body {background: #F2F2F2!important;}
 	.a {color:#CC3059!important;}
 	.nav-breadcrumb {background: #0009;}
