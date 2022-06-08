@@ -28,13 +28,106 @@ $spacer: 1em;
 $border-radius-uno: 4px ;
 $border-radius-dos: 10px ;
 
+$color-fdoautoridades: #BECCD4;
+$color-homeprioridades: #00D3C3;
+$color-homeagenda: #FBD4DF;
+$color-prio-ladrillo: #D66768;
+$color-prio-amarillo: #F8B342;      
+$color-prio-celeste: #65C6F0;
+$gray-lighter:#e5e5e5;
+
+$color-breadcrumb: lighten($color-black-greyr,10%) !default;
+
+$brand-primary: #CC3059!default;
+$link-color: $brand-primary !default;
+$link-hover-color: lighten($link-color,15%) !default;
+$link-visited: #705582 !default;
+
+$font-family-sans-serif: 'Encode Sans', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+$encabezado-h1: 2rem;
+$encabezado-h2: 1.75rem;
+$encabezado-h3: 1.375rem;
+$encabezado-h4: 1.25rem;
+$encabezado-h5: 1.188rem;
+$texto-p: 1.125rem;
+$destacado-gral:1.5rem;
+$destacado-prioridades:2.938rem;
+
 body{
 	background-color:$color-body;
+	color:$color-black;
 }
 
+
+p { 
+font-size:$texto-p;
+ }
+
+
+a{
+	color:$link-color;
+}
+	
+	
 a:hover{
     background-color:none!important;
 }
+
+//* Form *//
+
+label {
+    color:$color-black-grey!important;
+}
+
+//* Card *//
+.cr-card {border: none!important; 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--bs-card-height);
+    word-wrap: break-word;
+	margin-top: 7px;
+	
+	.body{
+		padding: 10px;
+		
+	&:hover, &:focus, &:active {
+ 	background:$gray-lighter;
+	}
+    }
+	
+   .text {
+    font-size: 16px;
+    line-height: 20px;
+	font-weight: 300!important;
+	   
+		}
+}
+	
+.fecha {padding: 7px 0px;
+	    font-size: 14px;
+	}
+	
+
+
+
+.pagination > {
+  li > a {
+    color: $link-color;
+  }
+
+  .disabled > a {
+    color: $color-black-grey;
+    background: #fff;
+  }
+}
+
+.social-share li:hover {
+  background:$link-color;
+}
+
 
 
 //* Header *//
@@ -50,6 +143,8 @@ a:hover{
             font-size: 0.8em;
         } 
     }
+	
+
     
     
  }
@@ -198,22 +293,24 @@ li{
 		padding: 7px 0px 2px!important;
 			a {	
 			color: #fff!important;	
+			padding-right:7px;
 			}
 	}
 }
-	
+
 .breadcrumb-item {
   &:after {
     float: right;
     color: var(--bs-breadcrumb-divider-color);
-    content: var(--bs-breadcrumb-divider, ">")!important;
+    content: var(--bs-breadcrumb-divider,">")!important;
 	}
+	
+	&:before {
+     float: left; 
+     content: var(--bs-breadcrumb-divider," ")!important;
+    }
+	
 }
-
-
-
-
-
 
 
 
@@ -253,8 +350,6 @@ hr{
 
 
 
-
-
 //* inicio footer *//
 
 .footerCasaRosada {
@@ -267,16 +362,26 @@ hr{
 }
 
 .main-footer {
-  a {
-    color: $color-black;
-	text-decoration: none;
-  }
-
+	li{	color: $color-black;
+	
+	a {
+		color: $color-black;
+		text-decoration: none;
+  		}
+	}
 .footer-social-share {
 	a {
     font-size: 1.5rem!important;
   }
 }
+	
+	a {
+		color: $color-black;
+		text-decoration: none;
+  		}
+	
+	.section-titfooter{font-weight:300;}
+	
 }
 		
 		
