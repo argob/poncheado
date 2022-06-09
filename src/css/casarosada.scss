@@ -54,6 +54,9 @@ $encabezado-h5: 1.188rem;
 $texto-p: 1.125rem;
 $destacado-gral:1.5rem;
 $destacado-prioridades:2.938rem;
+$fecha-noticiagral:0.813rem;
+$txt-noticiagral:1rem;
+
 
 
 $line-height-destacado-prioridades:3.5rem; 
@@ -96,34 +99,43 @@ label {
 	margin: 10px 0px;
 	
 	.panel-heading{border-radius: 0px!important;}
-
-	.body{
-		padding: 10px;
-		
-	&:hover, &:focus, &:active {
- 	background:$gray-lighter;
-	}
+	.panel-body{
+		padding: 7px 10px;
     }
-   .text {
-    font-size: 16px;
-    line-height: 20px;	   
+	
+
+   h2 {
+    font-size: $txt-noticiagral;
+    line-height: 20px;
+	font-weight: 400;
 		}
 }
 	
 .fecha {padding: 7px 0px;
-	    font-size: 14px;
+	    font-size:$fecha-noticiagral;
 	}
 	
+a.panel {
+  &:hover, &:focus {
+  background:$gray-lighter;
+border-radius: 0px!important;	
+  }
+}
+
 
 
 
 .pagination > {
   li > a {
+    &:hover, &:focus {
+      color: $link-visited;
+    }
+
     color: $link-color;
   }
 
   .disabled > a {
-    color: $color-black-grey;
+    color: #333;
     background: #fff;
   }
 }
