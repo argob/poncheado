@@ -32,6 +32,20 @@
               <li><a class="dropdown-item px-2 py-2" href="#">Julio Vitobello  <i class="fa fa-external-link"></i></a></li>
             </ul>
           </li>
+
+          {% if page.title == "Agenda presidencial | Casa Rosada" or page.title == "Noticias | Casa Rosada" or page.title == "Noticias ampliada | Casa Rosada" %}
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-link-active dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Actividad presidencial</a>
+            <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown03">
+              <li><a class="dropdown-item px-2 py-2" href="agenda-presidencial">Agenda presidencial</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="noticia-gral">Noticias</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Discursos</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Conferencias</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Entrevistas</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Hitos de gestión</a></li>
+            </ul>
+          </li>
+          {% else %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Actividad presidencial</a>
             <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown03">
@@ -43,9 +57,21 @@
               <li><a class="dropdown-item px-2 py-2" href="#">Hitos de gestión</a></li>
             </ul>
           </li>
+          {% else %}
+          {% endif %}
+
+          {% if page.title == "Prioridades | Casa Rosada" %}
           <li class="nav-item">
-            <a class="nav-link ">Prioridades de gestión</a>
+            <a class="nav-link nav-link-active " href="prioridades">Prioridades de gestión</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link " href="prioridades">Prioridades de gestión</a>
+          </li>
+          {% else %}
+          {% endif %}
+
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Sala de prensa</a>
             <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown04">
