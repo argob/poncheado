@@ -23,6 +23,17 @@
           </div>
         </div>
         <ul class="navbar-nav">
+          {% if page.title == "Autoridades Alberto Fernandez | Casa Rosada" or page.title == "Autoridades Cristina Fernandez | Casa Rosada"  %}
+          <li class="nav-item dropdown">
+            <a class="nav-link  nav-link-active dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Autoridades</a>
+            <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown02">
+              <li><a class="dropdown-item px-2 py-2" href="autoridades-af">Alberto Fernández</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Cristina Fernández de Kirchner</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Juan Manzur  <i class="fa fa-external-link"></i></a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Julio Vitobello  <i class="fa fa-external-link"></i></a></li>
+            </ul>
+          </li>
+          {% else %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Autoridades</a>
             <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown02">
@@ -32,7 +43,8 @@
               <li><a class="dropdown-item px-2 py-2" href="#">Julio Vitobello  <i class="fa fa-external-link"></i></a></li>
             </ul>
           </li>
-
+          {% else %}
+          {% endif %}
           {% if page.title == "Agenda presidencial | Casa Rosada" or page.title == "Noticias | Casa Rosada" or page.title == "Noticias ampliada | Casa Rosada" %}
           <li class="nav-item dropdown">
             <a class="nav-link nav-link-active dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Actividad presidencial</a>
