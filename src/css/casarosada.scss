@@ -36,6 +36,8 @@ $color-prio-amarillo: #F8B342;
 $color-prio-celeste: #65C6F0;
 $gray-lighter:#e5e5e5;
 
+$gray-medio:#555;
+
 $color-breadcrumb: lighten($color-black-greyr,10%) !default;
 
 $brand-primary: #CC3059!default;
@@ -190,47 +192,51 @@ border-radius: 0px!important;
 	
 }
 
+//* social-share *//
+
 .social-share {
-  overflow: inherit !important;
-  margin: 0;
-  min-height: 32px;
-	
-	p {font-size: 16px!important;
-	color: #555;
+  p {
+    color:$gray-medio;
     float: left;
     line-height: 1.2;
     margin-bottom: 0;
     margin-top: 8px;
-	}
-	
-	li  {
-	&:hover i {
-    color: #fff;
+	font-size: 16px;
   }
+
+
+  ul {
+    margin: 5px 10px 5px 5px;
+  }
+
+  li {
     border-radius: 30px;
     margin: 0;
     padding: 6px;
 
-}
-	ul {
-    float: left;
-    margin: 5px 10px 5px 5px;
-}
-	a {
-  text-align: center;
-display: inherit;
-font-size: 30px;
-line-height: 0;
-min-width: 35px;
-padding: 3px 5px 2px;
+    &:hover {
+      background: $brand-primary;
 
-}
-	
-	
-}
+      span, i {
+        color: #fff;
+      }
+    }
+  }
 
 
 
+  a {
+    display: inherit;
+    font-size: 20px;
+    line-height: 0;
+    min-width: 35px;
+    padding: 3px 5px;
+	text-align: center;
+  }
+}
+
+
+//* fin social-share *//
 
 
 .panel-heading {
@@ -288,29 +294,90 @@ padding: 3px 5px 2px;
 
 
 
+//* pagination *//
+.pagination {
+  margin-bottom: 64px;
+  margin-top: 60px;
+  text-transform: inherit;
 
-
-
-
-
-.pagination > {
-  li > a {
-    &:hover, &:focus {
-      color: $link-visited;
+  > li > {
+    a, span {
+      background-color: transparent;
+      border: 0;
+      border-radius: 30px;
+      color: $brand-primary;
+      float: left;
+      line-height: 1.42857;
+      margin: 0 2px;
+      padding: 10px 17px;
+      position: relative;
+      text-decoration: none;
     }
 
-    color: $link-color;
+    a {
+      &:hover, &:focus {
+        border-color: transparent;
+        color: $brand-primary;
+      }
+    }
+  }
+}
+
+pagination .pagination > li > span:hover {
+
+  border-color: transparent;
+  color: $brand-primary;
+}
+
+.pagination > {
+  li > span:focus {
+
+    border-color: transparent;
+    color: $brand-primary; 
   }
 
-  .disabled > a {
+  .active > {
+    a {
+      background-color:$gray-medio;
+      border-color: $brand-primary;
+      color: #fff;
+      cursor: default;
+      z-index: 2;
+
+      &:hover, &:focus {
+        background-color: $gray-medio;
+        border-color: $brand-primary;
+        color: #fff;
+        cursor: default;
+        z-index: 2;
+      }
+    }
+
+
+  }
+
+  .disabled > {
+
+    a {
     color: #333;
     background: #fff;
+      cursor: not-allowed;
+
+      &:hover, &:focus {
+        color: #333;
+    background: #fff;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 
-.social-share li:hover {
-  background:$link-color;
-}
+//* fin pagination *//
+
+
+
+
+
 
 
 .text-primary {
@@ -449,6 +516,11 @@ li{
 }
 
 
+section {
+  padding: 30px 0;
+}
+
+
 //* menu pagina libro*//
 .nav-pills{
     li{
@@ -522,9 +594,6 @@ li{
 
 //* fin Breadcrumb *//
 
-.pane-redes-sociales .social-share a {
-  font-size: 20px !important;
-}
 
 //*   PRIORIDADES   *//
 
