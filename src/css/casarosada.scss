@@ -59,6 +59,9 @@ $fecha-noticiagral:0.813rem;
 $txt-noticiagral:1rem;
 $font-family-main:'Encode Sans', sans-serif;
 
+$txt-14:0.875rem; 
+$txt-16:1rem; 
+
 
 $line-height-destacado-prioridades:3.5rem; 
 
@@ -117,8 +120,20 @@ label {
     color:$color-black-grey!important;
 	font-weight: 600;
     margin-bottom: 10px !important;
-    font-size: 14px !important;
+    font-size: $txt-14;
 }
+
+
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
 
 //* Card *//
 .cr-card {border: none!important; 
@@ -181,18 +196,20 @@ border-radius: 0px!important;
     font-size: $destacado-gral;
     line-height: 29px;
     margin: 50px 0px;
+	font-weight: 500;
   }
 
   .panel-default {
     border-radius: 0px;
     border: none !important;
   }
-	.panel.panel-default .panel-heading {
-  min-height: 335px !important;
-}
-	
+	.panel-heading {
+  min-height: 335px;
+ background-position: center center; 
+background-size: cover; border: 0;  
 }
 
+}
 //* social-share *//
 
 .social-share {
@@ -202,7 +219,8 @@ border-radius: 0px!important;
     line-height: 1.2;
     margin-bottom: 0;
     margin-top: 8px;
-	font-size: 16px;
+	font-size: $txt-16;
+	font-weight: 500;
   }
 
 
@@ -695,12 +713,14 @@ hr {
 
 .main-footer {
 	li{	color: $color-black;
-	
-	a {
-		color: $color-black;
-		text-decoration: none;
-  		}
+		font-size: $txt-16; 
+		padding: 6px 0; 
+		text-decoration: none;	
 	}
+	
+	.row > div:first-child { padding-right: 30px; }
+	
+	
 .footer-social-share {
 	a {
     font-size: 1.5rem!important;
@@ -709,10 +729,22 @@ hr {
 	
 	a {
 		color: $color-black;
-		text-decoration: none;
+
+  }
+
   		}
 	
-	.section-titfooter{font-weight:600;}
+	h2{font-size:$texto-p;}
+	
+	address {
+    line-height: 32px;
+		
+		a {
+  &:hover{
+    text-decoration: underline!important;
+  }
+		
+}
 	
 }
 		
