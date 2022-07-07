@@ -74,7 +74,7 @@
           {% else %}
           {% endif %}
 
-          {% if page.title == "Prioridades | Casa Rosada" %}
+          {% if page.title == "Prioridades | Casa Rosada"  %}
           <li class="nav-item">
             <a class="nav-link nav-link-active " href="prioridades">Prioridades de gestión</a>
           </li>
@@ -93,6 +93,17 @@
               <li><a class="dropdown-item px-2 py-2" href="otras-conferencias">Otras conferencias</a></li>
             </ul>
           </li>
+          
+          {% if page.title == "Historia Casa Rosada | Casa Rosada" or  page.title == "Historia Casa Rosada Interior | Casa Rosada" or  page.title == "Puntos de interes | Casa Rosada" or  page.title == "Salones | Casa Rosada" or  page.title == "Salón Blanco | Casa Rosada" %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-link-active " href="#" id="dropdown05" data-bs-toggle="dropdown" aria-expanded="false">Casa de Gobierno</a>
+            <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown05">
+              <li><a class="dropdown-item px-2 py-2" href="historia-casarosada">Historia de la Casa Rosada</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="puntos-interes">Puntos de interés</a></li>
+              <li><a class="dropdown-item px-2 py-2" href="#">Museo  <i class="fa fa-external-link"></i></a></li>
+            </ul>
+          </li>
+          {% else %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-bs-toggle="dropdown" aria-expanded="false">Casa de Gobierno</a>
             <ul class="dropdown-menu dropdown-menuPpal p-3" aria-labelledby="dropdown05">
@@ -101,6 +112,9 @@
               <li><a class="dropdown-item px-2 py-2" href="#">Museo  <i class="fa fa-external-link"></i></a></li>
             </ul>
           </li>
+          {% else %}
+          {% endif %}
+
         </ul>
       </div>
     </div>
