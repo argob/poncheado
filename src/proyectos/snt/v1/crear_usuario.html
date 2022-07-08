@@ -11,7 +11,7 @@ color: "#0072b8"
 <link rel="stylesheet" href="../css/snt.css">
 
 <section class="box-campania">
-  <div class="container">
+  <div class="container  pb-3">
 {% include snt/breadcrumbs.html %}
 {% include snt/menu-admin.html %}
 </div>
@@ -168,24 +168,27 @@ color: "#0072b8"
 	  
 	  
 	  
-	  <div class="media title-snt"><div class="media-body"><h2 class="h3 ">Crear usuarios</h2></div><div class="media-right snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-primary">Buscar usuario</a></div></div>
 	  
-	 <h4 class="h5 m-t-1">Datos del usuario</h4>
-	  <div class="row">
-										<div class="col-md-12  item-form">
-											<fieldset>
-												<label for="cuil" class="">Número de CUIL* </label>
-												<input class="form-control m-b-1" placeholder="Ingresá los 11 dígitos de tu número de CUIL" data-error-msg="CUIL no válido." required="required" min="0" max="99999999999" name="cuil" type="number" id="cuil">
-												<p class="help-block error hidden">
-													Ingresá tu CUIL <br>El CUIL tiene un formato no válido
-						            			</p><p class="help-block m-b-2">
-        Sin guiones ni puntos. Ej.: 23301234569    </p>
-											<!--	<p><a href="#" title="" class="btn btn-link btn-sm">Validar CUIL</a></p>-->
-													<label for="email">Correo laboral</label>
-													<input type="text" name="personal-info" id="email" class="form-control" value="" placeholder="juanalopez@organismo.gob.ar">
-						            		</fieldset>
-										</div>
+	  <div class="row justify-content-between align-items-center title-snt">
+      <div class="col-auto"><h2 class="h3 ">Crear Usuario</h2></div>
+      <div class="col snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-primary">Buscar usuario</a></div>
+    </div>
 
+
+
+	 <h4 class="h5 m-t-1">Datos del usuario</h4>
+	        <div class="row">
+                <div class="col-md-4 form-group item-form">
+                  <label for="cuil">CUIL</label>
+                  <p class="help-block">Sin guiones ni barras</p>
+                  <p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultar
+                      CUIL</a></p>
+                  <input type="number" class="form-control" id="cuil" required="" aria-required="true" aria-invalid="false" title="Ingresa tu CUIL">
+                  <p class="visually-hidden text-danger" role="alert">El CUIL tiene un formato no
+                    válido</p>
+                </div>
+          </div>
+          <div class="row">
 									
 										<div class="col-md-6 form-group item-form m-t-1">
 											<label for="firstname">Nombre</label>
@@ -212,113 +215,73 @@ color: "#0072b8"
 	  <hr>
 	 
 	 
-	  <h4 class="h5 m-t-1">Rol del usuario</h4>
+	  <h4 class="h5 m-t-1">Rol del usuario</h4><span>Recordá que el usuario tiene que tener al menos un rol.</span>
 <div class="row">
-	 <div class="form-group col-md-12" style="float: none!important">
+	 <div class="form-group col-md-12 mt-3" style="float: none!important">
 		  <label>Organismo</label>
 		  <div class="input-group">
                                 <input id="buscar" type="text" class="form-control input-search" aria-label="" placeholder="Ingresá el nombre del organismo">
                                 <span class="input-group-btn">
-              <button class="btn" type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              <button class="btn btn-primary" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
               </span> </div>
 		</div>
 	
-	<div class="form-group col-md-12"><div class="alert alert-success">
-  <strong>Organismo XXXXXXX</strong></div>
-</div>
-	<div class="col-md-12 m-b-1">		<p>Recordá que el usuario tiene que tener al menos un rol.</p>
-</div>
 	
-  <div class="form-group item-form col-md-12 m-b-2">
-	  <div class="panel-default  p-t-1" style="overflow: auto">
-    <div class="col-md-12 text-right"><i class="fa fa-times-circle fa-2x text-danger"></i>
-</div>
-		  <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="pcia">Seleccióná el Rol de usuario</label>
-        <select id="pcia" name="pcia" class="form-control">
-			   <option value="">Administrador general</option>
-          <option value="" selected="">Responsable de organismo</option>
-          <option value="">Responsable de área</option>
-			<option value="">Responsable de Punto de atención</option>
-			<option value="">Agente</option>
-			<option value="">Auxiliar</option>
-        </select>
-        <p class="help-block error hidden">Área</p>
-      </div>
+    <div class="col-md-12"><div class="alert alert-success alert-dismissible fade show" role="alert">
+      Organismo <strong>xxxxxxx</strong>.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="localidad">Seleccioná el Punto de Atención</label>
-        <select id="localidad" name="localidad" class="form-control">
-          <option value="" selected="">XXXXX</option>
-         
-        </select>
-        <p class="help-block error hidden">Elegí una localidad</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="pcia">Seleccioná Ventanilla</label>
-        <select id="pcia" name="tipodoc" class="form-control">
-          <option value="" selected="">XXXXX</option>
-          <option value="">XXXXX</option>
-        </select>
-        <p class="help-block error hidden">Elegí un punto de atención</p>
-      </div>
-    </div>
-
-
-		  </div>
   </div>
-	<div class="form-group item-form col-md-12 m-b-2">
-	  <div class="panel-default  p-t-1" style="overflow: auto">
-    <div class="col-md-12 text-right"><i class="fa fa-times-circle fa-2x text-danger"></i>
+
+
+	<div class="col-md-12 mt-4">
+    <p>Seleccionar rol/es.</p>
 </div>
-		  
-		  <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="pcia">Seleccióná el Rol de usuario</label>
-        <select id="pcia" name="pcia" class="form-control">
-			   <option value="">Administrador general</option>
-          <option value="" selected="">Responsable de organismo</option>
-          <option value="">Responsable de área</option>
-			<option value="">Responsable de Punto de atención</option>
-			<option value="">Agente</option>
-			<option value="">Auxiliar</option>
-        </select>
-        <p class="help-block error hidden">Área</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="localidad">Seleccioná el Punto de Atención</label>
-        <select id="localidad" name="localidad" class="form-control">
-          <option value="" selected="">XXXXX</option>
-         
-        </select>
-        <p class="help-block error hidden">Elegí una localidad</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group item-form">
-        <label for="pcia">Seleccioná Ventanilla</label>
-        <select id="pcia" name="tipodoc" class="form-control">
-          <option value="" selected="">XXXXX</option>
-          <option value="">XXXXX</option>
-        </select>
-        <p class="help-block error hidden">Elegí un punto de atención</p>
-      </div>
-    </div>
 
-
-		  </div>
+  <div class="col-md-12">
+<div class="alert alert-dismissible fade show border-secondary" role="alert">
+  
+  <div class="row g-2">
+    <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select  border-0" id="floatingSelectGrid">
+          <option selected="">Seleccióná el Rol de usuario</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="floatingSelectGrid">Rol</label>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select  border-0" id="floatingSelectGrid">
+          <option selected="">Seleccioná el Punto de Atención</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="floatingSelectGrid">Punto de atención</label>
+      </div>
+    </div>
+  <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select  border-0" id="floatingSelectGrid">
+          <option selected="">Seleccioná Ventanilla</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <label for="floatingSelectGrid">Ventanilla</label>
+      </div>
+    </div>
   </div>
-	
-	
-		  <div class="form-group col-md-12"><button type="button" class="btn btn-primary">Agregar Rol</button>
-
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+<div class="form-group col-md-12"><button type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
+   Agregar Rol</button>
+</div>
+
 	  
 
 </div>
