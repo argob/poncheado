@@ -6,7 +6,8 @@ author: "Subsecretaría de Gobierno Abierto y País Digital"
 color: "#0072b8"
 ---
 
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <link rel="stylesheet" href="../css/snt.css">
 
@@ -190,14 +191,14 @@ color: "#0072b8"
           </div>
           <div class="row">
 									
-										<div class="col-md-6 form-group item-form m-t-1">
+										<div class="col-md-4 col-sm-6 form-group item-form m-t-1">
 											<label for="firstname">Nombre</label>
-											<input type="text" name="personal-info" id="firstname" class="form-control" placeholder="Juana"  >
+											<input type="text" name="personal-info" id="firstname" class="form-control" placeholder="Ingresá el nombre"  >
 											
 										</div>
-										<div class="col-md-6 form-group item-form m-t-1">
+										<div class="col-md-4 form-group item-form m-t-1">
 											<label for="lastname">Apellido</label>
-											<input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="López">
+											<input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá el apellido">
 										
 										</div>
 									
@@ -215,76 +216,136 @@ color: "#0072b8"
 	  <hr>
 	 
 	 
-	  <h4 class="h5 m-t-1">Rol del usuario</h4><span>Recordá que el usuario tiene que tener al menos un rol.</span>
-<div class="row">
-	 <div class="form-group col-md-12 mt-3" style="float: none!important">
-		  <label>Organismo</label>
-		  <div class="input-group">
-                                <input id="buscar" type="text" class="form-control input-search" aria-label="" placeholder="Ingresá el nombre del organismo">
-                                <span class="input-group-btn">
-              <button class="btn btn-primary" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
-              </span> </div>
-		</div>
-	
-	
-    <div class="col-md-12"><div class="alert alert-success alert-dismissible fade show" role="alert">
-      Organismo <strong>xxxxxxx</strong>.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </div>
+	  <h4 class="h5 m-t-1">Rol del usuario</h4><span class="pb-2">Recordá que el usuario tiene que tener al menos un rol.</span>
 
 
-	<div class="col-md-12 mt-4">
-    <p>Seleccionar rol/es.</p>
-</div>
-
-  <div class="col-md-12">
+  <div class="col-md-12 mt-4">
 <div class="alert alert-dismissible fade show border-secondary" role="alert">
   
   <div class="row g-2">
-    <div class="col-md">
-      <div class="form-floating">
-        <select class="form-select  border-0" id="floatingSelectGrid">
-          <option selected="">Seleccióná el Rol de usuario</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <label for="floatingSelectGrid">Rol</label>
-      </div>
+    <div class="col-md-4 px-md-3">
+        <label for="exampleFormControlInput1" class="form-label">Rol</label>
+        <select class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="rol">
+          <option selected="">Seleccioná el rol</option>
+          <option value="0: 1">Administrador</option>
+          <option value="1: 2">Responsable de Organismo </option>
+          <option value="2: 3">Responsable de Área </option>
+          <option value="3: 6">Organismo Auxiliar </option>
+          <option value="4: 4">Responsable de Punto de atención</option>
+          <option value="5: 5">Agente</option>
+      </select>
     </div>
-    <div class="col-md">
-      <div class="form-floating">
-        <select class="form-select  border-0" id="floatingSelectGrid">
-          <option selected="">Seleccioná el Punto de Atención</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <label for="floatingSelectGrid">Punto de atención</label>
-      </div>
+    <div class="col-md-6 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Organismo</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+        <option value="AL">Alabama</option>
+        <option value="AL">Nueva York</option>
+        <option value="WY">Wyoming</option>
+      </select>
+  </div>
+  </div>
+    <div class="row g-2 mt-3">
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Área</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+        <option value="AL">Alabama</option>
+        <option value="AL">Nueva York</option>
+        <option value="WY">Wyoming</option>
+      </select>
     </div>
-  <div class="col-md">
-      <div class="form-floating">
-        <select class="form-select  border-0" id="floatingSelectGrid">
-          <option selected="">Seleccioná Ventanilla</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <label for="floatingSelectGrid">Ventanilla</label>
-      </div>
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Punto de atención</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+        <option value="AL">Alabama</option>
+        <option value="AL">Nueva York</option>
+        <option value="WY">Wyoming</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Ventanilla</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-multiple" formcontrolname="rol"  multiple="multiple"> 
+        
+        <option value="0: 1">01</option>
+        <option value="1: 2">02 </option>
+        <option value="2: 3">03 </option>
+    </select>
     </div>
   </div>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+  <div class="row  mt-4">
+  <div class="form-group col-md-12">
+    <button type="button" class="btn btn-sm btn-default">Borrar datos</button>
+    <button type="button" class="btn btn-sm btn-primary"> Cargar Rol</button>
+  </div>
 </div>
-<div class="form-group col-md-12"><button type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
-   Agregar Rol</button>
+  
 </div>
+
+
+
+
+
+<table class="table mt-4 table-responsive table-responsive-poncho">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">Rol</th>
+      <th scope="col">Organismo</th>
+      <th scope="col">Área</th>
+      <th scope="col">Punto Atención</th>
+      <th scope="col">Ventanilla</th>
+      <th scope="col"  class="text-center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <td data-label="Rol">Agente</td>
+      <td data-label="Organismo">Renaper</td>
+      <td data-label="Área">Documentación</td>
+      <td data-label="Punto de Atención">Central</td>
+      <td data-label="Acciones">
+        <span class="btn btn-sm btn-secondary">Ventanilla 01</span>
+        <span class="btn btn-sm btn-secondary">Ventanilla 01</span>
+      </td>
+      <td class="text-center">
+        <a href="#" title="Eliminar rol"><i class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="row  mt-3">
+      <div class="form-group col-md-12">
+        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-circle-plus"></i> Agregar Rol</button>
+      </div>
+    </div>
+
+
 
 	  
 
 </div>
+
+
+
+<style>
+  .select2-container--default .select2-selection--multiple { border: none!important;}
+  .select2-container--default.select2-container--focus .select2-selection--multiple { border: none!important;}
+  .select2-container--open { border: 1px solid #ddd!important;}
+  .select2-dropdown { top: -1px; border: 1px solid #ddd;}
+  .select2-selection__choice { margin-top:2px!important;}
+  .select2-selection__choice:first-child { margin-left: 0px!important;}
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
+
+
 	  <hr>
 <!--	  <h4>Datos del usuario</h4>
 	  <p>Datos correspondientes para ese nombre de usuario</p>
