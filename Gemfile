@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 gem "bundler"
 gem "jekyll"
-gem "jekyll-assets"
+gem "jekyll-assets", "~> 3.0.12"
 gem "jekyll-seo-tag"
 gem "kramdown-parser-gfm"
 # gem "kramdown"
