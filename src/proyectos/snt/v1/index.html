@@ -1,0 +1,190 @@
+---
+title: Autenticación | SNT
+layout: snt/snt-home
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+<div class="login-container body-login">
+  <section class="container" style="background-color:#fff!important">
+    <div class="row">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+			<div>
+			  <h2 class="h4">Taskflow // 1 </h2>
+				<p>Fernanda como <strong>administradora</strong> tiene que sacar un turno para un trámite: “Coordinación de Autorizaciones Especiales” del área PSDO pero desconoce el organismo. Decide ingresar por el bloque “Trámites”.</p>
+				<div class="panel panel-default panel-padding">
+				<ul style="font-size: 14px">
+					<li><a href="bienvenida-admin.html">Bienvenida (hacer click en el menú principal trámite)</a></li>	
+					<li><a href="tramites_admin.html">Búsqueda del trámite (hacer click en acciones / tomar turno)</a></li>
+					<li><a href="tomar-turno.html">Tomar turno - paso 1</a></li>
+					<li><a href="tomar-turno2.html">Tomar turno - paso 2</a></li>
+					<li><a href="confirmacion-turno.html">Confirmación de turno</a></li>
+				</ul>
+				</div>
+				<br>
+				<h2 class="h4">Taskflow // 2 </h2>
+				<p>Fernanda como <strong>administradora</strong> tiene que sacar un turno para un trámite. Tiene dudas con el nombre, área y organismo. Decide buscar el trámite colocando sólo “Autorizaciones Especiales” en el buscador general. </p>
+				<div class="panel panel-default panel-padding">
+				<ul style="font-size: 14px">
+					<li><a href="bienvenida-admin.html">Bienvenida (hacer click en el buscador)</a></li>	
+					<li><a href="resultado-busqueda.html">Resultado de búsqueda (hacer click en Tomar Turno del resultado de la tabla de trámites) </a></li>
+					<li><a href="tomar-turno.html">Tomar turno - paso 1</a></li>
+					<li><a href="tomar-turno2.html">Tomar turno - paso 2</a></li>
+					<li><a href="confirmacion-turno.html">Confirmación de turno</a></li>
+					
+				</ul>
+				</div>
+				<br>
+				<h2 class="h4">Taskflow // 3 </h2>
+				<p>Fernanda como <strong>administradora</strong> tiene que crear un nuevo usuario que será responsable de Área Documentación del Organismo RENAPER. </p>
+				<div class="panel panel-default panel-padding">
+				<ul style="font-size: 14px">
+					<li><a href="bienvenida-admin.html">Bienvenida (hacer click en Usuarios Habilitados)</a></li>
+					<li><a href="usuarios_admin.html">Usuarios habilitados (click en botón crear usuario)</a></li>
+					<li><a href="crear_usuario.html">Crear nuevo usuario (click en "ver usuario" - botón de acciones, dentro de la tabla.)</a></li>
+					<li><a href="ver_usuario.html">Ver usuario ()</a></li>
+				</ul>
+				</div> 
+
+        <br>
+        <h2 class="h4">Taskflow // 4 </h2>
+        <p>Fernanda como <strong>administradora</strong> tiene que eliminar el trámite “Asesoramiento 3 de Febrero” dependiente del “Área Documentación” del organismo “Agencia Nacional de Seguridad Vial”</p>
+        <div class="panel panel-default panel-padding">
+        <ul style="font-size: 14px">
+                    <li><a href="bienvenida-admin.html">Bienvenida (hacer click en Organismos)</a></li>
+                    <li><a href="organismos_admin.html">Listado de Organismos (Tabla de organismo, acciones "Ver")</a></li>
+                    <li><a href="organismo-ppal-ansv.html">Pantalla principal del organismo (hacer click en Área)</a></li>
+                    <li><a href="areas-organismo-ansv.html">Áreas del organismo (hacer click en acciones, del área Documentación)</a></li>
+                    <li><a href="area-documentacion-ansv.html">Área "Documentación" dentro del Organismo</a></li>
+        </ul>
+        </div>
+
+
+        <br>
+        <h2 class="h4">Taskflow // Login </h2>
+        <p>Login desde MiArgentina</p>
+        <div class="panel panel-default panel-padding">
+        <ul style="font-size: 14px">
+                    <li><a href="login-miargentina.html">Login (hacer click en Organismos)</a></li>
+        </ul>
+        </div>
+
+
+          </div>          
+          </div>
+        </div>
+      </div> 
+    </div>
+  </section>
+
+
+</div>
+  
+
+<script>
+ var errorElements = []
+    var elementError ;
+    document.querySelector('.validator').addEventListener('click', function(){
+        
+        document.querySelectorAll('.form-control').forEach(i => {
+
+            if(i.value == ''){
+                errorElements.push(i)
+
+             }
+
+        })
+         console.log(errorElements)
+         errorElements.forEach(e => {
+            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
+            e.closest('.item-form').classList.add('has-error')
+
+
+        })
+        
+        elementError = errorElements[0].closest('.item-form').querySelector('.form-control') 
+        
+        if(elementError.value == ''){
+            elementError.setAttribute('aria-label', errorElements[0].textContent)
+            //elementError.focus()
+          }
+
+
+        })
+   /* document.addEventListener("keypress", function(e){
+        
+        e.target.nextElementSibling.classList.add('hidden')
+        e.target.parentNode.parentNode.classList.remove('has-error')
+        e.target.parentNode.classList.remove('has-error')
+    })
+*/
+        
+
+function mostrarErrores(){
+  document.querySelector('#errores').innerHTML = ''
+  document.querySelector('#errores').innerHTML = '<h3>Se han producido los siguientes errores:</h3><ol></ol>'
+  let cantidadDeErrores = 0
+  document.querySelectorAll('.has-error').forEach(error => {
+    let mensajeError = error.querySelector(".help-block.error").textContent;
+    let li;
+    li.innerHTML = `<li>${mensajeError}</li>`
+    error.querySelector('input').appendChild(li)
+  })
+
+}
+
+
+  function viewpassword(){
+    var eye =  document.getElementById('eye-password')
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      eye.classList.remove("fa-eye-slash")
+      eye.classList.add("fa-eye")
+      eye.querySelector('span').innerHTML ='Mostrar contraseña' 
+
+    }else{
+      clave.type = 'password'
+      eye.classList.remove("fa-eye")
+      eye.classList.add("fa-eye-slash")
+
+      eye.querySelector('span').innerHTML ='Ocultar contraseña' 
+      
+      
+    }
+    
+  }
+</script>
+
+
+<script>
+    let mostrar = document.getElementById('mostrar');
+
+    mostrar.addEventListener("click", (e) =>{
+    e.preventDefault();
+    let clave = document.getElementById('password');
+    
+    if(clave.type === 'password'){
+      clave.setAttribute("type", "text");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" checked value="">Ocultar la contraseña';
+      document.getElementById('password').focus();
+
+    }else{
+      clave.setAttribute("type", "password");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" value="">Mostrar la contraseña';
+      document.getElementById('mostrar').focus();
+
+      
+    }
+    });
+    //console.log(prueba.outerHTML);
+    //console.log(mostrar.outerHTML);
+
+    
+
+    
+      
+</script>
