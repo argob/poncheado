@@ -44,31 +44,88 @@ border-radius: 30px; }
 .menu-main .nav-main>li>ul>li:hover { background-color:none!important;}
 .menu-main .nav-main>li>ul>li>a:hover { background-color:white!important;  color: #0072bb!important; text-decoration: underline; }
 
+/*///Desplegable - usuario///*/
+.dropdown-menu li a {
+    border-bottom: 1px solid #dbdbdb;
+    font-weight: 500;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    font-size: 16px;
+    padding: 12px 15px;
+}
 
 
 /*///Desplegable - menú///*/
 
-.snt-m-r {    vertical-align: middle;
-    width: 20%!important;
-    text-align: right;}
-.panel { margin-bottom: 15px!important}
-.snt-panelMenu {font-weight: 600; font-size: 20px;}
-.title-snt { margin-bottom: 16px; border-bottom: 1px solid #a0a0a0}
-.panel-border-cereza { border-bottom: 8px solid #ed3d8f}
-.panel-border-mandarina { border-bottom: 8px solid #f79525}
-.snt-title-collapse { text-decoration: none!important;  color: #051247!important;}
-.snt-title-collapse:hover, .snt-title-collapse:visited, .snt-title-collapse:focus { text-decoration: none!important; color: #333!important}
-.panel-snt a { background-color: white;}
-.panel-snt a div.panel-body{ padding: 4px 0px 0px 0px!important}
-.panel-snt a div.panel-body div p { margin-bottom: 0px!important}
-.panel-snt a div.panel-body h3 { margin-top: 0px!important}
-.box-campania {padding: 10px 0 0 0; background-color: #f3faff;}
+.snt-m-r { vertical-align: middle;
+width: 20%!important;
+text-align: right;}
 
+.box-campania {padding: 10px 0 0 0; background-color: $box-campania}
 .panel-fecha-snt {border: 1px solid #ededed; border-radius: 10px; padding: 30px}
 
-.panel-border-b-success { border-bottom: 8px solid #2e7d33;}
-.panel-border-b-primary { border-bottom: 8px solid #2e7d33;}
-.panel-padding {    padding: 15px 20px;}
+
+
+.panels-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+
+
+.card { margin-bottom: 15px!important}
+.card-border-cereza { border-bottom: 8px solid #ed3d8f}
+.card-border-mandarina { border-bottom: 8px solid #f79525}
+
+.snt-title-collapse { text-decoration: none!important;  color: #051247!important;}
+.snt-title-collapse:hover, .snt-title-collapse:visited, .snt-title-collapse:focus { text-decoration: none!important; color: #333!important}
+
+.snt-panelMenu {font-weight: 600; font-size: 20px;}
+.title-snt { margin-bottom: 16px; border-bottom: 1px solid #a0a0a0}
+
+
+
+
+
+.card-snt {
+    a {
+        background-color: $white;
+        text-decoration: none;
+
+        div.card-body {
+            padding: 4px 0px 0px 0px !important;
+            div {
+                p {
+                    margin-bottom: 0px !important;
+                }
+            }
+            h3 {
+                margin-top: 0px;
+                font-weight: 700;
+                line-height: 1.3;
+                margin: 0 0 0.25em 0;
+                font-size: 1.375em !important;
+            }
+           
+        }
+    }
+}
+
+
+.card-snt {
+    a {
+        background-color: $white;
+        text-decoration: none;
+    }
+}
+
+
+a.card:focus, a.card:hover {
+    background: $box-campania;
+    color: $black;
+}
 
 
 @media (max-width: 720px){
