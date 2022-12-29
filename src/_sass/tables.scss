@@ -1,0 +1,36 @@
+@media (max-width: 992px) {
+	table.table-responsive-poncho {
+		border: 0;
+		thead {
+			border: none;
+			clip: rect(0,0,0,0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+		tr {
+			display: block;
+			margin-bottom: .625em;
+		}
+		td {
+			border-bottom: 1px solid #ddd;
+			display: block;
+			&:last-child {
+				border-bottom-color: #0072bb;
+				border-bottom-width: 3px;
+			}
+			&:first-child {
+				border-top: 0 !important;
+			}
+			&::before {
+				content: attr(data-label);
+				font-weight: 700;
+				text-transform: inherit;
+				display: block;
+			}
+		}
+	}
+}
