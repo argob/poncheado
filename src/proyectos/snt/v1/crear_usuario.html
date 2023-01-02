@@ -1,0 +1,680 @@
+---
+title: Crear usuarios | SNT
+layout: snt/snt-interior
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<link rel="stylesheet" href="../css/snt.css">
+
+<section class="box-campania">
+  <div class="container  pb-3">
+{% include snt/breadcrumbs.html %}
+{% include snt/menu-admin.html %}
+</div>
+</section>
+
+
+
+
+<section>
+  <div class="container">
+	<!--  <div class="row m-b-2">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="bienvenida-admin.html" data-toggle="tooltip" data-placement="bottom" title="Sistema Nacional de Turnos">SNT</a></li>
+			
+		
+			<li><a href="usuarios_admin.html">Usuarios habilitados</a></li>
+         
+			
+          <li class="active">Crear usuario</li>
+        </ol>
+      </div>
+    </div>
+   <a class="snt-title-collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse1"><h2 class="snt-panelMenu"> Sistema Nacional de Turnos <span class=" fa fa-chevron-circle-up"></span></h2></a> 
+	  
+	  
+	  
+	  
+    <div class="panel-pane pane-atajos panel-collapse collapse in p-b-1"  id="collapse1" style="
+    border-top: 1px solid rgb(153, 153, 153);
+    margin-top: 19px !important;">
+		
+		
+		  <div class="snt-filtros">
+			  <div class="">
+			  <div class="panel-heading collapsed" data-toggle="collapse" data-target="#filtroinfo" aria-expanded="false" aria-controls="filtroinfo"  style="min-height: 52px!important">
+            <div class="row">
+              <div class="col-xs-10 col-md-12">
+                <p class="text-right"><button type="button" class="btn btn-default btn-sm btn-tag">Filtrar información</button></p>
+              </div>
+           
+            </div>
+          </div>
+		 	 <div class="panel-collapse collapse   white" role="tabpanel" id="filtroinfo" aria-expanded="true" >
+					 <div class="row">
+					  <div class="col-xs-10 col-md-12">
+						  Filtros para aplicar<hr>
+						</div>
+					</div>
+				 
+		  	</div>
+				  
+				  </div>
+			 </div>
+		
+		
+		
+      <div class="pane-content">
+        <div class="row panels-row">
+        
+          <div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Organismos</p>
+              </div>
+              <h3 class="text-cereza h2">23</h3>
+            </div>
+            </a></div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Áreas</p>
+              </div>
+              <h3 class="text-cereza h2">136</h3>
+            </div>
+            </a></div>
+			
+			
+		<!--	
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Trámites</p>
+              </div>
+              <h3 class="text-cereza h2">223</h3>
+            </div>
+            </a></div>
+			-->
+		<!--	
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Puntos de atención</p>
+              </div>
+              <h3 class="text-cereza h2">174</h3>
+            </div>
+            </a></div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Ventanillas</p>
+              </div>
+              <h3 class="text-cereza h2">63</h3>
+            </div>
+            </a></div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Turnos</p>
+              </div>
+              <h3 class="text-cereza h2">293</h3>
+            </div>
+            </a></div>
+			
+			
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-cereza ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Personas atendidas</p>
+              </div>
+              <h3 class="text-cereza h2">3283</h3>
+            </div>
+            </a></div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-3 panel-snt" id="pastilla-campana-3"> <a href="/desarrollosocial/tarjeta-alimentar" class="panel panel-default panel-border-mandarina ">
+            <div class="panel-body text-center">
+				<div class="text-muted">
+                <p>Usuarios habilitados</p>
+              </div>
+              <h3 class="text-mandarina h2">68</h3>
+            </div>
+            </a></div>
+
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+   <div class="row m-b-2">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="bienvenida-admin.html">Inicio</a></li>
+          <li class="active">Administración de organismos</li>
+        </ol>
+      </div>
+    </div>-->
+	  
+	  
+	  
+	  
+	  
+	  <div class="row justify-content-between align-items-center title-snt">
+      <div class="col-auto"><h2 class="h3 "><a href="usuarios_admin"><span class=" fa fa-chevron-circle-left me-2"></span></a><span class="fw-light">Usuarios habilitados </span>/ Crear usuario</h2></div>
+      <div class="col snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-success">Crear usuario</a></div>
+
+    </div>
+
+<p class="text-end">(*) Campos obligatorios</p>
+
+	 <h4 class="h5 mt-1">Datos del usuario</h4>
+	        <div class="row mt-3 align-items-end">
+                <div class="col-md-8 col-12 form-group item-form">
+                  <label for="cuil">CUIL *</label>
+                  <!--<p class="help-block"><a href="https://www.anses.gob.ar/constancia-de-cuil/" aria-label="Ingresá tu CUIL. Si no lo sabés consultá en este enlace de ANSES" target="_blank">Consultar
+                      CUIL</a></p>-->
+                  <input type="number" class="form-control" id="cuil" required="" aria-required="true" aria-invalid="false" title="Ingresa tu CUIL" placeholder="Ingresá el número de CUIL." >
+
+
+                
+                  <p class="visually-hidden text-danger" role="alert">El CUIL tiene un formato no
+                    válido</p>
+                </div><div class="col-md-2 align-self-end  "><a href="#" type="button" class="btn btn-success mb-0 mt-2 mt-md-0">Buscar</a></div>
+          </div>
+          <div class="row mt-5">
+									
+										<div class="col-md-4 col-sm-6 form-group item-form ">
+											<label for="firstname">Nombre *</label>
+											<input type="text" name="personal-info" id="firstname" class="form-control" placeholder="Ingresá el nombre"  >
+											
+										</div>
+										<div class="col-md-4 form-group item-form">
+											<label for="lastname">Apellido *</label>
+											<input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá el apellido">
+										
+										</div>
+									
+                  <div class="col-md-4 form-group item-form ">
+                      <label for="lastname">Correo laboral *</label>
+                      <input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá el e-mail laboral">
+                    
+                    </div>
+										
+								        
+											
+										
+									
+									    
+									</div> 
+	  
+	  
+	  
+
+	 
+	 
+
+
+
+  <div class="col-md-12 my-5 ">
+
+
+
+
+
+<div class="card p-3 bg-gray my-5">
+
+
+    <h4 class="h5 mt-1">Rol del usuario * </h4>
+  
+  <div class="row g-2">
+    <div class="col-md-4 px-md-3">
+        <label for="exampleFormControlInput1" class="form-label">Rol *</label>
+        <select class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="rol">
+          <option selected="">Seleccioná el rol</option>
+          <option value="0: 1">Administrador</option>
+          <option value="1: 2">Responsable de Organismo </option>
+          <option value="2: 3">Responsable de Área </option>
+          <option value="3: 6">Organismo Auxiliar </option>
+          <option value="4: 4">Responsable de Punto de atención</option>
+          <option value="5: 5">Agente</option>
+      </select>
+    </div>
+    <div class="col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Organismo *</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+             <option selected="">Seleccioná el organismo</option>
+          <option value="0: 1">xxxxxx</option>
+
+      </select>
+  </div>
+
+
+  <div class="col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Área *</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+          <option selected="">Seleccioná el área</option>
+          <option value="0: 1">xxxxxxxxxx</option>
+
+      </select>
+  </div>
+
+  </div>
+
+
+    <div class="row g-2 mt-3">
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Punto de atención *</label>
+      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
+           <option selected="">Seleccioná el punto de atención</option>
+          <option value="0: 1">xxxxx</option>
+       
+      </select>
+    </div>
+ 
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="exampleFormControlInput1" class="form-label">Ventanilla</label>
+    <input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá la ventanilla">
+    </div>
+  </div>
+
+
+  
+  </div>
+
+
+<div class="row mt-5"> <div class="col-md-12"> <a class="btn-link btn" href="#">Limpiar</a> <a class="btn-success btn next-step" href="#">Aceptar</a> </div></div>
+
+
+
+
+
+
+
+ 
+
+
+
+
+<table class="table mt-5 table-responsive table-responsive-poncho">
+  <thead class="border-bottom border-3">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cuil</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Organismo</th>
+      <th scope="col">Área</th>
+      <th scope="col">Punto Atención</th>
+      <th scope="col">Ventanilla</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+        <td data-label="Rol">Juana López</td>
+
+  <td data-label="Rol">23243336674</td>
+  <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Responsable de área</button>
+
+    </td>
+      <td data-label="Organismo">Renaper</td>
+      <td data-label="Área">Documentación</td>
+      <td data-label="Punto de Atención">Central</td>
+       <td data-label="Punto de Atención">01</td>
+
+
+<td style="position: relative!important">
+        <div class="dropdown">
+          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Acciones
+          </button>
+          <ul class="dropdown-menu py-0 mt-0 " aria-labelledby="dropdownMenuButton1">
+             <li><a class="dropdown-item" href="ver_usuario">Ver</a></li>
+
+            <li><a class="dropdown-item" href="#">Editar</a></li>
+            <li><a class="dropdown-item" href="#">Agregar rol</a></li>
+          </ul>
+        </div>
+    </td>
+
+
+
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+	  
+
+</div>
+
+
+
+<style>
+  .select2-container--default .select2-selection--multiple { border: none!important;}
+  .select2-container--default.select2-container--focus .select2-selection--multiple { border: none!important;}
+  .select2-container--open { border: 1px solid #ddd!important;}
+  .select2-dropdown { top: -1px; border: 1px solid #ddd;}
+  .select2-selection__choice { margin-top:2px!important;}
+  .select2-selection__choice:first-child { margin-left: 0px!important;}
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
+
+
+<!--	  <h4>Datos del usuario</h4>
+	  <p>Datos correspondientes para ese nombre de usuario</p>
+	  
+	  
+	  	  <div class="row">
+  <div class="form-group item-form col-md-12 m-b-0">
+    <div class="col-md-4">
+
+		
+	
+      <label for="cuil">Número de CUIL </label>
+    
+      <input type="number" class="form-control disabled" id="cuil" required="" aria-required="true" aria-invalid="false" title="Ingresa tu CUIL" placeholder="276477904">
+	
+   
+		
+		
+		
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+        <label for="localidad">Nombre y apellido</label>
+        <input id="localidad" name="localidad" class="form-control disabled" placeholder="Bacel Mariana Soledad" aria-label="disabled">
+        
+         
+        </input>
+        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group item-form">
+       <label for="email">Dirección de correo electrónico (*)</label>
+      <input type="email" name="email" class="form-control" id="email" required="" aria-required="true" placeholder="Ingresá el correo electrónico o email.">
+		<p class="help-block">
+        Ejemplo: juana01@email.com    </p>
+      <p class="help-block error hidden">Ingresá un correo electrónico <br> El correo electrónico tiene un formato no válido</p>
+         
+        </input>
+  
+      </div>
+    </div>
+  </div>
+</div>-->
+	  
+
+	  <!--
+	  
+	  
+	  <div class="form-group">
+		  <label>Búsqueda</label>
+		  <div class="input-group">
+                                <input id="buscar" type="text" class="form-control input-search" aria-label="" placeholder="Ingresá el Nombre o CUIL del usuario">
+                                <span class="input-group-btn">
+              <button class="btn" type="button" aria-label="Buscar"><i class="fa fa-search text-primary"></i></button>
+              </span> </div>
+		</div>
+	  
+	  
+	  
+	  
+		  <div class="snt-filtros">
+			  <div class=" panel panel-default panel-borders">
+			  <div class="panel-heading collapsed" data-toggle="collapse" data-target="#Transporte-4" aria-expanded="false" aria-controls="Transporte-4"  style="min-height: 52px!important">
+            <div class="row">
+              <div class="col-xs-10 col-md-11">
+                <p class="text-capitalize">Filtros</p>
+              </div>
+              <div class="col-xs-2 col-md-1 text-right">
+                <a class="btn-collapse"><i class="fa fa-chevron-up collapseGira text-muted"></i></a>
+              </div>
+            </div>
+          </div>
+		 	 <div class="panel-collapse collapse" role="tabpanel" id="Transporte-4" aria-expanded="true" >
+					 <div class="row">
+					  <div class="col-xs-10 col-md-11">
+						  
+						  
+						  
+						  
+						  Filtros para aplicar ---
+						</div>
+					</div>
+				 
+		  	</div>
+				  
+				  </div>
+			 </div>
+	  
+	  <table class="table dataTables">
+  <thead>
+    <th>ID</th>
+    <th>Trámites</th>
+    <th>Organismo (abrev.)</th>
+	  <th>Estado</th>
+    <th>Área</th>
+    <th>Trámites asociados</th>
+	  <th>Acciones</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>128</td>
+      <td>Certificado de Discapacidad</td>
+      <td><a  data-toggle="tooltip" data-placement="bottom" title="Municipalidad de San Isidro">MSI</a></td>
+		<td><button type="button" class="btn btn-default btn-sm btn-tag">Habilitado</button></td>
+      <td class="text-center">2</td>
+			<td class="text-center">15</td>
+  		<td style="position: relative!important">
+			<a class="snt-title-collapse btn btn-primary btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="color: white!important;">Acciones <i class="fa fa-angle-down"></i></a>
+		 	<div class="panel-pane pane-atajos panel-collapse collapse"  id="collapse3" style="position: absolute; background-color: white; top: 38px; border: 1px solid #ededed; -webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;">
+			<ul class="" style="list-style: none!important; padding-left: 0px; padding: 12px">
+				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="#">Ver</a></li>
+				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="#">Editar</a></li>
+				<li style="display: block; border-bottom: 1px solid #666; padding-bottom: 6px; margin-bottom: 6px"><a href="tomar-turno.html">Tomar turno</a></li>
+				<li><a href="#">Eliminar</a></li>
+			</ul>
+			</div>
+			
+		</td>
+    </tr>-->
+   <!-- <tr>
+      <td>343</td>
+      <td>Certificado de discapacidad</td>
+      <td>AADe</td>
+		<td>Habilitado</td>
+      <td>Certificados</td>
+			<td>-</td>
+      <td></td>
+    </tr>-->
+  </tbody>
+</table>
+  
+  </div>
+</section>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
+
+<script>
+  $(function(){
+
+    var tabla =  $(".dataTables").DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : false,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    var oTable = $('#tableFiltro').DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : true,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    $("#tableFiltro_filter").addClass("hidden");
+          $('#ponchoTableSearch').keyup(function(){
+            oTable.search($(this).val()).draw() ;
+          })
+
+  });
+
+
+
+</script>
+
+<script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
