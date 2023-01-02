@@ -7,7 +7,12 @@ color: "#0072b8"
 ---
 
 
-<link rel="stylesheet" href="../css/snt.css">
+<style>.tooltip-inner {
+    max-width: 300px;
+    background-color: #0072bb;
+    border-radius: 6px;
+}</style>
+
 <section class="box-campania">
   <div class="container pb-3">
   	{% include snt/breadcrumbs.html %}
@@ -151,14 +156,24 @@ color: "#0072b8"
 <td  data-label="Área">
 <a  data-toggle="tooltip" data-placement="bottom" title="XXX">XXX</a></td>
 
-</td>
-		<td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Resp. de Punto</button>
 
-		<td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 - 11:20" class="btn btn-md pt-0">
-			<i class="fa fa-check-circle text-success" title="prueba"></i></button></td></td  data-label="Acciones">
+		<td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Resp. de Punto</button></td>
+
+		<td data-label="Estado">
+
+  
+
+
+
+        <button type="button" class="btn btn-md pt-0" data-bs-toggle="tooltip" title="Habilitado. Último ingreso: 24/6/21 - 11:20"><i class="fa fa-check-circle text-success"></i></button>
+
+
+    </td>
+
+
 		  
   
-  		<td style="position: relative!important">
+  		<td style="position: relative!important" data-label="Acciones">
         <div class="dropdown">
           <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Acciones
@@ -183,14 +198,15 @@ color: "#0072b8"
 <td  data-label="Área">
 <a  data-toggle="tooltip" data-placement="bottom" title="XXX">XXX</a></td>
 
-</td>
-    <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Agente</button>
+
+    <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Agente</button></td>
 
     <td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 - 11:20" class="btn btn-md pt-0">
-      <i class="fa fa-close text-danger" title="Desactivado"></i></button></td></td  data-label="Acciones">
-      
+      <i class="fa fa-close text-danger"></i></button></td>
+
+
   
-      <td style="position: relative!important">
+      <td style="position: relative!important" data-label="Acciones">
         <div class="dropdown">
           <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Acciones
@@ -215,14 +231,15 @@ color: "#0072b8"
 <td  data-label="Área">
 <a  data-toggle="tooltip" data-placement="bottom" title="XXX">XXX</a></td>
 
-</td>
-    <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Administrador/a</button>
+    <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Administrador/a</button></td>
 
     <td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 - 11:20" class="btn btn-md pt-0">
-      <i class="fa fa-clock-o text-warning" title="Pendiente"></i></button></td></td  data-label="Acciones">
+      <i class="fa fa-clock-o text-warning" title="Pendiente"></i></button></td>
+
+
       
   
-      <td style="position: relative!important">
+      <td style="position: relative!important" data-label="Acciones">
         <div class="dropdown">
           <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Acciones
@@ -256,6 +273,8 @@ color: "#0072b8"
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 <script>
 	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
@@ -409,8 +428,12 @@ color: "#0072b8"
 
 
 
-<script type="text/javascript">
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+<script>
+// Initialize tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 </script>
+
+
