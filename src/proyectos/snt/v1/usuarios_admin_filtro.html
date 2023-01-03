@@ -7,11 +7,7 @@ color: "#0072b8"
 ---
 
 
-<style>.tooltip-inner {
-    max-width: 300px;
-    background-color: #0072bb;
-    border-radius: 6px;
-}</style>
+
 
 <section class="box-campania">
   <div class="container pb-3">
@@ -141,7 +137,39 @@ color: "#0072b8"
 <th>Organismo</th>
 <th>Área</th>
 <th>Rol</th>
-<th>Estado <i class="fa fa-question-circle me-1 text-info" title="Estados vigentes"></i></th>
+<th>Estado  <button type="button" class="border-0 m-0 btn btn-md p-0 btn-ayuda"  
+  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Ayuda"></i>  </button>
+
+  <!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"> <i class="fa fa-question-circle me-0 text-info" title="Ayuda"></i> Estados del sistema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body fw-normal">
+
+  <ul class="list-group list-group-flush">
+  <li class="list-group-item"><i class="fa fa-clock-o me-1 text-warning" title="Suspendido"></i> Suspendido: se realiza automáticamente cuando el/la usuario/a no ingresa al sistema por un período de 30 días. </li>
+<li class="list-group-item"> <i class="fa fa-check-circle me-1 text-success" title="Activo"></i> Activo: en uso del sistema. </li>
+<li class="list-group-item"> <i class="fa fa-close me-1 text-danger" title="Desactivado"></i> Desactivado: inhabilitado para el sistema. </li>
+<li class="list-group-item"><i class="fa fa-question-circle me-1 text-warning" title="Pendiente"> </i>Pendiente: usuario/a que no completó el proceso de registro.   </li></ul>   </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</th>
 <th>Acciones</th>
 </thead>
 <tbody>
@@ -161,11 +189,11 @@ color: "#0072b8"
 
 		<td data-label="Estado">
 
-  
 
 
 
-        <button type="button" class="btn btn-md pt-0" data-bs-toggle="tooltip" title="Habilitado. Último ingreso: 24/6/21 - 11:20"><i class="fa fa-check-circle text-success"></i></button>
+
+        <button type="button" class="btn btn-md pt-0" data-bs-toggle="tooltip" title="Activo. Último ingreso: 24/6/21 - 11:20"><i class="fa fa-check-circle text-success"></i></button>
 
 
     </td>
@@ -201,7 +229,7 @@ color: "#0072b8"
 
     <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Agente</button></td>
 
-    <td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 - 11:20" class="btn btn-md pt-0">
+    <td data-label="Estado"><button type="button"  data-bs-toggle="tooltip" data-placement="bottom" title="Desactivado. Último ingreso: 02/12/21 - 10:00" class="btn btn-md pt-0">
       <i class="fa fa-close text-danger"></i></button></td>
 
 
@@ -233,8 +261,8 @@ color: "#0072b8"
 
     <td data-label="Rol"><button type="button" class="btn btn-default btn-sm btn-tag">Administrador/a</button></td>
 
-    <td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="Habilitado. Último ingreso: 24/6/21 - 11:20" class="btn btn-md pt-0">
-      <i class="fa fa-clock-o text-warning" title="Pendiente"></i></button></td>
+    <td data-label="Estado"><button type="button"  data-bs-toggle="tooltip" data-placement="bottom" title="Pendiente. Sin ingreso registrado." class="btn btn-md pt-0">
+   <i class="fa fa-question-circle me-1 text-warning" title="Pendiente"> </i></button></td>
 
 
       
@@ -265,17 +293,22 @@ color: "#0072b8"
 </tr>-->
 </tbody>
 </table>
-<p><small class="text-muted"><i class="fa fa-question-circle me-1 text-info" title="prueba"></i><span class="fw-bold" >Estados del sistema</span> <br>  <i class="fa fa-clock-o me-1 text-warning" title="Suspendido"></i> Suspendido: se realiza automáticamente cuando el/la usuario/a no ingresa al sistema por un período de 30 días. / <i class="fa fa-check-circle me-1 text-success" title="Activo"></i> Activo: en uso del sistema. / <i class="fa fa-close me-1 text-danger" title="Activo"></i> Desactivado: inhabilitado para el sistema. / <i class="fa fa-question-circle me-1 text-warning" title="Suspendido"> </i>Pendiente: usuario/a que no completó el proceso de registro.</small></p>
 
+<!--
+<p><small class="text-muted"><i class="fa fa-question-circle me-1 text-info" title="prueba"></i><span class="fw-bold" >Estados del sistema</span> <br>  <i class="fa fa-clock-o me-1 text-warning" title="Suspendido"></i> Suspendido: se realiza automáticamente cuando el/la usuario/a no ingresa al sistema por un período de 30 días. / <i class="fa fa-check-circle me-1 text-success" title="Activo"></i> Activo: en uso del sistema. / <i class="fa fa-close me-1 text-danger" title="Activo"></i> Desactivado: inhabilitado para el sistema. / <i class="fa fa-question-circle me-1 text-warning" title="Suspendido"> </i>Pendiente: usuario/a que no completó el proceso de registro.</small></p>
+-->
   
   </div>
 </section>
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <script>
 	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
 	var elements
