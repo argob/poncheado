@@ -1,0 +1,80 @@
+---
+title: Autenticación | SNT
+layout: snt/snt-home
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+<section>
+  <div class="container">
+
+<div class="row justify-content-center mb-8">
+	<div class="col-md-6 col-12 text-center">
+    <h2>Ingreso al Sistema Nacional de Turnos</h2>
+    <p class="pt-5 ">Para acceder al sistema debés loguearte a través de <span class="fw-bold">Mi Argentina</span></p>
+	  
+	  <div class="mt-4">
+	  <a class="btn btn-link p-3" href="https://staging-id.argentina.gob.ar/" title="Ir al  perfil digital Mi Argentina">Ingresá con <img src="{{ "/proyectos/snt/img/miargentina1.svg" | prepend: site.baseurl }}" height="20" width="109" alt="Mi Argentina" ></a>
+
+  
+  </div>
+
+<a href="bienvenida-admin.html" class="btn btn-primary mt-4">Volver</a>
+  </div>
+  </div>
+  </div>
+</section>
+
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
