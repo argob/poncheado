@@ -171,8 +171,8 @@ color: "#0072b8"
 	  
 	  
 	  <div class="row justify-content-between align-items-center title-snt">
-      <div class="col-auto"><h2 class="h3 "><a href="usuarios_admin" role="button"><span class=" fa fa-chevron-circle-left me-2"></span></a><span class="fw-light">Usuarios </span>/ Crear usuario</h2></div>
-      <div class="col snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-success">Crear usuario</a></div>
+      <div class="col-auto"><h2 class="h3 "><a href="usuarios_admin" role="button"><span class=" fa fa-chevron-circle-left me-2"></span><span class="visually-hidden">página anterior</span></a><span class="fw-light">Usuarios </span>/ Crear usuario</h2></div>
+     <!-- <div class="col snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-success">Crear usuario</a></div>-->
 
     </div>
 <p class="text-start">Para crear un nuevo usuario es necesario completar los siguientes campos obligatorios y sumar al menos un rol.</p>
@@ -180,7 +180,7 @@ color: "#0072b8"
 
 	 <h3 class="h5 mt-1">Datos del usuario</h3>
 	        <div class="row mt-3 ">
-                <div class="col-md-8 col-12 form-group item-form">
+                <div class="col-md-6 col-12 form-group item-form">
                   <label for="cuil">CUIL *</label>
                   <input type="number" class="form-control" id="cuil" required="" aria-required="true" aria-invalid="false" title="Ingresa tu CUIL" placeholder="Ingresá el número de CUIL." > <small id="cuil" class="form-text text-muted">Solo números, sin guion (-) ni punto (.)</small>
 
@@ -189,34 +189,37 @@ color: "#0072b8"
                   <p class="visually-hidden text-danger" role="alert">El CUIL tiene un formato no
                     válido</p>
                 </div>
+
+              <div class="col-md-6 col-12 form-group item-form mt-3 mt-md-0 ">
+                      <label for="email">Correo laboral *</label>
+                      <input type="text" name="personal-info" id="email" class="form-control" value="" placeholder="Ingresá el e-mail laboral">
+                    
+                    </div>
+
+
                 <!--<div class="col-md-2 mt-4 "><a href="#" type="button" class="btn btn-success mb-0 mt-2 mt-md-0">Buscar</a></div>-->
-          </div>
-          <div class="row mt-5">
+     
 									
-										<div class="col-md-3 form-group item-form mt-3 mt-md-0">
+										<div class="col-md-6 col-12 form-group item-form mt-3" >
 											<label for="firstname">Nombre *</label>
 											<input type="text" name="personal-info" id="firstname" class="form-control" placeholder="Ingresá el nombre"  >
 											
 										</div>
-										<div class="col-md-3 form-group item-form mt-3 mt-md-0">
+										<div class="col-md-6 col-12 form-group item-form mt-3">
 											<label for="lastname">Apellido *</label>
 											<input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá el apellido">
 										
 										</div>
 									
-                  <div class="col-md-4 form-group item-form mt-3 mt-md-0 ">
-                      <label for="lastname">Correo laboral *</label>
-                      <input type="text" name="personal-info" id="lastname" class="form-control" value="" placeholder="Ingresá el e-mail laboral">
-                    
-                    </div>
+                 
 										
 								        
-											<div class="col-md-2 mt-4 "><a href="#" type="button" class="btn btn-success mb-0 mt-2 mt-md-0">Guardar</a></div>
+									<!--		<div class="col-md-2 mt-4 "><a href="#" type="button" class="btn btn-success mb-0 mt-2 mt-md-0">Guardar</a></div>-->
 										
 									
 									    
-<div class="col-md-12"><hr></div>
 
+  <!--  
 <section>
   <div class="col-md-12">
 <div class="alert alert-info d-flex align-text-bottom col-md-8 offset-md-2 alert-dismissible fade show" role="alert">
@@ -224,7 +227,7 @@ color: "#0072b8"
    Agregá al menos un rol de usuario para terminar el proceso. <button type="button" id="btnActionTableUser" data-bs-dismiss="alert" aria-label="Close" class="btn-close"></button>
   
 </div>
-</section>
+</section>-->
 </div>
 
 
@@ -243,10 +246,7 @@ color: "#0072b8"
 
   <section>
 <!-- nuevo rol-->
-<div class="row justify-content-between align-items-center">
-      <div class="col snt-m-r" ><a href="agregar_rol.html" type="button" class="btn btn-success btn-sm my-2">Agregar rol</a></div>
 
-    </div>
 
 <div class="card p-3 bg-gray">
 
@@ -280,6 +280,8 @@ color: "#0072b8"
       </select>
     -->
   </div>
+
+
 
 <!--
   <div class="col-md-4 px-md-3 mb-2">
@@ -332,11 +334,26 @@ color: "#0072b8"
   </div>
 
 
-<div class="row mt-4"><div class="col-md-12"><button type="button" class="btn btn-link btn-sm mx-1">Limpiar</button><button type="submit" class="btn btn-sm btn-success mx-1">Aceptar</button><button type="button" class="btn btn-sm btn-danger mx-1">Cancelar</button>
+<div class="row mt-4"><div class="col-md-12">
+  <button type="button" class="btn btn-link btn-sm mx-1">Limpiar</button>
+  <button type="button" class="btn btn-sm btn-danger mx-1">Cancelar</button>
+  <button type="submit" class="btn btn-sm btn-success mx-1">Aceptar</button>
 <hr></div><div class="form-group col-md-12"></div></div>
 
-  
+    <div class="row justify-content-between align-items-center">
+      <div class="col snt-m-r" ><a href="agregar_rol.html" type="button" class="btn btn-success btn-sm my-2">Agregar rol</a></div>
+
+    </div>
   </div>
+
+<div class="col-12 my-4 ">
+<a href="#" type="button" class="btn btn-primary ms-1">Volver</a>
+<a href="#" type="button" class="btn btn-danger ms-1">Cancelar</a>
+<a href="#" type="button" class="btn btn-success ms-1">Guardar</a>
+
+<div class="col-12"><hr></div>
+</div>
+
 
 <!--fin nuevo rol --->
 </section>
