@@ -175,7 +175,7 @@ color: "#0072b8"
      <!-- <div class="col snt-m-r" ><a href="crear_usuario.html" type="button" class="btn btn-success">Crear usuario</a></div>-->
 
     </div>
-<p class="text-start">Para crear un nuevo usuario es necesario completar los campos obligatorios y sumar al menos un rol.</p>
+<p class="text-start">Para crear un usuario es necesario completar los campos obligatorios y sumar al menos un rol.</p>
 <p class="text-end">(*) Campos obligatorios</p>
 
 	 <h3 class="h5 mt-1">Datos del usuario</h3>
@@ -248,10 +248,96 @@ color: "#0072b8"
 <!-- nuevo rol-->
 
 
-<div class="card p-3 bg-gray">
+  <h4 class="h5 mt-3">Rol del usuario</h4>
+
+<div class="card p-3  mt-5 bg-gray alert-dismissible">
+
+    <button type="button" id="btnActionTableUser" data-bs-dismiss="alert" aria-label="Close" class="btn-close mb-4"><span class="visually-hidden">cerrar</span></button>
+  
+  <div class="row g-2">
+    <div class="col-md-4 px-md-3 mb-2">
+        <label for="IngresoRol" class="form-label">Rol *</label>
+        <select class="form-control ng-pristine ng-invalid ng-touched" id="IngresoRol" formcontrolname="rol">
+    
+          <option value="2: 3">Responsable de Punto de atención </option>
+      
+      </select>
+    </div>
+    <div class="col-md-6 px-md-3 mb-2" >
+      <label for="IngresoOrganismo" class="form-label">Organismo *</label>
+      <select formcontrolname="organismo" id="IngresoOrganismo" name="state" class="form-control ng-pristine ng-invalid ng-touched">
+
+        <option value="1: Object"> Colonia Montes de Oca </option>
+      </select>
+  </div>
+
+ 
 
 
-    <h4 class="h5 mt-1">Rol del usuario * </h4>
+<div class="col-md-2 px-md-3 mb-2 mt-md-5">
+      <input class="custom-control" id="rol_principal" name="principal" type="checkbox" value="rol_principal">
+
+      <label for="rol_principal" class="form-label">Rol principal</label>
+      
+  </div>
+
+
+
+
+  </div>
+
+
+    <div class="row g-2 mt-3">
+
+        <div class="col-12 col-md-4 px-md-3">
+      <label for="IngresoArea" class="form-label">Área *</label>
+  <select formcontrolname="organismo" id="IngresoOrganismo" name="state" class="form-control ng-pristine ng-invalid ng-touched">
+
+        <option value="1: Object"> Centro Interdisciplinario de Salud Mental</option>
+      </select>
+  </div>
+
+
+    <div class="col-12 col-md-4 px-md-3">
+      <label for="IngresoPunto" class="form-label">Punto de atención *</label>
+
+ <select formcontrolname="organismo" id="IngresoOrganismo" name="state" class="form-control ng-pristine ng-invalid ng-touched">
+
+        <option value="1: Object"> C.I.Sa.M</option>
+      </select>
+
+    </div>
+ 
+
+
+
+  <div class="col-12 col-md-4 px-md-3">
+      <label for="ventanilla" class="form-label">Ventanilla</label>
+  
+<input type="text" name="personal-info" id="Ventanilla" class="form-control" value="" placeholder="Seleccioná una ventanilla">
+
+    </div>
+  </div>
+
+<!--
+<div class="row mt-4"><div class="col-md-12">
+  <button type="submit" class="btn btn-sm btn-success ms-0 ms-md-3">Aceptar</button>
+</div><div class="form-group col-md-12"></div></div>
+-->
+    
+  </div>
+
+
+
+<!--fin nuevo rol --->
+
+<!-- nuevo rol-->
+
+
+<div class="card p-3  mt-5 bg-gray alert-dismissible">
+<button type="button" id="btnActionTableUser" data-bs-dismiss="alert" aria-label="Close" class="btn-close">
+<span class="visually-hidden">cerrar</span>
+</button>
   
   <div class="row g-2">
     <div class="col-md-4 px-md-3 mb-2">
@@ -266,43 +352,23 @@ color: "#0072b8"
           <option value="5: 5">Agente</option>
       </select>
     </div>
-    <div class="col-md-8 px-md-3 mb-2" >
+    <div class="col-md-6 px-md-3 mb-2" >
       <label for="IngresoOrganismo" class="form-label">Organismo *</label>
       <select formcontrolname="organismo" id="IngresoOrganismo" name="state" class="form-control ng-pristine ng-invalid ng-touched">
         <option value="0: null">Seleccioná el organismo</option>
         <option value="1: Object"> Colonia Montes de Oca </option>
       </select>
-
-      <!--
-      <select class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
-             <option selected="">Seleccioná el organismo</option>
-          <option value="0: 1">xxxxxx</option>
-      </select>
-    -->
   </div>
 
 
+<div class="col-md-2 px-md-3 mb-2 mt-md-5">
+      <input class="custom-control" id="rol_principal" name="principal" type="checkbox" value="rol_principal">
 
-<!--
-  <div class="col-md-4 px-md-3 mb-2">
-      <label for="exampleFormControlInput1" class="form-label">Área *</label>
-      <select class="form-control ng-pristine ng-invalid ng-touched" name="state">
-          <option selected="">Seleccioná un área</option>
-          <option value="0: 1">Ingresá al menos un caracter</option>
-
-      </select>
+      <label for="rol_principal" class="form-label">Rol principal</label>
+      
   </div>
 
 
-   <div class="col-md-4 px-md-3 mb-2">
-      <label for="exampleFormControlInput1" class="form-label">Punto de atención *</label>
-      <select class="form-control ng-pristine ng-invalid ng-touched" name="state">
-          <option selected="">Seleccioná un punto de atención</option>
-          <option value="0: 1">Ingresá al menos un caracter</option>
-
-      </select>
-  </div>
--->
   </div>
 
 
@@ -319,11 +385,6 @@ color: "#0072b8"
 
 <input type="text" name="personal-info" id="Ventanilla" class="form-control" value="" placeholder="Seleccioná un punto de atención">
 
-  <!--    <select  id="IngresoPunto" class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
-           <option selected="">Seleccioná un punto de atención</option>
-          <option value="0: 1">Ingresá al menos un caracter</option>
-       
-      </select>-->
     </div>
  
   <div class="col-12 col-md-4 px-md-3">
@@ -331,33 +392,28 @@ color: "#0072b8"
   
 <input type="text" name="personal-info" id="Ventanilla" class="form-control" value="" placeholder="Seleccioná una ventanilla">
 
-   <!--<select  id="IngresoPunto" class="form-control ng-pristine ng-invalid ng-touched js-example-basic-single" name="state">
-           <option selected="">Seleccioná una ventanilla</option>
-          <option value="0: 1">Ingresá al menos un caracter</option>
-       
-      </select>-->
-
     </div>
   </div>
 
 
+<!--
 <div class="row mt-4"><div class="col-md-12">
-  <button type="button" class="btn btn-link btn-sm mx-1">Limpiar</button>
-  <button type="button" class="btn btn-sm btn-danger mx-1">Cancelar</button>
-  <button type="submit" class="btn btn-sm btn-success mx-1">Aceptar</button>
+  <button type="submit" class="btn btn-sm btn-success ms-0 ms-md-3">Aceptar</button>
 </div><div class="form-group col-md-12"></div></div>
-
+-->
     
   </div>
 
 
 <div class="row justify-content-between align-items-center">
-      <div class="col snt-m-r" ><a href="crear_usuario2.html" type="button" class="btn btn-success btn-sm my-2">Agregar rol</a></div>
+      <div class="col snt-m-r" ><a href="crear_usuario2.html" type="button" class="btn btn-default btn-sm my-2">Agregar nuevo rol</a></div>
 
     </div>
 
 <!--fin nuevo rol --->
 </section>
+
+
 <!--
 <div class="row mt-2"> <div class="col-md-12"> <a class="btn-link btn" href="#">Limpiar</a> <a class="btn-success btn next-step" href="#">Aceptar</a> <hr></div></div>
 -->
@@ -415,19 +471,21 @@ color: "#0072b8"
     </tbody>
     </table>
 -->
+
+<!--
 <table class="table mt-2 table-responsive table-responsive-poncho table-hover"><thead class="border-bottom border-3"><tr><th scope="col">Rol</th><th scope="col">Organismo</th><th scope="col">Área</th><th scope="col">Punto de atención</th><th scope="col">Ventanilla</th><th scope="col">Principal</th><th scope="col" class="text-center">Acciones</th></tr></thead><tbody><tr class="ng-untouched ng-pristine ng-valid"><td data-label="Rol"><p class="badge badge-rol text-primary"> Responsable de Punto de atención </p></td><td data-label="Organismo" title="[object Object]"><app-org-name><div> Colonia Montes de Oca
-</div></app-org-name><!----></td><td data-label="Área" title="[object Object]"><app-area-name><div> Centro Interdisciplinario de Salud Mental
-</div></app-area-name><!----></td><td data-label="Punto de atención" title="[object Object]"><app-pda-name><div> C.I.Sa.M
-</div></app-pda-name><!----></td><td data-label="Ventanilla"></td><!----><!----><td data-label="Principal" class="text-md-center"><input type="radio" formcontrolname="rol_default" name="rol_default" class="ng-untouched ng-pristine ng-valid"></td><td data-label="Acciones" class="acciones text-md-center"><a title="Quitar rol"><i class="fa fa-trash text-primary"></i></a></td></tr><!----></tbody></table>
+</div></app-org-name></td><td data-label="Área" title="[object Object]"><app-area-name><div> Centro Interdisciplinario de Salud Mental
+</div></app-area-name></td><td data-label="Punto de atención" title="[object Object]"><app-pda-name><div> C.I.Sa.M
+</div></app-pda-name></td><td data-label="Ventanilla"></td><td data-label="Principal" class="text-md-center"><input type="radio" formcontrolname="rol_default" name="rol_default" class="ng-untouched ng-pristine ng-valid"></td><td data-label="Acciones" class="acciones text-md-center"><a title="Quitar rol"><i class="fa fa-trash text-primary"></i></a></td></tr></tbody></table>
 
 
-
+-->
 
     
 
 </div>
 
-<div class="col-12 my-5">
+<div class="col-12 mb-3">
 <a href="#" type="button" class="btn btn-primary ms-1">Volver</a>
 <a href="#" type="button" class="btn btn-danger ms-1">Cancelar</a>
 <a href="#" type="button" class="btn btn-success ms-1">Guardar</a>
