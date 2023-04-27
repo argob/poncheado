@@ -1,0 +1,369 @@
+---
+title: Reporte | SNT
+layout: snt/snt-interior
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+
+<link rel="stylesheet" href="../css/snt.css">
+<section class="box-campania">
+  <div class="container pb-3">
+  	{% include snt/breadcrumbs.html %}
+
+{% include snt/menu-admin.html %}
+</div>
+</section>
+
+<section>
+  <div class="container">
+
+
+<div class="row justify-content-between align-items-center title-snt">
+      <div class="col-auto"><h2 class="h3 "><a href="reporte_inicio.html" role="button"><span class=" fa fa-chevron-circle-left me-2"></span><span class="visually-hidden">página anterior</span></a><span class="fw-light">Informe </span>/ Resumen</h2></div>
+    </div>
+
+
+	  
+
+    <div class="accordion snt-filtros mb-4" id="accordion-snt">
+      
+      <div class="accordion-item border-primary">
+        <h3 class="accordion-header mt-0" id="headingTwo">
+          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Filtro
+          </button>
+        </h3>
+        <div id="collapseTwo" class="accordion-collapse collapse bg-gray pb-4" aria-labelledby="headingTwo" data-bs-parent="#accordion-snt">
+                  <div class="accordion-body">
+                    <div class="px-3 pt-2">
+                      <div class="col-12">
+
+                  <div class="row g-2">
+                              <div class="col-md-4  col-12 px-md-3">
+                                  <label for="periodo" class="form-label fw-bold">Período  </label>
+                                  <select class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="rol" id="periodo">
+                                    <option selected="">Seleccioná el período</option>
+                                    <option value="0: 1">1 ene 2023 - 30 de junio 2023</option>
+                                </select>
+                              </div>
+
+                                  <div class="col-md-4 col-12 px-md-3">
+                                <label for="area" class="form-label fw-bold">Áreas</label>
+                                <input type="#" class="form-control" id="area" placeholder="Seleccioná las áreas del organismo">
+                              </div>
+
+
+
+
+                               <div class="col-md-4 col-12  px-md-3">
+                              <label for="punto" class="form-label fw-bold">Punto de atención</label>
+                              <input type="#" class="form-control" id="punto" placeholder="Seleccioná los puntos de atención">
+                            </div>
+
+
+                               <div class="col-md-4  col-12  px-md-3">
+                              <label for="grupo-tramite" class="form-label fw-bold">Grupos de trámite</label>
+                              <input type="#" class="form-control" id="grupo-tramite" placeholder="Seleccioná los grupos">
+                            </div>
+
+
+                            
+
+
+                              <div class="col-md-8 col-12 px-md-3">
+                                    <label for="tramite" class="form-label fw-bold">Trámites</label>
+                                    <select class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="rol" id="tramite">
+                                      <option selected="">Seleccioná el trámite por nombre</option>
+                                      <option value="1">Todos</option>
+                                      <option value="2">Autorizar a un tercero a realizar trámites de la SRT</option>
+                                      <option value="3">Consultar sobre un expediente previsional</option>
+                                     
+                                  </select>
+                                </div>
+
+
+                                <div class="row  mt-4">
+                                  <div class="form-group col-12">
+                                    <button type="button" class="btn btn-sm btn-default">Limpiar</button>
+                                    <a href="reporte_resumen.html" type="button" class="btn btn-sm btn-success">Buscar</a>
+                                  </div>
+                                </div>
+
+
+                    </div>
+
+
+
+
+             </div>
+                   </div>
+                  </div>
+        </div>
+      </div>
+      
+    </div>
+	  
+				 
+
+    <div class="row mb-4">
+           <div class="col-md-auto col-12 ">
+           <label for="tipo-informe" class="form-label fw-bold col-form-label">Tipo de informe:</label>
+          </div>
+           <div class="col-md-4 col-12 px-md-3">
+             <select class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="tipo-informe" id="tipo-informe">
+                 <option selected="">Selección el tipo de presentación</option>
+                 <option value="0: 1">Resumen</option>
+                  <option value="0: 1">Cantidad de turnos en el período</option>
+                  <option value="0: 1">Cantidad de turnos por mes (almanaque)</option>
+                  <option value="0: 1">Turnos solicitados y atendidos</option>
+            </select>
+            </div>
+
+    </div>
+
+
+    <div class="row border-top border-3 bg-gray pb-3">
+
+      <div class="col-md-auto col-12"><span class="fw-bold">Período:</span> 01.01.23 a 30.06.23</div>
+      <div class="col-md-auto col-12"><span class="fw-bold">Áreas:</span> 2</div>
+      <div class="col-md-auto col-12"><span class="fw-bold">Punto de atención:</span> Todos</div>
+      <div class="col-md-auto col-12"><span class="fw-bold">Grupo de trámite:</span>  Todos</div>
+       <div class="col-md-auto col-12"><span class="fw-bold">Trámites:</span>  Todos</div>
+
+    </div>
+
+</div>
+</section>
+
+
+<section>
+  <div class="container">
+
+             
+                            <div class="row">          
+                                <div class="custom-control custom-checkbox col-md-auto" >
+                                    <input class="custom-control" type="checkbox" id="turno-en-fecha" value="Turnos solicitados en el fecha">
+                                    <label for="turno-en-fecha" class="custom-control-label">
+                                      Turnos solicitados en el fecha
+                                      <span class="fa fa-circle text-enfecha"></span>
+                                        <span class="visually-hidden">Turnos solicitados en el fecha
+                                        </span>
+                                    </label>
+                                </div>
+
+
+                              <div class="custom-control custom-checkbox col-md-auto" >
+                                    <input class="custom-control" type="checkbox" id="turno-atendidosfecha" value="Turnos atendidos en el fecha">
+                                    <label for="turno-atendidosfecha" class="custom-control-label">
+                                      Turnos atendidos en la fecha
+                                      <span class="fa fa-circle text-atendidofecha"></span>
+                                        <span class="visually-hidden">Turnos atendidos en la fecha
+                                        </span>
+                                    </label>
+                                </div>
+
+
+
+                                 <div class="custom-control custom-checkbox col-md-auto" >
+                                    <input class="custom-control" type="checkbox" id="turno-paralafecha" value="Turnos solicitados para la fecha">
+                                    <label for="turno-paralafecha" class="custom-control-label">
+                                      Turnos solicitados para la fecha
+                                      <span class="fa fa-circle text-parafecha"></span>
+                                        <span class="visually-hidden">Turnos solicitados para la fecha
+                                        </span>
+                                    </label>
+                                </div>
+
+
+                                 <div class="custom-control custom-checkbox col-md-auto" >
+                                    <input class="custom-control" type="checkbox" id="ausentes" value="Ausentes">
+                                    <label for="ausentes" class="custom-control-label">
+                                      Ausentes
+                                      <span class="fa fa-circle text-ausente"></span>
+                                        <span class="visually-hidden">Ausentes
+                                        </span>
+                                    </label>
+                                </div>
+
+
+
+                          </div>
+                      
+</div>
+</section>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+
+
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
+
+<script>
+  $(function(){
+
+    var tabla =  $(".dataTables").DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : false,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    var oTable = $('#tableFiltro').DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : true,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    $("#tableFiltro_filter").addClass("hidden");
+          $('#ponchoTableSearch').keyup(function(){
+            oTable.search($(this).val()).draw() ;
+          })
+
+  });
+
+
+
+</script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
+  </script>
+
+
+
+<script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
