@@ -21,12 +21,12 @@ color: "#0072b8"
 
 
 <div class="row justify-content-between align-items-center title-snt">
-      <div class="col-auto"><h2 class="h3 "><a href="reporte_inicio.html" role="button"><span class=" fa fa-chevron-circle-left me-2"></span><span class="visually-hidden">página anterior</span></a><span class="fw-light">Informe </span>/ Turnos por mes </h2></div>
+      <div class="col-auto"><h2 class="h3 "><a href="reporte_inicio.html" role="button"><span class=" fa fa-chevron-circle-left me-2"></span><span class="visually-hidden">página anterior</span></a><span class="fw-light">Informe </span>/ Turnos solicitados y atendidos</h2></div>
     </div>
 
 
 	  
-<!--comienzo filtro -->
+  <!--comienzo filtro -->
     <div class="accordion snt-filtros mb-4" id="accordion-snt">
       
       <div class="accordion-item border-primary">
@@ -110,7 +110,7 @@ color: "#0072b8"
       </div>
       
     </div>
-    
+	  
 
     <!--fin filtro -->
 				 
@@ -120,7 +120,7 @@ color: "#0072b8"
            <label for="tipo-informe" class="form-label fw-bold col-form-label">Tipo de informe:</label>
           </div>
            <div class="col-md-4 col-12 px-md-3">
-             <select class="form-select ng-pristine ng-invalid ng-touched" formcontrolname="tipo-informe" id="tipo-informe">
+             <select class="form-select ng-pristine ng-invalid ng-touched"  id="tipo-informe">
                  <option selected="">Seleccioná el tipo de presentación</option>
                  <option value="0: 1">Resumen</option>
                   <option value="0: 1">Cantidad de turnos en el período</option>
@@ -143,67 +143,156 @@ color: "#0072b8"
     </div>
 
 </div>
-
-
-
 </section>
+
+
+
+
 
 
 <section>
-  <div class="container">
 
-             
-                            <div class="row">          
-                                <div class="custom-control custom-checkbox col-md-auto" >
-                                    <input class="custom-control" type="checkbox" id="turno-en-fecha" value="Turnos solicitados en el fecha">
-                                    <label for="turno-en-fecha" class="custom-control-label">
-                                      Turnos solicitados en el fecha
-                                      <span class="fa fa-circle text-enfecha"></span>
-                                        <span class="visually-hidden">Turnos solicitados en el fecha
-                                        </span>
-                                    </label>
-                                </div>
+ <div class="container">
 
-
-                              <div class="custom-control custom-checkbox col-md-auto" >
-                                    <input class="custom-control" type="checkbox" id="turno-atendidosfecha" value="Turnos atendidos en el fecha">
-                                    <label for="turno-atendidosfecha" class="custom-control-label">
-                                      Turnos atendidos en la fecha
-                                      <span class="fa fa-circle text-atendidofecha"></span>
-                                        <span class="visually-hidden">Turnos atendidos en la fecha
-                                        </span>
-                                    </label>
-                                </div>
-
-
-
-                                 <div class="custom-control custom-checkbox col-md-auto" >
-                                    <input class="custom-control" type="checkbox" id="turno-paralafecha" value="Turnos solicitados para la fecha">
-                                    <label for="turno-paralafecha" class="custom-control-label">
-                                      Turnos solicitados para la fecha
-                                      <span class="fa fa-circle text-parafecha"></span>
-                                        <span class="visually-hidden">Turnos solicitados para la fecha
-                                        </span>
-                                    </label>
-                                </div>
-
-
-                                 <div class="custom-control custom-checkbox col-md-auto" >
-                                    <input class="custom-control" type="checkbox" id="ausentes" value="Ausentes">
-                                    <label for="ausentes" class="custom-control-label">
-                                      Ausentes
-                                      <span class="fa fa-circle text-ausente"></span>
-                                        <span class="visually-hidden">Ausentes
-                                        </span>
-                                    </label>
-                                </div>
-
-
-
-                          </div>
-                      
+      <h3 class="h4 mb-2">Listado de turnos solicitados y atendidos</h3>
+                    
 </div>
+
+<div class="container-fluid bg-gray py-3">
+<!--glosario-->
+            <div class="container">
+                    <div class="text-end my-2">Glosario 
+          <button type="button" class="border-0 m-0 btn btn-md p-0 btn-ayuda"  
+            data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Glosario"><span class="visually-hidden">Glosario</span></i>  </button>
+
+            <!-- The Modal -->
+          <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+
+              <div class="modal-content">
+
+                <!-- Modal Header --> 
+                <div class="modal-header">
+                  <h4 class="modal-title h5"> <i class="fa fa-question-circle me-0 text-info" title="Ayuda"></i> Glosario</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"><span class="visually-hidden">cerrar</span></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body fw-normal text-start">
+          <h3 class="h5">Métricas</h3>
+
+          <p><strong>Turnos solicitados en la fecha:</strong> Se predetermina un período que incluye los últimos 30 días, pero podrá seleccionar la/s fecha/s deseadas.</p>
+
+          <p><strong>Turnos solicitados para la fecha:</strong> Cantidad de turnos que se solicitaron para las fechas incluidas en el filtro seleccionado. Se incluye los que fueron cancelados.</p>
+
+          <p><strong>Turnos cancelados:</strong> Cantidad de turnos solicitados, que se cancelaron en las fechas incluidas en el filtro seleccionado.</p>
+
+          <p><strong>Turnos efectivos:</strong>Cantidad de turnos a atender en las fechas incluidas en el filtro seleccionado. Se calcula como: solicitados, cancelados y pendientes.</p>
+
+
+          <p><strong>Turnos ausentes:</strong>Cantidad de turnos solicitados para las fechas incluidas en el filtro, que no se atendieron (no fueron recepcionados en el punto de atención).</p>
+          <p><strong>Turnos pendientes:</strong> Cantidad de turnos solicitados, que corresponden a una fecha futura a hoy.  Están a la espera de que llegue el día correspondiente. Se excluyen los cancelados. </p>
+          <p><strong>Turnos atendidos:</strong>Cantidad de turnos que fueron atendidos durante las fechas seleccionadas en el filtro (fueron recepcionados en el punto de atención).</p>
+          <p><strong>Turnos completados: </strong>Cantidad de turnos que fueron recepcionados durante las fechas seleccionadas en el filtro y fueron cerrados con el motivo "Trámite incompleto".</p>
+          <p><strong>Turnos incompletos: </strong> Cantidad de turnos que fueron recepcionados durante las fechas seleccionadas en el filtro y fueron cerrados con el motivo "Trámite incompleto".</p>
+          <p><strong>Turnos no atendidos: </strong>Cantidad de turnos que fueron recepcionados durante las fechas seleccionadas en el filtro y fueron cerrados con el motivo "No atendido".</p>
+
+          <p><strong>Tiempo de atención:</strong> Intervalo transcurrido en minutos desde la recepción en el punto de atención en las fechas seleccionadas en el filtro, hasta que concluye el trámite y se cierra el turno.</p>
+          <p><strong>% de ausentismo: </strong>% de turnos que fueron solicitados para atenderse durante las fechas incluidas en el filtro, pero no fueron recpecionados en el punto de atención.</p>
+
+
+             </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+          </div>
+
+    
+
+
+                
+              </div>
+
+        <!--fin glosario-->
+
+  <div class="container">
+  <div class="row">
+  
+        <div class="col-md-6  col-12 px-md-3">
+              <label for="nombretramite" class="form-label">Buscar por nombre de trámite</label>
+                <select class="form-select ng-pristine ng-invalid ng-touched" id="nombretramite">
+                      <option selected="">Todos</option>
+                        <option value="0: 1">Nombre de trámite 1</option>
+                </select>
+            </div>
+
+          <div class="col-md-6  col-12 px-md-3">
+              <label for="tipoturno" class="form-label">Tipo de turno</label>
+                <select class="form-select ng-pristine ng-invalid ng-touched" id="tipoturno">
+                      <option selected="">Todos</option>
+                        <option value="0: 1">Turnos solicitados</option>
+                </select>
+            </div>
+
+
+</div>
+
+</div>
+</div>
+
+
+<div class="container">
+
+  <h4 class="h5 mt-5 ">Turnos solicitados: 434</h4>
+<table class="mt-3 table table-responsive-poncho table-hover">
+  <thead>
+    <tr>
+    <th>Nombre del trámite</th> 
+    <th class="text-end">Turnos solicitados</th> 
+   </tr>
+ </thead> 
+ <tbody>
+  <tr><td>Iniciar tramite para solicitar el reingreso a tratamiento
+</td>
+    <td class="text-end">59</td>
+  </tr>
+   <tr><td>Iniciar tramite por el Rechazo de una Contingencia</td>
+    <td class="text-end">59</td>
+  </tr>
+   <tr><td>          Divergencia en la determinacion de la Incapacidad
+</td>
+    <td class="text-end">59</td>
+  </tr>
+   <tr><td>Autorizar a un tercero a realizar trámites en la SRT</td>
+    <td class="text-end">59</td>
+  </tr>
+
+ <tr><td class="fw-bold border-3 border-top">TOTAL</td>
+    <td class="text-end border-3 border-top fw-bold">000</td>
+  </tr>
+
+
+</tbody>
+</table>
+
+
+
+</div>
+
+
+
 </section>
+
 
 
 
