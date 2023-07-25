@@ -29,11 +29,11 @@ color: "#0072b8"
       
       <div class="accordion-item border-primary">
         <h3 class="accordion-header mt-0" id="headingTwo">
-          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             Filtro
           </button>
         </h3>
-        <div id="collapseTwo" class="accordion-collapse collapse bg-gray pb-4" aria-labelledby="headingTwo" data-bs-parent="#accordion-snt">
+        <div id="collapseTwo" class="accordion-collapse collapse show bg-gray pb-4" aria-labelledby="headingTwo" data-bs-parent="#accordion-snt">
           <div class="accordion-body">
             <div class="px-3 pt-2">
               <div class="col-12">
@@ -123,10 +123,10 @@ color: "#0072b8"
     </div>
 	  
 				 
-      <div class="alert alert-info alert-dismissible fade show col-md-8 offset-md-2 mt-5" role="alert">
+     <!-- <div class="alert alert-info alert-dismissible fade show col-md-8 offset-md-2 mt-5" role="alert">
   Seleccioná filtros de búsqueda para consultar el listado de usuarios
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+</div>-->
       
 
          
@@ -135,20 +135,7 @@ color: "#0072b8"
   data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Ayuda"><span class="visually-hidden">Estados vigentes</span></i>  </button>
           </div>
 				 
-		
-		
-	  
-<table class="table dataTables table-responsive-poncho">
-<thead class="border-bottom border-3">
-<th>CUIL</th>
-<th>Nombre</th>
-<th>Organismo</th>
-<th>Área</th>
-<th>Rol</th>
-<th>Estado <!-- <button type="button" class="border-0 m-0 btn btn-md p-0 btn-ayuda"  
-  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Ayuda"><span class="visually-hidden">Estados vigentes</span></i>  </button>
--->
-  <!-- The Modal -->
+           <!-- The Modal -->
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -176,6 +163,20 @@ color: "#0072b8"
     </div>
   </div>
 </div>
+		
+		
+	  
+<table class="table dataTables table-responsive-poncho">
+<thead class="border-bottom border-3">
+<th>CUIL</th>
+<th>Nombre</th>
+<th>Organismo</th>
+<th>Área</th>
+<th>Rol</th>
+<th>Estado <!-- <button type="button" class="border-0 m-0 btn btn-md p-0 btn-ayuda"  
+  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Ayuda"><span class="visually-hidden">Estados vigentes</span></i>  </button>
+-->
+
 
 
 
@@ -232,45 +233,47 @@ color: "#0072b8"
 </section>
 
 
+
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 
 
 <script>
-	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
-	var elements
+  var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+  var elements
 
-	document.getElementById('country').addEventListener('change', function(){
-		elements.forEach(element => {
-		
-		
-			if(document.getElementById('country').value !== "ARG"){
-				element.disabled = true;
-				element.value = '';
-			}else{
-				element.disabled = false;
-				
-				element.value = element.firstElementChild.value
-				/*console.log(elementOption[0].value)
+  document.getElementById('country').addEventListener('change', function(){
+    elements.forEach(element => {
+    
+    
+      if(document.getElementById('country').value !== "ARG"){
+        element.disabled = true;
+        element.value = '';
+      }else{
+        element.disabled = false;
+        
+        element.value = element.firstElementChild.value
+        /*console.log(elementOption[0].value)
 
-				for(var i; i < elementOption.length; i++){
-					element.value = elementChild.value
-				}
-				elementOption.children.forEach(elementChild => {
-					element.value = elementChild.value
-				})*/
-				
-			}
-		})
-	})
+        for(var i; i < elementOption.length; i++){
+          element.value = elementChild.value
+        }
+        elementOption.children.forEach(elementChild => {
+          element.value = elementChild.value
+        })*/
+        
+      }
+    })
+  })
 
 
-	
-	
-	
+  
+  
+  
 </script>
 <script>
-	$(document).ready(function () {
+  $(document).ready(function () {
      $('.collapse')
          .on('shown.bs.collapse', function() {
              $(this)
@@ -287,8 +290,8 @@ color: "#0072b8"
                  .addClass("fa-chevron-circle-down");
              });
          });
-	
-	</script>
+  
+  </script>
 
 <script>
   $(function(){
