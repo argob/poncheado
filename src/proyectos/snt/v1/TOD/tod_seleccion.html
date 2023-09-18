@@ -1,0 +1,129 @@
+---
+title: Autenticación | SNT
+layout: snt/tod-interior
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+<style>
+	.btn-tramite { 
+	border-radius: 10px;
+    color: #333;
+    border: #333 3px solid;
+    text-align: left;
+    font-size: 22px;
+        margin-top: 20px;
+        background: #fff;
+}
+
+	.btn-tramite:hover,.btn-tramite:focus,.btn-tramite:active
+	{ 
+	border-radius: 10px;
+    color: #fff;
+    border: gray 3px solid;
+ background: #333;
+}
+
+
+</style>
+
+
+<section>
+
+<div class="container-fluid bg-gray py-3">
+
+<div class="container">
+	<div class="row  justify-content-center">
+
+
+<div class="text-center col-12 col-md-8">
+
+	
+		 <a href="tod_form.html" type="button" class="btn btn-md  d-flex btn-tramite w-100">
+		   Reservar sala de radio, ensayo o grabación 
+		</a>
+
+
+ <a href="tod_form.html" type="button" class="btn btn-md d-flex btn-tramite w-100">
+		   Texto de botón
+		</a>
+
+	  <a href="tod_form.html" type="button" class="btn btn-md d-flex btn-tramite w-100">
+		   Texto de botón con mucho texto que obliga a tener más de una línea
+		</a>
+
+	 </div>
+</div>
+</div>
+
+</div>
+
+
+<div class="container">
+	<div class="row  justify-content-center col-12">
+		
+		<div class="col-12">
+		<a href="tod.html" type="button" class="btn btn-danger btn-md mt-5">Cancelar</a> 
+		</div>
+
+		
+</div>
+</div>
+
+
+
+</section>
+
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
