@@ -5,17 +5,31 @@ canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
 author: "Subsecretaría de Gobierno Abierto y País Digital"
 color: "#0072b8"
 ---
+  <!-- 
+  <script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl }}"></script> 
+  
+     <script src="{{ "/node_modules/bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl }}"></script> 
+    <script src='https://www.google.com/recaptcha/api.js'></script> 
+
+    <!-- prueba uso tooltip -->
+
+
+
+
+
+
+
+
 
 
  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
-<section class="box-campania">
-  <div class="container pb-3">
-  	{% include snt/breadcrumbs.html %}
-
-{% include snt/menu-admin.html %}
+<section class="box-campania pt-0 pt-sm-2 pb-0">
+  <div class="container pb-1">
+    {% include snt/breadcrumbs.html %}
 </div>
 </section>
+
 
 <section>
   <div class="container">
@@ -135,8 +149,8 @@ color: "#0072b8"
 			
 	  
 <table class="table dataTables table-responsive-poncho table-hover" >
-<thead class="border-bottom border-3">
-<th>CUIL</th>
+<thead class="border-bottom border-2 border-0 border-black">
+<th>CUIL </th>
 <th>Nombre</th>
 <th>Organismo</th>
 <th>Área</th>
@@ -198,7 +212,7 @@ color: "#0072b8"
 
 
 
-        <button type="button" class="btn btn-md pt-0" data-bs-toggle="tooltip" title="Activo. Último ingreso: 24/6/21 - 11:20"><i class="fa fa-check-circle text-success"></i></button>
+        <button type="button" class="btn btn-md pt-0" data-toggle="tooltip" title="ACTIVO. Último ingreso: 24/6/21 - 11:20"><i class="fa fa-check-circle text-success"></i></button>
 
 
     </td>
@@ -235,7 +249,8 @@ color: "#0072b8"
  <td data-label="Rol">
       <p class="badge card text-black badge-rol">Resp. de organismo</p></td>
 
-    <td data-label="Estado"><button type="button"  data-bs-toggle="tooltip" data-placement="bottom" title="Desactivado. Último ingreso: 02/12/21 - 10:00" class="btn btn-md pt-0">
+    <td data-label="Estado">
+      <button type="button"  data-toggle="tooltip" data-placement="bottom" title="DESACTIVADO. Último ingreso: 02/12/21 - 10:00" class="btn btn-md pt-0">
       <i class="fa fa-close text-danger"></i></button></td>
 
 
@@ -267,7 +282,7 @@ color: "#0072b8"
 
     <td data-label="Rol">
       <p class="badge card text-black badge-rol">Agente</p></td>
-    <td data-label="Estado"><button type="button"  data-bs-toggle="tooltip" data-placement="bottom" title="Pendiente. Sin ingreso registrado." class="btn btn-md pt-0">
+    <td data-label="Estado"><button type="button"  data-toggle="tooltip" data-placement="bottom" title="PENDIENTE. Sin ingreso registrado." class="btn btn-md pt-0">
    <i class="fa fa-question-circle me-1 text-warning" title="Pendiente"> </i></button></td>
 
 
@@ -481,7 +496,7 @@ color: "#0072b8"
 
 </script>
 
-
+<!--
 
 <script>
 // Initialize tooltips
@@ -489,6 +504,8 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-</script>
+</script>-->
 
+
+<script type="text/javascript"> $(function () { $('[data-toggle="tooltip"]').tooltip() }) </script>
 
