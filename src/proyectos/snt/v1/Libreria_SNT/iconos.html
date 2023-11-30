@@ -1,0 +1,252 @@
+---
+title: Autenticación | SNT
+layout: snt/libreria-snt
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+<!--
+<section class="box-campania pt-0 pt-sm-2 pb-0">
+  <div class="container pb-1">
+    {% include snt/breadcrumbs.html %}
+</div>
+</section>
+-->
+
+
+
+<section>
+  <div class="container">
+	  
+	  
+	  
+	  <div class="row justify-content-between align-items-center title-snt">
+      <div class="col-auto"><h2 class="h3 "><a href="inicio" role="button"><span class=" fa fa-chevron-circle-left me-2"></span><span class="visually-hidden">página anterior</span></a><span class="fw-light">Identidad </span>/ Íconos</h2></div>
+
+    </div>
+<p class="text-start">SNT usa los íconos del sistema <a class="fw-bold" target="_blank" href="https://argob.github.io/poncho/identidad/iconos/" title="Ir a la librería Poncho">
+Poncho</a> (librería oficial del Estado argentino) y en casos puntuales, los íconos de 
+<a href="https://fontawesome.com/" title="Ir al sitio de Font Awersome" target="_blank" 
+class="fw-bold">Font Awesome</a>.
+
+</p>
+
+
+
+
+						
+
+	  
+	  
+
+	 
+	 
+
+
+
+  <div class="col-md-12">
+
+
+</div>
+
+
+
+<div>
+
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<style>
+  .select2-container--default .select2-selection--multiple { border: none!important;}
+  .select2-container--default.select2-container--focus .select2-selection--multiple { border: none!important;}
+  .select2-container--open { border: 1px solid #ddd!important;}
+  .select2-dropdown { top: -1px; border: 1px solid #ddd;}
+  .select2-selection__choice { margin-top:2px!important;}
+  .select2-selection__choice:first-child { margin-left: 0px!important;}
+</style>-->
+
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
+
+
+
+  </div>
+</section>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
+
+<script>
+  $(function(){
+
+    var tabla =  $(".dataTables").DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : false,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    var oTable = $('#tableFiltro').DataTable({
+          "lengthChange": false,
+          "autoWidth" : false,
+          "bFilter" : true,
+          "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                 "<'row'<'col-sm-12'i>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-md-6 text-center'p>>",
+           "language": {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "_TOTAL_ resultados",
+              "sInfoEmpty": "No hay resultados",
+              //"sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+
+              "oPaginate": {
+                  "sFirst": "<<",
+                  "sLast": ">>",
+                  "sNext": ">",
+                  "sPrevious": "<"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente",
+                  "paginate": {
+                      "first": 'Ir a la primera página',
+                      "previous": 'Ir a la página anterior',
+                      "next": 'Ir a la página siguiente',
+                      "last": 'Ir a la última página'
+                  }
+              }
+          }
+      });
+    $("#tableFiltro_filter").addClass("hidden");
+          $('#ponchoTableSearch').keyup(function(){
+            oTable.search($(this).val()).draw() ;
+          })
+
+  });
+
+
+
+</script>
+
+<script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
