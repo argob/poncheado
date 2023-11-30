@@ -1,0 +1,120 @@
+---
+title: Autenticación | SNT
+layout: snt/libreria-snt
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+
+
+
+
+<section>
+
+
+
+<div class="container">
+
+<div class="row justify-content-center mb-8">
+	<div class="col-md-9 col-12 text-center">
+    <h2>Te damos la bienvenida a la Librería SNT</h2>
+    <p class="h4 fw-normal">La librería de estilos y componentes del Sistema Nacional de Turnos basada en Bootstrap.</p>
+	  
+
+
+
+	  <div class="mt-5">
+<div class="row justify-content-center box-campania  mb-8 col-12">
+
+<hr>
+	    <h3>Comenzá a usar la librería</h3>
+
+				<div class="card col-3 mx-3">
+			<a href="identidad" class="text-decoration-none">
+			  <div class="card-body">
+			    <h4 class="h5 card-title">Identidad</h5>
+			<!--    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>-->
+			    <p class="card-text">Íconos oficiales, colores, tipografía y uso de marca.</p>
+			  </div>
+			</a>
+			</div>
+
+				<div class="card col-3 mx-3 stretched-link">
+			  <div class="card-body">
+			    <h4 class="h5 card-title">Componentes</h5>
+	
+			    <p class="card-text">Botones, filtros, alertas y otros elementos para construir páginas.</p>
+			  </div>
+			</div>
+
+			<div class="card col-3 mx-3 stretched-link">
+			  <div class="card-body">
+			    <h4 class="h5 card-title">Plantillas</h5>
+		
+			    <p class="card-text">Encabezado, pie, formularios, tablas.</p>
+			  </div>
+			</div>
+  </div>
+
+</div>
+
+  </div>
+  </div>
+  </div>
+
+
+
+</section>
+
+<script>
+	var elements = [document.getElementById('address_state'), document.getElementById('department'), document.getElementById('location')];
+	var elements
+
+	document.getElementById('country').addEventListener('change', function(){
+		elements.forEach(element => {
+		
+		
+			if(document.getElementById('country').value !== "ARG"){
+				element.disabled = true;
+				element.value = '';
+			}else{
+				element.disabled = false;
+				
+				element.value = element.firstElementChild.value
+				/*console.log(elementOption[0].value)
+
+				for(var i; i < elementOption.length; i++){
+					element.value = elementChild.value
+				}
+				elementOption.children.forEach(elementChild => {
+					element.value = elementChild.value
+				})*/
+				
+			}
+		})
+	})
+
+	
+	
+	
+</script>
+<script>
+	$(document).ready(function () {
+     $('.collapse')
+         .on('shown.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-down")
+                 .removeClass("fa-chevron-circle-down")
+                 .addClass("fa-chevron-circle-up");
+             })
+         .on('hidden.bs.collapse', function() {
+             $(this)
+                 .parent()
+                 .find(".fa-chevron-circle-up")
+                 .removeClass("fa-chevron-circle-up")
+                 .addClass("fa-chevron-circle-down");
+             });
+         });
+	
+	</script>
