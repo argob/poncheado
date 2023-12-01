@@ -11,3 +11,4 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # gem 'rack-jekyll'
 # gem 'heroku'
 gem "webrick"
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
