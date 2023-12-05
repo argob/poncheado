@@ -1,0 +1,220 @@
+---
+title: Autenticación | SNT
+layout: snt/snt-home
+canonical_url: http://local.argentina.gob.ar:4000/proyectos/snt/v1/
+author: "Subsecretaría de Gobierno Abierto y País Digital"
+color: "#0072b8"
+---
+<section class="pt-0 bg-gray">
+  <div class="container">
+        <br>
+        <p>Activación</p>
+        <h2 class="display-6 fw-bold my-3"> Seguí estos pasos en tu celular o computadora</h2>
+        <br>
+        <br> 
+        <div class="row">
+          
+          <div class="col-md-8 col-12">
+
+
+<div class="row">
+            <div class="col-md-1">
+              <p _ngcontent-igm-c38="" class="badge text-black badge-rol">Paso 1</p>
+            </div>
+
+            <div class="col-md-11">
+              <p>Escaneá el código QR o ingresá en:</p>
+		          <p class="h3 text-primary fw-bold"> https://snt.argentina.gob.ar/activar</p> 
+            </div>
+
+            <div class="col-md-1 mt-4 mt-md-5 mt-0">
+              <p _ngcontent-igm-c38="" class="badge text-black badge-rol"> Paso 2 </p>
+            </div>
+  
+            <div class="col-md-11 mt-md-5 mt-0">
+              <p>Iniciá sesión e ingresá este código</p>
+              <p class="h3 text-primary fw-bold"> B I M H L W</p> 
+            </div>
+</div>
+
+          </div>
+
+          <div class="col-md-4 col-12 justify-content-center px-5 px-md-0">
+
+            <img alt="Código QR de Mi Argentina" src="{{ "/proyectos/snt/img/Qr_MiArgentina.svg" | prepend: site.baseurl }}" height="250">
+                      
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+  </div>
+</section>
+
+<!-- v3
+ <section class="pt-0">
+  <div class="container">
+        <p>Activación</p>
+        <h2 class="h4 fw-bold my-3"> Seguí estos pasos en tu celular o computadora</h2>
+       
+      
+        <div class="row">
+          
+          <div class="col-md-1">
+            <p _ngcontent-igm-c38="" class="badge card text-black badge-rol"> Paso 1 </p>
+          </div>
+
+          <div class="col-md-7">
+            <p>Escaneá el código QR o ingresá en:</p>
+		        <a class="display-6" href="https://mi.argentina.gob.ar/"> snt.argentina.gob.ar/activar  </a> 
+          </div>
+
+          <div class="col-md-4">
+            <img alt="Código QR de Mi Argentina" src="{{ "/proyectos/snt/img/Qr_MiArgentina.svg" | prepend: site.baseurl }}" height="400">
+          </div>
+
+
+
+
+          <div class="col-md-1">
+            <p _ngcontent-igm-c38="" class="badge card text-black badge-rol"> Paso 2 </p>
+          </div>
+
+          <div class="col-md-7">
+            <p>Iniciá sesión e Ingresá este código</p>
+            <a class="display-6"> B I M H L W</a> 
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+  </div>
+</section>				    
+-->
+
+
+
+
+
+
+
+  
+
+<script>
+ var errorElements = []
+    var elementError ;
+    document.querySelector('.validator').addEventListener('click', function(){
+        
+        document.querySelectorAll('.form-control').forEach(i => {
+
+            if(i.value == ''){
+                errorElements.push(i)
+
+             }
+
+        })
+         console.log(errorElements)
+         errorElements.forEach(e => {
+            e.closest('.item-form').querySelector('.error').classList.remove('hidden');
+            e.closest('.item-form').classList.add('has-error')
+
+
+        })
+        
+        elementError = errorElements[0].closest('.item-form').querySelector('.form-control') 
+        
+        if(elementError.value == ''){
+            elementError.setAttribute('aria-label', errorElements[0].textContent)
+            //elementError.focus()
+          }
+
+
+        })
+   /* document.addEventListener("keypress", function(e){
+        
+        e.target.nextElementSibling.classList.add('hidden')
+        e.target.parentNode.parentNode.classList.remove('has-error')
+        e.target.parentNode.classList.remove('has-error')
+    })
+*/
+        
+
+function mostrarErrores(){
+  document.querySelector('#errores').innerHTML = ''
+  document.querySelector('#errores').innerHTML = '<h3>Se han producido los siguientes errores:</h3><ol></ol>'
+  let cantidadDeErrores = 0
+  document.querySelectorAll('.has-error').forEach(error => {
+    let mensajeError = error.querySelector(".help-block.error").textContent;
+    let li;
+    li.innerHTML = `<li>${mensajeError}</li>`
+    error.querySelector('input').appendChild(li)
+  })
+
+}
+
+
+  function viewpassword(){
+    var eye =  document.getElementById('eye-password')
+    var clave = document.getElementById('password_confirmacion')
+    if(clave.type === 'password'){
+      clave.type = 'text'
+      eye.classList.remove("fa-eye-slash")
+      eye.classList.add("fa-eye")
+      eye.querySelector('span').innerHTML ='Mostrar contraseña' 
+
+    }else{
+      clave.type = 'password'
+      eye.classList.remove("fa-eye")
+      eye.classList.add("fa-eye-slash")
+
+      eye.querySelector('span').innerHTML ='Ocultar contraseña' 
+      
+      
+    }
+    
+  }
+</script>
+
+
+<script>
+    let mostrar = document.getElementById('mostrar');
+
+    mostrar.addEventListener("click", (e) =>{
+    e.preventDefault();
+    let clave = document.getElementById('password');
+    
+    if(clave.type === 'password'){
+      clave.setAttribute("type", "text");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" checked value="">Ocultar la contraseña';
+      document.getElementById('password').focus();
+
+    }else{
+      clave.setAttribute("type", "password");
+      mostrar.innerHTML = '<input id="opcion" name="mostrar" type="radio" class="form-radio" value="">Mostrar la contraseña';
+      document.getElementById('mostrar').focus();
+
+      
+    }
+    });
+    //console.log(prueba.outerHTML);
+    //console.log(mostrar.outerHTML);
+
+    
+
+    
+      
+</script>
