@@ -7,12 +7,9 @@ color: "#0072b8"
 ---
 
 
-<link rel="stylesheet" href="../css/snt.css">
-<section class="box-campania">
-  <div class="container pb-3">
-  	{% include snt/breadcrumbs.html %}
-
-{% include snt/menu-admin.html %}
+<section class="box-campania pt-0 pt-sm-2 pb-0">
+  <div class="container pb-1">
+    {% include snt/breadcrumbs.html %}
 </div>
 </section>
 
@@ -27,15 +24,15 @@ color: "#0072b8"
 
 	  
   <!--comienzo filtro -->
-    <div class="accordion snt-filtros mb-4" id="accordion-snt">
+   <div class="accordion snt-filtros mb-4" id="accordion-snt">
       
-      <div class="accordion-item border-primary">
+        <div class="accordion-item border-primary">
         <h3 class="accordion-header mt-0" id="headingTwo">
-          <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <button class="accordion-button  fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             Filtro
           </button>
         </h3>
-        <div id="collapseTwo" class="accordion-collapse collapse bg-gray pb-4" aria-labelledby="headingTwo" data-bs-parent="#accordion-snt">
+        <div id="collapseTwo" class="accordion-collapse collapse show bg-gray pb-4" aria-labelledby="headingTwo" data-bs-parent="#accordion-snt">
                   <div class="accordion-body">
                     <div class="px-3 pt-2">
                       <div class="col-12">
@@ -44,7 +41,6 @@ color: "#0072b8"
                               <div class="col-md-4  col-12 px-md-3">
                                   <label for="periodo" class="form-label fw-bold">Período  </label>
                                   <select class="form-select ng-pristine ng-invalid ng-touched" id="periodo">
-                                    <option selected="">Seleccioná el período</option>
                                     <option value="0: 1">1 ene 2023 - 30 de junio 2023</option>
                                 </select>
                               </div>
@@ -90,7 +86,7 @@ color: "#0072b8"
                                 </div>
 
 
-                                <div class="row  mt-4">
+                                <div class="mt-4 text-end">
                                   <div class="form-group col-12">
                                     <button type="button" class="btn btn-sm btn-default">Limpiar</button>
                                     <a href="reporte_resumen.html" class="btn btn-sm btn-success">Buscar</a>
@@ -110,60 +106,37 @@ color: "#0072b8"
       </div>
       
     </div>
-	  
 
     <!--fin filtro -->
 				 
 
-    <div class="row mb-4">
+   <div class="row mb-4">
+
+      <div class="col-md-6 row">
+
+     
            <div class="col-md-auto col-12 ">
            <label for="tipo-informe" class="form-label fw-bold col-form-label">Tipo de informe:</label>
           </div>
-           <div class="col-md-4 col-12 px-md-3">
+           <div class="col-md-8 col-12 px-md-3">
              <select class="form-select ng-pristine ng-invalid ng-touched"  id="tipo-informe">
                  <option selected="">Seleccioná el tipo de presentación</option>
-                 <option value="0: 1">Resumen</option>
-                  <option value="0: 1">Cantidad de turnos en el período</option>
+                 <option value="0: 1" id="reporte_resumen">Resumen</option>
+                  <option value="0: 1" id="reporte_turnos_periodo">Cantidad de turnos en el período</option>
                   <option value="0: 1">Cantidad de turnos por mes (almanaque)</option>
                   <option value="0: 1">Turnos solicitados y atendidos</option>
             </select>
             </div>
 
-    </div>
 
-
-    <div class="row border-top border-3 box-campania">
-
-      <div class="col-md-auto col-12"><span class="fw-bold">Período:</span> 01.01.23 a 30.06.23</div>
-      <div class="col-md-auto col-12"><span class="fw-bold">Áreas:</span> 2</div>
-      <div class="col-md-auto col-12"><span class="fw-bold">Punto de atención:</span> Todos</div>
-      <div class="col-md-auto col-12"><span class="fw-bold">Grupo de trámite:</span>  Todos</div>
-       <div class="col-md-auto col-12"><span class="fw-bold">Trámites:</span>  Todos</div>
-
-    </div>
-
-</div>
-</section>
+        </div>
 
 
 
-
-
-
-<section>
-
- <div class="container">
-
-      <h3 class="h4 mb-2">Listado de turnos solicitados y atendidos</h3>
-                    
-</div>
-
-<div class="container-fluid bg-gray py-3">
-<!--glosario-->
-            <div class="container">
-                    <div class="text-end my-2">Glosario 
+      <div class="col-md-6 text-end my-4 my-md-0">
+            Glosario 
           <button type="button" class="border-0 m-0 btn btn-md p-0 btn-ayuda"  
-            data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info " title="Glosario"><span class="visually-hidden">Glosario</span></i>  </button>
+            data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-question-circle me-0 text-info" title="Glosario"><span class="visually-hidden">Glosario</span></i>  </button>
 
             <!-- The Modal -->
           <div class="modal fade" id="myModal">
@@ -205,7 +178,7 @@ color: "#0072b8"
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
 
               </div>
@@ -217,13 +190,31 @@ color: "#0072b8"
 
           </div>
 
-    
+
+        
+
+    </div>
 
 
-                
-              </div>
 
-        <!--fin glosario-->
+</div>
+</section>
+
+
+
+
+
+
+<section>
+
+ <div class="container">
+
+      <h3 class="h4 mb-2">Listado de turnos solicitados y atendidos</h3>
+                    
+</div>
+
+<div class="container-fluid bg-gray py-3">
+
 
   <div class="container">
   <div class="row">
